@@ -11,7 +11,7 @@ ol>
 
  <h3>Basic Implementation</h3>
   <div>
-  <pre style="white-space: pre;">
+  <pre>
       
 const es6unbxd =  new UnbxdSearchComponent({
     input:document.getElementById("unbxdInput"),
