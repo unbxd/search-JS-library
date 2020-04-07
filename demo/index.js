@@ -60,9 +60,50 @@ const es6unbxd =  new UnbxdSearchComponent({
     fields: ['title','uniqueId', 'published_at', 'imageUrl2', 'v_colour', 'imageUrl1', 'unbxd_price','price', 'sku', 'imageUrl','productUrlParent', 'categoryPath', 'relevantDocument', 'imageUrlMain', 'imageUrlHover', 'colours', 'collections', 'unbxd_parentcolours', 'v_unbxd_parentcolours', 'categoryPath1', 'categoryPath1_fq',  'categoryPath2_fq', 'productUrl', 'variantId', 'id', 'unbxd_sellingprice', 'v_sellingprice', 'variant_metadata', 'is_available', 'v_price'],
     platform: "IO",
     callBackFn:unbxdCallbackEcma,
-    selectedFacetElem : selectedFacetUI,
-    facetElem: facetUIElem,
-    facetItemElem: facetItemUiElem,
+    selectedFacetElem : function (selectedFacet,selectedFacetItem){
+        const {
+            facetName,
+        } = selectedFacet;
+        const  {
+            name,
+            count,
+            dataId
+        } = selectedFacetItem;
+        return `<div><button 
+                    class="selected-facet-btn ${this.selectedFacetClass}"
+                    data-facet-name="${facetName}"
+                    data-facet-action ="deleteFacetValue"
+                    data-id= "${dataId}">
+                    ${name} (${count})
+            </button><button class="${this.selectedFacetClass}" data-facet-action="deleteFacet" data-facet-name="${facetName}" > x</button></div>`
+    },
+    facetElem: function  (facet , value) {
+        const {
+            facetName,
+        } = facet;
+        const  {
+            name,
+            count,
+            dataId
+        } = value;
+        return `<button
+                    data-facet-name="${facetName}" 
+                    data-facet-action="changeFacet"
+                    data-id= "${dataId}">
+                        ${name} (${count})
+                </button>`
+    },
+    facetItemElem: function (facet, children) {
+        const {
+            displayName,
+            facetName
+        } = facet;
+        return `<div id="${facetName}">
+                    <h3> ${displayName}</h3>
+                    <button data-facet-action="deleteFacet" data-facet-name="${facetName}" > clear</button>
+                    ${children}
+                </div>`
+    },
     facetElemWrapClass:"select-facets-block",
     facetEvt:"click",
     selectedFacetClass:"selected-facet",
@@ -156,7 +197,6 @@ const es6unbxd =  new UnbxdSearchComponent({
         const swatchSelector = this.swatchSelector;
         let btnUI = ``;
         swatchColors.forEach((item,id) => {
-            //console.log(swatchColors, swatchImgs, item,id)
             const imgId = swatchImgs[id];
             if(imgId){
                 const img = imgId.split("::")[1];
