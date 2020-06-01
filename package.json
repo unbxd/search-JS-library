@@ -55,6 +55,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
+    "infinite-scroll": "^3.0.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "unbxdsdk": "file:../search-JS-core"

@@ -4,6 +4,7 @@ import {
     facetUIElem,
     facetItemUiElem
 } from "./extended/es6sdkui";
+import styles from '../styles/index.scss'
 console.log(UnbxdSearchComponent,"UnbxdSearchComponent");
 
 const unbxdCallbackEcma = function (instance, type,data){
@@ -12,20 +13,20 @@ const unbxdCallbackEcma = function (instance, type,data){
 
 
 const es6unbxd =  new UnbxdSearchComponent({
-    input:document.getElementById("unbxdInput"),
+    searchBoxSelector:document.getElementById("unbxdInput"),
     searchEvt:"click",
-    searchElem:document.getElementById("searchBtn"),
-    productWrapper:document.getElementById("searchResultsWrapper"),
+    searchButtonSelector:document.getElementById("searchBtn"),
+    searchResultsSelector:document.getElementById("searchResultsWrapper"),
     facetWrapper: document.getElementById("facetsWrapper"),
     selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
-    siteName:"prod-kookai-com-au4541568774205",
-    siteKey:"1c406c7058fdd75c04293fa87c2f9720",
+    siteKey:"prod-kookai-com-au4541568774205",
+    apiKey:"1c406c7058fdd75c04293fa87c2f9720",
     sdkHostName:"https://search.unbxd.io/",
-    queryString:"/search?q=",
+    producType:"SEARCH",
     searchQueryParam:"q",
     updateUrls:true,
     productId:"uniqueId",
-    productTemplate : function(product){
+    searchResultsTemplate : function(product){
         const {
             title,
             imageUrl,
@@ -57,7 +58,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     mapping: {
         "title": ""
     },
-    fields: ['title','uniqueId', 'published_at', 'imageUrl2', 'v_colour', 'imageUrl1', 'unbxd_price','price', 'sku', 'imageUrl','productUrlParent', 'categoryPath', 'relevantDocument', 'imageUrlMain', 'imageUrlHover', 'colours', 'collections', 'unbxd_parentcolours', 'v_unbxd_parentcolours', 'categoryPath1', 'categoryPath1_fq',  'categoryPath2_fq', 'productUrl', 'variantId', 'id', 'unbxd_sellingprice', 'v_sellingprice', 'variant_metadata', 'is_available', 'v_price'],
+    fields: ['title','uniqueId','price', 'sku', 'imageUrl'],
     platform: "IO",
     callBackFn:unbxdCallbackEcma,
     selectedFacetElem : function (selectedFacet,selectedFacetItem){
@@ -75,7 +76,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                     data-facet-action ="deleteFacetValue"
                     data-id= "${dataId}">
                     ${name} (${count})
-            </button><button class="${this.selectedFacetClass}" data-facet-action="deleteFacet" data-facet-name="${facetName}" > x</button></div>`
+            </button><button class="${this.selectedFacetClass}"   data-id= "${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}" > x</button></div>`
     },
     facetElem: function  (facet , value) {
         const {
@@ -88,7 +89,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         } = value;
         return `<button
                     data-facet-name="${facetName}" 
-                    data-facet-action="changeFacet"
+                    data-facet-action="CHANGE_FACET"
                     data-id= "${dataId}">
                         ${name} (${count})
                 </button>`
@@ -111,13 +112,16 @@ const es6unbxd =  new UnbxdSearchComponent({
     facetMultiSelectionMode:true,
     defaultFilters :null,
     spellCheck: true,
-    didYouMeanTemplate: (suggestion) => {
+    spellCheckTemplate: (suggestion) => {
         return `<p>did you mean <strong>${suggestion}</strong></p>`
     },
-    didYouMeanContainer: document.getElementById("didYouMeanWrapper"),
+    spellCheckSelector: document.getElementById("didYouMeanWrapper"),
     noResultContainer: document.getElementById("noResultWrapper"),
-    noOfProducts: 5,
-    paginationContainer:document.getElementById("paginationContainer"),
+    pageSize: 12,
+    /*paginationType:'INFINITE_SCROLL',
+    inifinteScrollTriggerElem:window,*/
+    paginationType:'FIXED_PAGINATION',
+    heightDiffToTriggerNextPage:100,
     sortContainer:document.getElementById("sortWrapper"),
     sortOptions : [
         {
@@ -161,7 +165,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     loaderElem: () =>{
         return `<div>Loading....</div>`
     },
-    loaderContainer:null,
+    loaderContainer:document.getElementById('loaderContainer'),
     variants:true,
     variantMapping:{
         "image_url":"v_image_url"
@@ -211,7 +215,12 @@ const es6unbxd =  new UnbxdSearchComponent({
             }
         });
         return `<div class="swatchContainer">${btnUI}</div>`
-    }
+    },
+    productViewTypes:'GRID',
+    gridCount:4,
+    productViewTypeSelector: document.getElementById("productViewTypeContainer"),
+    productViewTypeAction:"click",
+    //bannerSelector:document.getElementById('bannerContainer'),
 
 });
 /*defaultFilters :{

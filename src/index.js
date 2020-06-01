@@ -1,119 +1,22 @@
-import UnbxdSearch from "../node_modules/unbxdsdk/src/index";
-import renderSearch from "./es6Sdk/searchResults";
-import renderFacets from "./es6Sdk/facets";
-import createElement from "./es6Sdk/utils/createElement";
-import didYouMeanUI from "./es6Sdk/didYouMean/index";
-import delegate from "./es6Sdk/utils/delegate";
-import {
-    selectedFacetUI,
-    facetUIElem,
-    facetItemUiElem
-} from "./es6Sdk/facets/ui";
-import  {
-    paginationUI
-} from "./es6Sdk/pagination/ui";
-import {
-    renderRangeFacets
-} from "./es6Sdk/facets/renderRangeFacets"
-import RangeSlider from "./es6Sdk/widgets/RangeSlider";
-import BucketedSearchUi from "./es6Sdk/facets/renderBucketedSearch";
-import breadCrumpUI from "./es6Sdk/breadcrumbs/breadcrumbs";
+import UnbxdSearchCore from "../node_modules/unbxdsdk/src/index";
+import renderSearch from "./modules/searchResults";
+import renderFacets from "./modules/facets";
+import createElement from "./modules/utils/createElement";
+
+import delegate from "./modules/utils/delegate";
+
+import RangeSlider from "./modules/widgets/RangeSlider";
 import {
     events,
     actions
-} from "./es6Sdk/constants/index";
-import {
-    sortOptions,
-    sortUI
-} from "./es6Sdk/sort";
-import styles from "./es6Sdk/styles/index.scss";
+} from "./common/constants/index";
+
+import infiniteScroller from './modules/pagination/infiniteScroller';
+import debounce from './modules/utils/debounce';
+import options from './common/options';
 
 
-const options = {
-    productId:"uniqueId",
-    productTemplate : function(product){
-        const {
-            title,
-            sku
-        } = product;
-        return `<div id="${sku}" class="product-item" style="border:solid 1px green">
-         ${title}
-        </div>`;
-    },
-    productWrapper: null,
-    productItemClass:".product-item", // to find out product
-    facetWrapper: null,
-    selectedFacetElem : selectedFacetUI,
-    facetElem: facetUIElem,
-    facetItemElem: facetItemUiElem,
-    facetElemWrapClass:"select-facets-block",
-    facetEvt:"change",
-    selectedFacetBlock:null,
-    selectedFacetClass:null,
-    queryString:"/search?q=",
-    searchQueryParam:"q",
-    defaultFilters : null, //or object with keys
-    didYouMeanContainer: null,
-    didYouMeanTemplate: didYouMeanUI,
-    noResultsUi: (query) => {
-        return `<div> No Results found ${query} </div>`
-    },
-    noResultContainer: null,
-    callBackFn: (state,type) =>{
-        console.log(state,type,"state,type")
-    },
-    noOfProducts: 10,
-    startPageNo:0,
-    paginationContainer:null,
-    paginationUI: paginationUI,
-    paginationEvt:"click",
-    sortContainer:null,
-    sortOptions : sortOptions,
-    sortUI:sortUI,
-    sortEvt:"change",
-    sortElem:"select",
-    productClick: function(product) {
-        console.log(product,"product,index");
-    },
-    fields: ['title', 'price', 'uniqueId', 'sku', 'rating'],
-    spellCheck: false,
-    facetMultiSelect: false,
-    facetMultiSelectionMode: false,
-    loaderElem: () =>{
-        return `<div>Loading search results....</div>`
-    },
-    loaderContainer:null,
-    variants:false,
-    variantMapping:{},
-    rangeFacetContainer:null,
-    rangeFacetUI:renderRangeFacets,
-    extraParams:{
-        "version":"V2",
-        "facet.multilevel":"categoryPath",
-        "f.categoryPath.displayName":"category",
-        "f.categoryPath.max.depth":"4",
-        "f.categoryPath.facet.limit":"100"
-    },
-    facetMultilevel:true,
-    bucketedSearchUi:BucketedSearchUi,
-    bucketedFacetContainer:null,
-    bucketFacetElem:"",
-    bucketFacetEvnt:"click",
-    bucketedFacetElem:"bucketFacetElem",
-    facetDepth:2,
-    breadcrumbContainer:null,
-    breadcrump:true,
-    breadcrumbSelectorClass:"bread-crumb",
-    breadCrumpTemplate:breadCrumpUI,
-    swatches:true,
-    swatchMap:{},
-    swatchTemplate:(swatchInfo)=>{
-        return `<div>swatchtemplate</div>`
-    }
-   // searchQueryParam:null
-
-};
-class UnbxdSearchComponent extends UnbxdSearch {
+class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
         this.searchResultsWrapper = createElement(
@@ -123,6 +26,10 @@ class UnbxdSearchComponent extends UnbxdSearch {
             }
         );
         this.options = Object.assign({},options,props);
+        this.viewState = {
+            productViewType: this.options.productViewTypes,
+            isInfiniteStarted:false
+        };
         this.facetsWrapper = createElement(
             "DIV",
             "facetsContainer",{
@@ -139,6 +46,12 @@ class UnbxdSearchComponent extends UnbxdSearch {
             "DIV",
             "bucketedSearchContainer",{
                 class:"bucketed-facets-block"
+            }
+        );
+        this.bannerWrapper = createElement(
+            "DIV",
+            "bannerWrapper",{
+                class:"banner-block"
             }
         );
         if(this.options.breadcrump) {
@@ -172,8 +85,12 @@ class UnbxdSearchComponent extends UnbxdSearch {
         if(this.options.swatchTemplate) {
             this.options.swatchTemplate.bind(this);
         }
-        this.options.productTemplate = this.options.productTemplate.bind(this);
-        this.options.productWrapper.appendChild(this.searchResultsWrapper);
+        if(this.options.bannerSelector){
+            this.options.bannerSelector.appendChild(this.bannerWrapper);
+        }
+        this.options.bannerTemplate = this.options.bannerTemplate.bind(this);
+        this.options.searchResultsTemplate = this.options.searchResultsTemplate.bind(this);
+        this.options.searchResultsSelector.appendChild(this.searchResultsWrapper);
         this.renderDidYouMean.bind(this);
         this.options.callBackFn.bind(this);
         this.renderPagination.bind(this);
@@ -184,15 +101,30 @@ class UnbxdSearchComponent extends UnbxdSearch {
         }
         this.callBack = this.callBack.bind(this);
         this.renderSwatchBtns = this.renderSwatchBtns.bind(this);
+        this.reRender = this.reRender.bind(this);
         this.bindEvents();
+        this.renderProductViewTypeUI();
         const urlParams = this.getQueryParams();
         if(urlParams[this.options.searchQueryParam]){
             this.renderFromUrl();
         }
     }
+    renderProductViewTypeUI(){
+        if(this.options.productViewTypeSelector && this.options.productViewTypeTemplate) {
+            const {
+                productViewType
+            } = this.viewState;
+            this.options.productViewTypeSelector.innerHTML = this.options.productViewTypeTemplate.bind(this)(productViewType); 
+        }
+
+    }
+    renderBannerUI(){
+        const banners = this.getBanners();
+        this.bannerWrapper.innerHTML = this.options.bannerTemplate(banners);
+    }
     setInputValue(e) {
-        const val = this.options.input.value;
-        this.changeInput(val);
+        const val = this.options.searchBoxSelector.value;
+        this.changeInput(val, events.changeInput);
         if(val) {
             this.getResults();
         } else{
@@ -207,14 +139,22 @@ class UnbxdSearchComponent extends UnbxdSearch {
         return renderFacets.bind(this)();
     }
     renderDidYouMean (suggestion) {
-        return this.options.didYouMeanTemplate.bind(this)(suggestion);
+        return this.options.spellCheckTemplate.bind(this)(suggestion);
 
     }
     renderNoResults(query) {
         return this.options.noResultsUi.bind(this)(query);
     }
     renderPagination() {
-        return this.options.paginationUI(this.getPaginationInfo());
+        const {
+            paginationType,
+            infiniteScrollSelector
+        } = this.options;
+        let paginationUI = ``;
+        if(paginationType === 'FIXED_PAGINATION') {
+            paginationUI = this.options.paginationUI(this.getPaginationInfo());
+        }
+        return paginationUI;
     }
     renderSort(){
         return this.options.sortUI.bind(this)(this.getSelectedSort());
@@ -242,7 +182,7 @@ class UnbxdSearchComponent extends UnbxdSearch {
             loaderElem,
             sortContainer,
             noResultContainer,
-            didYouMeanContainer,
+            spellCheckSelector,
             paginationContainer
 
         } = this.options;
@@ -260,36 +200,7 @@ class UnbxdSearchComponent extends UnbxdSearch {
         }
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);
-            callBackFn(this,beforeRender)
-            const results = this.getSearchResults();
-            this.loaderContainer.innerHTML = null;
-            this.options.input.value = this.state.userInput;
-
-            this.facetsWrapper.innerHTML = this.renderFacets();
-            this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
-            this.searchResultsWrapper.innerHTML = this.renderSearch();
-            this.bucketedSearchWrapper.innerHTML = this.renderBucketedUI();
-            this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
-            if(sortContainer) {
-                sortContainer.innerHTML = this.renderSort();
-            }
-
-            if(results && results.numberOfProducts === 0) {
-                callBackFn(this,beforeNoResultRender);
-                const query = this.getSearchQuery();
-                if(noResultContainer) {
-                    noResultContainer.innerHTML = this.renderNoResults(query);
-                }
-                callBackFn(this,afterNoResultRender);
-            } else {
-                noResultContainer.innerHTML = null;
-            }
-            const suggestion = this.getSpellCheckSuggested();
-            if(didYouMeanContainer && suggestion) {
-                didYouMeanContainer.innerHTML = this.renderDidYouMean(suggestion);
-            }
-            paginationContainer.innerHTML = this.renderPagination();
-            callBackFn(this,afterRender);
+            this.reRender();
         }
     }
     facetsClickFn(e) {
@@ -370,6 +281,60 @@ class UnbxdSearchComponent extends UnbxdSearch {
         const swatchData = this.getSwatches(product, this.options.swatchMap);
         return this.options.swatchTemplate(swatchData);
     }
+    reRender(){
+        const {
+            callBackFn,
+            sortContainer,
+            noResultContainer,
+            spellCheckSelector,
+            paginationContainer
+        } = this.options;
+        const {
+            beforeRender,
+            beforeNoResultRender,
+            afterNoResultRender,
+            afterRender
+        } = events;
+        callBackFn(this,beforeRender);
+        this.loaderContainer.innerHTML = null;
+        const results = this.getSearchResults();
+        this.options.searchBoxSelector.value = this.state.userInput;
+
+        this.facetsWrapper.innerHTML = this.renderFacets();
+        this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
+        if(this.options.paginationType==="INFINITE_SCROLL" &&  this.viewState.isInfiniteStarted){
+            this.viewState.isInfiniteStarted = false;
+            this.searchResultsWrapper.innerHTML += this.renderSearch();
+        } else {
+            this.searchResultsWrapper.innerHTML = this.renderSearch();
+        }
+        
+        this.bucketedSearchWrapper.innerHTML = this.renderBucketedUI();
+        this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
+        if(sortContainer) {
+            sortContainer.innerHTML = this.renderSort();
+        }
+
+        if(results && results.numberOfProducts === 0) {
+            callBackFn(this,beforeNoResultRender);
+            const query = this.getSearchQuery();
+            if(noResultContainer) {
+                noResultContainer.innerHTML = this.renderNoResults(query);
+            }
+            callBackFn(this,afterNoResultRender);
+        } else {
+            noResultContainer.innerHTML = null;
+        }
+        const suggestion = this.getSpellCheckSuggested();
+        if(spellCheckSelector && suggestion) {
+            spellCheckSelector.innerHTML = this.renderDidYouMean(suggestion);
+        }
+        paginationContainer.innerHTML = this.renderPagination();
+        this.renderProductViewTypeUI();
+        this.renderBannerUI()
+        callBackFn(this,afterRender);
+
+    }
     renderNewResults(action) {
         const pageInfo = this.getPaginationInfo();
         const {
@@ -448,7 +413,7 @@ class UnbxdSearchComponent extends UnbxdSearch {
             paginationContainer,
             paginationEvt,
             sortContainer,
-            searchElem,
+            searchButtonSelector,
             searchEvt,
             productItemClass,
             sortElem,
@@ -457,9 +422,10 @@ class UnbxdSearchComponent extends UnbxdSearch {
             facetElemWrapClass,
             selectedFacetBlock,
             selectedFacetClass,
+            productViewTypeSelector
         } = this.options;
         paginationContainer.addEventListener(paginationEvt, this.paginationAction.bind(this));
-        searchElem.addEventListener(searchEvt,this.setInputValue.bind(this))
+        searchButtonSelector.addEventListener(searchEvt,this.setInputValue.bind(this))
         //productItemSelector
         this.delegate(
             this.searchResultsWrapper,
@@ -511,6 +477,28 @@ class UnbxdSearchComponent extends UnbxdSearch {
                 this.onBucketedFacet.bind(this)
             )
         }
+        if(productViewTypeSelector){
+            this.delegate(
+                productViewTypeSelector,
+                'click',
+                "button",
+                this.onPageViewTypeClick.bind(this)
+            )
+        }
+        if(this.options.paginationType === 'INFINITE_SCROLL') {
+            document.addEventListener("scroll", debounce(()=>{
+                infiniteScroller.bind(this)();
+            },1000));
+        }
+    }
+    onPageViewTypeClick(e) {
+        const dataElem = e.target.dataset;
+        const {
+            viewAction,
+        } = dataElem;
+        this.viewState.productViewType = viewAction;
+        this.setPageStart(0);
+        this.getResults.bind(this)();
     }
     onBreadCrumbClick(e){
         debugger;
@@ -533,4 +521,4 @@ class UnbxdSearchComponent extends UnbxdSearch {
     }
 
 }
-export default UnbxdSearchComponent;
+export default UnbxdSearch;
