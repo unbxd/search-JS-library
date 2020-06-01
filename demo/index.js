@@ -4,7 +4,7 @@ import {
     facetUIElem,
     facetItemUiElem
 } from "./extended/es6sdkui";
-import styles from '../styles/index.scss'
+import styles from '../styles/index.scss';
 console.log(UnbxdSearchComponent,"UnbxdSearchComponent");
 
 const unbxdCallbackEcma = function (instance, type,data){

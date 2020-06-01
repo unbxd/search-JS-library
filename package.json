@@ -1,8 +1,16 @@
 {
-  "name": "searchsdk",
+  "name": "search-js-library",
   "version": "1.0.0",
-  "description": "searchsdk",
+  "description": "A JavaScript library for building performant and quick search experiences with Unbxd",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unbxd/search-JS-library.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unbxd/search-JS-library/issues"
+  },
+  "homepage": "https://github.com/unbxd/search-JS-library#readme",
   "scripts": {
     "start": "webpack-dev-server --open --config ./webpack/webpack.config.js",
     "build": "webpack --config ./webpack/webpack.prod.config.js",
@@ -61,15 +69,3 @@
     "unbxdsdk": "file:../search-JS-core"
   }
 }
-
-  "name": "search-js-library",
-  "description": "A JavaScript library for building performant and quick search experiences with Unbxd",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/unbxd/search-JS-library.git"
-  },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/unbxd/search-JS-library/issues"
-  },
-  "homepage": "https://github.com/unbxd/search-JS-library#readme"
