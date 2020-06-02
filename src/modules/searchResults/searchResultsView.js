@@ -1,5 +1,9 @@
 
-const renderSearch =  function(searchResults) {
+const renderSearch =  function() {
+    const searchResults = this.getSearchResults();
+    if(!searchResults) {
+        return ``;
+    }
     const {
         products
     } = searchResults;

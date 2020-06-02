@@ -19,7 +19,7 @@ const sortOptions = [
 ];
 const sortUI = function(selectedSort) {
     let optionsUI = "";
-    const sortElems = this.options.sortOptions.forEach((item) => {
+    this.options.sortOptions.forEach((item) => {
         const {
             value,
             text

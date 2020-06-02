@@ -27,8 +27,8 @@ function facetUIElem (facet , value) {
     } = value;
     return `<option
                 data-facet-name="${facetName}" 
-                data-facet-action="changeFacet"
-                class="${this.options.selectedFacetClass}"
+                data-facet-action="CHANGE_FACET"
+                class="${this.selectedFacetClass}"
                 data-id= "${dataId}">
                     ${name} (${count})
             </option>`
@@ -52,4 +52,4 @@ export {
     selectedFacetUI,
     facetUIElem,
     facetItemUiElem
-}
+};

@@ -50,4 +50,4 @@ const renderFacets = function(argFacets, selectedArgFacets) {
         ${facetsListUI}
     </div>`;
 }
-export default renderFacets
+export default renderFacets;

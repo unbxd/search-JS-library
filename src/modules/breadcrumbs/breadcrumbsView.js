@@ -1,6 +1,6 @@
-const breadCrumpUI = function(breadcrumps){
+const breadCrumbsUI = function(breadcrumbs){
     let ui = ``;
-    breadcrumps.forEach((item ,id )=> {
+    breadcrumbs.forEach((item ,id )=> {
         const {
             level,
             filterField,
@@ -20,4 +20,4 @@ const breadCrumpUI = function(breadcrumps){
     })
     return `<div class="bread-crumb-main">${ui}</div>`
 }
-export default breadCrumpUI;
+export default breadCrumbsUI;

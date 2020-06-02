@@ -1,4 +1,4 @@
-import didYouMeanUI from "../modules/didYouMean/";
+import didYouMeanUI from "../modules/didYouMean/spellCheckView";
 import {
     selectedFacetUI,
     facetUIElem,
@@ -11,14 +11,13 @@ import {
     renderRangeFacets
 } from "../modules/facets/renderRangeFacets";
 import BucketedSearchUi from "../modules/facets/renderBucketedSearch";
-import breadCrumpUI from "../modules/breadcrumbs/breadcrumbs";
+import breadCrumbsUI from "../modules/breadcrumbs/breadcrumbsView";
 import {
     sortOptions,
     sortUI
 } from "../modules/sort";
 import renderProductViewType from '../modules/productViewType';
 import bannerTemplateUI from '../modules/banners';
-
 const options = {
     productId:"uniqueId",
     searchBoxSelector:null,
@@ -43,7 +42,7 @@ const options = {
     facetElemWrapClass:"select-facets-block",
     facetEvt:"change",
     selectedFacetBlock:null,
-    selectedFacetClass:null,
+    selectedFacetClass:"selected-facet",
     productType:"SEARCH",
     searchQueryParam:"q",
     defaultFilters : null, //or object with keys
@@ -98,7 +97,7 @@ const options = {
     breadcrumbContainer:null,
     breadcrump:true,
     breadcrumbSelectorClass:"bread-crumb",
-    breadCrumpTemplate:breadCrumpUI,
+    breadCrumpTemplate:breadCrumbsUI,
     swatches:true,
     swatchMap:{},
     swatchTemplate:(swatchInfo)=>{
