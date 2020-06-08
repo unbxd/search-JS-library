@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+    margin: 5px;
+}
+.main-head {
+    text-align: center;
+}
+
+.test-block > article {
+    width: 100%;
+    padding: 50px
+}
+.selcted-sort-btn {
+    border: solid 1px red;
+}
+.selected-facet-btn {
+ border: solid 1px green;
+}
+#facetsWrapper {
+    width: 400px;
+}
+#searchResultsWrapper{
+}
+.range-slider {
+     display: block;
+     position: relative;
+     height: 60px;
+     width: 100%;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select:none;
+     -o-user-select:none;
+     user-select:none;
+}
+.slider-touch-left, .slider-touch-right {
+     display: block;
+     position: absolute;
+     height: 36px;
+     width: 36px;
+     padding: 6px;
+     z-index: 2;
+}
+.slider-touch-left {
+    left: 0;
+}
+.slider-touch-right {
+    right: 0;
+}
+.round-handle {
+     display: block;
+     width: 50px;
+     height: 50px;
+     background: #F0F0F0;
+     border: 1px solid #A4A4A4;
+     border-radius: 50%;
+ }
+ .slider-line {
+     position: absolute;
+     width: 100%;
+     left: 18px;
+     top: 0;
+     bottom: 0;
+     height: 4px;
+     border-radius: 4px;
+     background: #F0F0F0;
+     z-index: 0;
+     overflow: hidden;
+     margin: auto;
+ }
+ .slider-line div {
+     display: block;
+     height: 4px;
+     background: orange;
+     position: relative;
+     top: -5px;
+ }
+ .bucketFacetElem {
+     display: block;
+ }
+ .selected-crumb {
+     border: solid 1px blue;
+ }
+ .category-level-2 {
+     margin-left: 15px;
+ }
+ .category-level-3 {
+     margin-left: 30px;
+ }
+ .category-level-4 {
+     margin-left: 45px;
+ }
+ .unbxd-row {
+    display: flex;
+}
+.selected-view{
+    border: solid 1px red;
+}
