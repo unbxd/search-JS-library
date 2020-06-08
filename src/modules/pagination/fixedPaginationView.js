@@ -17,6 +17,4 @@ const paginationUI = function (paginationData) {
        ${currentPage} of ${noOfPages} ----  ${prevBtn} ${nextBtn} 
     </div>`
 };
-export {
-    paginationUI
-};
+export default paginationUI;

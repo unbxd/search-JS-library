@@ -15,13 +15,15 @@ const renderSearch =  function() {
         productViewType
     } = this.viewState;
     let productsUI = ``;
+    const idx = Number(this.state.startPageNo);
     if(productViewType === "GRID") {
         products.forEach((product, index) => {
             const row = index % gridCount;
             if(row === 0) {
                 productsUI += `<div class="unbxd-row">`;
             }
-            productsUI +=self.options.searchResultsTemplate(product);
+            const pRank  = index+idx+1;
+            productsUI +=self.options.searchResultsTemplate(product,pRank);
             if(row === gridCount -  1) {
                 productsUI += `</div>`;
             }

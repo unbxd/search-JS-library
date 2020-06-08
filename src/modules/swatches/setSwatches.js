@@ -1,6 +1,4 @@
-import {
-    renderSwatchBtns
- } from './actions';
+import renderSwatchBtns from './actions';
 const setSwatches = (prototype) => {
     prototype = Object.assign(prototype,{
         renderSwatchBtns

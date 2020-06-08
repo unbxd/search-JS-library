@@ -4,7 +4,7 @@ const renderPagination = function() {
     } = this.options;
     let paginationUI = ``;
     if(paginationType === 'FIXED_PAGINATION') {
-        paginationUI = this.options.paginationUI(this.getPaginationInfo());
+        paginationUI = this.options.paginationTemplate(this.getPaginationInfo());
     }
     return paginationUI;
 }

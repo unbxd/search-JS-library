@@ -19,14 +19,14 @@ const es6unbxd =  new UnbxdSearchComponent({
     searchResultsSelector:document.getElementById("searchResultsWrapper"),
     facetWrapper: document.getElementById("facetsWrapper"),
     selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
-    siteKey:"prod-kookai-com-au4541568774205",
-    apiKey:"1c406c7058fdd75c04293fa87c2f9720",
+    siteKey:"demo-french-unbxd809051588861311",
+    apiKey:"325f5ef7f59940a66ce946fd4c9b7d93",
     sdkHostName:"https://search.unbxd.io/",
-    producType:"SEARCH",
+    productType:"SEARCH",
     searchQueryParam:"q",
     updateUrls:true,
     productId:"uniqueId",
-    searchResultsTemplate : function(product){
+    searchResultsTemplate : function(product,idx){
         const {
             title,
             imageUrl,
@@ -42,7 +42,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         if(swatches) {
             swatchUI = this.renderSwatchBtns(product);
         }
-        return `<div id="${uniqueId}" data-item="product" class="product-item" style="border:solid 1px red;display:flex">  
+        return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="product-item" style="border:solid 1px red;display:flex">  
             <img class="productImgBlock" style="width:100px" src="${imageUrl}"/>
         <div>
          <h3>${title} </h3>
@@ -118,9 +118,16 @@ const es6unbxd =  new UnbxdSearchComponent({
     spellCheckSelector: document.getElementById("didYouMeanWrapper"),
     noResultContainer: document.getElementById("noResultWrapper"),
     pageSize: 12,
-    /*paginationType:'INFINITE_SCROLL',
-    inifinteScrollTriggerElem:window,*/
-    paginationType:'FIXED_PAGINATION',
+    //paginationType:'INFINITE_SCROLL',
+    inifinteScrollTriggerElem:window,
+    //paginationType:'FIXED_PAGINATION',
+    //paginationSelector:document.getElementById("paginationContainer"),
+    //paginationTemplate:()=>{},
+    paginationType:"CLICK_N_SCROLL",
+    paginationSelector:document.getElementById("clickScrollContainer"),
+    pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
+    pageSizeContainerType:"Dropdown",
+    pageSizeOptions:[6,8,12,16,20],
     heightDiffToTriggerNextPage:100,
     sortContainer:document.getElementById("sortWrapper"),
     sortOptions : [
@@ -176,10 +183,10 @@ const es6unbxd =  new UnbxdSearchComponent({
     bucketedFacetElem:"bucketFacetElem",
     extraParams :{
         "version":"V2",
-        "facet.multilevel":"categoryPath",
-        "f.categoryPath.displayName":"category",
+        //"facet.multilevel":"categoryPath",
+        /*"f.categoryPath.displayName":"category",
         "f.categoryPath.max.depth":"4",
-        "f.categoryPath.facet.limit":"100"
+        "f.categoryPath.facet.limit":"100"*/
     },
     bucketedFacetContainer:document.getElementById("bucketedFacetWrapper"),
     facetDepth:4,
@@ -220,13 +227,17 @@ const es6unbxd =  new UnbxdSearchComponent({
     gridCount:4,
     productViewTypeSelector: document.getElementById("productViewTypeContainer"),
     productViewTypeAction:"click",
+    unbxdAnalytics:true,
+    variantConfig: {
+        variantsCount: 1,
+        variantAttributes: [],
+        variantMapping:{
+            "image_url":"v_image_url"
+        },
+        variantsGroupBy: ''
+    },
     //bannerSelector:document.getElementById('bannerContainer'),
 
 });
-/*defaultFilters :{
-    "flag": "product"
-},*/
-/*"change", 
-            ".select-facets-block select",*/
 
 console.log(es6unbxd,"es6unbxd")
