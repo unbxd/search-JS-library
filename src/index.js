@@ -1,10 +1,6 @@
 import UnbxdSearchCore from "../node_modules/unbxdsdk/src/index";
 import delegate from "./modules/utils/delegate";
 import RangeSlider from "./modules/widgets/RangeSlider";
-import {
-    events,
-    actions
-} from "./common/constants/index";
 import options from './common/options';
 import createLayout from './core/createLayout';
 import setMethods from './core/setMethods';
@@ -25,6 +21,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         };
     }
     callBack(state,type) {
+        this.getCallbackActions(state,type);
         const {
             callBackFn,
             loaderElem,
@@ -32,7 +29,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         const {
             beforeApiCall,
             afterApiCall,
-        } = events;
+        } = this.events;
         if(type === beforeApiCall) { 
             callBackFn(this,beforeApiCall);
             this.loaderContainer.innerHTML = loaderElem(this);

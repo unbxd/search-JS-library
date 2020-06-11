@@ -3,7 +3,7 @@ import infiniteScroller from '../modules/pagination/infiniteScroller';
 import debounce from '../modules/utils/debounce';
 function bindEvents(){
     const {
-        paginationContainer,
+        paginationSelector,
         paginationEvt,
         sortContainer,
         searchButtonSelector,
@@ -17,7 +17,9 @@ function bindEvents(){
         selectedFacetClass,
         productViewTypeSelector
     } = this.options;
-    paginationContainer.addEventListener(paginationEvt, this.paginationAction.bind(this));
+    if(paginationSelector) {
+        paginationSelector.addEventListener(paginationEvt, this.paginationAction.bind(this));
+    }
     searchButtonSelector.addEventListener(searchEvt,this.setInputValue.bind(this))
     //productItemSelector
     this.delegate(
@@ -83,5 +85,11 @@ function bindEvents(){
             infiniteScroller.bind(this)();
         },1000));
     }
+    this.delegate(
+        this.pageSizeWrapper,
+        this.options.pageSizeContainerType === "Dropdown" ? "change" :"click",
+        `.${this.unxSelectors.unxPageSize}`,
+        this.onClickPageSize.bind(this)
+    );
 }
 export default bindEvents;

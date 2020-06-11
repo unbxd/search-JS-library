@@ -32,10 +32,16 @@ const BucketedSearchUi = function(facets,selected,breadCrump) {
     filters.forEach(facet => {
         const {
             level,
-            multiLevelField,
             displayName,
-            values
+            values,
+            filterField
         } = facet;
+        let {
+            multiLevelField
+        } = facet;
+        if (!multiLevelField) {
+            multiLevelField = filterField;
+        }
         let levelCss = `category-level-${level}`;
         const valueUI = values.map(item => {
             const {

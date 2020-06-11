@@ -4,9 +4,7 @@ import {
     facetUIElem,
     facetItemUiElem
 } from "../modules/facets/ui";
-import  {
-    paginationUI
-} from "../modules/pagination/ui";
+import paginationUI from "../modules/pagination/fixedPaginationView";
 import {
     renderRangeFacets
 } from "../modules/facets/renderRangeFacets";
@@ -18,6 +16,7 @@ import {
 } from "../modules/sort";
 import renderProductViewType from '../modules/productViewType';
 import bannerTemplateUI from '../modules/banners';
+import pageSizeUi from '../modules/pageSize/pageSizeView';
 const options = {
     productId:"uniqueId",
     searchBoxSelector:null,
@@ -57,9 +56,6 @@ const options = {
     },
     pageSize: 10,
     startPageNo:0,
-    paginationContainer:null,
-    paginationUI: paginationUI,
-    paginationEvt:"click",
     sortContainer:null,
     sortOptions : sortOptions,
     sortUI:sortUI,
@@ -93,7 +89,7 @@ const options = {
     bucketFacetElem:"",
     bucketFacetEvnt:"click",
     bucketedFacetElem:"bucketFacetElem",
-    facetDepth:2,
+    facetDepth:4,
     breadcrumbContainer:null,
     breadcrump:true,
     breadcrumbSelectorClass:"bread-crumb",
@@ -104,8 +100,10 @@ const options = {
         return `<div>swatchtemplate</div>`
     },
     paginationType:"FIXED_PAGINATION",
-    inifinteScrollTriggerElem:window,
-    paginationContainer:document.getElementById("paginationContainer"),
+    paginationSelector:null,
+    paginationTemplate: paginationUI,
+    paginationEvt:"click",
+    infiniteScrollSelector:window,
     /*
     paginationType:'INFINITE_SCROLL',
     infiniteScrollSelector:document.getElementById('es6Root'),
@@ -121,7 +119,12 @@ const options = {
     },
     pageSizeContainerSelector:null,
     bannerSelector:null,
-    bannerTemplate:bannerTemplateUI
+    bannerTemplate:bannerTemplateUI,
+    pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
+    pageSizeContainerType:"LIST",
+    pageSizeContainerTemp:pageSizeUi,
+    pageSizeOptions:[6,8,12,16,20],
+    unbxdAnalytics:false
    // searchQueryParam:null
 };
 export default options;

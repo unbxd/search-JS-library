@@ -4,7 +4,11 @@ const reRender = function(){
         sortContainer,
         noResultContainer,
         spellCheckSelector,
-        paginationContainer
+        paginationSelector,
+        paginationType,
+        pagetype,
+        productType
+
     } = this.options;
     const {
         beforeRender,
@@ -12,20 +16,25 @@ const reRender = function(){
         afterNoResultRender,
         afterRender
     } = this.events;
+
     callBackFn(this,beforeRender);
     this.loaderContainer.innerHTML = null;
     const results = this.getSearchResults();
-    this.options.searchBoxSelector.value = this.state.userInput;
-
+    if(productType ==="SEARCH"){
+        this.options.searchBoxSelector.value = this.state.userInput;
+    }
     this.facetsWrapper.innerHTML = this.renderFacets();
     this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
-    if(this.options.paginationType==="INFINITE_SCROLL" &&  this.viewState.isInfiniteStarted){
+    if(this.viewState.isInfiniteStarted){
         this.viewState.isInfiniteStarted = false;
         this.searchResultsWrapper.innerHTML += this.renderSearch();
     } else {
         this.searchResultsWrapper.innerHTML = this.renderSearch();
     }
-    
+    if(paginationType === "FIXED_PAGINATION"){
+        
+        paginationSelector.innerHTML = this.renderPagination();
+    }
     this.bucketedSearchWrapper.innerHTML = this.renderBucketedUI();
     this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     if(sortContainer) {
@@ -46,9 +55,10 @@ const reRender = function(){
     if(spellCheckSelector && suggestion) {
         spellCheckSelector.innerHTML = this.renderDidYouMean(suggestion);
     }
-    paginationContainer.innerHTML = this.renderPagination();
+    
     this.renderProductViewTypeUI();
     this.renderBannerUI()
+    this.renderPageSize();
     callBackFn(this,afterRender);
 };
 export default reRender;

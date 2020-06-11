@@ -34,6 +34,11 @@ const findChangedFacet = function(e) {
             facetData:selectedfacetInfo
         });
         this.updateFacets(selectedOpt);
+        this.getCallbackActions({
+            facetName,
+            facetAction,
+            id
+        },'facetClick');
     }
     if(facetAction === this.actions.deleteFacetValue) {
         if(this.findSelectedFacet(facetName)) {
@@ -41,6 +46,11 @@ const findChangedFacet = function(e) {
             this.options.callBackFn(this,facetAction, {
                 facetName
             });
+            this.getCallbackActions({
+                facetName,
+                facetAction,
+                id
+            },'facetClick');
         }
     }
     if(facetAction === this.actions.deleteFacet) {
@@ -49,6 +59,11 @@ const findChangedFacet = function(e) {
             this.options.callBackFn(this,facetAction, {
                 facetName
             });
+            this.getCallbackActions({
+                facetName,
+                facetAction,
+                id
+            },'facetClick');
         }
     }
 }
@@ -62,6 +77,9 @@ const onClickRangeFacet = function(e) {
         this.options.callBackFn(this,action, {
             facetName
         });
+        this.getCallbackActions({
+            facetName
+        },'facetClick');
     }
     if(action === this.actions.clearPriceRange && facetName) {
         this.clearARangeFacet(facetName);
@@ -69,6 +87,9 @@ const onClickRangeFacet = function(e) {
         this.options.callBackFn(this,action, {
             facetName
         });
+        this.getCallbackActions({
+            facetName
+        },'facetClick');
     }
 }
 const onBucketedFacet = function(e) {
@@ -77,11 +98,13 @@ const onBucketedFacet = function(e) {
         this.setCategoryFilter(data);
         this.options.callBackFn(this,data.action, data);
         this.getResults();
+        this.getCallbackActions(data,'facetClick');
     }
     if(data.action === this.actions.clearCategoryFilter) {
         this.deleteCategoryFilter(data);
         this.options.callBackFn(this,data.action, data);
         this.getResults();
+        this.getCallbackActions(data,'facetClick');
     }
 }
 
