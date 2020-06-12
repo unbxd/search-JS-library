@@ -14,6 +14,9 @@ module.exports = {
     },
     mode: 'production',
     output: {
+        libraryTarget: 'umd',
+        globalObject: '(typeof self !== "undefined" ? self : this)',
+        libraryExport: 'default',
         path: Path.join(__dirname, '../public'),
         filename: 'js/[name].js',
         sourceMapFilename: '[file].map'
@@ -31,10 +34,13 @@ module.exports = {
         minimize: true,
         minimizer: [
           new TerserPlugin({
-            parallel: true,
             terserOptions: {
               ecma: 6,
-            },
+              sourceMap: true,
+              extractComments: true,
+              mangle:true,
+              keep_classnames:false
+            }
           })
         ]
   },

@@ -19,8 +19,8 @@ const es6unbxd =  new UnbxdSearchComponent({
     searchResultsSelector:document.getElementById("searchResultsWrapper"),
     facetWrapper: document.getElementById("facetsWrapper"),
     selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
-    siteKey:"demo-french-unbxd809051588861311",
-    apiKey:"325f5ef7f59940a66ce946fd4c9b7d93",
+    siteKey:"wildearthclone-neto-com-au808941566310465",
+    apiKey:"e6959ae0b643d51b565dc3e01bf41ec1",
     sdkHostName:"https://search.unbxd.io/",
     productType:"SEARCH",
     searchQueryParam:"q",
@@ -237,6 +237,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         variantsGroupBy: ''
     },
     //bannerSelector:document.getElementById('bannerContainer'),
+    applyMultipleFilters:false
 
 });
 
