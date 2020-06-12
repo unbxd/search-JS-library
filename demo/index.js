@@ -19,8 +19,8 @@ const es6unbxd =  new UnbxdSearchComponent({
     searchResultsSelector:document.getElementById("searchResultsWrapper"),
     facetWrapper: document.getElementById("facetsWrapper"),
     selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
-    siteKey:"wildearthclone-neto-com-au808941566310465",
-    apiKey:"e6959ae0b643d51b565dc3e01bf41ec1",
+    siteKey:"demo-spanish-unbxd809051588861207",
+    apiKey:"f19768e22b49909798bc2411fa3dd963",
     sdkHostName:"https://search.unbxd.io/",
     productType:"SEARCH",
     searchQueryParam:"q",
@@ -31,7 +31,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             title,
             imageUrl,
             uniqueId,
-            price
+            sortPrice
         } = product;
         const {
             swatchMap,
@@ -49,7 +49,7 @@ const es6unbxd =  new UnbxdSearchComponent({
          <div>
             ${swatchUI}
          </div>
-         <strong>${price}</strong>
+         <strong>${sortPrice}</strong>
          </div>
         </div>`
     },
@@ -58,7 +58,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     mapping: {
         "title": ""
     },
-    fields: ['title','uniqueId','price', 'sku', 'imageUrl'],
+    fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
     platform: "IO",
     callBackFn:unbxdCallbackEcma,
     selectedFacetElem : function (selectedFacet,selectedFacetItem){
@@ -132,11 +132,11 @@ const es6unbxd =  new UnbxdSearchComponent({
     sortContainer:document.getElementById("sortWrapper"),
     sortOptions : [
         {
-            value:"price desc",
+            value:"sortPrice desc",
             text:"Price High to Low"
         },
         {
-            value:"price asc",
+            value:"sortPrice asc",
             text:" Price Low to High"
         }/*,
         {
