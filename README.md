@@ -93,7 +93,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         spellCheckSelector: document.getElementById("didYouMeanWrapper"),
         noResultContainer: document.getElementById("noResultWrapper"),
         pageSize: 5,
-        paginationContainer:document.getElementById("paginationContainer"),
+        paginationSelector:document.getElementById("paginationContainer"),
         sortContainer:document.getElementById("sortWrapper"),
         sortOptions : [
             {

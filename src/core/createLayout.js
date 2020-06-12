@@ -36,6 +36,12 @@ const createLayout = function() {
             class:"breadcrumbs-block"
         }
     );
+    this.pageSizeWrapper = createElement(
+        "DIV",
+        "pageSizeContainer",{
+            class:"page-size-block"
+        }
+    );
     this.options.selectedFacetElem.bind(this);
     this.options.bucketedSearchUi.bind(this);
     this.options.facetElem.bind(this);
@@ -67,5 +73,8 @@ const createLayout = function() {
     this.options.searchResultsTemplate = this.options.searchResultsTemplate.bind(this);
     this.options.searchResultsSelector.appendChild(this.searchResultsWrapper);
     this.loaderContainer = this.options.loaderContainer || this.searchResultsWrapper;
+    if(this.options.pageSizeContainerSelector){
+        this.options.pageSizeContainerSelector.appendChild(this.pageSizeWrapper);
+    }
 }
 export default createLayout;
