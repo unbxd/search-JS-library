@@ -39,7 +39,13 @@ module.exports = {
               sourceMap: true,
               extractComments: true,
               mangle:true,
-              keep_classnames:false
+              keep_classnames:false,
+              compress: {
+                ecma       : 5,
+                warnings   : false,
+                comparisons: false,
+                inline     : 2
+              },
             }
           })
         ]
