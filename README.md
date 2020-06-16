@@ -3,25 +3,33 @@ A JavaScript library for building performant and quick search experiences with U
 
 
 ## Getting started
-clone the repo.
+
+Install `@unbxd-ui/vanilla-search-library` using npm.
+
 ```shell
-    npm install
+    npm install @unbxd-ui/vanilla-search-library --save
 ```
-to run in developement environment.
-```shell
-    npm start
-```
-to generate the bundle.
-```shell
-    npm run build
+and include in your in project 
+```js
+    import UnbxdSearch from '@unbxd-ui/vanilla-search-library';
 ```
 
+You can also use a global-friendly UMD build:
+```html
+<script src="path-to-unbxd-search-library/dist/js/unbxdSearch.js"></script>
+```
+Now you're ready to start using the components.
+Api documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/"> here</a>
+
+## Dependencies
+Unbxd Vanilla search library has very few dependencies and most are managed by NPM automatically.
 
 ## Basic Config
 
 configurations can be written in es6 and es5.
 
 below config is written in es6.
+please check the es5 demo [here](public/es5.html)
 
 ```js
 const es6unbxd =  new UnbxdSearchComponent({
@@ -194,11 +202,11 @@ const es6unbxd =  new UnbxdSearchComponent({
     //facets - category facets list
     //selectedFacet - selected category filters
 
-    bucketedSearchUi:function(facets,selectedFacet) {
+    bucketedSearchUi:function(facets,selected,selectedCategories) {
         let ui = "";
         let filters = facets;
-        if(selectedFacet) {
-            selectedFacet.forEach(item => {
+        if(selectedCategories) {
+            selectedCategories.forEach(item => {
                 const {
                     level,
                     filterField,
@@ -212,7 +220,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                 class=" ${levelCss} selected-crumb"
                 data-action = "clearCategoryFilter">
                 ${value} x</button>`
-            });
+            })
         }
         filters.forEach(facet => {
             const {

@@ -4,9 +4,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="theme-color" content="#000000">
-      <title>Unxd Sdk playground</title>
+      <title>Unbxd Sdk playground</title>
       <!--required frame works should be loaded here-->
-   <link href="app.css" rel="stylesheet"></head>
+   <link href="/dist/css/unbxdSearch.css" rel="stylesheet">
+</head>
 
    <body>
        
@@ -64,10 +65,10 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ubx);   
             })();
         </script>  
-<script type="text/javascript" src="js/es6SDK.js"></script>
+<script type="text/javascript" src="/dist/js/unbxdSearch.js"></script>
 <script>
 
-    var unbxdCallback = function (instance, type,data){
+var unbxdCallback = function (instance, type,data){
         console.log(instance, type,data,"unbxdCallbackEcma")
     }
     var es5Unbxd =  new UnbxdSearch({

@@ -1,9 +1,9 @@
 
-const BucketedSearchUi = function(facets,selectedFacets) {
+const BucketedSearchUi = function(facets,selected,selectedCategories) {
     let ui = "";
     let filters = facets;
-    if(selectedFacets) {
-        selectedFacets.forEach(item => {
+    if(selectedCategories) {
+        selectedCategories.forEach(item => {
             const {
                 level,
                 filterField,
@@ -17,7 +17,7 @@ const BucketedSearchUi = function(facets,selectedFacets) {
             class=" ${levelCss} selected-crumb"
             data-action = "clearCategoryFilter">
             ${value} x</button>`
-        });
+        })
     }
     filters.forEach(facet => {
         const {
