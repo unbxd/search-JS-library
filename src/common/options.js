@@ -76,6 +76,12 @@ const options = {
     variantMapping:{},
     rangeFacetContainer:null,
     rangeFacetUI:renderRangeFacets,
+    rangeWidgetConfig:{
+        "start": 0,
+        "end": 100,
+        "minLabel":"Min",
+        "maxLabel":"Max"
+    },
     extraParams:{
         "version":"V2",
         "facet.multilevel":"categoryPath",

@@ -1,6 +1,5 @@
 * {
 	box-sizing: border-box;
-	margin: 5px
 }
 
 .main-head {
@@ -20,9 +19,6 @@
 	border: solid 1px green
 }
 
-#facetsWrapper {
-	width: 400px
-}
 
 .range-slider {
 	display: block;

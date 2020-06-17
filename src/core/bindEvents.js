@@ -91,5 +91,16 @@ function bindEvents(){
         `.${this.unxSelectors.unxPageSize}`,
         this.onClickPageSize.bind(this)
     );
+    this.onLocationChange = function (evt){
+        const {
+            urlState
+        } = this.state;
+        if(`#${urlState}` !== location.hash ) {
+            this.renderFromUrl()
+        }
+        
+        
+    }
+    window.onhashchange= this.onLocationChange.bind(this);
 }
 export default bindEvents;

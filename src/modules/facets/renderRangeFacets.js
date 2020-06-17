@@ -64,7 +64,8 @@ const renderRangeFacets = function(rangeFacets) {
             onStop,
             minX,
             minY,
-            wrapper:self.options.rangeFacetContainer
+            wrapper:self.options.rangeFacetContainer,
+            rangeConfig: self.options.rangeWidgetConfig
         }).render();
     }).join('');
     return  `<div class="range-facet">

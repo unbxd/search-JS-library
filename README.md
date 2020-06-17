@@ -24,6 +24,7 @@ Api documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 ## Dependencies
 Unbxd Vanilla search library has very few dependencies and most are managed by NPM automatically.
 
+
 ## Basic Config
 
 configurations can be written in es6 and es5.
@@ -31,6 +32,35 @@ configurations can be written in es6 and es5.
 below config is written in es6.
 please check the es5 demo [here](public/es5.html)
 
+## Customizations
+You can customize the UI by extending class or modifying the options.
+assuming you have follwing elements in the page
+```html
+    <div id="es6Root">
+        <div id="unbxdTxtWrap">
+        <input id="unbxdInput"/>
+        <button id="searchBtn">search</button>
+    </div>
+    <div style="display: flex">
+        <div id="paginationContainer"></div>
+        <div id="sortWrapper"></div>
+        <div id="didYouMeanWrapper"></div>
+        <div id="productViewTypeContainer"></div>
+        <div id="changeNoOfProducts"></div>
+    </div>
+    <div id="breadcrumpContainer"></div>
+    <div id="bannerContainer"></div>
+    <div style="display:flex">
+        <div>
+            <div id="bucketedFacetWrapper"></div>
+            <div id="facetsWrapper"></div>
+            <div id="rangeFacetWrapper"></div>
+        </div>
+        <div id="searchResultsWrapper"></div>
+        <div id="loaderContainer"></div>
+        <div id="noResultWrapper"></div>
+    </div>
+```
 ```js
 const es6unbxd =  new UnbxdSearchComponent({
     //input selector where you type search term
