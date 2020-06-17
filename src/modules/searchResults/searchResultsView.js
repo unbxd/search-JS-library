@@ -31,8 +31,9 @@ const renderSearch =  function() {
         })
 
     } else {
-        productsUI = products.map((product) => {
-            return self.options.searchResultsTemplate(product);
+        productsUI = products.map((product,index) => {
+            const pRank  = index+idx+1;
+            return self.options.searchResultsTemplate(product,pRank);
         }).join('');
     }
 

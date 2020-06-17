@@ -20,8 +20,8 @@ import pageSizeUi from '../modules/pageSize/pageSizeView';
 const options = {
     productId:"uniqueId",
     searchBoxSelector:null,
-    siteKey:"prod-kookai-com-au4541568774205",
-    apiKey:"1c406c7058fdd75c04293fa87c2f9720",
+    siteKey:"demo-spanish-unbxd809051588861207",
+    apiKey:"f19768e22b49909798bc2411fa3dd963",
     sdkHostName:"https://search.unbxd.io/",
     searchResultsTemplate : function(product){
         const {
@@ -64,7 +64,7 @@ const options = {
     productClick: function(product) {
         console.log(product,"product,index");
     },
-    fields: ['title', 'price', 'uniqueId', 'sku', 'rating'],
+    fields: ['title','uniqueId', 'sku', 'rating'],
     spellCheck: false,
     facetMultiSelect: false,
     facetMultiSelectionMode: false,

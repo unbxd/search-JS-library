@@ -1,33 +1,23 @@
 
-
-const renderBreadCrumb = function(breadcrumps, selected)  {
-    let ui = ``;
-    breadcrumps.forEach(item => {
-        const {
-            level,
-            filterField,
-            value
-        } = item;
-        const levelCss = `${this.bucketedFacetElem}  category-level-${level}`
-        ui += `<button 
-        data-parent="${filterField}"
-        data-level="${level}"
-        data-name="${value}"
-        class=" ${levelCss} selected-crumb"
-        data-action = "clearCategoryFilter">
-        ${value} x</button>`
-    })
-    return ui;
-}
-//const getChildCount
-
-const BucketedSearchUi = function(facets,selected,breadCrump) {
+const BucketedSearchUi = function(facets,selectedFacets) {
     let ui = "";
-    let breadrumbUI = "";
     let filters = facets;
-    if(breadCrump) {
-        breadrumbUI = renderBreadCrumb.bind(this)(breadCrump, selected);
-        ui +=breadrumbUI;
+    if(selectedFacets) {
+        selectedFacets.forEach(item => {
+            const {
+                level,
+                filterField,
+                value
+            } = item;
+            const levelCss = `${this.bucketedFacetElem}  category-level-${level}`
+            ui += `<button 
+            data-parent="${filterField}"
+            data-level="${level}"
+            data-name="${value}"
+            class=" ${levelCss} selected-crumb"
+            data-action = "clearCategoryFilter">
+            ${value} x</button>`
+        });
     }
     filters.forEach(facet => {
         const {

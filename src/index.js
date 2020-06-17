@@ -44,4 +44,13 @@ class UnbxdSearch extends UnbxdSearchCore {
     }
 }
 setMethods(UnbxdSearch);
+(function (root, factory) {
+	if ( typeof define === 'function' && define.amd ) {
+		define(['UnbxdSearch'], factory(root));
+	}  else {
+		root.myPlugin = factory(root, root.UnbxdSearch);
+	}
+})(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
+    root.UnbxdSearch = UnbxdSearch;
+});
 export default UnbxdSearch;
