@@ -15,7 +15,7 @@ const facetsClickFn = function(e) {
 }
 const findChangedFacet = function(e) {
     const elem = e.target;
-    const selected = (this.options.facetEvt === "click") ? elem:elem.options[elem.selectedIndex];
+    const selected = (this.options.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
     const dataSet = selected.dataset;
     const {
         facetName,

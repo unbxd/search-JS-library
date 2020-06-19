@@ -9,7 +9,7 @@ const BucketedSearchUi = function(facets,selected,selectedCategories) {
                 filterField,
                 value
             } = item;
-            const levelCss = `${this.bucketedFacetElem}  category-level-${level}`
+            const levelCss = `${this.multiLevelFacetSelector}  category-level-${level}`
             ui += `<button 
             data-parent="${filterField}"
             data-level="${level}"
@@ -41,7 +41,7 @@ const BucketedSearchUi = function(facets,selected,selectedCategories) {
             return `<button 
                 data-parent="${multiLevelField}"
                 data-level="${level}"
-                class="${this.bucketedFacetElem} ${levelCss}"
+                class="${this.multiLevelFacetSelector} ${levelCss}"
                 data-name="${name}"
                 data-action = "setCategoryFilter">
                 ${name}-- ${count }</button>`

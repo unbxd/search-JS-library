@@ -12,7 +12,7 @@ import BucketedSearchUi from "../modules/facets/renderBucketedSearch";
 import breadCrumbsUI from "../modules/breadcrumbs/breadcrumbsView";
 import {
     sortOptions,
-    sortUI
+    sortTemplate
 } from "../modules/sort";
 import renderProductViewType from '../modules/productViewType';
 import bannerTemplateUI from '../modules/banners';
@@ -34,12 +34,12 @@ const options = {
     },
     searchResultsSelector: null,
     productItemClass:".product-item", // to find out product
-    facetWrapper: null,
-    selectedFacetElem : selectedFacetUI,
-    facetElem: facetUIElem,
-    facetItemElem: facetItemUiElem,
-    facetElemWrapClass:"select-facets-block",
-    facetEvt:"change",
+    facetsSelector: null,
+    selectedFacetTemplate : selectedFacetUI,
+    facetTemplate: facetUIElem,
+    facetItemTemplate: facetItemUiElem,
+    facetClass:"select-facets-block",
+    facetAction:"change",
     selectedFacetBlock:null,
     selectedFacetClass:"selected-facet",
     productType:"SEARCH",
@@ -56,11 +56,11 @@ const options = {
     },
     pageSize: 10,
     startPageNo:0,
-    sortContainer:null,
+    sortContainerSelector:null,
     sortOptions : sortOptions,
-    sortUI:sortUI,
-    sortEvt:"change",
-    sortElem:"select",
+    sortTemplate:sortTemplate,
+    sortAction:"change",
+    sortElement:"select",
     productClick: function(product) {
         console.log(product,"product,index");
     },
@@ -68,11 +68,11 @@ const options = {
     spellCheck: false,
     facetMultiSelect: false,
     facetMultiSelectionMode: false,
-    loaderElem: () =>{
+    loaderTemplate: () =>{
         return `<div>Loading search results....</div>`
     },
     loaderContainer:null,
-    variants:false,
+    showVariants:false,
     variantMapping:{},
     rangeFacetContainer:null,
     rangeFacetUI:renderRangeFacets,
@@ -91,16 +91,16 @@ const options = {
     },
     facetMultilevel:true,
     bucketedSearchUi:BucketedSearchUi,
-    bucketedFacetContainer:null,
+    multiLevelFacetContainer:null,
     bucketFacetElem:"",
     bucketFacetEvnt:"click",
-    bucketedFacetElem:"bucketFacetElem",
+    multiLevelFacetSelector:"bucketFacetElem",
     facetDepth:4,
     breadcrumbContainer:null,
     breadcrump:true,
     breadcrumbSelectorClass:"bread-crumb",
     breadCrumpTemplate:breadCrumbsUI,
-    swatches:true,
+    showSwatches:true,
     swatchMap:{},
     swatchTemplate:(swatchInfo)=>{
         return `<div>swatchtemplate</div>`
@@ -127,7 +127,7 @@ const options = {
     bannerSelector:null,
     bannerTemplate:bannerTemplateUI,
     pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
-    pageSizeContainerType:"LIST",
+    pageSizeDisplayType:"LIST",
     pageSizeContainerTemp:pageSizeUi,
     pageSizeOptions:[6,8,12,16,20],
     unbxdAnalytics:false

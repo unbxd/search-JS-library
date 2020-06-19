@@ -24,7 +24,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.getCallbackActions(state,type);
         const {
             callBackFn,
-            loaderElem,
+            loaderTemplate,
         } = this.options;
         const {
             beforeApiCall,
@@ -32,7 +32,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         if(type === beforeApiCall) { 
             callBackFn(this,beforeApiCall);
-            this.loaderContainer.innerHTML = loaderElem(this);
+            this.loaderContainer.innerHTML = loaderTemplate(this);
         }
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);
