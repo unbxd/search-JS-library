@@ -557,11 +557,14 @@ const es6unbxd =  new UnbxdSearchComponent({
 ```
 
 ## Examples / Recipies
-    <ul>
-        <li>
-            <a href="https://codesandbox.io/s/friendly-microservice-to3r8?file=/index.html">Customised</a>
-        </li>
-    <ul>
+
+```html
+<ul>
+    <li>
+        <a href="https://codesandbox.io/s/friendly-microservice-to3r8?file=/index.html">Customised</a>
+    </li>
+<ul>
+```
 
 ## Full configuration List
 
