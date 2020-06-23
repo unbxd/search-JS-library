@@ -27,15 +27,15 @@ const renderFacets = function(argFacets, selectedArgFacets) {
                 }
                 if(selected) {
                     if(selectedFacetBlock) {
-                        selectedFacetsUI += this.options.selectedFacetElem(facet,value);
+                        selectedFacetsUI += this.options.selectedFacetTemplate(facet,value);
                     } else {
-                        return this.options.selectedFacetElem(facet,value)
+                        return this.options.selectedFacetTemplate(facet,value)
                     }
                 } else{
-                    return this.options.facetElem(facet, value)
+                    return this.options.facetTemplate(facet, value)
                 }
             });
-            selectUI = this.options.facetItemElem(facet, valuesUI.join(''))
+            selectUI = this.options.facetItemTemplate(facet, valuesUI.join(''))
         }
         if(selectedFacetBlock) {
             selectedFacetBlock.innerHTML = selectedFacetsUI;
@@ -46,7 +46,7 @@ const renderFacets = function(argFacets, selectedArgFacets) {
         </div>`;
     }).join('');
     
-    return  `<div class="${this.options.facetElemWrapClass}">
+    return  `<div class="${this.options.facetClass}">
         ${facetsListUI}
     </div>`;
 }

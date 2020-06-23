@@ -9,17 +9,16 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: Path.resolve(__dirname, '../demo/index.js'),
-        es6SDK: Path.resolve(__dirname, '../src/index.js')
+        unbxdSearch: Path.resolve(__dirname, '../src/index.js')
     },
     mode: 'production',
     output: {
         libraryTarget: 'umd',
         globalObject: '(typeof self !== "undefined" ? self : this)',
         libraryExport: 'default',
-        path: Path.join(__dirname, '../public'),
-        filename: 'js/[name].js',
-        sourceMapFilename: '[file].map'
+        path: Path.join(__dirname, '../public/dist'),
+        filename: 'js/unbxdSearch.js',
+        sourceMapFilename: 'unbxdSearch.map'
     },
     optimization: {
         splitChunks: {
@@ -51,19 +50,7 @@ module.exports = {
         ]
   },
   plugins: [
-        new MiniCssExtractPlugin({
-          path: Path.resolve(__dirname, '../public'),
-          filename: '[name].css',
-          chunkFilename: '[id].css'
-
-        }),
-        new HtmlWebpackPlugin({
-            template:Path.resolve(__dirname, '../demo/index.html'),
-            chunks: ['common', 'app','es6SDK'],
-            path: Path.resolve(__dirname, '../public'),
-            filename: "index.html"
-        })
-    ],
+  ],
   resolve: {
     alias: {
       '~': Path.resolve(__dirname, '../src')

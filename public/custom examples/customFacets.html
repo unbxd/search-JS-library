@@ -4,17 +4,58 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="theme-color" content="#000000">
-      <title>Unxd Sdk playground</title>
+      <title>Pagination example</title>
       <!--required frame works should be loaded here-->
       <link href="/dist/css/unbxdSearch.css" rel="stylesheet">
+      <style>
+          button {
+              outline: none !important;
+          }
+          .unbxd-facet-row {
+              margin-top: 12px;
+          }
+        .unbxd-facet-btn {
+                background: transparent;
+                border: solid 1px transparent;
+                color: #3f3f40;
+                display: block;
+                cursor: pointer;
+                position: relative;
+                padding-left: 24px;
+                width: 100%;
+                text-align: left;
+          }
+          .unbxd-facet-btn:before {
+              position: absolute;
+              content: " ";
+              display: block;
+              height: 18px;
+              width: 18px;
+              border: solid 1px #3f3f40;
+              left: 0;
+              top: 0px;
+          }
+          .unbxd-selected-facet-row {
+              display: flex;
+              justify-content: space-between;
+          }
+          .unbxd-selected-facet-btn {
+              color:tomato;
+          }
+          .unbxd-selected-facet-btn:after{
+                position: absolute;
+              content: " ";
+              display: block;
+              height: 16px;
+              width: 16px;
+              background: #FF0000;
+              left: 2px;
+              top: 2px;
+          }
+        </style>
 </head>
 
    <body>
-       
-
-
-        <h1 class="main-head">SDK will be loaded here</h1>
-        <hr/>
 
         <section class="test-block" >
             <article>
@@ -26,11 +67,10 @@
                     <button id="searchBtn">search</button>
                     
                 </div>
-                <div style="display: flex">
+                <div style="display: none">
                     <div id="paginationContainer"></div>
                     <div id="sortWrapper"></div>
                     <div id="didYouMeanWrapper"></div>
-                    <div id="selectedFacetWrapper"></div>
                     <div id="productViewTypeContainer"></div>
                     <div id="changeNoOfProducts"></div>
                 </div>
@@ -45,9 +85,6 @@
                     <div id="searchResultsWrapper"></div>
                     <div id="loaderContainer"></div>
                     <div id="noResultWrapper"></div>
-                </div>
-                <div id="clickScrollContainer">
-                    Load More
                 </div>
 
                 </div>
@@ -78,7 +115,6 @@
                     searchButtonSelector:document.getElementById("searchBtn"),
                     searchResultsSelector:document.getElementById("searchResultsWrapper"),
                     facetsSelector: document.getElementById("facetsWrapper"),
-                    selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
                     siteKey:"demo-spanish-unbxd809051588861207",
                     apiKey:"f19768e22b49909798bc2411fa3dd963",
                     sdkHostName:"https://search.unbxd.io/",
@@ -130,13 +166,13 @@
                             count,
                             dataId
                         } = selectedFacetItem;
-                        return `<div><button 
-                                    class="selected-facet-btn ${this.selectedFacetClass}"
+                        return `<div class="unbxd-facet-row"><button 
+                                    class="unbxd-facet-btn unbxd-selected-facet-btn ${this.selectedFacetClass}"
                                     data-facet-name="${facetName}"
                                     data-facet-action ="deleteFacetValue"
                                     data-id= "${dataId}">
                                     ${name} (${count})
-                            </button><button class="${this.selectedFacetClass}"   data-id= "${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}" > x</button></div>`
+                            </button></div>`
                     },
                     facetTemplate: function  (facet , value) {
                         const {
@@ -147,12 +183,15 @@
                             count,
                             dataId
                         } = value;
-                        return `<button
-                                    data-facet-name="${facetName}" 
-                                    data-facet-action="CHANGE_FACET"
-                                    data-id= "${dataId}">
-                                        ${name} (${count})
-                                </button>`
+                        return `<div class="unbxd-facet-row">
+                                    <button
+                                        data-facet-name="${facetName}" 
+                                        data-facet-action="CHANGE_FACET"
+                                        class="unbxd-facet-btn"
+                                        data-id= "${dataId}">
+                                            ${name} (${count})
+                                    </button>
+                            </div>`
                     },
                     facetItemTemplate: function (facet, children) {
                         const {
@@ -178,13 +217,29 @@
                     spellCheckSelector: document.getElementById("didYouMeanWrapper"),
                     noResultContainer: document.getElementById("noResultWrapper"),
                     pageSize: 12,
-                    //paginationType:'INFINITE_SCROLL',
-                    inifinteScrollTriggerElement:window,
-                    //paginationType:'FIXED_PAGINATION',
-                    //paginationSelector:document.getElementById("paginationContainer"),
-                    //paginationTemplate:()=>{},
-                    paginationType:"CLICK_N_SCROLL",
-                    paginationSelector:document.getElementById("clickScrollContainer"),
+                    /*pagination options*/
+                    paginationType:'FIXED_PAGINATION',
+                    paginationSelector:document.getElementById("paginationContainer"),
+                    paginationTemplate:function (paginationData) {
+                        const {
+                            noOfPages,
+                            currentPage,
+                            isNext,
+                            isPrev
+                        } = paginationData;
+                        let nextBtn = `<button class="next-btn" data-page-action="next">next</button>`;
+                        let prevBtn = `<button class="prev-btn" data-page-action="prev">prev</button>`;
+                        if(!isNext) {
+                            nextBtn = `<button disabled class="next-btn">next</button>`;
+                        }
+                        if(!isPrev) {
+                            prevBtn = `<button disabled class="prev-btn">prev</button>`;
+                        }
+                        return `<div class="pagination-block">
+                        ${currentPage} of ${noOfPages} ----  ${prevBtn} ${nextBtn} 
+                        </div>`
+                    },
+                    /*pagination options*/
                     pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
                     pageSizeDisplayType:"Dropdown",
                     pageSizeOptions:[6,8,12,16,20],

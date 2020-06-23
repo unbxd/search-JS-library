@@ -1,40 +1,90 @@
+<a href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
+  <img alt="npm" src="https://img.shields.io/npm/v/@unbxd-ui/vanilla-search-library?color=blue">
+</a>
+<a href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
+  <img alt="npm" src="https://img.shields.io/npm/l/@unbxd-ui/vanilla-search-library">
+</a>
+<a href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
+  <img alt="npm" src="https://img.shields.io/npm/dm/@unbxd-ui/vanilla-search-library">
+</a>
+
 # search-JS-library
-A JavaScript library for building performant and quick search experiences with Unbxd
+A JavaScript library for building performant and quick search experiences with Unbxd.
 
 
 ## Getting started
-clone the repo.
+
+Library can be used in 2 ways
+
+### Es6
+Install `@unbxd-ui/vanilla-search-library` using npm.
+
 ```shell
-    npm install
+    npm install @unbxd-ui/vanilla-search-library --save
 ```
-to run in developement environment.
-```shell
-    npm start
+and include in your in project 
+```js
+    import UnbxdSearch from '@unbxd-ui/vanilla-search-library';
 ```
-to generate the bundle.
-```shell
-    npm run build
+
+### Es5
+
+You can also use a global-friendly UMD build:
+
+```html
+<script src="path-to-unbxd-search-library/dist/js/unbxdSearch.js"></script>
 ```
+Now you're ready to start using the components.
+
+## Documentation
+Api documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/"> here</a>
+
+## Dependencies
+Unbxd Vanilla search library has very few dependencies and most are managed by NPM automatically.
 
 
 ## Basic Config
 
 configurations can be written in es6 and es5.
-
-below config is written in es6.
-
+assuming you have follwing elements on the page.
+```html
+    <div id="es6Root">
+        <div id="unbxdTxtWrap">
+        <input id="unbxdInput"/>
+        <button id="searchBtn">search</button>
+    </div>
+    <div style="display: flex">
+        <div id="paginationContainer"></div>
+        <div id="sortWrapper"></div>
+        <div id="didYouMeanWrapper"></div>
+        <div id="productViewTypeContainer"></div>
+        <div id="changeNoOfProducts"></div>
+    </div>
+    <div id="breadcrumpContainer"></div>
+    <div id="bannerContainer"></div>
+    <div style="display:flex">
+        <div>
+            <div id="bucketedFacetWrapper"></div>
+            <div id="facetsWrapper"></div>
+            <div id="rangeFacetWrapper"></div>
+        </div>
+        <div id="searchResultsWrapper"></div>
+        <div id="loaderContainer"></div>
+        <div id="noResultWrapper"></div>
+    </div>
+```
 ```js
 const es6unbxd =  new UnbxdSearchComponent({
     //input selector where you type search term
     searchBoxSelector:document.getElementById("unbxdInput"),
     //trigger search on this event
-    searchEvt:"click",
+    searchTrigger:"click",
     //element to trigger the search action
     searchButtonSelector:document.getElementById("searchBtn"),
     //to display the search results - only products will display here
     searchResultsSelector:document.getElementById("searchResultsWrapper"),
     //filters will display here
-    facetWrapper: document.getElementById("facetsWrapper"),
+    facetsSelector: document.getElementById("facetsWrapper"),
     //if you wish to display selected filters seperately give this option, otherwise dont include this config
     selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
     //given sitekey
@@ -62,11 +112,11 @@ const es6unbxd =  new UnbxdSearchComponent({
         } = product;
         const {
             swatchMap,
-            swatches
+            showSwatches
         } = this.options;
         let swatchUI = ``;
         let swatchData = null;
-        if(swatches) {
+        if(showSwatches) {
             swatchUI = this.renderSwatchBtns(product);
         }
         return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="product-item" style="border:solid 1px red;display:flex">  
@@ -105,7 +155,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     // for deleting the selected filter,  it will be `deleteFacetValue`
     // data-id - will be the specific id is available in the object
 
-    selectedFacetElem : function (selectedFacet,selectedFacetItem){
+    selectedFacetTemplate : function (selectedFacet,selectedFacetItem){
         const {
             facetName,
         } = selectedFacet;
@@ -130,7 +180,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     // data-facet-name - provide the facetName property from the object
     // data-facet-action - for applying a filter  CHANGE_FACET
     // data-id -  is given in the facet object
-    facetElem: function  (facet , value) {
+    facetTemplate: function  (facet , value) {
         const {
             facetName,
         } = facet;
@@ -153,7 +203,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     // children is the collection of facet elements
     // if you wish to have a button to clear the selected filters under the facet
     // data-facet-action - deleteFacet -  to clear all the values under the facet
-    facetItemElem: function (facet, children) {
+    facetItemTemplate: function (facet, children) {
         const {
             displayName,
             facetName
@@ -166,11 +216,11 @@ const es6unbxd =  new UnbxdSearchComponent({
     },
     // facets elements comes with a wrapper div element. here you can give the class name of it
     // the facet clicl/change events are bound to this element
-    facetElemWrapClass:"select-facets-block",
+    facetClass:"select-facets-block",
     // what type of event you wish to have on element
     // available events click and change
     // if your facet element is a selectbox or checkbox you can provide 'change' event
-    facetEvt:"click",
+    facetAction:"click",
     //here you can provide the classnames for the selected facet
     // you can apply styles to this class
     selectedFacetClass:"selected-facet",
@@ -188,23 +238,23 @@ const es6unbxd =  new UnbxdSearchComponent({
     facetMultilevelName: 'category',
     //this is class element selector for the category filter items
     // this is used to bind the events on the elements
-    bucketedFacetElem:"bucketFacetElem",
+    multiLevelFacetSelector:"bucketFacetElem",
     //default bucket facet template
     // 2 params it provides
     //facets - category facets list
     //selectedFacet - selected category filters
 
-    bucketedSearchUi:function(facets,selectedFacet) {
+    bucketedSearchUi:function(facets,selected,selectedCategories) {
         let ui = "";
         let filters = facets;
-        if(selectedFacet) {
-            selectedFacet.forEach(item => {
+        if(selectedCategories) {
+            selectedCategories.forEach(item => {
                 const {
                     level,
                     filterField,
                     value
                 } = item;
-                const levelCss = `${this.bucketedFacetElem}  category-level-${level}`
+                const levelCss = `${this.multiLevelFacetSelector}  category-level-${level}`
                 ui += `<button 
                 data-parent="${filterField}"
                 data-level="${level}"
@@ -212,7 +262,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                 class=" ${levelCss} selected-crumb"
                 data-action = "clearCategoryFilter">
                 ${value} x</button>`
-            });
+            })
         }
         filters.forEach(facet => {
             const {
@@ -236,7 +286,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                 return `<button 
                     data-parent="${multiLevelField}"
                     data-level="${level}"
-                    class="${this.bucketedFacetElem} ${levelCss}"
+                    class="${this.multiLevelFacetSelector} ${levelCss}"
                     data-name="${name}"
                     data-action = "setCategoryFilter">
                     ${name}-- ${count }</button>`
@@ -254,7 +304,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         }
     },
     //the element to render the category facet
-    bucketedFacetContainer:document.getElementById("bucketedFacetWrapper"),
+    multiLevelFacetContainer:document.getElementById("bucketedFacetWrapper"),
     //configure the depth of category facets. maximum is 4
     facetDepth:4,
     //for getting breadcrumbs
@@ -310,7 +360,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     //provide how many results you wish to load
     pageSize: 12,
     //paginationType:'INFINITE_SCROLL',
-    inifinteScrollTriggerElem:window,
+    inifinteScrollTriggerElement:window,
     heightDiffToTriggerNextPage:100,
     //paginationType:'FIXED_PAGINATION',
     //paginationSelector:document.getElementById("paginationContainer"),
@@ -322,7 +372,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     pageSizeOptions:[6,8,12,16,20],
     //what element you wish to render
     //pass Dropdown to get it as a select box
-    pageSizeContainerType:"Dropdown",
+    pageSizeDisplayType:"Dropdown",
     //provide the event type based on the template, by default it is change
     pageSizeDisplayAction:"change",
     //if you want to override the component
@@ -331,10 +381,10 @@ const es6unbxd =  new UnbxdSearchComponent({
         let ui = ``;
         const {
             pageSizeOptions,
-            pageSizeContainerType,
+            pageSizeDisplayType,
             pageSize
         } = this.options;
-        if(pageSizeContainerType === "Dropdown") {
+        if(pageSizeDisplayType === "Dropdown") {
             ui = `<select  class="unx-select-pagesize ${this.unxSelectors.unxPageSize}">`;
             pageSizeOptions.forEach((opt)=>{
                 if(pageSize == opt) {
@@ -378,10 +428,10 @@ const es6unbxd =  new UnbxdSearchComponent({
         }*/
     ],
     //placeholder for placing sort elements
-    sortContainer:document.getElementById("sortWrapper"),
+    sortContainerSelector:document.getElementById("sortWrapper"),
     //sort options template
     // provides selected sort item
-    sortUI:function(selectedSort) {
+    sortTemplate:function(selectedSort) {
         let sortBtnsUI = "";
         this.options.sortOptions.forEach((item) => {
             const {
@@ -401,16 +451,16 @@ const es6unbxd =  new UnbxdSearchComponent({
         </div>`
     },
     //event type for the sort element
-    sortEvt:"click",
+    sortAction:"click",
     // sort item element, in default template its button, so here its button.
-    sortElem:"button",
+    sortElement:"button",
     //loader template 
-    loaderElem: () =>{
+    loaderTemplate: () =>{
         return `<div>Loading....</div>`
     },
     // where you want to display the loader
     loaderContainer:document.getElementById('loaderContainer'),
-    variants:true,
+    showVariants:true,
     variantMapping:{
         "image_url":"v_image_url"
     },
@@ -422,7 +472,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         "f.categoryPath.max.depth":"4",
         "f.categoryPath.facet.limit":"100"*/
     },
-    swatches:true,
+    showSwatches:true,
     swatchMap:{
         "swatchList":"colours",
         "swatchImgs":"variant_metadata",
@@ -505,4 +555,31 @@ const es6unbxd =  new UnbxdSearchComponent({
     applyMultipleFilters:false
 });
 ```
+
+## Examples / Recipies
+
+
+<ul>
+    <li>
+        <a href="https://codesandbox.io/s/friendly-microservice-to3r8?file=/index.html">Customised</a>
+    </li>
+</ul>
+
+
+## Full configuration List
+
+| Option                	| Datatype 	| Description                                                                                                                	|
+|-----------------------	|----------	|----------------------------------------------------------------------------------------------------------------------------	|
+| searchBoxSelector     	| Element  	| requires an html element. Search input will be captured from this element                                                  	|
+| searchTrigger         	| String   	| requires an event name. search will be triggered after this event triggered eg:'click'                                     	|
+| siteKey               	| String   	| given site key                                                                                                             	|
+| apiKey                	| String   	| given api key                                                                                                              	|
+| sdkHostName           	| String   	| api domain                                                                                                                 	|
+| productType           	| String   	| SEARCH or BROWSE or CATEGORY                                                                                               	|
+| searchQueryParam      	| String   	| search term will be appended to this.                                                                                      	|
+| searchResultsSelector 	| Element  	| requires an html element. products will be rendered here.                                                                  	|
+| searchResultsTemplate 	| function 	| this function has two parameters. product and idx product is the each product object. idx is the index of the each product 	|
+| productItemClass      	| String   	| requires a css class name. this should be same as the class given for the product card                                     	|
+| fields                	| Array    	| an array of required parameters needed in product object                                                                   	|
+| facetsSelector        	| Element  	| requires an html element to place facet elements                                                                           	|
 

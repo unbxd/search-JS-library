@@ -14,10 +14,10 @@ const unbxdCallbackEcma = function (instance, type,data){
 
 const es6unbxd =  new UnbxdSearchComponent({
     searchBoxSelector:document.getElementById("unbxdInput"),
-    searchEvt:"click",
+    searchTrigger:"click",
     searchButtonSelector:document.getElementById("searchBtn"),
     searchResultsSelector:document.getElementById("searchResultsWrapper"),
-    facetWrapper: document.getElementById("facetsWrapper"),
+    facetsSelector: document.getElementById("facetsWrapper"),
     selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
     siteKey:"demo-spanish-unbxd809051588861207",
     apiKey:"f19768e22b49909798bc2411fa3dd963",
@@ -35,11 +35,11 @@ const es6unbxd =  new UnbxdSearchComponent({
         } = product;
         const {
             swatchMap,
-            swatches
+            showSwatches
         } = this.options;
         let swatchUI = ``;
         let swatchData = null;
-        if(swatches) {
+        if(showSwatches) {
             swatchUI = this.renderSwatchBtns(product);
         }
         return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="product-item" style="border:solid 1px red;display:flex">  
@@ -61,7 +61,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
     platform: "IO",
     callBackFn:unbxdCallbackEcma,
-    selectedFacetElem : function (selectedFacet,selectedFacetItem){
+    selectedFacetTemplate : function (selectedFacet,selectedFacetItem){
         const {
             facetName,
         } = selectedFacet;
@@ -78,7 +78,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                     ${name} (${count})
             </button><button class="${this.selectedFacetClass}"   data-id= "${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}" > x</button></div>`
     },
-    facetElem: function  (facet , value) {
+    facetTemplate: function  (facet , value) {
         const {
             facetName,
         } = facet;
@@ -94,7 +94,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                         ${name} (${count})
                 </button>`
     },
-    facetItemElem: function (facet, children) {
+    facetItemTemplate: function (facet, children) {
         const {
             displayName,
             facetName
@@ -105,8 +105,8 @@ const es6unbxd =  new UnbxdSearchComponent({
                     ${children}
                 </div>`
     },
-    facetElemWrapClass:"select-facets-block",
-    facetEvt:"click",
+    facetClass:"select-facets-block",
+    facetAction:"click",
     selectedFacetClass:"selected-facet",
     facetMultiSelect: true,
     facetMultiSelectionMode:true,
@@ -119,17 +119,17 @@ const es6unbxd =  new UnbxdSearchComponent({
     noResultContainer: document.getElementById("noResultWrapper"),
     pageSize: 12,
     //paginationType:'INFINITE_SCROLL',
-    inifinteScrollTriggerElem:window,
+    inifinteScrollTriggerElement:window,
     //paginationType:'FIXED_PAGINATION',
     //paginationSelector:document.getElementById("paginationContainer"),
     //paginationTemplate:()=>{},
     paginationType:"CLICK_N_SCROLL",
     paginationSelector:document.getElementById("clickScrollContainer"),
     pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
-    pageSizeContainerType:"Dropdown",
+    pageSizeDisplayType:"Dropdown",
     pageSizeOptions:[6,8,12,16,20],
     heightDiffToTriggerNextPage:100,
-    sortContainer:document.getElementById("sortWrapper"),
+    sortContainerSelector:document.getElementById("sortWrapper"),
     sortOptions : [
         {
             value:"sortPrice desc",
@@ -148,7 +148,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             text:" Rating High to low"
         }*/
     ],
-    sortUI:function(selectedSort) {
+    sortTemplate:function(selectedSort) {
         let sortBtnsUI = "";
         this.options.sortOptions.forEach((item) => {
             const {
@@ -167,20 +167,20 @@ const es6unbxd =  new UnbxdSearchComponent({
             <button data-action="clearSort">clear sort</button>
         </div>`
     },
-    sortEvt:"click",
-    sortElem:"button",
-    loaderElem: () =>{
+    sortAction:"click",
+    sortElement:"button",
+    loaderTemplate: () =>{
         return `<div>Loading....</div>`
     },
     loaderContainer:document.getElementById('loaderContainer'),
-    variants:true,
+    showVariants:true,
     variantMapping:{
         "image_url":"v_image_url"
     },
     rangeFacetContainer:document.getElementById("rangeFacetWrapper"),
     facetMultilevel: true,
     facetMultilevelName: 'category',
-    bucketedFacetElem:"bucketFacetElem",
+    multiLevelFacetSelector:"bucketFacetElem",
     extraParams :{
         "version":"V2",
         //"facet.multilevel":"categoryPath",
@@ -188,12 +188,12 @@ const es6unbxd =  new UnbxdSearchComponent({
         "f.categoryPath.max.depth":"4",
         "f.categoryPath.facet.limit":"100"*/
     },
-    bucketedFacetContainer:document.getElementById("bucketedFacetWrapper"),
+    multiLevelFacetContainer:document.getElementById("bucketedFacetWrapper"),
     facetDepth:4,
     breadcrumb:true,
     breadcrumbContainer:document.getElementById("breadcrumpContainer"),
     breadcrumbSelectorClass:"bread-crumb",
-    swatches:true,
+    showSwatches:true,
     swatchMap:{
         "swatchList":"colours",
         "swatchImgs":"variant_metadata",

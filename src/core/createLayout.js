@@ -42,23 +42,23 @@ const createLayout = function() {
             class:"page-size-block"
         }
     );
-    this.options.selectedFacetElem.bind(this);
+    this.options.selectedFacetTemplate.bind(this);
     this.options.bucketedSearchUi.bind(this);
-    this.options.facetElem.bind(this);
-    this.options.facetItemElem.bind(this);
-    this.options.facetWrapper.appendChild(this.facetsWrapper);
+    this.options.facetTemplate.bind(this);
+    this.options.facetItemTemplate.bind(this);
+    this.options.facetsSelector.appendChild(this.facetsWrapper);
     if(this.options.breadcrump) {
         this.options.breadCrumpTemplate = this.options.breadCrumpTemplate.bind(this);
     }
-    if(this.options.bucketedFacetContainer) {
-        this.options.bucketedFacetContainer.appendChild(this.bucketedSearchWrapper);
+    if(this.options.multiLevelFacetContainer) {
+        this.options.multiLevelFacetContainer.appendChild(this.bucketedSearchWrapper);
     } else {
-        this.options.facetWrapper.appendChild(this.bucketedSearchWrapper);
+        this.options.facetsSelector.appendChild(this.bucketedSearchWrapper);
     }
     if(this.options.rangeFacetContainer){
         this.options.rangeFacetContainer.appendChild(this.rangeFacetsWrapper);
     } else {
-        this.options.facetWrapper.appendChild(this.rangeFacetsWrapper)
+        this.options.facetsSelector.appendChild(this.rangeFacetsWrapper)
     }
     if(this.options.breadcrumbContainer) {
         this.options.breadcrumbContainer.appendChild(this.breadcrumbWrapper)
