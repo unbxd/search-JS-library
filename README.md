@@ -107,4 +107,4 @@ To contribute to the project, read the [contribution guidelines](CONTRIBUTE.md)
 
 ## Changelog
 
-Changes are tracked in the (changelog)[CHANGELOG.md]
+Changes are tracked in the [changelog](CHANGELOG.md)
