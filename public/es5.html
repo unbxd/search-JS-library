@@ -4,9 +4,10 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="theme-color" content="#000000">
-      <title>Unxd Sdk playground</title>
+      <title>Unbxd Sdk playground</title>
       <!--required frame works should be loaded here-->
-   <link href="app.css" rel="stylesheet"></head>
+   <link href="/dist/css/unbxdSearch.css" rel="stylesheet">
+</head>
 
    <body>
        
@@ -64,18 +65,18 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ubx);   
             })();
         </script>  
-<script type="text/javascript" src="js/es6SDK.js"></script>
+<script type="text/javascript" src="/dist/js/unbxdSearch.js"></script>
 <script>
 
-    var unbxdCallback = function (instance, type,data){
+var unbxdCallback = function (instance, type,data){
         console.log(instance, type,data,"unbxdCallbackEcma")
     }
     var es5Unbxd =  new UnbxdSearch({
         searchBoxSelector:document.getElementById("unbxdInput"),
-        searchEvt:"click",
+        searchTrigger:"click",
         searchButtonSelector:document.getElementById("searchBtn"),
         searchResultsSelector:document.getElementById("searchResultsWrapper"),
-        facetWrapper: document.getElementById("facetsWrapper"),
+        facetsSelector: document.getElementById("facetsWrapper"),
         selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
         siteKey:"demo-spanish-unbxd809051588861207",
         apiKey:"f19768e22b49909798bc2411fa3dd963",
@@ -104,7 +105,7 @@
         fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
         platform: "IO",
         callBackFn:unbxdCallback,
-        selectedFacetElem : function (selectedFacet,selectedFacetItem){
+        selectedFacetTemplate : function (selectedFacet,selectedFacetItem){
             return [
                 '<div>',
                     '<button class="selected-facet-btn '+this.selectedFacetClass+'"',
@@ -119,7 +120,7 @@
                 '</div>'
             ].join('')
         },
-        facetElem: function (facet , value) {
+        facetTemplate: function (facet , value) {
             return [
                 '<button data-facet-name="'+facet.facetName+'"',
                     'data-facet-action ="CHANGE_FACET"',
@@ -127,7 +128,7 @@
                     ''+value.name +' '+value.count+'</button>'
             ].join('');
         },
-        facetItemElem: function (facet, children) {
+        facetItemTemplate: function (facet, children) {
             return ['<div id="'+facet.facetName+'">',
                 '<h3>'+facet.displayName+'</h3>',
                 '<button data-facet-action="deleteFacet" data-facet-name="'+facet.facetName+'" > clear</button>',
@@ -135,8 +136,8 @@
             '</div>'].join('');
 
         }, 
-        facetElemWrapClass:"select-facets-block",
-        facetEvt:"click",
+        facetClass:"select-facets-block",
+        facetAction:"click",
         selectedFacetClass:"selected-facet",
         facetMultiSelect: true,
         facetMultiSelectionMode:true,
@@ -149,17 +150,17 @@
         noResultContainer: document.getElementById("noResultWrapper"),
         pageSize: 12,
         //paginationType:'INFINITE_SCROLL',
-        inifinteScrollTriggerElem:window,
+        inifinteScrollTriggerElement:window,
         //paginationType:'FIXED_PAGINATION',
         //paginationSelector:document.getElementById("paginationContainer"),
         //paginationTemplate:()=>{},
         paginationType:"CLICK_N_SCROLL",
         paginationSelector:document.getElementById("clickScrollContainer"),
         pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
-        pageSizeContainerType:"Dropdown",
+        pageSizeDisplayType:"Dropdown",
         pageSizeOptions:[6,8,12,16,20],
         heightDiffToTriggerNextPage:100,
-        sortContainer:document.getElementById("sortWrapper"),
+        sortContainerSelector:document.getElementById("sortWrapper"),
         sortOptions : [
             {
                 value:"sortPrice desc",
@@ -178,7 +179,7 @@
                 text:" Rating High to low"
             }*/
         ],
-        sortUI:function(selectedSort) {
+        sortTemplate:function(selectedSort) {
             var sortBtnsUI = "";
             this.options.sortOptions.forEach((item) => {
                 var selectedCss = ""
@@ -197,20 +198,20 @@
                 '<button data-action="clearSort">clear sort</button>',
             '</div>'].join('');
         },
-        sortEvt:"click",
-        sortElem:"button",
-        loaderElem: () =>{
+        sortAction:"click",
+        sortElement:"button",
+        loaderTemplate: () =>{
             return '<div>Loading....</div>';
         },
         loaderContainer:document.getElementById('loaderContainer'),
-        variants:true,
+        showVariants:true,
         variantMapping:{
             "image_url":"v_image_url"
         },
         rangeFacetContainer:document.getElementById("rangeFacetWrapper"),
         facetMultilevel: true,
         facetMultilevelName: 'category',
-        bucketedFacetElem:"bucketFacetElem",
+        multiLevelFacetSelector:"bucketFacetElem",
         extraParams :{
             "version":"V2",
             //"facet.multilevel":"categoryPath",
@@ -218,12 +219,12 @@
             "f.categoryPath.max.depth":"4",
             "f.categoryPath.facet.limit":"100"*/
         },
-        bucketedFacetContainer:document.getElementById("bucketedFacetWrapper"),
+        multiLevelFacetContainer:document.getElementById("bucketedFacetWrapper"),
         facetDepth:4,
         breadcrumb:true,
         breadcrumbContainer:document.getElementById("breadcrumpContainer"),
         breadcrumbSelectorClass:"bread-crumb",
-        swatches:true,
+        showSwatches:true,
         swatchMap:{
             "swatchList":"colours",
             "swatchImgs":"variant_metadata",

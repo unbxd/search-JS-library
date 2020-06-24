@@ -5,14 +5,14 @@ function bindEvents(){
     const {
         paginationSelector,
         paginationEvt,
-        sortContainer,
+        sortContainerSelector,
         searchButtonSelector,
-        searchEvt,
+        searchTrigger,
         productItemClass,
-        sortElem,
-        sortEvt,
-        facetEvt,
-        facetElemWrapClass,
+        sortElement,
+        sortAction,
+        facetAction,
+        facetClass,
         selectedFacetBlock,
         selectedFacetClass,
         productViewTypeSelector
@@ -20,7 +20,7 @@ function bindEvents(){
     if(paginationSelector) {
         paginationSelector.addEventListener(paginationEvt, this.paginationAction.bind(this));
     }
-    searchButtonSelector.addEventListener(searchEvt,this.setInputValue.bind(this))
+    searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this))
     //productItemSelector
     this.delegate(
         this.searchResultsWrapper,
@@ -29,21 +29,21 @@ function bindEvents(){
         this.onProductItemClick.bind(this)
     );
     this.delegate(
-        sortContainer, 
-        sortEvt, 
-        sortElem,
+        sortContainerSelector, 
+        sortAction, 
+        sortElement,
         this.sortAction.bind(this)
     )
     this.delegate(
         this.facetsWrapper, 
-        facetEvt, 
-        "."+facetElemWrapClass, 
+        facetAction, 
+        "."+facetClass, 
         this.findChangedFacet.bind(this)
     )
     if(selectedFacetBlock) {
         this.delegate(
             selectedFacetBlock, 
-            facetEvt, 
+            facetAction, 
             "."+selectedFacetClass, 
             this.findChangedFacet.bind(this)
         )
@@ -60,7 +60,7 @@ function bindEvents(){
         this.delegate(
             this.bucketedSearchWrapper, 
             this.options.bucketFacetEvnt, 
-            "."+this.options.bucketedFacetElem, 
+            "."+this.options.multiLevelFacetSelector, 
             this.onBucketedFacet.bind(this)
         )
     }
@@ -87,9 +87,20 @@ function bindEvents(){
     }
     this.delegate(
         this.pageSizeWrapper,
-        this.options.pageSizeContainerType === "Dropdown" ? "change" :"click",
+        this.options.pageSizeDisplayType === "Dropdown" ? "change" :"click",
         `.${this.unxSelectors.unxPageSize}`,
         this.onClickPageSize.bind(this)
     );
+    this.onLocationChange = function (evt){
+        const {
+            urlState
+        } = this.state;
+        if(`#${urlState}` !== location.hash ) {
+            this.renderFromUrl()
+        }
+        
+        
+    }
+    window.onhashchange= this.onLocationChange.bind(this);
 }
 export default bindEvents;

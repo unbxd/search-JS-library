@@ -9,7 +9,13 @@ let options = {
     "expo":-2,
     "minX":0,
     "minY":100,
-    "showValues":true
+    "showValues":true,
+    "rangeConfig":{
+        "start": 0,
+        "end": 100,
+        "minLabel":"Min",
+        "maxLabel":"Max"
+    }
 };
 
 class RangeSlider {
@@ -261,9 +267,20 @@ class RangeSlider {
             x,
             y
         } = this.getRangeValue();
-        return `<div  style="display:flex">
-                <div>min : ${x}</div>
-                <div>msx : ${y}</div>
+        const {
+            minLabel,
+            maxLabel
+        } = this.options.rangeConfig;
+        debugger;
+        return `<div class="unbxd-slider-val-row"  style="display:flex">
+                    <div class="unbxd-min">
+                        <label>${minLabel}</label>
+                        <span class="unbxd-range-val unbxd-min-price">${x}</span>
+                    </div>
+                <div class="unbxd-max">
+                    <label>${maxLabel}</label>
+                    <span class="unbxd-range-val unbxd-max-price">${y}</span>
+                </div>
             </div>`
     }
     render(){
@@ -274,24 +291,30 @@ class RangeSlider {
         } = this.options;
         setTimeout(this.bindElements.bind(this),10);
         let valueUI = "";
-        return `<div id="${this.id}" class="range-slider-container">
-                ${displayName}
-                <div class="range-slider" >
-                    <div data-action="handleLeft" class="${this.slideLeftId} round-handle">
+        return `<div id="${this.id}" class="range-slider-container unbxd-range-slider-wrap">
+                <h3>${displayName}</h3>
+                <div class="range-slider unbxd-range-dilder-wrapper" >
+                    <div data-action="handleLeft" class="${this.slideLeftId} round-handle unbxd-round-handle">
                     </div>
-                    <div data-action="handleRight" class="${this.slideRightId} round-handle">
+                    <div data-action="handleRight" class="${this.slideRightId} round-handle unbxd-round-handle">
                     </div>
-                    <div class="${this.slideLineId}">
-                        <div class="${this.innerLineId}"></div>
+                    <div class="${this.slideLineId} unbxd-line-wrap">
+                        <div class="${this.innerLineId} unbxd-line-inner"></div>
                     </div>
                 </div>
             <div>
-            <div class="valueContainer" >
+            <div class="valueContainer unbxd-range-value-block" >
                 ${valueUI}
             </div>
-            <div>
-                <button data-facet-name="${facetName}" data-action="filterPriceRange"> filter by price </button>
-                <button data-facet-name="${facetName}"data-action="clearPriceRange"> clear </button>
+            <div class="unbxd-price-action-row">
+                <button 
+                    class="unbxd-primary-btn "
+                    data-facet-name="${facetName}" 
+                    data-action="filterPriceRange"> filter by price </button>
+                <button
+                    class="unbxd-default-btn "
+                    data-facet-name="${facetName}"
+                    data-action="clearPriceRange"> clear </button>
             <div>
         </div>`
     }

@@ -2,10 +2,10 @@ const pageSizeUi = function() {
     let ui = ``;
     const {
         pageSizeOptions,
-        pageSizeContainerType,
+        pageSizeDisplayType,
         pageSize
     } = this.options;
-    if(pageSizeContainerType === "Dropdown") {
+    if(pageSizeDisplayType === "Dropdown") {
         ui = `<select  class="unx-select-pagesize ${this.unxSelectors.unxPageSize}">`;
         pageSizeOptions.forEach((opt)=>{
             if(pageSize == opt) {

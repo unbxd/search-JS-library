@@ -1,15 +1,15 @@
 
-const BucketedSearchUi = function(facets,selectedFacets) {
+const BucketedSearchUi = function(facets,selected,selectedCategories) {
     let ui = "";
     let filters = facets;
-    if(selectedFacets) {
-        selectedFacets.forEach(item => {
+    if(selectedCategories) {
+        selectedCategories.forEach(item => {
             const {
                 level,
                 filterField,
                 value
             } = item;
-            const levelCss = `${this.bucketedFacetElem}  category-level-${level}`
+            const levelCss = `${this.multiLevelFacetSelector}  category-level-${level}`
             ui += `<button 
             data-parent="${filterField}"
             data-level="${level}"
@@ -17,7 +17,7 @@ const BucketedSearchUi = function(facets,selectedFacets) {
             class=" ${levelCss} selected-crumb"
             data-action = "clearCategoryFilter">
             ${value} x</button>`
-        });
+        })
     }
     filters.forEach(facet => {
         const {
@@ -41,7 +41,7 @@ const BucketedSearchUi = function(facets,selectedFacets) {
             return `<button 
                 data-parent="${multiLevelField}"
                 data-level="${level}"
-                class="${this.bucketedFacetElem} ${levelCss}"
+                class="${this.multiLevelFacetSelector} ${levelCss}"
                 data-name="${name}"
                 data-action = "setCategoryFilter">
                 ${name}-- ${count }</button>`

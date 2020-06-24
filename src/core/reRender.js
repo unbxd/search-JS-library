@@ -1,7 +1,7 @@
 const reRender = function(){
     const {
         callBackFn,
-        sortContainer,
+        sortContainerSelector,
         noResultContainer,
         spellCheckSelector,
         paginationSelector,
@@ -37,8 +37,8 @@ const reRender = function(){
     }
     this.bucketedSearchWrapper.innerHTML = this.renderBucketedUI();
     this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
-    if(sortContainer) {
-        sortContainer.innerHTML = this.renderSort();
+    if(sortContainerSelector) {
+        sortContainerSelector.innerHTML = this.renderSort();
     }
 
     if(results && results.numberOfProducts === 0) {

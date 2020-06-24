@@ -4,17 +4,19 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="theme-color" content="#000000">
-      <title>Unxd Sdk playground</title>
+      <title>Pagination example</title>
       <!--required frame works should be loaded here-->
-      <link href="/dist/css/unbxdSearch.css" rel="stylesheet">
+      <link href="/dist/css/unbxdSearch.css" rel="stylesheet"/>
+      <style>
+          .unbxd-pagination-wrap {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 50px;
+          }
+      </style>
 </head>
 
    <body>
-       
-
-
-        <h1 class="main-head">SDK will be loaded here</h1>
-        <hr/>
 
         <section class="test-block" >
             <article>
@@ -26,8 +28,7 @@
                     <button id="searchBtn">search</button>
                     
                 </div>
-                <div style="display: flex">
-                    <div id="paginationContainer"></div>
+                <div style="display: none">
                     <div id="sortWrapper"></div>
                     <div id="didYouMeanWrapper"></div>
                     <div id="selectedFacetWrapper"></div>
@@ -37,7 +38,7 @@
                 <div id="breadcrumpContainer"></div>
                 <div id="bannerContainer"></div>
                 <div style="display:flex">
-                    <div>
+                    <div style="display:none">
                         <div id="bucketedFacetWrapper"></div>
                         <div id="facetsWrapper"></div>
                         <div id="rangeFacetWrapper"></div>
@@ -46,9 +47,7 @@
                     <div id="loaderContainer"></div>
                     <div id="noResultWrapper"></div>
                 </div>
-                <div id="clickScrollContainer">
-                    Load More
-                </div>
+                <div class="unbxd-pagination-wrap" id="paginationContainer"></div>
 
                 </div>
 
@@ -178,13 +177,30 @@
                     spellCheckSelector: document.getElementById("didYouMeanWrapper"),
                     noResultContainer: document.getElementById("noResultWrapper"),
                     pageSize: 12,
-                    //paginationType:'INFINITE_SCROLL',
-                    inifinteScrollTriggerElement:window,
-                    //paginationType:'FIXED_PAGINATION',
-                    //paginationSelector:document.getElementById("paginationContainer"),
-                    //paginationTemplate:()=>{},
-                    paginationType:"CLICK_N_SCROLL",
-                    paginationSelector:document.getElementById("clickScrollContainer"),
+                    /*pagination options*/
+                    paginationType:'FIXED_PAGINATION',
+                    paginationSelector:document.getElementById("paginationContainer"),
+                    paginationTemplate:function (paginationData) {
+                        const {
+                            noOfPages,
+                            currentPage,
+                            isNext,
+                            isPrev
+                        } = paginationData;
+                        console.log(paginationData,"paginationData")
+                        let nextBtn = `<button class="next-btn" data-page-action="next">next</button>`;
+                        let prevBtn = `<button class="prev-btn" data-page-action="prev">prev</button>`;
+                        if(!isNext) {
+                            nextBtn = `<button disabled class="next-btn">next</button>`;
+                        }
+                        if(!isPrev) {
+                            prevBtn = `<button disabled class="prev-btn">prev</button>`;
+                        }
+                        return `<div class="pagination-block">
+                        ${currentPage} of ${noOfPages} ----  ${prevBtn} ${nextBtn} 
+                        </div>`
+                    },
+                    /*pagination options*/
                     pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
                     pageSizeDisplayType:"Dropdown",
                     pageSizeOptions:[6,8,12,16,20],

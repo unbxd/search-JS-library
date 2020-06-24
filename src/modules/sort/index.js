@@ -17,7 +17,7 @@ const sortOptions = [
         text:" Rating High to low"
     }
 ];
-const sortUI = function(selectedSort) {
+const sortTemplate = function(selectedSort) {
     let optionsUI = "";
     this.options.sortOptions.forEach((item) => {
         const {
@@ -44,5 +44,5 @@ const sortUI = function(selectedSort) {
 }
 export {
     sortOptions,
-    sortUI
+    sortTemplate
 };
