@@ -47,7 +47,10 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 
 <ul>
     <li>
-        <a href="#">Basic (default template)</a>
+        <a href="#">Basic (default template) : ES5</a>
+    </li>
+    <li>
+        <a href="#">Basic (default template) : ES6</a>
     </li>
     <li>
         <a href="#">Custom product card</a>
