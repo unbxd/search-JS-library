@@ -66,6 +66,11 @@ const findChangedFacet = function(e) {
             },'facetClick');
         }
     }
+    this.renderFacets();
+    if(facetAction === "applyFacets") {
+        this.setPageStart(0);
+        this.getResults();
+    }
 }
 const onClickRangeFacet = function(e) {
     const {

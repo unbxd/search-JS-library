@@ -16,6 +16,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.facetDepth = props.facet.facetDepth || 6;
         this.options.pageSize = props.pagesize.pageSize || 12;
         this.options.showSwatches = props.swatches.enabled;
+        this.options.applyMultipleFilters = props.facet.applyMultipleFilters || false;
         this.viewState = {
             productViewType: this.options.productView.viewTypes,
             isInfiniteStarted:false,

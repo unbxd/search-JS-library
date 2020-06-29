@@ -145,7 +145,8 @@ const options = {
         removeFacetsSelector:'unbxd-remove-facet',
         onFacetLoad:function(facets){
             console.log(facets,"facetsfacets");
-        }
+        },
+        applyMultipleFilters:false
     },
 
     pagination : {
@@ -203,13 +204,6 @@ const options = {
             return `<div class="swatchContainer">${btnUI}</div>`
         }
     },
-
-
-
-
-   
-
-
     unbxdAnalytics:false
    // searchQueryParam:null
 };

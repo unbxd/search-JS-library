@@ -83,21 +83,63 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 
 
 ## Full configuration List
+| OPTIONS               | DATATYPE | DESCRIPTION                                                                                                               |
+|-----------------------|----------|---------------------------------------------------------------------------------------------------------------------------|
+|                       |          |                                                                                                                           |
+| siteKey               | String   | requires an html element. Search input will be captured from this element                                                 |
+| apiKey                | String   | given api key                                                                                                             |
+| sdkHostName           | String   | api domain                                                                                                                |
+| productType           | String   | SEARCH or BROWSE or CATEGORY                                                                                              |
+| searchQueryParam      | String   | search term will be appended to this.                                                                                     |
+| productAttributes     | Array    | an array of required parameters needed in product object                                                                  |
+| defaultFilters        | Object   | to apply default filters, this will be applied in all api requests                                                        |
+| gridCount             | Number   | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row           |
+| unbxdAnalytics        | Boolean  | if you wish to add unbid analytics along with.                                                                            |
+| searchResultsTemplate | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product |
+| productItemClass      | String   | this class name will be applied to each product card. it need to be added in search results template                      |
+| noResultContainer     | Element  | if you wish to render a no results page                                                                                   |
+| noResultsTemplate     | Function | custom no results messages designs                                                                                        |
+| facet                 | Object   | here you can configure customised facets. you can find detail information here - [Facet Config](#facetConfig)             |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |
+|                       |          |                                                                                                                           |                                                                      	|
 
-| Option                	| Datatype 	| Description                                                                                                                	|
-|-----------------------	|----------	|----------------------------------------------------------------------------------------------------------------------------	|
-| searchBoxSelector     	| Element  	| requires an html element. Search input will be captured from this element                                                  	|
-| searchTrigger         	| String   	| requires an event name. search will be triggered after this event triggered eg:'click'                                     	|
-| siteKey               	| String   	| given site key                                                                                                             	|
-| apiKey                	| String   	| given api key                                                                                                              	|
-| sdkHostName           	| String   	| api domain                                                                                                                 	|
-| productType           	| String   	| SEARCH or BROWSE or CATEGORY                                                                                               	|
-| searchQueryParam      	| String   	| search term will be appended to this.                                                                                      	|
-| searchResultsSelector 	| Element  	| requires an html element. products will be rendered here.                                                                  	|
-| searchResultsTemplate 	| function 	| this function has two parameters. product and idx product is the each product object. idx is the index of the each product 	|
-| productItemClass      	| String   	| requires a css class name. this should be same as the class given for the product card                                     	|
-| fields                	| Array    	| an array of required parameters needed in product object                                                                   	|
-| facetsSelector        	| Element  	| requires an html element to place facet elements                                                                           	|
+
+
+ # Facet Config
+ facet configuration table is available here
+
 
 ## Contributions
 

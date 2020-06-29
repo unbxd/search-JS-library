@@ -20,7 +20,7 @@ function bindEvents(){
     this.delegate(
         this.searchResultsWrapper,
         "click",
-        productItemClass,
+        '.'+productItemClass,
         this.onProductItemClick.bind(this)
     );
     this.delegate(
