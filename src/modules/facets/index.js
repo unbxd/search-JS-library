@@ -3,9 +3,6 @@ const renderFacets = function(argFacets, selectedArgFacets) {
     const selectedFacets = (selectedArgFacets) ? selectedArgFacets: this.getSelectedFacets();
     const self = this;
     let selectedFacetsUI = ``;
-    const {
-        selectedFacetBlock
-    } = this.options;
     const facetsListUI = facets.map((facet) =>{
         const {
             displayName,
@@ -26,19 +23,19 @@ const renderFacets = function(argFacets, selectedArgFacets) {
                     })
                 }
                 if(selected) {
-                    if(selectedFacetBlock) {
-                        selectedFacetsUI += this.options.selectedFacetTemplate(facet,value);
+                    if(this.options.facet.selectedFacetsEl) {
+                        selectedFacetsUI += this.options.facet.selectedFacetTemplate.bind(this)(facet,value);
                     } else {
-                        return this.options.selectedFacetTemplate(facet,value)
+                        return this.options.facet.selectedFacetTemplate.bind(this)(facet,value)
                     }
                 } else{
-                    return this.options.facetTemplate(facet, value)
+                    return this.options.facet.facetItemTemplate.bind(this)(facet, value)
                 }
             });
-            selectUI = this.options.facetItemTemplate(facet, valuesUI.join(''))
+            selectUI = this.options.facet.facetTemplate.bind(this)(facet, valuesUI.join(''))
         }
-        if(selectedFacetBlock) {
-            selectedFacetBlock.innerHTML = selectedFacetsUI;
+        if(this.options.facet.selectedFacetsEl) {
+            this.options.facet.selectedFacetsEl.innerHTML = selectedFacetsUI;
         }
         
         return `<div data-id="${facetName}">
@@ -46,7 +43,7 @@ const renderFacets = function(argFacets, selectedArgFacets) {
         </div>`;
     }).join('');
     
-    return  `<div class="${this.options.facetClass}">
+    return  `<div class="facets-inner-wrapper">
         ${facetsListUI}
     </div>`;
 }

@@ -1,4 +1,4 @@
 const renderDidYouMean = function (suggestion) {
-    return this.options.spellCheckTemplate.bind(this)(suggestion);
+    return this.options.spellCheck.template.bind(this)(suggestion);
 }
 export default renderDidYouMean;

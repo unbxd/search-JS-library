@@ -16,7 +16,7 @@ function selectedFacetUI (selectedFacet,selectedFacetItem){
         </option>`
 }
 
-function facetUIElem (facet , value) {
+function facetItemUiElem (facet , value) {
     const {
         facetName,
     } = facet;
@@ -33,12 +33,15 @@ function facetUIElem (facet , value) {
                     ${name} (${count})
             </option>`
 }
-function facetItemUiElem(facet, children) {
+function facetUIElem(facet, children) {
     const {
         displayName,
         facetName
     } = facet;
-    return `<select multiple id="${facetName}">
+    const {
+        facetClass
+    } = this.options.facet;
+    return `<select class="${facetClass}" multiple id="${facetName}">
                 <option 
                     data-facet-action="deleteFacet"
                     data-facet-name="${facetName}" >

@@ -271,7 +271,6 @@ class RangeSlider {
             minLabel,
             maxLabel
         } = this.options.rangeConfig;
-        debugger;
         return `<div class="unbxd-slider-val-row"  style="display:flex">
                     <div class="unbxd-min">
                         <label>${minLabel}</label>

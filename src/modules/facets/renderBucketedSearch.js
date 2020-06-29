@@ -1,5 +1,5 @@
 
-const BucketedSearchUi = function(facets,selected,selectedCategories) {
+const multiLevelFacetUI = function(facets,selectedCategories) {
     let ui = "";
     let filters = facets;
     if(selectedCategories) {
@@ -58,4 +58,4 @@ const BucketedSearchUi = function(facets,selected,selectedCategories) {
         return "";
     }
 }
-export default BucketedSearchUi;
+export default multiLevelFacetUI;

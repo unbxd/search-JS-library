@@ -8,7 +8,7 @@ const createLayout = function() {
     );
     this.facetsWrapper = createElement(
         "DIV",
-        "facetsContainer",{
+        "facetsInnerContainer",{
             class:"facets-results-block"
         }
     );
@@ -18,10 +18,10 @@ const createLayout = function() {
             class:"range-facets-block"
         }
     );
-    this.bucketedSearchWrapper = createElement(
+    this.multiLevelFacetWrapper = createElement(
         "DIV",
-        "bucketedSearchContainer",{
-            class:"bucketed-facets-block"
+        "multiLevelFacetBlock",{
+            class:"multilivel-facets-block"
         }
     );
     this.bannerWrapper = createElement(
@@ -42,39 +42,37 @@ const createLayout = function() {
             class:"page-size-block"
         }
     );
-    this.options.selectedFacetTemplate.bind(this);
-    this.options.bucketedSearchUi.bind(this);
-    this.options.facetTemplate.bind(this);
-    this.options.facetItemTemplate.bind(this);
-    this.options.facetsSelector.appendChild(this.facetsWrapper);
-    if(this.options.breadcrump) {
-        this.options.breadCrumpTemplate = this.options.breadCrumpTemplate.bind(this);
-    }
-    if(this.options.multiLevelFacetContainer) {
-        this.options.multiLevelFacetContainer.appendChild(this.bucketedSearchWrapper);
+    this.options.facet.selectedFacetTemplate.bind(this);
+    this.options.facet.multiLevelFacetTemplate.bind(this);
+    this.options.facet.facetTemplate.bind(this);
+    this.options.facet.facetItemTemplate.bind(this);
+    this.options.facet.facetsEl.appendChild(this.facetsWrapper);
+    if(this.options.facet.multiLevelFacetEl) {
+        this.options.facet.multiLevelFacetEl.appendChild(this.multiLevelFacetWrapper);
     } else {
-        this.options.facetsSelector.appendChild(this.bucketedSearchWrapper);
+        this.options.facet.facetsEl.appendChild(this.multiLevelWrapperFacet);
     }
-    if(this.options.rangeFacetContainer){
-        this.options.rangeFacetContainer.appendChild(this.rangeFacetsWrapper);
+    if(this.options.facet.rangeFacetEl){
+        this.options.facet.rangeFacetEl.appendChild(this.rangeFacetsWrapper);
     } else {
-        this.options.facetsSelector.appendChild(this.rangeFacetsWrapper)
+        this.options.facet.facetsEl.appendChild(this.rangeFacetsWrapper)
     }
-    if(this.options.breadcrumbContainer) {
-        this.options.breadcrumbContainer.appendChild(this.breadcrumbWrapper)
+    if(this.options.breadcrumb.enabled) {
+        this.options.breadcrumb.template = this.options.breadcrumb.template.bind(this);
+        this.options.breadcrumb.el.appendChild(this.breadcrumbWrapper);
     }
     if(this.options.swatchTemplate) {
         this.options.swatchTemplate.bind(this);
     }
-    if(this.options.bannerSelector){
-        this.options.bannerSelector.appendChild(this.bannerWrapper);
+    if(this.options.banner.el){
+        this.options.banner.el.appendChild(this.bannerWrapper);
     }
-    this.options.bannerTemplate = this.options.bannerTemplate.bind(this);
+    this.options.banner.template = this.options.banner.template.bind(this);
     this.options.searchResultsTemplate = this.options.searchResultsTemplate.bind(this);
     this.options.searchResultsSelector.appendChild(this.searchResultsWrapper);
     this.loaderContainer = this.options.loaderContainer || this.searchResultsWrapper;
-    if(this.options.pageSizeContainerSelector){
-        this.options.pageSizeContainerSelector.appendChild(this.pageSizeWrapper);
+    if(this.options.pagesize.el){
+        this.options.pagesize.el.appendChild(this.pageSizeWrapper);
     }
 }
 export default createLayout;

@@ -1,4 +1,4 @@
 function renderNoResults(query) {
-    return this.options.noResultsUi.bind(this)(query);
+    return this.options.noResultsTemplate(query);
 }
 export default renderNoResults;

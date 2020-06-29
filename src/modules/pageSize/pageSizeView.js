@@ -1,28 +1,18 @@
-const pageSizeUi = function() {
-    let ui = ``;
+const pageSizeUi = function(pageSize) {
     const {
-        pageSizeOptions,
-        pageSizeDisplayType,
-        pageSize
+        pagesize
     } = this.options;
-    if(pageSizeDisplayType === "Dropdown") {
-        ui = `<select  class="unx-select-pagesize ${this.unxSelectors.unxPageSize}">`;
-        pageSizeOptions.forEach((opt)=>{
-            if(pageSize == opt) {
-                ui+=`<option selected id="${opt}">${opt}</option>`
-            } else{
-                ui+=`<option id="${opt}">${opt}</option>`
-            }
-            
-        });
-        ui+= `</select>`
-    } else{
-        pageSizeOptions.forEach((opt)=>{
-            const selected = (pageSize == opt)?"selected-page-size":'';
-            ui+=`<button class="unx-btn-pagesize ${this.unxSelectors.unxPageSize} ${selected}" id="${opt}">${opt}</button>`
-        });
-    }
-    return `<div>
+    let ui = `<select  class="unx-select-pagesize ${pagesize.pageSizeClass}">`;
+    pagesize.options.forEach((opt)=>{
+        if(pageSize == opt) {
+            ui+=`<option selected class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`
+        } else{
+            ui+=`<option id="${opt}">${opt}</option>`
+        }
+        
+    });
+    ui+= `</select>`
+    return `<div class="unbxd-pagesize-block">
         ${ui}
     </div>`;
 }

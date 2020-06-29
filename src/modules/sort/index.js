@@ -19,13 +19,18 @@ const sortOptions = [
 ];
 const sortTemplate = function(selectedSort) {
     let optionsUI = "";
-    this.options.sortOptions.forEach((item) => {
+    const {
+        options,
+        sortClass,
+        selectedSortClass
+    } = this.options.sort;
+    options.forEach((item) => {
         const {
             value,
             text
         } = item;
         if(value == selectedSort) {
-            optionsUI += `<option value="${value}" selected>
+            optionsUI += `<option value="${value}" class="${selectedSortClass}" selected>
                 ${text}
             </option>` 
         } else {
@@ -33,13 +38,12 @@ const sortTemplate = function(selectedSort) {
         }
     })
     return `<div>
-        <select id="unbxdSorter" class="select-class">
+        <select data-action="changeSort" id="unbxdSorter" class="${sortClass}">
             <option value="">
                 Sort By Relevancy
             </option>
             ${optionsUI}
         </select>
-        <button data-action="clearSort">clear sort</button>
     </div>`
 }
 export {

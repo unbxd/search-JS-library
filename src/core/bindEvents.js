@@ -3,22 +3,17 @@ import infiniteScroller from '../modules/pagination/infiniteScroller';
 import debounce from '../modules/utils/debounce';
 function bindEvents(){
     const {
-        paginationSelector,
-        paginationEvt,
-        sortContainerSelector,
         searchButtonSelector,
         searchTrigger,
         productItemClass,
-        sortElement,
-        sortAction,
-        facetAction,
-        facetClass,
-        selectedFacetBlock,
-        selectedFacetClass,
-        productViewTypeSelector
+        facet,
+        productView,
+        pagination,
+        sort,
+        pagesize
     } = this.options;
-    if(paginationSelector) {
-        paginationSelector.addEventListener(paginationEvt, this.paginationAction.bind(this));
+    if(pagination.el) {
+        pagination.el.addEventListener(pagination.action, this.paginationAction.bind(this));
     }
     searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this))
     //productItemSelector
@@ -29,22 +24,22 @@ function bindEvents(){
         this.onProductItemClick.bind(this)
     );
     this.delegate(
-        sortContainerSelector, 
-        sortAction, 
-        sortElement,
+        sort.el, 
+        sort.action, 
+        "."+sort.sortClass,
         this.sortAction.bind(this)
     )
     this.delegate(
         this.facetsWrapper, 
-        facetAction, 
-        "."+facetClass, 
+        facet.facetAction, 
+        "."+facet.facetClass, 
         this.findChangedFacet.bind(this)
     )
-    if(selectedFacetBlock) {
+    if(facet.selectedFacetsEl) {
         this.delegate(
-            selectedFacetBlock, 
-            facetAction, 
-            "."+selectedFacetClass, 
+            facet.selectedFacetsEl, 
+            facet.facetAction, 
+            "."+facet.selectedFacetClass, 
             this.findChangedFacet.bind(this)
         )
     }
@@ -56,11 +51,11 @@ function bindEvents(){
             this.onClickRangeFacet.bind(this)
         )
     }
-    if(this.bucketedSearchWrapper) {
+    if(this.multiLevelFacetWrapper) {
         this.delegate(
-            this.bucketedSearchWrapper, 
-            this.options.bucketFacetEvnt, 
-            "."+this.options.multiLevelFacetSelector, 
+            this.multiLevelFacetWrapper, 
+            'click', 
+            "."+this.options.facet.multiLevelFacetSelector, 
             this.onBucketedFacet.bind(this)
         )
     }
@@ -68,38 +63,36 @@ function bindEvents(){
         this.delegate(
             this.breadcrumbWrapper, 
             "click", 
-            "."+this.options.breadcrumbSelectorClass, 
+            "."+this.options.breadcrumb.selectorClass, 
             this.onBucketedFacet.bind(this)
         )
     }
-    if(productViewTypeSelector){
+    if(productView.el){
         this.delegate(
-            productViewTypeSelector,
-            'click',
-            "button",
+            productView.el,
+            productView.action,
+            "."+productView.viewTypeClass,
             this.onPageViewTypeClick.bind(this)
         )
     }
-    if(this.options.paginationType === 'INFINITE_SCROLL') {
+    if(this.options.pagination.type === 'INFINITE_SCROLL') {
         document.addEventListener("scroll", debounce(()=>{
             infiniteScroller.bind(this)();
         },1000));
     }
     this.delegate(
         this.pageSizeWrapper,
-        this.options.pageSizeDisplayType === "Dropdown" ? "change" :"click",
-        `.${this.unxSelectors.unxPageSize}`,
+        pagesize.action,
+        `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );
     this.onLocationChange = function (evt){
         const {
             urlState
         } = this.state;
-        if(`#${urlState}` !== location.hash ) {
+        if(decodeURIComponent(location.hash) !== `#${decodeURIComponent(urlState)}`){
             this.renderFromUrl()
         }
-        
-        
     }
     window.onhashchange= this.onLocationChange.bind(this);
 }
