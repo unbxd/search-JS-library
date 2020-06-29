@@ -10,7 +10,7 @@
     width: 100%;
     padding: 50px
 }
-.selcted-sort-btn {
+.unbxd-selected-sort {
     border: solid 1px red;
 }
 .selected-facet-btn {
@@ -74,7 +74,7 @@
      position: relative;
      top: -5px;
  }
- .bucketFacetElem {
+ .unbxd-multilevel-facet {
      display: block;
  }
  .selected-crumb {
@@ -92,7 +92,7 @@
  .unbxd-row {
     display: flex;
 }
-.selected-view{
+.unbxd-selected-product-view{
     border: solid 1px red;
 }
 #clickScrollContainer{
@@ -115,4 +115,7 @@
     align-items: center;
     justify-content: center;
     font-size: 42px;
+}
+.unbxd-selected-pagesize{
+    border: solid 1px yellow;
 }

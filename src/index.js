@@ -5,14 +5,21 @@ import options from './common/options';
 import createLayout from './core/createLayout';
 import setMethods from './core/setMethods';
 import intialize from './core/initialize';
+import extend from './modules/utils/extend'
 
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
-        this.options = Object.assign({},options,props);
+        this.options = extend(true,{},options,props);
+        this.options.facetMultilevel = props.facet.facetMultilevel || false;
+        this.options.facetMultiSelect = props.facet.facetMultiSelect || false;
+        this.options.facetDepth = props.facet.facetDepth || 6;
+        this.options.pageSize = props.pagesize.pageSize || 12;
+        this.options.showSwatches = props.swatches.enabled;
         this.viewState = {
-            productViewType: this.options.productViewTypes,
-            isInfiniteStarted:false
+            productViewType: this.options.productView.viewTypes,
+            isInfiniteStarted:false,
+            lastAction:''
         };
         createLayout.bind(this)();
         intialize.bind(this)();
@@ -51,6 +58,7 @@ setMethods(UnbxdSearch);
 		root.myPlugin = factory(root, root.UnbxdSearch);
 	}
 })(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
+    console.log(root,"root");
     root.UnbxdSearch = UnbxdSearch;
 });
 export default UnbxdSearch;

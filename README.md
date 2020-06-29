@@ -86,7 +86,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     //filters will display here
     facetsSelector: document.getElementById("facetsWrapper"),
     //if you wish to display selected filters seperately give this option, otherwise dont include this config
-    selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
+    selectedFacetSelector: document.getElementById("selectedFacetWrapper"),
     //given sitekey
     siteKey:"demo-spanish-unbxd809051588861207",
     //given api key
@@ -229,7 +229,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     //by default sdk will render a range component
     //if you wish to modify default you can provide here
     // rangeFacets is the params will provide the available range facets 
-    rangeFacetUI:function(rangeFacets){
+    rangeFaceTemplate:function(rangeFacets){
 
     },
     facetMultilevel: true,
@@ -244,7 +244,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     //facets - category facets list
     //selectedFacet - selected category filters
 
-    bucketedSearchUi:function(facets,selected,selectedCategories) {
+    multiLevelFacetTemplate:function(facets,selected,selectedCategories) {
         let ui = "";
         let filters = facets;
         if(selectedCategories) {
@@ -312,7 +312,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     //breadcrumb container to render
     breadcrumbContainer:document.getElementById("breadcrumpContainer"),
     //breadcrumbs template
-    breadCrumpTemplate:function(breadcrumbs){
+    breadCrumbTemplate:function(breadcrumbs){
         let ui = ``;
         breadcrumbs.forEach((item ,id )=> {
             const {
@@ -338,7 +338,6 @@ const es6unbxd =  new UnbxdSearchComponent({
     breadcrumbSelectorClass:"bread-crumb",
     //an option tells the api how facets should work
     facetMultiSelect: true,
-    facetMultiSelectionMode:true,
     // you can provide an object if you wish to apply default filters to the api
     defaultFilters :null,
     // for enabling suggestions
@@ -478,13 +477,13 @@ const es6unbxd =  new UnbxdSearchComponent({
         "swatchImgs":"variant_metadata",
         "swatchColors":"unbxd_parentcolours"
     },
-    swatchSelector:"swatchBtn",
+    swatchesSelector:"swatchBtn",
     swatchTemplate: function(swatchData) {
         const {
             swatchColors = [],
             swatchImgs = []
         } = swatchData;
-        const swatchSelector = this.swatchSelector;
+        const swatchesSelector = this.swatchesSelector;
         let btnUI = ``;
         swatchColors.forEach((item,id) => {
             const imgId = swatchImgs[id];
@@ -495,7 +494,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                         data-swatch-img="${img}" 
                         data-action="changeSwatch"
                         data-swatch-target = ".productImgBlock"
-                        class="${swatchSelector} swatch-btm"
+                        class="${swatchesSelector} swatch-btm"
                         style="border:solid 1px ${item}"
                         >${item}</button>`
             }
@@ -561,7 +560,7 @@ const es6unbxd =  new UnbxdSearchComponent({
 
 <ul>
     <li>
-        <a href="https://codesandbox.io/s/friendly-microservice-to3r8?file=/index.html">Customised</a>
+        <a href="https://codesandbox.io/s/awesome-pike-93hzm">Customised</a>
     </li>
 </ul>
 

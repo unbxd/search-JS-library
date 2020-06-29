@@ -1,9 +1,12 @@
 function renderProductViewTypeUI(){
-    if(this.options.productViewTypeSelector && this.options.productViewTypeTemplate) {
+    const {
+        productView
+    } = this.options;
+    if(productView.el) {
         const {
             productViewType
         } = this.viewState;
-        this.options.productViewTypeSelector.innerHTML = this.options.productViewTypeTemplate.bind(this)(productViewType); 
+        productView.el.innerHTML = this.options.productView.template.bind(this)(productView, productViewType); 
     }
 };
 export default renderProductViewTypeUI;
