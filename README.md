@@ -353,7 +353,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     noResultContainer: document.getElementById("noResultWrapper"),
     //if you wish to customize the no results results
     //query will give you the searched term
-    noResultsUi: (query) => {
+    noResultsTemplate: (query) => {
         return `<div> No Results found ${query} </div>`
     },
     //provide how many results you wish to load

@@ -37,7 +37,7 @@ const options = {
     searchQueryParam:"q",
     defaultFilters : null, //or object with keys
     
-    noResultsUi: (query) => {
+    noResultsTemplate: (query) => {
         return `<div> No Results found ${query} </div>`
     },
     noResultContainer: null,

@@ -30,12 +30,13 @@ const es6unbxd =  new UnbxdSearchComponent({
         
         let swatchUI = ``;
         const {
-            swatches
+            swatches,
+            productItemClass
         } = this.options;
         if(swatches.enabled) {
             swatchUI = this.renderSwatchBtns(product);
         }
-        return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="product-item" style="border:solid 1px red;display:flex">  
+        return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="${productItemClass}" style="border:solid 1px red;display:flex">  
             <img class="productImgBlock" style="width:100px" src="${imageUrl}"/>
         <div>
          <h3>${title} </h3>
@@ -46,13 +47,12 @@ const es6unbxd =  new UnbxdSearchComponent({
          </div>
         </div>`
     },
-    productItemClass:".product-item",
+    productItemClass:"product-item",
     mapping: {
         "title": ""
     },
     //fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
     productAttributes: ['title','uniqueId','price', 'sku', 'imageUrl','displayPrice','sortPrice'],
-    platform: "IO",
     callBackFn:unbxdCallbackEcma,
     //selectedFacetTemplate : ,
     //facetTemplate:,
