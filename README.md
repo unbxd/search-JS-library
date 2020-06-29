@@ -99,7 +99,7 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 | productItemClass      | String   | this class name will be applied to each product card. it need to be added in search results template                      |
 | noResultContainer     | Element  | if you wish to render a no results page                                                                                   |
 | noResultsTemplate     | Function | custom no results messages designs                                                                                        |
-| facet                 | Object   | here you can configure customised facets. you can find detail information here - [Facet Config](#facetConfig)             |
+| facet                 | Object   | here you can configure customised facets. you can find detail information here - [Facet Config](#Facet-Config)             |
 |                       |          |                                                                                                                           |
 |                       |          |                                                                                                                           |
 |                       |          |                                                                                                                           |
