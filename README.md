@@ -1,89 +1,115 @@
-<a href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
-  <img alt="npm" src="https://img.shields.io/npm/v/@unbxd-ui/vanilla-search-library?color=blue">
+
+<a  href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
+
+<img  alt="npm"  src="https://img.shields.io/npm/v/@unbxd-ui/vanilla-search-library?color=blue">
+
 </a>
-<a href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
-  <img alt="npm" src="https://img.shields.io/npm/l/@unbxd-ui/vanilla-search-library">
+
+<a  href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
+
+<img  alt="npm"  src="https://img.shields.io/npm/l/@unbxd-ui/vanilla-search-library">
+
 </a>
-<a href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
-  <img alt="npm" src="https://img.shields.io/npm/dm/@unbxd-ui/vanilla-search-library">
+
+<a  href="https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library">
+
+<img  alt="npm"  src="https://img.shields.io/npm/dm/@unbxd-ui/vanilla-search-library">
+
 </a>
+
+  
 
 # search-JS-library
+
 A JavaScript library for building performant and quick search experiences with Unbxd.
 
+  
+  
 
 ## Getting started
 
+  
+
 Library can be used in 2 ways
 
+  
+
 ### ES6
+
 Install `@unbxd-ui/vanilla-search-library` using npm.
 
+  
+
 ```shell
+
 npm install @unbxd-ui/vanilla-search-library --save
+
 ```
+
+  
 
 Import the UnbxdSearch function in your project
 
+  
+
 ```js
-import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
+
+import  UnbxdSearch  from  "@unbxd-ui/vanilla-search-library";
+
 ```
+
+  
 
 ### ES5
 
+  
+
 You can also use a global-friendly UMD build:
 
+  
+
 ```html
-<script src="http://unbxdsdk.com/search/v1.0.0/unbxdVanillaSearch.js" type="text/javascript"></script>
+
+<script  src="http://unbxdsdk.com/search/v1.0.0/unbxdVanillaSearch.js"  type="text/javascript"></script>
+
 ```
+
+  
 
 Now you are ready to start using the components.
 
-## Documentation
-API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/">here</a>
+  
 
+## Documentation
+
+API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library/">here</a>
+
+  
+  
 
 ## Examples / Recipies
 
-<ul>
-    <li>
-        <a href="#">Basic (default template) : ES5</a>
-    </li>
-    <li>
-        <a href="#">Basic (default template) : ES6</a>
-    </li>
-    <li>
-        <a href="#">Custom product card</a>
-    </li>  
-    <li>
-        <a href="#">Custom facet template</a>
-    </li>
-    <li>
-        <a href="#">Pagination: infinite scroll</a>
-    </li>  
-    <li>
-        <a href="#">Pagination: fixed size</a>
-    </li>  
-    <li>
-        <a href="#">Pagination: Load More</a>
-    </li> 
-    <li>
-        <a href="#">Custom sort template</a>
-    </li>   
-    <li>
-        <a href="#">Page Views (grid or list)</a>
-    </li> 
-    <li>
-        <a href="#">Spell check / Did you mean view</a>
-    </li> 
-    <li>
-        <a href="https://codesandbox.io/s/friendly-microservice-to3r8?file=/index.html">Customised</a>
-    </li>
-</ul>
+  
+  
 
+ - <a  href="#">Basic (default template) : ES5</a>
+ - <a  href="#">Basic (default template) : ES6</a>
+ - <a  href="#">Custom product card</a>
+ - <a  href="#">Custom facet template</a>
+ - <a  href="#">Pagination: infinite scroll</a>
+ - <a  href="#">Pagination: fixed size</a>
+ - <a  href="#">Pagination: Load More</a>
+ - <a  href="#">Custom sort template</a>
+ - <a  href="#">Page Views (grid or list)</a>
+ - <a  href="#">Spell check / Did you mean view</a>
+ - <a  href="https://codesandbox.io/s/friendly-microservice-to3r8?file=/index.html">Customised</a>
+
+  
 
 ## Full configuration List
 
+
+  
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | siteKey | String | requires an html element. Search input will be captured from this element |
@@ -100,6 +126,7 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 | noResultContainer | Element | if you wish to render a no results page |
 | noResultsTemplate | Function | custom no results messages designs |
 | facet | Object | here you can configure customised facets. you can find detail information here - [Facet Config](#Facet-Config) |
+| pagination | Object | here you can configure pagination. you can find detail information here - [Pagination](#Pagination) |
 | spellCheck | Object | you can configure all spellcheck elements here. read more information here [Spell Check](#Spell-Check) |
 | loaderTemplate | Function | You can provide a loader element to show ajax loading |
 | loaderContainer | Element | element to place the loader |
@@ -115,11 +142,13 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
   
   
 
-
 # Facet Config
- facet configuration table is available here.
 
- | OPTIONS | DATATYPE | DESCRIPTION |
+facet configuration table is available here.
+
+  
+
+| OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | facetsEl | Element | Element to place facet elements |
 | facetTemplate | Function | function to render facet wrapper template. has two arguments. facetInfo and facets facetInfo will give you the each facet and facets will give the facets elements |
@@ -141,33 +170,71 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 | onFacetLoad | function | if you wish to do something after each facet selection |
 | applyMultipleFilters | Boolean | if you wish to apply multiple filters together
 
+  
+  #Pagination
 
-            
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            	
+| el                        	| Element  	| placeholder to place the pagination element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
+| type                      	| String   	| 'FIXED_PAGINATION' or 'INFINITE_SCROLL' or 'CLICK_N_SCROLL'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
+| onPaginate                	| Function 	| call back function after pagination.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	|
+| action                    	| String   	| 'click' or 'change' to make the pagination                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	|
+| cssSelector               	| String   	| class name for the pagination buttons                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              	|
+| template                  	| Function 	| for customising the default pagination look.  it has an argument(object) to provide the pagination  information |
+|     
+
+
 
 #Spell Check
- Detailed information about facets will be available here
 
-#Sort Config 
- detailed iformation about sort will be available here
+Detailed information about facets will be available here
+
+  
+
+#Sort Config
+
+detailed iformation about sort will be available here
+
+  
 
 #PageSize Config
- below are the available page size configuration
+
+below are the available page size configuration
+
+  
 
 #Breadcrumb Config
-  breadcrumb options are available here.
+
+breadcrumb options are available here.
+
+  
 
 #Product Views
-  list and grid view selectors
+
+list and grid view selectors
+
+  
 
 #variants
-    variant options can be configured here
+
+variant options can be configured here
+
+  
 
 ## Contributions
 
+  
+
 Use [Github issues](https://github.com/unbxd/search-JS-library/issues) for requests
+
+  
 
 To contribute to the project, read the [contribution guidelines](CONTRIBUTE.md)
 
+  
+
 ## Changelog
+
+  
 
 Changes are tracked in the [changelog](CHANGELOG.md)
