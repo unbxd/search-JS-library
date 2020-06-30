@@ -112,12 +112,12 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
   
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| siteKey | String | requires an html element. Search input will be captured from this element |
-| apiKey | String | given api key |
+| siteKey | String | This value can be found in UNBXD dashboard. It is unique for every search site created in the dashboard. |
+| apiKey | String | This is a unique for every user account. It can also be found in dashboard.|
 | sdkHostName | String | api domain |
 | productType | String | SEARCH or BROWSE or CATEGORY |
 | searchQueryParam | String | search term will be appended to this. 
-| productAttributes | Array | an array of required parameters needed in product object |
+| productAttributes | Array | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
 | defaultFilters | Object | to apply default filters, this will be applied in all api requests |
 | gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row |
 | unbxdAnalytics | Boolean | if you wish to add unbid analytics along with. |
@@ -127,15 +127,15 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 | noResultsTemplate | Function | custom no results messages designs |
 | facet | Object | here you can configure customised facets. you can find detail information here - [Facet Config](#Facet-Config) |
 | pagination | Object | here you can configure pagination. you can find detail information here - [Pagination](#Pagination) |
-| spellCheck | Object | you can configure all spellcheck elements here. read more information here [Spell Check](#Spell-Check) |
+| spellCheck | Object | DOM element to display spell suggestion. Please ignore incase of _browse_ and _category_. read more information here [Spell Check](#Spell-Check) |
 | loaderTemplate | Function | You can provide a loader element to show ajax loading |
 | loaderContainer | Element | element to place the loader |
 | sort | Object | here you can customise the sort. you can find detail information here - [Sort Config](#Sort-Config) |
-| pageSize | Object | configure page size object here you find more information here. -[PageSize Config](#PageSize-Config) |
+| pageSize | Object | The total number of results to be displayed in a single call. The value should be greater than ZERO. _It is suggested that the value to be multiple of number of columns (ex. if 3 columns then 15 or 18 or 21)._ here you find more information here. -[PageSize Config](#PageSize-Config) |
 | facetDepth | Number | configure how many levels of category filter you wish to have |
 | breadcrumb | Object | customise breadcrumbs here. find more details here [Breadcrumb Config](#Breadcrumb-Config) |
 | productView | Object | configure product view types here, this config helps you to modify the product card list view or grid view. find more information here[Product Views](#Product-Views) |
-| variants | Object | config to set the vairants. find more information here [variants](#variants) |
+| variants | Object | Set this object, if client has variant products to display in the search view. Default is falsefind more information here [variants](#variants) |
 | fireAnalyticsEvents | Boolean | you wish to have unbid analytics along with sdk. |
 | | | |
 
