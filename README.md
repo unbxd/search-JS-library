@@ -118,8 +118,7 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 # Facet Config
  facet configuration table is available here.
 
-| OPTIONS                   	| DATATYPE 	| DESCRIPTION  
-|-----------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|                                                                                                                                                            	|
+| OPTIONS                   	| DATATYPE 	| DESCRIPTION                                                                                                                                                              	|
 | facetsEl                  	| Element  	| Element to place facet elements                                                                                                                                          	|
 | facetTemplate             	| Function 	| function to render facet wrapper template. has two arguments. facetInfo and facets facetInfo will give you the each facet and facets will give the facets elements       	|
 | facetItemTemplate         	| Function 	| customise filters here. has two arguments. facet - each facet item object filter - each filter value                                                                     	|
