@@ -271,14 +271,14 @@ class RangeSlider {
             minLabel,
             maxLabel
         } = this.options.rangeConfig;
-        return `<div class="unx-slider-val-row"  style="display:flex">
-                    <div class="unx-min">
+        return `<div class="UNX-slider-val-row"  style="display:flex">
+                    <div class="UNX-min">
                         <label>${minLabel}</label>
-                        <span class="unx-range-val unx-min-price">${x}</span>
+                        <span class="UNX-range-val UNX-min-price">${x}</span>
                     </div>
-                <div class="unx-max">
+                <div class="UNX-max">
                     <label>${maxLabel}</label>
-                    <span class="unx-range-val unx-max-price">${y}</span>
+                    <span class="UNX-range-val UNX-max-price">${y}</span>
                 </div>
             </div>`
     }
@@ -290,28 +290,28 @@ class RangeSlider {
         } = this.options;
         setTimeout(this.bindElements.bind(this),10);
         let valueUI = "";
-        return `<div id="${this.id}" class="range-slider-container unx-range-slider-wrap">
+        return `<div id="${this.id}" class="range-slider-container UNX-range-slider-wrap">
                 <h3>${displayName}</h3>
-                <div class="range-slider unx-range-dilder-wrapper" >
-                    <div data-action="handleLeft" class="${this.slideLeftId} round-handle unx-round-handle">
+                <div class="range-slider UNX-range-dilder-wrapper" >
+                    <div data-action="handleLeft" class="${this.slideLeftId} round-handle UNX-round-handle">
                     </div>
-                    <div data-action="handleRight" class="${this.slideRightId} round-handle unx-round-handle">
+                    <div data-action="handleRight" class="${this.slideRightId} round-handle UNX-round-handle">
                     </div>
-                    <div class="${this.slideLineId} unx-line-wrap">
-                        <div class="${this.innerLineId} unx-line-inner"></div>
+                    <div class="${this.slideLineId} UNX-line-wrap">
+                        <div class="${this.innerLineId} UNX-line-inner"></div>
                     </div>
                 </div>
             <div>
-            <div class="valueContainer unx-range-value-block" >
+            <div class="valueContainer UNX-range-value-block" >
                 ${valueUI}
             </div>
-            <div class="unx-price-action-row">
+            <div class="UNX-price-action-row">
                 <button 
-                    class="unx-primary-btn "
+                    class="UNX-primary-btn "
                     data-facet-name="${facetName}" 
                     data-action="filterPriceRange"> filter by price </button>
                 <button
-                    class="unx-default-btn "
+                    class="UNX-default-btn "
                     data-facet-name="${facetName}"
                     data-action="clearPriceRange"> clear </button>
             <div>

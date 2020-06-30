@@ -11,10 +11,10 @@
           button {
               outline: none !important;
           }
-          .unx-facet-row {
+          .UNX-facet-row {
               margin-top: 12px;
           }
-        .unx-facet-btn {
+        .UNX-facet-btn {
                 background: transparent;
                 border: solid 1px transparent;
                 color: #3f3f40;
@@ -25,7 +25,7 @@
                 width: 100%;
                 text-align: left;
           }
-          .unx-facet-btn:before {
+          .UNX-facet-btn:before {
               position: absolute;
               content: " ";
               display: block;
@@ -35,14 +35,14 @@
               left: 0;
               top: 0px;
           }
-          .unx-selected-facet-row {
+          .UNX-selected-facet-row {
               display: flex;
               justify-content: space-between;
           }
-          .unx-selected-facet-btn {
+          .UNX-selected-facet-btn {
               color:tomato;
           }
-          .unx-selected-facet-btn:after{
+          .UNX-selected-facet-btn:after{
                 position: absolute;
               content: " ";
               display: block;
@@ -166,8 +166,8 @@
                             count,
                             dataId
                         } = selectedFacetItem;
-                        return `<div class="unx-facet-row"><button 
-                                    class="unx-facet-btn unx-selected-facet-btn ${this.selectedFacetClass}"
+                        return `<div class="UNX-facet-row"><button 
+                                    class="UNX-facet-btn UNX-selected-facet-btn ${this.selectedFacetClass}"
                                     data-facet-name="${facetName}"
                                     data-facet-action ="deleteFacetValue"
                                     data-id= "${dataId}">
@@ -183,11 +183,11 @@
                             count,
                             dataId
                         } = value;
-                        return `<div class="unx-facet-row">
+                        return `<div class="UNX-facet-row">
                                     <button
                                         data-facet-name="${facetName}" 
                                         data-facet-action="CHANGE_FACET"
-                                        class="unx-facet-btn"
+                                        class="UNX-facet-btn"
                                         data-id= "${dataId}">
                                             ${name} (${count})
                                     </button>

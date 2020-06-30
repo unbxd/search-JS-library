@@ -20,7 +20,7 @@ const renderSearch =  function() {
         products.forEach((product, index) => {
             const row = index % gridCount;
             if(row === 0) {
-                productsUI += `<div class="unx-row">`;
+                productsUI += `<div class="UNX-row">`;
             }
             const pRank  = index+idx+1;
             productsUI +=self.options.searchResultsTemplate(product,pRank);

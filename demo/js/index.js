@@ -115,10 +115,10 @@ const es6unbxd =  new UnbxdSearchComponent({
                     </button>`
         },
         facetMultiSelect:true,
-        facetClass:"unx-facets-block",
+        facetClass:"UNX-facets-block",
         facetAction:"click",
 
-        selectedFacetClass:"unx-selected-facet",
+        selectedFacetClass:"UNX-selected-facet",
         selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         selectedFacetTemplate: function (selectedFacet,selectedFacetItem){
             const {
@@ -150,23 +150,23 @@ const es6unbxd =  new UnbxdSearchComponent({
 
         facetMultilevel:true,
         facetMultilevelName:'Category',
-        multiLevelFacetSelector:'unx-multilevel-facet',
+        multiLevelFacetSelector:'UNX-multilevel-facet',
         multiLevelFacetEl:document.getElementById("bucketedFacetWrapper"),    
         facetDepth:4,
 
-        clearFacetsSelector:'unx-clear-facet',
-        removeFacetsSelector:'unx-remove-facet',
+        clearFacetsSelector:'UNX-clear-facet',
+        removeFacetsSelector:'UNX-remove-facet',
         onFacetLoad:function(facets){
             console.log(facets,"facetsfacets");
         },
-        applyMultipleFilters:true
+        applyMultipleFilters:false
     },
     pagination: {
         el:document.getElementById("paginationContainer"),
         type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
         onPaginate:function(objectInfo){console.log(objectInfo,"objectInfo")},
         action:'click',
-        cssSelector:"unx-pagination-css",
+        cssSelector:"UNX-pagination-css",
         template:function(paginationData){
             const {
                 cssSelector
@@ -202,7 +202,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                     filterField,
                     value
                 } = item;
-                const css = `${this.options.breadcrumb.selectorClass} unx-crumb-item`;
+                const css = `${this.options.breadcrumb.selectorClass} UNX-crumb-item`;
                 if(id > 0) {
                     ui += `<span> > </span>`
                 }
@@ -220,8 +220,8 @@ const es6unbxd =  new UnbxdSearchComponent({
     pagesize : {
         pageSize:12,
         options:[8,12,16,20,24],
-        pageSizeClass:"unx-pagesize",
-        selectedPageSizeClass:"unx-selected-pagesize",
+        pageSizeClass:"UNX-pagesize",
+        selectedPageSizeClass:"UNX-selected-pagesize",
         action:'click',
         template:function(pageSize){
             const {
@@ -232,7 +232,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             let ui = ``;
             options.forEach((opt)=>{
                 const selected = (pageSize == opt)?selectedPageSizeClass:'';
-                ui+=`<button class="unx-btn-pagesize ${pageSizeClass} ${selected}" id="${opt}">${opt}</button>`
+                ui+=`<button class="UNX-btn-pagesize ${pageSizeClass} ${selected}" id="${opt}">${opt}</button>`
             });
             return ui;
         },
@@ -251,8 +251,8 @@ const es6unbxd =  new UnbxdSearchComponent({
                 text:" Price Low to High"
             }
         ],
-        sortClass:'unx-sort-item',
-        selectedSortClass:'unx-selected-sort',
+        sortClass:'UNX-sort-item',
+        selectedSortClass:'UNX-selected-sort',
         template:function(selectedSort) {
             let sortBtnsUI = "";
             const {
@@ -298,7 +298,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             "swatchImgs":"variant_metadata",
             "swatchColors":"unbxd_parentcolours"
         },
-        swatchClass:'unx-swatch-btn',
+        swatchClass:'UNX-swatch-btn',
         template:function(swatchData) {
             const {
                 swatchColors = [],
@@ -327,8 +327,8 @@ const es6unbxd =  new UnbxdSearchComponent({
     productView : {
         el: document.getElementById("productViewTypeContainer"),
         action:'click', // CLICK or CHANGE
-        viewTypeClass:'unx-product-view',
-        selectedViewTypeClass:'unx-selected-product-view',
+        viewTypeClass:'UNX-product-view',
+        selectedViewTypeClass:'UNX-selected-product-view',
         viewTypes:'GRID'
     },
     variants:{

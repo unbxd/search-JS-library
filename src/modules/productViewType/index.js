@@ -4,8 +4,8 @@ const renderProductViewType =  function(productViewType, selectedViewType) {
         selectedViewTypeClass,
         viewTypeClass
     } = productViewType;
-    let listBtnCss =`unx-list-btn ${viewTypeClass}`;
-    let gridBtnCss = `unx-grid-btn ${viewTypeClass}`;
+    let listBtnCss =`UNX-list-btn ${viewTypeClass}`;
+    let gridBtnCss = `UNX-grid-btn ${viewTypeClass}`;
     if(selectedViewType === 'LIST' ) {
         listBtnCss += ` ${selectedViewTypeClass}`
     }

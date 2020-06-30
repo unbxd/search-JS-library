@@ -2,7 +2,7 @@ const pageSizeUi = function(pageSize) {
     const {
         pagesize
     } = this.options;
-    let ui = `<select  class="unx-select-pagesize ${pagesize.pageSizeClass}">`;
+    let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
     pagesize.options.forEach((opt)=>{
         if(pageSize == opt) {
             ui+=`<option selected class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`
@@ -12,7 +12,7 @@ const pageSizeUi = function(pageSize) {
         
     });
     ui+= `</select>`
-    return `<div class="unx-pagesize-block">
+    return `<div class="UNX-pagesize-block">
         ${ui}
     </div>`;
 }
