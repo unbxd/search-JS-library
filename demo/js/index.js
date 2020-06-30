@@ -1,9 +1,7 @@
 import UnbxdSearchComponent from  "../../src/index";
 import styles from '../css/index.scss';
-console.log(UnbxdSearchComponent,"UnbxdSearchComponent");
 
 const unbxdCallbackEcma = function (instance, type,data){
-   console.log(instance, type,data,"unbxdCallbackEcma")
 }
 
 
@@ -87,11 +85,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                             data-facet-action="deleteFacet"
                             data-facet-name="${facetName}" > clear</button>
                         ${children}
-                        <div>
-                            <button 
-                                class="${facetClass}"
-                                data-facet-action="applyFacets" > apply</button>
-                        </div>
+                        
                     </div>`
         },
         facetItemTemplate: function  (facet , value) {
@@ -137,7 +131,6 @@ const es6unbxd =  new UnbxdSearchComponent({
                         ${name} (${count})
                 </button><button class="${this.options.facet.selectedFacetClass}"   data-id= "${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}" > x</button></div>`
         },
-        facetMultiSelect:true,
 
         rangeFacetEl:document.getElementById("rangeFacetWrapper"),
         //rangeTemplate:renderRangeFacets,
