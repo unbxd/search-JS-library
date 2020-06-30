@@ -84,35 +84,36 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 
 ## Full configuration List
 
-| OPTIONS               | DATATYPE | DESCRIPTION                                                                                                                                                             |
-|-----------------------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|                       |          |                                                                                                                                                                         |
-| siteKey               | String   | requires an html element. Search input will be captured from this element                                                                                               |
-| apiKey                | String   | given api key                                                                                                                                                           |
-| sdkHostName           | String   | api domain                                                                                                                                                              |
-| productType           | String   | SEARCH or BROWSE or CATEGORY                                                                                                                                            |
-| searchQueryParam      | String   | search term will be appended to this.                                                                                                                                   |
-| productAttributes     | Array    | an array of required parameters needed in product object                                                                                                                |
-| defaultFilters        | Object   | to apply default filters, this will be applied in all api requests                                                                                                      |
-| gridCount             | Number   | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row                                                         |
-| unbxdAnalytics        | Boolean  | if you wish to add unbid analytics along with.                                                                                                                          |
-| searchResultsTemplate | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product                                               |
-| productItemClass      | String   | this class name will be applied to each product card. it need to be added in search results template                                                                    |
-| noResultContainer     | Element  | if you wish to render a no results page                                                                                                                                 |
-| noResultsTemplate     | Function | custom no results messages designs                                                                                                                                      |
-| facet                 | Object   | here you can configure customised facets. you can find detail information here - [Facet Config](#Facet-Config)                                                          |
-| spellCheck            | Object   | you can configure all spellcheck elements here. read more information here [Spell Check](#Spell-Check)                                                                   |
-| loaderTemplate        | Function | You can provide a loader element to show ajax loading                                                                                                                   |
-| loaderContainer       | Element  | element to place the loader                                                                                                                                             |
-| sort                  | Object   | here you can customise the sort. you can find detail information here - [Sort Config](#Sort-Config)                                                                     |
-| pageSize              | Object   | configure page size object here you find more information here. -[PageSize Config](#PageSize-Config)                                                                    |
-| facetDepth            | Number   | configure how many levels of category filter you wish to have                                                                                                           |
-| breadcrumb            | Object   | customise breadcrumbs here. find more details here [Breadcrumb Config](#Breadcrumb-Config)                                                                              |
-| productView           | Object   | configure product view types here, this config helps you to modify the product card list view or grid view.  find more information here[Product Views](#Product-Views)  |
-| variants              | Object   | config to set the vairants. find more information here [variants](#variants)                                                                                            |
-| fireAnalyticsEvents   | Boolean  | you wish to have unbid analytics along with sdk.                                                                                                                        |
-|                       |          |                                                                                                                                                                         |
-|                       |          |                                                                                                                                                                         |
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| siteKey | String | requires an html element. Search input will be captured from this element |
+| apiKey | String | given api key |
+| sdkHostName | String | api domain |
+| productType | String | SEARCH or BROWSE or CATEGORY |
+| searchQueryParam | String | search term will be appended to this. 
+| productAttributes | Array | an array of required parameters needed in product object |
+| defaultFilters | Object | to apply default filters, this will be applied in all api requests |
+| gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row |
+| unbxdAnalytics | Boolean | if you wish to add unbid analytics along with. |
+| searchResultsTemplate | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product |
+| productItemClass | String | this class name will be applied to each product card. it need to be added in search results template |
+| noResultContainer | Element | if you wish to render a no results page |
+| noResultsTemplate | Function | custom no results messages designs |
+| facet | Object | here you can configure customised facets. you can find detail information here - [Facet Config](#Facet-Config) |
+| spellCheck | Object | you can configure all spellcheck elements here. read more information here [Spell Check](#Spell-Check) |
+| loaderTemplate | Function | You can provide a loader element to show ajax loading |
+| loaderContainer | Element | element to place the loader |
+| sort | Object | here you can customise the sort. you can find detail information here - [Sort Config](#Sort-Config) |
+| pageSize | Object | configure page size object here you find more information here. -[PageSize Config](#PageSize-Config) |
+| facetDepth | Number | configure how many levels of category filter you wish to have |
+| breadcrumb | Object | customise breadcrumbs here. find more details here [Breadcrumb Config](#Breadcrumb-Config) |
+| productView | Object | configure product view types here, this config helps you to modify the product card list view or grid view. find more information here[Product Views](#Product-Views) |
+| variants | Object | config to set the vairants. find more information here [variants](#variants) |
+| fireAnalyticsEvents | Boolean | you wish to have unbid analytics along with sdk. |
+| | | |
+
+  
+  
 
 
 # Facet Config
