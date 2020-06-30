@@ -12,7 +12,7 @@ const pageSizeUi = function(pageSize) {
         
     });
     ui+= `</select>`
-    return `<div class="unbxd-pagesize-block">
+    return `<div class="unx-pagesize-block">
         ${ui}
     </div>`;
 }

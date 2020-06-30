@@ -115,10 +115,10 @@ const es6unbxd =  new UnbxdSearchComponent({
                     </button>`
         },
         facetMultiSelect:true,
-        facetClass:"unbxd-facets-block",
+        facetClass:"unx-facets-block",
         facetAction:"click",
 
-        selectedFacetClass:"unbxd-selected-facet",
+        selectedFacetClass:"unx-selected-facet",
         selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         selectedFacetTemplate: function (selectedFacet,selectedFacetItem){
             const {
@@ -150,12 +150,12 @@ const es6unbxd =  new UnbxdSearchComponent({
 
         facetMultilevel:true,
         facetMultilevelName:'Category',
-        multiLevelFacetSelector:'unbxd-multilevel-facet',
+        multiLevelFacetSelector:'unx-multilevel-facet',
         multiLevelFacetEl:document.getElementById("bucketedFacetWrapper"),    
         facetDepth:4,
 
-        clearFacetsSelector:'unbxd-clear-facet',
-        removeFacetsSelector:'unbxd-remove-facet',
+        clearFacetsSelector:'unx-clear-facet',
+        removeFacetsSelector:'unx-remove-facet',
         onFacetLoad:function(facets){
             console.log(facets,"facetsfacets");
         },
@@ -166,7 +166,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
         onPaginate:function(objectInfo){console.log(objectInfo,"objectInfo")},
         action:'click',
-        cssSelector:"unbxd-pagination-css",
+        cssSelector:"unx-pagination-css",
         template:function(paginationData){
             const {
                 cssSelector
@@ -202,7 +202,7 @@ const es6unbxd =  new UnbxdSearchComponent({
                     filterField,
                     value
                 } = item;
-                const css = `${this.options.breadcrumb.selectorClass} unbxd-crumb-item`;
+                const css = `${this.options.breadcrumb.selectorClass} unx-crumb-item`;
                 if(id > 0) {
                     ui += `<span> > </span>`
                 }
@@ -220,8 +220,8 @@ const es6unbxd =  new UnbxdSearchComponent({
     pagesize : {
         pageSize:12,
         options:[8,12,16,20,24],
-        pageSizeClass:"unbxd-pagesize",
-        selectedPageSizeClass:"unbxd-selected-pagesize",
+        pageSizeClass:"unx-pagesize",
+        selectedPageSizeClass:"unx-selected-pagesize",
         action:'click',
         template:function(pageSize){
             const {
@@ -251,8 +251,8 @@ const es6unbxd =  new UnbxdSearchComponent({
                 text:" Price Low to High"
             }
         ],
-        sortClass:'unbxd-sort-item',
-        selectedSortClass:'unbxd-selected-sort',
+        sortClass:'unx-sort-item',
+        selectedSortClass:'unx-selected-sort',
         template:function(selectedSort) {
             let sortBtnsUI = "";
             const {
@@ -298,7 +298,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             "swatchImgs":"variant_metadata",
             "swatchColors":"unbxd_parentcolours"
         },
-        swatchClass:'unbxd-swatch-btn',
+        swatchClass:'unx-swatch-btn',
         template:function(swatchData) {
             const {
                 swatchColors = [],
@@ -327,8 +327,8 @@ const es6unbxd =  new UnbxdSearchComponent({
     productView : {
         el: document.getElementById("productViewTypeContainer"),
         action:'click', // CLICK or CHANGE
-        viewTypeClass:'unbxd-product-view',
-        selectedViewTypeClass:'unbxd-selected-product-view',
+        viewTypeClass:'unx-product-view',
+        selectedViewTypeClass:'unx-selected-product-view',
         viewTypes:'GRID'
     },
     variants:{

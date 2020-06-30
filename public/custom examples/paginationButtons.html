@@ -6,53 +6,14 @@
       <meta name="theme-color" content="#000000">
       <title>Pagination example</title>
       <!--required frame works should be loaded here-->
-      <link href="/dist/css/unbxdSearch.css" rel="stylesheet">
+      <link href="/dist/css/unbxdSearch.css" rel="stylesheet"/>
       <style>
-          button {
-              outline: none !important;
-          }
-          .unx-facet-row {
-              margin-top: 12px;
-          }
-        .unx-facet-btn {
-                background: transparent;
-                border: solid 1px transparent;
-                color: #3f3f40;
-                display: block;
-                cursor: pointer;
-                position: relative;
-                padding-left: 24px;
-                width: 100%;
-                text-align: left;
-          }
-          .unx-facet-btn:before {
-              position: absolute;
-              content: " ";
-              display: block;
-              height: 18px;
-              width: 18px;
-              border: solid 1px #3f3f40;
-              left: 0;
-              top: 0px;
-          }
-          .unx-selected-facet-row {
+          .unx-pagination-wrap {
               display: flex;
-              justify-content: space-between;
+              justify-content: flex-end;
+              margin-top: 50px;
           }
-          .unx-selected-facet-btn {
-              color:tomato;
-          }
-          .unx-selected-facet-btn:after{
-                position: absolute;
-              content: " ";
-              display: block;
-              height: 16px;
-              width: 16px;
-              background: #FF0000;
-              left: 2px;
-              top: 2px;
-          }
-        </style>
+      </style>
 </head>
 
    <body>
@@ -68,16 +29,16 @@
                     
                 </div>
                 <div style="display: none">
-                    <div id="paginationContainer"></div>
                     <div id="sortWrapper"></div>
                     <div id="didYouMeanWrapper"></div>
+                    <div id="selectedFacetWrapper"></div>
                     <div id="productViewTypeContainer"></div>
                     <div id="changeNoOfProducts"></div>
                 </div>
                 <div id="breadcrumpContainer"></div>
                 <div id="bannerContainer"></div>
                 <div style="display:flex">
-                    <div>
+                    <div style="display:none">
                         <div id="bucketedFacetWrapper"></div>
                         <div id="facetsWrapper"></div>
                         <div id="rangeFacetWrapper"></div>
@@ -86,6 +47,7 @@
                     <div id="loaderContainer"></div>
                     <div id="noResultWrapper"></div>
                 </div>
+                <div class="unx-pagination-wrap" id="paginationContainer"></div>
 
                 </div>
 
@@ -115,6 +77,7 @@
                     searchButtonSelector:document.getElementById("searchBtn"),
                     searchResultsSelector:document.getElementById("searchResultsWrapper"),
                     facetsSelector: document.getElementById("facetsWrapper"),
+                    selectedFacetSelector: document.getElementById("selectedFacetWrapper"),
                     siteKey:"demo-spanish-unbxd809051588861207",
                     apiKey:"f19768e22b49909798bc2411fa3dd963",
                     sdkHostName:"https://search.unbxd.io/",
@@ -166,13 +129,13 @@
                             count,
                             dataId
                         } = selectedFacetItem;
-                        return `<div class="unx-facet-row"><button 
-                                    class="unx-facet-btn unx-selected-facet-btn ${this.selectedFacetClass}"
+                        return `<div><button 
+                                    class="selected-facet-btn ${this.selectedFacetClass}"
                                     data-facet-name="${facetName}"
                                     data-facet-action ="deleteFacetValue"
                                     data-id= "${dataId}">
                                     ${name} (${count})
-                            </button></div>`
+                            </button><button class="${this.selectedFacetClass}"   data-id= "${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}" > x</button></div>`
                     },
                     facetTemplate: function  (facet , value) {
                         const {
@@ -183,15 +146,12 @@
                             count,
                             dataId
                         } = value;
-                        return `<div class="unx-facet-row">
-                                    <button
-                                        data-facet-name="${facetName}" 
-                                        data-facet-action="CHANGE_FACET"
-                                        class="unx-facet-btn"
-                                        data-id= "${dataId}">
-                                            ${name} (${count})
-                                    </button>
-                            </div>`
+                        return `<button
+                                    data-facet-name="${facetName}" 
+                                    data-facet-action="CHANGE_FACET"
+                                    data-id= "${dataId}">
+                                        ${name} (${count})
+                                </button>`
                     },
                     facetItemTemplate: function (facet, children) {
                         const {
@@ -228,6 +188,7 @@
                             isNext,
                             isPrev
                         } = paginationData;
+                        console.log(paginationData,"paginationData")
                         let nextBtn = `<button class="next-btn" data-page-action="next">next</button>`;
                         let prevBtn = `<button class="prev-btn" data-page-action="prev">prev</button>`;
                         if(!isNext) {
@@ -289,7 +250,6 @@
                         return `<div>Loading....</div>`
                     },
                     loaderContainer:document.getElementById('loaderContainer'),
-                    showVariants:true,
                     variantMapping:{
                         "image_url":"v_image_url"
                     },
@@ -344,13 +304,12 @@
                     productViewTypeSelector: document.getElementById("productViewTypeContainer"),
                     productViewTypeAction:"click",
                     unbxdAnalytics:true,
-                    variantConfig: {
-                        variantsCount: 1,
-                        variantAttributes: [],
-                        variantMapping:{
-                            "image_url":"v_image_url"
-                        },
-                        variantsGroupBy: ''
+                    variants:{
+                        enabled:false,
+                        count:1,
+                        groupBy:'',
+                        attributes:[],
+                        mapping:
                     },
                     //bannerSelector:document.getElementById('bannerContainer'),
                     applyMultipleFilters:false

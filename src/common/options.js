@@ -56,8 +56,8 @@ const options = {
         el:null,
         template:renderProductViewType,
         action:'click', // CLICK or CHANGE
-        viewTypeClass:'unbxd-product-view',
-        selectedViewTypeClass:'unbxd-selected-product-view',
+        viewTypeClass:'unx-product-view',
+        selectedViewTypeClass:'unx-selected-product-view',
         viewTypes:'GRID'
     },
 
@@ -106,8 +106,8 @@ const options = {
 
     sort: {
         el:null,
-        selectedSortClass:'unbxd-selected-sort',
-        sortClass:'unbxd-sort-item',
+        selectedSortClass:'unx-selected-sort',
+        sortClass:'unx-sort-item',
         template:sortTemplate,
         options:sortOptions,
         action:'change'
@@ -119,10 +119,10 @@ const options = {
         facetTemplate:facetUIElem,
         facetItemTemplate:facetItemUiElem,
         facetMultiSelect:true,
-        facetClass:"unbxd-facets-block",
+        facetClass:"unx-facets-block",
         facetAction:"change",
 
-        selectedFacetClass:"unbxd-selected-facet",
+        selectedFacetClass:"unx-selected-facet",
         selectedFacetsEl:null,
         selectedFacetTemplate:selectedFacetUI,
 
@@ -137,12 +137,12 @@ const options = {
 
         facetMultilevel:true,
         facetMultilevelName:'Category',
-        multiLevelFacetSelector:'unbxd-multilevel-facet',
+        multiLevelFacetSelector:'unx-multilevel-facet',
         multiLevelFacetEl:null,
         multiLevelFacetTemplate:multiLevelFacetUI,
         facetDepth:4,
-        clearFacetsSelector:'unbxd-clear-facet',
-        removeFacetsSelector:'unbxd-remove-facet',
+        clearFacetsSelector:'unx-clear-facet',
+        removeFacetsSelector:'unx-remove-facet',
         onFacetLoad:function(facets){
             console.log(facets,"facetsfacets");
         },
@@ -163,8 +163,8 @@ const options = {
     pagesize: {
         pageSize:12,
         options:[8,12,16,20,24],
-        pageSizeClass:"unbxd-pagesize",
-        selectedPageSizeClass:"unbxd-selected-pagesize",
+        pageSizeClass:"unx-pagesize",
+        selectedPageSizeClass:"unx-selected-pagesize",
         action:'change',
         template:pageSizeUi,
         el:document.getElementById("changeNoOfProducts")
@@ -179,7 +179,7 @@ const options = {
     swatches:{
         enabled:true,
         map:{},
-        swatchClass:'unbxd-swatch-btn',
+        swatchClass:'unx-swatch-btn',
         template:function(swatchData) {
             const {
                 swatchColors = [],
