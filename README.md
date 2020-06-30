@@ -171,7 +171,8 @@ facet configuration table is available here.
 | applyMultipleFilters | Boolean | if you wish to apply multiple filters together
 
   
-  #Pagination
+  # Pagination
+
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            	
