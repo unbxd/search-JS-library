@@ -119,26 +119,30 @@ API documentation is available <a href="http://cxdoc.unbxd.io/search-JS-library/
 # Facet Config
  facet configuration table is available here.
 
-| OPTIONS                   	| DATATYPE 	| DESCRIPTION                                                                                                                                                              	|
-| facetsEl                  	| Element  	| Element to place facet elements                                                                                                                                          	|
-| facetTemplate             	| Function 	| function to render facet wrapper template. has two arguments. facetInfo and facets facetInfo will give you the each facet and facets will give the facets elements       	|
-| facetItemTemplate         	| Function 	| customise filters here. has two arguments. facet - each facet item object filter - each filter value                                                                     	|
-| facetMultiSelect          	| Booelan  	| to enable the multiple selection og facets. by default it is true                                                                                                        	|
-| facetClass                	| String   	| css class name the facet item. optional.                                                                                                                                 	|
-| facetAction               	| String   	| 'click' or 'change' based on the facet item                                                                                                                              	|
-| selectedFacetClass        	| String   	| css class name for the selected facet items                                                                                                                              	|
-| selectedFacetsEl          	| Element  	| an element to place the selected facets. if you dont provide this element selected facets will be rendered along with facets                                             	|
-| selectedFacetTemplate     	| Function 	| customise the selected facet here. provided 2 arguments. selectedFacet : selected facet  filter : selected filter object                                                 	|
-| rangeFacetEl              	| Element  	| placeholder to render the rangefacet                                                                                                                                     	|
-| rangeTemplate             	| Function 	| if you wish to customise the range facets. has one argument, will provide the list of range facets available                                                             	|
-| rangeWidgetConfig         	| Function 	| configure the default range slider. has 2 properties. minLabel : prefix for the min value maxLabel : prefix for the max value                                            	|
-| multiLevelFacetSelector   	| String   	| class name for the each multi level facet item                                                                                                                           	|
-| multiLevelFacetEl         	| Element  	| placeholder to render multilevel facet element                                                                                                                           	|
-| facetDepth                	| 4        	| configure how many levels of category filter you wish to have                                                                                                            	|
-| clearFacetsSelector       	| String   	| Class name for button to clear the selected filters under a facet                                                                                                        	|
-| removeFacetsSelector      	| String   	| for deleting each selected filter under a facet. this class name is must to work                                                                                         	|
-| onFacetLoad               	| function 	| if you wish to do something after each facet selection                                                                                                                   	|
-| applyMultipleFilters      	| Boolean  	| if you wish to apply multiple filters together                                         
+ | OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| facetsEl | Element | Element to place facet elements |
+| facetTemplate | Function | function to render facet wrapper template. has two arguments. facetInfo and facets facetInfo will give you the each facet and facets will give the facets elements |
+| facetItemTemplate | Function | customise filters here. has two arguments. facet - each facet item object filter - each filter value |
+| facetMultiSelect | Booelan | to enable the multiple selection og facets. by default it is true |
+| facetClass | String | css class name the facet item. optional. |
+| facetAction | String | 'click' or 'change' based on the facet item |
+| selectedFacetClass | String | css class name for the selected facet items |
+| selectedFacetsEl | Element | an element to place the selected facets. if you dont provide this element selected facets will be rendered along with facets |
+| selectedFacetTemplate | Function | customise the selected facet here. provided 2 arguments. selectedFacet : selected facet filter : selected filter object |
+| rangeFacetEl | Element | placeholder to render the rangefacet |
+| rangeTemplate | Function | if you wish to customise the range facets. has one argument, will provide the list of range facets available |
+| rangeWidgetConfig | Function | configure the default range slider. has 2 properties. minLabel : prefix for the min value maxLabel : prefix for the max value |
+| multiLevelFacetSelector | String | class name for the each multi level facet item |
+| multiLevelFacetEl | Element | placeholder to render multilevel facet element |
+| facetDepth | 4 | configure how many levels of category filter you wish to have |
+| clearFacetsSelector | String | Class name for button to clear the selected filters under a facet |
+| removeFacetsSelector | String | for deleting each selected filter under a facet. this class name is must to work |
+| onFacetLoad | function | if you wish to do something after each facet selection |
+| applyMultipleFilters | Boolean | if you wish to apply multiple filters together
+
+
+            
 
 #Spell Check
  Detailed information about facets will be available here
