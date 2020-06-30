@@ -106,7 +106,7 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 
   
 
-## Full configuration List
+# Full configuration List
 
 
   
@@ -171,7 +171,7 @@ facet configuration table is available here.
 | applyMultipleFilters | Boolean | if you wish to apply multiple filters together
 
   
-  # Pagination
+# Pagination
 
 
 | OPTIONS | DATATYPE | DESCRIPTION |
@@ -186,39 +186,87 @@ facet configuration table is available here.
 
 
 
-#Spell Check
+# Spell Check
 
-Detailed information about facets will be available here
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+| enabled                   	| Boolean  	| for enabling spell check                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	|
+| el                        	| Element  	| for placing the spellcheck element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 	|
+| template                  	| Function 	| for modifying the default look of spellcheck                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       	|
+|                           	|          	|   
 
-  
-
-#Sort Config
-
-detailed iformation about sort will be available here
-
-  
-
-#PageSize Config
-
-below are the available page size configuration
 
   
 
-#Breadcrumb Config
+# Sort Config
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| el                        	| Element  	| placeholder for the sort element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   	|
+| options                   	| Array    	| array of sort options(Object)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      	|
+| sortClass                 	| String   	| css class name for the sort item, make sure you  will be providing this information in template                                                                                                                                                                                                                                                                                                                                                                                                                                                    	|
+| selectedSortClass         	| String   	| css class for the selected sort item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	|
+| template                  	| Function 	| modify the default look of the sort. provides and argument (object) gives you the selected sort                                                                                                                                                                                                                                                                                                                                                                                                                                                    	|
+| action                    	| String   	| 'click' or 'change' as per the sort item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	|
+|                           	|          	|   
+
+  
+
+# PageSize Config
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| pageSize                  	| Number   	| number of results per page                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	|
+| options                   	| Array    	| array of number of desired page sizes (number)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	|
+| pageSizeClass             	| String   	| class name for page size element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   	|
+| selectedPageSizeClass     	| String   	| css class name for the selected page size option                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   	|
+| action                    	| String   	| click or change based on the customised template                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   	|
+| template                  	| Function 	| for modifying the default look of the element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      	|
+| el                        	| Element  	| placeholder for the page size element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              	|
+|                           	|          	|    
+
+
+  
+
+# Breadcrumb Config
 
 breadcrumb options are available here.
 
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| enabled                   	| Boolean  	| for showing breadcrumbs if it is available                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	|
+| el                        	| Element  	| placeholder to append the breadcrumbs                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              	|
+| selectorClass             	| String   	| css class for the each breadcrumb item                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             	|
+| template                  	| Function 	| if you wish to modify default breadcrumb template  
+
+
   
 
-#Product Views
+# Product Views
 
-list and grid view selectors
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| el                        	| Element  	| an element to place the product views element.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     	|
+| action                    	| String   	| 'click' or 'change' event for the product view element.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            	|
+| viewTypeClass             	| String   	| css classes for the product view element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	|
+| selectedViewTypeClass     	| String   	| css class name for the selected view type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          	|
+| viewTypes                 	| String   	| 'LIST' or 'GRID"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   	|
+|                           	|          	|  
 
   
 
-#variants
+# variants
 
 variant options can be configured here
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| enabled                   	| Boolean  	| for enabling the variants                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          	|
+| count                     	| Number   	| how many variants required                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	|
+| groupBy                   	| String   	| variants will be grouped based on this property. has to get from your catalogue                                                                                                                                                                                                                                                                                                                                                                                                                                                                    	|
+| attributes                	| Array    	| provide the list of fields you need for each variants                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              	|
+| mapping                   	| Object   	| if you wish to map the product attributes to the variant attributes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                	|
+|                           	|          	|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
 
   
 
