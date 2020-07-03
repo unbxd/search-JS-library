@@ -37,10 +37,10 @@ const sortTemplate = function(selectedSort) {
             optionsUI += `<option value="${value}">${text}</option>` 
         }
     })
-    return `<div>
-        <select data-action="changeSort" id="unbxdSorter" class="${sortClass}">
+    return `<div class="UNX-sort-block">
+        <span class="UNX-sort-header">Sort By</span> <select data-action="changeSort" id="unbxdSorter" class="${sortClass}">
             <option value="">
-                Sort By Relevancy
+                Relevancy
             </option>
             ${optionsUI}
         </select>

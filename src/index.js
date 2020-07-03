@@ -12,10 +12,10 @@ class UnbxdSearch extends UnbxdSearchCore {
         super(props);
         this.options = extend(true,{},options,props);
         this.options.facetMultilevel = props.facet.facetMultilevel || false;
-        this.options.facetMultiSelect = props.facet.facetMultiSelect || false;
+        this.options.facetMultiSelect = props.facet.facetMultiSelect || true;
         this.options.facetDepth = props.facet.facetDepth || 6;
         this.options.pageSize = props.pagesize.pageSize || 12;
-        this.options.showSwatches = props.swatches.enabled;
+        this.options.showSwatches = (props.swatches) ? props.swatches.enabled :false;
         this.options.applyMultipleFilters = props.facet.applyMultipleFilters || false;
         this.viewState = {
             productViewType: this.options.productView.viewTypes,

@@ -269,16 +269,17 @@ class RangeSlider {
         } = this.getRangeValue();
         const {
             minLabel,
-            maxLabel
+            maxLabel,
+            prefix
         } = this.options.rangeConfig;
         return `<div class="UNX-slider-val-row"  style="display:flex">
                     <div class="UNX-min">
                         <label>${minLabel}</label>
-                        <span class="UNX-range-val UNX-min-price">${x}</span>
+                        <span class="UNX-range-val UNX-min-price">${prefix}${x}</span>
                     </div>
                 <div class="UNX-max">
                     <label>${maxLabel}</label>
-                    <span class="UNX-range-val UNX-max-price">${y}</span>
+                    <span class="UNX-range-val UNX-max-price">${prefix}${y}</span>
                 </div>
             </div>`
     }
@@ -290,9 +291,16 @@ class RangeSlider {
         } = this.options;
         setTimeout(this.bindElements.bind(this),10);
         let valueUI = "";
+        const {
+            submitBtnTxt,
+            clearBtnTxt
+        } = this.options.rangeConfig;
         return `<div id="${this.id}" class="range-slider-container UNX-range-slider-wrap">
                 <h3>${displayName}</h3>
-                <div class="range-slider UNX-range-dilder-wrapper" >
+                <div class="valueContainer UNX-range-value-block" >
+                    ${valueUI}
+                </div>
+                <div class="range-slider UNX-range-slider-wrapper" >
                     <div data-action="handleLeft" class="${this.slideLeftId} round-handle UNX-round-handle">
                     </div>
                     <div data-action="handleRight" class="${this.slideRightId} round-handle UNX-round-handle">
@@ -302,18 +310,15 @@ class RangeSlider {
                     </div>
                 </div>
             <div>
-            <div class="valueContainer UNX-range-value-block" >
-                ${valueUI}
-            </div>
             <div class="UNX-price-action-row">
                 <button 
                     class="UNX-primary-btn "
                     data-facet-name="${facetName}" 
-                    data-action="filterPriceRange"> filter by price </button>
+                    data-action="filterPriceRange"> ${submitBtnTxt} </button>
                 <button
                     class="UNX-default-btn "
                     data-facet-name="${facetName}"
-                    data-action="clearPriceRange"> clear </button>
+                    data-action="clearPriceRange"> ${clearBtnTxt} </button>
             <div>
         </div>`
     }

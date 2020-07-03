@@ -71,6 +71,11 @@ const findChangedFacet = function(e) {
         this.setPageStart(0);
         this.getResults();
     }
+    if(facetAction === "clearAllFacets") {
+        this.state.selectedFacets = [];
+        this.setPageStart(0);
+        this.getResults();
+    }
 }
 const onClickRangeFacet = function(e) {
     const {

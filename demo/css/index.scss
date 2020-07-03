@@ -1,26 +1,11 @@
-*{
-    box-sizing: border-box;
-    margin: 5px;
-}
-.main-head {
-    text-align: center;
-}
 
-.test-block > article {
-    width: 100%;
-    padding: 50px
-}
 .UNX-selected-sort {
     border: solid 1px red;
 }
 .selected-facet-btn {
  border: solid 1px green;
 }
-#facetsWrapper {
-    width: 400px;
-}
-#searchResultsWrapper{
-}
+
 .range-slider {
      display: block;
      position: relative;

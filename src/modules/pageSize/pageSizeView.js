@@ -4,7 +4,7 @@ const pageSizeUi = function(pageSize) {
     } = this.options;
     let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
     pagesize.options.forEach((opt)=>{
-        if(pageSize == opt) {
+        if(pagesize.pageSize == opt) {
             ui+=`<option selected class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`
         } else{
             ui+=`<option id="${opt}">${opt}</option>`

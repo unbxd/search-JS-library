@@ -2,7 +2,8 @@ import didYouMeanUI from "../modules/didYouMean/spellCheckView";
 import {
     selectedFacetUI,
     facetUIElem,
-    facetItemUiElem
+    facetItemUiElem,
+    selectedFacetItemTemplateUI
 } from "../modules/facets/ui";
 import paginationUI from "../modules/pagination/fixedPaginationView";
 import {
@@ -23,14 +24,64 @@ const options = {
     siteKey:"demo-spanish-unbxd809051588861207",
     apiKey:"f19768e22b49909798bc2411fa3dd963",
     sdkHostName:"https://search.unbxd.io/",
-    searchResultsTemplate : function(product){
+    searchResultsTemplate : function(product,idx){
+        console.log(product,"product")
         const {
-            title,
-            sku
-        } = product;
-        return `<div id="${sku}" class="product-item" style="border:solid 1px green">
-         ${title}
-        </div>`;
+            unxTitle,
+            unxImageUrl,
+            uniqueId,
+            unxStrikePrice,
+            unxPrice,
+            unxDescription
+        } = product; 
+        let swatchUI = ``;
+        const {
+            swatches,
+            productItemClass
+        } = this.options;
+        if(swatches.enabled) {
+            swatchUI = this.renderSwatchBtns(product);
+        }
+        const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
+        let strikeUi = ``;
+        if(unxStrikePrice) {
+            strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
+        }
+        const {
+            productViewType
+        } = this.viewState;
+        let cardType = ``;
+        let descUI = ``;
+        if(productViewType === "GRID") {
+            cardType = "UNX-grid-card"
+        } else {
+            cardType = "UNX-list-card";
+            descUI = `<p class="UNX-description">${unxDescription}</p>`;
+        }
+        return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">  
+                    <div class="UNX-img-wrapper">
+                        <img class="UNX-img-block" src="${unxImageUrl}"/>
+                    </div>
+                    <div class="UNX-product-content">
+                        <h3 class="UNX-product-title">${unxTitle} </h3>
+                        <div class="UNX-swatch-wrapper">
+                            ${swatchUI}
+                        </div>
+                        ${descUI}
+                        <div class="UNX-price-row">
+                            ${priceUI}
+                            ${strikeUi}
+                        </div>
+                    </div>
+        </div>`
+    },
+    productMap:{
+        'unxTitle':'title',
+        'unxImageUrl':'imageUrl',
+        'unxPrice':'salePrice',
+        'unxStrikePrice':'displayPrice',
+        'unxId':'uniqueId',
+        'unxDescription':'productDescription'
     },
     productItemClass:".product-item", // to find out product
     productType:"SEARCH",
@@ -67,8 +118,6 @@ const options = {
     //productViewTypeSelector:null,
 
 
-   
-
     productClick: function(product) {
         console.log(product,"product,index");
     },
@@ -77,8 +126,18 @@ const options = {
         return `<div>Loading search results....</div>`
     },
     loaderContainer:null,
-    showVariants:false,
-    variantMapping:{},
+    variants:{
+        enabled:false,
+        count:5,
+        groupBy:'v_colour',
+        attributes:[
+            "title",
+            "v_imageUrl"
+        ],
+        mapping:{
+            "image_url":"v_imageUrl"
+        }
+    },
 
     extraParams:{
         "version":"V2",
@@ -120,19 +179,20 @@ const options = {
         facetItemTemplate:facetItemUiElem,
         facetMultiSelect:true,
         facetClass:"UNX-facets-block",
-        facetAction:"change",
+        facetAction:"click",
 
         selectedFacetClass:"UNX-selected-facet",
         selectedFacetsEl:null,
         selectedFacetTemplate:selectedFacetUI,
-
+        selectedFacetItemTemplate:selectedFacetItemTemplateUI,
         rangeFacetEl:null,
         rangeTemplate:renderRangeFacets,
         rangeWidgetConfig: {
-            "start": 0,
-            "end": 100,
-            "minLabel":"Min :",
-            "maxLabel":"Max :"
+            "minLabel":"",
+            "maxLabel":"",
+            "prefix":'$',
+            "submitBtnTxt":"Filter By Price",
+            "clearBtnTxt":"Clear"
         },
 
         facetMultilevel:true,
@@ -185,7 +245,6 @@ const options = {
                 swatchColors = [],
                 swatchImgs = []
             } = swatchData;
-            const swatchesSelector = this.swatchesSelector;
             let btnUI = ``;
             swatchColors.forEach((item,id) => {
                 const imgId = swatchImgs[id];
@@ -195,13 +254,13 @@ const options = {
                             data-swatch-id="${item}"
                             data-swatch-img="${img}" 
                             data-action="changeSwatch"
-                            data-swatch-target = ".productImgBlock"
-                            class="${swatchesSelector} swatch-btm"
-                            style="border:solid 1px ${item}"
-                            >${item}</button>`
+                            data-swatch-target = ".UNX-img-block"
+                            class="${this.swatchClass}"
+                            style="background-color:${item}"
+                            > </button>`
                 }
             });
-            return `<div class="swatchContainer">${btnUI}</div>`
+            return `<div class="UNX-swatch-color-list">${btnUI}</div>`
         }
     },
     unbxdAnalytics:false

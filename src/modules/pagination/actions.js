@@ -38,9 +38,7 @@ function renderNewResults(action) {
     if(action === this.actions.prev){
         const prev = start-rows;
         if(isPrev){
-            this.setPageStart(prev);
-            this.getResults();
-            this.viewState.lastAction = "pagination";
+            triggerNextPage(this,prev);
             callBackFn(this,this.events.pagePrev, {
                 value:prev
             });
@@ -49,9 +47,15 @@ function renderNewResults(action) {
 };
 function paginationAction(e){
     const {
-        pageAction
+        pageAction,
+        pageNo
     } = e.target.dataset;
-    this.renderNewResults(pageAction);
+    if(pageAction === 'paginate'){
+        this.setPageStart(Number(pageNo));
+        this.getResults();
+    } else{
+        this.renderNewResults(pageAction);
+    }
 }
 export {
     renderNewResults,

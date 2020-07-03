@@ -4,7 +4,7 @@ import styles from '../css/index.scss';
 const unbxdCallbackEcma = function (instance, type,data){
 }
 
-
+/*
 const es6unbxd =  new UnbxdSearchComponent({
     searchBoxSelector:document.getElementById("unbxdInput"),
     searchTrigger:"click",
@@ -135,8 +135,6 @@ const es6unbxd =  new UnbxdSearchComponent({
         rangeFacetEl:document.getElementById("rangeFacetWrapper"),
         //rangeTemplate:renderRangeFacets,
         rangeWidgetConfig: {
-            "start": 0,
-            "end": 100,
             "minLabel":"Min :",
             "maxLabel":"Max :"
         },
@@ -170,6 +168,8 @@ const es6unbxd =  new UnbxdSearchComponent({
                 isNext,
                 isPrev
             } = paginationData;
+
+            console.log(paginationData,"paginationData");
             let nextBtn = `<button class="next-btn" data-page-action="next">next</button>`;
             let prevBtn = `<button class="prev-btn" data-page-action="prev">prev</button>`;
             if(!isNext) {
@@ -278,12 +278,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     loaderContainer:document.getElementById('loaderContainer'),
     extraParams :{
         "version":"V2",
-        //"facet.multilevel":"categoryPath",
-        /*"f.categoryPath.displayName":"category",
-        "f.categoryPath.max.depth":"4",
-        "f.categoryPath.facet.limit":"100"*/
     },
-    
     swatches:{
         enabled:true,
         map:{
@@ -343,7 +338,87 @@ const es6unbxd =  new UnbxdSearchComponent({
         },
         count:1
     },
-    //bannerSelector:document.getElementById('bannerContainer'),
+
+});
+ extraParams :{
+        "version":"V2",
+        "facet.multilevel":"categoryPath",
+        "f.categoryPath.displayName":"category",
+        "f.categoryPath.max.depth":"4",
+        "f.categoryPath.facet.limit":"100"
+    }
+*/
+
+const es6unbxd =  new UnbxdSearchComponent({
+    searchBoxSelector:document.getElementById("unbxdInput"),
+    searchTrigger:"click",
+    searchButtonSelector:document.getElementById("searchBtn"),
+    searchResultsSelector:document.getElementById("searchResultsWrapper"),
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    sdkHostName:"https://search.unbxd.io/",
+    productType:"SEARCH",
+    searchQueryParam:"q",
+    updateUrls:true,
+    productId:"uniqueId",
+    productItemClass:"product-item",
+    //fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
+    productAttributes: ['title','uniqueId','price', 'sku', 'imageUrl','displayPrice','salePrice','sortPrice','productDescription','unbxd_color_mapping','colorName','color'],
+    callBackFn:unbxdCallbackEcma,
+    //selectedFacetTemplate : ,
+    //facetTemplate:,
+    spellCheck:{
+        enabled:true,
+        el:document.getElementById("didYouMeanWrapper")
+    },
+    noResultContainer: document.getElementById("noResultWrapper"),
+    facet: {
+        facetsEl:document.getElementById("facetsWrapper"),
+        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+        rangeFacetEl:document.getElementById("rangeFacetWrapper"),
+        multiLevelFacetEl:document.getElementById("bucketedFacetWrapper")
+    },
+    pagination: {
+        el:document.getElementById("paginationContainer"),
+        type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
+    },
+    breadcrumb:{
+        el:document.getElementById("breadcrumpContainer"),
+    },
+    pagesize : {
+        el:document.getElementById("changeNoOfProducts")
+    },
+
+    sort: {
+        el:document.getElementById("sortWrapper"),
+        options:[
+            {
+                value:"sortPrice desc",
+                text:"Price High to Low"
+            },
+            {
+                value:"sortPrice asc",
+                text:" Price Low to High"
+            }
+        ]
+    },
+    loaderContainer:document.getElementById('loaderContainer'),
+    productView : {
+        el: document.getElementById("productViewTypeContainer"),
+        viewTypes:'GRID'
+    },
+    banner: {
+        el:document.getElementById('bannerContainer'),
+        count:1
+    },
+    swatches:{
+        enabled:true,
+        map:{
+            "swatchList":"color",
+            "swatchImgs":"unbxd_color_mapping",
+            "swatchColors":"color"
+        }
+    }
 
 });
 

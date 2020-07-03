@@ -19,15 +19,14 @@ const renderFacets = function(argFacets, selectedArgFacets) {
                 let selected = false;
                 if(selectedFacet) {
                     selected = selectedFacet.some((facet) => {
-                        return JSON.stringify(facet.name) === JSON.stringify(name)
+                        return facet.name === name
                     })
                 }
                 if(selected) {
                     if(this.options.facet.selectedFacetsEl) {
                         selectedFacetsUI += this.options.facet.selectedFacetTemplate.bind(this)(facet,value);
-                    } else {
-                        return this.options.facet.selectedFacetTemplate.bind(this)(facet,value)
                     }
+                    return this.options.facet.selectedFacetTemplate.bind(this)(facet,value)
                 } else{
                     return this.options.facet.facetItemTemplate.bind(this)(facet, value)
                 }
@@ -35,7 +34,7 @@ const renderFacets = function(argFacets, selectedArgFacets) {
             selectUI = this.options.facet.facetTemplate.bind(this)(facet, valuesUI.join(''))
         }
         if(this.options.facet.selectedFacetsEl) {
-            this.options.facet.selectedFacetsEl.innerHTML = selectedFacetsUI;
+            this.options.facet.selectedFacetsEl.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedFacetsUI);
         }
         
         return `<div data-id="${facetName}">
@@ -43,7 +42,7 @@ const renderFacets = function(argFacets, selectedArgFacets) {
         </div>`;
     }).join('');
     
-    return  `<div class="facets-inner-wrapper">
+    return  `<div class="UNX-facets-inner-wrapper">
         ${facetsListUI}
     </div>`;
 }
