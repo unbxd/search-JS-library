@@ -83,7 +83,7 @@ const options = {
         'unxId':'uniqueId',
         'unxDescription':'productDescription'
     },
-    productItemClass:".product-item", // to find out product
+    productItemClass:"product-item", // to find out product
     productType:"SEARCH",
     searchQueryParam:"q",
     defaultFilters : null, //or object with keys
@@ -238,7 +238,7 @@ const options = {
 
     swatches:{
         enabled:true,
-        map:{},
+        attributesMap:{},
         swatchClass:'UNX-swatch-btn',
         template:function(swatchData) {
             const {

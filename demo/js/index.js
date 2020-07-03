@@ -16,7 +16,6 @@ const es6unbxd =  new UnbxdSearchComponent({
     productType:"SEARCH",
     searchQueryParam:"q",
     updateUrls:true,
-    productId:"uniqueId",
     searchResultsTemplate : function(product,idx){
         const {
             title,
@@ -281,7 +280,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     },
     swatches:{
         enabled:true,
-        map:{
+        attributesMap:{
             "swatchList":"colours",
             "swatchImgs":"variant_metadata",
             "swatchColors":"unbxd_parentcolours"
@@ -356,17 +355,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     searchResultsSelector:document.getElementById("searchResultsWrapper"),
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    sdkHostName:"https://search.unbxd.io/",
-    productType:"SEARCH",
-    searchQueryParam:"q",
-    updateUrls:true,
-    productId:"uniqueId",
-    productItemClass:"product-item",
-    //fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
     productAttributes: ['title','uniqueId','price', 'sku', 'imageUrl','displayPrice','salePrice','sortPrice','productDescription','unbxd_color_mapping','colorName','color'],
-    callBackFn:unbxdCallbackEcma,
-    //selectedFacetTemplate : ,
-    //facetTemplate:,
     spellCheck:{
         enabled:true,
         el:document.getElementById("didYouMeanWrapper")
@@ -413,7 +402,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     },
     swatches:{
         enabled:true,
-        map:{
+        attributesMap:{
             "swatchList":"color",
             "swatchImgs":"unbxd_color_mapping",
             "swatchColors":"color"

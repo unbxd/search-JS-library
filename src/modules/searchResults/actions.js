@@ -11,7 +11,7 @@ const onProductItemClick = function(e) {
         elem.querySelector(dataset.swatchTarget).src=dataset.swatchImg;
         return false;
     }
-    const product =  this.getProductByPropValue(this.options.productId,elem.id);
+    const product =  this.getProductByPropValue(this.options.productMap.unxId,elem.id);
     if(product && elem) {
         product.prank = elem.dataset.prank;
     }
