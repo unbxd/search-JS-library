@@ -1,4 +1,5 @@
-import UnbxdSearchCore from "../node_modules/unbxdsdk/src/index";
+import UnbxdSearchCore from "../node_modules/@unbxd-ui/unbxd-search-core/src";
+
 import delegate from "./modules/utils/delegate";
 import RangeSlider from "./modules/widgets/RangeSlider";
 import options from './common/options';
