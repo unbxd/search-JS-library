@@ -3,7 +3,14 @@ import {
 } from './actions';
 import pageSizeUi from './pageSizeView';
 const renderPageSize = function() {
-    this.pageSizeWrapper.innerHTML = this.options.pageSizeContainerTemp.bind(this)();
+    const {
+        pagesize
+    } = this.options;
+    const qParams  = this.getQueryParams();
+    if(qParams) {
+        pagesize.pageSize = Number(qParams.rows);
+    }
+    this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(pagesize);
 }
 const setPageSize = (prototype) => {
     prototype = Object.assign(prototype,{

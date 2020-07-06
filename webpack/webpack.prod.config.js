@@ -65,6 +65,10 @@ module.exports = {
     //     basePath: `/search-sdk/v${packageJson.version}/`, // This is the name the uploaded directory will be given
     //     directory: 'public/dist' // This is the directory you want to upload
     // })
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: 'css/unbxdSearch.css'
+    })
   ],
   resolve: {
     alias: {

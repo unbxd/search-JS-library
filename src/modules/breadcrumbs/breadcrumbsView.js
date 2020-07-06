@@ -6,7 +6,7 @@ const breadCrumbsUI = function(breadcrumbs){
             filterField,
             value
         } = item;
-        const css = `${this.options.breadcrumbSelectorClass} bread-crumb-item`;
+        const css = `${this.options.breadcrumb.selectorClass} bread-crumb-item`;
         if(id > 0) {
             ui += `<span> > </span>`
         }

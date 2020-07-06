@@ -250,7 +250,6 @@
                         return `<div>Loading....</div>`
                     },
                     loaderEl:document.getElementById('loaderEl'),
-                    showVariants:true,
                     variantMapping:{
                         "image_url":"v_image_url"
                     },
@@ -305,13 +304,12 @@
                     productViewTypeSelector: document.getElementById("productViewTypeContainer"),
                     productViewTypeAction:"click",
                     unbxdAnalytics:true,
-                    variantConfig: {
-                        variantsCount: 1,
-                        variantAttributes: [],
-                        variantMapping:{
-                            "image_url":"v_image_url"
-                        },
-                        variantsGroupBy: ''
+                    variants:{
+                        enabled:false,
+                        count:1,
+                        groupBy:'',
+                        attributes:[],
+                        mapping:
                     },
                     //bannerSelector:document.getElementById('bannerContainer'),
                     applyMultipleFilters:false

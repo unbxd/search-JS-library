@@ -7,16 +7,15 @@ import {
 } from './actions';
 function renderRangeFacets() {
     const rangeFacets = this.getRangeFacets();
-    return this.options.rangeFacetUI.bind(this)(rangeFacets);
+    return this.options.facet.rangeTemplate.bind(this)(rangeFacets);
 }
 function setRangeFilter(data){
     this.setRangeFacet(data)
 }
 function renderBucketedUI() {
     const bucketedFacet = this.getBucketedFacets();
-    const selected = this.getSelectedBucketedFacet();
-    const breadCrump = this.getBreadCrumbsList();
-    return this.options.bucketedSearchUi(bucketedFacet, selected,breadCrump);
+    const breadCrumb = this.getBreadCrumbsList();
+    return this.options.facet.multiLevelFacetTemplate(bucketedFacet,breadCrumb);
 }
 const setFacets = (prototype) => {
     prototype = Object.assign(prototype,{

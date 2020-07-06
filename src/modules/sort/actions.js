@@ -1,5 +1,7 @@
 function sortAction(e) {
     const elem = e.target;
+    const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
+    const dataSet = selected.dataset;    
     const {
         action
     } = elem.dataset;

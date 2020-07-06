@@ -77,14 +77,13 @@ var unbxdCallback = function (instance, type,data){
         searchButtonSelector:document.getElementById("searchBtn"),
         searchResultsSelector:document.getElementById("searchResultsWrapper"),
         facetsSelector: document.getElementById("facetsWrapper"),
-        selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
+        selectedFacetSelector: document.getElementById("selectedFacetWrapper"),
         siteKey:"demo-spanish-unbxd809051588861207",
         apiKey:"f19768e22b49909798bc2411fa3dd963",
         sdkHostName:"https://search.unbxd.io/",
         productType:"SEARCH",
         searchQueryParam:"q",
         updateUrls:true,
-        productId:"uniqueId",
         searchResultsTemplate : function(product,idx){
             var template = [
                 '<div id="'+product.uniqueId+'" data-prank="'+idx+'" data-item="product" class="product-item" style="border:solid 1px red;display:flex">',
@@ -140,13 +139,14 @@ var unbxdCallback = function (instance, type,data){
         facetAction:"click",
         selectedFacetClass:"selected-facet",
         facetMultiSelect: true,
-        facetMultiSelectionMode:true,
         defaultFilters :null,
-        spellCheck: true,
-        spellCheckTemplate: (suggestion) => {
-            return '<p>did you mean <strong>'+suggestion+'</strong></p>'
+        spellCheck: {
+            enabled:true,
+            el:document.getElementById("didYouMeanWrapper"),
+            template:   (suggestion) => {
+                return `<p>did you mean <strong>${suggestion}</strong></p>`
+            }
         },
-        spellCheckSelector: document.getElementById("didYouMeanWrapper"),
         noResultEl: document.getElementById("noResultWrapper"),
         pageSize: 12,
         //paginationType:'INFINITE_SCROLL',
@@ -204,7 +204,7 @@ var unbxdCallback = function (instance, type,data){
             return '<div>Loading....</div>';
         },
         loaderEl:document.getElementById('loaderEl'),
-        showVariants:true,
+        showVariants:false,
         variantMapping:{
             "image_url":"v_image_url"
         },
@@ -230,13 +230,13 @@ var unbxdCallback = function (instance, type,data){
             "swatchImgs":"variant_metadata",
             "swatchColors":"unbxd_parentcolours"
         },
-        swatchSelector:"swatchBtn",
+        swatchesSelector:"swatchBtn",
         swatchTemplate: function(swatchData) {
             const {
                 swatchColors = [],
                 swatchImgs = []
             } = swatchData;
-            const swatchSelector = this.swatchSelector;
+            const swatchesSelector = this.swatchesSelector;
             let btnUI = ``;
             swatchColors.forEach((item,id) => {
                 const imgId = swatchImgs[id];
@@ -247,7 +247,7 @@ var unbxdCallback = function (instance, type,data){
                             data-swatch-img="${img}" 
                             data-action="changeSwatch"
                             data-swatch-target = ".productImgBlock"
-                            class="${swatchSelector} swatch-btm"
+                            class="${swatchesSelector} swatch-btm"
                             style="border:solid 1px ${item}"
                             >${item}</button>`
                 }

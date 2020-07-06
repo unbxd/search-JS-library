@@ -7,16 +7,36 @@ function selectedFacetUI (selectedFacet,selectedFacetItem){
         count,
         dataId
     } = selectedFacetItem;
-    return `<option 
-                selected
+    const {
+        facetClass
+    } = this.options.facet;
+    return `<div class="UNX-selected-facets-wrap "><button 
+                class="UNX-selected-facet-btn ${facetClass} UNX-change-facet ${this.options.facet.selectedFacetClass}"
                 data-facet-name="${facetName}"
-                data-facet-action="deleteFacetValue"
+                data-facet-action ="deleteFacetValue"
                 data-id= "${dataId}">
-                ${name} (${count})
-        </option>`
+                <span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>
+        </button>
+        <button
+            class="${facetClass} UNX-delete-facet ${this.options.facet.selectedFacetClass}"
+            data-id= "${dataId}" data-facet-action="deleteFacetValue"
+            data-facet-name="${facetName}" > x</button>
+        </div>`
+}
+function selectedFacetItemTemplateUI(selections) {
+    if(selections.length > 0) {
+        return `<div class="UNX-facets-selections">
+            <h5 class="UNX-selected-facet-header">Selected Filters</h5>
+            <div class="UNX-selected-facets-inner">${selections}</div>
+            <button class="UNX-clear-facet ${this.selectedFacetClass}" data-facet-action="clearAllFacets">clear all</button>
+        </div>`
+    } else {
+        return ``;
+    }
+    
 }
 
-function facetUIElem (facet , value) {
+function facetItemUiElem (facet , value) {
     const {
         facetName,
     } = facet;
@@ -25,31 +45,41 @@ function facetUIElem (facet , value) {
         count,
         dataId
     } = value;
-    return `<option
+    const {
+        facetClass
+    } = this.options.facet;
+    return `<button
                 data-facet-name="${facetName}" 
                 data-facet-action="CHANGE_FACET"
-                class="${this.selectedFacetClass}"
+                class="UNX-change-facet ${facetClass}"
                 data-id= "${dataId}">
-                    ${name} (${count})
-            </option>`
+                    <span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>
+            </button>`
 }
-function facetItemUiElem(facet, children) {
+function facetUIElem (facet, children) {
     const {
         displayName,
         facetName
     } = facet;
-    return `<select multiple id="${facetName}">
-                <option 
-                    data-facet-action="deleteFacet"
-                    data-facet-name="${facetName}" >
-                        ${displayName}
-                        </option>
-                ${children}
-            </select>`
+    const {
+        facetClass
+    } = this.options.facet;
+    return `<div id="${facetName}">
+                <h3 class="UNX-facet-header"> ${displayName}</h3>
+                <div class="UNX-facets">${children}</div>
+                <div class="UNX-facet-footer">
+                    <button 
+                        class="UNX-facet-clear ${facetClass}"
+                        data-facet-action="deleteFacet"
+                        data-facet-name="${facetName}" > clear</button>
+                </div>
+                
+            </div>`
 }
 
 export {
     selectedFacetUI,
     facetUIElem,
-    facetItemUiElem
+    facetItemUiElem,
+    selectedFacetItemTemplateUI
 };

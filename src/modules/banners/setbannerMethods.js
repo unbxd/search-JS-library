@@ -1,5 +1,5 @@
 function renderBannerUI(){
     const banners = this.getBanners();
-    this.bannerWrapper.innerHTML = this.options.bannerTemplate(banners);
+    this.bannerWrapper.innerHTML = this.options.banner.template(banners);
 }
 export default renderBannerUI;

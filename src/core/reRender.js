@@ -1,14 +1,12 @@
 const reRender = function(){
     const {
         callBackFn,
-        sortContainerSelector,
-        noResultContainer,
-        spellCheckSelector,
-        paginationSelector,
-        paginationType,
+        sort,
+        noResultEl,
+        spellCheck,
+        pagination,
         pagetype,
         productType
-
     } = this.options;
     const {
         beforeRender,
@@ -16,9 +14,12 @@ const reRender = function(){
         afterNoResultRender,
         afterRender
     } = this.events;
+    const {
+        lastAction
+    } = this.viewState;
 
     callBackFn(this,beforeRender);
-    this.loaderContainer.innerHTML = null;
+    this.loaderEl.innerHTML = null;
     const results = this.getSearchResults();
     if(productType ==="SEARCH"){
         this.options.searchBoxSelector.value = this.state.userInput;
@@ -31,34 +32,40 @@ const reRender = function(){
     } else {
         this.searchResultsWrapper.innerHTML = this.renderSearch();
     }
-    if(paginationType === "FIXED_PAGINATION"){
-        
-        paginationSelector.innerHTML = this.renderPagination();
+    if(pagination.type !== "INFINITE_SCROLL"){
+        //pagination.el.innerHTML = this.renderPagination();
+        this.paginationWrappers.forEach((pagination)=>{
+            console.log(pagination,"pagination");
+            pagination.innerHTML = this.renderPagination();
+        });
     }
-    this.bucketedSearchWrapper.innerHTML = this.renderBucketedUI();
-    this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
-    if(sortContainerSelector) {
-        sortContainerSelector.innerHTML = this.renderSort();
+    this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
+    if(this.options.breadcrumb.enabled){
+        this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
-
+    if(sort.el) {
+        sort.el.innerHTML = this.renderSort();
+    }
     if(results && results.numberOfProducts === 0) {
         callBackFn(this,beforeNoResultRender);
         const query = this.getSearchQuery();
-        if(noResultContainer) {
-            noResultContainer.innerHTML = this.renderNoResults(query);
+        if(noResultEl) {
+            noResultEl.innerHTML = this.renderNoResults(query);
         }
         callBackFn(this,afterNoResultRender);
     } else {
-        noResultContainer.innerHTML = null;
+        noResultEl.innerHTML = null;
     }
     const suggestion = this.getSpellCheckSuggested();
-    if(spellCheckSelector && suggestion) {
-        spellCheckSelector.innerHTML = this.renderDidYouMean(suggestion);
+    if(spellCheck.el && suggestion) {
+        spellCheck.el.innerHTML = this.renderDidYouMean(suggestion);
     }
-    
     this.renderProductViewTypeUI();
     this.renderBannerUI()
     this.renderPageSize();
+    if(lastAction === "pagination" ) {
+        pagination.onPaginate.bind(this)(this.getPaginationInfo());
+    }
     callBackFn(this,afterRender);
 };
 export default reRender;
