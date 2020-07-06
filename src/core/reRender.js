@@ -2,7 +2,7 @@ const reRender = function(){
     const {
         callBackFn,
         sort,
-        noResultContainer,
+        noResultEl,
         spellCheck,
         pagination,
         pagetype,
@@ -19,7 +19,7 @@ const reRender = function(){
     } = this.viewState;
 
     callBackFn(this,beforeRender);
-    this.loaderContainer.innerHTML = null;
+    this.loaderEl.innerHTML = null;
     const results = this.getSearchResults();
     if(productType ==="SEARCH"){
         this.options.searchBoxSelector.value = this.state.userInput;
@@ -33,7 +33,11 @@ const reRender = function(){
         this.searchResultsWrapper.innerHTML = this.renderSearch();
     }
     if(pagination.type !== "INFINITE_SCROLL"){
-        pagination.el.innerHTML = this.renderPagination();
+        //pagination.el.innerHTML = this.renderPagination();
+        this.paginationWrappers.forEach((pagination)=>{
+            console.log(pagination,"pagination");
+            pagination.innerHTML = this.renderPagination();
+        });
     }
     this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
     if(this.options.breadcrumb.enabled){
@@ -45,12 +49,12 @@ const reRender = function(){
     if(results && results.numberOfProducts === 0) {
         callBackFn(this,beforeNoResultRender);
         const query = this.getSearchQuery();
-        if(noResultContainer) {
-            noResultContainer.innerHTML = this.renderNoResults(query);
+        if(noResultEl) {
+            noResultEl.innerHTML = this.renderNoResults(query);
         }
         callBackFn(this,afterNoResultRender);
     } else {
-        noResultContainer.innerHTML = null;
+        noResultEl.innerHTML = null;
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el && suggestion) {

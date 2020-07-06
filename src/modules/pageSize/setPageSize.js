@@ -1,7 +1,6 @@
 import {
     onClickPageSize
 } from './actions';
-import * as Sqrl from 'squirrelly'
 import pageSizeUi from './pageSizeView';
 const renderPageSize = function() {
     const {

@@ -1,4 +1,5 @@
 import UnbxdSearchCore from "../node_modules/@unbxd-ui/unbxd-search-core/src";
+import styles from '../styles/index.scss';
 
 import delegate from "./modules/utils/delegate";
 import RangeSlider from "./modules/widgets/RangeSlider";
@@ -6,7 +7,7 @@ import options from './common/options';
 import createLayout from './core/createLayout';
 import setMethods from './core/setMethods';
 import intialize from './core/initialize';
-import extend from './modules/utils/extend'
+import extend from './modules/utils/extend';
 
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
@@ -41,7 +42,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         if(type === beforeApiCall) { 
             callBackFn(this,beforeApiCall);
-            this.loaderContainer.innerHTML = loaderTemplate(this);
+            this.loaderEl.innerHTML = loaderTemplate(this);
         }
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);

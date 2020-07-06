@@ -6,12 +6,16 @@ const paginationUI = function (paginationData) {
         noOfPages,
         productsLn
     } = paginationData;
-    let nextBtn = `<button class="next-btn UNX-page-next" data-page-action="next">></button>`;
-    let prevBtn = `<button class="prev-btn UNX-page-prev" data-page-action="prev"><</button>`;
+    const {
+        pageClass,
+        selectedPageClass
+    } = this.options.pagination;
+    let nextBtn = `<button class="next-btn UNX-page-next ${pageClass}" data-page-action="next">></button>`;
+    let prevBtn = `<button class="prev-btn UNX-page-prev ${pageClass}" data-page-action="prev"><</button>`;
     let pageNumbers = ``;
     for(let i=1;i<noOfPages;i++) {
-        const pageClass = (i === currentPage) ?"UNX-selected-page" :'';
-        pageNumbers += `<button data-page-action="paginate" data-page-no="${(i-1)*productsLn}" class="UNX-page-button ${pageClass}">${i}</button>`
+        const pageClassSelected = (i === currentPage) ?selectedPageClass :'';
+        pageNumbers += `<button data-page-action="paginate" data-page-no="${(i-1)*productsLn}" class="UNX-page-button ${pageClass} ${pageClassSelected}">${i}</button>`
     }
     if(!isNext) {
         nextBtn = `<button disabled class="next-btn UNX-page-next">></button>`;

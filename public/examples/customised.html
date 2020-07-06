@@ -281,7 +281,7 @@
                         <div id="rangeFacetWrapper"></div>
                     </div>
                     <div id="searchResultsWrapper" class="UNX-result-wrapper"></div>
-                    <div id="loaderContainer"></div>
+                    <div id="loaderEl"></div>
                     <div id="noResultWrapper"></div>
                 </div>
                 <div id="paginationContainer"></div>
@@ -425,7 +425,7 @@
                             return `<p>did you mean <strong>${suggestion}</strong></p>`
                         }
                     },
-                    noResultContainer: document.getElementById("noResultWrapper"),
+                    noResultEl: document.getElementById("noResultWrapper"),
                     pageSize: 12,
                     /*pagination options*/
                     paginationType:'FIXED_PAGINATION',
@@ -496,7 +496,7 @@
                     loaderTemplate: () =>{
                         return `<div>Loading....</div>`
                     },
-                    loaderContainer:document.getElementById('loaderContainer'),
+                    loaderEl:document.getElementById('loaderEl'),
                     showVariants:false,
                     variantMapping:{
                         "image_url":"v_image_url"

@@ -1,5 +1,4 @@
 import UnbxdSearchComponent from  "../../src/index";
-import styles from '../css/index.scss';
 
 const unbxdCallbackEcma = function (instance, type,data){
 }
@@ -63,7 +62,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             return `<p>did you mean <strong>${suggestion}</strong></p>`
         }
     },
-    noResultContainer: document.getElementById("noResultWrapper"),
+    noResultEl: document.getElementById("noResultWrapper"),
     noResultsTemplate:function(query) {
         return `<div> No Results found ${query} </div>`
     },
@@ -274,7 +273,7 @@ const es6unbxd =  new UnbxdSearchComponent({
     loaderTemplate: () =>{
         return `<div>Loading....</div>`
     },
-    loaderContainer:document.getElementById('loaderContainer'),
+    loaderEl:document.getElementById('loaderEl'),
     extraParams :{
         "version":"V2",
     },
@@ -360,7 +359,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         enabled:true,
         el:document.getElementById("didYouMeanWrapper")
     },
-    noResultContainer: document.getElementById("noResultWrapper"),
+    noResultEl: document.getElementById("noResultWrapper"),
     facet: {
         facetsEl:document.getElementById("facetsWrapper"),
         selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
@@ -368,7 +367,7 @@ const es6unbxd =  new UnbxdSearchComponent({
         multiLevelFacetEl:document.getElementById("bucketedFacetWrapper")
     },
     pagination: {
-        el:document.getElementById("paginationContainer"),
+        el:document.getElementById("unxPagination"),
         type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
     },
     breadcrumb:{
@@ -391,7 +390,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             }
         ]
     },
-    loaderContainer:document.getElementById('loaderContainer'),
+    loaderEl:document.getElementById('loaderEl'),
     productView : {
         el: document.getElementById("productViewTypeContainer"),
         viewTypes:'GRID'

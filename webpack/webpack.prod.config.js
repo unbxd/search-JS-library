@@ -21,15 +21,7 @@ module.exports = {
         sourceMapFilename: 'unbxdSearch.map'
     },
     optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "common",
-                    chunks: "all"
-                }
-            }
-        },
+      
         minimize: true,
         minimizer: [
           new TerserPlugin({
@@ -50,6 +42,10 @@ module.exports = {
         ]
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+      chunkFilename: 'css/unbxdSearch.css'
+    })
   ],
   resolve: {
     alias: {

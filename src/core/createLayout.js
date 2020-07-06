@@ -2,46 +2,57 @@ import createElement from "../modules/utils/createElement";
 const createLayout = function() {
     this.searchResultsWrapper = createElement(
         "DIV",
-        "searchResultsBlock",{
+        "",{
             class:"UNX-search-results-block"
         }
     );
     this.facetsWrapper = createElement(
         "DIV",
-        "facetsInnerContainer",{
-            class:"facets-results-block"
+        "",{
+            class:"UNX-facets-results-block"
         }
     );
     this.rangeFacetsWrapper = createElement(
         "DIV",
-        "rangeFacetsContainer",{
+        "",{
             class:"range-facets-block"
         }
     );
     this.multiLevelFacetWrapper = createElement(
         "DIV",
-        "multiLevelFacetBlock",{
-            class:"multilivel-facets-block"
+        "",{
+            class:"UNX-multilivel-facets-block"
         }
     );
     this.bannerWrapper = createElement(
         "DIV",
-        "bannerWrapper",{
+        "",{
             class:"banner-block"
         }
     );
     this.breadcrumbWrapper = createElement(
         "DIV",
-        "breadcrumbContainer",{
+        "",{
             class:"breadcrumbs-block"
         }
     );
     this.pageSizeWrapper = createElement(
         "DIV",
-        "pageSizeContainer",{
+        "",{
             class:"page-size-block"
         }
     );
+    this.paginationWrappers = [];
+    const getPaginationWrapper = () =>{
+        const elem  = createElement(
+            "DIV",
+            "",{
+                class:"unx-pagination-size-block"
+            }
+        );
+        this.paginationWrappers.push(elem);
+        return elem;
+    }
     this.options.facet.selectedFacetTemplate.bind(this);
     this.options.facet.multiLevelFacetTemplate.bind(this);
     this.options.facet.facetTemplate.bind(this);
@@ -70,9 +81,22 @@ const createLayout = function() {
     this.options.banner.template = this.options.banner.template.bind(this);
     this.options.searchResultsTemplate = this.options.searchResultsTemplate.bind(this);
     this.options.searchResultsSelector.appendChild(this.searchResultsWrapper);
-    this.loaderContainer = this.options.loaderContainer || this.searchResultsWrapper;
+    this.loaderEl = this.options.loaderEl || this.searchResultsWrapper;
     if(this.options.pagesize.el){
         this.options.pagesize.el.appendChild(this.pageSizeWrapper);
+    }
+    if(this.options.pagination.enabled) {
+        if(this.options.pagination.el){
+            if(this.options.pagination.el.length) {
+                this.options.pagination.el.forEach(element => {
+                    element.appendChild(getPaginationWrapper());
+                })
+
+            } else {
+                this.options.pagination.el.appendChild(getPaginationWrapper());
+            }
+        }
+
     }
 }
 export default createLayout;

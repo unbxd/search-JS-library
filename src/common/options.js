@@ -91,7 +91,7 @@ const options = {
     noResultsTemplate: (query) => {
         return `<div> No Results found ${query} </div>`
     },
-    noResultContainer: null,
+    noResultEl: null,
     callBackFn: (state,type) =>{
         console.log(state,type,"state,type")
     },
@@ -125,7 +125,7 @@ const options = {
     loaderTemplate: () =>{
         return `<div>Loading search results....</div>`
     },
-    loaderContainer:null,
+    loaderEl:null,
     variants:{
         enabled:false,
         count:5,
@@ -210,8 +210,11 @@ const options = {
     },
 
     pagination : {
+        enabled:true,
         el:null,
         template:paginationUI,
+        pageClass:"UNX-page-items",
+        selectedPageClass:"UNX-selected-page-item",
         type:'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
         inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    

@@ -38,7 +38,7 @@ const renderRangeFacets = function(rangeFacets) {
         rangeFacet
     } = this.state;
 
-    const rangeFaceTemplate = rangeFacets.map(item => {
+    const rangeFacetTemplate = rangeFacets.map(item => {
         const {
             facetName,
             displayName,
@@ -69,7 +69,7 @@ const renderRangeFacets = function(rangeFacets) {
         }).render();
     }).join('');
     return  `<div class="range-facet">
-        ${rangeFaceTemplate}
+        ${rangeFacetTemplate}
     </div>`;
 }
 export {

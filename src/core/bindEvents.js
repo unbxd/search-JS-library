@@ -12,8 +12,16 @@ function bindEvents(){
         sort,
         pagesize
     } = this.options;
-    if(pagination.el) {
-        pagination.el.addEventListener(pagination.action, this.paginationAction.bind(this));
+    if(pagination.enabled) {
+        this.paginationWrappers.forEach((wrapper)=>{
+            this.delegate(
+                wrapper,
+                pagination.action,
+                `.${pagination.pageClass}`,
+                this.paginationAction.bind(this)
+            )
+            //wrapper.addEventListener(pagination.action, this.paginationAction.bind(this));
+        });
     }
     searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this))
     //productItemSelector

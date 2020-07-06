@@ -51,7 +51,7 @@ function paginationAction(e){
         pageNo
     } = e.target.dataset;
     if(pageAction === 'paginate'){
-        this.setPageStart(Number(pageNo));
+        this.setPageStart(pageNo);
         this.getResults();
     } else{
         this.renderNewResults(pageAction);
