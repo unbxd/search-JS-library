@@ -18,15 +18,6 @@ module.exports = {
         sourceMapFilename: 'vanillaSearch.map'
     },
     optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "common",
-                    chunks: "all"
-                }
-            }
-        },
         minimize: true,
         minimizer: [
           new TerserPlugin({
@@ -47,33 +38,33 @@ module.exports = {
         ]
   },
   plugins: [
-    new S3Plugin({
-        // Only upload css and js
-        include: ["public/dist/vanillaSearch.js"],
-        s3Options: {
-            accessKeyId: process.env.ASSETS_AWS_KEY_ID, // Your AWS access key
-            secretAccessKey: process.env.ASSETS_AWS_SECRET_KEY, // Your AWS secret key
-        },
-        s3UploadOptions: {
-            Bucket: "unbxd", // Your bucket name
-            // Here we set the Content-Encoding header for all the gzipped files to "gzip"
-            ContentEncoding() {
-                return "gzip"
-            },
-            // Here we set the Content-Type header for the gzipped files to their 
-            // appropriate values, so the browser can interpret them properly
-            ContentType(fileName) {
-                if (/\.css/.test(fileName)) {
-                    return "text/css";
-                }
-                if (/\.js/.test(fileName)) {
-                    return "text/javascript";
-                }
-            }
-        },
-        basePath: `/search-sdk/v${packageJson.version}/`, // This is the name the uploaded directory will be given
-        directory: 'public/dist' // This is the directory you want to upload
-    })
+    // new S3Plugin({
+    //     // Only upload css and js
+    //     include: ["public/dist/vanillaSearch.js"],
+    //     s3Options: {
+    //         accessKeyId: process.env.ASSETS_AWS_KEY_ID, // Your AWS access key
+    //         secretAccessKey: process.env.ASSETS_AWS_SECRET_KEY, // Your AWS secret key
+    //     },
+    //     s3UploadOptions: {
+    //         Bucket: "unbxd", // Your bucket name
+    //         // Here we set the Content-Encoding header for all the gzipped files to "gzip"
+    //         ContentEncoding() {
+    //             return "gzip"
+    //         },
+    //         // Here we set the Content-Type header for the gzipped files to their 
+    //         // appropriate values, so the browser can interpret them properly
+    //         ContentType(fileName) {
+    //             if (/\.css/.test(fileName)) {
+    //                 return "text/css";
+    //             }
+    //             if (/\.js/.test(fileName)) {
+    //                 return "text/javascript";
+    //             }
+    //         }
+    //     },
+    //     basePath: `/search-sdk/v${packageJson.version}/`, // This is the name the uploaded directory will be given
+    //     directory: 'public/dist' // This is the directory you want to upload
+    // })
   ],
   resolve: {
     alias: {
