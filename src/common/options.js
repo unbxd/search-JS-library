@@ -42,6 +42,7 @@ const options = {
         if(swatches.enabled) {
             swatchUI = this.renderSwatchBtns(product);
         }
+        const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
         const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
         let strikeUi = ``;
         if(unxStrikePrice) {
@@ -60,7 +61,7 @@ const options = {
         }
         return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">  
                     <div class="UNX-img-wrapper">
-                        <img class="UNX-img-block" src="${unxImageUrl}"/>
+                        <img class="UNX-img-block" src="${imgUrl}"/>
                     </div>
                     <div class="UNX-product-content">
                         <h3 class="UNX-product-title">${unxTitle} </h3>
@@ -118,8 +119,8 @@ const options = {
     //productViewTypeSelector:null,
 
 
-    productClick: function(product) {
-        console.log(product,"product,index");
+    productClick: function(product,e) {
+        console.log(product,"product,index",e);
     },
     productAttributes: ['title','uniqueId', 'sku', 'rating'],
     loaderTemplate: () =>{
@@ -153,7 +154,8 @@ const options = {
     spellCheck:{
         enabled:true,
         el:document.getElementById("didYouMeanWrapper"),
-        template: didYouMeanUI
+        template: didYouMeanUI,
+        selectorClass: "UNX-suggestion"
     },
 
     breadcrumb:{
@@ -219,8 +221,7 @@ const options = {
         inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
         onPaginate:function(paginationInfo){console.log(paginationInfo,"paginationInfo opt")},
-        action:'click',
-        cssSelector:'',
+        action:'click'
     },
 
     pagesize: {

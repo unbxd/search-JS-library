@@ -9,14 +9,16 @@ const multiLevelFacetUI = function(facets,selectedCategories) {
                 filterField,
                 value
             } = item;
-            const levelCss = `${this.multiLevelFacetSelector}  category-level-${level}`
+            const levelCss = `${this.multiLevelFacetSelector}  UNX-category-level-${level}`
             ui += `<button 
             data-parent="${filterField}"
             data-level="${level}"
             data-name="${value}"
-            class=" ${levelCss} selected-crumb"
+            class=" ${levelCss} UNX-selected-crumb"
             data-action = "clearCategoryFilter">
-            ${value} x</button>`
+                <span class="UNX-category-icon"></span>
+                <label class="UNX-facet-text">${decodeURIComponent(value)}</label>
+            </button>`
         })
     }
     filters.forEach(facet => {
@@ -32,7 +34,7 @@ const multiLevelFacetUI = function(facets,selectedCategories) {
         if (!multiLevelField) {
             multiLevelField = filterField;
         }
-        let levelCss = `category-level-${level}`;
+        let levelCss = `UNX-category-level-${level}`;
         const valueUI = values.map(item => {
             const {
                 name,
@@ -44,12 +46,12 @@ const multiLevelFacetUI = function(facets,selectedCategories) {
                 class="${this.multiLevelFacetSelector} ${levelCss}"
                 data-name="${name}"
                 data-action = "setCategoryFilter">
-                ${name}-- ${count }</button>`
+                <label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`
         })
-        ui += `${valueUI.join('')}`
+        ui += `<div class="UNX-category-values">${valueUI.join('')}</div>`
     })
     if(ui !== "") {
-        return `<div class="bucketed-facet-wrap">
+        return `<div class="UNX-multi-facet-wrap">
             <h6>Bucketed facets</h6>
                 ${ui}
         </div>`

@@ -6,9 +6,9 @@ const breadCrumbsUI = function(breadcrumbs){
             filterField,
             value
         } = item;
-        const css = `${this.options.breadcrumb.selectorClass} bread-crumb-item`;
+        const css = `${this.options.breadcrumb.selectorClass} UNX-bread-crumb-item`;
         if(id > 0) {
-            ui += `<span> > </span>`
+            ui += `<span class="UNX-slash"> / </span>`
         }
         ui += `<button 
         data-parent="${filterField}"
@@ -16,7 +16,7 @@ const breadCrumbsUI = function(breadcrumbs){
         class="${css}"
         data-name="${value}"
         data-action = "clearCategoryFilter">
-        ${value} x</button>`
+        ${decodeURIComponent(value)}</button>`
     })
     return `<div class="bread-crumb-main">${ui}</div>`
 }

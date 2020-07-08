@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spell check - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prism.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link"><a href="index.html">Home</a></li>
+    <li class="nav-link ">
+      <a href="spellcheck.html">spellCheck</a>
+    </li>
+    <li class="nav-link  nav-current-link">
+        <a href="pageSize.html">page size</a>
+    </li>
+    <li class="nav-link ">
+        <a href="sort.html">sort</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pagination.html">pagination</a>
+    </li>
+    <li class="nav-link ">
+        <a href="productviewtype.html">product view type</a>
+    </li>
+    <li class="nav-link">
+        <a href="breadcrumbs.html">breadcrumbs</a>
+    </li>
+    <li class="nav-link ">
+        <a href="banners.html">banner</a>
+    </li>
+    <li class="nav-link ">
+        <a href="facets.html">facets</a>
+    </li>
+    <li class="nav-link ">
+        <a href="searchResults.html">search results</a>
+    </li>
+</nav>
+
+<div id="main">
+  <h3>PageSize</h3>
+  <p> The total number of results to be displayed in a single call. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3  then 15 or 18 or 21).</p>
+
+        <script type="text/plain" class="language-javascript">
+pagesize: {
+    pageSize:12,\\default number of products
+    options:[8,12,16,20,24], \\giving user to choose how many results he want
+    pageSizeClass:"UNX-pagesize",\\class selector for the element
+    selectedPageSizeClass:"UNX-selected-pagesize",\\for highlighting selected page size by user
+    action:'change', \\ for firing page size after user selection, available options are 'click' or 'change'
+    template: function(pagesize) {
+        let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
+        pagesize.options.forEach((opt)=>{
+            if(pagesize.pageSize == opt) {
+                ui+=`<option selected class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`
+            } else{
+                ui+=`<option id="${opt}">${opt}</option>`
+            }
+            
+        });
+        ui+= `</select>`
+        return `<div class="UNX-pagesize-block">
+            ${ui}
+        </div>`;
+    },
+    el:document.getElementById("changeNoOfProducts") \\element to place the rendered template
+}
+        </script>
+
+</div>
+
+<br class="clear">
+
+
+
+<script src="scripts/prism.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+</body>
+</html>

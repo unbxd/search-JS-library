@@ -35,7 +35,6 @@ const reRender = function(){
     if(pagination.type !== "INFINITE_SCROLL"){
         //pagination.el.innerHTML = this.renderPagination();
         this.paginationWrappers.forEach((pagination)=>{
-            console.log(pagination,"pagination");
             pagination.innerHTML = this.renderPagination();
         });
     }

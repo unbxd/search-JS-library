@@ -155,7 +155,6 @@ const es6unbxd =  new UnbxdSearchComponent({
         type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
         onPaginate:function(objectInfo){console.log(objectInfo,"objectInfo")},
         action:'click',
-        cssSelector:"UNX-pagination-css",
         template:function(paginationData){
             const {
                 cssSelector
@@ -346,69 +345,80 @@ const es6unbxd =  new UnbxdSearchComponent({
         "f.categoryPath.facet.limit":"100"
     }
 */
-
-const es6unbxd =  new UnbxdSearchComponent({
-    searchBoxSelector:document.getElementById("unbxdInput"),
-    searchTrigger:"click",
-    searchButtonSelector:document.getElementById("searchBtn"),
-    searchResultsSelector:document.getElementById("searchResultsWrapper"),
+const unbxdSearch = new UnbxdSearchComponent({
+    searchBoxSelector: document.getElementById("unbxdInput"),
+    searchTrigger: "click",
+    searchButtonSelector: document.getElementById("searchBtn"),
+    searchResultsSelector: document.getElementById("searchResultsWrapper"),
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    productAttributes: ['title','uniqueId','price', 'sku', 'imageUrl','displayPrice','salePrice','sortPrice','productDescription','unbxd_color_mapping','colorName','color'],
-    spellCheck:{
-        enabled:true,
-        el:document.getElementById("didYouMeanWrapper")
+    productAttributes: [
+      "title",
+      "uniqueId",
+      "price",
+      "sku",
+      "imageUrl",
+      "displayPrice",
+      "salePrice",
+      "sortPrice",
+      "productDescription",
+      "unbxd_color_mapping",
+      "colorName",
+      "color"
+    ],
+    spellCheck: {
+      enabled: true,
+      el: document.getElementById("didYouMeanWrapper")
     },
     noResultEl: document.getElementById("noResultWrapper"),
     facet: {
-        facetsEl:document.getElementById("facetsWrapper"),
-        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-        rangeFacetEl:document.getElementById("rangeFacetWrapper"),
-        multiLevelFacetEl:document.getElementById("bucketedFacetWrapper")
+      facetsEl: document.getElementById("facetsWrapper"),
+      selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+      rangeFacetEl: document.getElementById("rangeFacetWrapper"),
+      multiLevelFacetEl: document.getElementById("bucketedFacetWrapper")
     },
     pagination: {
-        el:document.getElementById("unxPagination"),
-        type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
+      el: document.getElementById("unxPagination"),
+      type: "FIXED_PAGINATION" // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
     },
-    breadcrumb:{
-        el:document.getElementById("breadcrumpContainer"),
+    breadcrumb: {
+      el: document.getElementById("breadcrumpContainer")
     },
-    pagesize : {
-        el:document.getElementById("changeNoOfProducts")
+    pagesize: {
+      el: document.getElementById("changeNoOfProducts")
     },
-
+  
     sort: {
-        el:document.getElementById("sortWrapper"),
-        options:[
-            {
-                value:"sortPrice desc",
-                text:"Price High to Low"
-            },
-            {
-                value:"sortPrice asc",
-                text:" Price Low to High"
-            }
-        ]
+      el: document.getElementById("sortWrapper"),
+      options: [
+        {
+          value: "sortPrice desc",
+          text: "Price High to Low"
+        },
+        {
+          value: "sortPrice asc",
+          text: " Price Low to High"
+        }
+      ]
     },
-    loaderEl:document.getElementById('loaderEl'),
-    productView : {
-        el: document.getElementById("productViewTypeContainer"),
-        viewTypes:'GRID'
+    loaderEl: document.getElementById("loaderEl"),
+    productView: {
+      el: document.getElementById("productViewTypeContainer"),
+      viewTypes: "GRID"
     },
     banner: {
-        el:document.getElementById('bannerContainer'),
-        count:1
+      el: document.getElementById("bannerContainer"),
+      count: 1
     },
-    swatches:{
-        enabled:true,
-        attributesMap:{
-            "swatchList":"color",
-            "swatchImgs":"unbxd_color_mapping",
-            "swatchColors":"color"
-        }
+    swatches: {
+      enabled: true,
+      attributesMap: {
+        swatchList: "color",
+        swatchImgs: "unbxd_color_mapping",
+        swatchColors: "color"
+      }
     }
-
-});
-
-console.log(es6unbxd,"es6unbxd");
+  });
+  
+console.log(unbxdSearch,"es6unbxd");
 //es6unbxd.getResults();

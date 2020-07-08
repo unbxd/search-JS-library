@@ -15,7 +15,7 @@ const onProductItemClick = function(e) {
     if(product && elem) {
         product.prank = elem.dataset.prank;
     }
-    this.options.productClick(product);
+    this.options.productClick(product,e);
     this.getCallbackActions(product,"click");
 }
 export {
