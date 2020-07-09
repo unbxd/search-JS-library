@@ -80,8 +80,27 @@ const findChangedFacet = function(e) {
 const onClickRangeFacet = function(e) {
     const {
         action,
-        facetName
+        facetName,
+        end,
+        start
     } = e.target.dataset;
+    const self = this;
+    if(action === "setRange") {
+        this.setRangeFacet({
+            start:start,
+            end:end,
+            facetName:facetName,
+            applyMultiple:true
+        });
+        if(!this.options.facet.applyMultipleFilters){
+            this.setPageStart(0);
+            this.applyRangeFacet();
+        }
+    }
+    if(action === "clearRangeFacets") {
+        this.state.rangeFacet = [];
+        this.applyRangeFacet();
+    }
     if(action === this.actions.filterPriceRange) {
         this.applyRangeFacet();
         this.options.callBackFn(this,action, {

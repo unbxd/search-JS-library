@@ -1,6 +1,10 @@
 const onProductItemClick = function(e) {
     const path = e.path;
-    const id = this.options.productItemClass.replace(".","");
+    const {
+        productItemClass,
+        productMap,
+    } = this.options.products;
+    const id = productItemClass.replace(".","");
     const dataset = e.target.dataset;
     const elem = path.find((item) => {
         const itemCss = item.className;
@@ -11,11 +15,11 @@ const onProductItemClick = function(e) {
         elem.querySelector(dataset.swatchTarget).src=dataset.swatchImg;
         return false;
     }
-    const product =  this.getProductByPropValue(this.options.productMap.unxId,elem.id);
+    const product =  this.getProductByPropValue(productMap.unxId,elem.id);
     if(product && elem) {
         product.prank = elem.dataset.prank;
     }
-    this.options.productClick(product,e);
+    this.options.products.productClick(product,e);
     this.getCallbackActions(product,"click");
 }
 export {

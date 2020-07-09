@@ -35,13 +35,13 @@
     <li class="nav-link ">
         <a href="sort.html">sort</a>
     </li>
-    <li class="nav-link nav-current-link">
+    <li class="nav-link">
         <a href="pagination.html">pagination</a>
     </li>
     <li class="nav-link ">
         <a href="productviewtype.html">product view type</a>
     </li>
-    <li class="nav-link">
+    <li class="nav-link nav-current-link">
         <a href="breadcrumbs.html">breadcrumbs</a>
     </li>
     <li class="nav-link ">
@@ -87,6 +87,39 @@
       type: "FIXED_PAGINATION" 
       template:function (paginationData) {
         //paginationData pagination configuration here
+        const {
+            currentPage,
+            isNext,
+            isPrev,
+            noOfPages,
+            productsLn,
+            numberOfProducts
+        } = paginationData;
+        const {
+            pageClass,
+            selectedPageClass
+        } = this.options.pagination;
+        if(numberOfProducts <= productsLn) {
+            return ``;
+        }
+        let nextBtn = `<button class="next-btn UNX-page-next ${pageClass}" data-page-action="next">></button>`;
+        let prevBtn = `<button class="prev-btn UNX-page-prev ${pageClass}" data-page-action="prev"><</button>`;
+        let pageNumbers = ``;
+        for(let i=1;i<noOfPages;i++) {
+            const pageClassSelected = (i === currentPage) ?selectedPageClass :'';
+            pageNumbers += `<button data-page-action="paginate" data-page-no="${(i-1)*productsLn}" class="UNX-page-button ${pageClass} ${pageClassSelected}">${i}</button>`
+        }
+        if(!isNext) {
+            nextBtn = `<button disabled class="next-btn UNX-page-next">></button>`;
+        }
+        if(!isPrev) {
+            prevBtn = `<button disabled class="prev-btn UNX-page-prev"><</button>`;
+        }
+        return `<div class="pagination-block">
+            ${prevBtn} 
+            <div class="UNX-page-no-block">${pageNumbers}</div>
+            ${nextBtn} 
+        </div>`
       },
       pageClass:"UNX-page-items",  
       onPaginate:function(paginationInfo){
@@ -96,66 +129,35 @@
     }
         </script>
 
-  <p>Template function arguments are listed below</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Argument</th>
-        <th>Data type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-            query
-        </td>
-        <td>
-            String
-        </td>
-        <td>
-            current search term
-        </td>
-      </tr>
-      <tr>
-          <td>
-              suggestion
-          </td>
-          <td>
-              String
-          </td>
-          <td>
-              suggest search term
-          </td>
-        </tr>
-        <tr>
-            <td>
-                pages
-            </td>
-            <td>
-                Object
-            </td>
-            <td>
-                details search response </br>
-                <pre>
-                  <code class="language-js">
-  {
-    "numberOfProducts": 194,
-    "start": 0,
-    "productsLn": 12,
-    "rows": 12,
-    "noOfPages": 17,
-    "currentPage": 1,
-    "isNext": true,
-    "isPrev": false
-  }
-                  </code>
-                </pre>
 
-            </td>
-          </tr>
-    </tbody>
-  </table>
+    <h5>Clickn Scroll Pagination</h5>
+    <p>If you wish to have a button to load next results, you can choose this option</p>
+    <script type="text/plain" class="language-javascript">
+      pagination: {
+        el: document.getElementById("clickScrollContainer"),
+        type:'CLICK_N_SCROLL',
+        action:'click',
+        template:function(paginationData) {
+              const {
+                  pageClass,
+              } = this.options.pagination;
+              return `<button class="${pageClass}">Load More</button>`
+          }
+      }
+    </script>
+
+
+    <h5>INFINITE_SCROLL Pagination</h5>
+    <p>If you wish to load new results by scrolling down, you can configure this option</p>
+    <script type="text/plain" class="language-javascript">
+      pagination: {
+        el: null,
+        type:'INFINITE_SCROLL',
+        inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
+        heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,
+      },
+    </script>
+
 
 </div>
 

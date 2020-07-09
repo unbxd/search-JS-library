@@ -5,7 +5,7 @@ function bindEvents(){
     const {
         searchButtonSelector,
         searchTrigger,
-        productItemClass,
+        products,
         facet,
         productView,
         pagination,
@@ -43,7 +43,7 @@ function bindEvents(){
     this.delegate(
         this.searchResultsWrapper,
         "click",
-        '.'+productItemClass,
+        `.${products.productItemClass}`,
         this.onProductItemClick.bind(this)
     );
     this.delegate(

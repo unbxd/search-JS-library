@@ -202,11 +202,11 @@ body {
      display: flex;
      width: 100%;
  }
- .UNX-selected-facets-wrap  .UNX-facet-text:before {
+ .UNX-selected-facet  .UNX-facet-text:before {
      background-color: #000000;
      border-color: #000000;
  }
- .UNX-selected-facets-wrap  .UNX-facet-text:after {
+ .UNX-selected-facet  .UNX-facet-text:after {
      border: 2px solid #fff;
      border-right-style: none;
      border-top-style: none;
@@ -485,4 +485,34 @@ body {
     padding: 0;
     font-weight: 600;
     color: #717989;
+}
+.UNX-range-facet {
+    display: flex;
+    background: transparent;
+    width: 100%;
+    border-color: transparent;
+    padding: 6px 0px;
+}
+.UNX-range-facet * {
+    pointer-events: none;
+}
+.UNX-price-action-row {
+    display: flex;
+    justify-content: flex-end;
+}
+.UNX-loader{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #313131;
+    font-weight: bold;
+    z-index: 11;
+    font-size: 39px;
+    background: #ffffffb5;
+    left: 0;
 }

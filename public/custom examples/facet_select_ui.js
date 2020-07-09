@@ -27,7 +27,7 @@ function facetItemUiElem (facet , value) {
     } = value;
     return `<option
                 data-facet-name="${facetName}" 
-                data-facet-action="CHANGE_FACET"
+                data-facet-action="changeFacet"
                 class="${this.selectedFacetClass}"
                 data-id= "${dataId}">
                     ${name} (${count})

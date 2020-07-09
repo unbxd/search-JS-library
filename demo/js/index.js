@@ -100,7 +100,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             } = this.options.facet;
             return `<button
                         data-facet-name="${facetName}" 
-                        data-facet-action="CHANGE_FACET"
+                        data-facet-action="changeFacet"
                         class="${facetClass}"
                         data-id= "${dataId}">
                             ${name} (${count})
@@ -349,37 +349,151 @@ const unbxdSearch = new UnbxdSearchComponent({
     searchBoxSelector: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonSelector: document.getElementById("searchBtn"),
-    searchResultsSelector: document.getElementById("searchResultsWrapper"),
+    //searchResultsSelector: document.getElementById("searchResultsWrapper"),
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    productAttributes: [
-      "title",
-      "uniqueId",
-      "price",
-      "sku",
-      "imageUrl",
-      "displayPrice",
-      "salePrice",
-      "sortPrice",
-      "productDescription",
-      "unbxd_color_mapping",
-      "colorName",
-      "color"
-    ],
+    products:{
+        el:document.getElementById("searchResultsWrapper"),
+        template : function(product,idx){
+            const {
+                unxTitle,
+                unxImageUrl,
+                uniqueId,
+                unxStrikePrice,
+                unxPrice,
+                unxDescription
+            } = product; 
+            let swatchUI = ``;
+            const {
+                swatches,
+                products
+            } = this.options;
+            const {
+                productItemClass
+            }  = products;
+            if(swatches.enabled) {
+                swatchUI = this.renderSwatchBtns(product);
+            }
+            const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+            const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
+            let strikeUi = ``;
+            if(unxStrikePrice) {
+                strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
+            }
+            const {
+                productViewType
+            } = this.viewState;
+            let cardType = ``;
+            let descUI = ``;
+            if(productViewType === "GRID") {
+                cardType = "UNX-grid-card"
+            } else {
+                cardType = "UNX-list-card";
+                descUI = `<p class="UNX-description">${unxDescription}</p>`;
+            }
+            return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">  
+                        <div class="UNX-img-wrapper">
+                            <img class="UNX-img-block" src="${imgUrl}"/>
+                        </div>
+                        <div class="UNX-product-content">
+                            <h3 class="UNX-product-title">${unxTitle} </h3>
+                            <div class="UNX-swatch-wrapper">
+                                ${swatchUI}
+                            </div>
+                            ${descUI}
+                            <div class="UNX-price-row">
+                                ${priceUI}
+                                ${strikeUi}
+                            </div>
+                        </div>
+            </div>`
+        },
+        productItemClass:"product-item", // to find out product
+        productType:"SEARCH",
+        gridCount:4,
+        productClick: function(product,e) {
+            console.log(product,"product,index",e);
+        },
+        productAttributes: [
+            "title",
+            "uniqueId",
+            "price",
+            "sku",
+            "imageUrl",
+            "displayPrice",
+            "salePrice",
+            "sortPrice",
+            "productDescription",
+            "unbxd_color_mapping",
+            "colorName",
+            "color"
+        ],
+        productMap:{
+            'unxTitle':'title',
+            'unxImageUrl':'imageUrl',
+            'unxPrice':'salePrice',
+            'unxStrikePrice':'displayPrice',
+            'unxId':'uniqueId',
+            'unxDescription':'productDescription'
+        }
+
+    },
     spellCheck: {
       enabled: true,
       el: document.getElementById("didYouMeanWrapper")
     },
-    noResultEl: document.getElementById("noResultWrapper"),
+    noResults: {
+        //noResultEl: document.getElementById("noResultWrapper"),
+        el: document.getElementById("noResultWrapper")
+    },
     facet: {
       facetsEl: document.getElementById("facetsWrapper"),
       selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
       rangeFacetEl: document.getElementById("rangeFacetWrapper"),
-      multiLevelFacetEl: document.getElementById("bucketedFacetWrapper")
+      multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
+      /*rangeTemplate:function(ranges,selectedRanges) {
+          let ui  = ``;
+          const {
+            selectedFacetClass,
+            facetClass
+          } = this.options.facet;
+          ranges.forEach(range => {
+              const {
+                displayName,
+                facetName,
+                values
+              } = range;
+              let valueUI = ``;
+              values.forEach(item =>{
+                  const {
+                    from,
+                    to
+                  } = item;
+                const isSelected = this.isSelectedRange(facetName,item);
+                const btnCss = (isSelected) ? `${facetClass} ${selectedFacetClass}`:`${facetClass}`;
+                valueUI +=`<button class="${btnCss} UNX-range-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >
+                    <span class="UNX-facet-text">${from.name}  -  ${to.name}</span>
+                    <span class="UNX-facet-count">(${from.count})</span>
+                </button>`;
+              });
+              ui += `<div class="UNX-facets-inner-wrapper">
+                <h3 class="UNX-facet-header">${displayName}</h3>
+                    <div class="UNX-facets">${valueUI}</div>
+              </div>`
+          });
+          return `<div class="UNX-range-wrapper">
+            ${ui}
+            <div class="UNX-price-action-row">
+                <button
+                class="UNX-default-btn "
+                data-action="clearRangeFacets"> clear</button>
+            <div>
+          </div>`
+      }*/
     },
     pagination: {
       el: document.getElementById("unxPagination"),
-      type: "FIXED_PAGINATION" // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+      type:'FIXED_PAGINATION'
     },
     breadcrumb: {
       el: document.getElementById("breadcrumpContainer")
@@ -401,8 +515,10 @@ const unbxdSearch = new UnbxdSearchComponent({
         }
       ]
     },
-    loaderEl: document.getElementById("loaderEl"),
-    productView: {
+    loader :{
+        el:document.getElementById("loaderEl")
+    },
+    productView:{
       el: document.getElementById("productViewTypeContainer"),
       viewTypes: "GRID"
     },
