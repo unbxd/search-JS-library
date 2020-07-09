@@ -20,10 +20,11 @@ const renderSearch =  function() {
         products.forEach((product, index) => {
             const row = index % gridCount;
             if(row === 0) {
-                productsUI += `<div class="unbxd-row">`;
+                productsUI += `<div class="UNX-row">`;
             }
             const pRank  = index+idx+1;
-            productsUI +=self.options.searchResultsTemplate(product,pRank);
+            const mappedProduct = this.mapProductAttrs(product);
+            productsUI +=self.options.searchResultsTemplate(mappedProduct,pRank);
             if(row === gridCount -  1) {
                 productsUI += `</div>`;
             }
@@ -33,11 +34,12 @@ const renderSearch =  function() {
     } else {
         productsUI = products.map((product,index) => {
             const pRank  = index+idx+1;
-            return self.options.searchResultsTemplate(product,pRank);
+            const mappedProduct = this.mapProductAttrs(product);
+            return self.options.searchResultsTemplate(mappedProduct,pRank);
         }).join('');
     }
 
-    return  `<div>
+    return  `<div class="UNX-result-wrapper">
         ${productsUI}
     </div>`;
 }

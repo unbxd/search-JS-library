@@ -1,239 +1,414 @@
 import UnbxdSearchComponent from  "../../src/index";
-import styles from '../css/index.scss';
-console.log(UnbxdSearchComponent,"UnbxdSearchComponent");
 
 const unbxdCallbackEcma = function (instance, type,data){
-   console.log(instance, type,data,"unbxdCallbackEcma")
 }
 
-
+/*
 const es6unbxd =  new UnbxdSearchComponent({
     searchBoxSelector:document.getElementById("unbxdInput"),
     searchTrigger:"click",
     searchButtonSelector:document.getElementById("searchBtn"),
     searchResultsSelector:document.getElementById("searchResultsWrapper"),
-    facetsSelector: document.getElementById("facetsWrapper"),
-    selectedFacetBlock: document.getElementById("selectedFacetWrapper"),
-    siteKey:"demo-spanish-unbxd809051588861207",
-    apiKey:"f19768e22b49909798bc2411fa3dd963",
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     sdkHostName:"https://search.unbxd.io/",
     productType:"SEARCH",
     searchQueryParam:"q",
     updateUrls:true,
-    productId:"uniqueId",
     searchResultsTemplate : function(product,idx){
         const {
             title,
             imageUrl,
             uniqueId,
-            sortPrice
+            sortPrice,
+            displayPrice,
         } = product;
-        const {
-            swatchMap,
-            showSwatches
-        } = this.options;
+        
         let swatchUI = ``;
-        let swatchData = null;
-        if(showSwatches) {
+        const {
+            swatches,
+            productItemClass
+        } = this.options;
+        if(swatches.enabled) {
             swatchUI = this.renderSwatchBtns(product);
         }
-        return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="product-item" style="border:solid 1px red;display:flex">  
+        return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="${productItemClass}" style="border:solid 1px red;display:flex">  
             <img class="productImgBlock" style="width:100px" src="${imageUrl}"/>
         <div>
          <h3>${title} </h3>
          <div>
             ${swatchUI}
          </div>
-         <strong>${sortPrice}</strong>
+         <strong>${displayPrice}</strong>
          </div>
         </div>`
     },
-    productItemClass:".product-item",
-
+    productItemClass:"product-item",
     mapping: {
         "title": ""
     },
-    fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
-    platform: "IO",
+    //fields: ['title','uniqueId','sortPrice', 'sku', 'imageUrl'],
+    productAttributes: ['title','uniqueId','price', 'sku', 'imageUrl','displayPrice','sortPrice'],
     callBackFn:unbxdCallbackEcma,
-    selectedFacetTemplate : function (selectedFacet,selectedFacetItem){
-        const {
-            facetName,
-        } = selectedFacet;
-        const  {
-            name,
-            count,
-            dataId
-        } = selectedFacetItem;
-        return `<div><button 
-                    class="selected-facet-btn ${this.selectedFacetClass}"
-                    data-facet-name="${facetName}"
-                    data-facet-action ="deleteFacetValue"
-                    data-id= "${dataId}">
-                    ${name} (${count})
-            </button><button class="${this.selectedFacetClass}"   data-id= "${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}" > x</button></div>`
-    },
-    facetTemplate: function  (facet , value) {
-        const {
-            facetName,
-        } = facet;
-        const  {
-            name,
-            count,
-            dataId
-        } = value;
-        return `<button
-                    data-facet-name="${facetName}" 
-                    data-facet-action="CHANGE_FACET"
-                    data-id= "${dataId}">
-                        ${name} (${count})
-                </button>`
-    },
-    facetItemTemplate: function (facet, children) {
-        const {
-            displayName,
-            facetName
-        } = facet;
-        return `<div id="${facetName}">
-                    <h3> ${displayName}</h3>
-                    <button data-facet-action="deleteFacet" data-facet-name="${facetName}" > clear</button>
-                    ${children}
-                </div>`
-    },
-    facetClass:"select-facets-block",
-    facetAction:"click",
-    selectedFacetClass:"selected-facet",
-    facetMultiSelect: true,
-    facetMultiSelectionMode:true,
+    //selectedFacetTemplate : ,
+    //facetTemplate:,
     defaultFilters :null,
-    spellCheck: true,
-    spellCheckTemplate: (suggestion) => {
-        return `<p>did you mean <strong>${suggestion}</strong></p>`
+    gridCount:4,
+    unbxdAnalytics:true,
+    spellCheck:{
+        enabled:true,
+        el:document.getElementById("didYouMeanWrapper"),
+        template:   (suggestion) => {
+            return `<p>did you mean <strong>${suggestion}</strong></p>`
+        }
     },
-    spellCheckSelector: document.getElementById("didYouMeanWrapper"),
-    noResultContainer: document.getElementById("noResultWrapper"),
-    pageSize: 12,
-    //paginationType:'INFINITE_SCROLL',
-    inifinteScrollTriggerElement:window,
-    //paginationType:'FIXED_PAGINATION',
-    //paginationSelector:document.getElementById("paginationContainer"),
-    //paginationTemplate:()=>{},
-    paginationType:"CLICK_N_SCROLL",
-    paginationSelector:document.getElementById("clickScrollContainer"),
-    pageSizeContainerSelector:document.getElementById("changeNoOfProducts"),
-    pageSizeDisplayType:"Dropdown",
-    pageSizeOptions:[6,8,12,16,20],
-    heightDiffToTriggerNextPage:100,
-    sortContainerSelector:document.getElementById("sortWrapper"),
-    sortOptions : [
-        {
-            value:"sortPrice desc",
-            text:"Price High to Low"
-        },
-        {
-            value:"sortPrice asc",
-            text:" Price Low to High"
-        }/*,
-        {
-            value:"average_rating asc",
-            text:" Rating Low to High"
-        },
-        {
-            value:"average_rating desc",
-            text:" Rating High to low"
-        }*/
-    ],
-    sortTemplate:function(selectedSort) {
-        let sortBtnsUI = "";
-        this.options.sortOptions.forEach((item) => {
+    noResultEl: document.getElementById("noResultWrapper"),
+    noResultsTemplate:function(query) {
+        return `<div> No Results found ${query} </div>`
+    },
+    facet: {
+        facetsEl:document.getElementById("facetsWrapper"),
+        facetTemplate:function (facet, children) {
             const {
-                value,
-                text
-            } = item;
-            let selectedCss = ""
-            if(value == selectedSort) {
-                selectedCss = "selcted-sort-btn"
-            } 
-            sortBtnsUI += `<button class="btn ${selectedCss}" value="${value}" data-action="changeSort"> ${text}</button>`
-        })
-        return `<div>
-            <h6>sort selections</h6>
-            ${sortBtnsUI}
-            <button data-action="clearSort">clear sort</button>
-        </div>`
+                displayName,
+                facetName
+            } = facet;
+            const {
+                facetClass
+            } = this.options.facet;
+            return `<div id="${facetName}">
+                        <h3> ${displayName}</h3>
+                        <button 
+                            class="${facetClass}"
+                            data-facet-action="deleteFacet"
+                            data-facet-name="${facetName}" > clear</button>
+                        ${children}
+                        
+                    </div>`
+        },
+        facetItemTemplate: function  (facet , value) {
+            const {
+                facetName,
+            } = facet;
+            const  {
+                name,
+                count,
+                dataId
+            } = value;
+            const {
+                facetClass
+            } = this.options.facet;
+            return `<button
+                        data-facet-name="${facetName}" 
+                        data-facet-action="CHANGE_FACET"
+                        class="${facetClass}"
+                        data-id= "${dataId}">
+                            ${name} (${count})
+                    </button>`
+        },
+        facetMultiSelect:true,
+        facetClass:"UNX-facets-block",
+        facetAction:"click",
+
+        selectedFacetClass:"UNX-selected-facet",
+        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+        selectedFacetTemplate: function (selectedFacet,selectedFacetItem){
+            const {
+                facetName,
+            } = selectedFacet;
+            const  {
+                name,
+                count,
+                dataId
+            } = selectedFacetItem;
+            return `<div><button 
+                        class="selected-facet-btn ${this.options.facet.selectedFacetClass}"
+                        data-facet-name="${facetName}"
+                        data-facet-action ="deleteFacetValue"
+                        data-id= "${dataId}">
+                        ${name} (${count})
+                </button><button class="${this.options.facet.selectedFacetClass}"   data-id= "${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}" > x</button></div>`
+        },
+
+        rangeFacetEl:document.getElementById("rangeFacetWrapper"),
+        //rangeTemplate:renderRangeFacets,
+        rangeWidgetConfig: {
+            "minLabel":"Min :",
+            "maxLabel":"Max :"
+        },
+
+        facetMultilevel:true,
+        facetMultilevelName:'Category',
+        multiLevelFacetSelector:'UNX-multilevel-facet',
+        multiLevelFacetEl:document.getElementById("bucketedFacetWrapper"),    
+        facetDepth:4,
+
+        clearFacetsSelector:'UNX-clear-facet',
+        removeFacetsSelector:'UNX-remove-facet',
+        onFacetLoad:function(facets){
+            console.log(facets,"facetsfacets");
+        },
+        applyMultipleFilters:false
     },
-    sortAction:"click",
-    sortElement:"button",
+    pagination: {
+        el:document.getElementById("paginationContainer"),
+        type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
+        onPaginate:function(objectInfo){console.log(objectInfo,"objectInfo")},
+        action:'click',
+        cssSelector:"UNX-pagination-css",
+        template:function(paginationData){
+            const {
+                cssSelector
+            } = this.options.pagination;
+            const {
+                noOfPages,
+                currentPage,
+                isNext,
+                isPrev
+            } = paginationData;
+
+            console.log(paginationData,"paginationData");
+            let nextBtn = `<button class="next-btn" data-page-action="next">next</button>`;
+            let prevBtn = `<button class="prev-btn" data-page-action="prev">prev</button>`;
+            if(!isNext) {
+                nextBtn = `<button disabled class="next-btn">next</button>`;
+            }
+            if(!isPrev) {
+                prevBtn = `<button disabled class="prev-btn">prev</button>`;
+            }
+            return `<div class="pagination-block ${cssSelector}">
+            ${currentPage} of ${noOfPages} ----  ${prevBtn} ${nextBtn} 
+            </div>`
+        }
+    },
+    breadcrumb:{
+        enabled:true,
+        el:document.getElementById("breadcrumpContainer"),
+        selectorClass:"bread-crumb",
+        template:function(breadcrumbs){
+            let ui = ``;
+            breadcrumbs.forEach((item ,id )=> {
+                const {
+                    level,
+                    filterField,
+                    value
+                } = item;
+                const css = `${this.options.breadcrumb.selectorClass} UNX-crumb-item`;
+                if(id > 0) {
+                    ui += `<span> > </span>`
+                }
+                ui += `<button 
+                data-parent="${filterField}"
+                data-level="${level}"
+                class="${css}"
+                data-name="${value}"
+                data-action = "clearCategoryFilter">
+                ${value} x</button>`
+            })
+            return `<div class="bread-crumb-main">${ui}</div>`
+        }
+    },
+    pagesize : {
+        pageSize:12,
+        options:[8,12,16,20,24],
+        pageSizeClass:"UNX-pagesize",
+        selectedPageSizeClass:"UNX-selected-pagesize",
+        action:'click',
+        template:function(pageSize){
+            const {
+                options,
+                pageSizeClass,
+                selectedPageSizeClass
+            } = this.options.pagesize;
+            let ui = ``;
+            options.forEach((opt)=>{
+                const selected = (pageSize == opt)?selectedPageSizeClass:'';
+                ui+=`<button class="UNX-btn-pagesize ${pageSizeClass} ${selected}" id="${opt}">${opt}</button>`
+            });
+            return ui;
+        },
+        el:document.getElementById("changeNoOfProducts")
+    },
+
+    sort: {
+        el:document.getElementById("sortWrapper"),
+        options:[
+            {
+                value:"sortPrice desc",
+                text:"Price High to Low"
+            },
+            {
+                value:"sortPrice asc",
+                text:" Price Low to High"
+            }
+        ],
+        sortClass:'UNX-sort-item',
+        selectedSortClass:'UNX-selected-sort',
+        template:function(selectedSort) {
+            let sortBtnsUI = "";
+            const {
+                options,
+                sortClass,
+                selectedSortClass
+            } = this.options.sort;
+            options.forEach((item) => {
+                const {
+                    value,
+                    text
+                } = item;
+                let selectedCss = ""
+                if(value == selectedSort) {
+                    selectedCss = selectedSortClass || "selcted-sort-btn"
+                } 
+                sortBtnsUI += `<button class="btn ${sortClass} ${selectedCss}" value="${value}" data-action="changeSort"> ${text}</button>`
+            })
+            return `<div>
+                <h6>sort selections</h6>
+                ${sortBtnsUI}
+                <button class="${sortClass}" data-action="clearSort">clear sort</button>
+            </div>`
+        },
+        action:'click'
+    },
     loaderTemplate: () =>{
         return `<div>Loading....</div>`
     },
-    loaderContainer:document.getElementById('loaderContainer'),
-    showVariants:true,
-    variantMapping:{
-        "image_url":"v_image_url"
-    },
-    rangeFacetContainer:document.getElementById("rangeFacetWrapper"),
-    facetMultilevel: true,
-    facetMultilevelName: 'category',
-    multiLevelFacetSelector:"bucketFacetElem",
+    loaderEl:document.getElementById('loaderEl'),
     extraParams :{
         "version":"V2",
-        //"facet.multilevel":"categoryPath",
-        /*"f.categoryPath.displayName":"category",
-        "f.categoryPath.max.depth":"4",
-        "f.categoryPath.facet.limit":"100"*/
     },
-    multiLevelFacetContainer:document.getElementById("bucketedFacetWrapper"),
-    facetDepth:4,
-    breadcrumb:true,
-    breadcrumbContainer:document.getElementById("breadcrumpContainer"),
-    breadcrumbSelectorClass:"bread-crumb",
-    showSwatches:true,
-    swatchMap:{
-        "swatchList":"colours",
-        "swatchImgs":"variant_metadata",
-        "swatchColors":"unbxd_parentcolours"
-    },
-    swatchSelector:"swatchBtn",
-    swatchTemplate: function(swatchData) {
-        const {
-            swatchColors = [],
-            swatchImgs = []
-        } = swatchData;
-        const swatchSelector = this.swatchSelector;
-        let btnUI = ``;
-        swatchColors.forEach((item,id) => {
-            const imgId = swatchImgs[id];
-            if(imgId){
-                const img = imgId.split("::")[1];
-                btnUI+= `<button 
-                        data-swatch-id="${item}"
-                        data-swatch-img="${img}" 
-                        data-action="changeSwatch"
-                        data-swatch-target = ".productImgBlock"
-                        class="${swatchSelector} swatch-btm"
-                        style="border:solid 1px ${item}"
-                        >${item}</button>`
-            }
-        });
-        return `<div class="swatchContainer">${btnUI}</div>`
-    },
-    productViewTypes:'GRID',
-    gridCount:4,
-    productViewTypeSelector: document.getElementById("productViewTypeContainer"),
-    productViewTypeAction:"click",
-    unbxdAnalytics:true,
-    variantConfig: {
-        variantsCount: 1,
-        variantAttributes: [],
-        variantMapping:{
-            "image_url":"v_image_url"
+    swatches:{
+        enabled:true,
+        attributesMap:{
+            "swatchList":"colours",
+            "swatchImgs":"variant_metadata",
+            "swatchColors":"unbxd_parentcolours"
         },
-        variantsGroupBy: ''
+        swatchClass:'UNX-swatch-btn',
+        template:function(swatchData) {
+            const {
+                swatchColors = [],
+                swatchImgs = []
+            } = swatchData;
+            const swatchesSelector = this.swatchesSelector;
+            let btnUI = ``;
+            swatchColors.forEach((item,id) => {
+                const imgId = swatchImgs[id];
+                if(imgId){
+                    const img = imgId.split("::")[1];
+                    btnUI+= `<button 
+                            data-swatch-id="${item}"
+                            data-swatch-img="${img}" 
+                            data-action="changeSwatch"
+                            data-swatch-target = ".productImgBlock"
+                            class="${swatchesSelector} swatch-btm"
+                            style="border:solid 1px ${item}"
+                            >${item}</button>`
+                }
+            });
+            return `<div class="swatchContainer">${btnUI}</div>`
+        }
     },
-    //bannerSelector:document.getElementById('bannerContainer'),
-    applyMultipleFilters:false
+
+    productView : {
+        el: document.getElementById("productViewTypeContainer"),
+        action:'click', // CLICK or CHANGE
+        viewTypeClass:'UNX-product-view',
+        selectedViewTypeClass:'UNX-selected-product-view',
+        viewTypes:'GRID'
+    },
+    variants:{
+        enabled:false,
+        count:5,
+        groupBy:'v_colour',
+        attributes:[
+            "title",
+            "v_imageUrl"
+        ],
+        mapping:{
+            "image_url":"v_imageUrl"
+        }
+    },
+    banner: {
+        el:document.getElementById('bannerContainer'),
+        template:function(banners) {
+            return ''
+        },
+        count:1
+    },
+
+});
+ extraParams :{
+        "version":"V2",
+        "facet.multilevel":"categoryPath",
+        "f.categoryPath.displayName":"category",
+        "f.categoryPath.max.depth":"4",
+        "f.categoryPath.facet.limit":"100"
+    }
+*/
+
+const es6unbxd =  new UnbxdSearchComponent({
+    searchBoxSelector:document.getElementById("unbxdInput"),
+    searchTrigger:"click",
+    searchButtonSelector:document.getElementById("searchBtn"),
+    searchResultsSelector:document.getElementById("searchResultsWrapper"),
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    productAttributes: ['title','uniqueId','price', 'sku', 'imageUrl','displayPrice','salePrice','sortPrice','productDescription','unbxd_color_mapping','colorName','color'],
+    spellCheck:{
+        enabled:true,
+        el:document.getElementById("didYouMeanWrapper")
+    },
+    noResultEl: document.getElementById("noResultWrapper"),
+    facet: {
+        facetsEl:document.getElementById("facetsWrapper"),
+        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+        rangeFacetEl:document.getElementById("rangeFacetWrapper"),
+        multiLevelFacetEl:document.getElementById("bucketedFacetWrapper")
+    },
+    pagination: {
+        el:document.getElementById("unxPagination"),
+        type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
+    },
+    breadcrumb:{
+        el:document.getElementById("breadcrumpContainer"),
+    },
+    pagesize : {
+        el:document.getElementById("changeNoOfProducts")
+    },
+
+    sort: {
+        el:document.getElementById("sortWrapper"),
+        options:[
+            {
+                value:"sortPrice desc",
+                text:"Price High to Low"
+            },
+            {
+                value:"sortPrice asc",
+                text:" Price Low to High"
+            }
+        ]
+    },
+    loaderEl:document.getElementById('loaderEl'),
+    productView : {
+        el: document.getElementById("productViewTypeContainer"),
+        viewTypes:'GRID'
+    },
+    banner: {
+        el:document.getElementById('bannerContainer'),
+        count:1
+    },
+    swatches:{
+        enabled:true,
+        attributesMap:{
+            "swatchList":"color",
+            "swatchImgs":"unbxd_color_mapping",
+            "swatchColors":"color"
+        }
+    }
 
 });
 
-console.log(es6unbxd,"es6unbxd")
+console.log(es6unbxd,"es6unbxd");
+//es6unbxd.getResults();

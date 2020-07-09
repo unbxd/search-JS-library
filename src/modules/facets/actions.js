@@ -15,7 +15,7 @@ const facetsClickFn = function(e) {
 }
 const findChangedFacet = function(e) {
     const elem = e.target;
-    const selected = (this.options.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
+    const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
     const dataSet = selected.dataset;
     const {
         facetName,
@@ -65,6 +65,16 @@ const findChangedFacet = function(e) {
                 id
             },'facetClick');
         }
+    }
+    this.renderFacets();
+    if(facetAction === "applyFacets") {
+        this.setPageStart(0);
+        this.getResults();
+    }
+    if(facetAction === "clearAllFacets") {
+        this.state.selectedFacets = [];
+        this.setPageStart(0);
+        this.getResults();
     }
 }
 const onClickRangeFacet = function(e) {

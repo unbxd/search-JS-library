@@ -38,7 +38,7 @@ const renderRangeFacets = function(rangeFacets) {
         rangeFacet
     } = this.state;
 
-    const rangeFacetUI = rangeFacets.map(item => {
+    const rangeFacetTemplate = rangeFacets.map(item => {
         const {
             facetName,
             displayName,
@@ -64,12 +64,12 @@ const renderRangeFacets = function(rangeFacets) {
             onStop,
             minX,
             minY,
-            wrapper:self.options.rangeFacetContainer,
-            rangeConfig: self.options.rangeWidgetConfig
+            wrapper:self.options.facet.rangeFacetEl,
+            rangeConfig: self.options.facet.rangeWidgetConfig
         }).render();
     }).join('');
     return  `<div class="range-facet">
-        ${rangeFacetUI}
+        ${rangeFacetTemplate}
     </div>`;
 }
 export {
