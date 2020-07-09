@@ -4,12 +4,16 @@ const paginationUI = function (paginationData) {
         isNext,
         isPrev,
         noOfPages,
-        productsLn
+        productsLn,
+        numberOfProducts
     } = paginationData;
     const {
         pageClass,
         selectedPageClass
     } = this.options.pagination;
+    if(numberOfProducts <= productsLn) {
+        return ``;
+    }
     let nextBtn = `<button class="next-btn UNX-page-next ${pageClass}" data-page-action="next">></button>`;
     let prevBtn = `<button class="prev-btn UNX-page-prev ${pageClass}" data-page-action="prev"><</button>`;
     let pageNumbers = ``;

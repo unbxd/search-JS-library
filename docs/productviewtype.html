@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spell check - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prism.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link"><a href="index.html">Home</a></li>
+    <li class="nav-link ">
+      <a href="spellcheck.html">spellCheck</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pageSize.html">page size</a>
+    </li>
+    <li class="nav-link ">
+        <a href="sort.html">sort</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pagination.html">pagination</a>
+    </li>
+    <li class="nav-link  nav-current-link">
+        <a href="productviewtype.html">product view type</a>
+    </li>
+    <li class="nav-link">
+        <a href="breadcrumbs.html">breadcrumbs</a>
+    </li>
+    <li class="nav-link ">
+        <a href="banners.html">banner</a>
+    </li>
+    <li class="nav-link ">
+        <a href="facets.html">facets</a>
+    </li>
+    <li class="nav-link ">
+        <a href="searchResults.html">search results</a>
+    </li>
+</nav>
+
+<div id="main">
+  <h3>Product view type</h3>
+  <p>This is the component wich can toggle the search results to list ot grid.</p>
+
+        <script type="text/plain" class="language-javascript">
+productView : {
+    el:document.getElementById("productViewTypeContainer"),
+    template:function(productViewType, selectedViewType) {
+        //productViewType - the options from config 
+        //selectedViewType -  selected view type
+        const isDisabled = (this.getSearchResults())?false:true;
+        const {
+            selectedViewTypeClass,
+            viewTypeClass
+        } = productViewType;
+        let listBtnCss =`UNX-list-btn ${viewTypeClass}`;
+        let gridBtnCss = `UNX-grid-btn ${viewTypeClass}`;
+        if(selectedViewType === 'LIST' ) {
+            listBtnCss += ` ${selectedViewTypeClass}`
+        }
+        if(selectedViewType === 'GRID' ) {
+            gridBtnCss += ` ${selectedViewTypeClass}`
+        }
+        let listBtn = `<button
+                id="listBtn"
+                class="${listBtnCss}"
+                data-view-action="LIST" >List</button>`;
+        let gridBtn = `<button
+                id="gridBtn"
+                class="${gridBtnCss}"
+                data-view-action="GRID" >Grid</button>`;
+    
+        if(isDisabled) {
+            listBtn = `<button
+                id="listBtn"
+                disabled
+                class="${listBtnCss} disabled-btn"
+                data-view-action="LIST" >List</button>`;
+            gridBtn = `<button
+                id="gridBtn"
+                disabled
+                class="${gridBtnCss}  disabled-btn"
+                data-view-action="GRID" >Grid</button>`;
+        }
+    
+        return `<div class='product-view-container'>
+            ${listBtn}
+            ${gridBtn}
+        </div>`
+    
+    },
+    action:'click', // CLICK or CHANGE
+    viewTypeClass:'UNX-product-view',
+    selectedViewTypeClass:'UNX-selected-product-view',
+    viewTypes:'GRID' //GRID or LIST
+}
+        </script>
+
+</div>
+
+<br class="clear">
+
+
+
+<script src="scripts/prism.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+</body>
+</html>

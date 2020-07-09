@@ -2,7 +2,7 @@ const reRender = function(){
     const {
         callBackFn,
         sort,
-        noResultEl,
+        noResults,
         spellCheck,
         pagination,
         pagetype,
@@ -19,7 +19,7 @@ const reRender = function(){
     } = this.viewState;
 
     callBackFn(this,beforeRender);
-    this.loaderEl.innerHTML = null;
+    this.loaderEl.innerHTML = ``;
     const results = this.getSearchResults();
     if(productType ==="SEARCH"){
         this.options.searchBoxSelector.value = this.state.userInput;
@@ -35,7 +35,6 @@ const reRender = function(){
     if(pagination.type !== "INFINITE_SCROLL"){
         //pagination.el.innerHTML = this.renderPagination();
         this.paginationWrappers.forEach((pagination)=>{
-            console.log(pagination,"pagination");
             pagination.innerHTML = this.renderPagination();
         });
     }
@@ -49,12 +48,12 @@ const reRender = function(){
     if(results && results.numberOfProducts === 0) {
         callBackFn(this,beforeNoResultRender);
         const query = this.getSearchQuery();
-        if(noResultEl) {
-            noResultEl.innerHTML = this.renderNoResults(query);
+        if(noResults.el) {
+            noResults.el.innerHTML = this.renderNoResults(query);
         }
         callBackFn(this,afterNoResultRender);
     } else {
-        noResultEl.innerHTML = null;
+        noResults.el.innerHTML = null;
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el && suggestion) {

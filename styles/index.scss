@@ -89,7 +89,6 @@ body {
  }
  .UNX-img-wrapper {
      width: 100%;
-     height: 270px;
  }
  .UNX-img-block {
      max-width: 100%;
@@ -203,11 +202,11 @@ body {
      display: flex;
      width: 100%;
  }
- .UNX-selected-facets-wrap  .UNX-facet-text:before {
+ .UNX-selected-facet  .UNX-facet-text:before {
      background-color: #000000;
      border-color: #000000;
  }
- .UNX-selected-facets-wrap  .UNX-facet-text:after {
+ .UNX-selected-facet  .UNX-facet-text:after {
      border: 2px solid #fff;
      border-right-style: none;
      border-top-style: none;
@@ -366,9 +365,13 @@ body {
  }
  .UNX-page-button {
      font-weight: 300;
-     width: 20px;
-     max-width: 32px;
+     width: 22px;
+     font-size: 12px;
  }
+ .UNX-selected-page-item {
+    color: #FFFFFF;
+    background: #000000 !important;
+}
  button.UNX-page-prev, button.UNX-page-next {
      background: #c3c3c3;
      color: #FFFFFF;
@@ -408,6 +411,108 @@ body {
      max-width: 100px;
      overflow-y: auto;
  }
- .UNX-selected-page-item {
-     opacity: .5;
- }
+ .UNX-multilevel-facet {
+    background: transparent;
+    border-color: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.UNX-multilevel-facet * {
+    pointer-events: none;
+}
+.UNX-multilevel-facet .UNX-facet-text {
+    padding-left: 0;
+    color: #0282A6;
+    font-size: 14px;
+    font-weight: 400;
+}
+.UNX-multilevel-facet .UNX-facet-text:before {
+    display:none;
+}
+.UNX-category-level-2 {
+    padding-left: 26px
+}
+.UNX-category-level-3 {
+    padding-left: 45px
+}
+.UNX-category-level-3+.UNX-category-values {
+    padding-left: 20px;
+}
+.UNX-selected-crumb {
+    position: relative;
+}
+.UNX-category-icon {
+    height: 12px;
+    background: #e4e4e4;
+    width: 12px;
+    margin-right: 6px;
+    position: relative;
+}
+
+.UNX-category-icon:before {
+    content: " ";
+    height: 2px;
+    background: #929292;
+    width: 6px;
+    position: absolute;
+    left: 8px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+.UNX-category-level-4 {
+    padding-left: 60px
+}
+.UNX-bread-crumb-item {
+    background: transparent;
+    border-color: transparent;
+    padding: 0px 1px;
+    color: #0282A6;
+    font-size: 13px;
+    font-weight: 400;
+}
+.UNX-slash {
+    color: #666666;
+    font-size: 12px;
+    font-weight: 400;
+}
+.UNX-suggestion {
+    background: transparent;
+    border-color: transparent;
+    padding: 0;
+    font-weight: 600;
+    color: #717989;
+}
+.UNX-range-facet {
+    display: flex;
+    background: transparent;
+    width: 100%;
+    border-color: transparent;
+    padding: 6px 0px;
+}
+.UNX-range-facet * {
+    pointer-events: none;
+}
+.UNX-price-action-row {
+    display: flex;
+    justify-content: flex-end;
+}
+.UNX-loader{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #313131;
+    font-weight: bold;
+    z-index: 11;
+    font-size: 39px;
+    background: #ffffffb5;
+    left: 0;
+}

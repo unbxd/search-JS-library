@@ -6,7 +6,7 @@ const events = {
     afterNoResultRender:"AFTER_NO_RESULTS_RENDER",
     afterRender:"AFTER_RENDER",
     deleteFacet:"DELETE_FACET",
-    changeFacet:"CHANGE_FACET",
+    changeFacet:"changeFacet",
     facetClick:"FACETS_CLICK",
     deleteFacetValue:"DELETE_FACET_VALUE",
     deleteFacet:"DELETE_FACET",

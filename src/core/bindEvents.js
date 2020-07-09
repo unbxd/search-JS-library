@@ -5,13 +5,22 @@ function bindEvents(){
     const {
         searchButtonSelector,
         searchTrigger,
-        productItemClass,
+        products,
         facet,
         productView,
         pagination,
         sort,
-        pagesize
+        pagesize,
+        spellCheck
     } = this.options;
+    this.options.searchBoxSelector.addEventListener("keydown", (e) => {
+        const val = e.target.value;
+        if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+            if(val !== ""){
+                this.setInputValue.bind(this)();
+            }
+        }
+    });
     if(pagination.enabled) {
         this.paginationWrappers.forEach((wrapper)=>{
             this.delegate(
@@ -23,12 +32,18 @@ function bindEvents(){
             //wrapper.addEventListener(pagination.action, this.paginationAction.bind(this));
         });
     }
-    searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this))
+    searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this));
+    this.delegate(
+        spellCheck.el,
+        "click",
+        `.${spellCheck.selectorClass}`,
+        this.setSuggestion.bind(this)
+    );
     //productItemSelector
     this.delegate(
         this.searchResultsWrapper,
         "click",
-        '.'+productItemClass,
+        `.${products.productItemClass}`,
         this.onProductItemClick.bind(this)
     );
     this.delegate(

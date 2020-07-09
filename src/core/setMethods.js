@@ -10,6 +10,7 @@ import setBreadCrumbs from '../modules/breadcrumbs/setBreadcrumbs';
 import setSwatches from '../modules/swatches/setSwatches';
 import setPageSize from '../modules/pageSize/setPageSize';
 import setAnalytics from '../modules/analytics/setAnalytics';
+
 const setMethods = (UnbxdSearch) => {
     const {
         prototype
@@ -26,5 +27,6 @@ const setMethods = (UnbxdSearch) => {
     setSwatches(prototype);
     setPageSize(prototype);
     setAnalytics(prototype);
+
 }
 export default setMethods;

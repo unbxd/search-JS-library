@@ -1,3 +1,4 @@
+//import UnbxdSearchCore from "../../../search-JS-core/src/index";
 import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
@@ -18,10 +19,13 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.pageSize = props.pagesize.pageSize || 12;
         this.options.showSwatches = (props.swatches) ? props.swatches.enabled :false;
         this.options.applyMultipleFilters = props.facet.applyMultipleFilters || false;
+        this.options.productAttributes = props.products.productAttributes || ['sku'];
+        this.options.productType = props.products.productType || "SEARCH";
         this.viewState = {
             productViewType: this.options.productView.viewTypes,
             isInfiniteStarted:false,
-            lastAction:''
+            lastAction:'',
+            selectedRange:{}
         };
         createLayout.bind(this)();
         intialize.bind(this)();
@@ -33,7 +37,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.getCallbackActions(state,type);
         const {
             callBackFn,
-            loaderTemplate,
+            loader,
         } = this.options;
         const {
             beforeApiCall,
@@ -41,7 +45,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         if(type === beforeApiCall) { 
             callBackFn(this,beforeApiCall);
-            this.loaderEl.innerHTML = loaderTemplate(this);
+            this.loaderEl.innerHTML = loader.template(this);
         }
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);

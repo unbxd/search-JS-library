@@ -1,7 +1,4 @@
-const pageSizeUi = function(pageSize) {
-    const {
-        pagesize
-    } = this.options;
+const pageSizeUi = function(pagesize) {
     let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
     pagesize.options.forEach((opt)=>{
         if(pagesize.pageSize == opt) {

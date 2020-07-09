@@ -1,23 +1,18 @@
 import renderDidYouMean from './renderSpellCheck';
-
-//will be removed once it is fixed in js core
-const getDidYouMeanFromResponse = function() {
-    const responseObj = this.getResponseObj()||{};
-    if(responseObj && responseObj.didYouMean) {
-        return responseObj.didYouMean
-    }
-    return null;
-
+const setSuggestion = function(e) {
+    const txt = e.target.innerText;
+    this.setPageStart(0);
+    this.getResults(txt);
 }
 const setSpellCheck = (prototype) => {
     prototype = Object.assign(prototype,{
         renderDidYouMean,
-        getDidYouMeanFromResponse
+        setSuggestion
     })
 }
 
 export {
     setSpellCheck as default,
     renderDidYouMean,
-    getDidYouMeanFromResponse
+    setSuggestion
 };
