@@ -495,7 +495,8 @@ const unbxdSearch = new UnbxdSearchComponent({
         swatchColors: "color"
       }
     },
-    hashMode:false
+    hashMode:false,
+    updateUrls:false
   });
   
 console.log(unbxdSearch,"es6unbxd");

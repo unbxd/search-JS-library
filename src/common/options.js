@@ -262,7 +262,8 @@ const options = {
         }
     },
     unbxdAnalytics:false,
-    hashMode:false
+    hashMode:false,
+    updateUrls:true
    // searchQueryParam:null
 };
 export default options;
