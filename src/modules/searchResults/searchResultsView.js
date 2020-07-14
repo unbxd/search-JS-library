@@ -10,7 +10,7 @@ const renderSearch =  function() {
     const self = this;
     const {
         gridCount
-    } = this.options;
+    } = this.options.products;
     const {
         productViewType
     } = this.viewState;

@@ -115,13 +115,7 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 | siteKey | String | This value can be found in UNBXD dashboard. It is unique for every search site created in the dashboard. |
 | apiKey | String | This is a unique for every user account. It can also be found in dashboard.|
 | sdkHostName | String | api domain |
-| productType | String | SEARCH or BROWSE or CATEGORY |
 | searchQueryParam | String | search term will be appended to this. 
-| productAttributes | Array | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
-| defaultFilters | Object | to apply default filters, this will be applied in all api requests |
-| gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row |
-| searchResultsTemplate | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product |
-| productItemClass | String | this class name will be applied to each product card. it need to be added in search results template |
 | noResultEl | Element | if you wish to render a no results page |
 | noResultsTemplate | Function | custom no results messages designs |
 | facet | Object | here you can configure customised facets. you can find detail information here - [Facet Config](#Facet-Config) |
@@ -136,10 +130,47 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 | productView | Object | configure product view types here, this config helps you to modify the product card list view or grid view. find more information here[Product Views](#Product-Views) |
 | variants | Object | Set this object, if client has variant products to display in the search view. Default is falsefind more information here [variants](#variants) |
 | fireAnalyticsEvents | Boolean | you wish to have unbid analytics along with sdk. |
+| hashMode | Boolean | you wish the url changes on hash change |
+| updateUrls | Boolean | if you dont need url tracking make it false, by default it is true |
 | | | |
 
-  
-  
+
+# Search template Config
+
+search template options are configured under 'products' object.
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row |                                                                                                                                                                                                                                                                                                                            | productAttributes | Array | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
+| defaultFilters | Object | to apply default filters, this will be applied in all api requests |
+| template | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product |
+| productItemClass | String | this class name will be applied to each product card. it need to be added in search results template |
+| productType | String | SEARCH or BROWSE or CATEGORY |
+| productMap | Object | field mappings for the current product card |
+| el | Element | Element to place the search template |
+| | |
+
+# loader Config
+
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| template | Function | |
+| el | Element | Ellement to place the loader |
+| | |
+
+
+
+
+# noResults Config
+
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| template | Function |  |
+| el | Element | Element to place the no results template |
+| | |
+
 
 # Facet Config
 
@@ -179,7 +210,7 @@ facet configuration table is available here.
 | type                      	| String   	| 'FIXED_PAGINATION' or 'INFINITE_SCROLL' or 'CLICK_N_SCROLL'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
 | onPaginate                	| Function 	| call back function after pagination.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	|
 | action                    	| String   	| 'click' or 'change' to make the pagination                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	|
-| cssSelector               	| String   	| class name for the pagination buttons                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              	|
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	|
 | template                  	| Function 	| for customising the default pagination look.  it has an argument(object) to provide the pagination  information |
 |     
 

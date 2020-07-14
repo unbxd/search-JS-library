@@ -1,7 +1,7 @@
+//import UnbxdSearchCore from "../../../search-JS-core/src/index";
 import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
-import RangeSlider from "./modules/widgets/RangeSlider";
 import options from './common/options';
 import createLayout from './core/createLayout';
 import setMethods from './core/setMethods';
@@ -16,24 +16,25 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.facetMultiSelect = props.facet.facetMultiSelect || true;
         this.options.facetDepth = props.facet.facetDepth || 6;
         this.options.pageSize = props.pagesize.pageSize || 12;
+        this.state.pageSize = this.options.pageSize;
         this.options.showSwatches = (props.swatches) ? props.swatches.enabled :false;
         this.options.applyMultipleFilters = props.facet.applyMultipleFilters || false;
+        this.options.productAttributes = props.products.productAttributes || ['sku'];
+        this.options.productType = props.products.productType || "SEARCH";
         this.viewState = {
             productViewType: this.options.productView.viewTypes,
             isInfiniteStarted:false,
-            lastAction:''
+            lastAction:'',
+            selectedRange:{}
         };
         createLayout.bind(this)();
         intialize.bind(this)();
-        this.widgets = {
-            RangeSlider:RangeSlider.bind(this)
-        };
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
         const {
             callBackFn,
-            loaderTemplate,
+            loader,
         } = this.options;
         const {
             beforeApiCall,
@@ -41,7 +42,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         if(type === beforeApiCall) { 
             callBackFn(this,beforeApiCall);
-            this.loaderEl.innerHTML = loaderTemplate(this);
+            this.loaderEl.innerHTML = loader.template(this);
         }
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);

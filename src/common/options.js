@@ -24,85 +24,89 @@ const options = {
     siteKey:"demo-spanish-unbxd809051588861207",
     apiKey:"f19768e22b49909798bc2411fa3dd963",
     sdkHostName:"https://search.unbxd.io/",
-    searchResultsTemplate : function(product,idx){
-        console.log(product,"product")
-        const {
-            unxTitle,
-            unxImageUrl,
-            uniqueId,
-            unxStrikePrice,
-            unxPrice,
-            unxDescription
-        } = product; 
-        let swatchUI = ``;
-        const {
-            swatches,
-            productItemClass
-        } = this.options;
-        if(swatches.enabled) {
-            swatchUI = this.renderSwatchBtns(product);
-        }
-        const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
-        let strikeUi = ``;
-        if(unxStrikePrice) {
-            strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
-        }
-        const {
-            productViewType
-        } = this.viewState;
-        let cardType = ``;
-        let descUI = ``;
-        if(productViewType === "GRID") {
-            cardType = "UNX-grid-card"
-        } else {
-            cardType = "UNX-list-card";
-            descUI = `<p class="UNX-description">${unxDescription}</p>`;
-        }
-        return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">  
-                    <div class="UNX-img-wrapper">
-                        <img class="UNX-img-block" src="${unxImageUrl}"/>
-                    </div>
-                    <div class="UNX-product-content">
-                        <h3 class="UNX-product-title">${unxTitle} </h3>
-                        <div class="UNX-swatch-wrapper">
-                            ${swatchUI}
+    products:{
+        el:null,
+        template : function(product,idx){
+            const {
+                unxTitle,
+                unxImageUrl,
+                uniqueId,
+                unxStrikePrice,
+                unxPrice,
+                unxDescription
+            } = product; 
+            let swatchUI = ``;
+            const {
+                swatches,
+                products
+            } = this.options;
+            const {
+                productItemClass
+            } = products;
+            if(swatches.enabled) {
+                swatchUI = this.renderSwatchBtns(product);
+            }
+            const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+            const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
+            let strikeUi = ``;
+            if(unxStrikePrice) {
+                strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
+            }
+            const {
+                productViewType
+            } = this.viewState;
+            let cardType = ``;
+            let descUI = ``;
+            if(productViewType === "GRID") {
+                cardType = "UNX-grid-card"
+            } else {
+                cardType = "UNX-list-card";
+                descUI = `<p class="UNX-description">${unxDescription}</p>`;
+            }
+            return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">  
+                        <div class="UNX-img-wrapper">
+                            <img class="UNX-img-block" src="${imgUrl}"/>
                         </div>
-                        ${descUI}
-                        <div class="UNX-price-row">
-                            ${priceUI}
-                            ${strikeUi}
+                        <div class="UNX-product-content">
+                            <h3 class="UNX-product-title">${unxTitle} </h3>
+                            <div class="UNX-swatch-wrapper">
+                                ${swatchUI}
+                            </div>
+                            ${descUI}
+                            <div class="UNX-price-row">
+                                ${priceUI}
+                                ${strikeUi}
+                            </div>
                         </div>
-                    </div>
-        </div>`
+            </div>`
+        },
+        productItemClass:"product-item", // to find out product
+        productType:"SEARCH",
+        gridCount:4,
+        productClick: function(product,e) {
+            console.log(product,"product,index",e);
+        },
+        productAttributes: ['title','uniqueId', 'sku', 'rating'],
+        productMap:{
+            'unxTitle':'title',
+            'unxImageUrl':'imageUrl',
+            'unxPrice':'salePrice',
+            'unxStrikePrice':'displayPrice',
+            'unxId':'uniqueId',
+            'unxDescription':'productDescription'
+        }
+
     },
-    productMap:{
-        'unxTitle':'title',
-        'unxImageUrl':'imageUrl',
-        'unxPrice':'salePrice',
-        'unxStrikePrice':'displayPrice',
-        'unxId':'uniqueId',
-        'unxDescription':'productDescription'
-    },
-    productItemClass:"product-item", // to find out product
-    productType:"SEARCH",
     searchQueryParam:"q",
     defaultFilters : null, //or object with keys
-    
-    noResultsTemplate: (query) => {
-        return `<div> No Results found ${query} </div>`
+    noResults: {
+        el: null,
+        template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
-    noResultEl: null,
     callBackFn: (state,type) =>{
         console.log(state,type,"state,type")
     },
     startPageNo:0,
-
-    //productViewTypes:'GRID',
-    gridCount:4,
-    //productViewTypeSelector: document.getElementById("productViewTypeContainer"),
-    //productViewTypeAction:"click",
-
-    //searchResultsSelector: null,
     productView : {
         el:null,
         template:renderProductViewType,
@@ -116,16 +120,10 @@ const options = {
     //gridCount:3,
     //productViewTypeTemplate:renderProductViewType,
     //productViewTypeSelector:null,
-
-
-    productClick: function(product) {
-        console.log(product,"product,index");
+    loader:{
+        template:function(){return `<div class="UNX-loader">Loading search results....</div>`},
+        el:null
     },
-    productAttributes: ['title','uniqueId', 'sku', 'rating'],
-    loaderTemplate: () =>{
-        return `<div>Loading search results....</div>`
-    },
-    loaderEl:null,
     variants:{
         enabled:false,
         count:5,
@@ -147,13 +145,11 @@ const options = {
         "f.categoryPath.facet.limit":"100"*/
     },
 
-
-    
-
     spellCheck:{
         enabled:true,
         el:document.getElementById("didYouMeanWrapper"),
-        template: didYouMeanUI
+        template: didYouMeanUI,
+        selectorClass: "UNX-suggestion"
     },
 
     breadcrumb:{
@@ -219,8 +215,7 @@ const options = {
         inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
         onPaginate:function(paginationInfo){console.log(paginationInfo,"paginationInfo opt")},
-        action:'click',
-        cssSelector:'',
+        action:'click'
     },
 
     pagesize: {
@@ -266,7 +261,9 @@ const options = {
             return `<div class="UNX-swatch-color-list">${btnUI}</div>`
         }
     },
-    unbxdAnalytics:false
+    unbxdAnalytics:false,
+    hashMode:false,
+    updateUrls:true
    // searchQueryParam:null
 };
 export default options;

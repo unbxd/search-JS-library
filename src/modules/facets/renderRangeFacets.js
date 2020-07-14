@@ -1,4 +1,4 @@
-const renderRangeFacets = function(rangeFacets) {
+const renderRangeFacets = function(rangeFacets, selectedRanges) {
     const self = this;
     const getRangesFrom = (str, xMin = 0, yMin = 100) => {
         const trimmed = str.replace(/(^")|("$)/g, '').replace(/\"{2,}/g, '"').replace(/\\\"/g, '"').replace(/(^\[)|(\]$)/g, '');
@@ -43,27 +43,31 @@ const renderRangeFacets = function(rangeFacets) {
             facetName,
             displayName,
             position,
-            values 
+            values,
+            start,
+            end
         } = item;
         const selectedRange = rangeFacet[facetName];
-        let minX = values.start;
-        let minY = values.end;
+        let minX = start;
+        let minY = end;
         if(selectedRange) {
             const {
                 start,
                 end
-            } = getRangesFrom(selectedRange,values.start,values.end);
+            } = getRangesFrom(selectedRange[0],values.start,values.end);
             minX = start;
             minY = end;
         }
-        return new self.widgets.RangeSlider({
+        return new self.RangeSlider({
             facetName,
             displayName,
             position,
-            ...values,
+            values,
             onStop,
             minX,
             minY,
+            start:0,
+            end,
             wrapper:self.options.facet.rangeFacetEl,
             rangeConfig: self.options.facet.rangeWidgetConfig
         }).render();

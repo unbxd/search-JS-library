@@ -100,7 +100,7 @@ const es6unbxd =  new UnbxdSearchComponent({
             } = this.options.facet;
             return `<button
                         data-facet-name="${facetName}" 
-                        data-facet-action="CHANGE_FACET"
+                        data-facet-action="changeFacet"
                         class="${facetClass}"
                         data-id= "${dataId}">
                             ${name} (${count})
@@ -155,7 +155,6 @@ const es6unbxd =  new UnbxdSearchComponent({
         type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
         onPaginate:function(objectInfo){console.log(objectInfo,"objectInfo")},
         action:'click',
-        cssSelector:"UNX-pagination-css",
         template:function(paginationData){
             const {
                 cssSelector
@@ -346,69 +345,159 @@ const es6unbxd =  new UnbxdSearchComponent({
         "f.categoryPath.facet.limit":"100"
     }
 */
-
-const es6unbxd =  new UnbxdSearchComponent({
-    searchBoxSelector:document.getElementById("unbxdInput"),
-    searchTrigger:"click",
-    searchButtonSelector:document.getElementById("searchBtn"),
-    searchResultsSelector:document.getElementById("searchResultsWrapper"),
+const unbxdSearch = new UnbxdSearchComponent({
+    searchBoxSelector: document.getElementById("unbxdInput"),
+    searchTrigger: "click",
+    searchButtonSelector: document.getElementById("searchBtn"),
+    //searchResultsSelector: document.getElementById("searchResultsWrapper"),
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    productAttributes: ['title','uniqueId','price', 'sku', 'imageUrl','displayPrice','salePrice','sortPrice','productDescription','unbxd_color_mapping','colorName','color'],
-    spellCheck:{
-        enabled:true,
-        el:document.getElementById("didYouMeanWrapper")
+    products:{
+        el:document.getElementById("searchResultsWrapper"),
+        template : function(product,idx){
+            const {
+                unxTitle,
+                unxImageUrl,
+                uniqueId,
+                unxStrikePrice,
+                unxPrice,
+                unxDescription
+            } = product; 
+            let swatchUI = ``;
+            const {
+                swatches,
+                products
+            } = this.options;
+            const {
+                productItemClass
+            }  = products;
+            if(swatches.enabled) {
+                swatchUI = this.renderSwatchBtns(product);
+            }
+            const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+            const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
+            let strikeUi = ``;
+            if(unxStrikePrice) {
+                strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
+            }
+            const {
+                productViewType
+            } = this.viewState;
+            let cardType = ``;
+            let descUI = ``;
+            if(productViewType === "GRID") {
+                cardType = "UNX-grid-card"
+            } else {
+                cardType = "UNX-list-card";
+                descUI = `<p class="UNX-description">${unxDescription}</p>`;
+            }
+            return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">  
+                        <div class="UNX-img-wrapper">
+                            <img class="UNX-img-block" src="${imgUrl}"/>
+                        </div>
+                        <div class="UNX-product-content">
+                            <h3 class="UNX-product-title">${unxTitle} </h3>
+                            <div class="UNX-swatch-wrapper">
+                                ${swatchUI}
+                            </div>
+                            ${descUI}
+                            <div class="UNX-price-row">
+                                ${priceUI}
+                                ${strikeUi}
+                            </div>
+                        </div>
+            </div>`
+        },
+        productItemClass:"product-item", // to find out product
+        productType:"SEARCH",
+        gridCount:4,
+        productClick: function(product,e) {
+            console.log(product,"product,index",e);
+        },
+        productAttributes: [
+            "title",
+            "uniqueId",
+            "price",
+            "sku",
+            "imageUrl",
+            "displayPrice",
+            "salePrice",
+            "sortPrice",
+            "productDescription",
+            "unbxd_color_mapping",
+            "colorName",
+            "color"
+        ],
+        productMap:{
+            'unxTitle':'title',
+            'unxImageUrl':'imageUrl',
+            'unxPrice':'salePrice',
+            'unxStrikePrice':'displayPrice',
+            'unxId':'uniqueId',
+            'unxDescription':'productDescription'
+        }
+
     },
-    noResultEl: document.getElementById("noResultWrapper"),
+    spellCheck: {
+      enabled: true,
+      el: document.getElementById("didYouMeanWrapper")
+    },
+    noResults: {
+        //noResultEl: document.getElementById("noResultWrapper"),
+        el: document.getElementById("noResultWrapper")
+    },
     facet: {
-        facetsEl:document.getElementById("facetsWrapper"),
-        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-        rangeFacetEl:document.getElementById("rangeFacetWrapper"),
-        multiLevelFacetEl:document.getElementById("bucketedFacetWrapper")
+      facetsEl: document.getElementById("facetsWrapper"),
+      selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+      rangeFacetEl: document.getElementById("rangeFacetWrapper"),
+      multiLevelFacetEl: document.getElementById("bucketedFacetWrapper")
     },
     pagination: {
-        el:document.getElementById("unxPagination"),
-        type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION 
+      el: document.getElementById("unxPagination"),
+      type:'FIXED_PAGINATION'
     },
-    breadcrumb:{
-        el:document.getElementById("breadcrumpContainer"),
+    breadcrumb: {
+      el: document.getElementById("breadcrumpContainer")
     },
-    pagesize : {
-        el:document.getElementById("changeNoOfProducts")
+    pagesize: {
+      el: document.getElementById("changeNoOfProducts")
     },
-
+  
     sort: {
-        el:document.getElementById("sortWrapper"),
-        options:[
-            {
-                value:"sortPrice desc",
-                text:"Price High to Low"
-            },
-            {
-                value:"sortPrice asc",
-                text:" Price Low to High"
-            }
-        ]
+      el: document.getElementById("sortWrapper"),
+      options: [
+        {
+          value: "sortPrice desc",
+          text: "Price High to Low"
+        },
+        {
+          value: "sortPrice asc",
+          text: " Price Low to High"
+        }
+      ]
     },
-    loaderEl:document.getElementById('loaderEl'),
-    productView : {
-        el: document.getElementById("productViewTypeContainer"),
-        viewTypes:'GRID'
+    loader :{
+        el:document.getElementById("loaderEl")
+    },
+    productView:{
+      el: document.getElementById("productViewTypeContainer"),
+      viewTypes: "GRID"
     },
     banner: {
-        el:document.getElementById('bannerContainer'),
-        count:1
+      el: document.getElementById("bannerContainer"),
+      count: 1
     },
-    swatches:{
-        enabled:true,
-        attributesMap:{
-            "swatchList":"color",
-            "swatchImgs":"unbxd_color_mapping",
-            "swatchColors":"color"
-        }
-    }
-
-});
-
-console.log(es6unbxd,"es6unbxd");
+    swatches: {
+      enabled: true,
+      attributesMap: {
+        swatchList: "color",
+        swatchImgs: "unbxd_color_mapping",
+        swatchColors: "color"
+      }
+    },
+    hashMode:false,
+    updateUrls:true
+  });
+  
+console.log(unbxdSearch,"es6unbxd");
 //es6unbxd.getResults();

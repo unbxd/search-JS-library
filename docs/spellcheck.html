@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spell check - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prism.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link"><a href="index.html">Home</a></li>
+    <li class="nav-link  nav-current-link">
+      <a href="spellcheck.html">spellCheck</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pageSize.html">page size</a>
+    </li>
+    <li class="nav-link ">
+        <a href="sort.html">sort</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pagination.html">pagination</a>
+    </li>
+    <li class="nav-link ">
+        <a href="productviewtype.html">product view type</a>
+    </li>
+    <li class="nav-link">
+        <a href="breadcrumbs.html">breadcrumbs</a>
+    </li>
+    <li class="nav-link ">
+        <a href="banners.html">banner</a>
+    </li>
+    <li class="nav-link ">
+        <a href="facets.html">facets</a>
+    </li>
+    <li class="nav-link">
+        <a href="loaders.html">Loaders</a>
+    </li>
+    <li class="nav-link ">
+      <a href="searchResults.html">Search Results</a>
+  </li>
+  <li>
+    <h6>Api Docs</h6>
+  </li>
+  <li class="nav-link ">
+    <a href="reRender.html">reRender</a>
+  </li>
+  <li class="nav-link">
+    <a href="resetAll.html">reset all</a>
+  </li>
+  <li class="nav-link ">
+    <a href="rangeSlider.html">Range Slider</a>
+  </li>
+  <li class="nav-link ">
+    <a href="overRidingDefaultMethods.html">Override Methods</a>
+  </li>
+</nav>
+
+<div id="main">
+  <h3>Spell Check</h3>
+  <p>This module will be rendering the search results summary and spell check suggestion for current search query.</p>
+
+      <script type="text/plain" class="language-javascript">
+  spellCheck:{
+    enabled:true, //for enabling the widget
+    el:document.getElementById("didYouMeanWrapper"), //element to place the template
+    //default template from library
+    template: function(query,suggestion,pages) {
+      //each arguments are explained below with examples
+        const {
+            start,
+            productsLn,
+            numberOfProducts
+        } = pages;
+        const {
+            selectorClass
+        } = this.options.spellCheck
+        const suggestionUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button class="${selectorClass}">${suggestion}</button></p>` :``;
+        return  `<div class="UNX-spellcheck-block">
+            <p class="UNX-suggestion">Showing results for <strong>${suggestion}</strong> <span class="UNX-result-info"> - ${start} to ${productsLn+start} of ${numberOfProducts} products</span></p>
+            ${suggestionUi}
+        </div>`;
+    },
+    selectorClass: "UNX-suggestion" //class selector for suggestion element
+  }
+</script>
+
+  <p>Template function arguments are listed below</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Argument</th>
+        <th>Data type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+            query
+        </td>
+        <td>
+            String
+        </td>
+        <td>
+            current search term
+        </td>
+      </tr>
+      <tr>
+          <td>
+              suggestion
+          </td>
+          <td>
+              String
+          </td>
+          <td>
+              suggest search term
+          </td>
+        </tr>
+        <tr>
+            <td>
+                pages
+            </td>
+            <td>
+                Object
+            </td>
+            <td>
+                details search response </br>
+                <pre>
+                  <code class="language-js">
+  {
+    "numberOfProducts": 194,
+    "start": 0,
+    "productsLn": 12,
+    "rows": 12,
+    "noOfPages": 17,
+    "currentPage": 1,
+    "isNext": true,
+    "isPrev": false
+  }
+                  </code>
+                </pre>
+
+            </td>
+          </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<br class="clear">
+
+<script>prettyPrint();</script>
+<script src="scripts/prism.js"></script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

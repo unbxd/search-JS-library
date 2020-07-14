@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spell check - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prism.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link"><a href="index.html">Home</a></li>
+    <li class="nav-link  ">
+      <a href="spellcheck.html">spellCheck</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pageSize.html">page size</a>
+    </li>
+    <li class="nav-link ">
+        <a href="sort.html">sort</a>
+    </li>
+    <li class="nav-link">
+        <a href="pagination.html">pagination</a>
+    </li>
+    <li class="nav-link ">
+        <a href="productviewtype.html">product view type</a>
+    </li>
+    <li class="nav-link nav-current-link">
+        <a href="breadcrumbs.html">breadcrumbs</a>
+    </li>
+    <li class="nav-link ">
+        <a href="banners.html">banner</a>
+    </li>
+    <li class="nav-link ">
+        <a href="facets.html">facets</a>
+    </li>
+    <li class="nav-link ">
+        <a href="searchResults.html">search results</a>
+    </li>
+    <li class="nav-link">
+        <a href="loaders.html">Loaders</a>
+    </li>
+    <li class="nav-link ">
+      <a href="searchResults.html">Search Results</a>
+  </li>
+  <li>
+    <h6>Api Docs</h6>
+  </li>
+  <li class="nav-link ">
+    <a href="reRender.html">reRender</a>
+  </li>
+  <li class="nav-link">
+    <a href="resetAll.html">reset all</a>
+  </li>
+  <li class="nav-link ">
+    <a href="rangeSlider.html">Range Slider</a>
+  </li>
+  <li class="nav-link ">
+    <a href="overRidingDefaultMethods.html">Override Methods</a>
+  </li>
+</nav>
+
+<div id="main">
+  <h3>Pagination</h3>
+  <p>Pagination elements can be configured here. There are 3 types of pagination.</p>
+  <p>CLICK_N_SCROLL , INFINITE_SCROLL and FIXED_PAGINATION </p>
+      <script type="text/plain" class="language-javascript">
+        pagination : {
+          enabled:true,
+          el:null,
+          template:function (paginationData) {
+            //paginationData pagination configuration here
+          },
+          pageClass:"UNX-page-items",
+          selectedPageClass:"UNX-selected-page-item",
+          type:'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+          inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
+          heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
+          onPaginate:function(paginationInfo){
+            console.log(paginationInfo,"paginationInfo opt")
+          },
+          action:'click'
+        }
+      </script>
+
+  <h5>Fixed Pagination</h5>
+  <p>this is the traditional pagination option where previous,next and page numbers. Libray needs following configuration to render the fixed paginationn</p>
+        <script type="text/plain" class="language-javascript">
+    pagination : {
+      enabled:true,
+      el: document.getElementById("unxPagination"),
+      type: "FIXED_PAGINATION" 
+      template:function (paginationData) {
+        //paginationData pagination configuration here
+        const {
+            currentPage,
+            isNext,
+            isPrev,
+            noOfPages,
+            productsLn,
+            numberOfProducts
+        } = paginationData;
+        const {
+            pageClass,
+            selectedPageClass
+        } = this.options.pagination;
+        if(numberOfProducts <= productsLn) {
+            return ``;
+        }
+        let nextBtn = `<button class="next-btn UNX-page-next ${pageClass}" data-page-action="next">></button>`;
+        let prevBtn = `<button class="prev-btn UNX-page-prev ${pageClass}" data-page-action="prev"><</button>`;
+        let pageNumbers = ``;
+        for(let i=1;i<noOfPages;i++) {
+            const pageClassSelected = (i === currentPage) ?selectedPageClass :'';
+            pageNumbers += `<button data-page-action="paginate" data-page-no="${(i-1)*productsLn}" class="UNX-page-button ${pageClass} ${pageClassSelected}">${i}</button>`
+        }
+        if(!isNext) {
+            nextBtn = `<button disabled class="next-btn UNX-page-next">></button>`;
+        }
+        if(!isPrev) {
+            prevBtn = `<button disabled class="prev-btn UNX-page-prev"><</button>`;
+        }
+        return `<div class="pagination-block">
+            ${prevBtn} 
+            <div class="UNX-page-no-block">${pageNumbers}</div>
+            ${nextBtn} 
+        </div>`
+      },
+      pageClass:"UNX-page-items",  
+      onPaginate:function(paginationInfo){
+        console.log(paginationInfo,"paginationInfo opt")
+      },
+      action:'click'
+    }
+        </script>
+
+
+    <h5>Clickn Scroll Pagination</h5>
+    <p>If you wish to have a button to load next results, you can choose this option</p>
+    <script type="text/plain" class="language-javascript">
+      pagination: {
+        el: document.getElementById("clickScrollContainer"),
+        type:'CLICK_N_SCROLL',
+        action:'click',
+        template:function(paginationData) {
+              const {
+                  pageClass,
+              } = this.options.pagination;
+              return `<button class="${pageClass}">Load More</button>`
+          }
+      }
+    </script>
+
+
+    <h5>INFINITE_SCROLL Pagination</h5>
+    <p>If you wish to load new results by scrolling down, you can configure this option</p>
+    <script type="text/plain" class="language-javascript">
+      pagination: {
+        el: null,
+        type:'INFINITE_SCROLL',
+        inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
+        heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,
+      },
+    </script>
+
+
+</div>
+
+<br class="clear">
+
+<script>prettyPrint();</script>
+<script src="scripts/prism.js"></script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

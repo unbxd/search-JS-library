@@ -1,6 +1,6 @@
 {
   "name": "@unbxd-ui/vanilla-search-library",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A JavaScript library for building performant and quick search experiences with Unbxd",
   "main": "src/index.js",
   "repository": {
@@ -65,7 +65,7 @@
   "author": "Unbxd",
   "license": "ISC",
   "dependencies": {
-    "@unbxd-ui/unbxd-search-core": "0.0.4",
+    "@unbxd-ui/unbxd-search-core": "0.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "infinite-scroll": "^3.0.6"

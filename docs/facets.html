@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Spell check - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prism.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link"><a href="index.html">Home</a></li>
+    <li class="nav-link ">
+      <a href="spellcheck.html">spellCheck</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pageSize.html">page size</a>
+    </li>
+    <li class="nav-link ">
+        <a href="sort.html">sort</a>
+    </li>
+    <li class="nav-link ">
+        <a href="pagination.html">pagination</a>
+    </li>
+    <li class="nav-link ">
+        <a href="productviewtype.html">product view type</a>
+    </li>
+    <li class="nav-link">
+        <a href="breadcrumbs.html">breadcrumbs</a>
+    </li>
+    <li class="nav-link ">
+        <a href="banners.html">banner</a>
+    </li>
+    <li class="nav-link nav-current-link">
+        <a href="facets.html">facets</a>
+    </li>
+    <li class="nav-link ">
+        <a href="searchResults.html">search results</a>
+    </li>
+    <li class="nav-link">
+            <a href="loaders.html">Loaders</a>
+        </li>
+        <li class="nav-link ">
+            <a href="searchResults.html">Search Results</a>
+        </li>
+        <li>
+            <h6>Api Docs</h6>
+          </li>
+          <li class="nav-link ">
+            <a href="reRender.html">reRender</a>
+          </li>
+          <li class="nav-link">
+            <a href="resetAll.html">reset all</a>
+          </li>
+          <li class="nav-link ">
+            <a href="rangeSlider.html">Range Slider</a>
+          </li>
+          <li class="nav-link ">
+            <a href="overRidingDefaultMethods.html">Override Methods</a>
+          </li>
+</nav>
+
+<div id="main">
+  <h3>Facets</h3>
+  <p>This module will be rendering the available filters</p>
+  <p>There are 3 types of Facets available.</p>
+  <ul>
+      <li>
+          Text facets
+      </li>
+      <li>
+        Range facets
+    </li>
+    <li>
+        Category facets
+    </li>
+  </ul>
+
+<p>Full configuration if given below</p>
+<p>Each facet item requires follwing data attributes</p>
+<h6>data-facet-action </h6>
+<p> This param need to be configured for triggering the user action  </p>
+<p>available configurations are </p>
+<ul>
+    <li>deleteFacet - for deleting all the selected filters under a facet</li>
+    <li>changeFacet - for selecting a facet</li>
+    <li>clearAllFacets - this will clear all the facets</li>
+    <li>deleteFacetValue - for unselecting a filter</li>
+</ul>
+</br>
+<h6>data-facet-name </h6>
+<p>library needs facet_name here.</p>
+
+</br>
+<h6>data-id </h6>
+<p>required filter value here</p>
+
+      <script type="text/plain" class="language-javascript">
+facet: {
+
+    //text facet configuration
+    facetsEl:document.getElementById("facetsWrapper"), // for placing text facet elements
+    facetTemplate:function(facet, children){
+    //facet  - single text facet
+    //children  - text facet element under the each facet
+    const {
+        displayName,
+        facetName
+    } = facet;
+    const {
+        facetClass
+    } = this.options.facet;
+    return `<div id="${facetName}">
+        <h3 class="UNX-facet-header"> ${displayName}</h3>
+        <div class="UNX-facets">${children}</div>
+        <div class="UNX-facet-footer">
+            <button 
+                class="UNX-facet-clear ${facetClass}"
+                data-facet-action="deleteFacet"//this param is required to delete the selected  values under this facet
+                data-facet-name="${facetName}" > // need to provide the facetname here
+                clear
+            </button>
+        </div>
+    </div>`
+
+    },
+    facetItemTemplate:function(facet, filter) {
+        //this template will render the each filter value
+        //facet - each facet item
+        //filter - each filter value
+        const {
+            facetName,
+        } = facet;
+        const  {
+            name, //filter name
+            count, //number of products available under this value
+            dataId //filter id for the element
+        } = filter;
+        const {
+            facetClass //class name for the each facet item
+        } = this.options.facet;
+        return `<button
+                    data-facet-name="${facetName}" //facet name
+                    data-facet-action="changeFacet" //facet action
+                    class="UNX-change-facet ${facetClass}"
+                    data-id= "${dataId}">//id for the filter
+                        <span class="UNX-facet-text">${name}</span>
+                        <span class="UNX-facet-count">(${count})</span>
+                </button>`
+    },
+    facetMultiSelect:true, // if not true then you will be able to select only one filter under a facet
+    facetClass:"UNX-facets-block",//if you will to modify the classes
+    facetAction:"click", // click or change according the facet element
+
+    selectedFacetClass:"UNX-selected-facet",//class name for the selected filter
+    selectedFacetsEl:document.getElementById("selectedFacetWrapper"), // if you wish to render selected filters seperately
+    //default templates
+    selectedFacetTemplate:function(selections) {
+        //selected facet node elements
+        //
+        if(selections.length > 0) {
+            return `<div class="UNX-facets-selections">
+                <h5 class="UNX-selected-facet-header">Selected Filters</h5>
+                <div class="UNX-selected-facets-inner">${selections}</div>
+                <button class="UNX-clear-facet ${this.selectedFacetClass}" data-facet-action="clearAllFacets">clear all</button>
+            </div>`
+        } else {
+            return ``;
+    },
+    selectedFacetItemTemplate:function(selectedFacet,selectedFacetItem){
+        //selectedFacet - selected facet object
+        //selectedFacetItem - selected filter value
+        const {
+            facetName,
+        } = selectedFacet;
+        const  {
+            name,
+            count,
+            dataId
+        } = selectedFacetItem;
+        const {
+            facetClass,
+            selectedFacetClass
+        } = this.options.facet;
+        return `<div class="UNX-selected-facets-wrap "><button 
+                    class="UNX-selected-facet-btn ${facetClass} UNX-change-facet ${selectedFacetClass}"
+                    data-facet-name="${facetName}"
+                    data-facet-action ="deleteFacetValue"
+                    data-id= "${dataId}">
+                    <span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>
+            </button>
+            <button
+                class="${facetClass} UNX-delete-facet ${selectedFacetClass}"
+                data-id= "${dataId}" data-facet-action="deleteFacetValue"
+                data-facet-name="${facetName}" > x</button>
+            </div>`
+
+    },
+
+
+    rangeFacetEl:document.getElementById("rangeFacetWrapper"),
+    //dont configure rangeTemplate if you wish to have a range slider
+    //below example render a list of ranges
+    rangeTemplate:function(ranges,selectedRanges) {
+        //ranges - availabel range Filters
+        //selectedRanges - selected ranges 
+        //data-action="setRange" //needed this on each filter element
+        let ui  = ``;
+        const {
+          selectedFacetClass,
+          facetClass
+        } = this.options.facet;
+        ranges.forEach(range => {
+            const {
+              displayName,
+              facetName,
+              values
+            } = range;
+            let valueUI = ``;
+            values.forEach(item =>{
+                const {
+                  from,
+                  to
+                } = item;
+              const isSelected = this.isSelectedRange(facetName,item);
+              const btnCss = (isSelected) ? `${facetClass} ${selectedFacetClass}`:`${facetClass}`;
+              //data-action - param to set range
+              //data-facet-name -  param for facet_name
+              //data-start - start point the range
+              //data-end-end point for the range
+              valueUI +=`<button class="${btnCss} UNX-range-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >
+                  <span class="UNX-facet-text">${from.name}  -  ${to.name}</span>
+                  <span class="UNX-facet-count">(${from.count})</span>
+              </button>`;
+            });
+            ui += `<div class="UNX-facets-inner-wrapper">
+              <h3 class="UNX-facet-header">${displayName}</h3>
+                  <div class="UNX-facets">${valueUI}</div>
+            </div>`
+        });
+        //data-action="clearRangeFacets" - will clear the selected
+        return `<div class="UNX-range-wrapper">
+          ${ui}
+          <div class="UNX-price-action-row">
+              <button
+              class="UNX-default-btn "
+              data-action="clearRangeFacets"> clear</button>
+          <div>
+        </div>`
+    }
+  },
+  //in above case you dont need rangeWidgetConfig
+  //if you wish to have a range slider, you can use below configuration
+  //this is optional config your range slider
+    rangeWidgetConfig: {
+        "prefix":'$',
+        "submitBtnTxt":"Filter By Price",
+        "clearBtnTxt":"Clear"
+    },
+
+    //optional for  setting multilevel facet
+    facetMultilevel:true,
+    //name for the configured multilevel facet
+    facetMultilevelName:'Category',
+    //class name for the multi level facet items
+    multiLevelFacetSelector:'UNX-multilevel-facet',
+    //element to place the multilevel facet
+    multiLevelFacetEl:document.getElementById("bucketedFacetWrapper"),
+    //create your template here
+    multiLevelFacetTemplate:function(facets,selectedCategories) {
+        //will provide 2 arguments
+        //facets - available multi level facets
+        //selected multilevel facets
+        //the default template is given below
+        //you can customise this if you wish to change the elements
+        //required data attributes for the template to work
+        //data-parent - required field for the element
+        //data-level - required field to know which level
+        //data-name - required - current facet name
+        let ui = "";
+        let filters = facets;
+        if(selectedCategories) {
+            selectedCategories.forEach(item => {
+                const {
+                    level,
+                    filterField,
+                    value
+                } = item;
+                const levelCss = `${this.multiLevelFacetSelector}  UNX-category-level-${level}`
+                ui += `<button 
+                data-parent="${filterField}"
+                data-level="${level}"
+                data-name="${value}"
+                class=" ${levelCss} UNX-selected-crumb"
+                data-action = "clearCategoryFilter">
+                    <span class="UNX-category-icon"></span>
+                    <label class="UNX-facet-text">${decodeURIComponent(value)}</label>
+                </button>`
+            })
+        }
+        filters.forEach(facet => {
+            const {
+                level,
+                displayName,
+                values,
+                filterField
+            } = facet;
+            let {
+                multiLevelField
+            } = facet;
+            if (!multiLevelField) {
+                multiLevelField = filterField;
+            }
+            let levelCss = `UNX-category-level-${level}`;
+            const valueUI = values.map(item => {
+                const {
+                    name,
+                    count
+                } = item;
+                return `<button
+                    data-parent="${multiLevelField}"
+                    data-level="${level}"
+                    class="${this.multiLevelFacetSelector} ${levelCss}"
+                    data-name="${name}"
+                    data-action = "setCategoryFilter">
+                    <label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`
+            })
+            ui += `<div class="UNX-category-values">${valueUI.join('')}</div>`
+        })
+        if(ui !== "") {
+            return `<div class="UNX-multi-facet-wrap">
+                <h6>Bucketed facets</h6>
+                    ${ui}
+            </div>`
+    
+        } else {
+            return "";
+        }
+    },
+    //depth level of multilevel facets
+    // maximum is 4
+    facetDepth:4,
+    //css class for clearing the multi level facet
+    clearFacetsSelector:'UNX-clear-facet',
+    // for removing each multi level facet
+    removeFacetsSelector:'UNX-remove-facet',
+    onFacetLoad:function(facets){
+        console.log(facets,"facetsfacets");
+    },
+    //if you wish to apply facets at once instead of each time applying
+    applyMultipleFilters:false
+}
+</script>
+
+</div>
+
+<br class="clear">
+
+<script>prettyPrint();</script>
+<script src="scripts/prism.js"></script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

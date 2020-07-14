@@ -50,12 +50,14 @@ function facetItemUiElem (facet , value) {
     } = this.options.facet;
     return `<button
                 data-facet-name="${facetName}" 
-                data-facet-action="CHANGE_FACET"
+                data-facet-action="changeFacet"
                 class="UNX-change-facet ${facetClass}"
                 data-id= "${dataId}">
                     <span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>
             </button>`
 }
+
+
 function facetUIElem (facet, children) {
     const {
         displayName,

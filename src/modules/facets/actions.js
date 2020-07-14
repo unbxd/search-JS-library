@@ -1,18 +1,3 @@
-const facetsClickFn = function(e) {
-    const dataElem = e.target.dataset;
-    const {
-        actionType,
-        facetName
-    } = dataElem;
-    if(actionType === this.events.deleteFacet) {
-        if(this.findSelectedFacet(facetName)) {
-            this.deleteAFacet.bind(this)(facetName);
-            this.options.callBackFn(this,actionType, {
-                facetName
-            });
-        }
-    }
-}
 const findChangedFacet = function(e) {
     const elem = e.target;
     const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
@@ -80,8 +65,27 @@ const findChangedFacet = function(e) {
 const onClickRangeFacet = function(e) {
     const {
         action,
-        facetName
+        facetName,
+        end,
+        start
     } = e.target.dataset;
+    const self = this;
+    if(action === "setRange") {
+        this.setRangeFacet({
+            start:start,
+            end:end,
+            facetName:facetName,
+            applyMultiple:true
+        });
+        if(!this.options.facet.applyMultipleFilters){
+            this.setPageStart(0);
+            this.applyRangeFacet();
+        }
+    }
+    if(action === "clearRangeFacets") {
+        this.state.rangeFacet = [];
+        this.applyRangeFacet();
+    }
     if(action === this.actions.filterPriceRange) {
         this.applyRangeFacet();
         this.options.callBackFn(this,action, {
@@ -117,9 +121,7 @@ const onBucketedFacet = function(e) {
         this.getCallbackActions(data,'facetClick');
     }
 }
-
 export {
-    facetsClickFn,
     findChangedFacet,
     onClickRangeFacet,
     onBucketedFacet
