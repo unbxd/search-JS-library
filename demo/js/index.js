@@ -496,7 +496,7 @@ const unbxdSearch = new UnbxdSearchComponent({
       }
     },
     hashMode:false,
-    updateUrls:false
+    updateUrls:true
   });
   
 console.log(unbxdSearch,"es6unbxd");
