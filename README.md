@@ -148,8 +148,8 @@ search template options are configured under 'products' object.
 | productItemClass | String | this class name will be applied to each product card. it need to be added in search results template |
 | productType | String | SEARCH or BROWSE or CATEGORY |
 | productMap | Object | field mappings for the current product card |
-| el | Element | Ellement to place the search template |
-
+| el | Element | Element to place the search template |
+| | |
 
 # loader Config
 
@@ -170,7 +170,7 @@ search template options are configured under 'products' object.
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | template | Function | |
 
-| el | Element | Ellement to place the no results template |
+| el | Element | Element to place the no results template |
 
 
 # Facet Config
