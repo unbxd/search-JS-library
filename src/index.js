@@ -1,8 +1,7 @@
-//import UnbxdSearchCore from "../../../search-JS-core/src/index";
-import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+import UnbxdSearchCore from "../../../search-JS-core/src/index";
+//import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
-import RangeSlider from "./modules/widgets/RangeSlider";
 import options from './common/options';
 import createLayout from './core/createLayout';
 import setMethods from './core/setMethods';
@@ -17,6 +16,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.facetMultiSelect = props.facet.facetMultiSelect || true;
         this.options.facetDepth = props.facet.facetDepth || 6;
         this.options.pageSize = props.pagesize.pageSize || 12;
+        this.state.pageSize = this.options.pageSize;
         this.options.showSwatches = (props.swatches) ? props.swatches.enabled :false;
         this.options.applyMultipleFilters = props.facet.applyMultipleFilters || false;
         this.options.productAttributes = props.products.productAttributes || ['sku'];
@@ -29,9 +29,6 @@ class UnbxdSearch extends UnbxdSearchCore {
         };
         createLayout.bind(this)();
         intialize.bind(this)();
-        this.widgets = {
-            RangeSlider:RangeSlider.bind(this)
-        };
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);

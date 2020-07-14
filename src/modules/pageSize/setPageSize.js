@@ -8,7 +8,7 @@ const renderPageSize = function() {
     } = this.options;
     const qParams  = this.getQueryParams();
     if(qParams) {
-        pagesize.pageSize = Number(qParams.rows);
+        pagesize.pageSize = this.state.pageSize;
     }
     this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(pagesize);
 }

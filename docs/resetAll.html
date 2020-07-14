@@ -38,26 +38,23 @@
     <li class="nav-link ">
         <a href="pagination.html">pagination</a>
     </li>
-    <li class="nav-link  nav-current-link">
+    <li class="nav-link ">
         <a href="productviewtype.html">product view type</a>
     </li>
     <li class="nav-link">
         <a href="breadcrumbs.html">breadcrumbs</a>
     </li>
-    <li class="nav-link ">
+    <li class="nav-link">
         <a href="banners.html">banner</a>
     </li>
     <li class="nav-link ">
         <a href="facets.html">facets</a>
     </li>
-    <li class="nav-link ">
+    <li class="nav-link">
         <a href="searchResults.html">search results</a>
     </li>
     <li class="nav-link">
-            <a href="loaders.html">Loaders</a>
-        </li>
-    <li class="nav-link">
-        <a href="products.html">Products</a>
+        <a href="loaders.html">Loaders</a>
     </li>
     <li class="nav-link ">
         <a href="searchResults.html">Search Results</a>
@@ -68,7 +65,7 @@
       <li class="nav-link ">
         <a href="reRender.html">reRender</a>
       </li>
-      <li class="nav-link">
+      <li class="nav-link nav-current-link">
         <a href="resetAll.html">reset all</a>
       </li>
       <li class="nav-link ">
@@ -77,65 +74,21 @@
       <li class="nav-link ">
         <a href="overRidingDefaultMethods.html">Override Methods</a>
       </li>
+    
 </nav>
 
 <div id="main">
-  <h3>Product view type</h3>
-  <p>This is the component wich can toggle the search results to list ot grid.</p>
+  <h3>Reset</h3>
+  <p> if you wish to reset the library. </p>
 
-        <script type="text/plain" class="language-javascript">
-productView : {
-    el:document.getElementById("productViewTypeContainer"),
-    template:function(productViewType, selectedViewType) {
-        //productViewType - the options from config 
-        //selectedViewType -  selected view type
-        const isDisabled = (this.getSearchResults())?false:true;
-        const {
-            selectedViewTypeClass,
-            viewTypeClass
-        } = productViewType;
-        let listBtnCss =`UNX-list-btn ${viewTypeClass}`;
-        let gridBtnCss = `UNX-grid-btn ${viewTypeClass}`;
-        if(selectedViewType === 'LIST' ) {
-            listBtnCss += ` ${selectedViewTypeClass}`
-        }
-        if(selectedViewType === 'GRID' ) {
-            gridBtnCss += ` ${selectedViewTypeClass}`
-        }
-        let listBtn = `<button
-                id="listBtn"
-                class="${listBtnCss}"
-                data-view-action="LIST" >List</button>`;
-        let gridBtn = `<button
-                id="gridBtn"
-                class="${gridBtnCss}"
-                data-view-action="GRID" >Grid</button>`;
-    
-        if(isDisabled) {
-            listBtn = `<button
-                id="listBtn"
-                disabled
-                class="${listBtnCss} disabled-btn"
-                data-view-action="LIST" >List</button>`;
-            gridBtn = `<button
-                id="gridBtn"
-                disabled
-                class="${gridBtnCss}  disabled-btn"
-                data-view-action="GRID" >Grid</button>`;
-        }
-    
-        return `<div class='product-view-container'>
-            ${listBtn}
-            ${gridBtn}
-        </div>`
-    
-    },
-    action:'click', // CLICK or CHANGE
-    viewTypeClass:'UNX-product-view',
-    selectedViewTypeClass:'UNX-selected-product-view',
-    viewTypes:'GRID' //GRID or LIST
-}
-        </script>
+<script type="text/plain" class="language-javascript">
+    const unbxdSearch = new UnbxdSearchComponent({
+        ...options
+      });
+      //if you have configured the seacrh library like this, you can re render the ui as per your requirements.
+    unbxdSearch.resetAll();
+      
+</script>
 
 </div>
 

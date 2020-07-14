@@ -58,11 +58,11 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             minX = start;
             minY = end;
         }
-        return new self.widgets.RangeSlider({
+        return new self.RangeSlider({
             facetName,
             displayName,
             position,
-            ...values,
+            values,
             onStop,
             minX,
             minY,

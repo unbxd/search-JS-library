@@ -10,12 +10,14 @@ import setBreadCrumbs from '../modules/breadcrumbs/setBreadcrumbs';
 import setSwatches from '../modules/swatches/setSwatches';
 import setPageSize from '../modules/pageSize/setPageSize';
 import setAnalytics from '../modules/analytics/setAnalytics';
+import RangeSlider from '../modules/widgets/RangeSlider';
 
 const setMethods = (UnbxdSearch) => {
     const {
         prototype
     } = UnbxdSearch;
     prototype.renderBannerUI = renderBannerUI;
+    prototype.RangeSlider = RangeSlider;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);

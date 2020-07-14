@@ -1,6 +1,5 @@
 import renderFacets from './index';
 import {
-    facetsClickFn,
     findChangedFacet,
     onClickRangeFacet,
     onBucketedFacet
@@ -34,10 +33,10 @@ const isSelectedRange = function(facetName,range){
     }
     return false;  
 }
+
 const setFacets = (prototype) => {
     prototype = Object.assign(prototype,{
         renderFacets,
-        facetsClickFn,
         findChangedFacet,
         onClickRangeFacet,
         renderRangeFacets,
@@ -51,11 +50,10 @@ const setFacets = (prototype) => {
 export {
     setFacets as default,
     renderFacets,
-    facetsClickFn,
     findChangedFacet,
     onClickRangeFacet,
     renderRangeFacets,
     setRangeFilter,
     renderBucketedUI,
-    onBucketedFacet,
+    onBucketedFacet
 };

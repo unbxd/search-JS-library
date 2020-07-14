@@ -101,7 +101,7 @@ const options = {
     defaultFilters : null, //or object with keys
     noResults: {
         el: null,
-        template:function(query){return `<div class="UNX-loader"> No Results found ${query} </div>`}
+        template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
     callBackFn: (state,type) =>{
         console.log(state,type,"state,type")
@@ -261,7 +261,8 @@ const options = {
             return `<div class="UNX-swatch-color-list">${btnUI}</div>`
         }
     },
-    unbxdAnalytics:false
+    unbxdAnalytics:false,
+    hashMode:false
    // searchQueryParam:null
 };
 export default options;

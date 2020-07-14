@@ -29,7 +29,7 @@
     <li class="nav-link ">
       <a href="spellcheck.html">spellCheck</a>
     </li>
-    <li class="nav-link  nav-current-link">
+    <li class="nav-link ">
         <a href="pageSize.html">page size</a>
     </li>
     <li class="nav-link ">
@@ -44,25 +44,25 @@
     <li class="nav-link">
         <a href="breadcrumbs.html">breadcrumbs</a>
     </li>
-    <li class="nav-link ">
+    <li class="nav-link">
         <a href="banners.html">banner</a>
     </li>
     <li class="nav-link ">
         <a href="facets.html">facets</a>
     </li>
-    <li class="nav-link ">
+    <li class="nav-link">
         <a href="searchResults.html">search results</a>
     </li>
-    <li class="nav-link">
-            <a href="loaders.html">Loaders</a>
-        </li>
-        <li class="nav-link ">
-            <a href="searchResults.html">Search Results</a>
-        </li>
-        <li>
+    <li class="nav-link nav-current-link">
+        <a href="loaders.html">Loaders</a>
+    </li>
+    <li class="nav-link ">
+        <a href="searchResults.html">Search Results</a>
+    </li>
+     <li>
             <h6>Api Docs</h6>
           </li>
-          <li class="nav-link ">
+          <li class="nav-link nav-current-link">
             <a href="reRender.html">reRender</a>
           </li>
           <li class="nav-link">
@@ -74,37 +74,21 @@
           <li class="nav-link ">
             <a href="overRidingDefaultMethods.html">Override Methods</a>
           </li>
+    
 </nav>
 
 <div id="main">
-  <h3>PageSize</h3>
-  <p> The total number of results to be displayed in a single call. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3  then 15 or 18 or 21).</p>
+  <h3>Rendering</h3>
+  <p> This is the function you can run anytime to refresh the ui. </p>
 
-        <script type="text/plain" class="language-javascript">
-pagesize: {
-    pageSize:12,\\default number of products
-    options:[8,12,16,20,24], \\giving user to choose how many results he want
-    pageSizeClass:"UNX-pagesize",\\class selector for the element
-    selectedPageSizeClass:"UNX-selected-pagesize",\\for highlighting selected page size by user
-    action:'change', \\ for firing page size after user selection, available options are 'click' or 'change'
-    template: function(pagesize) {
-        let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
-        pagesize.options.forEach((opt)=>{
-            if(pagesize.pageSize == opt) {
-                ui+=`<option selected class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`
-            } else{
-                ui+=`<option id="${opt}">${opt}</option>`
-            }
-            
-        });
-        ui+= `</select>`
-        return `<div class="UNX-pagesize-block">
-            ${ui}
-        </div>`;
-    },
-    el:document.getElementById("changeNoOfProducts") \\element to place the rendered template
-}
-        </script>
+<script type="text/plain" class="language-javascript">
+    const unbxdSearch = new UnbxdSearchComponent({
+        ...options
+      });
+      //if you have configured the seacrh library like this, you can re render the ui as per your requirements.
+    unbxdSearch.reRender();
+      
+</script>
 
 </div>
 

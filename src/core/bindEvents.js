@@ -109,14 +109,8 @@ function bindEvents(){
         `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );
-    this.onLocationChange = function (evt){
-        const {
-            urlState
-        } = this.state;
-        if(decodeURIComponent(location.hash) !== `#${decodeURIComponent(urlState)}`){
-            this.renderFromUrl()
-        }
+    if(this.options.hashMode) {
+        window.onhashchange= this.onLocationChange.bind(this);
     }
-    window.onhashchange= this.onLocationChange.bind(this);
 }
 export default bindEvents;

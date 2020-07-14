@@ -13,7 +13,7 @@ module.exports = {
         libraryTarget: 'umd',
         globalObject: '(typeof self !== "undefined" ? self : this)',
         libraryExport: 'default',
-        path: Path.join(__dirname, '../public/dist'),
+        path: Path.join(__dirname, '../public/dist/js'),
         filename: 'vanillaSearch.js',
         sourceMapFilename: 'vanillaSearch.map'
     },
@@ -69,6 +69,7 @@ module.exports = {
       filename: 'css/[name].css',
       chunkFilename: 'css/unbxdSearch.css'
     })
+    
   ],
   resolve: {
     alias: {
@@ -100,6 +101,14 @@ module.exports = {
             }
           ]
 
+        },
+        {
+          test: /\.template\.js$/,
+          loader: 'minify-template-literal-loader',
+          options: {
+            caseSensitive: true,
+            collapseWhitespace: true
+          }
         }
         
     ]
