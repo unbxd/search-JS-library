@@ -149,7 +149,6 @@ search template options are configured under 'products' object.
 | productType | String | SEARCH or BROWSE or CATEGORY |
 | productMap | Object | field mappings for the current product card |
 | el | Element | Ellement to place the search template |
-| | | |
 
 
 # loader Config
@@ -160,7 +159,6 @@ search template options are configured under 'products' object.
 | template | Function | |
 
 | el | Element | Ellement to place the loader |
-| | | |
 
 
 
@@ -173,7 +171,6 @@ search template options are configured under 'products' object.
 | template | Function | |
 
 | el | Element | Ellement to place the no results template |
-| | | |
 
 
 # Facet Config
