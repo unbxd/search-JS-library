@@ -143,7 +143,6 @@ search template options are configured under 'products' object.
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row |                                                                                                                                                                                                                                                                                                                            | productAttributes | Array | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
 | defaultFilters | Object | to apply default filters, this will be applied in all api requests |
-
 | template | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product |
 | productItemClass | String | this class name will be applied to each product card. it need to be added in search results template |
 | productType | String | SEARCH or BROWSE or CATEGORY |
