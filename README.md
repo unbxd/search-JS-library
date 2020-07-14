@@ -156,8 +156,8 @@ search template options are configured under 'products' object.
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | template | Function | |
-
 | el | Element | Ellement to place the loader |
+| | |
 
 
 
@@ -167,9 +167,9 @@ search template options are configured under 'products' object.
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| template | Function | |
-
+| template | Function |  |
 | el | Element | Element to place the no results template |
+| | |
 
 
 # Facet Config
