@@ -158,6 +158,7 @@ class RangeSlider {
         //this.state.initialLeft = this.innerLine.style.marginLeft;
         this.state.selectedTouch = null;
         this.onChange('stop');
+        
     }
     getActionType(e) {
         if(e && e.target && e.target.dataset) {
@@ -310,7 +311,7 @@ class RangeSlider {
                     </div>
                 </div>
             <div>
-            <div class="UNX-price-action-row">
+            <div style="display:none" class="UNX-price-action-row">
                 <button 
                     class="UNX-primary-btn "
                     data-facet-name="${facetName}" 

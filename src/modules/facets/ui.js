@@ -8,17 +8,18 @@ function selectedFacetUI (selectedFacet,selectedFacetItem){
         dataId
     } = selectedFacetItem;
     const {
-        facetClass
+        facetClass,
+        selectedFacetClass
     } = this.options.facet;
     return `<div class="UNX-selected-facets-wrap "><button 
-                class="UNX-selected-facet-btn ${facetClass} UNX-change-facet ${this.options.facet.selectedFacetClass}"
+                class="UNX-selected-facet-btn ${facetClass} UNX-change-facet ${selectedFacetClass}"
                 data-facet-name="${facetName}"
                 data-facet-action ="deleteFacetValue"
                 data-id= "${dataId}">
                 <span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>
         </button>
         <button
-            class="${facetClass} UNX-delete-facet ${this.options.facet.selectedFacetClass}"
+            class="${facetClass} UNX-delete-facet ${selectedFacetClass}"
             data-id= "${dataId}" data-facet-action="deleteFacetValue"
             data-facet-name="${facetName}" > x</button>
         </div>`
@@ -66,16 +67,14 @@ function facetUIElem (facet, children) {
     const {
         facetClass
     } = this.options.facet;
-    return `<div id="${facetName}">
-                <h3 class="UNX-facet-header"> ${displayName}</h3>
+    const selected = this.getSelectedFacets()[facetName];
+    let clearUI = ``;
+    if(selected){
+        clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}" > clear</button>`;
+    }
+    return `<div id="${facetName}"><h3 class="UNX-facet-header"> ${displayName}</h3>
                 <div class="UNX-facets">${children}</div>
-                <div class="UNX-facet-footer">
-                    <button 
-                        class="UNX-facet-clear ${facetClass}"
-                        data-facet-action="deleteFacet"
-                        data-facet-name="${facetName}" > clear</button>
-                </div>
-                
+                <div class="UNX-facet-footer">${clearUI}</div>
             </div>`
 }
 

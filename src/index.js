@@ -12,15 +12,15 @@ class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
         this.options = extend(true,{},options,props);
-        this.options.facetMultilevel = props.facet.facetMultilevel || false;
-        this.options.facetMultiSelect = props.facet.facetMultiSelect || true;
-        this.options.facetDepth = props.facet.facetDepth || 6;
-        this.options.pageSize = props.pagesize.pageSize || 12;
+        this.options.facetMultilevel = props.facet.facetMultilevel || options.facet.facetMultilevel;
+        this.options.facetMultiSelect = props.facet.facetMultiSelect || options.facet.facetMultiSelect;
+        this.options.facetDepth = props.facet.facetDepth || options.facet.facetDepth;
+        this.options.pageSize = props.pagesize.pageSize || options.pagesize.pageSize;
         this.state.pageSize = this.options.pageSize;
-        this.options.showSwatches = (props.swatches) ? props.swatches.enabled :false;
-        this.options.applyMultipleFilters = props.facet.applyMultipleFilters || false;
-        this.options.productAttributes = props.products.productAttributes || ['sku'];
-        this.options.productType = props.products.productType || "SEARCH";
+        this.options.showSwatches = (props.swatches) ? props.swatches.enabled :options.swatches.enabled;
+        this.options.applyMultipleFilters = props.facet.applyMultipleFilters || options.facet.applyMultipleFilters;
+        this.options.productAttributes = props.products.productAttributes || options.products.productAttributes;
+        this.options.productType = props.products.productType || options.products.productType;
         this.viewState = {
             productViewType: this.options.productView.viewTypes,
             isInfiniteStarted:false,

@@ -42,7 +42,7 @@ const options = {
             } = this.options;
             const {
                 productItemClass
-            } = products;
+            }  = products;
             if(swatches.enabled) {
                 swatchUI = this.renderSwatchBtns(product);
             }
@@ -86,7 +86,20 @@ const options = {
         productClick: function(product,e) {
             console.log(product,"product,index",e);
         },
-        productAttributes: ['title','uniqueId', 'sku', 'rating'],
+        productAttributes: [
+            "title",
+            "uniqueId",
+            "price",
+            "sku",
+            "imageUrl",
+            "displayPrice",
+            "salePrice",
+            "sortPrice",
+            "productDescription",
+            "unbxd_color_mapping",
+            "colorName",
+            "color"
+        ],
         productMap:{
             'unxTitle':'title',
             'unxImageUrl':'imageUrl',

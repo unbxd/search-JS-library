@@ -33,6 +33,8 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             gap
         }
         this.setRangeFilter(newData);
+        this.setPageStart(0);
+        this.applyRangeFacet();
     }
     const {
         rangeFacet
