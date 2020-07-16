@@ -14,7 +14,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config ./webpack/webpack.config.js",
     "build:prod": "webpack --config ./webpack/webpack.prod.config.js",
-    "server": "http-server ./public/examples",
+    "server": "http-server ./public",
     "generate-docs": "jsdoc -c ./docs/jsDoc.json "
   },
   "devDependencies": {

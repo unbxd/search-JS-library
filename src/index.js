@@ -58,10 +58,9 @@ setMethods(UnbxdSearch);
 	if ( typeof define === 'function' && define.amd ) {
 		define(['UnbxdSearch'], factory(root));
 	}  else {
-		root.myPlugin = factory(root, root.UnbxdSearch);
+		root['myPlugin'] = factory(root, root['UnbxdSearch']);
 	}
 })(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
-    console.log(root,"root");
-    root.UnbxdSearch = UnbxdSearch;
+    root['UnbxdSearch'] = UnbxdSearch;
 });
 export default UnbxdSearch;

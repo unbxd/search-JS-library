@@ -39,8 +39,6 @@ const renderSearch =  function() {
         }).join('');
     }
 
-    return  `<div class="UNX-result-wrapper">
-        ${productsUI}
-    </div>`;
+    return  `<div class="UNX-result-wrapper">${productsUI}</div>`;
 }
 export default renderSearch

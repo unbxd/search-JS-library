@@ -74,9 +74,7 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             rangeConfig: self.options.facet.rangeWidgetConfig
         }).render();
     }).join('');
-    return  `<div class="range-facet">
-        ${rangeFacetTemplate}
-    </div>`;
+    return  `<div class="range-facet">${rangeFacetTemplate}</div>`;
 }
 export {
     renderRangeFacets

@@ -27,10 +27,10 @@ const paginationUI = function (paginationData) {
     if(!isPrev) {
         prevBtn = `<button disabled class="prev-btn UNX-page-prev"><</button>`;
     }
-    return `<div class="pagination-block">
-        ${prevBtn} 
-        <div class="UNX-page-no-block">${pageNumbers}</div>
-        ${nextBtn} 
-    </div>`
+    return [`<div class="pagination-block">`,
+        prevBtn, 
+        `<div class="UNX-page-no-block">${pageNumbers}</div>`,
+        nextBtn,
+    `</div>`].join('');
 };
 export default paginationUI;

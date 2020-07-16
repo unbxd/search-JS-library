@@ -2,7 +2,7 @@ const onProductItemClick = function(e) {
     const path = e.path;
     const {
         productItemClass,
-        productMap,
+        attributesMap,
     } = this.options.products;
     const id = productItemClass.replace(".","");
     const dataset = e.target.dataset;
@@ -15,7 +15,7 @@ const onProductItemClick = function(e) {
         elem.querySelector(dataset.swatchTarget).src=dataset.swatchImg;
         return false;
     }
-    const product =  this.getProductByPropValue(productMap.unxId,elem.id);
+    const product =  this.getProductByPropValue(attributesMap.unxId,elem.id);
     if(product && elem) {
         product.prank = elem.dataset.prank;
     }

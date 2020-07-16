@@ -146,7 +146,7 @@ search template options are configured under 'products' object.
 | template | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product |
 | productItemClass | String | this class name will be applied to each product card. it need to be added in search results template |
 | productType | String | SEARCH or BROWSE or CATEGORY |
-| productMap | Object | field mappings for the current product card |
+| attributesMap | Object | field mappings for the current product card |
 | el | Element | Element to place the search template |
 | | |
 

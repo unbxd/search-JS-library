@@ -273,16 +273,16 @@ class RangeSlider {
             maxLabel,
             prefix
         } = this.options.rangeConfig;
-        return `<div class="UNX-slider-val-row"  style="display:flex">
-                    <div class="UNX-min">
-                        <label>${minLabel}</label>
-                        <span class="UNX-range-val UNX-min-price">${prefix}${x}</span>
-                    </div>
-                <div class="UNX-max">
-                    <label>${maxLabel}</label>
-                    <span class="UNX-range-val UNX-max-price">${prefix}${y}</span>
-                </div>
-            </div>`
+        return [`<div class="UNX-slider-val-row"  style="display:flex">`,
+                    `<div class="UNX-min">`,
+                        `<label>${minLabel}</label>`,
+                        `<span class="UNX-range-val UNX-min-price">${prefix}${x}</span>`,
+                    `</div>`,
+                `<div class="UNX-max">`,
+                    `<label>${maxLabel}</label>`,
+                    `<span class="UNX-range-val UNX-max-price">${prefix}${y}</span>`,
+                `</div>`,
+            `</div>`].join('');
     }
     render(){
         const self = this;
@@ -296,32 +296,26 @@ class RangeSlider {
             submitBtnTxt,
             clearBtnTxt
         } = this.options.rangeConfig;
-        return `<div id="${this.id}" class="range-slider-container UNX-range-slider-wrap">
-                <h3>${displayName}</h3>
-                <div class="valueContainer UNX-range-value-block" >
-                    ${valueUI}
-                </div>
-                <div class="range-slider UNX-range-slider-wrapper" >
-                    <div data-action="handleLeft" class="${this.slideLeftId} round-handle UNX-round-handle">
-                    </div>
-                    <div data-action="handleRight" class="${this.slideRightId} round-handle UNX-round-handle">
-                    </div>
-                    <div class="${this.slideLineId} UNX-line-wrap">
-                        <div class="${this.innerLineId} UNX-line-inner"></div>
-                    </div>
-                </div>
-            <div>
-            <div style="display:none" class="UNX-price-action-row">
-                <button 
-                    class="UNX-primary-btn "
-                    data-facet-name="${facetName}" 
-                    data-action="filterPriceRange"> ${submitBtnTxt} </button>
-                <button
-                    class="UNX-default-btn "
-                    data-facet-name="${facetName}"
-                    data-action="clearPriceRange"> ${clearBtnTxt} </button>
-            <div>
-        </div>`
+        return [`<div id="${this.id}" class="range-slider-container UNX-range-slider-wrap">`,
+                `<h3>${displayName}</h3>`,
+                `<div class="valueContainer UNX-range-value-block" >`,
+                    `${valueUI}`,
+                `</div>`,
+                `<div class="range-slider UNX-range-slider-wrapper" >`,
+                    `<div data-action="handleLeft" class="${this.slideLeftId} round-handle UNX-round-handle">`,
+                    `</div>`,
+                    `<div data-action="handleRight" class="${this.slideRightId} round-handle UNX-round-handle">`,
+                    `</div>`,
+                    `<div class="${this.slideLineId} UNX-line-wrap">`,
+                        `<div class="${this.innerLineId} UNX-line-inner"></div>`,
+                    `</div>`,
+                `</div>`,
+            `<div>`,
+            `<div style="display:none" class="UNX-price-action-row">`,
+                `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="filterPriceRange"> ${submitBtnTxt} </button>`,
+                `<button class="UNX-default-btn " data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
+           `<div>`,
+       `</div>`].join('')
     }
 }
 export default RangeSlider;
