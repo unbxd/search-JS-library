@@ -312,7 +312,7 @@ class RangeSlider {
                 `</div>`,
             `<div>`,
             `<div style="display:none" class="UNX-price-action-row">`,
-                `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="filterPriceRange"> ${submitBtnTxt} </button>`,
+                `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
                 `<button class="UNX-default-btn " data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
            `<div>`,
        `</div>`].join('')

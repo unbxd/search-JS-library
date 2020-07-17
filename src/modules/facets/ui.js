@@ -56,16 +56,21 @@ function facetUIElem (facet, children) {
         facetName
     } = facet;
     const {
-        facetClass
+        facetClass,
+        applyMultipleFilters
     } = this.options.facet;
     const selected = this.getSelectedFacets()[facetName];
     let clearUI = ``;
+    let applyBtn = ``;
     if(selected){
         clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}">clear</button>`;
     }
+    if(applyMultipleFilters && selected) {
+        applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >Apply</button>`
+    }
     return [`<div id="${facetName}"><h3 class="UNX-facet-header"> ${displayName}</h3>`,
                 `<div class="UNX-facets">${children}</div>`,
-                `<div class="UNX-facet-footer">${clearUI}</div>`,
+                `<div class="UNX-facet-footer">${applyBtn} ${clearUI}</div>`,
            `</div>`].join('');
 }
 

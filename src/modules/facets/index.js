@@ -1,4 +1,4 @@
-const renderFacets = function(argFacets, selectedArgFacets) {
+const renderTextFacets = function(argFacets, selectedArgFacets) {
     const facets = (argFacets) ? argFacets : this.getFacets();
     const selectedFacets = (selectedArgFacets) ? selectedArgFacets: this.getSelectedFacets();
     const self = this;
@@ -46,4 +46,4 @@ const renderFacets = function(argFacets, selectedArgFacets) {
         ${facetsListUI}
     </div>`;
 }
-export default renderFacets;
+export default renderTextFacets;

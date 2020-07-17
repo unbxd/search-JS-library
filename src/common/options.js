@@ -209,17 +209,11 @@ const options = {
                 const imgId = swatchImgs[id];
                 if(imgId){
                     const img = imgId.split("::")[1];
-                    btnUI+= `<button 
-                            data-swatch-id="${item}"
-                            data-swatch-img="${img}" 
-                            data-action="changeSwatch"
-                            data-swatch-target = ".UNX-img-block"
-                            class="${this.swatchClass}"
-                            style="background-color:${item}"
-                            > </button>`
+                    btnUI+= [`<button data-swatch-id="${item}" data-swatch-img="${img}" data-action="changeSwatch"`,
+                                `data-swatch-target=".UNX-img-block" class="${this.swatchClass}" style="background-color:${item}"> </button>`].join('')
                 }
             });
-            return `<div class="UNX-swatch-color-list">${btnUI}</div>`
+            return `<div class="UNX-swatch-color-list">${btnUI}</div>`;
         }
     },
     unbxdAnalytics:false,

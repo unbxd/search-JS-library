@@ -24,7 +24,7 @@ const renderSearch =  function() {
             }
             const pRank  = index+idx+1;
             const mappedProduct = this.mapProductAttrs(product);
-            productsUI +=self.options.searchResultsTemplate(mappedProduct,pRank);
+            productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank);
             if(row === gridCount -  1) {
                 productsUI += `</div>`;
             }
@@ -35,7 +35,7 @@ const renderSearch =  function() {
         productsUI = products.map((product,index) => {
             const pRank  = index+idx+1;
             const mappedProduct = this.mapProductAttrs(product);
-            return self.options.searchResultsTemplate(mappedProduct,pRank);
+            return self.options.products.template.bind(self)(mappedProduct,pRank);
         }).join('');
     }
 

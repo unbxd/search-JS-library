@@ -35,6 +35,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         const {
             callBackFn,
             loader,
+            facet
         } = this.options;
         const {
             beforeApiCall,
@@ -47,6 +48,10 @@ class UnbxdSearch extends UnbxdSearchCore {
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);
             this.reRender();
+        }
+        if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) { 
+            callBackFn(this,'added_facet');
+            this.renderFacets();
         }
     }
     delegate(delgationElem,evt,elem,fn){

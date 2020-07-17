@@ -371,7 +371,8 @@ const unbxdSearch = new UnbxdSearchComponent({
       facetsEl: document.getElementById("facetsWrapper"),
       selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
       rangeFacetEl: document.getElementById("rangeFacetWrapper"),
-      multiLevelFacetEl: document.getElementById("bucketedFacetWrapper")
+      multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
+      applyMultipleFilters:true
     },
     pagination: {
       el: document.getElementById("unxPagination"),
@@ -419,6 +420,56 @@ const unbxdSearch = new UnbxdSearchComponent({
     hashMode:false,
     updateUrls:true
   });
+  unbxdSearch.setFacetWidget({
+    rangeTemplate:function(ranges,selectedRanges) {
+        let ui  = ``;
+        const {
+          selectedFacetClass,
+          facetClass,
+          applyMultipleFilters
+        } = this.options.facet;
+        let selected = false;
+        ranges.forEach(range => {
+            const {
+              displayName,
+              facetName,
+              values
+            } = range;
+            let valueUI = ``;
+            selected = (selectedRanges[facetName]) ? true :false;
+            values.forEach(item =>{
+                const {
+                  from,
+                  to
+                } = item;
+              const isSelected = this.isSelectedRange(facetName,item);
+              const btnCss = (isSelected) ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}`:`${facetClass}`;
+              valueUI +=[`<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >`,
+                  `<span class="UNX-facet-text">${from.name}  -  ${to.name}</span>`,
+                  `<span class="UNX-facet-count">(${from.count})</span>`,
+             `</button>`].join('');
+            });
+            ui += [`<div class="UNX-facets-inner-wrapper">`,
+              `<h3 class="UNX-facet-header">${displayName}</h3>`,
+                  `<div class="UNX-facets">${valueUI}</div>`,
+            `</div>`].join('');
+        });
+        let clearBtn = ``;
+        let applyBtn = ``;
+        if(selected) {
+            if(applyMultipleFilters) {
+                applyBtn = `<button class="UNX-default-btn UNX-primary-btn" data-action="applyRange"> Apply</button>`;
+            }
+            clearBtn = `<button class="UNX-default-btn " data-action="clearRangeFacets"> clear</button>`;
+        }
+        return [`<div class="UNX-range-wrapper">`,
+          ui,
+          `<div class="UNX-price-action-row">`,
+              applyBtn,clearBtn,
+          `<div>`,
+        `</div>`].join('')
+    }
+  })
   
 console.log(unbxdSearch,"es6unbxd");
 //es6unbxd.getResults();

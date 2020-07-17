@@ -11,6 +11,25 @@ import setSwatches from '../modules/swatches/setSwatches';
 import setPageSize from '../modules/pageSize/setPageSize';
 import setAnalytics from '../modules/analytics/setAnalytics';
 import RangeSlider from '../modules/widgets/RangeSlider';
+const setSearchWidget = function(config){
+    const {
+        products
+    } = this.options;
+    const newOps = Object.assign({},products,config);
+    this.options.products = newOps;
+}
+const setFacetWidget = function(config){
+    const {
+        facet
+    } = this.options;
+    const newOps = Object.assign({},facet,config);
+    this.options.facet = newOps;
+}
+const renderFacets = function(){
+    this.facetsWrapper.innerHTML = this.renderTextFacets();
+    this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
+    this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
+}
 
 const setMethods = (UnbxdSearch) => {
     const {
@@ -18,6 +37,9 @@ const setMethods = (UnbxdSearch) => {
     } = UnbxdSearch;
     prototype.renderBannerUI = renderBannerUI;
     prototype.RangeSlider = RangeSlider;
+    prototype.setSearchWidget = setSearchWidget;
+    prototype.setFacetWidget = setFacetWidget;
+    prototype.renderFacets = renderFacets;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);
@@ -29,6 +51,6 @@ const setMethods = (UnbxdSearch) => {
     setSwatches(prototype);
     setPageSize(prototype);
     setAnalytics(prototype);
-
+    
 }
 export default setMethods;
