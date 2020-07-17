@@ -372,7 +372,7 @@ const unbxdSearch = new UnbxdSearchComponent({
       selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
       rangeFacetEl: document.getElementById("rangeFacetWrapper"),
       multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-      applyMultipleFilters:true
+      applyMultipleFilters:false
     },
     pagination: {
       el: document.getElementById("unxPagination"),
@@ -417,9 +417,10 @@ const unbxdSearch = new UnbxdSearchComponent({
         swatchColors: "color"
       }
     },
-    hashMode:false,
+    hashMode:true,
     updateUrls:true
   });
+  /*
   unbxdSearch.setFacetWidget({
     rangeTemplate:function(ranges,selectedRanges) {
         let ui  = ``;
@@ -470,6 +471,6 @@ const unbxdSearch = new UnbxdSearchComponent({
         `</div>`].join('')
     }
   })
-  
+  */
 console.log(unbxdSearch,"es6unbxd");
 //es6unbxd.getResults();

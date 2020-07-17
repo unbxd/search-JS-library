@@ -73,7 +73,7 @@ const findChangedFacet = function(e) {
         this.setPageStart(0);
         this.getResults();
     }
-    this.renderTextFacets();
+    this.renderFacets();
 }
 const onClickRangeFacet = function(e) {
     const {

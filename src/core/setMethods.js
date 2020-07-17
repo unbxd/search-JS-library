@@ -26,7 +26,7 @@ const setFacetWidget = function(config){
     this.options.facet = newOps;
 }
 const renderFacets = function(){
-    this.facetsWrapper.innerHTML = this.renderTextFacets();
+    this.facetsWrapper.innerHTML = this.renderTextFacets(this.getFacets(), this.getSelectedFacets());
     this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
     this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
 }

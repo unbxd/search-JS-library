@@ -60,12 +60,13 @@ function facetUIElem (facet, children) {
         applyMultipleFilters
     } = this.options.facet;
     const selected = this.getSelectedFacets()[facetName];
+    const isFtr = (selected && selected.length >0)?true:false;
     let clearUI = ``;
     let applyBtn = ``;
-    if(selected){
+    if(isFtr){
         clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}">clear</button>`;
     }
-    if(applyMultipleFilters && selected) {
+    if(applyMultipleFilters && isFtr) {
         applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >Apply</button>`
     }
     return [`<div id="${facetName}"><h3 class="UNX-facet-header"> ${displayName}</h3>`,
