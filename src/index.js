@@ -12,15 +12,15 @@ class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
         this.options = extend(true,{},options,props);
-        this.options.facetMultilevel = props.facet.facetMultilevel || false;
-        this.options.facetMultiSelect = props.facet.facetMultiSelect || true;
-        this.options.facetDepth = props.facet.facetDepth || 6;
-        this.options.pageSize = props.pagesize.pageSize || 12;
+        this.options.facetMultilevel = props.facet.facetMultilevel || options.facet.facetMultilevel;
+        this.options.facetMultiSelect = props.facet.facetMultiSelect || options.facet.facetMultiSelect;
+        this.options.facetDepth = props.facet.facetDepth || options.facet.facetDepth;
+        this.options.pageSize = props.pagesize.pageSize || options.pagesize.pageSize;
         this.state.pageSize = this.options.pageSize;
-        this.options.showSwatches = (props.swatches) ? props.swatches.enabled :false;
-        this.options.applyMultipleFilters = props.facet.applyMultipleFilters || false;
-        this.options.productAttributes = props.products.productAttributes || ['sku'];
-        this.options.productType = props.products.productType || "SEARCH";
+        this.options.showSwatches = (props.swatches) ? props.swatches.enabled :options.swatches.enabled;
+        this.options.applyMultipleFilters = props.facet.applyMultipleFilters || options.facet.applyMultipleFilters;
+        this.options.productAttributes = props.products.productAttributes || options.products.productAttributes;
+        this.options.productType = props.products.productType || options.products.productType;
         this.viewState = {
             productViewType: this.options.productView.viewTypes,
             isInfiniteStarted:false,
@@ -35,6 +35,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         const {
             callBackFn,
             loader,
+            facet
         } = this.options;
         const {
             beforeApiCall,
@@ -48,6 +49,10 @@ class UnbxdSearch extends UnbxdSearchCore {
             callBackFn(this,afterApiCall);
             this.reRender();
         }
+        if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) { 
+            callBackFn(this,'added_facet');
+            this.renderFacets();
+        }
     }
     delegate(delgationElem,evt,elem,fn){
         return delegate(delgationElem,evt,elem,fn);
@@ -58,10 +63,9 @@ setMethods(UnbxdSearch);
 	if ( typeof define === 'function' && define.amd ) {
 		define(['UnbxdSearch'], factory(root));
 	}  else {
-		root.myPlugin = factory(root, root.UnbxdSearch);
+		root['myPlugin'] = factory(root, root['UnbxdSearch']);
 	}
 })(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
-    console.log(root,"root");
-    root.UnbxdSearch = UnbxdSearch;
+    root['UnbxdSearch'] = UnbxdSearch;
 });
 export default UnbxdSearch;

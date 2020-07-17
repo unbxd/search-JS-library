@@ -30,21 +30,18 @@ const sortTemplate = function(selectedSort) {
             text
         } = item;
         if(value == selectedSort) {
-            optionsUI += `<option value="${value}" class="${selectedSortClass}" selected>
-                ${text}
-            </option>` 
+            optionsUI += `<option value="${value}" class="${selectedSortClass}" selected>${text}</option>`;
         } else {
-            optionsUI += `<option value="${value}">${text}</option>` 
+            optionsUI += `<option value="${value}">${text}</option>`;
         }
     })
-    return `<div class="UNX-sort-block">
-        <span class="UNX-sort-header">Sort By</span> <select data-action="changeSort" id="unbxdSorter" class="${sortClass}">
-            <option value="">
-                Relevancy
-            </option>
-            ${optionsUI}
-        </select>
-    </div>`
+    return [`<div class="UNX-sort-block">`,
+        `<span class="UNX-sort-header">Sort By</span>`,
+        `<select data-action="changeSort" id="unbxdSorter" class="${sortClass}">`,
+            `<option value="">Relevancy</option>`,
+            optionsUI,
+        `</select>`,
+    `</div>`].join('')
 }
 export {
     sortOptions,

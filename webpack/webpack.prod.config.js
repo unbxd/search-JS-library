@@ -20,21 +20,7 @@ module.exports = {
     optimization: {
         minimize: true,
         minimizer: [
-          new TerserPlugin({
-            terserOptions: {
-              ecma: 6,
-              sourceMap: true,
-              extractComments: true,
-              mangle:true,
-              keep_classnames:false,
-              compress: {
-                ecma       : 5,
-                warnings   : false,
-                comparisons: false,
-                inline     : 2
-              },
-            }
-          })
+          new TerserPlugin()
         ]
   },
   plugins: [

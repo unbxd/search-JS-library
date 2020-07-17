@@ -14,7 +14,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config ./webpack/webpack.config.js",
     "build:prod": "webpack --config ./webpack/webpack.prod.config.js",
-    "server": "http-server ./public/examples",
+    "server": "http-server ./public",
     "generate-docs": "jsdoc -c ./docs/jsDoc.json "
   },
   "devDependencies": {
@@ -67,7 +67,6 @@
   "dependencies": {
     "@unbxd-ui/unbxd-search-core": "0.0.6",
     "babel-polyfill": "^6.26.0",
-    "babel-runtime": "^6.26.0",
-    "infinite-scroll": "^3.0.6"
+    "babel-runtime": "^6.26.0"
   }
 }

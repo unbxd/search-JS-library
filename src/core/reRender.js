@@ -24,8 +24,7 @@ const reRender = function(){
     if(productType ==="SEARCH"){
         this.options.searchBoxSelector.value = this.state.userInput;
     }
-    this.facetsWrapper.innerHTML = this.renderFacets();
-    this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
+    this.renderFacets();
     if(this.viewState.isInfiniteStarted){
         this.viewState.isInfiniteStarted = false;
         this.searchResultsWrapper.innerHTML += this.renderSearch();
@@ -38,7 +37,6 @@ const reRender = function(){
             pagination.innerHTML = this.renderPagination();
         });
     }
-    this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
     if(this.options.breadcrumb.enabled){
         this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }

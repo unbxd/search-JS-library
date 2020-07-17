@@ -33,6 +33,8 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             gap
         }
         this.setRangeFilter(newData);
+        this.setPageStart(0);
+        this.applyRangeFacet();
     }
     const {
         rangeFacet
@@ -72,9 +74,7 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             rangeConfig: self.options.facet.rangeWidgetConfig
         }).render();
     }).join('');
-    return  `<div class="range-facet">
-        ${rangeFacetTemplate}
-    </div>`;
+    return  `<div class="range-facet">${rangeFacetTemplate}</div>`;
 }
 export {
     renderRangeFacets

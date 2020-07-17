@@ -6,12 +6,12 @@ const mapProductAttrs = function(product) {
         products
     } = this.options;
     const  {
-        productMap
+        attributesMap
     } = products;
-    const attrArray = Object.keys(productMap);
+    const attrArray = Object.keys(attributesMap);
     attrArray.forEach(item =>{
         const pI = product[item];
-        const mI = productMap[item];
+        const mI = attributesMap[item];
        if(!pI)  {
             product[item] = product[mI];
        }

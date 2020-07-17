@@ -3,7 +3,7 @@ const actions = {
     setCategoryFilter:"setCategoryFilter",
     changeSwatch:"changeSwatch",
     clearPriceRange:"clearPriceRange",
-    filterPriceRange:"filterPriceRange",
+    applyRange:"applyRange",
     prev:"prev",
     next:"next",
     clearSort:"clearSort",

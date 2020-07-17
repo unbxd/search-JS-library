@@ -79,7 +79,6 @@ const createLayout = function() {
         this.options.banner.el.appendChild(this.bannerWrapper);
     }
     this.options.banner.template = this.options.banner.template.bind(this);
-    this.options.searchResultsTemplate = this.options.products.template.bind(this);
     this.options.products.el.appendChild(this.searchResultsWrapper);
     this.loaderEl = this.options.loader.el || this.searchResultsWrapper;
     if(this.options.pagesize.el){

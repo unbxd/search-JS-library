@@ -7,6 +7,10 @@ const findChangedFacet = function(e) {
         facetAction,
         id
     } = dataSet;
+    const qState = this.getStateFromUrl();
+    const selectedfacets = this.getSelectedFacets()[facetName];
+    const ln = (selectedfacets) ?Object.keys(selectedfacets).length:0;
+    const ql = Object.keys(qState.selectedFacets).length;
     if(facetAction === this.events.changeFacet) {
         const selectedfacetInfo = this.getSelectedFacet(facetName);
         const selectedOpt = {
@@ -36,6 +40,10 @@ const findChangedFacet = function(e) {
                 facetAction,
                 id
             },'facetClick');
+            if(ql > 0 && ln === 1 && this.options.facet.applyMultipleFilters) {
+                this.setPageStart(0);
+                this.getResults();
+            }
         }
     }
     if(facetAction === this.actions.deleteFacet) {
@@ -49,9 +57,13 @@ const findChangedFacet = function(e) {
                 facetAction,
                 id
             },'facetClick');
+            const isReload = qState.selectedFacets[facetName];
+            if(isReload) {
+                this.setPageStart(0);
+                this.getResults();
+            }
         }
     }
-    this.renderFacets();
     if(facetAction === "applyFacets") {
         this.setPageStart(0);
         this.getResults();
@@ -61,6 +73,7 @@ const findChangedFacet = function(e) {
         this.setPageStart(0);
         this.getResults();
     }
+    this.renderFacets();
 }
 const onClickRangeFacet = function(e) {
     const {
@@ -70,23 +83,47 @@ const onClickRangeFacet = function(e) {
         start
     } = e.target.dataset;
     const self = this;
+    const q = this.getStateFromUrl();
+    const ranges = this.state.rangeFacet[facetName];
+    const isSelections = Object.keys(q.rangeFacet);
     if(action === "setRange") {
-        this.setRangeFacet({
-            start:start,
-            end:end,
-            facetName:facetName,
-            applyMultiple:true
-        });
-        if(!this.options.facet.applyMultipleFilters){
+        let already = false
+        if(ranges &&ranges.length === 1 && isSelections.length > 0) {
+            already = this.isSelectedRange(facetName,{
+                from:{
+                    name:start
+                },
+                to:{
+                    name:end
+                }
+            });
+        };
+        if(!already) {
+            this.setRangeFacet({
+                start:start,
+                end:end,
+                facetName:facetName,
+                applyMultiple:true
+            });
+        }
+        if(already) {
+            this.state.rangeFacet = [];
+            this.applyRangeFacet();
+        }
+        if(!this.options.facet.applyMultipleFilters ){
             this.setPageStart(0);
             this.applyRangeFacet();
         }
     }
     if(action === "clearRangeFacets") {
         this.state.rangeFacet = [];
-        this.applyRangeFacet();
+        this.renderFacets();
+        if(isSelections.length > 0) {;
+            this.applyRangeFacet();
+        }
     }
-    if(action === this.actions.filterPriceRange) {
+    if(action === this.actions.applyRange) {
+
         this.applyRangeFacet();
         this.options.callBackFn(this,action, {
             facetName

@@ -1,4 +1,4 @@
-import renderFacets from './index';
+import renderTextFacets from './index';
 import {
     findChangedFacet,
     onClickRangeFacet,
@@ -6,7 +6,7 @@ import {
 } from './actions';
 function renderRangeFacets() {
     const rangeFacets = this.getRanges();
-    const selectedRanges = this.viewState.selectedRange;
+    const selectedRanges = this.state.rangeFacet;
     if(rangeFacets.length > 0) {
         return this.options.facet.rangeTemplate.bind(this)(rangeFacets,selectedRanges);
     } else {
@@ -36,7 +36,7 @@ const isSelectedRange = function(facetName,range){
 
 const setFacets = (prototype) => {
     prototype = Object.assign(prototype,{
-        renderFacets,
+        renderTextFacets,
         findChangedFacet,
         onClickRangeFacet,
         renderRangeFacets,
@@ -49,7 +49,7 @@ const setFacets = (prototype) => {
 
 export {
     setFacets as default,
-    renderFacets,
+    renderTextFacets,
     findChangedFacet,
     onClickRangeFacet,
     renderRangeFacets,

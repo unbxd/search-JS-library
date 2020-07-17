@@ -1,4 +1,4 @@
-const renderFacets = function(argFacets, selectedArgFacets) {
+const renderTextFacets = function(argFacets, selectedArgFacets) {
     const facets = (argFacets) ? argFacets : this.getFacets();
     const selectedFacets = (selectedArgFacets) ? selectedArgFacets: this.getSelectedFacets();
     const self = this;
@@ -33,17 +33,36 @@ const renderFacets = function(argFacets, selectedArgFacets) {
             });
             selectUI = this.options.facet.facetTemplate.bind(this)(facet, valuesUI.join(''))
         }
-        if(this.options.facet.selectedFacetsEl) {
+        /*if(this.options.facet.selectedFacetsEl) {
             this.options.facet.selectedFacetsEl.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedFacetsUI);
-        }
+        }*/
         
-        return `<div data-id="${facetName}">
-            ${selectUI}
-        </div>`;
+        return `<div data-id="${facetName}">${selectUI}</div>`;
     }).join('');
+    if(this.options.facet.selectedFacetsEl && selectedFacets) {
+        const k = Object.keys(selectedFacets);
+        let selectedUi = ``;
+        for(let i=0;i<k.length;i++){
+            const j = k[i];
+            const vals = selectedFacets[j];
+            vals.forEach(item => {
+                const {
+                    name,
+                    count,
+                    dataId
+                } = item;
+                selectedUi += this.options.facet.selectedFacetTemplate.bind(this)({
+                    facetName:j
+                },{
+                    name:name,
+                    dataId:(dataId)?dataId:name,
+                    count:count?count:0
+                });
+            })
+        }
+        this.options.facet.selectedFacetsEl.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
+    }
     
-    return  `<div class="UNX-facets-inner-wrapper">
-        ${facetsListUI}
-    </div>`;
+    return  `<div class="UNX-facets-inner-wrapper">${facetsListUI}</div>`;
 }
-export default renderFacets;
+export default renderTextFacets;
