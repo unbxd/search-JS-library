@@ -1,6 +1,6 @@
 {
   "name": "@unbxd-ui/vanilla-search-library",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "A JavaScript library for building performant and quick search experiences with Unbxd",
   "main": "src/index.js",
   "repository": {
