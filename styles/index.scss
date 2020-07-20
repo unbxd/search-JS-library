@@ -9,6 +9,8 @@ button {
 }
 body {
   background-color: #f6f6f6;
+  margin:0;
+  padding:0
 }
 .UNX-header {
   background: #f6f6f6;
@@ -102,7 +104,8 @@ body {
   height: auto;
 }
 .UNX-list-card .UNX-product-content {
-  padding-left: 24px;
+  padding-left: 12px;
+  width: 60%;
 }
 .UNX-product-title {
   color: #0a0b0c;
@@ -483,6 +486,28 @@ button.UNX-page-next {
 .UNX-facet-text,.UNX-facet-count {
     pointer-events: none;
 }
+.UNX-m-facet-btn{
+  display: none;
+}
+.UNX-facet-footer {
+  display: none;
+}
+
+.UNX-price-action-row {
+  display: none;
+}
+.UNX-m-facet-row {
+  padding:24px 0px;
+  justify-content: flex-end;
+  padding: 24px 0px;
+  display: none;
+}
+.UNX-m-selected-wrapper {
+  display: none;
+}
+.UNX-m-page {
+  display: none;
+}
 
 @media only screen and (max-width: 1200px) {
   .UNX-grid-card {
@@ -496,9 +521,6 @@ button.UNX-page-next {
   .UNX-grid-card {
     width: 50%;
   }
-  .UNX-facet-wrapper {
-    display: none;
-  }
   .m-facets-btn {
     display: block;
   }
@@ -509,10 +531,12 @@ button.UNX-page-next {
     display: block;
     width: 100%;
     margin-left: 0;
-    padding-left: 12px;
+    padding: 6px;
   }
   .UNX-results-container {
-    width: 98%;
+    width: 100%;
+    padding:6px;
+    margin: 0;
   }
   .UNX-result-header {
     display: block;
@@ -529,7 +553,8 @@ button.UNX-page-next {
     width: 100%;
   }
   .UNX-list-card .UNX-img-wrapper {
-    width: 50%;
+    width: 40%;
+    overflow: hidden;
   }
   .UNX-facet-wrapper {
     padding-bottom: 24px;
@@ -550,14 +575,18 @@ button.UNX-page-next {
   .UNX-logo{
     margin-right:20px
   }
-  .UNX-facet-wrapper {
+  .UNX-fxd-facet {
       width: 100%;
       position: fixed !important;
       top: 0;
       left: 0;
-      height: 100%;
       margin: 0;
       overflow-y: auto;
+      background: #FFFFFF;
+      z-index: 0;
+      height: 0;
+      overflow: hidden;
+      padding: 0px 12px;
   }
   .UNX-result-right .UNX-change-pagination-wrap {
     display:none
@@ -566,5 +595,115 @@ button.UNX-page-next {
       display: flex;
       justify-content: center;
       padding: 20px;
+  }
+
+  .UNX-change-products {
+    padding-left:0;
+  }
+  .UNX-input-wrapper{
+    width: 60%
+  }
+  .UNX-head-wrapper {
+    margin: 0;
+    width:100%;
+  }
+  .UNX-m-facet-btn {
+    position: fixed;
+    bottom: 64px;
+    right: 32px;
+    padding: 12px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: solid 1px #f3f3f3;
+    box-shadow: 0px 1px 4px #0000005c;
+    font-size: 20px;
+    display: block;
+    z-index: 10;
+  }
+  .UNX-show-facets {
+    height: 100%;
+    overflow: auto;
+    z-index: 11;
+  }
+  .UNX-facet-footer {
+    display: none;
+  }
+  .UNX-fxd-facet .UNX-m-facet-row {
+    margin: 24px 0px;
+  }
+  .UNX-m-facet-row .UNX-facet-trigger {
+    margin-right:12px;
+  }
+  .UNX-price-action-row {
+    display: none;
+  }
+  .UNX-change-pagination-wrap {
+    padding-left: 0px;
+    margin: 24px 0px;
+  }
+  .UNX-page-no-block {
+    max-width: 100%;
+  }
+  .UNX-m-facet-row {
+    display: block;
+  }
+  .UNX-m-selected-wrapper {
+    display: block;
+  }
+  .UNX-m-selected-wrapper .UNX-facets-selections {
+    display: block;
+  }
+  .UNX-m-selected-wrapper .UNX-selected-facets-inner {
+    display: table;
+    width:100%;
+    margin-bottom: 12px;
+  }
+  .UNX-m-selected-wrapper .UNX-selected-facets-wrap {
+    display: flex;
+    width: auto;
+    float: left;
+  }
+  .UNX-facet-wrapper {
+    padding:0;
+    height: 0;
+    overflow: hidden;
+  }
+  .UNX-selected-facet-wrapper {
+    background: #FFFFFF;
+    padding: 6px;
+  }
+  .UNX-facets-selections {
+    display: table;
+    width: 100%;
+  }
+  .UNX-selected-facet-header {
+    padding-right: 0;
+    margin: 12px 0px;
+  }
+  .UNX-selected-facets-inner {
+    display: table;
+    width: 100%;
+    padding-bottom: 24px;
+    border-bottom: solid 1px #f1f1f1;
+  }
+  .UNX-selected-facet-wrapper .UNX-selected-facets-wrap {
+    display: flex;
+    width: auto;
+    float: left;
+    margin-bottom: 6px;
+  }
+  .UNX-selected-facet-wrapper .UNX-clear-facet {
+    padding: 8px;
+    margin-top: 12px;
+  }
+  .UNX-head-wrapper {
+    display: block;
+  }
+  .UNX-m-page {
+    display: block;
+  }
+  .UNX-m-page .pagination-block {
+    justify-content: center;
   }
 }

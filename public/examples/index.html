@@ -15576,6 +15576,13 @@ button.UNX-page-next {
     margin-top: 24px;
     padding: 24px;
 }
+.UNX-facet-primary,
+.UNX-facet-clear {
+  font-weight: 400;
+}
+.range-facets-block {
+  width:100%;
+}
 
 @media only screen and (max-width: 1200px) {
   .UNX-grid-card {
@@ -15725,10 +15732,11 @@ button.UNX-page-next {
         </div>
       </article>
     </section>
-    <script
+    <!--<script
       type="text/javascript"
       src="../dist/js/vanillaSearch.js"
-    />
+    />-->
+    <script src="https://libraries.unbxdapi.com/search-sdk/v0.0.5/vanillaSearch.js"></script>
     <script type="text/javascript">
       /* * * CONFIGURATION * * */
       var UnbxdSiteName = "demo-unbxd700181503576558";
@@ -15849,6 +15857,7 @@ const unbxdSearch = new UnbxdSearch({
   hashMode: false,
   updateUrls: true
 });
+/*
 unbxdSearch.setFacetWidget({
     rangeTemplate:function(ranges,selectedRanges) {
         let ui  = ``;
@@ -15899,6 +15908,7 @@ unbxdSearch.setFacetWidget({
         `</div>`].join('')
     }
   })
+  */
 
 unbxdSearch.getResults("*");
 const mBtn = document.getElementById("mShowFacets");

@@ -33,6 +33,12 @@ const isSelectedRange = function(facetName,range){
     }
     return false;  
 }
+const clearAllFacets = function() {
+    this.state.selectedFacets = {};
+    this.state.rangeFacet = [];
+    this.state.categoryFilter = {};
+    this.renderRangeFacets();
+}
 
 const setFacets = (prototype) => {
     prototype = Object.assign(prototype,{
@@ -43,7 +49,8 @@ const setFacets = (prototype) => {
         setRangeFilter,
         renderBucketedUI,
         onBucketedFacet,
-        isSelectedRange
+        isSelectedRange,
+        clearAllFacets
     })
 };
 
@@ -55,5 +62,6 @@ export {
     renderRangeFacets,
     setRangeFilter,
     renderBucketedUI,
-    onBucketedFacet
+    onBucketedFacet,
+    clearAllFacets
 };

@@ -42,6 +42,18 @@ const createLayout = function() {
             class:"page-size-block"
         }
     );
+    this.sortWrapper = createElement(
+        "DIV",
+        "",{
+            class:"UNX-sort-block-lb"
+        }
+    );
+    this.selectedFacetWrapper = createElement(
+        "DIV",
+        "",{
+            class:"UNX-selected-facet-lb"
+        }
+    );
     this.paginationWrappers = [];
     const getPaginationWrapper = () =>{
         const elem  = createElement(
@@ -57,41 +69,57 @@ const createLayout = function() {
     this.options.facet.multiLevelFacetTemplate.bind(this);
     this.options.facet.facetTemplate.bind(this);
     this.options.facet.facetItemTemplate.bind(this);
+    this.options.facet.facetsEl.innerHTML = ``;
     this.options.facet.facetsEl.appendChild(this.facetsWrapper);
     if(this.options.facet.multiLevelFacetEl) {
+        this.options.facet.multiLevelFacetEl.innerHTML = ``;
         this.options.facet.multiLevelFacetEl.appendChild(this.multiLevelFacetWrapper);
     } else {
         this.options.facet.facetsEl.appendChild(this.multiLevelWrapperFacet);
     }
     if(this.options.facet.rangeFacetEl){
+        this.options.facet.rangeFacetEl.innerHTML = ``;
         this.options.facet.rangeFacetEl.appendChild(this.rangeFacetsWrapper);
     } else {
         this.options.facet.facetsEl.appendChild(this.rangeFacetsWrapper)
     }
+    if(this.options.facet.selectedFacetsEl) {
+        this.options.facet.selectedFacetsEl.innerHTML = ``;
+        this.options.facet.selectedFacetsEl.appendChild(this.selectedFacetWrapper)
+    }
     if(this.options.breadcrumb.enabled) {
         this.options.breadcrumb.template = this.options.breadcrumb.template.bind(this);
+        this.options.breadcrumb.el.innerHTML = ``;
         this.options.breadcrumb.el.appendChild(this.breadcrumbWrapper);
     }
     if(this.options.swatchTemplate) {
         this.options.swatchTemplate.bind(this);
     }
     if(this.options.banner.el){
+        this.options.banner.el.innerHTML = ``;
         this.options.banner.el.appendChild(this.bannerWrapper);
+    }
+    if(this.options.sort.el){
+        this.options.sort.el.innerHTML = ``;
+        this.options.sort.el.appendChild(this.sortWrapper);
     }
     this.options.banner.template = this.options.banner.template.bind(this);
     this.options.products.el.appendChild(this.searchResultsWrapper);
     this.loaderEl = this.options.loader.el || this.searchResultsWrapper;
     if(this.options.pagesize.el){
+        this.options.pagesize.el.innerHTML = ``;
         this.options.pagesize.el.appendChild(this.pageSizeWrapper);
     }
     if(this.options.pagination.enabled) {
         if(this.options.pagination.el){
             if(this.options.pagination.el.length) {
                 this.options.pagination.el.forEach(element => {
+                    element.innerHTML = ``;
                     element.appendChild(getPaginationWrapper());
                 })
 
             } else {
+                this.options.pagination.el.innerHTML = ``;
                 this.options.pagination.el.appendChild(getPaginationWrapper());
             }
         }

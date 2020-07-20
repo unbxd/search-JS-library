@@ -6,7 +6,10 @@ const renderPagination = function() {
     } = this.options;
     let paginationUI = ``;
     if(type !== 'INFINITE_SCROLL') {
-        paginationUI = this.options.pagination.template.bind(this)(this.getPaginationInfo());
+        const pageInfo = this.getPaginationInfo();
+        if(pageInfo) {
+            paginationUI = this.options.pagination.template.bind(this)(pageInfo);
+        }
     }
     return paginationUI;
 }

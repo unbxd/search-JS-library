@@ -40,9 +40,7 @@ const reRender = function(){
     if(this.options.breadcrumb.enabled){
         this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
-    if(sort.el) {
-        sort.el.innerHTML = this.renderSort();
-    }
+    this.sortWrapper.innerHTML = this.renderSort();
     if(results && results.numberOfProducts === 0) {
         callBackFn(this,beforeNoResultRender);
         const query = this.getSearchQuery();
