@@ -1,5 +1,5 @@
 import extend from '../modules/utils/extend';
-const updateConfig = function(options, props) {
+const setConfig = function(options, props) {
     this.options = extend(true,{},options,props);
     const {
         facet,
@@ -31,4 +31,4 @@ const updateConfig = function(options, props) {
     }
     
 }
-export default updateConfig;
+export default setConfig;

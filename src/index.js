@@ -6,7 +6,7 @@ import options from './common/options';
 import setMethods from './core/setMethods';
 import intialize from './core/initialize';
 
-import updateConfig from './core/updateConfig';
+import setConfig from './core/setConfig';
 
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
@@ -17,8 +17,8 @@ class UnbxdSearch extends UnbxdSearchCore {
             lastAction:'',
             selectedRange:{}
         };
-        this.updateConfig = updateConfig.bind(this);
-        this.updateConfig(options,props);
+        this.setConfig = setConfig.bind(this);
+        this.setConfig(options,props);
         this.intialize = intialize.bind(this);
         this.intialize();
     }

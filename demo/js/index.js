@@ -119,8 +119,8 @@ window.unbxdSearch = new UnbxdSearchComponent({
   searchTrigger: "click",
   searchButtonSelector: document.getElementById("searchBtn"),
   //searchResultsSelector: document.getElementById("searchResultsWrapper"),
-  siteKey: "demo-unbxd700181503576558",
-  apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+  siteKey: "demo-spanish-unbxd809051588861207",
+  apiKey: "f19768e22b49909798bc2411fa3dd963",
   products:{
       el:document.getElementById("searchResultsWrapper"),
       productType:"SEARCH",
@@ -192,7 +192,7 @@ window.unbxdSearch = new UnbxdSearchComponent({
   updateUrls:true
 });
 const setUnbxdSearch = ()=> {
-  window.unbxdSearch.setConfig({
+  window.unbxdSearch.updateConfig({
     facet: {
       applyMultipleFilters:checkMobile(),
       rangeTemplate: getRangeTpl()
@@ -204,6 +204,7 @@ const setUnbxdSearch = ()=> {
       viewTypes: getView()
     }
   });
+  window.unbxdSearch.reRender();
 }
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);

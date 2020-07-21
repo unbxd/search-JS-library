@@ -508,6 +508,35 @@ button.UNX-page-next {
 .UNX-m-page {
   display: none;
 }
+.UNX-multilevel-facet {
+  width: 100%;
+  background: transparent;
+  border-color: transparent;
+  display: flex;
+  margin-bottom: 6px;
+}
+.UNX-category-level-2 {
+  padding-left: 12px;
+}
+.UNX-category-level-3 {
+  padding-left: 24px;
+}
+.UNX-category-level-4 {
+  padding-left: 36px;
+}
+.UNX-category-values > .UNX-category-level-2 {
+  padding-left: 24px;
+}
+.UNX-multilevel-facet .UNX-facet-text:before {
+  background: #f1f1f1;
+  border: 1px solid #f1f1f1;
+}
+.UNX-bread-crumb-item {
+  background: transparent;
+  border-color: transparent;
+  margin: 6px 0;
+  color: #0c94f7;
+}
 
 @media only screen and (max-width: 1200px) {
   .UNX-grid-card {
@@ -705,5 +734,8 @@ button.UNX-page-next {
   }
   .UNX-m-page .pagination-block {
     justify-content: center;
+  }
+  .UNX-sort-item {
+    width: 130px;
   }
 }
