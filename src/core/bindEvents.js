@@ -47,7 +47,7 @@ function bindEvents(){
         this.onProductItemClick.bind(this)
     );
     this.delegate(
-        sort.el, 
+        this.sortWrapper, 
         sort.action, 
         "."+sort.sortClass,
         this.sortAction.bind(this)
@@ -60,7 +60,7 @@ function bindEvents(){
     )
     if(facet.selectedFacetsEl) {
         this.delegate(
-            facet.selectedFacetsEl, 
+            this.selectedFacetWrapper, 
             facet.facetAction, 
             "."+facet.selectedFacetClass, 
             this.findChangedFacet.bind(this)

@@ -216,6 +216,7 @@ const options = {
             return `<div class="UNX-swatch-color-list">${btnUI}</div>`;
         }
     },
+    rangeWidget:renderRangeFacets,
     unbxdAnalytics:false,
     hashMode:false,
     updateUrls:true

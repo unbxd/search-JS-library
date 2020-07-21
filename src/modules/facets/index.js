@@ -33,10 +33,6 @@ const renderTextFacets = function(argFacets, selectedArgFacets) {
             });
             selectUI = this.options.facet.facetTemplate.bind(this)(facet, valuesUI.join(''))
         }
-        /*if(this.options.facet.selectedFacetsEl) {
-            this.options.facet.selectedFacetsEl.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedFacetsUI);
-        }*/
-        
         return `<div data-id="${facetName}">${selectUI}</div>`;
     }).join('');
     if(this.options.facet.selectedFacetsEl && selectedFacets) {
@@ -60,7 +56,7 @@ const renderTextFacets = function(argFacets, selectedArgFacets) {
                 });
             })
         }
-        this.options.facet.selectedFacetsEl.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
+        this.selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
     }
     
     return  `<div class="UNX-facets-inner-wrapper">${facetsListUI}</div>`;

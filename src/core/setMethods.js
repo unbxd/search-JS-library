@@ -25,6 +25,13 @@ const setFacetWidget = function(config){
     const newOps = Object.assign({},facet,config);
     this.options.facet = newOps;
 }
+const updateConfig = function(config){
+    const {
+        options
+    } = this;
+    this.setConfig(options, config);
+    this.reRender();
+}
 const renderFacets = function(){
     this.facetsWrapper.innerHTML = this.renderTextFacets(this.getFacets(), this.getSelectedFacets());
     this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
@@ -40,6 +47,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.setSearchWidget = setSearchWidget;
     prototype.setFacetWidget = setFacetWidget;
     prototype.renderFacets = renderFacets;
+    prototype.updateConfig = updateConfig;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);

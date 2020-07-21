@@ -8,7 +8,7 @@ const findChangedFacet = function(e) {
         id
     } = dataSet;
     const qState = this.getStateFromUrl();
-    const selectedfacets = this.getSelectedFacets()[facetName];
+    const selectedfacets = this.getSelectedFacets();
     const ln = (selectedfacets) ?Object.keys(selectedfacets).length:0;
     const ql = Object.keys(qState.selectedFacets).length;
     if(facetAction === this.events.changeFacet) {
@@ -40,7 +40,8 @@ const findChangedFacet = function(e) {
                 facetAction,
                 id
             },'facetClick');
-            if(ql > 0 && ln === 1 && this.options.facet.applyMultipleFilters) {
+            const fl = selectedfacets[facetName].length;
+            if(ql > 0 && ln === 1 && fl === 0 && this.options.facet.applyMultipleFilters) {
                 this.setPageStart(0);
                 this.getResults();
             }
