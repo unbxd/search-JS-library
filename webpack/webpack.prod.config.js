@@ -52,8 +52,8 @@ module.exports = {
     //     directory: 'public/dist' // This is the directory you want to upload
     // })
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-      chunkFilename: 'css/unbxdSearch.css'
+      filename: '../css/[name].css',
+      chunkFilename: '../css/vanillaSearch.css'
     })
     
   ],
