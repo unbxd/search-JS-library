@@ -16,7 +16,7 @@ const renderSearch =  function() {
     } = this.viewState;
     let productsUI = ``;
     const idx = Number(this.state.startPageNo);
-    if(productViewType === "GRID") {
+    if(productViewType === "GRID" && gridCount && gridCount > 1) {
         products.forEach((product, index) => {
             const row = index % gridCount;
             if(row === 0) {
@@ -38,7 +38,8 @@ const renderSearch =  function() {
             return self.options.products.template.bind(self)(mappedProduct,pRank);
         }).join('');
     }
+    const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block"
 
-    return  `<div class="UNX-result-wrapper">${productsUI}</div>`;
+    return  `<div class="UNX-result-wrapper ${viewCss}">${productsUI}</div>`;
 }
 export default renderSearch

@@ -115,26 +115,28 @@ function getRangeTpl(){
 }
 
 window.unbxdSearch = new UnbxdSearchComponent({
+  siteKey: "demo-unbxd700181503576558",
+  apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+  hashMode:true,
+  updateUrls:true
+});
+
+window.unbxdSearch.updateConfig({
   searchBoxSelector: document.getElementById("unbxdInput"),
   searchTrigger: "click",
   searchButtonSelector: document.getElementById("searchBtn"),
-  //searchResultsSelector: document.getElementById("searchResultsWrapper"),
-  siteKey: "demo-spanish-unbxd809051588861207",
-  apiKey: "f19768e22b49909798bc2411fa3dd963",
   products:{
-      el:document.getElementById("searchResultsWrapper"),
-      productType:"SEARCH",
-      productClick: function(product,e) {
-          console.log(product,"product,index",e);
-      },
-      gridCount:getGridCount()
+    el:document.getElementById("searchResultsWrapper"),
+    productType:"SEARCH",
+    productClick: function(product,e) {
+        console.log(product,"product,index",e);
+    }
   },
   spellCheck: {
     enabled: true,
     el: document.getElementById("didYouMeanWrapper")
   },
   noResults: {
-      //noResultEl: document.getElementById("noResultWrapper"),
       el: document.getElementById("noResultWrapper")
   },
   facet: {
@@ -142,8 +144,7 @@ window.unbxdSearch = new UnbxdSearchComponent({
     selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
     rangeFacetEl: document.getElementById("rangeFacetWrapper"),
     multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-    applyMultipleFilters:checkMobile(),
-    rangeTemplate: getRangeTpl()
+    applyMultipleFilters:checkMobile()
   },
   pagination: {
     el: document.querySelectorAll(".unxPagination"),
@@ -187,18 +188,17 @@ window.unbxdSearch = new UnbxdSearchComponent({
       swatchImgs: "unbxd_color_mapping",
       swatchColors: "color"
     }
-  },
-  hashMode:true,
-  updateUrls:true
+  }
 });
+//window.unbxdSearch.initialize();
+
 const setUnbxdSearch = ()=> {
   window.unbxdSearch.updateConfig({
     facet: {
-      applyMultipleFilters:checkMobile(),
-      rangeTemplate: getRangeTpl()
+      applyMultipleFilters:checkMobile()
     },
     products:{
-      gridCount:getGridCount()
+     // gridCount:getGridCount()
     },
     productView:{
       viewTypes: getView()
@@ -211,4 +211,4 @@ window.addEventListener('resize', () => {
   window.resizeTimer = setTimeout(function() {
       setUnbxdSearch()      
   }, 250);
-})
+});

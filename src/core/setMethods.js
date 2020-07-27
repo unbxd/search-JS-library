@@ -11,6 +11,7 @@ import setSwatches from '../modules/swatches/setSwatches';
 import setPageSize from '../modules/pageSize/setPageSize';
 import setAnalytics from '../modules/analytics/setAnalytics';
 import RangeSlider from '../modules/widgets/RangeSlider';
+import initialize from '../core/initialize';
 const setSearchWidget = function(config){
     const {
         products
@@ -30,7 +31,7 @@ const updateConfig = function(config){
         options
     } = this;
     this.setConfig(options, config);
-    this.reRender();
+    this.initialize();
 }
 const renderFacets = function(){
     this.facetsWrapper.innerHTML = this.renderTextFacets(this.getFacets(), this.getSelectedFacets());
@@ -48,6 +49,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.setFacetWidget = setFacetWidget;
     prototype.renderFacets = renderFacets;
     prototype.updateConfig = updateConfig;
+    prototype.initialize = initialize;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);

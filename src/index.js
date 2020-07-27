@@ -19,8 +19,6 @@ class UnbxdSearch extends UnbxdSearchCore {
         };
         this.setConfig = setConfig.bind(this);
         this.setConfig(options,props);
-        this.intialize = intialize.bind(this);
-        this.intialize();
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
