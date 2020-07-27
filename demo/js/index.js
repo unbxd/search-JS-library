@@ -117,7 +117,7 @@ function getRangeTpl(){
 window.unbxdSearch = new UnbxdSearchComponent({
   siteKey: "demo-unbxd700181503576558",
   apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-  hashMode:true,
+  hashMode:false,
   updateUrls:true
 });
 
@@ -147,8 +147,7 @@ window.unbxdSearch.updateConfig({
     applyMultipleFilters:checkMobile()
   },
   pagination: {
-    el: document.querySelectorAll(".unxPagination"),
-    type:'FIXED_PAGINATION'
+    type:'INFINITE_SCROLL'
   },
   breadcrumb: {
     el: document.getElementById("breadcrumpContainer")

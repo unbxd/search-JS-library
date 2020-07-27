@@ -118,6 +118,8 @@ function bindEvents(){
     );
     if(this.options.hashMode) {
         window.onhashchange= this.onLocationChange.bind(this);
+    } else {
+        window.addEventListener('popstate',this.onLocationChange.bind(this),false);
     }
 }
 export default bindEvents;
