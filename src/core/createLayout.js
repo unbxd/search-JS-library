@@ -65,32 +65,46 @@ const createLayout = function() {
         this.paginationWrappers.push(elem);
         return elem;
     }
+    const {
+        facetsEl,
+        multiLevelFacetEl,
+        rangeFacetEl,
+        selectedFacetsEl
+    } = this.options.facet;
     this.options.facet.selectedFacetTemplate.bind(this);
     this.options.facet.multiLevelFacetTemplate.bind(this);
     this.options.facet.facetTemplate.bind(this);
     this.options.facet.facetItemTemplate.bind(this);
-    this.options.facet.facetsEl.innerHTML = ``;
-    this.options.facet.facetsEl.appendChild(this.facetsWrapper);
-    if(this.options.facet.multiLevelFacetEl) {
+    if(facetsEl) {
+        this.options.facet.facetsEl.innerHTML = ``;
+        this.options.facet.facetsEl.appendChild(this.facetsWrapper);
+    }
+    if(multiLevelFacetEl) {
         this.options.facet.multiLevelFacetEl.innerHTML = ``;
         this.options.facet.multiLevelFacetEl.appendChild(this.multiLevelFacetWrapper);
     } else {
-        this.options.facet.facetsEl.appendChild(this.multiLevelWrapperFacet);
+        if(facetsEl) {
+            this.options.facet.facetsEl.appendChild(this.multiLevelWrapperFacet);
+        }
     }
-    if(this.options.facet.rangeFacetEl){
+    if(rangeFacetEl){
         this.options.facet.rangeFacetEl.innerHTML = ``;
         this.options.facet.rangeFacetEl.appendChild(this.rangeFacetsWrapper);
     } else {
-        this.options.facet.facetsEl.appendChild(this.rangeFacetsWrapper)
+        if(facetsEl) {
+            this.options.facet.facetsEl.appendChild(this.rangeFacetsWrapper)
+        }
     }
-    if(this.options.facet.selectedFacetsEl) {
+    if(selectedFacetsEl) {
         this.options.facet.selectedFacetsEl.innerHTML = ``;
         this.options.facet.selectedFacetsEl.appendChild(this.selectedFacetWrapper)
     }
     if(this.options.breadcrumb.enabled) {
         this.options.breadcrumb.template = this.options.breadcrumb.template.bind(this);
-        this.options.breadcrumb.el.innerHTML = ``;
-        this.options.breadcrumb.el.appendChild(this.breadcrumbWrapper);
+        if(this.options.breadcrumb.el){
+            this.options.breadcrumb.el.innerHTML = ``;
+            this.options.breadcrumb.el.appendChild(this.breadcrumbWrapper);
+        }
     }
     if(this.options.swatchTemplate) {
         this.options.swatchTemplate.bind(this);
@@ -104,7 +118,10 @@ const createLayout = function() {
         this.options.sort.el.appendChild(this.sortWrapper);
     }
     this.options.banner.template = this.options.banner.template.bind(this);
-    this.options.products.el.appendChild(this.searchResultsWrapper);
+    if(this.options.products.el){
+        this.options.products.el.innerHTML=``;
+        this.options.products.el.appendChild(this.searchResultsWrapper);
+    }
     this.loaderEl = this.options.loader.el || this.searchResultsWrapper;
     if(this.options.pagesize.el){
         this.options.pagesize.el.innerHTML = ``;

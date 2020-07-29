@@ -19,7 +19,12 @@
     rel="stylesheet"
   />
   </head>
+
+  <!--for showing the footer buttons-->
   <style>
+    .UNX-m-facet-row{
+      display:block;
+    }
   </style>
 
   <body>
@@ -171,10 +176,7 @@
         siteKey: "demo-unbxd700181503576558",
         apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
         hashMode:true,
-        updateUrls:true
-      });
-
-      window.unbxdSearch.updateConfig({
+        updateUrls:true,
         searchBoxSelector: document.getElementById("unbxdInput"),
         searchTrigger: "click",
         searchButtonSelector: document.getElementById("searchBtn"),
@@ -196,8 +198,7 @@
           facetsEl: document.getElementById("facetsWrapper"),
           selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
           rangeFacetEl: document.getElementById("rangeFacetWrapper"),
-          multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-          applyMultipleFilters:checkMobile()
+          multiLevelFacetEl: document.getElementById("bucketedFacetWrapper")
         },
         pagination: {
           el: document.querySelectorAll(".unxPagination"),
@@ -244,14 +245,14 @@
         }
       });
 
+      window.unbxdSearch.updateConfig({
+        facet: {
+          applyMultipleFilters: true
+        }
+      });
+
       const setUnbxdSearch = ()=> {
         window.unbxdSearch.updateConfig({
-          facet: {
-            applyMultipleFilters:checkMobile()
-          },
-          products:{
-          // gridCount:getGridCount()
-          },
           productView:{
             viewTypes: getView()
           }

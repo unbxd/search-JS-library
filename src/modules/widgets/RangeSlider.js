@@ -172,6 +172,10 @@ class RangeSlider {
         // Prevent default dragging of selected content
         event.preventDefault();
         let eventTouch = event;
+        if (event.touches)
+        {
+            eventTouch = event.touches[0];
+        }
         const actionType = this.getActionType(event);
         if(actionType) {
             if(actionType === "handleLeft") {

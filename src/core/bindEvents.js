@@ -11,16 +11,19 @@ function bindEvents(){
         pagination,
         sort,
         pagesize,
-        spellCheck
+        spellCheck,
+        searchBoxSelector
     } = this.options;
-    this.options.searchBoxSelector.addEventListener("keydown", (e) => {
-        const val = e.target.value;
-        if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-            if(val !== ""){
-                this.setInputValue.bind(this)();
+    if(searchBoxSelector) {
+        searchBoxSelector.addEventListener("keydown", (e) => {
+            const val = e.target.value;
+            if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+                if(val !== ""){
+                    this.setInputValue.bind(this)();
+                }
             }
-        }
-    });
+        });
+    }
     if(pagination.enabled) {
         this.paginationWrappers.forEach((wrapper)=>{
             this.delegate(
@@ -32,13 +35,17 @@ function bindEvents(){
             //wrapper.addEventListener(pagination.action, this.paginationAction.bind(this));
         });
     }
-    searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this));
-    this.delegate(
-        spellCheck.el,
-        "click",
-        `.${spellCheck.selectorClass}`,
-        this.setSuggestion.bind(this)
-    );
+    if(searchButtonSelector) {
+        searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this));
+    }
+    if(spellCheck.el) {
+        this.delegate(
+            spellCheck.el,
+            "click",
+            `.${spellCheck.selectorClass}`,
+            this.setSuggestion.bind(this)
+        );
+    }
     //productItemSelector
     this.delegate(
         this.searchResultsWrapper,
@@ -111,6 +118,8 @@ function bindEvents(){
     );
     if(this.options.hashMode) {
         window.onhashchange= this.onLocationChange.bind(this);
+    } else {
+        window.addEventListener('popstate',this.onLocationChange.bind(this),false);
     }
 }
 export default bindEvents;

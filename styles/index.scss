@@ -78,7 +78,7 @@ body {
   background: #ffffff;
 }
 .UNX-grid-card {
-  width: 25%;
+  width: 100%;
   overflow: hidden;
   padding: 20px 20px 20px 0px;
 }
@@ -304,6 +304,10 @@ body {
   margin: auto;
   z-index: 9;
 }
+.UNX-result-wrapper {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+}
 .UNX-range-slider-wrapper {
   height: 20px;
   margin: 15px 0;
@@ -415,7 +419,7 @@ button.UNX-page-next {
   max-width: 100px;
   overflow-y: auto;
 }
-#loaderEl > div {
+.UNX-loader {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -537,18 +541,22 @@ button.UNX-page-next {
   margin: 6px 0;
   color: #0c94f7;
 }
+.UNX-list-block {
+  display: table;
+  width: 100%;
+}
 
 @media only screen and (max-width: 1200px) {
-  .UNX-grid-card {
-    width: 33.3%;
+  .UNX-result-wrapper {
+    grid-template-columns: 33.3% 33.3% 33.3%;
   }
 }
 @media only screen and (max-width: 980px) {
   body {
     background-color: #e2e2e2;
   }
-  .UNX-grid-card {
-    width: 50%;
+  .UNX-result-wrapper {
+    grid-template-columns:100%;
   }
   .m-facets-btn {
     display: block;
@@ -599,7 +607,7 @@ button.UNX-page-next {
   }
   .UNX-img-block {
     max-width: initial;
-    width: 125px;
+    width: 100%;
   }
   .UNX-logo{
     margin-right:20px
@@ -737,5 +745,9 @@ button.UNX-page-next {
   }
   .UNX-sort-item {
     width: 130px;
+  }
+  .UNX-loader {
+    font-size: 24px;
+    padding: 24px;
   }
 }

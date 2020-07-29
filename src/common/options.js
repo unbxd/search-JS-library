@@ -30,7 +30,7 @@ const options = {
         template:productTemplate,
         productItemClass:"product-item", // to find out product
         productType:"SEARCH",
-        gridCount:4,
+        gridCount:1,
         productClick: function(product,e) {
             console.log(product,"product,index",e);
         },

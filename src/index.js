@@ -1,5 +1,5 @@
-import UnbxdSearchCore from "../../../search-JS-core/src/index";
-//import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+//import UnbxdSearchCore from "../../../search-JS-core/src/index";
+import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
 import options from './common/options';
@@ -19,8 +19,6 @@ class UnbxdSearch extends UnbxdSearchCore {
         };
         this.setConfig = setConfig.bind(this);
         this.setConfig(options,props);
-        this.intialize = intialize.bind(this);
-        this.intialize();
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);

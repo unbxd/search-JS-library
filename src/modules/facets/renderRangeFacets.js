@@ -1,13 +1,19 @@
 const renderRangeFacets = function(rangeFacets, selectedRanges) {
     const self = this;
-    const getRangesFrom = (str, xMin = 0, yMin = 100) => {
-        const trimmed = str.replace(/(^")|("$)/g, '').replace(/\"{2,}/g, '"').replace(/\\\"/g, '"').replace(/(^\[)|(\]$)/g, '');
-        const rangArr = trimmed.split(" TO ");
+    const getRangesFrom = (sRanges, xMin = 0, yMin = 100) => {
+        let sArr = [];
+        sRanges.forEach(sRange => {
+            const trimmed = sRange.replace(/(^")|("$)/g, '').replace(/\"{2,}/g, '"').replace(/\\\"/g, '"').replace(/(^\[)|(\]$)/g, '');
+            const rangArr = trimmed.split(" TO ");
+            sArr.push(Number(rangArr[0]));
+            sArr.push(Number(rangArr[1]));
+        })
+        sArr = sArr.sort((a, b) => a-b);
         let x = xMin;
         let y = yMin;
-        if(rangArr.length === 2) {
-            x = Number(rangArr[0]);
-            y = Number(rangArr[1]);
+        if(sArr.length >= 2) {
+            x = sArr[0];
+            y = sArr[sArr.length -1];
         }
         return {
             start:x,
@@ -33,8 +39,10 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             gap
         }
         this.setRangeFilter(newData);
-        this.setPageStart(0);
-        this.applyRangeFacet();
+        if(!self.options.applyMultipleFilters) {
+            this.setPageStart(0);
+            this.applyRangeFacet();
+        }
     }
     const {
         rangeFacet
@@ -56,7 +64,7 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             const {
                 start,
                 end
-            } = getRangesFrom(selectedRange[0],values.start,values.end);
+            } = getRangesFrom(selectedRange,values.start,values.end);
             minX = start;
             minY = end;
         }

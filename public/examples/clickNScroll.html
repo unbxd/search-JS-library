@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content= "width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000" />
-    <title>Unbxd Sdk playground</title>
+    <title>Infinite Scroll</title>
     <!--required frame works should be loaded here-->
     <link
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
@@ -20,6 +20,17 @@
   />
   </head>
   <style>
+    .unx-pagination-size-block {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+    .UNX-page-items {
+      background: #000000;
+      color: #FFF;
+      padding: 12px;
+      border-color: #000000;
+  }
   </style>
 
   <body>
@@ -68,18 +79,15 @@
                           <div class="UNX-change-products" id="changeNoOfProducts"></div>
                           <div class="UNX-sort-wrapper" id="sortWrapper"></div>
                           <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
-                          <div id="" class="UNX-change-pagination-wrap unxPagination"></div>
                       </div>
                   </div>
                   <div id="bannerContainer"></div>
                   <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
-                  <div id="" class="UNX-change-pagination-wrap UNX-m-page unxPagination"></div>
               </div>
           </div>
           <div class="UNX-loader-container" id="loaderEl"></div>
           <div id="noResultWrapper"></div>
-          <div id="clickScrollContainer">
-          </div>
+          <div id="clickScrollContainer" class="UNX-change-pagination-wrap"></div>
       </div>
     <!--<script
       type="text/javascript"
@@ -171,10 +179,7 @@
         siteKey: "demo-unbxd700181503576558",
         apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
         hashMode:true,
-        updateUrls:true
-      });
-
-      window.unbxdSearch.updateConfig({
+        updateUrls:true,
         searchBoxSelector: document.getElementById("unbxdInput"),
         searchTrigger: "click",
         searchButtonSelector: document.getElementById("searchBtn"),
@@ -199,17 +204,12 @@
           multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
           applyMultipleFilters:checkMobile()
         },
-        pagination: {
-          el: document.querySelectorAll(".unxPagination"),
-          type:'FIXED_PAGINATION'
-        },
         breadcrumb: {
           el: document.getElementById("breadcrumpContainer")
         },
         pagesize: {
           el: document.getElementById("changeNoOfProducts")
         },
-
         sort: {
           el: document.getElementById("sortWrapper"),
           options: [
@@ -243,6 +243,23 @@
           }
         }
       });
+
+
+
+      //click scroll pagination
+      window.unbxdSearch.updateConfig({
+        pagination: {
+          type:'CLICK_N_SCROLL',
+          el:document.getElementById("clickScrollContainer"),
+          template: function(){
+            const {
+              pageClass,
+          } = this.options.pagination;
+          return `<button class="${pageClass}">Load More</button>`
+          }
+        }
+      });
+
 
       const setUnbxdSearch = ()=> {
         window.unbxdSearch.updateConfig({
