@@ -15,7 +15,9 @@ class UnbxdSearch extends UnbxdSearchCore {
             productViewType: options.productView.viewTypes,
             isInfiniteStarted:false,
             lastAction:'',
-            selectedRange:{}
+            selectedRange:{},
+            expandedFacets:{},
+            searchFacetsText:{}
         };
         this.setConfig = setConfig.bind(this);
         this.setConfig(options,props);

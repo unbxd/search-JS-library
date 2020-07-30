@@ -132,6 +132,9 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 | fireAnalyticsEvents | Boolean | you wish to have unbid analytics along with sdk. |
 | hashMode | Boolean | you wish the url changes on hash change |
 | updateUrls | Boolean | if you dont need url tracking make it false, by default it is true |
+| actionBtn  | String  | css class, if you wish to trigger click on your custom elements, add this class |
+| actionChange  | String  | css class, if you wish to trigger change on your custom input elements, add this class |
+| actionCallback  | Function  | callback function for you custom element  |
 | | | |
 
 
@@ -198,7 +201,13 @@ facet configuration table is available here.
 | clearFacetsSelector | String | Class name for button to clear the selected filters under a facet |
 | removeFacetsSelector | String | for deleting each selected filter under a facet. this class name is must to work |
 | onFacetLoad | function | if you wish to do something after each facet selection |
-| applyMultipleFilters | Boolean | if you wish to apply multiple filters together
+| applyMultipleFilters | Boolean | if you wish to apply multiple filters together |
+| isCollapsible | Boolean | if you wish to have accordian on facets |
+| defaultOpen | String | Available options All , First , None |
+| isSearchable | Boolean | if you wish to have a search feature on facets |
+| searchPlaceHolder | String | placeholder for the facet search input |
+| textFacetWrapper | String | css class for the facets list |
+
 
   
 # Pagination
@@ -209,10 +218,8 @@ facet configuration table is available here.
 | el                        	| Element  	| placeholder to place the pagination element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
 | type                      	| String   	| 'FIXED_PAGINATION' or 'INFINITE_SCROLL' or 'CLICK_N_SCROLL'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        	|
 | onPaginate                	| Function 	| call back function after pagination.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               	|
-| action                    	| String   	| 'click' or 'change' to make the pagination                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         	|
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	|
-| template                  	| Function 	| for customising the default pagination look.  it has an argument(object) to provide the pagination  information |
-|     
+| action                    	| String   	| 'click' or 'change' to make the pagination                         
+| template                  	| Function 	| for customising the default pagination look.  it has an argument(object) to provide the pagination  information |  
 
 
 

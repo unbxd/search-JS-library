@@ -163,7 +163,12 @@ const options = {
         onFacetLoad:function(facets){
             console.log(facets,"facetsfacets");
         },
-        applyMultipleFilters:false
+        applyMultipleFilters:false,
+        isCollapsible:true,
+        isSearchable:true,
+        searchPlaceHolder:"",
+        textFacetWrapper:"UNX-facets-item",
+        defaultOpen:"All"
     },
 
     pagination : {
@@ -219,7 +224,11 @@ const options = {
     rangeWidget:renderRangeFacets,
     unbxdAnalytics:false,
     hashMode:false,
-    updateUrls:true
+    updateUrls:true,
+    actionBtn:"UNX-action-item",
+    actionChange:"UNX-action-change",
+    actionCallback: function(e) {
+    }
    // searchQueryParam:null
 };
 export default options;

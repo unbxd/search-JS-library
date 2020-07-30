@@ -144,7 +144,8 @@ window.unbxdSearch.updateConfig({
     selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
     rangeFacetEl: document.getElementById("rangeFacetWrapper"),
     multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-    applyMultipleFilters:checkMobile()
+    applyMultipleFilters:checkMobile(),
+    defaultOpen:"First"
   },
   pagination: {
     type:'INFINITE_SCROLL'
@@ -194,7 +195,8 @@ window.unbxdSearch.updateConfig({
 const setUnbxdSearch = ()=> {
   window.unbxdSearch.updateConfig({
     facet: {
-      applyMultipleFilters:checkMobile()
+      applyMultipleFilters:checkMobile(),
+      defaultOpen:"First"
     },
     products:{
      // gridCount:getGridCount()

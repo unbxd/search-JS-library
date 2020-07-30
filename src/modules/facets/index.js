@@ -1,15 +1,22 @@
-const renderTextFacets = function(argFacets, selectedArgFacets) {
+const renderTextFacets = function(argFacets, selectedArgFacets, noRender) {
     const facets = (argFacets) ? argFacets : this.getFacets();
     const selectedFacets = (selectedArgFacets) ? selectedArgFacets: this.getSelectedFacets();
     const self = this;
     let selectedFacetsUI = ``;
+    const {
+        isCollapsible
+    } = this.options.facet;
+    let noRenderItems = ``; 
     const facetsListUI = facets.map((facet) =>{
         const {
             displayName,
             facetName,
+        } = facet;
+        let {
             values = []
         } = facet;
         let selectUI = "";
+        const facetSearchTxt = this.getSearchFacetsText(facetName);
         const selectedFacet = selectedFacets[facetName];
         if(values.length > 0) {
             let valuesUI  = values.map((value, index) => {
@@ -26,14 +33,18 @@ const renderTextFacets = function(argFacets, selectedArgFacets) {
                     if(this.options.facet.selectedFacetsEl) {
                         selectedFacetsUI += this.options.facet.selectedFacetTemplate.bind(this)(facet,value);
                     }
-                    return this.options.facet.selectedFacetTemplate.bind(this)(facet,value)
+                    return this.options.facet.selectedFacetTemplate.bind(this)(facet,value,facetSearchTxt)
                 } else{
-                    return this.options.facet.facetItemTemplate.bind(this)(facet, value)
+                    return this.options.facet.facetItemTemplate.bind(this)(facet, value,facetSearchTxt)
                 }
             });
-            selectUI = this.options.facet.facetTemplate.bind(this)(facet, valuesUI.join(''))
+            const isExpanded =  this.isExpandedFacet(facetName);
+            if(noRender){
+                noRenderItems = valuesUI;
+            }
+            selectUI = this.options.facet.facetTemplate.bind(this)(facet, valuesUI.join(''),isExpanded,facetSearchTxt);
         }
-        return `<div data-id="${facetName}">${selectUI}</div>`;
+        return `<div id="${facetName}">${selectUI}</div>`;
     }).join('');
     if(this.options.facet.selectedFacetsEl && selectedFacets) {
         const k = Object.keys(selectedFacets);
@@ -58,7 +69,10 @@ const renderTextFacets = function(argFacets, selectedArgFacets) {
         }
         this.selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
     }
-    
-    return  `<div class="UNX-facets-inner-wrapper">${facetsListUI}</div>`;
+    if(noRender){
+        return noRenderItems;
+    } else {
+        return  `<div class="UNX-facets-inner-wrapper">${facetsListUI}</div>`;
+    }
 }
 export default renderTextFacets;

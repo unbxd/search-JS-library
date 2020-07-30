@@ -15,8 +15,28 @@ const reRender = function(){
         afterRender
     } = this.events;
     const {
-        lastAction
+        lastAction,
+        expandedFacets
     } = this.viewState;
+    const {
+        defaultOpen
+    } = this.options.facet;
+    const facets = this.getFacets();
+    if(defaultOpen !=="None") {
+        facets.forEach((item,i)=> {
+            const {
+                facetName
+            } = item;
+            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "All") {
+                expandedFacets[facetName] = true
+            }
+            if(defaultOpen === "First" && i == 0) {
+                expandedFacets[facetName] = true
+            }
+        })
+    } else {
+        this.viewState.expandedFacets = {};
+    }
 
     callBackFn(this,beforeRender);
     this.loaderEl.innerHTML = ``;
