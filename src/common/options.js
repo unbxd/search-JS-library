@@ -168,7 +168,7 @@ const options = {
         isSearchable:true,
         searchPlaceHolder:"",
         textFacetWrapper:"UNX-facets-item",
-        defaultOpen:"All"
+        defaultOpen:"ALL"
     },
 
     pagination : {
@@ -227,7 +227,7 @@ const options = {
     updateUrls:true,
     actionBtn:"UNX-action-item",
     actionChange:"UNX-action-change",
-    actionCallback: function(e) {
+    actionCallback: function(e,ctx) {
     }
    // searchQueryParam:null
 };

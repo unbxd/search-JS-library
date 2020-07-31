@@ -203,7 +203,7 @@ facet configuration table is available here.
 | onFacetLoad | function | if you wish to do something after each facet selection |
 | applyMultipleFilters | Boolean | if you wish to apply multiple filters together |
 | isCollapsible | Boolean | if you wish to have accordian on facets |
-| defaultOpen | String | Available options All , First , None |
+| defaultOpen | String | Available options ALL , FIRST , NONE |
 | isSearchable | Boolean | if you wish to have a search feature on facets |
 | searchPlaceHolder | String | placeholder for the facet search input |
 | textFacetWrapper | String | css class for the facets list |

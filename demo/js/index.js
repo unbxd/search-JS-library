@@ -188,6 +188,9 @@ window.unbxdSearch.updateConfig({
       swatchImgs: "unbxd_color_mapping",
       swatchColors: "color"
     }
+  },
+  actionCallback:function(e, ctx) {
+    console.log(e.target,this,ctx)
   }
 });
 //window.unbxdSearch.initialize();

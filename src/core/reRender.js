@@ -22,15 +22,15 @@ const reRender = function(){
         defaultOpen
     } = this.options.facet;
     const facets = this.getFacets();
-    if(defaultOpen !=="None") {
+    if(defaultOpen !=="NONE") {
         facets.forEach((item,i)=> {
             const {
                 facetName
             } = item;
-            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "All") {
+            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "ALL") {
                 expandedFacets[facetName] = true
             }
-            if(defaultOpen === "First" && i == 0) {
+            if(defaultOpen === "FIRST" && i == 0) {
                 expandedFacets[facetName] = true
             }
         })
