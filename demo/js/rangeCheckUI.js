@@ -1,4 +1,4 @@
-export function(ranges,selectedRanges) {
+export default function(ranges,selectedRanges) {
     let ui  = ``;
     const {
       selectedFacetClass,
@@ -18,7 +18,7 @@ export function(ranges,selectedRanges) {
             } = item;
           const isSelected = this.isSelectedRange(facetName,item);
           const btnCss = (isSelected) ? `${facetClass} ${selectedFacetClass}`:`${facetClass}`;
-          valueUI +=`<button class="${btnCss} UNX-range-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >
+          valueUI +=`<button class="${btnCss} UNX-change-facet UNX-range-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >
               <span class="UNX-facet-text">${from.name}  -  ${to.name}</span>
               <span class="UNX-facet-count">(${from.count})</span>
           </button>`;

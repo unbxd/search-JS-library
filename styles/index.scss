@@ -145,7 +145,7 @@ body {
 }
 .UNX-facets-inner-wrapper h3 {
   color: #0a0b0c;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
 }
 .UNX-change-facet {
@@ -493,9 +493,6 @@ button.UNX-page-next {
 .UNX-m-facet-btn{
   display: none;
 }
-.UNX-facet-footer {
-  display: none;
-}
 
 .UNX-price-action-row {
   display: none;
@@ -544,6 +541,89 @@ button.UNX-page-next {
 .UNX-list-block {
   display: table;
   width: 100%;
+}
+.UNX-text-facet-wrap {
+  position: relative;
+}
+.UNX-facets-close {
+  height: 0;
+  overflow-y: hidden;
+}
+.UNX-facets-open {
+  height: auto;
+  overflow-y: auto;
+}
+.UNX-facet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.UNX-facet-header .UNX-collapse-btn {
+  height: 32px;
+  width: 32px;
+  background: transparent;
+  border: solid 1px transparent;
+}
+.UNX-search-hidden {
+  display: none;
+}
+.UNX-facet-search {
+  width: 100%;
+  height: 30px;
+  padding-left: 6px;
+  padding-right:20px;
+  border-radius: 15px;
+  border-color: transparent;
+  background: transparent;
+}
+.UNX-collapse-btn  {
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 32px;
+}
+.UNX-facet-open:before {
+  content:"-";
+}
+.UNX-searchable-facets {
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  position: relative;
+  border: solid 1px #F6F6F6;
+  background: #F6F6F6;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: inset 0 1px 3px 0 rgba(133, 146, 172, 0.24);
+  margin: 12px 0;
+}
+.UNX-searchable-facets:before {
+  content: "\f002";
+  position: absolute;
+  right: 12px;
+  top: 9px;
+  font-size: 12px;
+  opacity: .5;
+}
+.UNX-facet-close:before {
+  content:"+";
+  font-size: 20px;
+  line-height: 20px;
+}
+.UNX-filter-header {
+  color: #0A0B0C;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+
+.UNX-hidden {
+  display: none;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -749,5 +829,8 @@ button.UNX-page-next {
   .UNX-loader {
     font-size: 24px;
     padding: 24px;
+  }
+  .UNX-facet-footer {
+    display: none;
   }
 }

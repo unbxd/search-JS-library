@@ -15,8 +15,33 @@ const reRender = function(){
         afterRender
     } = this.events;
     const {
-        lastAction
+        lastAction,
+        expandedFacets,
+        productViewType
     } = this.viewState;
+    const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
+    this.searchResultsWrapper.classList.remove("UNX-list-block");
+    this.searchResultsWrapper.classList.remove("UNX-grid-block");
+    this.searchResultsWrapper.classList.add(viewCss);
+    const {
+        defaultOpen
+    } = this.options.facet;
+    const facets = this.getFacets();
+    if(defaultOpen !=="NONE") {
+        facets.forEach((item,i)=> {
+            const {
+                facetName
+            } = item;
+            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "ALL") {
+                expandedFacets[facetName] = true
+            }
+            if(defaultOpen === "FIRST" && i == 0) {
+                expandedFacets[facetName] = true
+            }
+        })
+    } else {
+        this.viewState.expandedFacets = {};
+    }
 
     callBackFn(this,beforeRender);
     this.loaderEl.innerHTML = ``;

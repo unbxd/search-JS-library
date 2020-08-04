@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
     <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/prism.css">
 </head>
 <body>
 
@@ -96,6 +97,84 @@
       <div>available options are "click" or "change"</div>
     </li>
   </ul>
+  <h3>Basic Config</h3>
+  <script type="text/plain" class="language-javascript">
+window.unbxdSearch = new UnbxdSearchComponent({
+  siteKey: "demo-unbxd700181503576558",
+  apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+  hashMode:false,
+  updateUrls:true
+});
+
+window.unbxdSearch.updateConfig({
+  searchBoxSelector: document.getElementById("unbxdInput"),
+  searchTrigger: "click",
+  searchButtonSelector: document.getElementById("searchBtn"),
+  products:{
+    el:document.getElementById("searchResultsWrapper"),
+    productType:"SEARCH",
+    productClick: function(product,e) {
+        console.log(product,"product,index",e);
+    }
+  },
+  spellCheck: {
+    enabled: true,
+    el: document.getElementById("didYouMeanWrapper")
+  },
+  noResults: {
+      el: document.getElementById("noResultWrapper")
+  },
+  facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+    rangeFacetEl: document.getElementById("rangeFacetWrapper"),
+    multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
+    defaultOpen:"First"
+  },
+  pagination: {
+    type:'INFINITE_SCROLL'
+  },
+  breadcrumb: {
+    el: document.getElementById("breadcrumpContainer")
+  },
+  pagesize: {
+    el: document.getElementById("changeNoOfProducts")
+  },
+
+  sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [
+      {
+        value: "sortPrice desc",
+        text: "Price High to Low"
+      },
+      {
+        value: "sortPrice asc",
+        text: " Price Low to High"
+      }
+    ]
+  },
+  loader :{
+      el:document.getElementById("loaderEl")
+  },
+  productView:{
+    el: document.getElementById("productViewTypeContainer"),
+    viewTypes: getView()
+  },
+  banner: {
+    el: document.getElementById("bannerContainer"),
+    count: 1
+  },
+  swatches: {
+    enabled: true,
+    attributesMap: {
+      swatchList: "color",
+      swatchImgs: "unbxd_color_mapping",
+      swatchColors: "color"
+    }
+  }
+});
+  </script>
 
 </div>
 
@@ -103,6 +182,7 @@
 
 
 <script>prettyPrint();</script>
+<script src="scripts/prism.js"></script>
 <script src="scripts/linenumber.js"></script>
 </body>
 </html>

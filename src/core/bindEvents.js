@@ -12,7 +12,9 @@ function bindEvents(){
         sort,
         pagesize,
         spellCheck,
-        searchBoxSelector
+        searchBoxSelector,
+        actionBtnClass,
+        actionChangeClass
     } = this.options;
     if(searchBoxSelector) {
         searchBoxSelector.addEventListener("keydown", (e) => {
@@ -64,6 +66,24 @@ function bindEvents(){
         facet.facetAction, 
         "."+facet.facetClass, 
         this.findChangedFacet.bind(this)
+    )
+    this.delegate(
+        document.body, 
+        'change', 
+        "."+actionChangeClass, 
+        this.extraActionsChange.bind(this)
+    )
+    this.delegate(
+        document.body, 
+        'keyup', 
+        "."+actionChangeClass, 
+        this.extraActionsChange.bind(this)
+    )
+    this.delegate(
+        document.body, 
+        'click', 
+        "."+actionBtnClass, 
+        this.extraActions.bind(this)
     )
     if(facet.selectedFacetsEl) {
         this.delegate(

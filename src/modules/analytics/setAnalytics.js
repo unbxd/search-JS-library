@@ -73,7 +73,7 @@ const trackFacetClick = function(state,type){
 }
 const getCallbackActions = function(state,type) {
     const Unbxd = window.Unbxd || null;
-    if(Unbxd){
+    if(Unbxd && state){
         switch(type) {
             case 'CHANGE_INPUT':
                 this.trackSearch(state);

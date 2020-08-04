@@ -9,6 +9,9 @@ const renderSearch =  function() {
     } = searchResults;
     const self = this;
     const {
+        swatches
+    } = this.options;
+    const {
         gridCount
     } = this.options.products;
     const {
@@ -16,6 +19,7 @@ const renderSearch =  function() {
     } = this.viewState;
     let productsUI = ``;
     const idx = Number(this.state.startPageNo);
+    let swatchUI = ``
     if(productViewType === "GRID" && gridCount && gridCount > 1) {
         products.forEach((product, index) => {
             const row = index % gridCount;
@@ -24,7 +28,10 @@ const renderSearch =  function() {
             }
             const pRank  = index+idx+1;
             const mappedProduct = this.mapProductAttrs(product);
-            productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank);
+            if(swatches.enabled) {
+                swatchUI = this.renderSwatchBtns(product);
+            }
+            productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType);
             if(row === gridCount -  1) {
                 productsUI += `</div>`;
             }
@@ -35,11 +42,14 @@ const renderSearch =  function() {
         productsUI = products.map((product,index) => {
             const pRank  = index+idx+1;
             const mappedProduct = this.mapProductAttrs(product);
-            return self.options.products.template.bind(self)(mappedProduct,pRank);
+            if(swatches.enabled) {
+                swatchUI = this.renderSwatchBtns(product);
+            }
+            return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType);
         }).join('');
     }
-    const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block"
 
-    return  `<div class="UNX-result-wrapper ${viewCss}">${productsUI}</div>`;
+
+    return  productsUI;
 }
 export default renderSearch
