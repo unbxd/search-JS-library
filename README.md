@@ -92,7 +92,7 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
   
   
 
- - <a  href="">Basic (default template) : ES5</a>
+ - <a  href="https://codesandbox.io/s/es5-demo-epq52">Basic (default template) : ES5</a>
  - <a  href="https://codesandbox.io/s/minimal-config-qjpwq">Basic (default template) : ES6</a>
  - <a  href="https://codesandbox.io/s/custom-product-card-5rulp">Custom product card</a>
  - <a  href="https://codesandbox.io/s/infinitescroll-pes7g">Pagination: infinite scroll</a>
