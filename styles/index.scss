@@ -620,6 +620,12 @@ button.UNX-page-next {
   font-weight: 600;
   line-height: 24px;
 }
+
+
+.UNX-hidden {
+  display: none;
+}
+
 @media only screen and (max-width: 1200px) {
   .UNX-result-wrapper {
     grid-template-columns: 33.3% 33.3% 33.3%;

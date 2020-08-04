@@ -16,8 +16,13 @@ const reRender = function(){
     } = this.events;
     const {
         lastAction,
-        expandedFacets
+        expandedFacets,
+        productViewType
     } = this.viewState;
+    const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
+    this.searchResultsWrapper.classList.remove("UNX-list-block");
+    this.searchResultsWrapper.classList.remove("UNX-grid-block");
+    this.searchResultsWrapper.classList.add(viewCss);
     const {
         defaultOpen
     } = this.options.facet;

@@ -92,16 +92,13 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
   
   
 
- - <a  href="#">Basic (default template) : ES5</a>
- - <a  href="#">Basic (default template) : ES6</a>
- - <a  href="#">Custom product card</a>
- - <a  href="#">Custom facet template</a>
- - <a  href="#">Pagination: infinite scroll</a>
- - <a  href="#">Pagination: fixed size</a>
- - <a  href="#">Pagination: Load More</a>
- - <a  href="#">Custom sort template</a>
- - <a  href="#">Page Views (grid or list)</a>
- - <a  href="#">Spell check / Did you mean view</a>
+ - <a  href="">Basic (default template) : ES5</a>
+ - <a  href="https://codesandbox.io/s/minimal-config-qjpwq">Basic (default template) : ES6</a>
+ - <a  href="https://codesandbox.io/s/custom-product-card-5rulp">Custom product card</a>
+ - <a  href="https://codesandbox.io/s/infinitescroll-pes7g">Pagination: infinite scroll</a>
+ - <a  href="https://codesandbox.io/s/fixedpagination-yvwjo">Pagination: fixed size</a>
+ - <a  href="https://codesandbox.io/s/clicknscroll-1sowf">Pagination: Load More</a>
+ - <a  href="https://codesandbox.io/s/range-checkboxes-rwuqb">Range slider as checkboxes </a>
  - <a  href="https://codesandbox.io/s/friendly-microservice-to3r8?file=/index.html">Customised</a>
 
   
@@ -132,8 +129,8 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 | fireAnalyticsEvents | Boolean | you wish to have unbid analytics along with sdk. |
 | hashMode | Boolean | you wish the url changes on hash change |
 | updateUrls | Boolean | if you dont need url tracking make it false, by default it is true |
-| actionBtn  | String  | css class, if you wish to trigger click on your custom elements, add this class |
-| actionChange  | String  | css class, if you wish to trigger change on your custom input elements, add this class |
+| actionBtnClass  | String  | css class, if you wish to trigger click on your custom elements, add this class |
+| actionChangeClass  | String  | css class, if you wish to trigger change on your custom input elements, add this class |
 | actionCallback  | Function  | callback function for you custom element  |
 | | | |
 

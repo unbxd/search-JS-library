@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" />
+    <title>Infinite Scroll</title>
+    <!--required frame works should be loaded here-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+      rel="stylesheet"
+    /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link
+    href="../dist/css/vanillaSearch.css"
+    rel="stylesheet"
+  />
+  </head>
+  <style>
+    .unx-pagination-size-block {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+    .UNX-page-items {
+      background: #000000;
+      color: #FFF;
+      padding: 12px;
+      border-color: #000000;
+  }
+  </style>
+
+  <body>
+
+      <div class="UNX-header">
+          <div class="UNX-header-inner">
+              <div class="UNX-logo">
+                  UNBXD
+              </div>
+              <div class="UNX-input-wrapper">
+                  <input id="unbxdInput" class="UNX-input"/>
+                  <button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
+              </div>
+          </div>
+      </div>
+
+      <div class="UNX-results-container">
+          <div class="UNX-head-wrapper">
+              <div class="UNX-selected-actions">
+                  <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
+                  <div class="UNX-selected-facet-wrapper" id="selectedFacetWrapper"></div>
+              </div>
+              <div class="UNX-product-type-block" id="productViewTypeContainer"></div>
+          </div>
+          <div class="UNX-product-results">
+              <div class="UNX-facet-wrapper">
+                  <div class="UNX-fxd-facet">
+                      <div class="UNX-selected-facet-wrapper UNX-selected-f-m" id="selectedMFacetWrapper"></div>
+                      <div class="UNX-multilevel-block" id="bucketedFacetWrapper"></div>
+                      <div class="UNX-text-facet-block" id="facetsWrapper"></div>
+                      <div class="UNX-range-block" id="rangeFacetWrapper"></div>
+                      <div class="UNX-m-facet-row">
+                          <button data-action="applyFacets" class="UNX-primary-btn UNX-facet-trigger">Apply</button>
+                          <button data-action="clearFacets" class="UNX-default-btn UNX-facet-trigger">Clear</button>
+                      </div>
+                      
+                  </div>
+                  <div class="UNX-m-facet-row">
+                      <button class="UNX-m-facet-btn UNX-facet-trigger fa fa-filter"></button>
+                  </div>
+              </div>
+              <div class="UNX-product-list">
+                  <div class="UNX-result-header">
+                      <div id="didYouMeanWrapper"></div>
+                      <div class="UNX-result-right">
+                          <div class="UNX-change-products" id="changeNoOfProducts"></div>
+                          <div class="UNX-sort-wrapper" id="sortWrapper"></div>
+                          <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
+                      </div>
+                  </div>
+                  <div id="bannerContainer"></div>
+                  <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+              </div>
+          </div>
+          <div class="UNX-loader-container" id="loaderEl"></div>
+          <div id="noResultWrapper"></div>
+          <div id="clickScrollContainer" class="UNX-change-pagination-wrap"></div>
+      </div>
+    <!--<script
+      type="text/javascript"
+      src="../dist/js/vanillaSearch.js"
+    />-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="../dist/js/vanillaSearch.js"></script>
+    <script type="text/javascript">
+      /* * * CONFIGURATION * * */
+      var UnbxdSiteName = "demo-unbxd700181503576558";
+      (function() {
+        var ubx = document.createElement("script");
+        ubx.type = "text/javascript";
+        ubx.async = true;
+        ubx.src = "//d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(ubx);
+      })();
+
+      const unbxdCallbackEcma = function (instance, type,data){
+          if(type == "AFTER_RENDER") {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+            
+          }
+      }
+
+      let showFacet = false;
+      window.resizeTimer = null;
+
+      const facetBlock = document.querySelector(".UNX-fxd-facet");
+      const getGridCount = function() {
+        const w = window.innerWidth;
+        if (w > 1200) {
+          return 4;
+        }
+        if (w < 1200 && w >= 980) {
+          return 3;
+        }
+        if (w < 980) {
+          return 2;
+        }
+      };
+      const getView = () => {
+        const w = window.innerWidth;
+        if (w < 980) {
+          return "LIST";
+        }
+        return "GRID";
+      };
+      const checkMobile = () => {
+        const w = window.innerWidth;
+        if (w < 980) {
+          return true;
+        }
+        return false;
+      };
+      const toggleMobileFacets = (e)=> {
+          showFacet = !showFacet;
+          const {
+              action
+          } = e.target.dataset;
+          if(action === "applyFacets") {
+              window.unbxdSearch.setPageStart(0);
+              window.unbxdSearch.getResults();
+          }
+          if(action === "clearFacets") {
+              window.unbxdSearch.clearAllFacets();
+              window.unbxdSearch.setPageStart(0);
+              window.unbxdSearch.getResults();
+          }
+          if(showFacet) {
+              facetBlock.classList.add("UNX-show-facets")
+          } else {
+              facetBlock.classList.remove("UNX-show-facets")
+          }
+      }
+
+      const btnEls = document.querySelectorAll(".UNX-facet-trigger");
+      btnEls.forEach(item=> {
+          item.addEventListener("click", toggleMobileFacets)
+      })
+      function getRangeTpl(){
+        const w = window.innerWidth;
+        if (w < 980) {
+          return checkRangeTpl;
+        }
+        return (window.unbxdSearch) ? window.unbxdSearch.options.rangeWidget : checkRangeTpl;
+      }
+
+      window.unbxdSearch = new UnbxdSearch({
+        siteKey: "demo-unbxd700181503576558",
+        apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+        hashMode:false,
+        updateUrls:true
+      });
+      window.unbxdSearch.updateConfig({
+        searchBoxSelector: document.getElementById("unbxdInput"),
+        searchTrigger: "click",
+        searchButtonSelector: document.getElementById("searchBtn"),
+        products:{
+          el:document.getElementById("searchResultsWrapper"),
+          productType:"SEARCH",
+          productClick: function(product,e) {
+              console.log(product,"product,index",e);
+          }
+        },
+        spellCheck: {
+          enabled: true,
+          el: document.getElementById("didYouMeanWrapper")
+        },
+        noResults: {
+            el: document.getElementById("noResultWrapper")
+        },
+        pagination: {
+          type:'CLICK_N_SCROLL',
+          el:document.getElementById("clickScrollContainer"),
+          template: function(){
+            const {
+              pageClass,
+          } = this.options.pagination;
+          return `<button class="${pageClass}">Load More</button>`
+          }
+        },
+        facet: {
+          facetsEl: document.getElementById("facetsWrapper"),
+          selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+          rangeFacetEl: document.getElementById("rangeFacetWrapper"),
+          multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
+          applyMultipleFilters:checkMobile()
+        },
+        breadcrumb: {
+          el: document.getElementById("breadcrumpContainer")
+        },
+        sort: {
+          el: document.getElementById("sortWrapper"),
+          options: [
+            {
+              value: "sortPrice desc",
+              text: "Price High to Low"
+            },
+            {
+              value: "sortPrice asc",
+              text: " Price Low to High"
+            }
+          ]
+        },
+        loader :{
+            el:document.getElementById("loaderEl")
+        },
+        banner: {
+          el: document.getElementById("bannerContainer"),
+          count: 1
+        },
+        swatches: {
+          enabled: false
+        },
+        callBackFn:unbxdCallbackEcma
+      });
+
+    </script>
+    <script>
+    </script>
+  </body>
+</html>

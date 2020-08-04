@@ -3,7 +3,7 @@ const createLayout = function() {
     this.searchResultsWrapper = createElement(
         "DIV",
         "",{
-            class:"UNX-search-results-block"
+            class:"UNX-search-results-block UNX-result-wrapper"
         }
     );
     this.facetsWrapper = createElement(

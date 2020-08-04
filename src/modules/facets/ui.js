@@ -69,8 +69,8 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
         textFacetWrapper
     } = this.options.facet;
     const {
-        actionBtn,
-        actionChange
+        actionBtnClass,
+        actionChangeClass
     } = this.options;
     const selected = this.getSelectedFacets()[facetName];
     const isFtr = (selected && selected.length >0)?true:false;
@@ -88,14 +88,14 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
     if(isCollapsible){
         if(isExpanded) {
             collapseCss = `UNX-facets-open`
-            collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-open ${actionBtn}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
+            collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-open ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
         } else {
             collapseCss = `UNX-facets-close`
-            collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtn}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
+            collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
         }
     }
     if(isSearchable) {
-        searchInput =`<div class="UNX-searchable-facets"><input class="UNX-facet-search ${actionChange}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
+        searchInput =`<div class="UNX-searchable-facets"><input class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
     }
     return [`<div class="UNX-text-facet-wrap" id="${facetName}">`,
                 `<div class="UNX-facet-header"> <h3>${displayName}</h3> ${collapsibleUI}</div>`,

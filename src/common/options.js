@@ -138,7 +138,7 @@ const options = {
         facetClass:"UNX-facets-block",
         facetAction:"click",
 
-        selectedFacetClass:"UNX-selected-facet",
+        selectedFacetClass:"UNX-selected-facet-btn",
         selectedFacetsEl:null,
         selectedFacetTemplate:selectedFacetUI,
         selectedFacetItemTemplate:selectedFacetItemTemplateUI,
@@ -191,7 +191,7 @@ const options = {
         selectedPageSizeClass:"UNX-selected-pagesize",
         action:'change',
         template:pageSizeUi,
-        el:document.getElementById("changeNoOfProducts")
+        el:null
     },
 
     banner: {
@@ -225,8 +225,8 @@ const options = {
     unbxdAnalytics:false,
     hashMode:false,
     updateUrls:true,
-    actionBtn:"UNX-action-item",
-    actionChange:"UNX-action-change",
+    actionBtnClass:"UNX-action-item",
+    actionChangeClass:"UNX-action-change",
     actionCallback: function(e,ctx) {
     }
    // searchQueryParam:null
