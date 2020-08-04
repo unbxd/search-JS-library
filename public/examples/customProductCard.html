@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" />
+    <title>Unbxd Sdk playground</title>
+    <!--required frame works should be loaded here-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+    href="../dist/css/vanillaSearch.css"
+    rel="stylesheet"
+  />
+  </head>
+
+  <style>
+        .UNX-product-list {
+            background:transparent;
+        }
+        .UNX-result-header {
+            background: #FFFFFF;
+        }
+        .UNX-spellcheck-block {
+            margin-top: 0px;
+        }
+        .UNX-result-header {
+             padding: 12px 20px;
+             box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.19);
+         }
+         .UNX-result-wrapper {
+             grid-template-columns: 33.3% 33.3% 33.3%;
+         }
+         .UNX-img-block {
+             max-width: 100%;
+             height: auto;
+             margin: 0 auto;
+             display: block;
+         }
+         .UNX-product-innerwrap {
+             background: #FFFFFF;
+             padding: 12px;
+             box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+             border-radius: 2px;
+             position: relative;
+         }
+         .UNX-img-wrapper {
+             width: 100%;
+             height: auto;
+         }
+         .UNX-result-wrapper {
+             display: block;
+         }
+         .UNX-row {
+             display: flex;
+             align-items: flex-start;
+             justify-content: space-between;
+         }
+         .UNX-product-title{
+             width:75%;
+             color: #0a0b0c;
+             font-size: 14px;
+             font-weight: 400;
+             margin-top: 0px;
+         }
+         .UNX-price-head-row {
+             padding-top: 18px;
+         } 
+         .UNX-price-row {
+             color: #41b750;
+             font-weight: 500;
+         }
+         .UNX-title-info {
+             font-size: 12px;
+             color: #a0a0a0;
+             margin: 4px 0px;
+         }
+         .UNX-product-title.UNX-row {
+             margin-top: 12px;
+         }
+         .UNX-swatch-btn{
+             margin: 0px 5px 0px 0px;
+             box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.43);
+             border-radius: 50%;
+             overflow: hidden;
+             border: solid 1px #cccccc;
+             height: 16px;
+             width: 16px;
+         }
+         .UNX-add-cart-btn {
+             position: absolute;
+             bottom: 0;
+             right: 0px;
+         }
+         .UNX-add-cart-btn {
+             position: absolute;
+             bottom: 6px;
+             right: 6px;
+             margin: auto;
+             background: transparent;
+             border: solid 1px #CCCCCC;
+             padding: 6px 8px;
+             cursor: pointer;
+         }
+         .UNX-size-row {
+             display: table;
+             max-width: 65%;
+         }
+         .UNX-size-list {
+             display: block;
+             float: left;
+             margin-right: 6px;
+             overflow: hidden;
+             white-space: pre;
+         }
+         .UNX-swatch-wrapper {
+             max-width: 70%;
+         }
+         
+         
+    </style>
+ 
+ 
+    <body>
+                 <div class="UNX-header">
+                     <div class="UNX-header-inner">
+                         <div class="UNX-logo">
+                             UNBXD
+                         </div>
+                         <div class="UNX-input-wrapper">
+                             <input id="unbxdInput" class="UNX-input"/>
+                             <button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
+                         </div>
+                     </div>
+                 </div>
+    
+                 <div class="UNX-results-container">
+                     <div class="UNX-head-wrapper">
+                         <div class="UNX-selected-actions">
+                             <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
+                             <div class="UNX-selected-facet-wrapper" id="selectedFacetWrapper"></div>
+                         </div>
+                         <div class="UNX-product-type-block" id="productViewTypeContainer"></div>
+                     </div>
+                     <div class="UNX-product-results">
+                         <div class="UNX-facet-wrapper">
+                             <h2 class="UNX-filter-header">Filter By</h2>
+                             <div class="UNX-fxd-facet">
+                                 <div class="UNX-selected-facet-wrapper UNX-selected-f-m" id="selectedMFacetWrapper"></div>
+                                 <div class="UNX-multilevel-block" id="bucketedFacetWrapper"></div>
+                                 <div class="UNX-text-facet-block" id="facetsWrapper"></div>
+                                 <div class="UNX-range-block" id="rangeFacetWrapper"></div>
+                                 <div class="UNX-m-facet-row">
+                                     <button data-action="applyFacets" class="UNX-primary-btn UNX-facet-trigger">Apply</button>
+                                     <button data-action="clearFacets" class="UNX-default-btn UNX-facet-trigger">Clear</button>
+                                 </div>
+                                 
+                             </div>
+                             <div class="UNX-m-facet-row">
+                                 <button class="UNX-m-facet-btn UNX-facet-trigger fa fa-filter"></button>
+                             </div>
+                         </div>
+                         <div class="UNX-product-list">
+                             <div class="UNX-result-header">
+                                 <div id="didYouMeanWrapper"></div>
+                                 <div class="UNX-result-right">
+                                     <div class="UNX-change-products" id="changeNoOfProducts"></div>
+                                     <div class="UNX-sort-wrapper" id="sortWrapper"></div>
+                                     <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
+                                     <div id="" class="UNX-change-pagination-wrap unxPagination"></div>
+                                 </div>
+                             </div>
+                             <div id="bannerContainer"></div>
+                             <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+                             <div id="" class="UNX-change-pagination-wrap UNX-m-page unxPagination"></div>
+                         </div>
+                     </div>
+                     <div class="UNX-loader-container" id="loaderEl"></div>
+                     <div id="noResultWrapper"></div>
+                     <div id="clickScrollContainer">
+                     </div>
+                 </div>
+         <script type = "text/javascript" >  
+             /* * * CONFIGURATION * * */
+             var UnbxdSiteName = "demo-unbxd700181503576558";
+             (function() {
+                 var ubx = document.createElement ('script');
+                 ubx.type = 'text/javascript';
+                 ubx.async = true;
+                 ubx.src = '//d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js' ;
+                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ubx);   
+             })();
+         </script> 
+         <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
+    
+    <script src="../dist/js/vanillaSearch.js"></script>
+    <script type="text/javascript">
+      /* * * CONFIGURATION * * */
+      var UnbxdSiteName = "demo-unbxd700181503576558";
+      (function() {
+        var ubx = document.createElement("script");
+        ubx.type = "text/javascript";
+        ubx.async = true;
+        ubx.src = "//d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(ubx);
+      })();
+
+            let macyInstance = null;
+
+
+            const unbxdCallbackEcma = function (instance, type,data){
+            if(type === "AFTER_RENDER" && !macyInstance) {
+                macyInstance = Macy({
+                container: '.UNX-search-results-block',
+                trueOrder: false,
+                waitForImages: false,
+                margin: 3,
+                columns: 3,
+                breakAt: {
+                    1200: 3,
+                    940: 2,
+                    520: 1,
+                    400: 1
+                }
+                });
+            }
+            if(type === "AFTER_RENDER" && macyInstance) {
+                macyInstance.recalculate(true,true);
+                macyInstance.runOnImageLoad(function () {
+                macyInstance.recalculate(true);
+                }, true);
+            }
+            
+            }
+
+            let showFacet = false;
+            window.resizeTimer = null;
+
+            const facetBlock = document.querySelector(".UNX-fxd-facet");
+            const checkMobile = () => {
+            const w = window.innerWidth;
+            if (w < 980) {
+                return true;
+            }
+            return false;
+            };
+            const toggleMobileFacets = (e)=> {
+                showFacet = !showFacet;
+                const {
+                    action
+                } = e.target.dataset;
+                if(action === "applyFacets") {
+                    window.unbxdSearch.setPageStart(0);
+                    window.unbxdSearch.getResults();
+                }
+                if(action === "clearFacets") {
+                    window.unbxdSearch.clearAllFacets();
+                    window.unbxdSearch.setPageStart(0);
+                    window.unbxdSearch.getResults();
+                }
+                if(showFacet) {
+                    facetBlock.classList.add("UNX-show-facets")
+                } else {
+                    facetBlock.classList.remove("UNX-show-facets")
+                }
+            }
+
+            const btnEls = document.querySelectorAll(".UNX-facet-trigger");
+            btnEls.forEach(item=> {
+                item.addEventListener("click", toggleMobileFacets)
+            })
+            window.unbxdSearch = new UnbxdSearch({
+            siteKey: "demo-unbxd700181503576558",
+            apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+            hashMode:false,
+            updateUrls:true
+            });
+
+            window.unbxdSearch.updateConfig({
+            searchBoxSelector: document.getElementById("unbxdInput"),
+            searchTrigger: "click",
+            searchButtonSelector: document.getElementById("searchBtn"),
+            products:{
+                el:document.getElementById("searchResultsWrapper"),
+                productType:"SEARCH",
+                productClick: function(product,e) {
+                    const {
+                    id,
+                    action,
+                    uniqueid
+                    } = e.target.dataset;
+                    if(action === "swatchClick") {
+                    const currentIds = document.querySelectorAll(`#${uniqueid} .UNX-img-wrapper`);
+                    currentIds.forEach(elm => {
+                        elm.classList.remove("UNX-swatch-selected");
+                        elm.classList.add("UNX-hidden");
+                    })
+                    var newImg  = document.getElementById(id);
+                    newImg.classList.add("UNX-swatch-selected");
+                    newImg.classList.remove("UNX-hidden");
+                    }
+                    if(action === "addtocart") {
+                    alert( product.title+" - Successfully added to cart")
+                    }
+
+                },
+                productAttributes: [
+                "title",
+                "uniqueId",
+                "price",
+                "sku",
+                "imageUrl",
+                "displayPrice",
+                "salePrice",
+                "sortPrice",
+                "productDescription",
+                "unbxd_color_mapping",
+                "colorName",
+                "color",
+                "size",
+                "listPrice",
+                "autosuggest"
+                ],
+                template:function(product,idx,swatchUI,productViewType){
+                const {
+                    unxTitle,
+                    unxImageUrl,
+                    uniqueId,
+                    unxStrikePrice,
+                    unxPrice,
+                    unxDescription,
+                    size,
+                    unbxd_color_mapping,
+                    listPrice,
+                    autosuggest,
+                    colorName
+                } = product; 
+                const {
+                    products
+                } = this.options;
+                const {
+                    productItemClass
+                }  = products;
+                let imagesUI = ``;
+                let swatchBtnUi = ``;
+                let  colorsHead = ``;
+                const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+                imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" src="${imgUrl}"/></div>`;
+                if(unbxd_color_mapping.length > 1){
+                    imagesUI = ``;
+                    colorsHead = `<h3 class="UNX-product-title UNX-row">Colors</h3>`
+                    unbxd_color_mapping.forEach((item ,i)=> {
+                    const sArr = item.split("::");
+                    const sImg = sArr[1];
+                    const sBtn = sArr[0];
+                    const uId =`s_${uniqueId}_${i}_sBtn_img`;
+                    const swatchCss = (i !== 0) ? "UNX-hidden":""
+                    imagesUI += `<div id="${uId}" class="UNX-img-wrapper UNX-swatch-selected ${swatchCss}"><img class="UNX-img-block" src="${sImg}"/></div>`
+                    swatchBtnUi += `<button data-id="${uId}" data-uniqueId="p_${uniqueId}"  data-action="swatchClick" style="background-color:${sBtn}" class="UNX-swatch-btn"></button>`
+                    })
+                }
+                
+                const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
+                let strikeUi = ``;
+                if(unxStrikePrice) {
+                    strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
+                }
+                let cardType = ``;
+                let descUI = ``;
+                if(productViewType === "GRID") {
+                    cardType = "UNX-grid-card"
+                } else {
+                    cardType = "UNX-list-card";
+                    descUI = `<p class="UNX-description">${unxDescription}</p>`;
+                }
+                let sizeUI = ``;
+                if(Array.isArray(size)) {
+                    sizeUI += `<h3 class="UNX-product-title UNX-row">Sizes</h3> <div class="UNX-size-row">`;
+                    size.forEach(s=>{
+                    sizeUI+= `<span class="UNX-size-list UNX-title-info">${s}</span>`;
+                    })
+                    sizeUI += `</div>`;
+                }
+                return [`<div id="p_${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,
+                            `<div class="UNX-product-innerwrap">`,
+                            `<div class="UNX-images-block">${imagesUI}</div>`,
+                            `<div class="UNX-product-content">`,
+                                `<div class="UNX-row UNX-price-head-row">`,
+                                    `<h3 class="UNX-product-title">${unxTitle}</h3>`,
+                                    `<div class="UNX-price-row">${listPrice}</div>`,
+                                `</div>`,
+                                `<p class="UNX-title-info">${colorName}</p>`,
+                                sizeUI,
+                                colorsHead,
+                                `<div class="UNX-swatch-wrapper">${swatchBtnUi}</div>`,
+                                descUI,
+                            `</div>`,
+                            `<button data-action="addtocart" data-id="${uniqueId}" class="UNX-add-cart-btn">Add to cart</button>`,
+                            `</div>`,
+                        `</div>`].join('')
+                }
+            },
+            spellCheck: {
+                enabled: true,
+                el: document.getElementById("didYouMeanWrapper")
+            },
+            noResults: {
+                el: document.getElementById("noResultWrapper")
+            },
+            facet: {
+                facetsEl: document.getElementById("facetsWrapper"),
+                selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+                rangeFacetEl: document.getElementById("rangeFacetWrapper"),
+                multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
+                applyMultipleFilters:checkMobile(),
+                defaultOpen:"FIRST"
+            },
+            pagination: {
+                type:'INFINITE_SCROLL'
+            },
+            breadcrumb: {
+                el: document.getElementById("breadcrumpContainer")
+            },
+            pagesize: {
+                el: document.getElementById("changeNoOfProducts")
+            },
+
+            sort: {
+                el: document.getElementById("sortWrapper"),
+                options: [
+                {
+                    value: "sortPrice desc",
+                    text: "Price High to Low"
+                },
+                {
+                    value: "sortPrice asc",
+                    text: " Price Low to High"
+                }
+                ]
+            },
+            loader :{
+                el:document.getElementById("loaderEl")
+            },
+            productView:{
+                el: document.getElementById("productViewTypeContainer"),
+                viewTypes: "GRID"
+            },
+            banner: {
+                el: document.getElementById("bannerContainer"),
+                count: 1
+            },
+            swatches: {
+                enabled: true,
+                attributesMap: {
+                swatchList: "color",
+                swatchImgs: "unbxd_color_mapping",
+                swatchColors: "color"
+                }
+            },
+            actionCallback:function(e, ctx) {
+                console.log(e.target,this,ctx)
+            },
+            callBackFn:unbxdCallbackEcma
+            });
+
+
+
+    </script>
+    <script>
+    </script>
+  </body>
+</html>

@@ -138,7 +138,7 @@ const options = {
         facetClass:"UNX-facets-block",
         facetAction:"click",
 
-        selectedFacetClass:"UNX-selected-facet",
+        selectedFacetClass:"UNX-selected-facet-btn",
         selectedFacetsEl:null,
         selectedFacetTemplate:selectedFacetUI,
         selectedFacetItemTemplate:selectedFacetItemTemplateUI,
@@ -163,7 +163,12 @@ const options = {
         onFacetLoad:function(facets){
             console.log(facets,"facetsfacets");
         },
-        applyMultipleFilters:false
+        applyMultipleFilters:false,
+        isCollapsible:true,
+        isSearchable:true,
+        searchPlaceHolder:"",
+        textFacetWrapper:"UNX-facets-item",
+        defaultOpen:"ALL"
     },
 
     pagination : {
@@ -186,7 +191,7 @@ const options = {
         selectedPageSizeClass:"UNX-selected-pagesize",
         action:'change',
         template:pageSizeUi,
-        el:document.getElementById("changeNoOfProducts")
+        el:null
     },
 
     banner: {
@@ -219,7 +224,11 @@ const options = {
     rangeWidget:renderRangeFacets,
     unbxdAnalytics:false,
     hashMode:false,
-    updateUrls:true
+    updateUrls:true,
+    actionBtnClass:"UNX-action-item",
+    actionChangeClass:"UNX-action-change",
+    actionCallback: function(e,ctx) {
+    }
    // searchQueryParam:null
 };
 export default options;

@@ -15,7 +15,10 @@ const onProductItemClick = function(e) {
         elem.querySelector(dataset.swatchTarget).src=dataset.swatchImg;
         return false;
     }
-    const product =  this.getProductByPropValue(attributesMap.unxId,elem.id);
+    let product = null;
+    if(dataset.id) {
+        product =  this.getProductByPropValue(attributesMap.unxId,dataset.id);
+    }
     if(product && elem) {
         product.prank = elem.dataset.prank;
     }

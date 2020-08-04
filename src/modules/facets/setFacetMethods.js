@@ -39,6 +39,46 @@ const clearAllFacets = function() {
     this.state.categoryFilter = {};
     this.renderRangeFacets();
 }
+const isExpandedFacet = function(facetName){
+    const {
+        expandedFacets
+    } = this.viewState;
+    let isFound = false;
+    if(expandedFacets[facetName] === true) {
+        isFound = true
+    }
+    return isFound;
+}
+const setSearchFacetsText = function(facet,value) {
+    this.viewState.searchFacetsText[facet] = value;
+    this.reRenderTextFacet(facet);
+}
+const getSearchFacetsText = function(facet) {
+    return this.viewState.searchFacetsText[facet] || "";
+}
+
+const reRenderTextFacet = function(facetName) {
+    const {
+        textFacetWrapper
+    } = this.options.facet;
+    const textFacet = this.getAFacetByName(facetName);
+    const textUi = this.renderTextFacets(textFacet, this.getSelectedFacets(), true);
+    document.querySelector(`#${facetName} .${textFacetWrapper}`).innerHTML = Array.isArray(textUi) ? textUi.join(""):textUi;
+}
+const getAFacetByName = function(name) {
+    const facets = this.getFacets();
+    let selected = [];
+    if(name) {
+        selected = facets.filter(item => {
+            const {
+                facetName
+            } = item;
+            return facetName === name
+        })
+    }
+    return selected;
+}
+
 
 const setFacets = (prototype) => {
     prototype = Object.assign(prototype,{
@@ -50,7 +90,12 @@ const setFacets = (prototype) => {
         renderBucketedUI,
         onBucketedFacet,
         isSelectedRange,
-        clearAllFacets
+        clearAllFacets,
+        isExpandedFacet,
+        setSearchFacetsText,
+        getSearchFacetsText,
+        reRenderTextFacet,
+        getAFacetByName
     })
 };
 
@@ -63,5 +108,10 @@ export {
     setRangeFilter,
     renderBucketedUI,
     onBucketedFacet,
-    clearAllFacets
+    clearAllFacets,
+    isExpandedFacet,
+    setSearchFacetsText,
+    getSearchFacetsText,
+    reRenderTextFacet,
+    getAFacetByName
 };

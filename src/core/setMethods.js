@@ -34,9 +34,50 @@ const updateConfig = function(config){
     this.initialize();
 }
 const renderFacets = function(){
-    this.facetsWrapper.innerHTML = this.renderTextFacets(this.getFacets(), this.getSelectedFacets());
+    const facets = this.getFacets();
+    this.facetsWrapper.innerHTML = this.renderTextFacets(facets, this.getSelectedFacets());
     this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
     this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
+}
+const extraActions = function(e) {
+    const {
+        actionCallback
+    } = this.options;
+    const {
+        dataset
+    } = e.target;
+    if(dataset) {
+        const {
+            facetAction,
+            facetName
+        } = dataset;
+        if(facetAction === "facetOpen") {
+            this.viewState.expandedFacets[facetName] = true;
+        }
+        if(facetAction === "facetClose") {
+            this.viewState.expandedFacets[facetName] = false;
+        }
+        this.renderFacets();
+    }
+    actionCallback(e, this);
+}
+const extraActionsChange = function(e) {
+    const {
+        actionCallback
+    } = this.options;
+    const {
+        dataset
+    } = e.target;
+    if(dataset) {
+        const {
+            facetAction,
+            facetName
+        } = dataset;
+        if(facetAction === "searchFacets") {
+            this.setSearchFacetsText(facetName,e.target.value);
+        }
+    }
+    actionCallback(e, this);
 }
 
 const setMethods = (UnbxdSearch) => {
@@ -50,6 +91,8 @@ const setMethods = (UnbxdSearch) => {
     prototype.renderFacets = renderFacets;
     prototype.updateConfig = updateConfig;
     prototype.initialize = initialize;
+    prototype.extraActions = extraActions;
+    prototype.extraActionsChange = extraActionsChange;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);
