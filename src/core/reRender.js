@@ -26,9 +26,9 @@ const reRender = function(){
     const {
         defaultOpen
     } = this.options.facet;
-    const facets = this.getFacets();
+    const allFacets = this.getAllFacets();
     if(defaultOpen !=="NONE") {
-        facets.forEach((item,i)=> {
+        allFacets.forEach((item,i)=> {
             const {
                 facetName
             } = item;
@@ -74,7 +74,7 @@ const reRender = function(){
         }
         callBackFn(this,afterNoResultRender);
     } else {
-        noResults.el.innerHTML = null;
+        noResults.el.innerHTML = '';
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el && suggestion) {
@@ -84,7 +84,19 @@ const reRender = function(){
     this.renderBannerUI()
     this.renderPageSize();
     if(lastAction === "pagination" ) {
+        if(pagination.type == "INFINITE_SCROLL") {
+            const {
+                productItemClass
+            } = this.options.products;
+            const scrollBy = document.querySelector(`.${productItemClass}`).offsetHeight;
+            window.scrollBy({
+                top: scrollBy,
+                left: 0,
+                behavior : "smooth"
+            })
+        }
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
+
     }
     callBackFn(this,afterRender);
 };
