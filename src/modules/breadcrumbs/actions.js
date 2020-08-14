@@ -1,5 +1,4 @@
 function onBreadCrumbClick(e){
-    console.log(e,"breadcrumbs")
 };
 function renderBreadCrumbs() {
     const data = this.getBreadCrumbsList();

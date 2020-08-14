@@ -1,11 +1,11 @@
 const onProductItemClick = function(e) {
-    const path = e.path;
+    const path = e.path || (e.composedPath && e.composedPath());
     const {
         productItemClass,
         attributesMap,
     } = this.options.products;
     const id = productItemClass.replace(".","");
-    const dataset = e.target.dataset;
+    let dataset = e.target.dataset;
     const elem = path.find((item) => {
         const itemCss = item.className;
         return (itemCss.indexOf(id)) >=0 
@@ -16,6 +16,7 @@ const onProductItemClick = function(e) {
         return false;
     }
     let product = null;
+    dataset = elem.dataset;
     if(dataset.id) {
         product =  this.getProductByPropValue(attributesMap.unxId,dataset.id);
     }

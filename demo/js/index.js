@@ -55,6 +55,7 @@ window.unbxdSearch.updateConfig({
     el:document.getElementById("searchResultsWrapper"),
     productType:"SEARCH",
     productClick: function(product,e) {
+      console.log(product,"product,index",e);
     },
     productAttributes: [
       "title",
@@ -86,11 +87,15 @@ window.unbxdSearch.updateConfig({
     selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
     rangeFacetEl: document.getElementById("rangeFacetWrapper"),
     multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-    applyMultipleFilters:checkMobile(),
-    defaultOpen:"FIRST"
+    applyMultipleFilters:false,
+    defaultOpen:"FIRST",
+    facetMultiSelect:false
   },
   pagination: {
-    type:'INFINITE_SCROLL'
+    type:'INFINITE_SCROLL',
+    el:document.getElementById("clickScrollContainer"),
+    onPaginate:function(data) {
+    }
   },
   breadcrumb: {
     el: document.getElementById("breadcrumpContainer")
@@ -132,7 +137,6 @@ window.unbxdSearch.updateConfig({
     }
   },
   actionCallback:function(e, ctx) {
-    console.log(e.target,this,ctx)
   },
   callBackFn:unbxdCallbackEcma
 });

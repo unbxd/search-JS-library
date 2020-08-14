@@ -78,6 +78,12 @@ const getAFacetByName = function(name) {
     }
     return selected;
 }
+const getAllFacets = function() {
+    const text = this.getFacets();
+    const ranges = this.getRangeFacets();
+    const multiFacets = this.getBucketedFacets();
+    return [...text,...ranges,...multiFacets];
+}
 
 
 const setFacets = (prototype) => {
@@ -95,7 +101,8 @@ const setFacets = (prototype) => {
         setSearchFacetsText,
         getSearchFacetsText,
         reRenderTextFacet,
-        getAFacetByName
+        getAFacetByName,
+        getAllFacets
     })
 };
 
@@ -113,5 +120,6 @@ export {
     setSearchFacetsText,
     getSearchFacetsText,
     reRenderTextFacet,
-    getAFacetByName
+    getAFacetByName,
+    getAllFacets
 };

@@ -111,7 +111,6 @@ class RangeSlider {
        
         this.state.x = eventTouch.pageX - this.state.startX;
         this.state.y = eventTouch.pageX - this.state.startY;
-        //console.log(this.state.y,this.maxX ,eventTouch.pageX, this.touchRight.offsetLeft,"this.touchRight.offsetLeft");
         if(this.state.selectedTouch === this.touchLeft) {
                 if(this.state.x > (this.touchRight.offsetLeft - this.state.selectedTouch.offsetWidth + normalizeFact))
                 {
@@ -217,10 +216,18 @@ class RangeSlider {
         });
     }
     setIntialPosition() {
-        const e = this.options.end/100;
+        const {
+            end
+        } = this.options;
+        if(end > this.maxX ) {
+            this.state.absValue = this.maxX/this.options.end;
+
+        } else {
+            this.state.absValue = this.options.end/this.maxX;
+        }
         const w = this.maxX/100;
-        const x = (this.state.x/e ) * w;
-        const y = (this.state.y/e ) * w;
+        const x = this.state.x * this.state.absValue;
+        const y = this.state.y * this.state.absValue;
         this.state.x = Math.round(x);
         this.state.y = Math.round(y);
         this.innerLine.style.width  = this.state.y-this.state.x+"px";
@@ -261,7 +268,13 @@ class RangeSlider {
     getRangeValue() {
         let left = Number(this.touchLeft.style.left.replace("px",""));
         let right = Number(this.touchRight.style.left.replace("px",""));
-        const exp =  this.options.end/this.maxX;
+        const {
+            end
+        } = this.options;
+        let exp =  this.maxX/end;
+        if(end > this.maxX) {
+            exp = this.options.end/this.maxX;
+        }
         return {
             x: Math.round(left*exp),
             y:Math.round(right*exp)
@@ -292,7 +305,12 @@ class RangeSlider {
         const self = this;
         const {
             facetName,
-            displayName
+            displayName,
+            isCollapsible,
+            isExpanded,
+            actionBtnClass,
+            textFacetWrapper,
+            applyMultipleFilters
         } = this.options;
         setTimeout(this.bindElements.bind(this),10);
         let valueUI = "";
@@ -300,26 +318,41 @@ class RangeSlider {
             submitBtnTxt,
             clearBtnTxt
         } = this.options.rangeConfig;
-        return [`<div id="${this.id}" class="range-slider-container UNX-range-slider-wrap">`,
-                `<h3>${displayName}</h3>`,
-                `<div class="valueContainer UNX-range-value-block" >`,
-                    `${valueUI}`,
-                `</div>`,
-                `<div class="range-slider UNX-range-slider-wrapper" >`,
-                    `<div data-action="handleLeft" class="${this.slideLeftId} round-handle UNX-round-handle">`,
+        let collapsibleUI = ``;
+        let collapseCss = ``;
+        let searchInput = ``
+        if(isCollapsible){
+            if(isExpanded) {
+                collapseCss = `UNX-facets-open`
+                collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-open ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
+            } else {
+                collapseCss = `UNX-facets-close`
+                collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
+            }
+        }
+        const hideRowCss = (applyMultipleFilters) ? " " :"UNX-hidden";
+        return [`<div id="${this.id}" data-id="${facetName}" class="range-slider-container UNX-range-slider-wrap">`,
+                    `<div class="UNX-facet-header"> <h3>${displayName}</h3> ${collapsibleUI}</div>`,
+                    `<div class="UNX-facets-all ${collapseCss}">`,
+                        `<div class="valueContainer UNX-range-value-block" >`,
+                            `${valueUI}`,
+                        `</div>`,
+                        `<div class="range-slider UNX-range-slider-wrapper" >`,
+                            `<div data-action="handleLeft" class="${this.slideLeftId} round-handle UNX-round-handle">`,
+                            `</div>`,
+                            `<div data-action="handleRight" class="${this.slideRightId} round-handle UNX-round-handle">`,
+                            `</div>`,
+                            `<div class="${this.slideLineId} UNX-line-wrap">`,
+                                `<div class="${this.innerLineId} UNX-line-inner"></div>`,
+                            `</div>`,
+                        `</div>`,
+                        `<div class="UNX-price-action-row ${hideRowCss}">`,
+                            `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
+                            `<button class="UNX-default-btn " data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
+                        `<div>`,
                     `</div>`,
-                    `<div data-action="handleRight" class="${this.slideRightId} round-handle UNX-round-handle">`,
-                    `</div>`,
-                    `<div class="${this.slideLineId} UNX-line-wrap">`,
-                        `<div class="${this.innerLineId} UNX-line-inner"></div>`,
-                    `</div>`,
-                `</div>`,
-            `<div>`,
-            `<div style="display:none" class="UNX-price-action-row">`,
-                `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
-                `<button class="UNX-default-btn " data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
-           `<div>`,
-       `</div>`].join('')
+                `<div>`,
+            `</div>`].join('')
     }
 }
 export default RangeSlider;

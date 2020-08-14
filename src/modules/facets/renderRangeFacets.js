@@ -47,6 +47,14 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
     const {
         rangeFacet
     } = this.state;
+    const {
+        isCollapsible,
+        textFacetWrapper,
+        applyMultipleFilters
+    } = this.options.facet;
+    const {
+        actionBtnClass
+    } = this.options;
 
     const rangeFacetTemplate = rangeFacets.map(item => {
         const {
@@ -60,6 +68,7 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
         const selectedRange = rangeFacet[facetName];
         let minX = start;
         let minY = end;
+        const isExpanded =  this.isExpandedFacet(facetName);
         if(selectedRange) {
             const {
                 start,
@@ -79,7 +88,12 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             start:0,
             end,
             wrapper:self.options.facet.rangeFacetEl,
-            rangeConfig: self.options.facet.rangeWidgetConfig
+            rangeConfig: self.options.facet.rangeWidgetConfig,
+            isCollapsible,
+            isExpanded,
+            actionBtnClass,
+            textFacetWrapper,
+            applyMultipleFilters
         }).render();
     }).join('');
     return  `<div class="range-facet">${rangeFacetTemplate}</div>`;

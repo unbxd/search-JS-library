@@ -6,7 +6,8 @@ const S3Plugin = require('webpack-s3-plugin');
 
 module.exports = {
     entry: {
-        vanillaSearch: Path.resolve(__dirname, '../src/index.js')
+        vanillaSearch: Path.resolve(__dirname, '../src/index.js'),
+        iePolyfill: Path.resolve(__dirname, '../polyfill/iePolyfill.js')
     },
     mode: 'production',
     output: {
@@ -14,14 +15,12 @@ module.exports = {
         globalObject: '(typeof self !== "undefined" ? self : this)',
         libraryExport: 'default',
         path: Path.join(__dirname, '../public/dist/js'),
-        filename: 'vanillaSearch.js',
-        sourceMapFilename: 'vanillaSearch.map'
+        filename: '[name].js',
+        sourceMapFilename: '[name].map'
     },
     optimization: {
-        minimize: true,
-        minimizer: [
-          new TerserPlugin()
-        ]
+      minimizer: [new TerserPlugin({})],
+      usedExports: true
   },
   plugins: [
     // new S3Plugin({
@@ -53,7 +52,7 @@ module.exports = {
     // })
     new MiniCssExtractPlugin({
       filename: '../css/[name].css',
-      chunkFilename: '../css/vanillaSearch.css'
+      chunkFilename: '../css/[name].css'
     })
     
   ],
@@ -67,9 +66,14 @@ module.exports = {
         {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
-            use: {
-              loader: "babel-loader"
-            }
+            use: [{
+              loader: 'babel-loader',
+              options: {
+                  presets: ['@babel/preset-env', '@babel/preset-react'],
+                  plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties', '@babel/plugin-proposal-export-default-from']
+              }
+          }
+          ]
         },
         {
           test: /\.html$/,
@@ -82,7 +86,15 @@ module.exports = {
               use: [
                 MiniCssExtractPlugin.loader,
                 'css-loader',
-                'sass-loader'
+                'sass-loader',
+                {
+                  loader: 'postcss-loader',
+                  options: {
+                      plugins: () => [require('autoprefixer')({
+                          'browsers': ['> 1%', 'last 2 versions']
+                      })],
+                  }
+                },
               ]
             }
           ]

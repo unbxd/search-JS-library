@@ -38,6 +38,8 @@ const renderFacets = function(){
     this.facetsWrapper.innerHTML = this.renderTextFacets(facets, this.getSelectedFacets());
     this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
     this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
+    const allFacets = this.getAllFacets();
+    this.options.facet.onFacetLoad.bind(this)(allFacets);
 }
 const extraActions = function(e) {
     const {

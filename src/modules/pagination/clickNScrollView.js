@@ -1,6 +1,6 @@
 export default function() {
     const {
-        pageClass,
+        pageClass
     } = this.options.pagination;
-    return `<button class="${pageClass}">Load More</button>`
+    return `<div class="UNX-click-scroll"><button class="UNX-click-n-scroll ${pageClass}">Load More</button></div>`
 };
