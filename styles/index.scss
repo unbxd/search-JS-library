@@ -143,7 +143,7 @@ body {
   width: 24px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.43);
 }
-.UNX-facets-inner-wrapper h3 {
+.UNX-facet-wrapper h3 {
   color: #0a0b0c;
   font-size: 16px;
   font-weight: 500;
@@ -266,6 +266,7 @@ body {
   border-color: transparent;
   background: transparent;
   outline: none !important;
+  white-space: pre;
 }
 .UNX-slider-val-row {
   display: flex;
@@ -468,10 +469,17 @@ button.UNX-page-next {
 .UNX-change-pagination-wrap.UNX-m-pagination {
   display:none
 }
+.UNX-price-action-row {
+  justify-content: flex-end;
+  display: flex;
+}
 .UNX-facet-primary {
     margin-right: 12px;
     padding: 4px 8px;
     font-size: 12px;
+    background: #000000;
+    color: #FFFFFF;
+    border-color: #000000;
 }
 .UNX-no-results {
     display: flex;
@@ -494,9 +502,6 @@ button.UNX-page-next {
   display: none;
 }
 
-.UNX-price-action-row {
-  display: none;
-}
 .UNX-m-facet-row {
   padding:24px 0px;
   justify-content: flex-end;
@@ -625,6 +630,34 @@ button.UNX-page-next {
 .UNX-hidden {
   display: none;
 }
+.UNX-click-scroll {
+  text-align: center;
+  padding: 24px;
+}
+.UNX-click-n-scroll {
+  margin: 0 auto;
+  display: inline-block;
+  background: #000000;
+  color: #FFFFFF;
+}
+.UNX-selected-actions {
+  width:70%;
+}
+.UNX-selected-facet-wrapper {
+  width: 70%
+}
+.UNX-facets-selections {
+  display: flex;
+  align-items: baseline;
+}
+.UNX-selected-facets-inner {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.UNX-selected-facets-wrap {
+  width: auto;
+  margin-bottom: 6px;
+}
 
 @media only screen and (max-width: 1200px) {
   .UNX-result-wrapper {
@@ -752,9 +785,6 @@ button.UNX-page-next {
   .UNX-m-facet-row .UNX-facet-trigger {
     margin-right:12px;
   }
-  .UNX-price-action-row {
-    display: none;
-  }
   .UNX-change-pagination-wrap {
     padding-left: 0px;
     margin: 24px 0px;
@@ -832,5 +862,14 @@ button.UNX-page-next {
   }
   .UNX-facet-footer {
     display: none;
+  }
+  .UNX-selected-actions,.UNX-selected-facet-wrapper {
+    width: 100%;
+  }
+  .UNX-img-wrapper {
+    height: auto;
+  }
+  .UNX-grid-card {
+    padding:12px;
   }
 }

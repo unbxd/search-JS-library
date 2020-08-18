@@ -6,7 +6,7 @@ import {
     selectedFacetItemTemplateUI
 } from "../modules/facets/ui";
 import productTemplate from '../modules/searchResults/ui';
-import paginationUI from "../modules/pagination/fixedPaginationView";
+import paginationUI from "../modules/pagination/paginationView";
 import {
     renderRangeFacets
 } from "../modules/facets/renderRangeFacets";
@@ -32,7 +32,6 @@ const options = {
         productType:"SEARCH",
         gridCount:1,
         productClick: function(product,e) {
-            console.log(product,"product,index",e);
         },
         productAttributes: [
             "title",
@@ -65,7 +64,6 @@ const options = {
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
     callBackFn: (state,type) =>{
-        console.log(state,type,"state,type")
     },
     startPageNo:0,
     productView : {
@@ -161,7 +159,6 @@ const options = {
         clearFacetsSelector:'UNX-clear-facet',
         removeFacetsSelector:'UNX-remove-facet',
         onFacetLoad:function(facets){
-            console.log(facets,"facetsfacets");
         },
         applyMultipleFilters:false,
         isCollapsible:true,
@@ -180,7 +177,7 @@ const options = {
         type:'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
         inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
-        onPaginate:function(paginationInfo){console.log(paginationInfo,"paginationInfo opt")},
+        onPaginate:function(paginationInfo){},
         action:'click'
     },
 

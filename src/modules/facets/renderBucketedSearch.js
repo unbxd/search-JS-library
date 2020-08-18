@@ -43,7 +43,7 @@ const multiLevelFacetUI = function(facets,selectedCategories) {
     })
     if(ui !== "") {
         return [`<div class="UNX-multi-facet-wrap">`,
-            `<h6>Bucketed facets</h6>${ui}</div>`].join('')
+            `${ui}</div>`].join('')
 
     } else {
         return "";

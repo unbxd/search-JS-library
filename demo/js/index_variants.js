@@ -280,7 +280,6 @@ window.unbxdSearch.updateConfig({
     }
   },
   actionCallback:function(e, ctx) {
-    console.log(e.target,this,ctx)
   }
 });
 //window.unbxdSearch.initialize();

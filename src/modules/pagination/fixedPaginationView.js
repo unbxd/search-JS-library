@@ -1,4 +1,7 @@
 const paginationUI = function (paginationData) {
+    if(!paginationData) {
+        return ``;
+    }
     const {
         currentPage,
         isNext,

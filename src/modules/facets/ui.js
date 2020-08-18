@@ -14,7 +14,7 @@ function selectedFacetUI (selectedFacet,selectedFacetItem,facetSearchTxt){
     const css = ` ${facetClass} ${selectedFacetClass} `;
     return [`<div class="UNX-selected-facets-wrap">`,
                 `<button class="UNX-selected-facet-btn UNX-change-facet ${css}" data-facet-name="${facetName}" data-facet-action="deleteFacetValue" data-id="${dataId}">`,
-                    `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
+                    `<span class="UNX-facet-text">${decodeURIComponent(name)}</span> <span class="UNX-facet-count">(${count})</span>`,
                 `</button>`,
                 `<button class="UNX-delete-facet ${css}" data-id="${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}">x</button></div>`
             ].join('');
@@ -29,7 +29,6 @@ function selectedFacetItemTemplateUI(selections) {
     } else {
         return ``;
     }
-    
 }
 
 function facetItemUiElem (facet , value,facetSearchTxt) {
@@ -45,7 +44,7 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
         facetClass
     } = this.options.facet;
     if(facetSearchTxt && facetSearchTxt.length > 0) {
-        if(name.indexOf(facetSearchTxt) < 0 ){
+        if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
             facetClass +=' UNX-search-hidden'
         }
     }

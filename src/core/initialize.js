@@ -20,7 +20,8 @@ const initialize = function() {
     this.bindEvents();
     this.callBack = this.callBack.bind(this);
     const urlParams = this.getQueryParams();
-    if(urlParams[this.options.searchQueryParam]){
+    const ln = Object.keys(urlParams).length;
+    if(ln > 0){
         this.renderFromUrl();
     }
     this.renderProductViewTypeUI();
