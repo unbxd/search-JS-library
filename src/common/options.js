@@ -178,7 +178,8 @@ const options = {
         inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
         onPaginate:function(paginationInfo){},
-        action:'click'
+        action:'click',
+        pageLimit:6
     },
 
     pagesize: {

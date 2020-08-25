@@ -1,6 +1,10 @@
 const setInputValue = function(e) {
-    const val = this.options.searchBoxSelector.value;
+    let val = this.options.searchBoxSelector.value;
+    if (!val.replace(/\s/g, '').length) {
+        return false;
+    }
     this.resetFacets();
+    val = encodeURIComponent(val);
     this.changeInput(val, this.events.changeInput);
     if(val) {
         this.setPageStart(0);

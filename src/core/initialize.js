@@ -22,6 +22,13 @@ const initialize = function() {
     const urlParams = this.getQueryParams();
     const ln = Object.keys(urlParams).length;
     if(ln > 0){
+        const {
+            viewType
+        } = urlParams;
+        if(viewType) {
+            this.viewState.productViewType = viewType;
+            this.options.extraParams.viewType = viewType;
+        }
         this.renderFromUrl();
     }
     this.renderProductViewTypeUI();

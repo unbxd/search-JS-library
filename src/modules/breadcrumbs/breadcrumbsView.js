@@ -10,8 +10,7 @@ const breadCrumbsUI = function(breadcrumbs){
         if(id > 0) {
             ui += `<span class="UNX-slash"> / </span>`;
         }
-        ui += [`<button data-parent="${filterField}`,
-        `data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
+        ui += [`<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
         `${decodeURIComponent(value)}</button>`].join('')
     })
     return `<div class="bread-crumb-main">${ui}</div>`
