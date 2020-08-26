@@ -19,7 +19,7 @@ const renderSearch =  function() {
     } = this.viewState;
     let productsUI = ``;
     const idx = Number(this.state.startPageNo);
-    let swatchUI = ``
+    let swatchUI = ``;
     if(productViewType === "GRID" && gridCount && gridCount > 1) {
         products.forEach((product, index) => {
             const row = index % gridCount;

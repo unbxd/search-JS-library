@@ -6,7 +6,12 @@ function renderProductViewTypeUI(){
         const {
             productViewType
         } = this.viewState;
-        productView.el.innerHTML = this.options.productView.template.bind(this)(productView, productViewType); 
+        const results = this.getSearchResults();
+        if(results && results.numberOfProducts === 0) {
+            productView.el.innerHTML = ``;
+        }else {
+            productView.el.innerHTML = this.options.productView.template.bind(this)(productView, productViewType); 
+        }
     }
 };
 export default renderProductViewTypeUI;

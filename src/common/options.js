@@ -60,7 +60,6 @@ const options = {
     searchQueryParam:"q",
     defaultFilters : null, //or object with keys
     noResults: {
-        el: null,
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
     callBackFn: (state,type) =>{
