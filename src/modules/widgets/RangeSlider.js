@@ -217,17 +217,17 @@ class RangeSlider {
     }
     setIntialPosition() {
         const {
-            end
+            end,
+            minY,
+            minX,
+            gap
         } = this.options;
-        if(end > this.maxX ) {
-            this.state.absValue = this.maxX/this.options.end;
-
-        } else {
-            this.state.absValue = this.options.end/this.maxX;
+        this.state.absValue = this.maxX/(end+gap);
+        if(minY > end) {
+            this.state.absValue = this.maxX/(minY+gap);
         }
-        const w = this.maxX/100;
-        const x = this.state.x * this.state.absValue;
-        const y = this.state.y * this.state.absValue;
+        const x = minX * this.state.absValue;
+        const y = minY * this.state.absValue;
         this.state.x = Math.round(x);
         this.state.y = Math.round(y);
         this.innerLine.style.width  = this.state.y-this.state.x+"px";
@@ -269,15 +269,11 @@ class RangeSlider {
         let left = Number(this.touchLeft.style.left.replace("px",""));
         let right = Number(this.touchRight.style.left.replace("px",""));
         const {
-            end
-        } = this.options;
-        let exp =  this.maxX/end;
-        if(end > this.maxX) {
-            exp = this.options.end/this.maxX;
-        }
+            absValue
+        } = this.state
         return {
-            x: Math.round(left*exp),
-            y:Math.round(right*exp)
+            x: Math.round(left/absValue),
+            y:Math.round(right/absValue)
         }
     }
     renderValuesUI(){

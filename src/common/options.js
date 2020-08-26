@@ -60,7 +60,6 @@ const options = {
     searchQueryParam:"q",
     defaultFilters : null, //or object with keys
     noResults: {
-        el: null,
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
     callBackFn: (state,type) =>{
@@ -178,7 +177,8 @@ const options = {
         inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
         onPaginate:function(paginationInfo){},
-        action:'click'
+        action:'click',
+        pageLimit:6
     },
 
     pagesize: {

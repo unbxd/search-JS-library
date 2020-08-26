@@ -12,7 +12,8 @@ const paginationUI = function (paginationData) {
     } = paginationData;
     const {
         pageClass,
-        selectedPageClass
+        selectedPageClass,
+        pageLimit
     } = this.options.pagination;
     if(numberOfProducts <= productsLn) {
         return ``;
@@ -20,7 +21,16 @@ const paginationUI = function (paginationData) {
     let nextBtn = `<button class="next-btn UNX-page-next ${pageClass}" data-page-action="next">></button>`;
     let prevBtn = `<button class="prev-btn UNX-page-prev ${pageClass}" data-page-action="prev"><</button>`;
     let pageNumbers = ``;
-    for(let i=1;i<noOfPages;i++) {
+    let pages = noOfPages < pageLimit ? noOfPages:pageLimit;
+    let startPoint=1;
+    let r = Math.ceil(pageLimit/2);
+    let point = currentPage - r ;
+    if(point > 0 ) {
+        startPoint = point;
+        pages = currentPage+r;
+    }
+
+    for(let i=startPoint;i<=pages;i++) {
         const pageClassSelected = (i === currentPage) ?selectedPageClass :'';
         pageNumbers += `<button data-page-action="paginate" data-page-no="${(i-1)*productsLn}" class="UNX-page-button ${pageClass} ${pageClassSelected}">${i}</button>`
     }
