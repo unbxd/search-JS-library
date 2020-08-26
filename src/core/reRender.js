@@ -19,6 +19,24 @@ const reRender = function(){
         expandedFacets,
         productViewType
     } = this.viewState;
+    callBackFn(this,beforeRender);
+    this.loaderEl.innerHTML = ``;
+    const results = this.getSearchResults();
+    if(productType ==="SEARCH"){
+        this.options.searchBoxSelector.value = this.state.userInput;
+    }
+
+    if(results && results.numberOfProducts === 0) {
+        callBackFn(this,beforeNoResultRender);
+        const query = this.getSearchQuery();
+        if(noResults.el) {
+            noResults.el.innerHTML = this.renderNoResults(query);
+        }
+        callBackFn(this,afterNoResultRender);
+        return false;
+    } else {
+        noResults.el.innerHTML = '';
+    }
     const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
     this.searchResultsWrapper.classList.remove("UNX-list-block");
     this.searchResultsWrapper.classList.remove("UNX-grid-block");
@@ -43,12 +61,6 @@ const reRender = function(){
         this.viewState.expandedFacets = {};
     }
 
-    callBackFn(this,beforeRender);
-    this.loaderEl.innerHTML = ``;
-    const results = this.getSearchResults();
-    if(productType ==="SEARCH"){
-        this.options.searchBoxSelector.value = this.state.userInput;
-    }
     this.renderFacets();
     if(this.viewState.isInfiniteStarted){
         this.viewState.isInfiniteStarted = false;
@@ -66,16 +78,6 @@ const reRender = function(){
         this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
     this.sortWrapper.innerHTML = this.renderSort();
-    if(results && results.numberOfProducts === 0) {
-        callBackFn(this,beforeNoResultRender);
-        const query = this.getSearchQuery();
-        if(noResults.el) {
-            noResults.el.innerHTML = this.renderNoResults(query);
-        }
-        callBackFn(this,afterNoResultRender);
-    } else {
-        noResults.el.innerHTML = '';
-    }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el && suggestion) {
         spellCheck.el.innerHTML = this.renderDidYouMean(suggestion);
