@@ -92,8 +92,8 @@ window.unbxdSearch.updateConfig({
     facetMultiSelect:false
   },
   pagination: {
-    type:'INFINITE_SCROLL',
-    el:document.getElementById("clickScrollContainer"),
+    type:'FIXED_PAGINATION',
+    el:document.querySelector(".unxPagination"),
     onPaginate:function(data) {
     }
   },

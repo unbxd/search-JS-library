@@ -91,6 +91,7 @@ const getCallbackActions = function(state,type) {
     }
 }
 
+
 const setAnalytics = (prototype) => {
     prototype = Object.assign(prototype,{
         trackSearch,

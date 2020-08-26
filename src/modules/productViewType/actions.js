@@ -1,3 +1,4 @@
+import extend from '../utils/extend';
 function onPageViewTypeClick(e) {
     const elem = e.target;
     const {
@@ -9,6 +10,12 @@ function onPageViewTypeClick(e) {
         viewAction,
     } = dataSet;
     this.viewState.productViewType = viewAction;
+    const {
+        extraParams
+    } = this.options;
+    this.options.extraParams = extend(true,{},extraParams,{
+        "viewType":viewAction
+    });
     this.setPageStart(0);
     this.getResults.bind(this)();
 }
