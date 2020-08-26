@@ -50,6 +50,7 @@ const reRender = function(){
 
     if(results && results.numberOfProducts === 0) {
         callBackFn(this,beforeNoResultRender);
+        this.state.noResultLoaded = true;
         this.searchResultsWrapper.innerHTML = this.renderNoResults(query);
         if(!qParams.filter) {
             this.renderFacets();
@@ -62,7 +63,12 @@ const reRender = function(){
         this.searchResultsWrapper.classList.add(viewCss);
         if(this.viewState.isInfiniteStarted){
             this.viewState.isInfiniteStarted = false;
-            this.searchResultsWrapper.innerHTML += this.renderSearch();
+            if(this.state.noResultLoaded) {
+                this.state.noResultLoaded = false;
+                this.searchResultsWrapper.innerHTML = this.renderSearch();
+            } else {
+                this.searchResultsWrapper.innerHTML += this.renderSearch();
+            }
         } else {
             this.searchResultsWrapper.innerHTML = this.renderSearch();
         }
