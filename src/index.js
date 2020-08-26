@@ -17,7 +17,8 @@ class UnbxdSearch extends UnbxdSearchCore {
             lastAction:'',
             selectedRange:{},
             expandedFacets:{},
-            searchFacetsText:{}
+            searchFacetsText:{},
+            noResultLoaded:false
         };
         this.setConfig = setConfig.bind(this);
         this.setConfig(options,props);
