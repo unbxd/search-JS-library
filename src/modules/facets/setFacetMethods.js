@@ -17,9 +17,26 @@ function setRangeFilter(data){
     this.setRangeFacet(data)
 }
 function renderBucketedUI() {
-    const bucketedFacet = this.getBucketedFacets();
+    const bucketedFacets = this.getBucketedFacets();
     const breadCrumb = this.getBreadCrumbsList();
-    return this.options.facet.multiLevelFacetTemplate(bucketedFacet,breadCrumb);
+    let bucketedUi = ``;
+    const {
+        multiLevelFacetSelector
+    } = this.options.facet;
+    const self = this;
+    bucketedFacets.forEach(facet => {
+        const {
+            displayName,
+            values,
+            facetName,
+        } = facet;
+        const isExpanded =  self.isExpandedFacet(facetName);
+        const facetSearchTxt = self.getSearchFacetsText(facetName);
+        const valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(facet,breadCrumb);
+        bucketedUi += self.options.facet.facetTemplate.bind(self)(facet, valueUI,isExpanded,facetSearchTxt);
+    });
+    return bucketedUi;
+    //return this.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet,breadCrumb);
 }
 const isSelectedRange = function(facetName,range){
     const selections = this.getSelectedRanges(facetName);
@@ -82,7 +99,7 @@ const getAllFacets = function() {
     const text = this.getFacets();
     const ranges = this.getRangeFacets();
     const multiFacets = this.getBucketedFacets();
-    return [...text,...ranges,...multiFacets];
+    return [...multiFacets,...text,...ranges];
 }
 
 

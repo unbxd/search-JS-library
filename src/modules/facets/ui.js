@@ -57,7 +57,8 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
     const {
         displayName,
-        facetName
+        facetName,
+        multiLevelField
     } = facet;
     const {
         facetClass,
@@ -93,7 +94,7 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
             collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
         }
     }
-    if(isSearchable) {
+    if(isSearchable && !multiLevelField) {
         searchInput =`<div class="UNX-searchable-facets"><input class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
     }
     return [`<div class="UNX-text-facet-wrap" id="${facetName}">`,
