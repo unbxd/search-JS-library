@@ -658,6 +658,45 @@ button.UNX-page-next {
   width: auto;
   margin-bottom: 6px;
 }
+.UNX-multilevel-facet {
+  align-items: center;
+}
+.UNX-category-level-1 {
+  padding-left: 0px;
+}
+.UNX-multilevel-block .UNX-facet-text {
+  color: #666666;
+  font-size: 14px;
+  font-weight: 400;
+  display: block;
+  position: relative;
+  padding-left: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  float: left;
+  text-align: left;
+  height: 17px;
+  text-overflow: ellipsis;
+  padding-left: 6px;
+}
+.UNX-category-icon {
+  font-weight: 900;
+  font-family: "Font Awesome 5 Free";
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  position: relative;
+  margin-right: 5px;
+}
+.UNX-multilevel-block .UNX-facet-text::before {
+  display: none;
+}
+.UNX-category-icon:before {
+  content: "\f0da";
+}
 
 @media only screen and (max-width: 1200px) {
   .UNX-result-wrapper {

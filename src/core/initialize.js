@@ -1,5 +1,5 @@
 
-import events from '../common/constants/events';
+import events from '../common/constants/eventsLib';
 import actions from '../common/constants/actions';
 import unxSelectors from '../common/constants/selectors';
 import reRender from './reRender';
