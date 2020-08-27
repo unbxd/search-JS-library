@@ -1,4 +1,4 @@
-import events from "./events";
+import events from "./eventsLib";
 import actions from "./actions";
 
 export {
