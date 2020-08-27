@@ -4,9 +4,11 @@ import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
 import options from './common/options';
 import setMethods from './core/setMethods';
-import intialize from './core/initialize';
+import events from './common/constants/eventsLib';
+import actions from './common/constants/actions';
 
 import setConfig from './core/setConfig';
+
 
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
@@ -22,6 +24,8 @@ class UnbxdSearch extends UnbxdSearchCore {
         };
         this.setConfig = setConfig.bind(this);
         this.setConfig(options,props);
+        this.events = events;
+        this.actions = actions;
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
@@ -36,7 +40,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         if(type === beforeApiCall) { 
             callBackFn(this,beforeApiCall);
-            this.loaderEl.innerHTML = loader.template(this);
+            loader.el.innerHTML = loader.template(this);
         }
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);
