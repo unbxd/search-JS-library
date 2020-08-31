@@ -116,53 +116,82 @@ facet: {
 
     //text facet configuration
     facetsEl:document.getElementById("facetsWrapper"), // for placing text facet elements
-    facetTemplate:function(facet, children){
-    //facet  - single text facet
-    //children  - text facet element under the each facet
-    const {
-        displayName,
-        facetName
-    } = facet;
-    const {
-        facetClass
-    } = this.options.facet;
-    return `<div id="${facetName}">
-        <h3 class="UNX-facet-header"> ${displayName}</h3>
-        <div class="UNX-facets">${children}</div>
-        <div class="UNX-facet-footer">
-            <button 
-                class="UNX-facet-clear ${facetClass}"
-                data-facet-action="deleteFacet"//this param is required to delete the selected  values under this facet
-                data-facet-name="${facetName}" > // need to provide the facetname here
-                clear
-            </button>
-        </div>
-    </div>`
-
+    facetTemplate:function((facet, children, isExpanded,facetSearchTxt) {
+        //facet - each facet object
+        //children - each facet item as string
+        //isExpanded - flag to show/hide facets
+        //facetSearchTxt -  search text for each facets // null for multilvel and range facets
+        const {
+            displayName,
+            facetName,
+            multiLevelField
+        } = facet;
+        const {
+            facetClass,
+            applyMultipleFilters,
+            isCollapsible,
+            isSearchable,
+            searchPlaceHolder,
+            textFacetWrapper
+        } = this.options.facet;
+        const {
+            actionBtnClass,
+            actionChangeClass
+        } = this.options;
+        const selected = this.getSelectedFacets()[facetName];
+        const isFtr = (selected && selected.length >0)?true:false;
+        let clearUI = ``;
+        let applyBtn = ``;
+        if(isFtr){
+            clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}">clear</button>`;
+        }
+        if(applyMultipleFilters && isFtr) {
+            applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >Apply</button>`
+        }
+        let collapsibleUI = ``;
+        let collapseCss = ``;
+        let searchInput = ``
+        if(isCollapsible){
+            if(isExpanded) {
+                collapseCss = `UNX-facets-open`
+                collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-open ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
+            } else {
+                collapseCss = `UNX-facets-close`
+                collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
+            }
+        }
+        if(isSearchable && facetSearchTxt !== null) {
+            searchInput =`<div class="UNX-searchable-facets"><input class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
+        }
+        return [`<div class="UNX-text-facet-wrap" id="${facetName}">`,
+                    `<div class="UNX-facet-header"> <h3>${displayName}</h3> ${collapsibleUI}</div>`,
+                    `<div class="UNX-facets-all ${collapseCss}">`,
+                        searchInput,
+                        `<div class="UNX-facets ${textFacetWrapper}">${children}</div>`,
+                        `<div class="UNX-facet-footer">${applyBtn} ${clearUI}</div>`,
+                    `</div>`,
+            `</div>`].join('');
     },
-    facetItemTemplate:function(facet, filter) {
-        //this template will render the each filter value
-        //facet - each facet item
-        //filter - each filter value
+    facetItemTemplate:function(facet , value,facetSearchTxt) {
         const {
             facetName,
         } = facet;
         const  {
-            name, //filter name
-            count, //number of products available under this value
-            dataId //filter id for the element
-        } = filter;
-        const {
-            facetClass //class name for the each facet item
+            name,
+            count,
+            dataId
+        } = value;
+        let {
+            facetClass
         } = this.options.facet;
-        return `<button
-                    data-facet-name="${facetName}" //facet name
-                    data-facet-action="changeFacet" //facet action
-                    class="UNX-change-facet ${facetClass}"
-                    data-id= "${dataId}">//id for the filter
-                        <span class="UNX-facet-text">${name}</span>
-                        <span class="UNX-facet-count">(${count})</span>
-                </button>`
+        if(facetSearchTxt && facetSearchTxt.length > 0) {
+            if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
+                facetClass +=' UNX-search-hidden'
+            }
+        }
+        return [`<button data-facet-name="${facetName}" data-facet-action="changeFacet" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+                    `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
+                `</button>`].join('');
     },
     facetMultiSelect:true, // if not true then you will be able to select only one filter under a facet
     facetClass:"UNX-facets-block",//if you will to modify the classes

@@ -21,15 +21,23 @@ const didYouMeanUI =  function(query,suggestion,pages) {
     } = pages;
     const {
         selectorClass
-    } = this.options.spellCheck
+    } = this.options.spellCheck;
+    const {
+        products
+    } = this.options;
+    let newQuery = query;
+    if(products.productType !=="SEARCH" ) {
+        newQuery = " ";
+    }
+
     const noUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button class="${selectorClass}">${suggestion}</button></p>` :``;
     let qUi = ``;
     let countUi = ``;
     if(numberOfProducts > 0) {
         countUi = `<span class="UNX-result-info">  -  ${start+1} to ${productsLn+start} of ${numberOfProducts} products</span>`;
     }
-    if(pages && query){
-        qUi = `<p class="UNX-suggestion">Showing results for <strong>${query}</strong> ${countUi}</p>`;
+    if(pages && newQuery){
+        qUi = `<p class="UNX-suggestion">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
     }
     return  [`<div class="UNX-spellcheck-block">`,
             qUi,

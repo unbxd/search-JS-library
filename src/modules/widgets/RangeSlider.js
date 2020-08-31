@@ -308,28 +308,10 @@ class RangeSlider {
             textFacetWrapper,
             applyMultipleFilters
         } = this.options;
-        setTimeout(this.bindElements.bind(this),10);
+        setTimeout(this.bindElements.bind(this),100);
         let valueUI = "";
-        const {
-            submitBtnTxt,
-            clearBtnTxt
-        } = this.options.rangeConfig;
-        let collapsibleUI = ``;
-        let collapseCss = ``;
-        let searchInput = ``
-        if(isCollapsible){
-            if(isExpanded) {
-                collapseCss = `UNX-facets-open`
-                collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-open ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
-            } else {
-                collapseCss = `UNX-facets-close`
-                collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
-            }
-        }
-        const hideRowCss = (applyMultipleFilters) ? " " :"UNX-hidden";
+    
         return [`<div id="${this.id}" data-id="${facetName}" class="range-slider-container UNX-range-slider-wrap">`,
-                    `<div class="UNX-facet-header"> <h3>${displayName}</h3> ${collapsibleUI}</div>`,
-                    `<div class="UNX-facets-all ${collapseCss}">`,
                         `<div class="valueContainer UNX-range-value-block" >`,
                             `${valueUI}`,
                         `</div>`,
@@ -342,10 +324,6 @@ class RangeSlider {
                                 `<div class="${this.innerLineId} UNX-line-inner"></div>`,
                             `</div>`,
                         `</div>`,
-                        `<div class="UNX-price-action-row ${hideRowCss}">`,
-                            `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
-                            `<button class="UNX-default-btn " data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
-                        `<div>`,
                     `</div>`,
                 `<div>`,
             `</div>`].join('')

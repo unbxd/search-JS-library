@@ -4,6 +4,7 @@ const setInputValue = function(e) {
         return false;
     }
     this.resetFacets();
+    this.options.productType = "SEARCH";
     val = encodeURIComponent(val);
     this.changeInput(val, this.events.changeInput);
     if(val) {
