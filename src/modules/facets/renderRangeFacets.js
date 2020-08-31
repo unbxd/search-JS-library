@@ -54,7 +54,11 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
     } = this.options.facet;
     const {
         actionBtnClass
-    } = this.options;
+    } = this.options;   
+    const {
+        submitBtnTxt,
+        clearBtnTxt
+    } = this.options.facet.rangeWidgetConfig;
 
     const rangeFacetTemplate = rangeFacets.map(item => {
         const {
@@ -77,7 +81,7 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             minX = start;
             minY = end;
         }
-        return new self.RangeSlider({
+        const rangeSliderElem =  new self.RangeSlider({
             facetName,
             displayName,
             position,
@@ -95,8 +99,17 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             textFacetWrapper,
             applyMultipleFilters
         }).render();
-    }).join('');
-    return  `<div class="range-facet">${rangeFacetTemplate}</div>`;
+        const hideRowCss = (applyMultipleFilters) ? " " :"UNX-hidden";
+        const rangeUi = this.options.facet.facetTemplate.bind(this)(item, rangeSliderElem, isExpanded, null);
+        return  [`<div class="range-facet">`,
+                    rangeUi,
+                    `<div class="UNX-price-action-row ${hideRowCss}">`,
+                        `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
+                        `<button class="UNX-default-btn " data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
+                    `<div>`,
+                    `</div>`].join('');
+            }).join('');
+        return rangeFacetTemplate;
 }
 export {
     renderRangeFacets

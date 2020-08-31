@@ -146,15 +146,26 @@ const onClickRangeFacet = function(e) {
 }
 const onBucketedFacet = function(e) {
     const data = e.target.dataset;
+    const {
+        productType
+    } = this.options
     if(data.action === this.actions.setCategoryFilter) {
-        this.setCategoryFilter(data);
-        this.options.callBackFn(this,data.action, data);
+        if(productType === "SEARCH") {
+            this.setCategoryFilter(data);
+            this.options.callBackFn(this,data.action, data);
+        } else {
+            this.setCategoryId(data, this);
+        }
         this.getResults();
         this.getCallbackActions(data,'facetClick');
     }
     if(data.action === this.actions.clearCategoryFilter) {
-        this.deleteCategoryFilter(data);
-        this.options.callBackFn(this,data.action, data);
+        if(productType === "SEARCH") {
+            this.deleteCategoryFilter(data);
+            this.options.callBackFn(this,data.action, data);
+        } else {
+            this.setCategoryId(data, this);
+        }
         this.getResults();
         this.getCallbackActions(data,'facetClick');
     }

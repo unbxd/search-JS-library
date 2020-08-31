@@ -81,6 +81,18 @@ const extraActionsChange = function(e) {
     }
     actionCallback(e, this);
 }
+const getCategoryPage = function() {
+    this.resetFacets();
+    this.options.productType = "CATEGORY";
+    this.options.products.productType = "CATEGORY";
+    this.getResults();
+}
+const getBrowsePage = function() {
+    this.resetFacets();
+    this.options.productType = "BROWSE";
+    this.options.products.productType = "BROWSE";
+    this.getResults();
+}
 
 const setMethods = (UnbxdSearch) => {
     const {
@@ -95,6 +107,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.initialize = initialize;
     prototype.extraActions = extraActions;
     prototype.extraActionsChange = extraActionsChange;
+    prototype.getCategoryPage = getCategoryPage;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);
