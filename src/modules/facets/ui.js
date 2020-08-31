@@ -94,7 +94,7 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
             collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
         }
     }
-    if(isSearchable && !multiLevelField) {
+    if(isSearchable && facetSearchTxt !== null) {
         searchInput =`<div class="UNX-searchable-facets"><input class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
     }
     return [`<div class="UNX-text-facet-wrap" id="${facetName}">`,

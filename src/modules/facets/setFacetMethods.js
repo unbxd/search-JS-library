@@ -31,9 +31,8 @@ function renderBucketedUI() {
             facetName,
         } = facet;
         const isExpanded =  self.isExpandedFacet(facetName);
-        const facetSearchTxt = self.getSearchFacetsText(facetName);
         const valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(facet,breadCrumb);
-        bucketedUi += self.options.facet.facetTemplate.bind(self)(facet, valueUI,isExpanded,facetSearchTxt);
+        bucketedUi += self.options.facet.facetTemplate.bind(self)(facet, valueUI,isExpanded,null);
     });
     return bucketedUi;
     //return this.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet,breadCrumb);
