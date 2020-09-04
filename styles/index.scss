@@ -697,6 +697,10 @@ button.UNX-page-next {
 .UNX-category-icon:before {
   content: "\f0da";
 }
+.UNX-selected-product-view {
+  background: #000000;
+  color: #FFFFFF;
+}
 
 @media only screen and (max-width: 1200px) {
   .UNX-result-wrapper {
