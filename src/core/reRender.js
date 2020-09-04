@@ -6,7 +6,9 @@ const reRender = function(){
         spellCheck,
         pagination,
         pagetype,
-        productType
+        productType,
+        searchBoxSelector,
+        loader
     } = this.options;
     const {
         beforeRender,
@@ -20,12 +22,17 @@ const reRender = function(){
         productViewType
     } = this.viewState;
     callBackFn(this,beforeRender);
-    this.loaderEl.innerHTML = ``;
+
+    if(loader.el) {
+        loader.el.innerHTML = ``;
+    }
     const results = this.getSearchResults();
     const qParams = this.getQueryParams();
     const query = this.getSearchQuery();
-    if(productType ==="SEARCH"){
-        this.options.searchBoxSelector.value = this.state.userInput;
+    const noResultCss = "UNX-no-results-wrap";
+    
+    if(productType ==="SEARCH" && searchBoxSelector){
+        searchBoxSelector.value = this.state.userInput;
     }
 
     const {
@@ -51,6 +58,7 @@ const reRender = function(){
     if(results && results.numberOfProducts === 0) {
         callBackFn(this,beforeNoResultRender);
         this.state.noResultLoaded = true;
+        this.searchResultsWrapper.classList.add(noResultCss);
         this.searchResultsWrapper.innerHTML = this.renderNoResults(query);
         if(!qParams.filter) {
             this.renderFacets();
@@ -61,6 +69,7 @@ const reRender = function(){
         this.searchResultsWrapper.classList.remove("UNX-list-block");
         this.searchResultsWrapper.classList.remove("UNX-grid-block");
         this.searchResultsWrapper.classList.add(viewCss);
+        this.searchResultsWrapper.classList.remove(noResultCss);
         if(this.viewState.isInfiniteStarted){
             this.viewState.isInfiniteStarted = false;
             if(this.state.noResultLoaded) {

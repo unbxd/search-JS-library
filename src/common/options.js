@@ -24,6 +24,7 @@ const options = {
     searchBoxSelector:null,
     siteKey:"demo-spanish-unbxd809051588861207",
     apiKey:"f19768e22b49909798bc2411fa3dd963",
+    searchPath:"",
     sdkHostName:"https://search.unbxd.io/",
     products:{
         el:null,
