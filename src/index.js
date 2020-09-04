@@ -38,9 +38,14 @@ class UnbxdSearch extends UnbxdSearchCore {
             beforeApiCall,
             afterApiCall,
         } = this.events;
+        if(type ==="lastBack") {
+            callBackFn(this,"lastBack");
+        }
         if(type === beforeApiCall) { 
             callBackFn(this,beforeApiCall);
-            loader.el.innerHTML = loader.template(this);
+            if(loader && loader.el) {
+                loader.el.innerHTML = loader.template(this);
+            }
         }
         if(type === afterApiCall) { 
             callBackFn(this,afterApiCall);
@@ -56,13 +61,4 @@ class UnbxdSearch extends UnbxdSearchCore {
     }
 }
 setMethods(UnbxdSearch);
-(function (root, factory) {
-	if ( typeof define === 'function' && define.amd ) {
-		define(['UnbxdSearch'], factory(root));
-	}  else {
-		root['myPlugin'] = factory(root, root['UnbxdSearch']);
-	}
-})(typeof global !== "undefined" ? global : this.window || this.global, function (root) {
-    root['UnbxdSearch'] = UnbxdSearch;
-});
 export default UnbxdSearch;

@@ -36,7 +36,12 @@ const updateConfig = function(config){
 const renderFacets = function(){
     const facets = this.getFacets();
     this.facetsWrapper.innerHTML = this.renderTextFacets(facets, this.getSelectedFacets());
-    this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
+    const {
+        rangeFacetEl
+    } = this.options.facet;
+    if(rangeFacetEl) {
+        this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
+    }
     this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
     const allFacets = this.getAllFacets();
     this.options.facet.onFacetLoad.bind(this)(allFacets);
@@ -108,6 +113,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.extraActions = extraActions;
     prototype.extraActionsChange = extraActionsChange;
     prototype.getCategoryPage = getCategoryPage;
+    prototype.getBrowsePage = getBrowsePage;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);

@@ -2,6 +2,7 @@ import UnbxdSearchComponent from  "../../src/index";
 
 
 const unbxdCallbackEcma = function (instance, type,data){
+  console.log(instance, type);
 }
 
 let showFacet = false;

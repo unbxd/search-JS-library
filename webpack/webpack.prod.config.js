@@ -10,13 +10,14 @@ module.exports = {
         iePolyfill: Path.resolve(__dirname, '../polyfill/iePolyfill.js')
     },
     mode: 'production',
+    target: 'web',
     output: {
-        libraryTarget: 'umd',
-        globalObject: '(typeof self !== "undefined" ? self : this)',
-        libraryExport: 'default',
-        path: Path.join(__dirname, '../public/dist/js'),
-        filename: '[name].js',
-        sourceMapFilename: '[name].map'
+      library: 'UnbxdSearch',
+      libraryTarget: 'umd',
+      libraryExport: 'default',
+      path: Path.join(__dirname, '../public/dist/js'),
+      filename: '[name].js',
+      sourceMapFilename: '[name].map'
     },
     optimization: {
       minimizer: [new TerserPlugin({})],
