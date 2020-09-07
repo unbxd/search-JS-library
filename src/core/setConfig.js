@@ -1,5 +1,5 @@
 import extend from '../modules/utils/extend';
-const setConfig = function(options, props) {
+const setConfig = function(options = {}, props = {}) {
     this.options = extend(true,{},options,props);
     const {
         facet,
