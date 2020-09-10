@@ -25,7 +25,6 @@ const initialize = function() {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;
         }
-        this.renderFromUrl();
     }
     this.renderProductViewTypeUI();
 

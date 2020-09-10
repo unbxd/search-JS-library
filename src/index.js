@@ -20,12 +20,20 @@ class UnbxdSearch extends UnbxdSearchCore {
             selectedRange:{},
             expandedFacets:{},
             searchFacetsText:{},
-            noResultLoaded:false
+            noResultLoaded:false,
+            lastDidYouMean:null,
+            loadedFromSuggestion:false
         };
         this.setConfig = setConfig.bind(this);
         this.setConfig(options,props);
         this.events = events;
         this.actions = actions;
+        this.updateConfig();
+        const urlParams = this.getQueryParams();
+        const ln = Object.keys(urlParams).length;
+        if(ln > 0){
+            this.renderFromUrl();
+        }
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
