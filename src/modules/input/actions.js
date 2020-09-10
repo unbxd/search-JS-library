@@ -10,6 +10,7 @@ const setInputValue = function(e) {
     if(val) {
         this.setPageStart(0);
         this.getResults();
+        this.viewState.lastDidYouMean = null;
     } else{
         this.searchResultsWrapper.innerHTML = null;
     }
