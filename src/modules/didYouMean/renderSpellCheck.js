@@ -12,6 +12,9 @@ const renderDidYouMean = function (suggestion) {
         spellCheck,
         enabled
     } = this.options.spellCheck;
+    const {
+        viewState
+    } = this;
     if(type !== "FIXED_PAGINATION" && pages) {
         const {
             start,
@@ -23,18 +26,18 @@ const renderDidYouMean = function (suggestion) {
     let sugString = didYouMean.length >0 ? didYouMean[0].suggestion :"";
     if(enabled) {
         if(sugString ) {
-            if(this.viewState.lastDidYouMean !== userInput) {
+            if(viewState.lastDidYouMean !== userInput) {
                 this.viewState.lastDidYouMean = userInput;
                 this.getResults(sugString);
             }
         }
-        if(this.viewState.lastDidYouMean && sugString ==="" && window.unbxdSearch.viewState.loadedFromSuggestion){
+        if(viewState.lastDidYouMean && sugString ==="" && viewState.loadedFromSuggestion){
             this.viewState.lastDidYouMean = null;
-            window.unbxdSearch.viewState.loadedFromSuggestion = false;
+            this.viewState.loadedFromSuggestion = false;
             return this.options.spellCheck.template.bind(this)(userInput,sugString,pages)
         }
-        if(this.viewState.lastDidYouMean && sugString ==="") {
-            return this.options.spellCheck.template.bind(this)(userInput,this.viewState.lastDidYouMean,pages);
+        if(viewState.lastDidYouMean && sugString ==="") {
+            return this.options.spellCheck.template.bind(this)(userInput,viewState.lastDidYouMean,pages);
         }else {
             return this.options.spellCheck.template.bind(this)(userInput,sugString,pages)
         }
