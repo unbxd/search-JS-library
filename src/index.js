@@ -34,11 +34,12 @@ class UnbxdSearch extends UnbxdSearchCore {
         if(ln > 0){
             this.renderFromUrl();
         }
+        this.options.onCallBack(this, 'initialised')
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
         const {
-            callBackFn,
+            onCallBack,
             loader,
             facet
         } = this.options;
@@ -47,20 +48,20 @@ class UnbxdSearch extends UnbxdSearchCore {
             afterApiCall,
         } = this.events;
         if(type ==="lastBack") {
-            callBackFn(this,"lastBack");
+            onCallBack(this,"lastBack");
         }
         if(type === beforeApiCall) { 
-            callBackFn(this,beforeApiCall);
+            onCallBack(this,beforeApiCall);
             if(loader && loader.el) {
                 loader.el.innerHTML = loader.template(this);
             }
         }
         if(type === afterApiCall) { 
-            callBackFn(this,afterApiCall);
+            onCallBack(this,afterApiCall);
             this.reRender();
         }
         if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) {
-            callBackFn(this,'added_facet');
+            onCallBack(this,'added_facet');
             this.renderFacets();
         }
     }

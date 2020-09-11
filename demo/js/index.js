@@ -1,8 +1,9 @@
-import UnbxdSearchComponent from  "../../src/index";
+import UnbxdSearch from  "../../src/index";
+
 
 
 const unbxdCallbackEcma = function (instance, type,data){
-  console.log(instance, type);
+  console.log(type,data,'type,data');
 }
 
 let showFacet = false;
@@ -41,10 +42,10 @@ const btnEls = document.querySelectorAll(".UNX-facet-trigger");
 btnEls.forEach(item=> {
     item.addEventListener("click", toggleMobileFacets)
 })
-window.unbxdSearch = new UnbxdSearchComponent({
+window.unbxdSearch = new UnbxdSearch({
   siteKey: "demo-unbxd700181503576558",
   apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-  hashMode:false,
+  hashMode:true,
   updateUrls:true
 });
 
@@ -90,11 +91,13 @@ window.unbxdSearch.updateConfig({
     multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
     applyMultipleFilters:false,
     defaultOpen:"FIRST",
-    facetMultiSelect:false
+    facetMultiSelect:false,
+    onFacetLoad:function(facets){
+    }
   },
   pagination: {
     type:'FIXED_PAGINATION',
-    el:document.querySelector(".unxPagination"),
+    el:document.querySelector("#paginationContainer"),
     onPaginate:function(data) {
     }
   },
@@ -139,6 +142,6 @@ window.unbxdSearch.updateConfig({
   },
   actionCallback:function(e, ctx) {
   },
-  callBackFn:unbxdCallbackEcma
+  onCallBack:unbxdCallbackEcma
 });
 //window.unbxdSearch.initialize();

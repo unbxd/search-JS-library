@@ -4,7 +4,8 @@ const renderTextFacets = function(argFacets, selectedArgFacets, noRender) {
     const self = this;
     let selectedFacetsUI = ``;
     const {
-        isCollapsible
+        isCollapsible,
+        applyMultipleFilters
     } = this.options.facet;
     let noRenderItems = ``; 
     const facetsListUI = facets.map((facet) =>{
@@ -46,7 +47,13 @@ const renderTextFacets = function(argFacets, selectedArgFacets, noRender) {
         }
         return `<div id="${facetName}">${selectUI}</div>`;
     }).join('');
-    if(this.options.facet.selectedFacetsEl && selectedFacets) {
+    let shouldRenderSelected = true;
+    const qState = this.getStateFromUrl();
+    const ql = Object.keys(qState.selectedFacets).length;
+    if(this.viewState.lastAction === "addedAFacet" && applyMultipleFilters && ql === 0) {
+        shouldRenderSelected = false;
+    }
+    if(this.options.facet.selectedFacetsEl && selectedFacets && shouldRenderSelected) {
         const k = Object.keys(selectedFacets);
         let selectedUi = ``;
         for(let i=0;i<k.length;i++){

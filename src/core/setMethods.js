@@ -98,6 +98,13 @@ const getBrowsePage = function() {
     this.options.products.productType = "BROWSE";
     this.getResults();
 }
+const resetViewState = function() {
+    this.viewState.lastDidYouMean = null;
+    this.viewState.searchFacetsText={};
+    this.viewState.lastDidYouMean = null;
+    this.viewState.expandedFacets = {};
+}
+
 
 const setMethods = (UnbxdSearch) => {
     const {
@@ -114,6 +121,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.extraActionsChange = extraActionsChange;
     prototype.getCategoryPage = getCategoryPage;
     prototype.getBrowsePage = getBrowsePage;
+    prototype.resetViewState = resetViewState;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);

@@ -63,7 +63,7 @@ const options = {
     noResults: {
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
-    callBackFn: (state,type) =>{
+    onCallBack: (state,type) =>{
     },
     startPageNo:0,
     productView : {

@@ -8,11 +8,11 @@ function sortAction(e) {
     const value = elem.value;
     if(action === this.actions.clearSort) {
         this.applySort("");
-        this.options.callBackFn(this,action);
+        this.options.onCallBack(this,action);
     }
     if(action === this.actions.changeSort) {
         this.applySort(value);
-        this.options.callBackFn(this,action, {
+        this.options.onCallBack(this,action, {
             sort:value
         });
     }

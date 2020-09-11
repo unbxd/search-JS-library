@@ -1,6 +1,6 @@
 const reRender = function(){
     const {
-        callBackFn,
+        onCallBack,
         sort,
         noResults,
         spellCheck,
@@ -21,7 +21,7 @@ const reRender = function(){
         expandedFacets,
         productViewType
     } = this.viewState;
-    callBackFn(this,beforeRender);
+    onCallBack(this,beforeRender);
 
     if(loader.el) {
         loader.el.innerHTML = ``;
@@ -34,6 +34,11 @@ const reRender = function(){
     if(productType ==="SEARCH" && searchBoxSelector){
         searchBoxSelector.value = this.state.userInput;
     }
+
+    if(productType !=="SEARCH" && searchBoxSelector){
+        searchBoxSelector.value = "";
+    }
+
 
     const {
         defaultOpen
@@ -56,14 +61,14 @@ const reRender = function(){
     }
 
     if(results && results.numberOfProducts === 0) {
-        callBackFn(this,beforeNoResultRender);
+        onCallBack(this,beforeNoResultRender);
         this.state.noResultLoaded = true;
         this.searchResultsWrapper.classList.add(noResultCss);
         this.searchResultsWrapper.innerHTML = this.renderNoResults(query);
         if(!qParams.filter) {
             this.renderFacets();
         }
-        callBackFn(this,afterNoResultRender);
+        onCallBack(this,afterNoResultRender);
     } else {
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
         this.searchResultsWrapper.classList.remove("UNX-list-block");
@@ -122,6 +127,6 @@ const reRender = function(){
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
 
     }
-    callBackFn(this,afterRender);
+    onCallBack(this,afterRender);
 };
 export default reRender;

@@ -11,7 +11,7 @@ const onProductItemClick = function(e) {
         return (itemCss.indexOf(id)) >=0 
     });
     if(dataset.action === this.actions.changeSwatch) {
-        this.options.callBackFn(this,dataset.action);
+        this.options.onCallBack(this,dataset.action);
         elem.querySelector(dataset.swatchTarget).src=dataset.swatchImg;
         return false;
     }

@@ -759,7 +759,10 @@ button.UNX-page-next {
     clear:both
   }
   .UNX-product-type-block {
-    display:none;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 24px;
   }
   .UNX-img-block {
     max-width: initial;

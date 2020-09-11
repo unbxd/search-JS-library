@@ -18,7 +18,8 @@ const findChangedFacet = function(e) {
             selectedFacetId : id,
             facetData : selectedfacetInfo
         }
-        this.options.callBackFn(this,this.events.facetClick, {
+        this.viewState.lastAction = "addedAFacet";
+        this.options.onCallBack(this,this.events.facetClick, {
             facetName,
             facetData:selectedfacetInfo
         });
@@ -31,8 +32,9 @@ const findChangedFacet = function(e) {
     }
     if(facetAction === this.actions.deleteFacetValue) {
         if(this.findSelectedFacet(facetName)) {
+            this.viewState.lastAction = "deletedAfacet";
             this.deleteAFacet.bind(this)(facetName, id);
-            this.options.callBackFn(this,facetAction, {
+            this.options.onCallBack(this,facetAction, {
                 facetName
             });
             this.getCallbackActions({
@@ -49,8 +51,9 @@ const findChangedFacet = function(e) {
     }
     if(facetAction === this.actions.deleteFacet) {
         if(this.findSelectedFacet(facetName)) {
+            this.viewState.lastAction = "deletedAfacet";
             this.deleteAFacet.bind(this)(facetName);
-            this.options.callBackFn(this,facetAction, {
+            this.options.onCallBack(this,facetAction, {
                 facetName
             });
             this.getCallbackActions({
@@ -60,16 +63,19 @@ const findChangedFacet = function(e) {
             },'facetClick');
             const isReload = qState.selectedFacets[facetName];
             if(isReload) {
+                this.viewState.lastAction = "clearAFacet";
                 this.setPageStart(0);
                 this.getResults();
             }
         }
     }
     if(facetAction === "applyFacets") {
+        this.viewState.lastAction = "applyFacets";
         this.setPageStart(0);
         this.getResults();
     }
     if(facetAction === "clearAllFacets") {
+        this.viewState.lastAction = "clearAllFacets";
         this.state.selectedFacets = [];
         this.setPageStart(0);
         this.getResults();
@@ -126,7 +132,7 @@ const onClickRangeFacet = function(e) {
     if(action === this.actions.applyRange) {
 
         this.applyRangeFacet();
-        this.options.callBackFn(this,action, {
+        this.options.onCallBack(this,action, {
             facetName
         });
         this.getCallbackActions({
@@ -136,7 +142,7 @@ const onClickRangeFacet = function(e) {
     if(action === this.actions.clearPriceRange && facetName) {
         this.clearARangeFacet(facetName);
         this.getResults.bind(this)();
-        this.options.callBackFn(this,action, {
+        this.options.onCallBack(this,action, {
             facetName
         });
         this.getCallbackActions({
@@ -152,7 +158,7 @@ const onBucketedFacet = function(e) {
     if(data.action === this.actions.setCategoryFilter) {
         if(productType === "SEARCH") {
             this.setCategoryFilter(data);
-            this.options.callBackFn(this,data.action, data);
+            this.options.onCallBack(this,data.action, data);
         } else {
             this.setCategoryId(data, this);
         }
@@ -162,7 +168,7 @@ const onBucketedFacet = function(e) {
     if(data.action === this.actions.clearCategoryFilter) {
         if(productType === "SEARCH") {
             this.deleteCategoryFilter(data);
-            this.options.callBackFn(this,data.action, data);
+            this.options.onCallBack(this,data.action, data);
         } else {
             this.setCategoryId(data, this);
         }
