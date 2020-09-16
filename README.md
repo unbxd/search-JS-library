@@ -120,22 +120,18 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | siteKey | String | This value can be found in UNBXD dashboard. It is unique for every search site created in the dashboard. |
 | apiKey | String | This is a unique for every user account. It can also be found in dashboard.|
-| sdkHostName | String | api domain |
-| searchQueryParam | String | search term will be appended to this. 
-| noResultEl | Element | if you wish to render a no results page |
-| noResultsTemplate | Function | custom no results messages designs |
+| sdkHostName | String | Api domain of unbxd, .com or io need to be configured here |
+| searchQueryParam | String | Search query parameter name which contains the searched keyword.|
 | facet | Object | here you can configure customised facets. you can find detail information here - [Facet Config](#Facet-Config) |
 | pagination | Object | here you can configure pagination. you can find detail information here - [Pagination](#Pagination) |
 | spellCheck | Object | DOM element to display spell suggestion. Please ignore incase of _browse_ and _category_. read more information here [Spell Check](#Spell-Check) |
-| loaderTemplate | Function | You can provide a loader element to show ajax loading |
-| loaderEl | Element | element to place the loader |
+| loader | Object | You can configure loading elements here, this is to show loader for the ajax calls |
 | sort | Object | here you can customise the sort. you can find detail information here - [Sort Config](#Sort-Config) |
 | pageSize | Object | The total number of results to be displayed in a single call. The value should be greater than ZERO. _It is suggested that the value to be multiple of number of columns (ex. if 3 columns then 15 or 18 or 21)._ here you find more information here. -[PageSize Config](#PageSize-Config) |
-| facetDepth | Number | configure how many levels of category filter you wish to have |
 | breadcrumb | Object | customise breadcrumbs here. find more details here [Breadcrumb Config](#Breadcrumb-Config) |
 | productView | Object | configure product view types here, this config helps you to modify the product card list view or grid view. find more information here[Product Views](#Product-Views) |
 | variants | Object | Set this object, if client has variant products to display in the search view. Default is falsefind more information here [variants](#variants) |
-| fireAnalyticsEvents | Boolean | you wish to have unbid analytics along with sdk. |
+| unbxdAnalytics | Boolean | you wish to have unbid analytics along with sdk. by default it is false |
 | hashMode | Boolean | you wish the url changes on hash change |
 | updateUrls | Boolean | if you dont need url tracking make it false, by default it is true |
 | actionBtnClass  | String  | css class, if you wish to trigger click on your custom elements, add this class |
@@ -150,7 +146,7 @@ search template options are configured under 'products' object.
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row |                                                                                                                                                                                                                                                                                                                            | productAttributes | Array | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
+| gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row |                                                                                                                                                                                          | productAttributes | Array | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
 | defaultFilters | Object | to apply default filters, this will be applied in all api requests |
 | template | Function | this function has two parameters. product and idx product is the each product object.idx is the index of the each product |
 | productItemClass | String | this class name will be applied to each product card. it need to be added in search results template |
