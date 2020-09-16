@@ -89,25 +89,22 @@ This provides you the power of entire Javascript to build your desired HTML stri
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |-----------------------|----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| siteKey | String | NA | This is a unique key assigned by Unbxd to every site created in the dashboard. It can be found in the UNBXD dashboard. |
-| apiKey | String | NA | This is a unique API key assigned for every site for every user account. It can also be found in dashboard.|
-| products | Object | NA | Product card configurations. You can find all the product related configs in [Products Config](#Products-Config) section|
-| facet | Object | NA | Facets configurations. You can find all the facet configs in [Facet Config](#Facets-Config) section|
-| pagination | Object | NA | Pagination component configurations. You can find all the pagination configs in [Pagination](#Pagination) section |
-| sort | Object | NA | Sort component configurations. You can find all the sort configs in - [Sort Config](#Sort-Config) section |
+| siteKey | String | NA | This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account. |
+| apiKey | String | NA | This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account. |
+| products | Object | NA | Products related configurations. You can find all the configs in [Products Config](#Products-Config) section|
+| facet | Object | NA | Facet configurations. You can find all the configs in [Facets Config](#Facets-Config) section|
+| pagination | Object | NA | Pagination component configurations. You can find all the configs in [Pagination Config](#Pagination-Config) section |
 | pageSize | Object | NA | Page Size component configurations. You can find all the page size configs in -[PageSize Config](#PageSize-Config) section |
-| facetDepth | Number | NA | Configure how many levels of category facet you wish to have |
-| productView | Object | NA | Product view type configuration. This config helps you to set list view or grid view for the products list. You can find all the product view configs in [Product Views](#Product-Views) section|
-| breadcrumb | Object | NA | Bread crumb component configurations. You can find all the breadcrumb configs in [Breadcrumb Config](#Breadcrumb-Config) section |
-| spellCheck | Object | NA | Spellcheck component configurations. You can find all the spellcheck configs in [Spell Check](#Spell-Check) section. Please ignore incase of _browse_ and _category_.|
-| noResultEl | Element | NA | DOM element where you wish to render a no results view  |
-| noResultsTemplate | Function | NA | Return a HTML string for the no results view |
-| loaderEl | Element | NA | DOM element where you want to render the ajax loader |
-| loaderTemplate | Function | NA | You can return custom loader HTML string from this function to indicate API loading state |
-| variants | Object | NA | Set this object, if you have want to display variant products. You can find all the variants configs in [variants](#Variants) section |
+| sort | Object | NA | Sort component configurations. You can find all the configs in [Sort Config](#Sort-Config) section |
+| productView | Object | NA | Product view type (list view or grid view) configurations. You can find all the configs in [Product Views Config](#Product-Views-Config) section|
+| breadcrumb | Object | NA | Bread crumb component configurations. You can find all the configs in [Breadcrumb Config](#Breadcrumb-Config) section |
+| spellCheck | Object | NA | Spellcheck component configurations. You can find all the configs in [Spell Check Config](#Spell-Check-Config) section. Please ignore incase of _browse_ and _category_.|
+| variants | Object | NA | Set this object, if you have want to display variant products. You can find all the variants configs in [Variants Config](#Variants-Config) section |
+| loader | Object | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
+| noResults | Object | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
 | fireAnalyticsEvents | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events |
-| hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using the history API |
-| updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false |
+| hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using the history API. Defaults to false. |
+| updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false. Defaults to true. |
 | actionBtnClass  | String  | NA | CSS classname to add to any elements on which you wish to trigger any clicks |
 | actionChangeClass  | String  | NA | CSS class, if you wish to trigger change on your custom input elements, add this class |
 | actionCallback  | Function  | NA | Callback function called on a click or change on your custom element  |
@@ -158,7 +155,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | textFacetWrapper | String | CSS class for the facets list |
 
 
-# Pagination
+# Pagination Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                                                                                   
@@ -168,23 +165,17 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | action                    	| String   	| Action on which pagination should trigger: "click" or "change". Defaults to "click" |
 | template                  	| Function 	| Customise the look and feel of the pagination by returning your custom HTML string from this function. This function gets 1 parameter: an object that has the pagination information |  
 
-# Product Views
+# Page Size Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| el                        	| Element  	| Element in which to render the product views component |
-| viewTypes                 	| String   	| Product view types to be displayed: "LIST" or 'GRID" |
-| action                    	| String   	| Action on which product view change should be triggerd: "click" or "change" |
-| viewTypeClass             	| String   	| Additonal CSS class name to be added to the product view type elements |
-| selectedViewTypeClass     	| String   	| Additional CSS class name to be added to the selected view type element |
-
-# Spell Check
-
-| OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------    
-| enabled                   	| Boolean  	| Turn this on for enabling spell check  |
-| el                        	| Element  	| Element in which to render the spellcheck component |
-| template                  	| Function 	| Customise the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets the spellcheck information as an argument |
+| el                        	| Element  	| Element in which to render the page size element |
+| pageSize                  	| Number   	| Number of results to be shown per page |
+| options                   	| Array    	| Array of desired page sizes to be rendered. _It is suggested that the value be a multiple of number of columns (ex. if 3 columns then 15 or 18 or 21)._ |
+| pageSizeClass             	| String   	| Additional CSS class name to be added to the page size element |
+| selectedPageSizeClass     	| String   	| Additional CSS class name to be added to the selected page size option |
+| action                    	| String   	| Action on which page size change should trigger: "click" or "change" |
+| template                  	| Function 	| Customise the look and feel of the page size component by defining this function that is expected to return a HTML string for the template. |
 
 # Sort Config
 
@@ -197,18 +188,15 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | template                  	| Function 	| Customise the look and feel of the sort component by using this function. You will get the sort data as an argument to this function |
 | action                    	| String   	| Action on which sort should trigger: "click" or "change" |
 
-# PageSize Config
+# Product Views Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| el                        	| Element  	| Element in which to render the page size element |
-| pageSize                  	| Number   	| Number of results to be shown per page |
-| options                   	| Array    	| Array of desired page sizes to be rendered |
-| pageSizeClass             	| String   	| Additional CSS class name to be added to the page size element |
-| selectedPageSizeClass     	| String   	| Additional CSS class name to be added to the selected page size option |
-| action                    	| String   	| Action on which page size change should trigger: "click" or "change" |
-| template                  	| Function 	| Customise the look and feel of the page size component by defining this function that is expected to return a HTML string for the template. |
- 
+| el                        	| Element  	| Element in which to render the product views component |
+| viewTypes                 	| String   	| Product view types to be displayed: "LIST" or 'GRID" |
+| action                    	| String   	| Action on which product view change should be triggerd: "click" or "change" |
+| viewTypeClass             	| String   	| Additonal CSS class name to be added to the product view type elements |
+| selectedViewTypeClass     	| String   	| Additional CSS class name to be added to the selected view type element |
 
 # Breadcrumb Config
 
@@ -221,7 +209,15 @@ breadcrumb options are available here.
 | selectorClass             	| String   	| Additional CSS class name for each breadcrumb item |
 | template                  	| Function 	| Customise the look and feel of the breadcrumb component by defining this function that is expected to return a HTML string for the template |
 
-# Variants
+# Spell Check Config
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+| enabled                   	| Boolean  	| Turn this on for enabling spell check  |
+| el                        	| Element  	| Element in which to render the spellcheck component |
+| template                  	| Function 	| Customise the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets the spellcheck information as an argument |
+
+# Variants Config
 
 variant options can be configured here
 
