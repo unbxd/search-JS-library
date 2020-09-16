@@ -94,19 +94,19 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | products | Object | NA | Products related configurations. You can find all the configs in [Products Config](#Products-Config) section|
 | facet | Object | NA | Facet configurations. You can find all the configs in [Facets Config](#Facets-Config) section|
 | pagination | Object | NA | Pagination component configurations. You can find all the configs in [Pagination Config](#Pagination-Config) section |
-| pageSize | Object | NA | Page Size component configurations. You can find all the page size configs in -[PageSize Config](#PageSize-Config) section |
+| pageSize | Object | NA | Page Size component configurations. You can find all the page size configs in [PageSize Config](#PageSize-Config) section |
 | sort | Object | NA | Sort component configurations. You can find all the configs in [Sort Config](#Sort-Config) section |
 | productView | Object | NA | Product view type (list view or grid view) configurations. You can find all the configs in [Product Views Config](#Product-Views-Config) section|
 | breadcrumb | Object | NA | Bread crumb component configurations. You can find all the configs in [Breadcrumb Config](#Breadcrumb-Config) section |
 | spellCheck | Object | NA | Spellcheck component configurations. You can find all the configs in [Spell Check Config](#Spell-Check-Config) section. Please ignore incase of _browse_ and _category_.|
 | variants | Object | NA | Set this object, if you have want to display variant products. You can find all the variants configs in [Variants Config](#Variants-Config) section |
-| loader | Object | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
-| noResults | Object | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
+| loader | Object | NA | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
+| noResults | Object | NA | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
 | fireAnalyticsEvents | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events |
 | hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using the history API. Defaults to false. |
 | updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false. Defaults to true. |
-| actionBtnClass  | String  | NA | CSS classname to add to any elements on which you wish to trigger any clicks |
-| actionChangeClass  | String  | NA | CSS class, if you wish to trigger change on your custom input elements, add this class |
+| actionBtnClass  | String  | NA | CSS classname to add to any elements on which you want to trigger any clicks |
+| actionChangeClass  | String  | NA | CSS class, if you want to trigger change on your custom input elements, add this class |
 | actionCallback  | Function  | NA | Callback function called on a click or change on your custom element  |
 | searchQueryParam | String | NA | If you want to send the search query in a different param set this config. Example: "p=dress" | 
 | sdkHostName | String | https://search.unbxd.io | Domain name of the search API endpoint |
@@ -121,7 +121,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | template | Function | Customise the look and feel of the product card by returning your custom HTML string from this function. This function gets 2 parameters: complete product object and index of the product |
 | productAttributes | Array | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
 | attributesMap | Object | Field mappings for the data to be displayed in the product card |
-| gridCount | Number | If you wish to have grid type user interface, then you can configure how many columns you will to have in a row with this config|
+| gridCount | Number | If you want to have grid type user interface, then you can configure how many columns you will to have in a row with this config|
 | productItemClass | String | Class name to be added to each product card |                                                            
 | defaultFilters | Object | Default filters to apply. This will be applied in all API requests |
 
