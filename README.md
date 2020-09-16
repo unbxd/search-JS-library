@@ -88,13 +88,13 @@ All templates are provided as functions where you can return HTML string that ne
 This provides you the power of entire Javascript to build your desired HTML string.
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|-----------------------|----------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|----------|
 | siteKey | String | NA | This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account. |
 | apiKey | String | NA | This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account. |
 | products | Object | NA | Products related configurations. You can find all the configs in [Products Config](#Products-Config) section|
 | facet | Object | NA | Facet configurations. You can find all the configs in [Facets Config](#Facets-Config) section|
 | pagination | Object | NA | Pagination component configurations. You can find all the configs in [Pagination Config](#Pagination-Config) section |
-| pageSize | Object | NA | Page Size component configurations. You can find all the page size configs in [PageSize Config](#PageSize-Config) section |
+| pageSize | Object | NA | Page Size component configurations. You can find all the page size configs in [Page Size Config](#Page-Size-Config) section |
 | sort | Object | NA | Sort component configurations. You can find all the configs in [Sort Config](#Sort-Config) section |
 | productView | Object | NA | Product view type (list view or grid view) configurations. You can find all the configs in [Product Views Config](#Product-Views-Config) section|
 | breadcrumb | Object | NA | Bread crumb component configurations. You can find all the configs in [Breadcrumb Config](#Breadcrumb-Config) section |
@@ -115,7 +115,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 # Products Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | productType | String | Type of products page to render. SEARCH or BROWSE or CATEGORY |
 | el | Element | Element in which to render the search results |
 | template | Function | Customise the look and feel of the product card by returning your custom HTML string from this function. This function gets 2 parameters: complete product object and index of the product |
@@ -128,7 +128,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 # Facets Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | facetsEl | Element |  Element in which to render the facets |
 | facetTemplate | Function | Customise the look and feel of the facets by returning your custom HTML string from this function. This function gets 2 parameters: facetInfo which will give you data of the facet and facets which will give the facets elements |
 | facetItemTemplate | Function | Customise the facets by returning your custom HTML string from this function. This function gets 2 parameters: facet - each facet item object and filter - each filter value |
@@ -158,7 +158,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 # Pagination Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------                                                                                                                                                   
+|----------|----------|----------|                                                                                                                                                   
 | el                        	| Element  	| Element in which to render the pagination component  |
 | type                      	| String   	| Type of pagination: "FIXED_PAGINATION" or "INFINITE_SCROLL" or "CLICK_N_SCROLL" |
 | onPaginate                	| Function 	| Callback function that gets called after a pagination action |
@@ -168,7 +168,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 # Page Size Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | el                        	| Element  	| Element in which to render the page size element |
 | pageSize                  	| Number   	| Number of results to be shown per page |
 | options                   	| Array    	| Array of desired page sizes to be rendered. _It is suggested that the value be a multiple of number of columns (ex. if 3 columns then 15 or 18 or 21)._ |
@@ -180,7 +180,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 # Sort Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | el                        	| Element  	| Element in which to render the sort component |
 | options                   	| Array    	| Array of sort options: `[{value: "sortPrice desc", text: "Price High to Low"}, {value: "sortPrice asc", text: "Price Low to High"}]` |
 | sortClass                 	| String   	| CSS class name for the sort item, make sure you will be providing this information in template |
@@ -191,7 +191,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 # Product Views Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | el                        	| Element  	| Element in which to render the product views component |
 | viewTypes                 	| String   	| Product view types to be displayed: "LIST" or 'GRID" |
 | action                    	| String   	| Action on which product view change should be triggerd: "click" or "change" |
@@ -203,7 +203,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 breadcrumb options are available here.
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | enabled                   	| Boolean  	| Turn on this flag if you want to show breadcrumbs (if it is available) on your page |
 | el                        	| Element  	| Element in which to render the breadcrumbs |
 | selectorClass             	| String   	| Additional CSS class name for each breadcrumb item |
@@ -212,7 +212,7 @@ breadcrumb options are available here.
 # Spell Check Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+|----------|----------|----------|    
 | enabled                   	| Boolean  	| Turn this on for enabling spell check  |
 | el                        	| Element  	| Element in which to render the spellcheck component |
 | template                  	| Function 	| Customise the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets the spellcheck information as an argument |
@@ -222,7 +222,7 @@ breadcrumb options are available here.
 variant options can be configured here
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | enabled                   	| Boolean  	| Turn this flag on for enabling variants |
 | count                     	| Number   	| Indicate the number of variants to be shown |
 | groupBy                   	| String   	| Variants will be grouped based on this filed value. The name of the field has to be the same one as in your catalog |
@@ -232,7 +232,7 @@ variant options can be configured here
 # Loader Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | template | Function | |
 | el | Element | Element in which to render the loader component |
 
@@ -240,7 +240,7 @@ variant options can be configured here
 # No Results Config
 
 | OPTIONS | DATATYPE | DESCRIPTION |
-|-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|----------|----------|----------|
 | template | Function |  |
 | el | Element | Element in which to render the no results component |
 
