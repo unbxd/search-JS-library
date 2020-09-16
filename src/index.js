@@ -6,6 +6,10 @@ import options from './common/options';
 import setMethods from './core/setMethods';
 import events from './common/constants/eventsLib';
 import actions from './common/constants/actions';
+import {
+    cssClasses
+}
+ from './common/constants'
 
 import setConfig from './core/setConfig';
 
@@ -22,24 +26,23 @@ class UnbxdSearch extends UnbxdSearchCore {
             searchFacetsText:{},
             noResultLoaded:false,
             lastDidYouMean:null,
-            loadedFromSuggestion:false
+            loadedFromSuggestion:false,
+            facetElementMap:{},
+            lastFacets:[],
+            initialised:false
         };
         this.setConfig = setConfig.bind(this);
         this.setConfig(options,props);
         this.events = events;
         this.actions = actions;
+        this.cssList = cssClasses;
         this.updateConfig();
-        const urlParams = this.getQueryParams();
-        const ln = Object.keys(urlParams).length;
-        if(ln > 0){
-            this.renderFromUrl();
-        }
-        this.options.onCallBack(this, 'initialised')
+        this.options.onEvent(this, 'initialised')
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
         const {
-            onCallBack,
+            onEvent,
             loader,
             facet
         } = this.options;
@@ -48,20 +51,20 @@ class UnbxdSearch extends UnbxdSearchCore {
             afterApiCall,
         } = this.events;
         if(type ==="lastBack") {
-            onCallBack(this,"lastBack");
+            onEvent(this,"lastBack");
         }
         if(type === beforeApiCall) { 
-            onCallBack(this,beforeApiCall);
+            onEvent(this,beforeApiCall);
             if(loader && loader.el) {
                 loader.el.innerHTML = loader.template(this);
             }
         }
         if(type === afterApiCall) { 
-            onCallBack(this,afterApiCall);
+            onEvent(this,afterApiCall);
             this.reRender();
         }
         if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) {
-            onCallBack(this,'added_facet');
+            onEvent(this,'added_facet');
             this.renderFacets();
         }
     }

@@ -12,18 +12,6 @@ const createLayout = function() {
             class:"UNX-facets-results-block"
         }
     );
-    this.rangeFacetsWrapper = createElement(
-        "DIV",
-        "",{
-            class:"range-facets-block"
-        }
-    );
-    this.multiLevelFacetWrapper = createElement(
-        "DIV",
-        "",{
-            class:"UNX-multilivel-facets-block"
-        }
-    );
     this.bannerWrapper = createElement(
         "DIV",
         "",{
@@ -54,6 +42,12 @@ const createLayout = function() {
             class:"UNX-selected-facet-lb"
         }
     );
+    this.spellCheckWrapper = createElement(
+        "DIV",
+        "",{
+            class:"UNX-spellcheck-wrapper"
+        }
+    );
     this.paginationWrappers = [];
     const getPaginationWrapper = () =>{
         const elem  = createElement(
@@ -67,33 +61,26 @@ const createLayout = function() {
     }
     const {
         facetsEl,
-        multiLevelFacetEl,
-        rangeFacetEl,
         selectedFacetsEl
     } = this.options.facet;
+    const {
+        spellCheck
+    } = this.options;
     this.options.facet.selectedFacetTemplate.bind(this);
     this.options.facet.multiLevelFacetTemplate.bind(this);
     this.options.facet.facetTemplate.bind(this);
     this.options.facet.facetItemTemplate.bind(this);
+    if(spellCheck.el) {
+        spellCheck.el.innerHTML = ``;
+        spellCheck.el.appendChild(this.spellCheckWrapper);
+    }
+    if(this.options.facet.el) {
+        this.options.facet.el.innerHTML = ``;
+        this.options.facet.el.appendChild(this.facetsWrapper);
+    }
     if(facetsEl) {
         this.options.facet.facetsEl.innerHTML = ``;
         this.options.facet.facetsEl.appendChild(this.facetsWrapper);
-    }
-    if(multiLevelFacetEl) {
-        this.options.facet.multiLevelFacetEl.innerHTML = ``;
-        this.options.facet.multiLevelFacetEl.appendChild(this.multiLevelFacetWrapper);
-    } else {
-        if(facetsEl) {
-            this.options.facet.facetsEl.appendChild(this.multiLevelWrapperFacet);
-        }
-    }
-    if(rangeFacetEl){
-        this.options.facet.rangeFacetEl.innerHTML = ``;
-        this.options.facet.rangeFacetEl.appendChild(this.rangeFacetsWrapper);
-    } else {
-        if(facetsEl) {
-            this.options.facet.facetsEl.appendChild(this.rangeFacetsWrapper)
-        }
     }
     if(selectedFacetsEl) {
         this.options.facet.selectedFacetsEl.innerHTML = ``;

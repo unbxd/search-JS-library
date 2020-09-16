@@ -1,11 +1,8 @@
 const reRender = function(){
     const {
-        onCallBack,
-        sort,
-        noResults,
+        onEvent,
         spellCheck,
         pagination,
-        pagetype,
         productType,
         searchBoxSelector,
         loader
@@ -18,10 +15,9 @@ const reRender = function(){
     } = this.events;
     const {
         lastAction,
-        expandedFacets,
         productViewType
     } = this.viewState;
-    onCallBack(this,beforeRender);
+    onEvent(this,beforeRender);
 
     if(loader.el) {
         loader.el.innerHTML = ``;
@@ -38,37 +34,15 @@ const reRender = function(){
     if(productType !=="SEARCH" && searchBoxSelector){
         searchBoxSelector.value = "";
     }
-
-
-    const {
-        defaultOpen
-    } = this.options.facet;
-    const allFacets = this.getAllFacets();
-    if(defaultOpen !=="NONE") {
-        allFacets.forEach((item,i)=> {
-            const {
-                facetName
-            } = item;
-            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "ALL") {
-                expandedFacets[facetName] = true
-            }
-            if(defaultOpen === "FIRST" && i == 0) {
-                expandedFacets[facetName] = true
-            }
-        })
-    } else {
-        this.viewState.expandedFacets = {};
-    }
-
     if(results && results.numberOfProducts === 0) {
-        onCallBack(this,beforeNoResultRender);
+        onEvent(this,beforeNoResultRender);
         this.state.noResultLoaded = true;
         this.searchResultsWrapper.classList.add(noResultCss);
         this.searchResultsWrapper.innerHTML = this.renderNoResults(query);
         if(!qParams.filter) {
             this.renderFacets();
         }
-        onCallBack(this,afterNoResultRender);
+        onEvent(this,afterNoResultRender);
     } else {
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
         this.searchResultsWrapper.classList.remove("UNX-list-block");
@@ -93,11 +67,6 @@ const reRender = function(){
     this.renderProductViewTypeUI();
     this.renderPageSize();
     this.sortWrapper.innerHTML = this.renderSort();
-    
-
-
-    
-
     if(pagination.type !== "INFINITE_SCROLL"){
         //pagination.el.innerHTML = this.renderPagination();
         this.paginationWrappers.forEach((pagination)=>{
@@ -109,7 +78,7 @@ const reRender = function(){
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el && suggestion) {
-        spellCheck.el.innerHTML = this.renderDidYouMean(suggestion);
+        this.spellCheckWrapper.innerHTML = this.renderDidYouMean(suggestion);
     }
 
     if(lastAction === "pagination" ) {
@@ -127,6 +96,6 @@ const reRender = function(){
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
 
     }
-    onCallBack(this,afterRender);
+    onEvent(this,afterRender);
 };
 export default reRender;

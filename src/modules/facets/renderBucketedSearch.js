@@ -14,7 +14,7 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt) {
             } = item;
             const levelCss = `${multiLevelFacetSelector}  UNX-category-level-${level}`
             ui += [`<button data-parent="${filterField}" data-level="${level}" data-name="${value}"`,
-            `class=" ${levelCss} UNX-selected-crumb" data-action = "clearCategoryFilter">`,
+            `class=" ${levelCss} UNX-selected-crumb ${facetClass}" data-action = "clearCategoryFilter">`,
                 `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${decodeURIComponent(value)}</label>`,
             `</button>`].join('')
         })

@@ -198,11 +198,9 @@ facet configuration table is available here.
 | selectedFacetClass | String | css class name for the selected facet items |
 | selectedFacetsEl | Element | an element to place the selected facets. if you dont provide this element selected facets will be rendered along with facets |
 | selectedFacetTemplate | Function | customise the selected facet here. provided 2 arguments. selectedFacet : selected facet filter : selected filter object |
-| rangeFacetEl | Element | placeholder to render the rangefacet |
 | rangeTemplate | Function | if you wish to customise the range facets. has one argument, will provide the list of range facets available |
 | rangeWidgetConfig | Function | configure the default range slider. has 2 properties. minLabel : prefix for the min value maxLabel : prefix for the max value |
 | multiLevelFacetSelector | String | class name for the each multi level facet item |
-| multiLevelFacetEl | Element | placeholder to render multilevel facet element |
 | facetDepth | 4 | configure how many levels of category filter you wish to have |
 | clearFacetsSelector | String | Class name for button to clear the selected filters under a facet |
 | removeFacetsSelector | String | for deleting each selected filter under a facet. this class name is must to work |
@@ -213,7 +211,9 @@ facet configuration table is available here.
 | isSearchable | Boolean | if you wish to have a search feature on facets |
 | searchPlaceHolder | String | placeholder for the facet search input |
 | textFacetWrapper | String | css class for the facets list |
-
+| viewMore | Booelan | For enabling view more / less functionality for individual facets  |
+| viewMoreTxt | Array | The text to show in button eg:  ["show all", "show less"] |
+| viewMoreLimit | Number | will show view more  only if the facet values are greater than this value eg:8 |
 
   
 # Pagination

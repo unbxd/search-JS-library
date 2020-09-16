@@ -90,18 +90,26 @@ body {
 }
 .UNX-img-wrapper {
   width: 100%;
-  height: 270px;
+  opacity: 1;
+  width: 100%;
+  transition: opacity .5s ease;
+  height: auto;
 }
 .UNX-img-block {
   max-width: 100%;
+  height: 270px;
 }
 .UNX-list-card {
   display: flex;
   margin-bottom: 24px;
+  overflow: hidden;
 }
-.UNX-list-card .UNX-img-wrapper {
+.UNX-list-card .UNX-images-block {
   width: 30%;
   height: auto;
+}
+.UNX-list-card .UNX-img-block {
+  height:auto
 }
 .UNX-list-card .UNX-product-content {
   padding-left: 12px;
@@ -137,11 +145,16 @@ body {
   white-space: pre;
 }
 .UNX-swatch-btn {
-  border-color: transparent;
+  border: solid 1px transparent;
   margin: 5px 2px;
   height: 24px;
   width: 24px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.43);
+}
+.UNX-swatch-btn.UNX-selected-swatch,
+.UNX-swatch-btn:focus {
+  border-color: #000000;
+  outline: #000000;
 }
 .UNX-facet-wrapper h3 {
   color: #0a0b0c;
@@ -586,7 +599,7 @@ button.UNX-page-next {
   font-weight: 300;
   line-height: 32px;
 }
-.UNX-facet-open:before {
+button.UNX-facet-open:before {
   content:"-";
 }
 .UNX-searchable-facets {
@@ -614,7 +627,7 @@ button.UNX-page-next {
   font-size: 12px;
   opacity: .5;
 }
-.UNX-facet-close:before {
+button.UNX-facet-close:before {
   content:"+";
   font-size: 20px;
   line-height: 20px;
@@ -625,6 +638,45 @@ button.UNX-page-next {
   font-weight: 600;
   line-height: 24px;
 }
+.UNX-facets-all {
+  transition: all .3s ease-in;
+}
+.UNX-accordian-close .UNX-facets-all {
+  max-height: 0px;
+  overflow: hidden;
+  opacity: 0;
+}
+.UNX-facets-item.UNX-view-more {
+  height: 100px;
+}
+.UNX-facets-item {
+  height: auto;
+  overflow:scroll;
+}
+.UNX-accordian-open .UNX-facets-all {
+  max-height: 300px;
+  opacity: 1;
+}
+.view-more-row {
+  display: flex;
+  justify-content: flex-end;
+}
+.view-more-row button {
+  background: transparent;
+  border-color: transparent;
+  color: #071fd8;
+}
+.range-facets-block .UNX-facets-item {
+  height: auto;
+}
+.UNX-swatch-hidden {
+  opacity: 0;
+  z-index: -1;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
+
 
 
 .UNX-hidden {
@@ -745,7 +797,7 @@ button.UNX-page-next {
   .UNX-facet-wrapper {
     width: 100%;
   }
-  .UNX-list-card .UNX-img-wrapper {
+  .UNX-list-card .UNX-images-block {
     width: 40%;
     overflow: hidden;
   }
@@ -912,7 +964,7 @@ button.UNX-page-next {
   .UNX-selected-actions,.UNX-selected-facet-wrapper {
     width: 100%;
   }
-  .UNX-img-wrapper {
+  .UNX-img-block{
     height: auto;
   }
   .UNX-grid-card {

@@ -2,7 +2,7 @@ const triggerNextPage = (context,next) =>{
     context.setPageStart(next);
     context.getResults();
     context.viewState.lastAction = "pagination";
-    context.options.onCallBack(context,context.events.pageNext, {
+    context.options.onEvent(context,context.events.pageNext, {
         value:next
     });
 };
@@ -10,7 +10,7 @@ function renderNewResults(action) {
     const pageInfo = this.getPaginationInfo();
     const {
         pagination,
-        onCallBack
+        onEvent
     } = this.options;
     const {
         start,
@@ -39,7 +39,7 @@ function renderNewResults(action) {
         const prev = start-rows;
         if(isPrev){
             triggerNextPage(this,prev);
-            onCallBack(this,this.events.pagePrev, {
+            onEvent(this,this.events.pagePrev, {
                 value:prev
             });
         }

@@ -10,9 +10,22 @@ const onProductItemClick = function(e) {
         const itemCss = item.className;
         return (itemCss.indexOf(id)) >=0 
     });
-    if(dataset.action === this.actions.changeSwatch) {
-        this.options.onCallBack(this,dataset.action);
-        elem.querySelector(dataset.swatchTarget).src=dataset.swatchImg;
+    const {
+        action,
+        swatchId
+    } = dataset || {};
+    if(action === this.actions.changeSwatch && swatchId) {
+        elem.querySelectorAll(".UNX-img-wrapper").forEach((imgBlock) => {
+            const btnE = elem.querySelector(`.${imgBlock.id}`);
+            if(imgBlock.id === swatchId ) {
+                imgBlock.classList.remove("UNX-swatch-hidden");
+                elem.querySelector(`.${swatchId}`).classList.add("UNX-selected-swatch");
+            } else {
+                imgBlock.classList.add("UNX-swatch-hidden");
+                btnE.classList.remove("UNX-selected-swatch");
+            }
+        })
+        this.options.onEvent(this,dataset.action);
         return false;
     }
     let product = null;

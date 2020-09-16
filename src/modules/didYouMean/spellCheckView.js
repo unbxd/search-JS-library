@@ -30,14 +30,14 @@ const didYouMeanUI =  function(query,suggestion,pages) {
         newQuery = " ";
     }
 
-    const noUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button class="${selectorClass}">${suggestion}</button></p>` :``;
+    const noUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button data-action="getSuggestion" class="${selectorClass}">${suggestion}</button></p>` :``;
     let qUi = ``;
     let countUi = ``;
     if(numberOfProducts > 0) {
         countUi = `<span class="UNX-result-info">  -  ${start+1} to ${productsLn+start} of ${numberOfProducts} products</span>`;
     }
     if(pages && newQuery){
-        qUi = `<p class="UNX-suggestion">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
+        qUi = `<p class="UNX-suggestion-p">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
     }
     return  [`<div class="UNX-spellcheck-block">`,
             qUi,

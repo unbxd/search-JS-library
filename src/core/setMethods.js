@@ -12,6 +12,7 @@ import setPageSize from '../modules/pageSize/setPageSize';
 import setAnalytics from '../modules/analytics/setAnalytics';
 import RangeSlider from '../modules/widgets/RangeSlider';
 import initialize from '../core/initialize';
+
 const setSearchWidget = function(config){
     const {
         products
@@ -32,18 +33,89 @@ const updateConfig = function(config){
     } = this;
     this.setConfig(options, config);
     this.initialize();
+
 }
 const renderFacets = function(){
-    const facets = this.getFacets();
-    this.facetsWrapper.innerHTML = this.renderTextFacets(facets, this.getSelectedFacets());
     const {
-        rangeFacetEl
+        defaultOpen,
+        applyMultipleFilters,
+        isCollapsible
     } = this.options.facet;
-    if(rangeFacetEl) {
-        this.rangeFacetsWrapper.innerHTML = this.renderRangeFacets();
+    const {
+        expandedFacets,
+        lastAction
+    } = this.viewState;
+    if(lastAction === "updatedRangeSlider") {
+        return false;
     }
-    this.multiLevelFacetWrapper.innerHTML = this.renderBucketedUI();
+    const self = this;
     const allFacets = this.getAllFacets();
+    if(defaultOpen !=="NONE") {
+        allFacets.forEach((item,i)=> {
+            const {
+                facetName
+            } = item;
+            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "ALL") {
+                expandedFacets[facetName] = true
+            }
+            if(defaultOpen === "FIRST" && i == 0) {
+                expandedFacets[facetName] = true
+            }
+        })
+    } else {
+        self.viewState.expandedFacets = {};
+    }
+    this.facetsWrapper.innerHTML = ``;
+    const selectedFacets = this.getSelectedFacets();
+    allFacets.forEach((facet,idx) => {
+        const {
+            facetType,
+            facetName
+        } = facet;
+        const isExpanded =  this.isExpandedFacet(facetName);
+        const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
+        const selectedFacet = selectedFacets[facetName];
+        if(facetType === "text") {
+            this.facetsWrapper.innerHTML += this.renderTextFacet(facet,selectedFacet,isExpanded,facetSearchTxt);
+        }
+        if(facetType === "range") {
+            this.facetsWrapper.innerHTML += this.renderRangeFacet(facet,isExpanded,"");
+        }
+        if(facetType === "category") {
+            this.facetsWrapper.innerHTML += this.renderMultiLevelFacet(facet,isExpanded,"");
+        }
+        this.viewState.facetElementMap[facetName] = facetName;
+        let shouldRenderSelected = true;
+        const qState = this.getStateFromUrl();
+        const ql = Object.keys(qState.selectedFacets).length;
+        if((lastAction === "addedAFacet" || lastAction ==="deletedAfacet")  && applyMultipleFilters && ql === 0) {
+            shouldRenderSelected = false;
+        }
+        if(this.options.facet.selectedFacetsEl && selectedFacets && shouldRenderSelected ) {
+            const k = Object.keys(selectedFacets);
+            let selectedUi = ``;
+            for(let i=0;i<k.length;i++){
+                const j = k[i];
+                const vals = selectedFacets[j];
+                vals.forEach(item => {
+                    const {
+                        name,
+                        count,
+                        dataId
+                    } = item;
+                    selectedUi += this.options.facet.selectedFacetTemplate.bind(this)({
+                        facetName:j
+                    },{
+                        name:name,
+                        dataId:(dataId)?dataId:name,
+                        count:count?count:0
+                    });
+                })
+            }
+            this.selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
+        }
+
+    })
     this.options.facet.onFacetLoad.bind(this)(allFacets);
 }
 const extraActions = function(e) {
@@ -51,20 +123,60 @@ const extraActions = function(e) {
         actionCallback
     } = this.options;
     const {
+        target
+    } = e;
+    const {
         dataset
-    } = e.target;
+    } = target;
+    const {
+        openFacet,
+        closeFacet,
+        openBtn,
+        closeBtn
+    } = this.cssList;
+    const {
+        viewMoreTxt,
+        textFacetWrapper
+    } = this.options.facet;
     if(dataset) {
         const {
             facetAction,
-            facetName
+            facetName,
+            action,
+            id
         } = dataset;
+        const {
+            facetElementMap
+        } = this.viewState;
+        const fI=document.getElementById(facetElementMap[facetName])
         if(facetAction === "facetOpen") {
             this.viewState.expandedFacets[facetName] = true;
+            target.classList.add(openBtn);
+            target.classList.remove(closeBtn);
+            target.setAttribute("data-facet-action","facetClose");
+            fI.classList.remove(closeFacet);
+            fI.classList.add(openFacet);
         }
         if(facetAction === "facetClose") {
             this.viewState.expandedFacets[facetName] = false;
+            target.classList.remove(openBtn);
+            target.classList.add(closeBtn);
+            target.setAttribute("data-facet-action","facetOpen");
+            fI.classList.remove(openFacet);
+            fI.classList.add(closeFacet);
         }
-        this.renderFacets();
+        if(action === "viewMore") {
+            target.setAttribute("data-action","viewLess");
+            target.innerHTML = viewMoreTxt[1];
+            fI.querySelector(`.${textFacetWrapper}`).classList.remove("UNX-view-more");
+            fI.querySelector(`.${textFacetWrapper}`).classList.add("UNX-view-less");
+        }
+        if(action === "viewLess") {
+            target.setAttribute("data-action","viewMore");
+            target.innerHTML = viewMoreTxt[0];
+            fI.querySelector(`.${textFacetWrapper}`).classList.remove("UNX-view-less");
+            fI.querySelector(`.${textFacetWrapper}`).classList.add("UNX-view-more");
+        }
     }
     actionCallback(e, this);
 }
@@ -104,6 +216,9 @@ const resetViewState = function() {
     this.viewState.lastDidYouMean = null;
     this.viewState.expandedFacets = {};
 }
+const generateRid = (custom="unx_") => {
+    return custom + Math.random().toString(36).substr(2, 9);
+};
 
 
 const setMethods = (UnbxdSearch) => {
@@ -122,6 +237,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.getCategoryPage = getCategoryPage;
     prototype.getBrowsePage = getBrowsePage;
     prototype.resetViewState = resetViewState;
+    prototype.generateRid = generateRid;
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);
