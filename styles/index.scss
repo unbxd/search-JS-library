@@ -656,6 +656,7 @@ button.UNX-facet-close:before {
 .UNX-accordian-open .UNX-facets-all {
   max-height: 300px;
   opacity: 1;
+  overflow: scroll;
 }
 .view-more-row {
   display: flex;
