@@ -34,6 +34,7 @@
         padding: 12px;
         border-color: #000000;
     }
+    
     </style>
   </head>
 
@@ -102,7 +103,7 @@
     </script>
     <script src="../dist/js/iePolyfill.js"></script>
 
-     <script src="https://libraries.unbxdapi.com/search-sdk/v0.1.4/vanillaSearch.js"></script>
+     <script src="../dist/js/vanillaSearch.js"></script>
     <script >
       /* * * CONFIGURATION * * */
       var UnbxdSiteName = "demo-unbxd700181503576558";
@@ -118,6 +119,7 @@
       })();
 
       var unbxdCallbackEcma = function (instance, type,data){
+        console.log(instance, type,data,"instance, type,data)")
       }
 
 
@@ -149,9 +151,6 @@
         },
         facet: {
           facetsEl: document.getElementById("facetsWrapper"),
-          selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-          rangeFacetEl: document.getElementById("rangeFacetWrapper"),
-          multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
           applyMultipleFilters:false
         },
         breadcrumb: {
@@ -192,34 +191,6 @@
             swatchColors: "color"
           }
         }
-      });
-
-
-
-      //click scroll pagination
-      window.unbxdSearch.updateConfig({
-          sort:{
-            action:'click',
-            template: function(selectedSort) {
-                var sortBtnsUI = "";
-                var self = this;
-                this.options.sort.options.forEach(function(item, index) {
-                    var selectedCss = "";
-                    if (item.value === selectedSort) {
-                        selectedCss = self.options.sort.selectedSortClass;
-                    }
-                    sortBtnsUI += [
-                    '<button class="btn UNX-sort-btn '+self.options.sort.sortClass+' ' + selectedCss + '"',
-                    'value="' +
-                        item.value +
-                        '" data-action="changeSort"> ' +
-                        item.text +
-                        "</button>"
-                    ].join("");
-                });
-                return sortBtnsUI;
-            }
-          }
       });
 
     </script>
