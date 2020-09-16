@@ -4,9 +4,9 @@
 
 ### Changed
 - facet configuration changes, only need to add the facetsEl under facet
-- removed rangeFacetEl and multiLevelFacteEl
-- onCallBack to on Event
-- no need of updateConfig as mandatory step
+- removed rangeFacetEl and multiLevelFacteEl, from facet config object
+- onCallBack named to on Event
+- no need of 'updateConfig' as mandatory step
 
 
 ### Added
