@@ -132,7 +132,9 @@ const extraActions = function(e) {
         openFacet,
         closeFacet,
         openBtn,
-        closeBtn
+        closeBtn,
+        viewMore,
+        viewLess
     } = this.cssList;
     const {
         viewMoreTxt,
@@ -148,7 +150,7 @@ const extraActions = function(e) {
         const {
             facetElementMap
         } = this.viewState;
-        const fI=document.getElementById(facetElementMap[facetName])
+        const fI=document.getElementById(facetElementMap[facetName]);
         if(facetAction === "facetOpen") {
             this.viewState.expandedFacets[facetName] = true;
             target.classList.add(openBtn);
@@ -168,14 +170,16 @@ const extraActions = function(e) {
         if(action === "viewMore") {
             target.setAttribute("data-action","viewLess");
             target.innerHTML = viewMoreTxt[1];
-            fI.querySelector(`.${textFacetWrapper}`).classList.remove("UNX-view-more");
-            fI.querySelector(`.${textFacetWrapper}`).classList.add("UNX-view-less");
+            const fcEl = fI.querySelector(`.${textFacetWrapper}`);
+            fcEl.classList.remove(viewMore);
+            fcEl.classList.add(viewLess);
         }
         if(action === "viewLess") {
             target.setAttribute("data-action","viewMore");
             target.innerHTML = viewMoreTxt[0];
-            fI.querySelector(`.${textFacetWrapper}`).classList.remove("UNX-view-less");
-            fI.querySelector(`.${textFacetWrapper}`).classList.add("UNX-view-more");
+            const fcEl = fI.querySelector(`.${textFacetWrapper}`);
+            fcEl.classList.remove(viewLess);
+            fcEl.classList.add(viewMore);
         }
     }
     actionCallback(e, this);
