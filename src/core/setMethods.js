@@ -39,7 +39,7 @@ const renderFacets = function(){
     const {
         defaultOpen,
         applyMultipleFilters,
-        isCollapsible
+        isCollapsible,
     } = this.options.facet;
     const {
         expandedFacets,
@@ -51,7 +51,8 @@ const renderFacets = function(){
     const self = this;
     const allFacets = this.getAllFacets();
     const {
-        facetsWrapper
+        facetsWrapper,
+        selectedFacetWrapper
     } = this;
     if(defaultOpen !=="NONE") {
         allFacets.forEach((item,i)=> {
