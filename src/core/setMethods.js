@@ -137,7 +137,7 @@ const extraActions = function(e) {
         viewLess
     } = this.cssList;
     const {
-        viewMoreTxt,
+        viewMoreText,
         textFacetWrapper
     } = this.options.facet;
     if(dataset) {
@@ -169,14 +169,14 @@ const extraActions = function(e) {
         }
         if(action === "viewMore") {
             target.setAttribute("data-action","viewLess");
-            target.innerHTML = viewMoreTxt[1];
+            target.innerHTML = viewMoreText[1];
             const fcEl = fI.querySelector(`.${textFacetWrapper}`);
             fcEl.classList.remove(viewMore);
             fcEl.classList.add(viewLess);
         }
         if(action === "viewLess") {
             target.setAttribute("data-action","viewMore");
-            target.innerHTML = viewMoreTxt[0];
+            target.innerHTML = viewMoreText[0];
             const fcEl = fI.querySelector(`.${textFacetWrapper}`);
             fcEl.classList.remove(viewLess);
             fcEl.classList.add(viewMore);

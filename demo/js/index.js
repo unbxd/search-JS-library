@@ -93,7 +93,7 @@ window.unbxdSearch.updateConfig({
     },
     isCollapsible:true,
     isSearchable:true,
-    viewMore:true,
+    enableViewMore:true,
   },
   pagination: {
     type:'FIXED_PAGINATION',
@@ -190,7 +190,7 @@ window.unbxdSearch.updateConfig({
     },
     isCollapsible:true,
     isSearchable:true,
-    viewMore:true,
+    enableViewMore:true,
   },
   pagination: {
     type:'FIXED_PAGINATION',

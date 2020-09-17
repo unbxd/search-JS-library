@@ -164,8 +164,8 @@ const options = {
         searchPlaceHolder:"",
         textFacetWrapper:"UNX-facets-item",
         defaultOpen:"ALL",
-        viewMore:false,
-        viewMoreTxt:["show all", "show less"],
+        enableViewMore:false,
+        viewMoreText:["show all", "show less"],
         viewMoreLimit:3
     },
 

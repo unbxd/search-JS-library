@@ -206,8 +206,8 @@ facet configuration table is available here.
 | isSearchable | Boolean | if you wish to have a search feature on facets |
 | searchPlaceHolder | String | placeholder for the facet search input |
 | textFacetWrapper | String | css class for the facets list |
-| viewMore | Booelan | For enabling view more / less functionality for individual facets  |
-| viewMoreTxt | Array | The text to show in button eg:  ["show all", "show less"] |
+| enableViewMore | Booelan | For enabling view more / less functionality for individual facets  |
+| viewMoreText | Array | The text to show in button eg:  ["show all", "show less"] |
 | viewMoreLimit | Number | will show view more  only if the facet values are greater than this value eg:8 |
 
   
