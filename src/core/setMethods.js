@@ -50,6 +50,9 @@ const renderFacets = function(){
     }
     const self = this;
     const allFacets = this.getAllFacets();
+    const {
+        facetsWrapper
+    } = this;
     if(defaultOpen !=="NONE") {
         allFacets.forEach((item,i)=> {
             const {
@@ -65,7 +68,7 @@ const renderFacets = function(){
     } else {
         self.viewState.expandedFacets = {};
     }
-    this.facetsWrapper.innerHTML = ``;
+    facetsWrapper.innerHTML = ``;
     const selectedFacets = this.getSelectedFacets();
     allFacets.forEach((facet,idx) => {
         const {
@@ -76,13 +79,13 @@ const renderFacets = function(){
         const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
         const selectedFacet = selectedFacets[facetName];
         if(facetType === "text") {
-            this.facetsWrapper.innerHTML += this.renderTextFacet(facet,selectedFacet,isExpanded,facetSearchTxt);
+            facetsWrapper.innerHTML += this.renderTextFacet(facet,selectedFacet,isExpanded,facetSearchTxt);
         }
         if(facetType === "range") {
-            this.facetsWrapper.innerHTML += this.renderRangeFacet(facet,isExpanded,"");
+            facetsWrapper.innerHTML += this.renderRangeFacet(facet,isExpanded,"");
         }
         if(facetType === "category") {
-            this.facetsWrapper.innerHTML += this.renderMultiLevelFacet(facet,isExpanded,"");
+            facetsWrapper.innerHTML += this.renderMultiLevelFacet(facet,isExpanded,"");
         }
         this.viewState.facetElementMap[facetName] = facetName;
         let shouldRenderSelected = true;
@@ -112,7 +115,7 @@ const renderFacets = function(){
                     });
                 })
             }
-            this.selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
+            selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
         }
 
     })

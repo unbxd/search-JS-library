@@ -87,7 +87,7 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
     const isFtr = (selected && selected.length >0)?true:false;
     if(enableViewMore && facetType==="text" && values.length > viewMoreLimit ) {
         viewMoreCss="UNX-view-more";
-        viewMoreUi = `<div class="view-more-row"><button class="${actionBtnClass}" data-facet-name="${facetName}" data-action="viewMore" data-id="${viewMoreText[0]}">${viewMoreText[0]}</button></div>`;
+        viewMoreUi = `<div class="UNX-view-more-row "><button class="${actionBtnClass}" data-facet-name="${facetName}" data-action="viewMore" data-id="${viewMoreText[0]}">${viewMoreText[0]}</button></div>`;
     }
     let clearUI = ``;
     let applyBtn = ``;

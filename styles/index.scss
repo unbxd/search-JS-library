@@ -151,7 +151,7 @@ body {
   width: 24px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.43);
 }
-.UNX-swatch-btn.UNX-selected-swatch,
+.UNX-selected-swatch,
 .UNX-swatch-btn:focus {
   border-color: #000000;
   outline: #000000;
@@ -377,12 +377,12 @@ body {
   justify-content: space-between;
   margin: 12px 0px;
 }
-.pagination-block button {
+.UNX-pagination-block button {
   font-weight: 200;
   background: transparent;
   border-color: transparent;
 }
-.pagination-block {
+.UNX-pagination-block {
   display: flex;
   align-items: center;
 }
@@ -627,7 +627,7 @@ button.UNX-facet-open:before {
   font-size: 12px;
   opacity: .5;
 }
-button.UNX-facet-close:before {
+.UNX-facet-close:before {
   content:"+";
   font-size: 20px;
   line-height: 20px;
@@ -646,28 +646,29 @@ button.UNX-facet-close:before {
   overflow: hidden;
   opacity: 0;
 }
-.UNX-facets-item.UNX-view-more {
-  height: 100px;
-}
+
 .UNX-facets-item {
   height: auto;
   overflow:scroll;
+}
+.UNX-view-more {
+  height: 100px;
 }
 .UNX-accordian-open .UNX-facets-all {
   max-height: 300px;
   opacity: 1;
   overflow: scroll;
 }
-.view-more-row {
+.UNX-view-more-row {
   display: flex;
   justify-content: flex-end;
 }
-.view-more-row button {
+.UNX-view-more-row .UNX-action-item {
   background: transparent;
   border-color: transparent;
   color: #071fd8;
 }
-.range-facets-block .UNX-facets-item {
+.UNX-range-facets-block .UNX-facets-item {
   height: auto;
 }
 .UNX-swatch-hidden {
@@ -949,7 +950,7 @@ button.UNX-facet-close:before {
   .UNX-m-page {
     display: block;
   }
-  .UNX-m-page .pagination-block {
+  .UNX-m-page .UNX-pagination-block {
     justify-content: center;
   }
   .UNX-sort-item {

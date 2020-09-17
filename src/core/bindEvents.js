@@ -1,6 +1,4 @@
 
-import infiniteScroller from '../modules/pagination/infiniteScroller';
-import debounce from '../modules/utils/debounce';
 function bindEvents(){
     const {
         searchButtonSelector,
@@ -89,10 +87,9 @@ function bindEvents(){
             this.onPageViewTypeClick.bind(this)
         )
     }
+
     if(this.options.pagination.type === 'INFINITE_SCROLL') {
-        document.addEventListener("scroll", debounce(()=>{
-            infiniteScroller.bind(this)();
-        },1000));
+        document.addEventListener("scroll",this.onInfinteScroll.bind(this));
     }
     this.delegate(
         this.pageSizeWrapper,

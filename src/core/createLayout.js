@@ -15,19 +15,19 @@ const createLayout = function() {
     this.bannerWrapper = createElement(
         "DIV",
         "",{
-            class:"banner-block"
+            class:"UNX-banner-block"
         }
     );
     this.breadcrumbWrapper = createElement(
         "DIV",
         "",{
-            class:"breadcrumbs-block"
+            class:"UNX-breadcrumbs-block"
         }
     );
     this.pageSizeWrapper = createElement(
         "DIV",
         "",{
-            class:"page-size-block"
+            class:"UNX-page-size-block"
         }
     );
     this.sortWrapper = createElement(
@@ -53,78 +53,87 @@ const createLayout = function() {
         const elem  = createElement(
             "DIV",
             "",{
-                class:"unx-pagination-size-block"
+                class:"UNX-pagination-size-block"
             }
         );
         this.paginationWrappers.push(elem);
         return elem;
     }
     const {
+        facet,
+        breadcrumb,
+        banner,
+        sort,
+        products,
+        pagesize,
+        pagination
+    } = this.options;
+    const {
         facetsEl,
-        selectedFacetsEl
-    } = this.options.facet;
+        selectedFacetsEl,
+        selectedFacetTemplate,
+        multiLevelFacetTemplate,
+        facetTemplate,
+        facetItemTemplate
+    } = facet;
     const {
         spellCheck
     } = this.options;
-    this.options.facet.selectedFacetTemplate.bind(this);
-    this.options.facet.multiLevelFacetTemplate.bind(this);
-    this.options.facet.facetTemplate.bind(this);
-    this.options.facet.facetItemTemplate.bind(this);
+    selectedFacetTemplate.bind(this);
+    multiLevelFacetTemplate.bind(this);
+    facetTemplate.bind(this);
+    facetItemTemplate.bind(this);
     if(spellCheck.el) {
         spellCheck.el.innerHTML = ``;
         spellCheck.el.appendChild(this.spellCheckWrapper);
     }
-    if(this.options.facet.el) {
-        this.options.facet.el.innerHTML = ``;
-        this.options.facet.el.appendChild(this.facetsWrapper);
-    }
     if(facetsEl) {
-        this.options.facet.facetsEl.innerHTML = ``;
-        this.options.facet.facetsEl.appendChild(this.facetsWrapper);
+       facetsEl.innerHTML = ``;
+       facetsEl.appendChild(this.facetsWrapper);
     }
     if(selectedFacetsEl) {
-        this.options.facet.selectedFacetsEl.innerHTML = ``;
-        this.options.facet.selectedFacetsEl.appendChild(this.selectedFacetWrapper)
+        selectedFacetsEl.innerHTML = ``;
+        selectedFacetsEl.appendChild(this.selectedFacetWrapper)
     }
-    if(this.options.breadcrumb.enabled) {
-        this.options.breadcrumb.template = this.options.breadcrumb.template.bind(this);
-        if(this.options.breadcrumb.el){
-            this.options.breadcrumb.el.innerHTML = ``;
-            this.options.breadcrumb.el.appendChild(this.breadcrumbWrapper);
+    if(breadcrumb.enabled) {
+        breadcrumb.template.bind(this);
+        if(breadcrumb.el){
+            breadcrumb.el.innerHTML = ``;
+            breadcrumb.el.appendChild(this.breadcrumbWrapper);
         }
     }
-    if(this.options.swatchTemplate) {
-        this.options.swatchTemplate.bind(this);
+    if(banner.el){
+        banner.el.innerHTML = ``;
+        banner.template.bind(this);
+        banner.el.appendChild(this.bannerWrapper);
     }
-    if(this.options.banner.el){
-        this.options.banner.el.innerHTML = ``;
-        this.options.banner.el.appendChild(this.bannerWrapper);
+    if(sort.el){
+        sort.el.innerHTML = ``;
+        sort.el.appendChild(this.sortWrapper);
     }
-    if(this.options.sort.el){
-        this.options.sort.el.innerHTML = ``;
-        this.options.sort.el.appendChild(this.sortWrapper);
+
+    if(products.el){
+        products.el.innerHTML=``;
+        products.el.appendChild(this.searchResultsWrapper);
     }
-    this.options.banner.template = this.options.banner.template.bind(this);
-    if(this.options.products.el){
-        this.options.products.el.innerHTML=``;
-        this.options.products.el.appendChild(this.searchResultsWrapper);
+    if(pagesize.el){
+        pagesize.el.innerHTML = ``;
+        pagesize.el.appendChild(this.pageSizeWrapper);
     }
-    this.loaderEl = this.options.loader.el || this.searchResultsWrapper;
-    if(this.options.pagesize.el){
-        this.options.pagesize.el.innerHTML = ``;
-        this.options.pagesize.el.appendChild(this.pageSizeWrapper);
-    }
-    if(this.options.pagination.enabled) {
-        if(this.options.pagination.el){
-            if(this.options.pagination.el.length) {
-                this.options.pagination.el.forEach(element => {
+    if(pagination.enabled) {
+        const {
+            el
+        } = pagination;
+        if(el){
+            if(el.length) {
+                el.forEach(element => {
                     element.innerHTML = ``;
                     element.appendChild(getPaginationWrapper());
                 })
 
             } else {
-                this.options.pagination.el.innerHTML = ``;
-                this.options.pagination.el.appendChild(getPaginationWrapper());
+                el.innerHTML = ``;
+                el.appendChild(getPaginationWrapper());
             }
         }
 

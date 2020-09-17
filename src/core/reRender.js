@@ -34,31 +34,36 @@ const reRender = function(){
     if(productType !=="SEARCH" && searchBoxSelector){
         searchBoxSelector.value = "";
     }
+    const {
+        searchResultsWrapper,
+        sortWrapper,
+        paginationWrappers
+    } = this;
     if(results && results.numberOfProducts === 0) {
         onEvent(this,beforeNoResultRender);
         this.state.noResultLoaded = true;
-        this.searchResultsWrapper.classList.add(noResultCss);
-        this.searchResultsWrapper.innerHTML = this.renderNoResults(query);
+        searchResultsWrapper.classList.add(noResultCss);
+        searchResultsWrapper.innerHTML = this.renderNoResults(query);
         if(!qParams.filter) {
             this.renderFacets();
         }
         onEvent(this,afterNoResultRender);
     } else {
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
-        this.searchResultsWrapper.classList.remove("UNX-list-block");
-        this.searchResultsWrapper.classList.remove("UNX-grid-block");
-        this.searchResultsWrapper.classList.add(viewCss);
-        this.searchResultsWrapper.classList.remove(noResultCss);
+        searchResultsWrapper.classList.remove("UNX-list-block");
+        searchResultsWrapper.classList.remove("UNX-grid-block");
+        searchResultsWrapper.classList.add(viewCss);
+        searchResultsWrapper.classList.remove(noResultCss);
         if(this.viewState.isInfiniteStarted){
             this.viewState.isInfiniteStarted = false;
             if(this.state.noResultLoaded) {
                 this.state.noResultLoaded = false;
-                this.searchResultsWrapper.innerHTML = this.renderSearch();
+                searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
-                this.searchResultsWrapper.innerHTML += this.renderSearch();
+                searchResultsWrapper.innerHTML += this.renderSearch();
             }
         } else {
-            this.searchResultsWrapper.innerHTML = this.renderSearch();
+            searchResultsWrapper.innerHTML = this.renderSearch();
         }
         
         this.renderFacets();
@@ -66,12 +71,17 @@ const reRender = function(){
     }
     this.renderProductViewTypeUI();
     this.renderPageSize();
-    this.sortWrapper.innerHTML = this.renderSort();
+    sortWrapper.innerHTML = this.renderSort();
     if(pagination.type !== "INFINITE_SCROLL"){
-        //pagination.el.innerHTML = this.renderPagination();
-        this.paginationWrappers.forEach((pagination)=>{
+        paginationWrappers.forEach((pagination)=>{
             pagination.innerHTML = this.renderPagination();
         });
+    } else {
+        if(paginationWrappers) {
+            paginationWrappers.forEach((pagination)=>{
+                pagination.innerHTML = ``;
+            });
+        }
     }
     if(this.options.breadcrumb.enabled){
         this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
