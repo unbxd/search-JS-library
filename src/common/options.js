@@ -200,12 +200,11 @@ const options = {
     },
 
     swatches:{
-        enabled:true,
+        enabled:false,
         attributesMap:{},
         swatchClass:'UNX-swatch-btn',
         template:function(swatchData) {
             const {
-                swatchColors = [],
                 swatchImgs = []
             } = swatchData;
             let btnUI = ``;
