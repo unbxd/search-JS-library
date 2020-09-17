@@ -1,5 +1,15 @@
 ## Changelog
 
+
+
+## [0.1.9] - 2020-09-17
+
+### Changed
+- fixed selected facet click issue 
+
+
+
+
 ## [0.1.8] - 2020-09-16
 
 ### Changed
