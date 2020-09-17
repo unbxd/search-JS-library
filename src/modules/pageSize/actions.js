@@ -5,7 +5,7 @@ const onClickPageSize = function(e) {
     if(val) {
         this.setPageSize(Number(val));
         this.getResults.bind(this)();
-        this.options.callBackFn(this,'pageSizeChange', {
+        this.options.onEvent(this,'pageSizeChange', {
             count:val
         });
     }

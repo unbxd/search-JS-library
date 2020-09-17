@@ -1,6 +1,4 @@
 
-import infiniteScroller from '../modules/pagination/infiniteScroller';
-import debounce from '../modules/utils/debounce';
 function bindEvents(){
     const {
         searchButtonSelector,
@@ -13,8 +11,8 @@ function bindEvents(){
         pagesize,
         spellCheck,
         searchBoxSelector,
-        actionBtnClass,
-        actionChangeClass
+        actionChangeClass,
+        actionBtnClass
     } = this.options;
     if(searchBoxSelector) {
         searchBoxSelector.addEventListener("keydown", (e) => {
@@ -40,14 +38,12 @@ function bindEvents(){
     if(searchButtonSelector) {
         searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this));
     }
-    if(spellCheck.el) {
-        this.delegate(
-            spellCheck.el,
-            "click",
-            `.${spellCheck.selectorClass}`,
-            this.setSuggestion.bind(this)
-        );
-    }
+    this.delegate(
+        this.spellCheckWrapper,
+        "click",
+        `.${spellCheck.selectorClass}`,
+        this.setSuggestion.bind(this)
+    );
     //productItemSelector
     this.delegate(
         this.searchResultsWrapper,
@@ -67,24 +63,6 @@ function bindEvents(){
         "."+facet.facetClass, 
         this.findChangedFacet.bind(this)
     )
-    this.delegate(
-        document.body, 
-        'change', 
-        "."+actionChangeClass, 
-        this.extraActionsChange.bind(this)
-    )
-    this.delegate(
-        document.body, 
-        'keyup', 
-        "."+actionChangeClass, 
-        this.extraActionsChange.bind(this)
-    )
-    this.delegate(
-        document.body, 
-        'click', 
-        "."+actionBtnClass, 
-        this.extraActions.bind(this)
-    )
     if(facet.selectedFacetsEl) {
         this.delegate(
             this.selectedFacetWrapper, 
@@ -93,28 +71,12 @@ function bindEvents(){
             this.findChangedFacet.bind(this)
         )
     }
-    if(this.rangeFacetsWrapper) {
-        this.delegate(
-            this.rangeFacetsWrapper, 
-            "click", 
-            "button", 
-            this.onClickRangeFacet.bind(this)
-        )
-    }
-    if(this.multiLevelFacetWrapper) {
-        this.delegate(
-            this.multiLevelFacetWrapper, 
-            'click', 
-            "."+this.options.facet.multiLevelFacetSelector, 
-            this.onBucketedFacet.bind(this)
-        )
-    }
     if(this.breadcrumbWrapper) {
         this.delegate(
             this.breadcrumbWrapper, 
             "click", 
             "."+this.options.breadcrumb.selectorClass, 
-            this.onBucketedFacet.bind(this)
+            this.findChangedFacet.bind(this)
         )
     }
     if(productView.el){
@@ -125,10 +87,9 @@ function bindEvents(){
             this.onPageViewTypeClick.bind(this)
         )
     }
+
     if(this.options.pagination.type === 'INFINITE_SCROLL') {
-        document.addEventListener("scroll", debounce(()=>{
-            infiniteScroller.bind(this)();
-        },1000));
+        document.addEventListener("scroll",this.onInfinteScroll.bind(this));
     }
     this.delegate(
         this.pageSizeWrapper,
@@ -136,10 +97,36 @@ function bindEvents(){
         `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );
-    if(this.options.hashMode) {
-        window.onhashchange= this.onLocationChange.bind(this);
-    } else {
-        window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+    this.delegate(
+        this.facetsWrapper, 
+        'change', 
+        "."+actionChangeClass, 
+        this.extraActionsChange.bind(this)
+    )
+    this.delegate(
+        this.facetsWrapper, 
+        'keyup', 
+        "."+actionChangeClass, 
+        this.extraActionsChange.bind(this)
+    )
+    this.delegate(
+        this.facetsWrapper, 
+        'click', 
+        "."+actionBtnClass, 
+        this.extraActions.bind(this)
+    )
+    if(!this.viewState.initialised) {
+        if(this.options.hashMode) {
+            window.onhashchange= this.onLocationChange.bind(this);
+        } else {
+            window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+        }
+        const urlParams = this.getQueryParams();
+        const ln = Object.keys(urlParams).length;
+        if(ln > 0){
+            this.renderFromUrl();
+        }
+        this.viewState.initialised = true;
     }
 }
 export default bindEvents;

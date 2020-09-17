@@ -242,8 +242,6 @@ facet: {
 
     },
 
-
-    rangeFacetEl:document.getElementById("rangeFacetWrapper"),
     //dont configure rangeTemplate if you wish to have a range slider
     //below example render a list of ranges
     rangeTemplate:function(ranges,selectedRanges) {
@@ -309,8 +307,6 @@ facet: {
     facetMultilevelName:'Category',
     //class name for the multi level facet items
     multiLevelFacetSelector:'UNX-multilevel-facet',
-    //element to place the multilevel facet
-    multiLevelFacetEl:document.getElementById("bucketedFacetWrapper"),
     //create your template here
     multiLevelFacetTemplate:function(facets,selectedCategories) {
         //will provide 2 arguments
@@ -398,7 +394,10 @@ facet: {
     isSearchable:true,
     searchPlaceHolder:"",
     textFacetWrapper:"UNX-facets-item",
-    defaultOpen:"All" // All or None or First
+    defaultOpen:"All" // All or None or First,
+    enableViewMore:false, // for enabling view more functionality to the text facets, you can enable this if you have lot of facets
+    viewMoreText:["show all", "show less"],//the text to toggle the text inside the view more button
+    viewMoreLimit:3 //this will enable view more if the facets are more than 3.
 }
 </script>
 

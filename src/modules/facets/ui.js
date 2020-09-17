@@ -58,7 +58,9 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
     const {
         displayName,
         facetName,
-        multiLevelField
+        multiLevelField,
+        facetType,
+        values
     } = facet;
     const {
         facetClass,
@@ -66,14 +68,27 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
         isCollapsible,
         isSearchable,
         searchPlaceHolder,
-        textFacetWrapper
+        textFacetWrapper,
+        enableViewMore,
+        viewMoreText,
+        viewMoreLimit
     } = this.options.facet;
     const {
         actionBtnClass,
         actionChangeClass
     } = this.options;
+    const {
+        openBtn,
+        closeBtn
+    } = this.cssList;
+    let viewMoreUi = ``;
+    let viewMoreCss=``;
     const selected = this.getSelectedFacets()[facetName];
     const isFtr = (selected && selected.length >0)?true:false;
+    if(enableViewMore && facetType==="text" && values.length > viewMoreLimit ) {
+        viewMoreCss="UNX-view-more";
+        viewMoreUi = `<div class="UNX-view-more-row "><button class="${actionBtnClass}" data-facet-name="${facetName}" data-action="viewMore" data-id="${viewMoreText[0]}">${viewMoreText[0]}</button></div>`;
+    }
     let clearUI = ``;
     let applyBtn = ``;
     if(isFtr){
@@ -83,25 +98,23 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
         applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >Apply</button>`
     }
     let collapsibleUI = ``;
-    let collapseCss = ``;
-    let searchInput = ``
+    let searchInput = ``;
     if(isCollapsible){
         if(isExpanded) {
-            collapseCss = `UNX-facets-open`
-            collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-open ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
+            collapsibleUI = `<button class="UNX-collapse-btn ${openBtn} ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
         } else {
-            collapseCss = `UNX-facets-close`
-            collapsibleUI = `<button class="UNX-collapse-btn UNX-facet-close ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
+            collapsibleUI = `<button class="UNX-collapse-btn ${closeBtn} ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
         }
     }
     if(isSearchable && facetSearchTxt !== null) {
         searchInput =`<div class="UNX-searchable-facets"><input class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
     }
-    return [`<div class="UNX-text-facet-wrap" id="${facetName}">`,
+    return [`<div class="UNX-text-facet-wrap">`,
                 `<div class="UNX-facet-header"> <h3>${displayName}</h3> ${collapsibleUI}</div>`,
-                `<div class="UNX-facets-all ${collapseCss}">`,
+                `<div class="UNX-facets-all">`,
                     searchInput,
-                    `<div class="UNX-facets ${textFacetWrapper}">${children}</div>`,
+                    `<div class="UNX-facets ${textFacetWrapper} ${viewMoreCss}">${children}</div>`,
+                    viewMoreUi,
                     `<div class="UNX-facet-footer">${applyBtn} ${clearUI}</div>`,
                 `</div>`,
            `</div>`].join('');

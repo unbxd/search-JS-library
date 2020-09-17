@@ -63,7 +63,7 @@ const options = {
     noResults: {
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
-    callBackFn: (state,type) =>{
+    onEvent: (state,type) =>{
     },
     startPageNo:0,
     productView : {
@@ -140,7 +140,6 @@ const options = {
         selectedFacetsEl:null,
         selectedFacetTemplate:selectedFacetUI,
         selectedFacetItemTemplate:selectedFacetItemTemplateUI,
-        rangeFacetEl:null,
         rangeTemplate:renderRangeFacets,
         rangeWidgetConfig: {
             "minLabel":"",
@@ -153,7 +152,6 @@ const options = {
         facetMultilevel:true,
         facetMultilevelName:'Category',
         multiLevelFacetSelector:'UNX-multilevel-facet',
-        multiLevelFacetEl:null,
         multiLevelFacetTemplate:multiLevelFacetUI,
         facetDepth:4,
         clearFacetsSelector:'UNX-clear-facet',
@@ -165,7 +163,10 @@ const options = {
         isSearchable:true,
         searchPlaceHolder:"",
         textFacetWrapper:"UNX-facets-item",
-        defaultOpen:"ALL"
+        defaultOpen:"ALL",
+        enableViewMore:false,
+        viewMoreText:["show all", "show less"],
+        viewMoreLimit:3
     },
 
     pagination : {
@@ -199,24 +200,36 @@ const options = {
     },
 
     swatches:{
-        enabled:true,
+        enabled:false,
         attributesMap:{},
         swatchClass:'UNX-swatch-btn',
         template:function(swatchData) {
             const {
-                swatchColors = [],
                 swatchImgs = []
             } = swatchData;
             let btnUI = ``;
-            swatchColors.forEach((item,id) => {
-                const imgId = swatchImgs[id];
-                if(imgId){
-                    const img = imgId.split("::")[1];
-                    btnUI+= [`<button data-swatch-id="${item}" data-swatch-img="${img}" data-action="changeSwatch"`,
-                                `data-swatch-target=".UNX-img-block" class="${this.swatchClass}" style="background-color:${item}"> </button>`].join('')
-                }
-            });
-            return `<div class="UNX-swatch-color-list">${btnUI}</div>`;
+            let btnList = ``;
+            let imgsUI = ``;
+            const {
+                swatchClass
+            } = this.options.swatches;
+            if(swatchImgs.length > 1) {
+                swatchImgs.forEach((item,id) => {
+                    const sid = this.generateRid("unx_swatch_");
+                    const sCss = (id === 0) ? '':' UNX-swatch-hidden';
+                    const bCss = (id === 0) ? ' UNX-selected-swatch':'';
+                    const data = item.split("::");
+                    if(data){
+                        btnUI+= [`<button data-swatch-id="${sid}" data-action="changeSwatch" class="${swatchClass} ${sid} ${bCss}" style="background-color:${data[0]}"> </button>`].join('');
+                        imgsUI+=`<div id="${sid}" class="UNX-img-wrapper ${sCss}"><img class="UNX-img-block" src="${data[1]}"/></div>`
+                    }
+                });
+                btnList = `<div class="UNX-swatch-color-list">${btnUI}</div>`;
+            }
+            return {
+                btnList:btnList,
+                imgList:imgsUI,
+            };
         }
     },
     rangeWidget:renderRangeFacets,
