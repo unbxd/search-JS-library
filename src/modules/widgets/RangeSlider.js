@@ -248,6 +248,9 @@ class RangeSlider {
         if(!this.touchRight) {
             this.touchRight = document.querySelector("#"+this.id+" ."+this.slideRightId);
         }
+        if(!this.touchLeft || !this.touchRight) {
+            return false
+        }
         this.maxX= this.options.wrapper.offsetWidth - (this.touchRight.offsetWidth+10);
         if(!this.slideLine) {
             this.slideLine = document.querySelector("#"+this.id+" ."+this.slideLineId);
@@ -272,8 +275,8 @@ class RangeSlider {
             absValue
         } = this.state
         return {
-            x: Math.round(left/absValue),
-            y:Math.round(right/absValue)
+            x: Math.ceil(left/absValue),
+            y:Math.ceil(right/absValue)
         }
     }
     renderValuesUI(){
@@ -298,18 +301,19 @@ class RangeSlider {
             `</div>`].join('');
     }
     render(){
-        const self = this;
         const {
             facetName,
-            displayName,
-            isCollapsible,
-            isExpanded,
-            actionBtnClass,
-            textFacetWrapper,
-            applyMultipleFilters
+            applyMultipleFilters,
+            rangeConfig,
+            facetClass
         } = this.options;
+        const {
+            submitBtnTxt,
+            clearBtnTxt
+        } = rangeConfig;
         setTimeout(this.bindElements.bind(this),100);
         let valueUI = "";
+        const hideRowCss = (applyMultipleFilters) ? " " :"UNX-hidden";
     
         return [`<div id="${this.id}" data-id="${facetName}" class="range-slider-container UNX-range-slider-wrap">`,
                         `<div class="valueContainer UNX-range-value-block" >`,
@@ -324,6 +328,10 @@ class RangeSlider {
                                 `<div class="${this.innerLineId} UNX-line-inner"></div>`,
                             `</div>`,
                         `</div>`,
+                        `<div class="UNX-price-action-row ${hideRowCss}">`,
+                            `<button class="UNX-primary-btn ${facetClass}" data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
+                            `<button class="UNX-default-btn ${facetClass}" data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
+                        `<div>`,
                     `</div>`,
                 `<div>`,
             `</div>`].join('')

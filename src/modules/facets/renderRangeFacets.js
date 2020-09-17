@@ -38,6 +38,7 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             displayName,
             gap
         }
+        this.viewState.lastAction = "updatedRangeSlider";
         this.setRangeFilter(newData);
         if(!self.options.applyMultipleFilters) {
             this.setPageStart(0);
@@ -50,15 +51,13 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
     const {
         isCollapsible,
         textFacetWrapper,
-        applyMultipleFilters
+        applyMultipleFilters,
+        facetClass
     } = this.options.facet;
     const {
         actionBtnClass
     } = this.options;   
-    const {
-        submitBtnTxt,
-        clearBtnTxt
-    } = this.options.facet.rangeWidgetConfig;
+
 
     const rangeFacetTemplate = rangeFacets.map(item => {
         const {
@@ -91,22 +90,19 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             minY,
             start:0,
             end,
-            wrapper:self.options.facet.rangeFacetEl,
+            wrapper:self.facetsWrapper,
             rangeConfig: self.options.facet.rangeWidgetConfig,
             isCollapsible,
             isExpanded,
             actionBtnClass,
             textFacetWrapper,
-            applyMultipleFilters
+            applyMultipleFilters,
+            facetClass
         }).render();
-        const hideRowCss = (applyMultipleFilters) ? " " :"UNX-hidden";
+    
         const rangeUi = this.options.facet.facetTemplate.bind(this)(item, rangeSliderElem, isExpanded, null);
         return  [`<div class="range-facet">`,
                     rangeUi,
-                    `<div class="UNX-price-action-row ${hideRowCss}">`,
-                        `<button class="UNX-primary-btn " data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
-                        `<button class="UNX-default-btn " data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
-                    `<div>`,
                     `</div>`].join('');
             }).join('');
         return rangeFacetTemplate;

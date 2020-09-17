@@ -5,12 +5,13 @@ const setInputValue = function(e) {
     }
     this.resetFacets();
     this.options.productType = "SEARCH";
+    val = (val.indexOf("#") === 0) ? val.replace("#",""):val;
     val = encodeURIComponent(val);
     this.changeInput(val, this.events.changeInput);
     if(val) {
         this.setPageStart(0);
         this.getResults();
-        this.viewState.lastDidYouMean = null;
+        this.resetViewState()
     } else{
         this.searchResultsWrapper.innerHTML = null;
     }

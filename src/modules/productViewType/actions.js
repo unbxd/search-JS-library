@@ -4,20 +4,26 @@ function onPageViewTypeClick(e) {
     const {
         action
     } = this.options.productView;
+    const {
+        productViewType
+    } = this.viewState;
     const selected = (action === "click") ? elem:elem.options[elem.selectedIndex];
     const dataSet = selected.dataset;
     const {
         viewAction,
     } = dataSet;
-    this.viewState.productViewType = viewAction;
-    const {
-        extraParams
-    } = this.options;
-    this.options.extraParams = extend(true,{},extraParams,{
-        "viewType":viewAction
-    });
-    this.setPageStart(0);
-    this.getResults.bind(this)();
+    if(productViewType !== viewAction ) {
+        this.viewState.productViewType = viewAction;
+        const {
+            extraParams
+        } = this.options;
+        this.options.extraParams = extend(true,{},extraParams,{
+            "viewType":viewAction
+        });
+        this.setPageStart(0);
+        this.getResults.bind(this)();
+
+    }
 }
 export {
     onPageViewTypeClick
