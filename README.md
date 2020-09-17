@@ -160,7 +160,7 @@ search template options are configured under 'products' object.
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |-----------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| template | Function | |
+| template | Function | render you custom loader elements here|
 | el | Element | Element to place the loader |
 | | |
 
