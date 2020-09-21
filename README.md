@@ -153,6 +153,8 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | enableViewMore | Booelan | Turn this on for enabling view more or less functionality for individual facets. By default it is `false`  |
 | viewMoreText | Array | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"] |
 | viewMoreLimit | Number | Will show view more only if the facet values are greater than this value |
+| applyButtonText | String | to configure the apply button incase of applyMultipleFilters set as true |
+| clearButtonText | String | to configure the clear button incase of applyMultipleFilters set as true |
 
 # Facet Range Widget Config
 

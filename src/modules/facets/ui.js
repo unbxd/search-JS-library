@@ -9,7 +9,8 @@ function selectedFacetUI (selectedFacet,selectedFacetItem,facetSearchTxt){
     } = selectedFacetItem;
     const {
         facetClass,
-        selectedFacetClass
+        selectedFacetClass,
+        removeFacetsSelectorClass
     } = this.options.facet;
     const {
         UNX_uFilter
@@ -19,18 +20,19 @@ function selectedFacetUI (selectedFacet,selectedFacetItem,facetSearchTxt){
                 `<button data-test-id="${UNX_uFilter}" class="UNX-selected-facet-btn UNX-change-facet ${css}" data-facet-name="${facetName}" data-facet-action="deleteFacetValue" data-id="${dataId}">`,
                     `<span class="UNX-facet-text">${decodeURIComponent(name)}</span> <span class="UNX-facet-count">(${count})</span>`,
                 `</button>`,
-                `<button class="UNX-delete-facet ${css}" data-id="${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}">x</button></div>`
+                `<button class="UNX-delete-facet ${removeFacetsSelectorClass} ${css}" data-id="${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}">x</button></div>`
             ].join('');
 }
 function selectedFacetItemTemplateUI(selections, facet) {
     const {
-        clearAllText
+        clearAllText,
+        clearFacetsSelectorClass
     } = facet;
     if(selections.length > 0) {
         return [`<div class="UNX-facets-selections">`,
             `<h5 class="UNX-selected-facet-header">Selected Filters</h5>`,
             `<div class="UNX-selected-facets-inner">${selections}</div>`,
-            `<button class="UNX-clear-facet ${this.selectedFacetClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
+            `<button class="${clearFacetsSelectorClass} ${this.selectedFacetClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
        `</div>`].join('');
     } else {
         return ``;

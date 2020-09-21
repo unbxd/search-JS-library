@@ -2,6 +2,17 @@
 
 
 
+## [0.1.9] - 2020-09-21
+
+### Changed
+- Added the options as argument for the templates
+- Added data-test-id attributes for the automation
+- read me updates
+- removeFacetsSelector to removeFacetsSelectorClass
+- clearFacetsSelector to clearFacetsSelectorClass
+- multiLevelFacetSelector to multiLevelFacetSelectorClass
+
+
 ## [0.1.9] - 2020-09-17
 
 ### Changed
