@@ -75,10 +75,6 @@ const options = {
         viewTypes:'GRID'
     },
 
-   // productViewTypes:'GRID',
-    //gridCount:3,
-    //productViewTypeTemplate:renderProductViewType,
-    //productViewTypeSelector:null,
     loader:{
         template:function(){return `<div class="UNX-loader">Loading search results....</div>`},
         el:null
@@ -106,7 +102,7 @@ const options = {
 
     spellCheck:{
         enabled:true,
-        el:document.getElementById("didYouMeanWrapper"),
+        el:null,
         template: didYouMeanUI,
         selectorClass: "UNX-suggestion"
     },
@@ -140,13 +136,14 @@ const options = {
         selectedFacetsEl:null,
         selectedFacetTemplate:selectedFacetUI,
         selectedFacetItemTemplate:selectedFacetItemTemplateUI,
+        clearAllText:"Clear All",
+
+
         rangeTemplate:renderRangeFacets,
         rangeWidgetConfig: {
             "minLabel":"",
             "maxLabel":"",
-            "prefix":'$',
-            "submitBtnTxt":"Filter By Price",
-            "clearBtnTxt":"Clear"
+            "prefix":'$'
         },
 
         facetMultilevel:true,
@@ -158,7 +155,12 @@ const options = {
         removeFacetsSelector:'UNX-remove-facet',
         onFacetLoad:function(facets){
         },
+
         applyMultipleFilters:false,
+        applyButtonText:"Apply",
+        clearButtonText:"clear",
+
+
         isCollapsible:true,
         isSearchable:true,
         searchPlaceHolder:"",
@@ -166,7 +168,9 @@ const options = {
         defaultOpen:"ALL",
         enableViewMore:false,
         viewMoreText:["show all", "show less"],
-        viewMoreLimit:3
+        viewMoreLimit:3,
+
+
     },
 
     pagination : {
@@ -203,7 +207,7 @@ const options = {
         enabled:false,
         attributesMap:{},
         swatchClass:'UNX-swatch-btn',
-        template:function(swatchData) {
+        template:function(swatchData, swatches) {
             const {
                 swatchImgs = []
             } = swatchData;
@@ -212,7 +216,10 @@ const options = {
             let imgsUI = ``;
             const {
                 swatchClass
-            } = this.options.swatches;
+            } = swatches;
+            const {
+                UNX_swatchClrBtn
+            } = this.testIds;
             if(swatchImgs.length > 1) {
                 swatchImgs.forEach((item,id) => {
                     const sid = this.generateRid("unx_swatch_");
@@ -220,7 +227,7 @@ const options = {
                     const bCss = (id === 0) ? ' UNX-selected-swatch':'';
                     const data = item.split("::");
                     if(data){
-                        btnUI+= [`<button data-swatch-id="${sid}" data-action="changeSwatch" class="${swatchClass} ${sid} ${bCss}" style="background-color:${data[0]}"> </button>`].join('');
+                        btnUI+= [`<button data-test-id="${UNX_swatchClrBtn}${id}" data-swatch-id="${sid}" data-action="changeSwatch" class="${swatchClass} ${sid} ${bCss}" style="background-color:${data[0]}"> </button>`].join('');
                         imgsUI+=`<div id="${sid}" class="UNX-img-wrapper ${sCss}"><img class="UNX-img-block" src="${data[1]}"/></div>`
                     }
                 });

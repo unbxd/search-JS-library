@@ -5,6 +5,9 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt) {
         multiLevelFacetSelector,
         facetClass
     } = this.options.facet;
+    const {
+        UNX_facetLevel
+    } = this.testIds;
     if(selectedCategories) {
         selectedCategories.forEach(item => {
             const {
@@ -12,8 +15,9 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt) {
                 filterField,
                 value
             } = item;
+            let lTid = `data-test-id="${UNX_facetLevel}${level}"`;
             const levelCss = `${multiLevelFacetSelector}  UNX-category-level-${level}`
-            ui += [`<button data-parent="${filterField}" data-level="${level}" data-name="${value}"`,
+            ui += [`<button ${lTid} data-parent="${filterField}" data-level="${level}" data-name="${value}"`,
             `class=" ${levelCss} UNX-selected-crumb ${facetClass}" data-action = "clearCategoryFilter">`,
                 `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${decodeURIComponent(value)}</label>`,
             `</button>`].join('')
@@ -31,6 +35,7 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt) {
     if (!multiLevelField) {
         multiLevelField = filterField;
     }
+    let lTid = `data-test-id="${UNX_facetLevel}${level}"`;
     let levelCss = `UNX-category-level-${level}`;
     const valueUI = values.map(item => {
         const {
@@ -42,7 +47,7 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt) {
                 facetClass +=' UNX-search-hidden'
             }
         }
-        return [`<button data-parent="${multiLevelField}" data-level="${level}"`,
+        return [`<button ${lTid} data-parent="${multiLevelField}" data-level="${level}"`,
             `class="${multiLevelFacetSelector} ${levelCss} ${facetClass}" data-name="${name}" data-action = "setCategoryFilter">`,
             `<label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`].join('')
     })

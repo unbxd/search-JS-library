@@ -11,20 +11,26 @@ function selectedFacetUI (selectedFacet,selectedFacetItem,facetSearchTxt){
         facetClass,
         selectedFacetClass
     } = this.options.facet;
+    const {
+        UNX_uFilter
+    } = this.testIds;
     const css = ` ${facetClass} ${selectedFacetClass} `;
     return [`<div class="UNX-selected-facets-wrap">`,
-                `<button class="UNX-selected-facet-btn UNX-change-facet ${css}" data-facet-name="${facetName}" data-facet-action="deleteFacetValue" data-id="${dataId}">`,
+                `<button data-test-id="${UNX_uFilter}" class="UNX-selected-facet-btn UNX-change-facet ${css}" data-facet-name="${facetName}" data-facet-action="deleteFacetValue" data-id="${dataId}">`,
                     `<span class="UNX-facet-text">${decodeURIComponent(name)}</span> <span class="UNX-facet-count">(${count})</span>`,
                 `</button>`,
                 `<button class="UNX-delete-facet ${css}" data-id="${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}">x</button></div>`
             ].join('');
 }
-function selectedFacetItemTemplateUI(selections) {
+function selectedFacetItemTemplateUI(selections, facet) {
+    const {
+        clearAllText
+    } = facet;
     if(selections.length > 0) {
         return [`<div class="UNX-facets-selections">`,
             `<h5 class="UNX-selected-facet-header">Selected Filters</h5>`,
             `<div class="UNX-selected-facets-inner">${selections}</div>`,
-            `<button class="UNX-clear-facet ${this.selectedFacetClass}" data-facet-action="clearAllFacets">clear all</button>`,
+            `<button class="UNX-clear-facet ${this.selectedFacetClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
        `</div>`].join('');
     } else {
         return ``;
@@ -43,12 +49,15 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
     let {
         facetClass
     } = this.options.facet;
+    const {
+        UNX_uFilter
+    } = this.testIds;
     if(facetSearchTxt && facetSearchTxt.length > 0) {
         if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
             facetClass +=' UNX-search-hidden'
         }
     }
-    return [`<button data-facet-name="${facetName}" data-facet-action="changeFacet" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+    return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="changeFacet" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
                 `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
             `</button>`].join('');
 }
@@ -71,7 +80,11 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
         textFacetWrapper,
         enableViewMore,
         viewMoreText,
-        viewMoreLimit
+        viewMoreLimit,
+
+        applyButtonText,
+        clearButtonText,
+
     } = this.options.facet;
     const {
         actionBtnClass,
@@ -92,10 +105,10 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
     let clearUI = ``;
     let applyBtn = ``;
     if(isFtr){
-        clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}">clear</button>`;
+        clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}">${clearButtonText}</button>`;
     }
     if(applyMultipleFilters && isFtr) {
-        applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >Apply</button>`
+        applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >${applyButtonText}</button>`
     }
     let collapsibleUI = ``;
     let searchInput = ``;
@@ -107,7 +120,7 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
         }
     }
     if(isSearchable && facetSearchTxt !== null) {
-        searchInput =`<div class="UNX-searchable-facets"><input class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
+        searchInput =`<div class="UNX-searchable-facets"><input data-test-id="${this.testIds.UNX_searchFacets}" class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
     }
     return [`<div class="UNX-text-facet-wrap">`,
                 `<div class="UNX-facet-header"> <h3>${displayName}</h3> ${collapsibleUI}</div>`,

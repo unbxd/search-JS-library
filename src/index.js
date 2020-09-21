@@ -7,7 +7,8 @@ import setMethods from './core/setMethods';
 import events from './common/constants/eventsLib';
 import actions from './common/constants/actions';
 import {
-    cssClasses
+    cssClasses,
+    testIds
 }
  from './common/constants'
 
@@ -36,6 +37,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.events = events;
         this.actions = actions;
         this.cssList = cssClasses;
+        this.testIds = testIds;
         this.updateConfig();
         this.options.onEvent(this, 'initialised')
     }

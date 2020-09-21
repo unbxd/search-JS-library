@@ -1,4 +1,4 @@
-const bannerTemplateUI = (banners) => {
+const bannerTemplateUI = (banners, bannerOpts) => {
     const bannerUI = banners.map((item) => {
         const {
             imageUrl
