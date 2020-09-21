@@ -63,14 +63,14 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 }
 
 
-function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
+function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
     const {
         displayName,
         facetName,
         multiLevelField,
         facetType,
         values
-    } = facet;
+    } = facetObj;
     const {
         facetClass,
         applyMultipleFilters,
@@ -85,7 +85,7 @@ function facetUIElem (facet, children, isExpanded,facetSearchTxt) {
         applyButtonText,
         clearButtonText,
 
-    } = this.options.facet;
+    } = facet;
     const {
         actionBtnClass,
         actionChangeClass

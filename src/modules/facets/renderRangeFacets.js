@@ -93,7 +93,7 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             actionBtnClass
         }).render();
     
-        const rangeUi = this.options.facet.facetTemplate.bind(this)(item, rangeSliderElem, isExpanded, null);
+        const rangeUi = this.options.facet.facetTemplate.bind(this)(item, rangeSliderElem, isExpanded, null,facet);
         return  [`<div data-test-id="${this.testIds.UNX_rangeslider}" class="range-facet">`,
                     rangeUi,
                     `</div>`].join('');

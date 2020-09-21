@@ -148,11 +148,11 @@ const options = {
 
         facetMultilevel:true,
         facetMultilevelName:'Category',
-        multiLevelFacetSelector:'UNX-multilevel-facet',
+        multiLevelFacetSelectorClass:'UNX-multilevel-facet',
         multiLevelFacetTemplate:multiLevelFacetUI,
         facetDepth:4,
-        clearFacetsSelector:'UNX-clear-facet',
-        removeFacetsSelector:'UNX-remove-facet',
+        clearFacetsSelectorClass:'UNX-clear-facet',
+        removeFacetsSelectorClass:'UNX-remove-facet',
         onFacetLoad:function(facets){
         },
 

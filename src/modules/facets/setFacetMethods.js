@@ -37,10 +37,13 @@ function renderMultiLevelFacet(bucketedFacet,isExpanded) {
         facetName
     } = bucketedFacet;
     const {
+        facet
+    } = this.options;
+    const {
         isCollapsible
-    } = this.options.facet;
-    const valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet,breadCrumb);
-    bucketedUi += self.options.facet.facetTemplate.bind(self)(bucketedFacet, valueUI,isExpanded,null);
+    } = facet;
+    const valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet, breadCrumb, facet);
+    bucketedUi += self.options.facet.facetTemplate.bind(self)(bucketedFacet, valueUI,isExpanded,null, facet);
     let styles = (isExpanded)? openFacet:closeFacet;
     if(!isCollapsible) {
         styles="";
@@ -189,7 +192,7 @@ const renderTextFacet = function(facetItem,selectedFacet,isExpanded,facetSearchT
     if(onlyValues) {
         return valuesUI.join('');
     }
-    const facetUI = this.options.facet.facetTemplate.bind(this)(facetItem, valuesUI.join(''),isExpanded,facetSearchTxt);
+    const facetUI = this.options.facet.facetTemplate.bind(this)(facetItem, valuesUI.join(''),isExpanded,facetSearchTxt, facet);
     let styles = (isExpanded)? openFacet:closeFacet;
     if(!isCollapsible) {
         styles="";

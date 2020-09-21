@@ -70,11 +70,7 @@ const createLayout = function() {
     } = this.options;
     const {
         facetsEl,
-        selectedFacetsEl,
-        selectedFacetTemplate,
-        multiLevelFacetTemplate,
-        facetTemplate,
-        facetItemTemplate
+        selectedFacetsEl
     } = facet;
     const {
         spellCheck
