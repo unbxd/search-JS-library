@@ -101,6 +101,8 @@ This provides you the power of entire Javascript to build your desired HTML stri
 |----------|----------|----------|----------|
 | siteKey | String | NA | This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account. |
 | apiKey | String | NA | This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account. |
+| searchBoxSelector | | | |
+| searchPath | | | |
 | products | Object | Refer section | Products related configurations. You can find all the configs in [Products Config](#Products-Config) section|
 | facet | Object | Refer section | Facet configurations. You can find all the configs in [Facets Config](#Facets-Config) section|
 | pagination | Object | Refer section | Pagination component configurations. You can find all the configs in [Pagination Config](#Pagination-Config) section |
@@ -108,32 +110,36 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | sort | Object | Refer section | Sort component configurations. You can find all the configs in [Sort Config](#Sort-Config) section |
 | productView | Object | Refer section | Product view type (list view or grid view) configurations. You can find all the configs in [Product Views Config](#Product-Views-Config) section|
 | breadcrumb | Object | Refer section | Bread crumb component configurations. You can find all the configs in [Breadcrumb Config](#Breadcrumb-Config) section |
-| spellCheck | Object | Refer section | Spellcheck component configurations. You can find all the configs in [Spell Check Config](#Spell-Check-Config) section. Please ignore incase of _browse_ and _category_.|
+| spellCheck | Object | Refer section | Spellcheck component configurations. You can find all the configs in [Spell Check Config](#Spell-Check-Config) section. Please ignore incase of _browse_ or _category_ pages.|
+| banner | Object | Refer section | Banner component configurations. You can find all the configs in [Banner Config](#Banner-Config) section. |
 | variants | Object | Refer section | Set this object, if you have want to display variant products. You can find all the variants configs in [Variants Config](#Variants-Config) section |
+| swatches | Object | Refer section | Set this object, if you have want to display swatches on your product cards. You can find all the swatch configs in [Swatches Config](#Swatches-Config) section |
 | loader | Object | Refer section | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
 | noResults | Object | Refer section | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
-| unbxdAnalytics | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events |
-| hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using the history API. Defaults to false. |
-| updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false. Defaults to true. |
-| actionBtnClass  | String  | "UNX-action-item" | CSS classname to add to any elements on which you want to trigger any clicks |
-| actionChangeClass  | String  | "UNX-action-change" | CSS class, if you want to trigger change on your custom input elements, add this class |
+| unbxdAnalytics | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events. |
+| hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using query params |
+| updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false |
+| actionBtnClass  | String  | "UNX-action-item" | CSS class name to add to any elements on which you want to trigger click event |
+| actionChangeClass  | String  | "UNX-action-change" | CSS class name to be added to any custom input elements on which you want to trigger change event |
 | actionCallback  | Function  | `function(event, context) {}` | Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the `this` context  |
-| searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config to to "query" | 
+| onEvent | Function | function(state, type) {} | Callback that gets called after every event  |
+| extraParams | Object | `{ "version":"V2" }` | Any additional parameters you want to send in the search API call |
+| productId | String | "uniqueId" | The field name which denotes the unique identifier for each product |
+| searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config value to "query" | 
 | sdkHostName | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
-
 
 # Products Config
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| productType | String | "SEARCH" | Type of products page to render. SEARCH or BROWSE or CATEGORY |
+| productType | String | "SEARCH" | Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY |
 | el | Element | null | Element in which to render the search results |
-| template | Function | [default](src/modules/searchResults/ui) | Customise the look and feel of the product card by returning your custom HTML string from this function. This function gets 2 parameters: complete product object and index of the product |
-| productAttributes | Array |  `["title","uniqueId","price","sku","imageUrl","displayPrice","salePrice","sortPrice","productDescription","unbxd_color_mapping","colorName","color"]` | This is an array of all required fields for generating result template. This is helpful to load the results faster. |
+| template | Function | [default](src/modules/searchResults/ui.js) | Customise the look and feel of the product card by returning your custom HTML string from this function. This function gets 2 parameters: complete product object and index of the current product |
+| productAttributes | Array |  `["title","uniqueId","price","sku","imageUrl","displayPrice","salePrice","sortPrice","productDescription","unbxd_color_mapping","colorName","color"]` | This is an array of all required fields for generating the result template. This is helpful to load the results faster. |
 | attributesMap | Object |  `{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}` | Field mappings for the data to be displayed in the product card |
-| gridCount | Number | Adjusts as per screen size | If you want to have grid type user interface, then you can configure how many columns you will to have in a row with this config. By default it will adjust according to screen size |
-| productItemClass | String | "product-item" | Class name to be added to each product card |                                                            
-| defaultFilters | Object | null | Default filters to apply. This will be applied in all API requests |
+| gridCount | Number | Adjusts as per screen size | If you want to have grid type user interface, then you can configure how many columns you want to have in a row with this config. By default it will adjust according to screen size. |
+| productItemClass | String | "product-item" | Additional class name to be added to each product card |
+| defaultFilters | Object | null | Default filters to apply to all search API requests |
 
 
 # Facets Config
@@ -142,12 +148,12 @@ This provides you the power of entire Javascript to build your desired HTML stri
 |----------|----------|----------|----------|
 | facetsEl | Element |  null | Element in which to render the facets |
 | facetTemplate | Function | [default](src/modules/facets/ui.js) | Customise the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. `isCollapsible` is set to true) and the search text entered for this facet block (if `isSearchable` is set to true) |
-| facetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customise each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block |
+| facetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customise each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block. |
 | facetMultiSelect | Booelan | true | Turn this off if you want to disable the multiple selection of facets |
-| facetClass | String | "UNX-facets-block" | CSS class name to add to the the facet items |
-| facetAction | String | "click | "click" or "change" based on the facet item |
-| selectedFacetClass | String | "UNX-selected-facet-btn" | CSS class name for the selected facet items |
-| selectedFacetsEl | Element | null | Element in which to render the selected facets. If you dont provide this element selected facets will be rendered along with facets |
+| facetClass | String | "UNX-facets-block" | Additional CSS class name to add to the the facet items |
+| facetAction | String | "click | Event based on which to trigger facet selection / deselection: "click" or "change" |
+| selectedFacetClass | String | "UNX-selected-facet-btn" | Additional CSS class name for the selected facet items |
+| selectedFacetsEl | Element | null | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks |
 | selectedFacetTemplate | Function | [default](src/modules/facets/ui.js) | Customise the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
 | selectedFacetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customise the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
 | rangeTemplate | Function |  [default](src/modules/facets/renderRangeFacets.js) | Customise the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
@@ -156,13 +162,13 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | facetMultilevelName | String | "Category" | |
 | multiLevelFacetSelector | String | "UNX-multilevel-facet" | Class name for each multi level facet item |
 | multiLevelFacetTemplate | Function | [default](src/modules/facets/renderBucketedSearch.js) | Customise the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if `isSearchable` is set to true) |
-| facetDepth | Number | 4 | Configure how many levels of category filter you want to have by setting this value. Default is 4 |
+| facetDepth | Number | 4 | Configure how many levels of category filter you want to have by setting this value |
 | clearFacetsSelector | String | "UNX-clear-facet" | Class name for the button to clear the selected facets |
-| removeFacetsSelector | String | "UNX-remove-facet" | Class name for the button to delete selected facets. For deleting each selected filter under a facet. this class name is must to work |
-| onFacetLoad | function | `function(facets) {}` | Callback function that gets called after each facet selection or deselection. This function gets all the facets as a paramter |
+| removeFacetsSelector | String | "UNX-remove-facet" | Class name for the button to delete selected facets |
+| onFacetLoad | Function | `function(facets) {}` | Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter |
 | applyMultipleFilters | false | Boolean | Turn this on if you want to apply multiple filters together |
 | isCollapsible | Boolean | true | Turn this off if you do not want to have a collapsible accordian for each facet block |
-| defaultOpen | String | "ALL" | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are ALL , FIRST , NONE |
+| defaultOpen | String | "ALL" | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are "ALL" , "FIRST" , "NONE" |
 | isSearchable | Boolean | true | Turn this on if you want to have search feature for each facet block |
 | searchPlaceHolder | String | "" | Placeholder text for the facet search input |
 | enableViewMore | Booelan | false | Turn this on for enabling view more or less functionality for individual facets  |
@@ -187,7 +193,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 |----------|----------|----------|----------|
 | enabled | Boolean | true | Turn this off if you do not want the pagination widget |     
 | el                        	| Element  	| null | Element in which to render the pagination component  |
-| template                  	| Function 	| [template](src/modules/pagination/fixedPaginationView.js) | Customise the look and feel of the pagination by returning your custom HTML string from this function. This function gets 1 parameter: an object that has the pagination information |  
+| template                  	| Function 	| [default](src/modules/pagination/fixedPaginationView.js) | Customise the look and feel of the pagination by returning your custom HTML string from this function. This function gets 1 parameter: an object that has the pagination information |  
 | pageClass | String | "UNX-page-items" | |
 | selectedPageClass | String | "UNX-selected-page-item" | |
 | type                      	| String   	| "CLICK_N_SCROLL" | Type of pagination: "FIXED_PAGINATION" or "INFINITE_SCROLL" or "CLICK_N_SCROLL" |
@@ -195,7 +201,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | pageLimit | Number | 6 | |
 | inifinteScrollTriggerEl | Element | window | |
 | heightDiffToTriggerNextPage | Number | 100 | |
-| action                    	| String   	| "click" | Action on which pagination should trigger: "click" or "change". Defaults to "click" |
+| action                    	| String   	| "click" | Action on which pagination should trigger: "click" or "change" |
 
 
 # Page Size Config
@@ -204,7 +210,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 |----------|----------|----------|----------|
 | el                        	| Element  	| null | Element in which to render the page size element |
 | pageSize                  	| Number   	| 12 | Number of results to be shown per page |
-| options                   	| Array    	| `[8,12,16,20,24]` | Array of desired page sizes to be rendered. _It is suggested that the value be a multiple of number of columns (ex. if 3 columns then 15 or 18 or 21)._ |
+| options                   	| Array    	| `[8, 12, 16, 20, 24]` | Array of desired page sizes to be rendered. _It is suggested that the value be a multiple of number of columns (ex. if 3 columns then 15 or 18 or 21)._ |
 | pageSizeClass             	| String   	| "UNX-pagesize" | Additional CSS class name to be added to the page size element |
 | selectedPageSizeClass     	| String   	| "UNX-selected-pagesize" | Additional CSS class name to be added to the selected page size option |
 | action                    	| String   	| "change" | Action on which page size change should trigger: "click" or "change" |
@@ -241,7 +247,7 @@ breadcrumb options are available here.
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| enabled                   	| Boolean  	| true | Turn on this flag if you want to show breadcrumbs (if it is available) on your page |
+| enabled                   	| Boolean  	| true | Turn this flag on if you want to show breadcrumbs (if it is available) on your page |
 | el                        	| Element  	| null | Element in which to render the breadcrumbs |
 | template                  	| Function 	| [default](src/modules/breadcrumbs/breadcrumbsView.js) | Customise the look and feel of the breadcrumb component by defining this function that is expected to return a HTML string for the template. You will get the breadcrumbs list as parameter to this function |
 | selectorClass             	| String   	| "bread-crumb" | Additional CSS class name for each breadcrumb item |
@@ -251,7 +257,7 @@ breadcrumb options are available here.
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|    
-| enabled                   	| Boolean  	| true | Turn this on for enabling spell check  |
+| enabled                   	| Boolean  	| true | Turn this flag on for enabling spell check  |
 | el                        	| Element  	| null | Element in which to render the spellcheck component |
 | template                  	| Function 	| [default](src/modules/didYouMean/spellCheckView.js) | Customise the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets 3 parameters: the search query, the suggested query text and a config object with product count details (`{start, productsLn, numberOfProducts}`) |
 | selectorClass             	| String   	| "UNX-suggestion" | Additional CSS class name for the spell check component |
@@ -259,31 +265,46 @@ breadcrumb options are available here.
 
 # Variants Config
 
-variant options can be configured here
-
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | enabled                   	| Boolean  	| false | Turn this flag on for enabling variants |
 | count                     	| Number   	| 5 | Indicates the number of variants to be shown |
 | groupBy                   	| String   	| "v_colour" | Variants will be grouped based on this field value. The name of the field has to be the same one as in your catalog |
 | attributes                	| Array    	| `["title", "v_imageUrl"]` | List of fields you need for each variant |
-| mapping                   	| Object   	| `{"image_url": "v_imageUrl"}` | Field mapping of the attributes to be displayed to the variant attributes |
+| mapping                   	| Object   	| `{"image_url": "v_imageUrl"}` | Field mapping of the catalog attributes to the variant attributes. This is needed to render the variant information correctly. |
+
+# Swatches Config
+
+| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
+|----------|----------|----------|----------|
+| enabled | Boolean | false | Turn this flag on for enabling variants |
+| attributesMap | Object | {} | Field mapping of the catalog attributes to the swatch attributes |
+| swatchClass | String | "UNX-swatch-btn" | Additional CSS class name for the swatches |
+| template | Function | NA | Customise the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the swatch data as a parameter |
+
+# Banner Config
+
+| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
+|----------|----------|----------|----------|
+| el                        	| Element  	| null | Element in which to render the Banner component |
+| template                  	| Function 	| [default](src/modules/banners/index.js) | Customise the look and feel of the banner component by returning your custom HTML string from this function. This function get the list of banners as the parameter. |
+| count                     	| Number   	| 1 | Indicates the number of banners to be shown |
 
 
 # Loader Config
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| template | Function | `function(){return ``<div class="UNX-loader">Loading search results....</div>``}` | Customise the look and feel of the loader component by using this function |
 | el | Element | null | Element in which to render the loader component |
+| template | Function | `function(){return '<div class="UNX-loader">Loading search results....</div>'}` | Customise the look and feel of the loader component by using this function |
 
 
 # No Results Config
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| template | Function | `function(query){return ``<div class="UNX-no-results"> No Results found ${query} </div>``}` | Customise the look and feel of the no results component by using this function. You will get the searched query as param to this function |
 | el | Element | NA | Element in which to render the no results component |
+| template | Function | `function(query){return '<div class="UNX-no-results"> No Results found '+ query + '</div>'}` | Customise the look and feel of the no results component by using this function. You will get the searched query as param to this function |
 
 
 ## Contributions
