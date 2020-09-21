@@ -13,8 +13,8 @@ export default function(product,idx,swatchUI,productViewType){
     const {
         productItemClass
     }  = products;
-
     const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+    let imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" src="${imgUrl}"/></div>`;
     const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
     let strikeUi = ``;
     if(unxStrikePrice) {
@@ -28,11 +28,22 @@ export default function(product,idx,swatchUI,productViewType){
         cardType = "UNX-list-card";
         descUI = `<p class="UNX-description">${unxDescription}</p>`;
     }
-    return [`<div id="${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,
-                `<div class="UNX-img-wrapper"><img class="UNX-img-block" src="${imgUrl}"/></div>`,
+    let swatchBtnUI = ``;
+    const {
+        btnList,
+        imgList 
+    } = swatchUI || {};
+    if(btnList) {
+        swatchBtnUI = `<div class="UNX-swatch-wrapper">${btnList}</div>`;
+    }
+    if(imgList) {
+        imagesUI = imgList; 
+    }
+    return [`<div id="${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,,
+                `<div class="UNX-images-block">${imagesUI}</div>`,
                 `<div class="UNX-product-content">`,
                     `<h3 class="UNX-product-title">${unxTitle}</h3>`,
-                    `<div class="UNX-swatch-wrapper">${swatchUI}</div>`,
+                    swatchBtnUI,
                     descUI,
                     `<div class="UNX-price-row">${priceUI} ${strikeUi}</div>`,
                 `</div>`,

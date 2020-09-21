@@ -21,7 +21,7 @@ A JavaScript library for building performant and quick search experiences with U
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>iOS Safari |
 | --------- | --------- | --------- | --------- | --------- |
-| IE10*, IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+| IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
 
 
 (*) You need to use polyfills for making it work in IE browser. 
@@ -102,7 +102,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | variants | Object | NA | Set this object, if you have want to display variant products. You can find all the variants configs in [Variants Config](#Variants-Config) section |
 | loader | Object | NA | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
 | noResults | Object | NA | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
-| fireAnalyticsEvents | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events |
+| unbxdAnalytics | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events |
 | hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using the history API. Defaults to false. |
 | updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false. Defaults to true. |
 | actionBtnClass  | String  | NA | CSS classname to add to any elements on which you want to trigger any clicks |
@@ -138,11 +138,9 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | selectedFacetClass | String | CSS class name for the selected facet items |
 | selectedFacetsEl | Element | Element in which to render the selected facets. If you dont provide this element selected facets will be rendered along with facets |
 | selectedFacetTemplate | Function | Customise the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: selectedFacet which is the selected facet filter and selected filter object |
-| rangeFacetEl | Element | Element in which to render the range facet |
 | rangeTemplate | Function |  Customise the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
 | rangeWidgetConfig | Function | Configure the default range slider. This function will get 2 parameters: minLabel which is the prefix for the min value and maxLabel which is the prefix for the max value |
 | multiLevelFacetSelector | String | Class name for each multi level facet item |
-| multiLevelFacetEl | Element | Element in which to render the multilevel facets |
 | facetDepth | Number | Configure how many levels of category filter you want to have by setting this value. Default is 4 |
 | clearFacetsSelector | String | Class name for the button to clear the selected facets |
 | removeFacetsSelector | String | Class name for the button to delete selected facets. For deleting each selected filter under a facet. this class name is must to work |
@@ -153,6 +151,9 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | isSearchable | Boolean | Turn this on if you want to have search feature for each facet block |
 | searchPlaceHolder | String | Placeholder for the facet search input |
 | textFacetWrapper | String | CSS class for the facets list |
+| enableViewMore | Booelan | For enabling view more / less functionality for individual facets  |
+| viewMoreText | Array | The text to show in button eg:  ["show all", "show less"] |
+| viewMoreLimit | Number | will show view more  only if the facet values are greater than this value eg:8 |
 
 
 # Pagination Config

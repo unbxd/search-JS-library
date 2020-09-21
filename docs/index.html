@@ -125,11 +125,44 @@ window.unbxdSearch.updateConfig({
       el: document.getElementById("noResultWrapper")
   },
   facet: {
-    facetsEl: document.getElementById("facetsWrapper"),
-    selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-    rangeFacetEl: document.getElementById("rangeFacetWrapper"),
-    multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-    defaultOpen:"First"
+    facetsEl:null,
+    facetTemplate:facetUIElem,
+    facetItemTemplate:facetItemUiElem,
+    facetMultiSelect:true,
+    facetClass:"UNX-facets-block",
+    facetAction:"click",
+
+    selectedFacetClass:"UNX-selected-facet-btn",
+    selectedFacetsEl:null,
+    selectedFacetTemplate:selectedFacetUI,
+    selectedFacetItemTemplate:selectedFacetItemTemplateUI,
+    rangeTemplate:renderRangeFacets,
+    rangeWidgetConfig: {
+        "minLabel":"",
+        "maxLabel":"",
+        "prefix":'$',
+        "submitBtnTxt":"Filter By Price",
+        "clearBtnTxt":"Clear"
+    },
+
+    facetMultilevel:true,
+    facetMultilevelName:'Category',
+    multiLevelFacetSelector:'UNX-multilevel-facet',
+    multiLevelFacetTemplate:multiLevelFacetUI,
+    facetDepth:4,
+    clearFacetsSelector:'UNX-clear-facet',
+    removeFacetsSelector:'UNX-remove-facet',
+    onFacetLoad:function(facets){
+    },
+    applyMultipleFilters:false,
+    isCollapsible:true,
+    isSearchable:true,
+    searchPlaceHolder:"",
+    textFacetWrapper:"UNX-facets-item",
+    defaultOpen:"ALL",
+    enableViewMore:false,
+    viewMoreText:["show all", "show less"],
+    viewMoreLimit:3
   },
   pagination: {
     type:'INFINITE_SCROLL'

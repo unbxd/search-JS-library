@@ -1,11 +1,8 @@
 const reRender = function(){
     const {
-        callBackFn,
-        sort,
-        noResults,
+        onEvent,
         spellCheck,
         pagination,
-        pagetype,
         productType,
         searchBoxSelector,
         loader
@@ -18,10 +15,9 @@ const reRender = function(){
     } = this.events;
     const {
         lastAction,
-        expandedFacets,
         productViewType
     } = this.viewState;
-    callBackFn(this,beforeRender);
+    onEvent(this,beforeRender);
 
     if(loader.el) {
         loader.el.innerHTML = ``;
@@ -35,51 +31,39 @@ const reRender = function(){
         searchBoxSelector.value = this.state.userInput;
     }
 
-    const {
-        defaultOpen
-    } = this.options.facet;
-    const allFacets = this.getAllFacets();
-    if(defaultOpen !=="NONE") {
-        allFacets.forEach((item,i)=> {
-            const {
-                facetName
-            } = item;
-            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "ALL") {
-                expandedFacets[facetName] = true
-            }
-            if(defaultOpen === "FIRST" && i == 0) {
-                expandedFacets[facetName] = true
-            }
-        })
-    } else {
-        this.viewState.expandedFacets = {};
+    if(productType !=="SEARCH" && searchBoxSelector){
+        searchBoxSelector.value = "";
     }
-
+    const {
+        searchResultsWrapper,
+        sortWrapper,
+        paginationWrappers
+    } = this;
     if(results && results.numberOfProducts === 0) {
-        callBackFn(this,beforeNoResultRender);
+        onEvent(this,beforeNoResultRender);
         this.state.noResultLoaded = true;
-        this.searchResultsWrapper.classList.add(noResultCss);
-        this.searchResultsWrapper.innerHTML = this.renderNoResults(query);
+        searchResultsWrapper.classList.add(noResultCss);
+        searchResultsWrapper.innerHTML = this.renderNoResults(query);
         if(!qParams.filter) {
             this.renderFacets();
         }
-        callBackFn(this,afterNoResultRender);
+        onEvent(this,afterNoResultRender);
     } else {
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
-        this.searchResultsWrapper.classList.remove("UNX-list-block");
-        this.searchResultsWrapper.classList.remove("UNX-grid-block");
-        this.searchResultsWrapper.classList.add(viewCss);
-        this.searchResultsWrapper.classList.remove(noResultCss);
+        searchResultsWrapper.classList.remove("UNX-list-block");
+        searchResultsWrapper.classList.remove("UNX-grid-block");
+        searchResultsWrapper.classList.add(viewCss);
+        searchResultsWrapper.classList.remove(noResultCss);
         if(this.viewState.isInfiniteStarted){
             this.viewState.isInfiniteStarted = false;
             if(this.state.noResultLoaded) {
                 this.state.noResultLoaded = false;
-                this.searchResultsWrapper.innerHTML = this.renderSearch();
+                searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
-                this.searchResultsWrapper.innerHTML += this.renderSearch();
+                searchResultsWrapper.innerHTML += this.renderSearch();
             }
         } else {
-            this.searchResultsWrapper.innerHTML = this.renderSearch();
+            searchResultsWrapper.innerHTML = this.renderSearch();
         }
         
         this.renderFacets();
@@ -87,24 +71,24 @@ const reRender = function(){
     }
     this.renderProductViewTypeUI();
     this.renderPageSize();
-    this.sortWrapper.innerHTML = this.renderSort();
-    
-
-
-    
-
+    sortWrapper.innerHTML = this.renderSort();
     if(pagination.type !== "INFINITE_SCROLL"){
-        //pagination.el.innerHTML = this.renderPagination();
-        this.paginationWrappers.forEach((pagination)=>{
+        paginationWrappers.forEach((pagination)=>{
             pagination.innerHTML = this.renderPagination();
         });
+    } else {
+        if(paginationWrappers) {
+            paginationWrappers.forEach((pagination)=>{
+                pagination.innerHTML = ``;
+            });
+        }
     }
     if(this.options.breadcrumb.enabled){
         this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el && suggestion) {
-        spellCheck.el.innerHTML = this.renderDidYouMean(suggestion);
+        this.spellCheckWrapper.innerHTML = this.renderDidYouMean(suggestion);
     }
 
     if(lastAction === "pagination" ) {
@@ -122,6 +106,6 @@ const reRender = function(){
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
 
     }
-    callBackFn(this,afterRender);
+    onEvent(this,afterRender);
 };
 export default reRender;
