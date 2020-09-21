@@ -105,11 +105,11 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | unbxdAnalytics | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events |
 | hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using the history API. Defaults to false. |
 | updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false. Defaults to true. |
-| actionBtnClass  | String  | NA | CSS classname to add to any elements on which you want to trigger any clicks |
-| actionChangeClass  | String  | NA | CSS class, if you want to trigger change on your custom input elements, add this class |
-| actionCallback  | Function  | NA | Callback function called on a click or change on your custom element  |
-| searchQueryParam | String | NA | If you want to send the search query in a different param set this config. Example: "p=dress" | 
-| sdkHostName | String | https://search.unbxd.io | Domain name of the search API endpoint |
+| actionBtnClass  | String  | "UNX-action-item" | CSS classname to add to any elements on which you want to trigger any clicks |
+| actionChangeClass  | String  | "UNX-action-change" | CSS class, if you want to trigger change on your custom input elements, add this class |
+| actionCallback  | Function  | NA | Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the `this` context  |
+| searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config to to "query" | 
+| sdkHostName | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
 
 
 # Products Config
@@ -130,30 +130,39 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | OPTIONS | DATATYPE | DESCRIPTION |
 |----------|----------|----------|
 | facetsEl | Element |  Element in which to render the facets |
-| facetTemplate | Function | Customise the look and feel of the facets by returning your custom HTML string from this function. This function gets 2 parameters: facetInfo which will give you data of the facet and facets which will give the facets elements |
-| facetItemTemplate | Function | Customise the facets by returning your custom HTML string from this function. This function gets 2 parameters: facet - each facet item object and filter - each filter value |
+| facetTemplate | Function | Customise the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. `isCollapsible` is set to true) and the search text entered for this facet block (if `isSearchable` is set to true) |
+| facetItemTemplate | Function | Customise each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block |
 | facetMultiSelect | Booelan | Turn this off if you want to disable the multiple selection of facets. By default it is true |
 | facetClass | String | CSS class name to add to the the facet items |
 | facetAction | String | 'click' or 'change' based on the facet item |
 | selectedFacetClass | String | CSS class name for the selected facet items |
 | selectedFacetsEl | Element | Element in which to render the selected facets. If you dont provide this element selected facets will be rendered along with facets |
-| selectedFacetTemplate | Function | Customise the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: selectedFacet which is the selected facet filter and selected filter object |
+| selectedFacetTemplate | Function | Customise the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
 | rangeTemplate | Function |  Customise the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
-| rangeWidgetConfig | Function | Configure the default range slider. This function will get 2 parameters: minLabel which is the prefix for the min value and maxLabel which is the prefix for the max value |
+| rangeWidgetConfig | Object | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs  |
 | multiLevelFacetSelector | String | Class name for each multi level facet item |
 | facetDepth | Number | Configure how many levels of category filter you want to have by setting this value. Default is 4 |
 | clearFacetsSelector | String | Class name for the button to clear the selected facets |
 | removeFacetsSelector | String | Class name for the button to delete selected facets. For deleting each selected filter under a facet. this class name is must to work |
-| onFacetLoad | function | Callback function that gets called after each facet selection |
-| applyMultipleFilters | Boolean | Turn this on if you want to apply multiple filters together. By default it is false |
+| onFacetLoad | function | Callback function that gets called after each facet selection or deselection |
+| applyMultipleFilters | Boolean | Turn this on if you want to apply multiple filters together. By default it is `false` |
 | isCollapsible | Boolean | Turn this on if you want to have a collapsible accordian for each facet block |
-| defaultOpen | String | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are ALL , FIRST , NONE |
+| defaultOpen | String | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are ALL , FIRST , NONE. Defaults to `FIRST` |
 | isSearchable | Boolean | Turn this on if you want to have search feature for each facet block |
-| searchPlaceHolder | String | Placeholder for the facet search input |
-| textFacetWrapper | String | CSS class for the facets list |
-| enableViewMore | Booelan | For enabling view more / less functionality for individual facets  |
-| viewMoreText | Array | The text to show in button eg:  ["show all", "show less"] |
-| viewMoreLimit | Number | will show view more  only if the facet values are greater than this value eg:8 |
+| searchPlaceHolder | String | Placeholder text for the facet search input |
+| enableViewMore | Booelan | Turn this on for enabling view more or less functionality for individual facets. By default it is `false`  |
+| viewMoreText | Array | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"] |
+| viewMoreLimit | Number | Will show view more only if the facet values are greater than this value |
+
+# Facet Range Widget Config
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|----------|----------|----------|
+| minLabel | String | Text for the lower end of the range slider |
+| maxLabel | String | Text for the higher end of the range slider |
+| prefix | String | Prefix text to be added to the range widget value. Example "$" for price facet |
+| submitBtnTxt | String | Text for the submit button if `applyMultipleFilters` is set to true on the `facet` object |
+| clearBtnTxt | String | Text for the clear button if `applyMultipleFilters` is set to true on the `facet` object |
 
 
 # Pagination Config
@@ -171,12 +180,13 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | OPTIONS | DATATYPE | DESCRIPTION |
 |----------|----------|----------|
 | el                        	| Element  	| Element in which to render the page size element |
-| pageSize                  	| Number   	| Number of results to be shown per page |
+| pageSize                  	| Number   	| Number of results to be shown per page. Ex: [8,12,16,20,24] |
 | options                   	| Array    	| Array of desired page sizes to be rendered. _It is suggested that the value be a multiple of number of columns (ex. if 3 columns then 15 or 18 or 21)._ |
 | pageSizeClass             	| String   	| Additional CSS class name to be added to the page size element |
 | selectedPageSizeClass     	| String   	| Additional CSS class name to be added to the selected page size option |
 | action                    	| String   	| Action on which page size change should trigger: "click" or "change" |
-| template                  	| Function 	| Customise the look and feel of the page size component by defining this function that is expected to return a HTML string for the template. |
+| template                  	| Function 	| Customise the look and feel of the page size component by defining this function that is expected to return a HTML string for the template. This function gets 2 parameters: the page size config (i.e. this complete object) and the selected page size |
+
 
 # Sort Config
 
@@ -186,8 +196,9 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | options                   	| Array    	| Array of sort options: `[{value: "sortPrice desc", text: "Price High to Low"}, {value: "sortPrice asc", text: "Price Low to High"}]` |
 | sortClass                 	| String   	| CSS class name for the sort item, make sure you will be providing this information in template |
 | selectedSortClass         	| String   	| CSS class name for the selected sort item |
-| template                  	| Function 	| Customise the look and feel of the sort component by using this function. You will get the sort data as an argument to this function |
+| template                  	| Function 	| Customise the look and feel of the sort component by using this function. You will get the sort data as an parameter to this function. This function gets 2 parameters: the sort config (i.e. this complete object) and the selected sort value |
 | action                    	| String   	| Action on which sort should trigger: "click" or "change" |
+
 
 # Product Views Config
 
@@ -216,7 +227,7 @@ breadcrumb options are available here.
 |----------|----------|----------|    
 | enabled                   	| Boolean  	| Turn this on for enabling spell check  |
 | el                        	| Element  	| Element in which to render the spellcheck component |
-| template                  	| Function 	| Customise the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets the spellcheck information as an argument |
+| template                  	| Function 	| Customise the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets 3 parameters: the search query, the suggested query text and a config object with product count details (`{start, productsLn, numberOfProducts}`) |
 
 # Variants Config
 
