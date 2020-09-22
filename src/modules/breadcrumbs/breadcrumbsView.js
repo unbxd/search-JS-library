@@ -1,12 +1,15 @@
-const breadCrumbsUI = function(breadcrumbs){
+const breadCrumbsUI = function(breadcrumbs, breadcrumb){
     let ui = ``;
+    const {
+        selectorClass
+    } = breadcrumb;
     breadcrumbs.forEach((item ,id )=> {
         const {
             level,
             filterField,
             value
         } = item;
-        const css = `${this.options.breadcrumb.selectorClass} UNX-bread-crumb-item`;
+        const css = `${selectorClass} UNX-bread-crumb-item`;
         if(id > 0) {
             ui += `<span class="UNX-slash"> / </span>`;
         }

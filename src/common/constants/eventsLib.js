@@ -6,7 +6,6 @@ const events = {
     afterNoResultRender:"AFTER_NO_RESULTS_RENDER",
     afterRender:"AFTER_RENDER",
     deleteFacet:"DELETE_FACET",
-    changeFacet:"changeFacet",
     facetClick:"FACETS_CLICK",
     deleteFacetValue:"DELETE_FACET_VALUE",
     deleteFacet:"DELETE_FACET",
@@ -14,7 +13,9 @@ const events = {
     changeSort:"CHANGE_SORT",
     pageNext:"PAGE_NEXT",
     pagePrev:"PAGE_PREV",
-    changeInput:"CHANGE_INPUT"
+    changeInput:"CHANGE_INPUT",
+    setCategoryFilter:"SET_CATEGORY_FILTER",
+    deleteCategoryFilter:"DELETE_CATEGORY_FILTER"
 };
 
 export default events;

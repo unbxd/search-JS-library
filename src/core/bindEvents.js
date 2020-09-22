@@ -12,7 +12,8 @@ function bindEvents(){
         spellCheck,
         searchBoxSelector,
         actionChangeClass,
-        actionBtnClass
+        actionBtnClass,
+        breadcrumb
     } = this.options;
     if(searchBoxSelector) {
         searchBoxSelector.addEventListener("keydown", (e) => {
@@ -75,7 +76,7 @@ function bindEvents(){
         this.delegate(
             this.breadcrumbWrapper, 
             "click", 
-            "."+this.options.breadcrumb.selectorClass, 
+            "."+breadcrumb.selectorClass, 
             this.findChangedFacet.bind(this)
         )
     }

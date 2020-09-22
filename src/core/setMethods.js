@@ -35,93 +35,7 @@ const updateConfig = function(config){
     this.initialize();
 
 }
-const renderFacets = function(){
-    const {
-        defaultOpen,
-        applyMultipleFilters,
-        isCollapsible,
-    } = this.options.facet;
-    const {
-        expandedFacets,
-        lastAction
-    } = this.viewState;
-    if(lastAction === "updatedRangeSlider") {
-        return false;
-    }
-    const self = this;
-    const allFacets = this.getAllFacets();
-    const {
-        facetsWrapper,
-        selectedFacetWrapper
-    } = this;
-    if(defaultOpen !=="NONE") {
-        allFacets.forEach((item,i)=> {
-            const {
-                facetName
-            } = item;
-            if(typeof expandedFacets[facetName] === "undefined" && defaultOpen === "ALL") {
-                expandedFacets[facetName] = true
-            }
-            if(defaultOpen === "FIRST" && i == 0) {
-                expandedFacets[facetName] = true
-            }
-        })
-    } else {
-        self.viewState.expandedFacets = {};
-    }
-    facetsWrapper.innerHTML = ``;
-    const selectedFacets = this.getSelectedFacets();
-    allFacets.forEach((facet,idx) => {
-        const {
-            facetType,
-            facetName
-        } = facet;
-        const isExpanded =  this.isExpandedFacet(facetName);
-        const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
-        const selectedFacet = selectedFacets[facetName];
-        if(facetType === "text") {
-            facetsWrapper.innerHTML += this.renderTextFacet(facet,selectedFacet,isExpanded,facetSearchTxt);
-        }
-        if(facetType === "range") {
-            facetsWrapper.innerHTML += this.renderRangeFacet(facet,isExpanded,"");
-        }
-        if(facetType === "category") {
-            facetsWrapper.innerHTML += this.renderMultiLevelFacet(facet,isExpanded,"");
-        }
-        this.viewState.facetElementMap[facetName] = facetName;
-        let shouldRenderSelected = true;
-        const qState = this.getStateFromUrl();
-        const ql = Object.keys(qState.selectedFacets).length;
-        if((lastAction === "addedAFacet" || lastAction ==="deletedAfacet")  && applyMultipleFilters && ql === 0) {
-            shouldRenderSelected = false;
-        }
-        if(this.options.facet.selectedFacetsEl && selectedFacets && shouldRenderSelected ) {
-            const k = Object.keys(selectedFacets);
-            let selectedUi = ``;
-            for(let i=0;i<k.length;i++){
-                const j = k[i];
-                const vals = selectedFacets[j];
-                vals.forEach(item => {
-                    const {
-                        name,
-                        count,
-                        dataId
-                    } = item;
-                    selectedUi += this.options.facet.selectedFacetTemplate.bind(this)({
-                        facetName:j
-                    },{
-                        name:name,
-                        dataId:(dataId)?dataId:name,
-                        count:count?count:0
-                    });
-                })
-            }
-            selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi);
-        }
 
-    })
-    this.options.facet.onFacetLoad.bind(this)(allFacets);
-}
 const extraActions = function(e) {
     const {
         actionCallback
@@ -237,7 +151,6 @@ const setMethods = (UnbxdSearch) => {
     prototype.RangeSlider = RangeSlider;
     prototype.setSearchWidget = setSearchWidget;
     prototype.setFacetWidget = setFacetWidget;
-    prototype.renderFacets = renderFacets;
     prototype.updateConfig = updateConfig;
     prototype.initialize = initialize;
     prototype.extraActions = extraActions;

@@ -275,8 +275,8 @@ class RangeSlider {
             absValue
         } = this.state
         return {
-            x: Math.ceil(left/absValue),
-            y:Math.ceil(right/absValue)
+            x: Math.round(left/absValue),
+            y:Math.round(right/absValue)
         }
     }
     renderValuesUI(){
@@ -304,13 +304,10 @@ class RangeSlider {
         const {
             facetName,
             applyMultipleFilters,
-            rangeConfig,
-            facetClass
+            facetClass,
+            applyButtonText,
+            clearButtonText,
         } = this.options;
-        const {
-            submitBtnTxt,
-            clearBtnTxt
-        } = rangeConfig;
         setTimeout(this.bindElements.bind(this),100);
         let valueUI = "";
         const hideRowCss = (applyMultipleFilters) ? " " :"UNX-hidden";
@@ -329,8 +326,8 @@ class RangeSlider {
                             `</div>`,
                         `</div>`,
                         `<div class="UNX-price-action-row ${hideRowCss}">`,
-                            `<button class="UNX-primary-btn ${facetClass}" data-facet-name="${facetName}" data-action="applyRange"> ${submitBtnTxt} </button>`,
-                            `<button class="UNX-default-btn ${facetClass}" data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearBtnTxt} </button>`,
+                            `<button class="UNX-primary-btn ${facetClass}" data-facet-name="${facetName}" data-action="applyRange"> ${applyButtonText} </button>`,
+                            `<button class="UNX-default-btn ${facetClass}" data-facet-name="${facetName}" data-action="clearPriceRange"> ${clearButtonText} </button>`,
                         `<div>`,
                     `</div>`,
                 `<div>`,

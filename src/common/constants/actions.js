@@ -9,6 +9,7 @@ const actions = {
     clearSort:"clearSort",
     changeSort:"changeSort",
     deleteFacet:"deleteFacet",
-    deleteFacetValue:"deleteFacetValue"
+    deleteFacetValue:"deleteFacetValue",
+    changeFacet:"changeFacet",
 };
 export default actions;

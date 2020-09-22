@@ -1,6 +1,9 @@
 function renderSwatchBtns(product) {
     const swatchData = this.getSwatches(product, this.options.swatches.attributesMap);
-    return this.options.swatches.template.bind(this)(swatchData);
+    const {
+        swatches
+    } = this.options;
+    return this.options.swatches.template.bind(this)(swatchData,swatches);
 };
 export default renderSwatchBtns;
 

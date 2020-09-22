@@ -160,13 +160,15 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | rangeWidgetConfig | Object | NA | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs  |
 | facetMultilevel | Boolean | true | |
 | facetMultilevelName | String | "Category" | |
-| multiLevelFacetSelector | String | "UNX-multilevel-facet" | Class name for each multi level facet item |
+| multiLevelFacetSelectorClass | String | "UNX-multilevel-facet" | Class name for each multi level facet item |
 | multiLevelFacetTemplate | Function | [default](src/modules/facets/renderBucketedSearch.js) | Customise the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if `isSearchable` is set to true) |
 | facetDepth | Number | 4 | Configure how many levels of category filter you want to have by setting this value |
-| clearFacetsSelector | String | "UNX-clear-facet" | Class name for the button to clear the selected facets |
-| removeFacetsSelector | String | "UNX-remove-facet" | Class name for the button to delete selected facets |
+| clearFacetsSelectorClass | String | "UNX-clear-facet" | Class name for the button to clear the selected facets |
+| removeFacetsSelectorClass | String | "UNX-remove-facet" | Class name for the button to delete selected facets |
 | onFacetLoad | Function | `function(facets) {}` | Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter |
 | applyMultipleFilters | false | Boolean | Turn this on if you want to apply multiple filters together |
+| applyButtonText | String | "Apply" | The text to show for the apply button (when `applyMultipleFilters` is set as true) |
+| clearButtonText | String | "clear" | The text to show for the clear button (when `applyMultipleFilters` is set as true) |
 | isCollapsible | Boolean | true | Turn this off if you do not want to have a collapsible accordian for each facet block |
 | defaultOpen | String | "ALL" | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are "ALL" , "FIRST" , "NONE" |
 | isSearchable | Boolean | true | Turn this on if you want to have search feature for each facet block |
@@ -280,7 +282,7 @@ breadcrumb options are available here.
 | enabled | Boolean | false | Turn this flag on for enabling variants |
 | attributesMap | Object | {} | Field mapping of the catalog attributes to the swatch attributes |
 | swatchClass | String | "UNX-swatch-btn" | Additional CSS class name for the swatches |
-| template | Function | NA | Customise the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the swatch data as a parameter |
+| template | Function | NA | Customise the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters |
 
 # Banner Config
 
