@@ -7,23 +7,18 @@ const sortOptions = [
     {
         value:"price asc",
         text:" Price Low to High"
-    },
-    {
-        value:"rating asc",
-        text:" Rating Low to High"
-    },
-    {
-        value:"rating desc",
-        text:" Rating High to low"
     }
 ];
-const sortTemplate = function(selectedSort) {
+const sortTemplate = function(selectedSort, sortConfig) {
     let optionsUI = "";
     const {
         options,
         sortClass,
         selectedSortClass
-    } = this.options.sort;
+    } = sortConfig;
+    const {
+        UNX_unbxdSorter
+    } = this.testIds;
     options.forEach((item) => {
         const {
             value,
@@ -37,7 +32,7 @@ const sortTemplate = function(selectedSort) {
     })
     return [`<div class="UNX-sort-block">`,
         `<span class="UNX-sort-header">Sort By</span>`,
-        `<select data-action="changeSort" id="unbxdSorter" class="${sortClass}">`,
+        `<select data-test-id="${UNX_unbxdSorter}" data-action="changeSort" id="unbxdSorter" class="${sortClass}">`,
             `<option value="">Relevancy</option>`,
             optionsUI,
         `</select>`,

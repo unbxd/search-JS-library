@@ -5,7 +5,8 @@ const reRender = function(){
         pagination,
         productType,
         searchBoxSelector,
-        loader
+        loader,
+        breadcrumb
     } = this.options;
     const {
         beforeRender,
@@ -37,7 +38,9 @@ const reRender = function(){
     const {
         searchResultsWrapper,
         sortWrapper,
-        paginationWrappers
+        paginationWrappers,
+        breadcrumbWrapper,
+        spellCheckWrapper
     } = this;
     if(results && results.numberOfProducts === 0) {
         onEvent(this,beforeNoResultRender);
@@ -83,12 +86,12 @@ const reRender = function(){
             });
         }
     }
-    if(this.options.breadcrumb.enabled){
-        this.breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
+    if(breadcrumb.enabled){
+        breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el && suggestion) {
-        this.spellCheckWrapper.innerHTML = this.renderDidYouMean(suggestion);
+        spellCheckWrapper.innerHTML = this.renderDidYouMean(suggestion);
     }
 
     if(lastAction === "pagination" ) {

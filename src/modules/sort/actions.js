@@ -6,13 +6,16 @@ function sortAction(e) {
         action
     } = elem.dataset;
     const value = elem.value;
+    const {
+        changeSort
+    } = this.events;
     if(action === this.actions.clearSort) {
         this.applySort("");
         this.options.onEvent(this,action);
     }
     if(action === this.actions.changeSort) {
         this.applySort(value);
-        this.options.onEvent(this,action, {
+        this.options.onEvent(this,changeSort, {
             sort:value
         });
     }

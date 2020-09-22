@@ -1,14 +1,15 @@
 const renderPagination = function() {
     const {
-        pagination :{
-            type
-        } = {}
+        pagination
     } = this.options;
+    const {
+        type
+    } = pagination;
     let paginationUI = ``;
     if(type !== 'INFINITE_SCROLL') {
         const pageInfo = this.getPaginationInfo();
         if(pageInfo) {
-            paginationUI = this.options.pagination.template.bind(this)(pageInfo);
+            paginationUI = pagination.template.bind(this)(pageInfo);
         }
     }
     return paginationUI;

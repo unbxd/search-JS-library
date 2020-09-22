@@ -140,10 +140,10 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | selectedFacetTemplate | Function | Customise the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
 | rangeTemplate | Function |  Customise the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
 | rangeWidgetConfig | Object | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs  |
-| multiLevelFacetSelector | String | Class name for each multi level facet item |
+| multiLevelFacetSelectorClass | String | Class name for each multi level facet item |
 | facetDepth | Number | Configure how many levels of category filter you want to have by setting this value. Default is 4 |
-| clearFacetsSelector | String | Class name for the button to clear the selected facets |
-| removeFacetsSelector | String | Class name for the button to delete selected facets. For deleting each selected filter under a facet. this class name is must to work |
+| clearFacetsSelectorClass | String | Class name for the button to clear the selected facets |
+| removeFacetsSelectorClass | String | Class name for the button to delete selected facets. For deleting each selected filter under a facet. this class name is must to work |
 | onFacetLoad | function | Callback function that gets called after each facet selection or deselection |
 | applyMultipleFilters | Boolean | Turn this on if you want to apply multiple filters together. By default it is `false` |
 | isCollapsible | Boolean | Turn this on if you want to have a collapsible accordian for each facet block |
@@ -153,6 +153,8 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | enableViewMore | Booelan | Turn this on for enabling view more or less functionality for individual facets. By default it is `false`  |
 | viewMoreText | Array | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"] |
 | viewMoreLimit | Number | Will show view more only if the facet values are greater than this value |
+| applyButtonText | String | to configure the apply button incase of applyMultipleFilters set as true |
+| clearButtonText | String | to configure the clear button incase of applyMultipleFilters set as true |
 
 # Facet Range Widget Config
 
