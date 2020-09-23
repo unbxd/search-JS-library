@@ -180,9 +180,9 @@
   apiKey: "16e3cf8d510c50106d64f1ebb919b34e",
   hashMode:true,
   updateUrls:true,
-  searchBoxSelector: document.getElementById("unbxdInput"),
+  searchBoxEl: document.getElementById("unbxdInput"),
   searchTrigger: "click",
-  searchButtonSelector: document.getElementById("searchBtn"),
+  searchButtonEl: document.getElementById("searchBtn"),
   products:{
     el:document.getElementById("searchResultsWrapper"),
     productType:"SEARCH",
@@ -259,7 +259,7 @@
   },
   productView:{
     el: document.getElementById("productViewTypeContainer"),
-    viewTypes: "GRID"
+    defaultViewType: "GRID"
   },
   banner: {
     el: document.getElementById("bannerContainer"),
@@ -273,7 +273,7 @@
       swatchColors: "color"
     }
   },
-  actionCallback:function(e, ctx) {
+  onAction:function(e, ctx) {
   },
   onEvent:unbxdCallbackEcma
       });
@@ -288,7 +288,7 @@
           // gridCount:getGridCount()
           },
           productView:{
-            viewTypes: getView()
+            defaultViewType: getView()
           }
         });
         window.unbxdSearch.reRender();

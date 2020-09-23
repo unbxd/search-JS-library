@@ -4,9 +4,10 @@ const reRender = function(){
         spellCheck,
         pagination,
         productType,
-        searchBoxSelector,
+        searchBoxEl,
         loader,
-        breadcrumb
+        breadcrumb,
+        productView
     } = this.options;
     const {
         beforeRender,
@@ -14,26 +15,27 @@ const reRender = function(){
         afterNoResultRender,
         afterRender
     } = this.events;
-    const {
-        lastAction,
-        productViewType
-    } = this.viewState;
+
     onEvent(this,beforeRender);
 
     if(loader.el) {
         loader.el.innerHTML = ``;
     }
     const results = this.getSearchResults();
-    const qParams = this.getQueryParams();
+    const qParams = this.getQueryParams() || {};
     const query = this.getSearchQuery();
     const noResultCss = "UNX-no-results-wrap";
+    const {
+        lastAction,
+        productViewType
+    } = this.viewState;
     
-    if(productType ==="SEARCH" && searchBoxSelector){
-        searchBoxSelector.value = this.state.userInput;
+    if(productType ==="SEARCH" && searchBoxEl){
+        searchBoxEl.value = this.state.userInput;
     }
 
-    if(productType !=="SEARCH" && searchBoxSelector){
-        searchBoxSelector.value = "";
+    if(productType !=="SEARCH" && searchBoxEl){
+        searchBoxEl.value = "";
     }
     const {
         searchResultsWrapper,
@@ -68,10 +70,9 @@ const reRender = function(){
         } else {
             searchResultsWrapper.innerHTML = this.renderSearch();
         }
-        
-        this.renderFacets();
-        this.renderBannerUI();
     }
+    this.renderFacets();
+    this.renderBannerUI();
     this.renderProductViewTypeUI();
     this.renderPageSize();
     sortWrapper.innerHTML = this.renderSort();
@@ -90,7 +91,7 @@ const reRender = function(){
         breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
     const suggestion = this.getSpellCheckSuggested();
-    if(spellCheck.el && suggestion) {
+    if(spellCheck.el) {
         spellCheckWrapper.innerHTML = this.renderDidYouMean(suggestion);
     }
 

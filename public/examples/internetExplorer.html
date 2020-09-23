@@ -128,9 +128,9 @@
         apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
         hashMode:false,
         updateUrls:true,
-        searchBoxSelector: document.getElementById("unbxdInput"),
+        searchBoxEl: document.getElementById("unbxdInput"),
         searchTrigger: "click",
-        searchButtonSelector: document.getElementById("searchBtn"),
+        searchButtonEl: document.getElementById("searchBtn"),
         products:{
           el:document.getElementById("searchResultsWrapper"),
           productType:"SEARCH",
@@ -151,6 +151,7 @@
         },
         facet: {
           facetsEl: document.getElementById("facetsWrapper"),
+          selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
           applyMultipleFilters:false
         },
         breadcrumb: {
@@ -177,7 +178,7 @@
         },
         productView:{
           el: document.getElementById("productViewTypeContainer"),
-          viewTypes: "GRID"
+          defaultViewType: "GRID"
         },
         banner: {
           el: document.getElementById("bannerContainer"),

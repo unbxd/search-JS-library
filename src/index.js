@@ -19,7 +19,7 @@ class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
         this.viewState = {
-            productViewType: options.productView.viewTypes,
+            productViewType: options.productView.defaultViewType,
             isInfiniteStarted:false,
             lastAction:'',
             selectedRange:{},
@@ -28,6 +28,7 @@ class UnbxdSearch extends UnbxdSearchCore {
             noResultLoaded:false,
             lastDidYouMean:null,
             loadedFromSuggestion:false,
+            setFromSuggest:false,
             facetElementMap:{},
             lastFacets:[],
             initialised:false
@@ -39,19 +40,24 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.cssList = cssClasses;
         this.testIds = testIds;
         this.updateConfig();
-        this.options.onEvent(this, 'initialised')
+        this.options.onEvent(this, 'initialised');
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
         const {
             onEvent,
             loader,
-            facet
+            facet,
+            productView
         } = this.options;
         const {
             beforeApiCall,
             afterApiCall,
         } = this.events;
+        const urlParams = this.getQueryParams();
+        const {
+            viewType
+        } = urlParams || {};
         if(type ==="lastBack") {
             onEvent(this,"lastBack");
         }
@@ -62,12 +68,23 @@ class UnbxdSearch extends UnbxdSearchCore {
             }
         }
         if(type === afterApiCall) { 
+            if(viewType) {
+                this.viewState.productViewType = viewType;
+            } else {
+                this.viewState.productViewType = productView.defaultViewType;
+            }
             onEvent(this,afterApiCall);
             this.reRender();
         }
         if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) {
             onEvent(this,'added_facet');
             this.renderFacets();
+        }
+        if(type === "FETCH_ERROR") {
+            if(loader && loader.el) {
+                loader.el.innerHTML = ``;
+            }
+            console.error("Some error occured. please check whether the given sitekey and apikey is correct")
         }
     }
     delegate(delgationElem,evt,elem,fn){

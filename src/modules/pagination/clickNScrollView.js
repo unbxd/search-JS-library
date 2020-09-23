@@ -1,4 +1,4 @@
-export default function(pagination) {
+export default function(pageData, pagination) {
     const {
         pageClass
     } = pagination;

@@ -1,6 +1,20 @@
 ## Changelog
 
 
+## [0.2.0] - 2020-09-23
+
+### Changed
+- changed searchBoxSelector to searchBoxEl
+- changed sdkHostName to searchEndPoint
+- changed productClick to onProductClick
+- viewTypes to defaultView 
+- inifinteScrollTriggerEl to infinteScrollTriggerEl
+- moved rangeWidget under facet Object
+- actionCallback to onAction
+
+### Added
+- added optional 'enable' property with the config objects
+
 
 ## [0.1.9] - 2020-09-21
 
@@ -11,6 +25,10 @@
 - removeFacetsSelector to removeFacetsSelectorClass
 - clearFacetsSelector to clearFacetsSelectorClass
 - multiLevelFacetSelector to multiLevelFacetSelectorClass
+
+### Added
+- applyButtonText = "Apply" - added under facet object to configure the apply facet button
+- clearButtonText = "clear" - added under facet object to configure the clear facet button
 
 
 ## [0.1.9] - 2020-09-17
