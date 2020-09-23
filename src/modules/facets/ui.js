@@ -1,6 +1,8 @@
-function selectedFacetUI (selectedFacet,selectedFacetItem,facetSearchTxt){
+
+function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem){
     const {
         facetName,
+        facetType
     } = selectedFacet;
     const  {
         name,
@@ -15,15 +17,19 @@ function selectedFacetUI (selectedFacet,selectedFacetItem,facetSearchTxt){
     const {
         UNX_uFilter
     } = this.testIds;
+    let action = "deleteFacetValue"
+    if(facetType === "range") {
+        action = "deleteSelectedRange"
+    }
     const css = ` ${facetClass} ${selectedFacetClass} `;
     return [`<div class="UNX-selected-facets-wrap">`,
-                `<button data-test-id="${UNX_uFilter}" class="UNX-selected-facet-btn UNX-change-facet ${css}" data-facet-name="${facetName}" data-facet-action="deleteFacetValue" data-id="${dataId}">`,
+                `<button data-test-id="${UNX_uFilter}" class="UNX-selected-facet-btn UNX-change-facet ${css}" data-facet-name="${facetName}" data-facet-action="${action}" data-id="${dataId}">`,
                     `<span class="UNX-facet-text">${decodeURIComponent(name)}</span> <span class="UNX-facet-count">(${count})</span>`,
                 `</button>`,
-                `<button class="UNX-delete-facet ${removeFacetsSelectorClass} ${css}" data-id="${dataId}" data-facet-action="deleteFacetValue" data-facet-name="${facetName}">x</button></div>`
+                `<button class="UNX-delete-facet ${removeFacetsSelectorClass} ${css}" data-id="${dataId}" data-facet-action="${action}" data-facet-name="${facetName}">x</button></div>`
             ].join('');
 }
-function selectedFacetItemTemplateUI(selections, facet) {
+function selectedFacetUI(selections, facet) {
     const {
         clearAllText,
         clearFacetsSelectorClass

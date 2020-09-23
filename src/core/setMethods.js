@@ -33,12 +33,11 @@ const updateConfig = function(config){
     } = this;
     this.setConfig(options, config);
     this.initialize();
-
 }
 
 const extraActions = function(e) {
     const {
-        actionCallback
+        onAction
     } = this.options;
     const {
         target
@@ -100,11 +99,11 @@ const extraActions = function(e) {
             fcEl.classList.add(viewMore);
         }
     }
-    actionCallback(e, this);
+    onAction(e, this);
 }
 const extraActionsChange = function(e) {
     const {
-        actionCallback
+        onAction
     } = this.options;
     const {
         dataset
@@ -118,16 +117,16 @@ const extraActionsChange = function(e) {
             this.setSearchFacetsText(facetName,e.target.value);
         }
     }
-    actionCallback(e, this);
+    onAction(e, this);
 }
 const getCategoryPage = function() {
-    this.resetFacets();
+    this.resetAll();
     this.options.productType = "CATEGORY";
     this.options.products.productType = "CATEGORY";
     this.getResults();
 }
 const getBrowsePage = function() {
-    this.resetFacets();
+    this.resetAll();
     this.options.productType = "BROWSE";
     this.options.products.productType = "BROWSE";
     this.getResults();

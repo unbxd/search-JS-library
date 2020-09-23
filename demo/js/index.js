@@ -47,9 +47,11 @@ window.unbxdSearch = new UnbxdSearch({
   apiKey: "16e3cf8d510c50106d64f1ebb919b34e",
   hashMode:true,
   updateUrls:true,
-  searchBoxSelector: document.getElementById("unbxdInput"),
+  searchBoxEl: document.getElementById("unbxdInput"),
   searchTrigger: "click",
-  searchButtonSelector: document.getElementById("searchBtn"),
+  searchButtonEl: document.getElementById("searchBtn")
+});
+window.unbxdSearch.updateConfig({
   products:{
     el:document.getElementById("searchResultsWrapper"),
     productType:"SEARCH",
@@ -94,6 +96,57 @@ window.unbxdSearch = new UnbxdSearch({
     isCollapsible:true,
     isSearchable:true,
     enableViewMore:false,
+    rangeTemplate:function(ranges,selectedRanges) {
+      let ui  = ``;
+      const {
+        selectedFacetClass,
+        facetClass,
+        applyMultipleFilters
+      } = this.options.facet;
+      let selected = false;
+      ranges.forEach(range => {
+          const {
+            displayName,
+            facetName,
+            values
+          } = range;
+          let valueUI = ``;
+          selected = (selectedRanges[facetName]) ? true :false;
+          values.forEach(item =>{
+              const {
+                from,
+                to,
+                end
+              } = item;
+            const isSelected = this.isSelectedRange(facetName,item);
+            const last = end || to;
+
+            const btnCss = (isSelected) ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}`:`${facetClass}`;
+            valueUI +=[`<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${last.dataId}" >`,
+                `<span class="UNX-facet-text">${from.name}  -  ${last.name}</span>`,
+                `<span class="UNX-facet-count">(${from.count})</span>`,
+          `</button>`].join('');
+          });
+          ui += [`<div class="UNX-facets-inner-wrapper">`,
+            `<h3 class="UNX-facet-header">${displayName}</h3>`,
+                `<div class="UNX-facets">${valueUI}</div>`,
+          `</div>`].join('');
+      });
+      let clearBtn = ``;
+      let applyBtn = ``;
+      if(selected) {
+          if(applyMultipleFilters) {
+              applyBtn = `<button class="UNX-default-btn ${facetClass} UNX-facet-primary" data-action="applyRange"> Apply</button>`;
+          }
+          clearBtn = `<button class="UNX-default-btn UNX-facet-clear  ${facetClass}" data-action="clearRangeFacets"> clear</button>`;
+      }
+      return [`<div class="UNX-range-wrapper">`,
+        ui,
+        `<div class="UNX-price-action-row">`,
+            applyBtn,clearBtn,
+        `<div>`,
+      `</div>`].join('')
+    }
   },
   pagination: {
     type:'FIXED_PAGINATION',
@@ -126,7 +179,7 @@ window.unbxdSearch = new UnbxdSearch({
   },
   productView:{
     el: document.getElementById("productViewTypeContainer"),
-    viewTypes: "GRID"
+    defaultViewType: "GRID"
   },
   banner: {
     el: document.getElementById("bannerContainer"),
@@ -140,9 +193,10 @@ window.unbxdSearch = new UnbxdSearch({
       swatchColors: "color"
     }
   },
-  actionCallback:function(e, ctx) {
+  onAction:function(e, ctx) {
   },
   onEvent:unbxdCallbackEcma
+
 })
 
 
