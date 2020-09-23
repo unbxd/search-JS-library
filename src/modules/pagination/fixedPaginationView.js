@@ -1,4 +1,4 @@
-const paginationUI = function (paginationData) {
+const paginationUI = function (paginationData, pagination) {
     if(!paginationData) {
         return ``;
     }
@@ -15,7 +15,10 @@ const paginationUI = function (paginationData) {
         pageClass,
         selectedPageClass,
         pageLimit
-    } = this.options.pagination;
+    } = pagination;
+    const {
+        UNX_pageNumber
+    } = this.testIds;
     if(numberOfProducts <= productsLn) {
         return ``;
     }
@@ -41,8 +44,9 @@ const paginationUI = function (paginationData) {
     }
 
     for(let i=startPoint;i<=pages;i++) {
+        const tId = `${UNX_pageNumber}${i}`
         const pageClassSelected = (i === currentPage) ?selectedPageClass :'';
-        pageNumbers += `<button data-page-action="paginate" data-page-no="${(i-1)*rows}" class="UNX-page-button ${pageClass} ${pageClassSelected}">${i}</button>`
+        pageNumbers += `<button data-test-id="${tId}" data-page-action="paginate" data-page-no="${(i-1)*rows}" class="UNX-page-button ${pageClass} ${pageClassSelected}">${i}</button>`
     }
     if(!isNext) {
         nextBtn = `<button disabled class="UNX-next-btn UNX-page-next">></button>`;

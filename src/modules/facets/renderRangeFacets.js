@@ -49,11 +49,8 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
         rangeFacet
     } = this.state;
     const {
-        isCollapsible,
-        textFacetWrapper,
-        applyMultipleFilters,
-        facetClass
-    } = this.options.facet;
+        facet
+    } = this.options;
     const {
         actionBtnClass
     } = this.options;   
@@ -91,17 +88,13 @@ const renderRangeFacets = function(rangeFacets, selectedRanges) {
             start:0,
             end,
             wrapper:self.facetsWrapper,
-            rangeConfig: self.options.facet.rangeWidgetConfig,
-            isCollapsible,
-            isExpanded,
-            actionBtnClass,
-            textFacetWrapper,
-            applyMultipleFilters,
-            facetClass
+            rangeConfig: facet.rangeWidgetConfig,
+            ...facet,
+            actionBtnClass
         }).render();
     
-        const rangeUi = this.options.facet.facetTemplate.bind(this)(item, rangeSliderElem, isExpanded, null);
-        return  [`<div class="range-facet">`,
+        const rangeUi = this.options.facet.facetTemplate.bind(this)(item, rangeSliderElem, isExpanded, null,facet);
+        return  [`<div data-test-id="${this.testIds.UNX_rangeslider}" class="range-facet">`,
                     rangeUi,
                     `</div>`].join('');
             }).join('');

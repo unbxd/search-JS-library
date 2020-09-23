@@ -16,8 +16,12 @@ const findChangedFacet = function(e) {
     const ql = Object.keys(qState.selectedFacets).length;
     const {
         productType
-    } = this.options
-    if(facetAction === this.events.changeFacet) {
+    } = this.options;
+    const {
+        events,
+        actions
+    } = this;
+    if(facetAction === actions.changeFacet) {
         const selectedfacetInfo = this.getSelectedFacet(facetName);
         const selectedOpt = {
             selectedFacetName : facetName,
@@ -25,7 +29,7 @@ const findChangedFacet = function(e) {
             facetData : selectedfacetInfo
         }
         this.viewState.lastAction = "addedAFacet";
-        this.options.onEvent(this,this.events.facetClick, {
+        this.options.onEvent(this, events.facetClick, {
             facetName,
             facetData:selectedfacetInfo
         });
@@ -36,11 +40,11 @@ const findChangedFacet = function(e) {
             id
         },'facetClick');
     }
-    if(facetAction === this.actions.deleteFacetValue) {
+    if(facetAction === actions.deleteFacetValue) {
         if(this.findSelectedFacet(facetName)) {
             this.viewState.lastAction = "deletedAfacet";
             this.deleteAFacet.bind(this)(facetName, id);
-            this.options.onEvent(this,facetAction, {
+            this.options.onEvent(this,events.deleteFacetValue, {
                 facetName
             });
             this.getCallbackActions({
@@ -55,11 +59,11 @@ const findChangedFacet = function(e) {
             }
         }
     }
-    if(facetAction === this.actions.deleteFacet) {
+    if(facetAction === actions.deleteFacet) {
         if(this.findSelectedFacet(facetName)) {
             this.viewState.lastAction = "deletedAfacet";
             this.deleteAFacet.bind(this)(facetName);
-            this.options.onEvent(this,facetAction, {
+            this.options.onEvent(this,events.deleteFacet, {
                 facetName
             });
             this.getCallbackActions({
@@ -87,20 +91,20 @@ const findChangedFacet = function(e) {
         this.getResults();
     }
 
-    if(action === this.actions.setCategoryFilter) {
+    if(action === actions.setCategoryFilter) {
         if(productType === "SEARCH") {
             this.setCategoryFilter(dataSet);
-            this.options.onEvent(this,action, dataSet);
+            this.options.onEvent(this, events.setCategoryFilter, dataSet);
         } else {
             this.setCategoryId(dataSet, this);
         }
         this.getResults();
         this.getCallbackActions(dataSet,'facetClick');
     }
-    if(action === this.actions.clearCategoryFilter) {
+    if(action === actions.clearCategoryFilter) {
         if(productType === "SEARCH") {
             this.deleteCategoryFilter(dataSet);
-            this.options.onEvent(this,action, dataSet);
+            this.options.onEvent(this,events.deleteCategoryFilter, dataSet);
         } else {
             this.setCategoryId(dataSet, this);
         }
@@ -117,7 +121,7 @@ const findChangedFacet = function(e) {
                 from:{
                     name:start
                 },
-                to:{
+                end:{
                     name:end
                 }
             });
@@ -146,7 +150,7 @@ const findChangedFacet = function(e) {
             this.applyRangeFacet();
         }
     }
-    if(action === this.actions.applyRange) {
+    if(action === actions.applyRange) {
         this.applyRangeFacet();
         this.options.onEvent(this,action, {
             facetName
@@ -155,7 +159,7 @@ const findChangedFacet = function(e) {
             facetName
         },'facetClick');
     }
-    if(action === this.actions.clearPriceRange && facetName) {
+    if(action === actions.clearPriceRange && facetName) {
         this.clearARangeFacet(facetName);
         this.getResults.bind(this)();
         this.options.onEvent(this,action, {

@@ -29,8 +29,10 @@ const didYouMeanUI =  function(query,suggestion,pages) {
     if(products.productType !=="SEARCH" ) {
         newQuery = " ";
     }
-
-    const noUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button data-action="getSuggestion" class="${selectorClass}">${suggestion}</button></p>` :``;
+    const {
+        UNX_spellCheck
+    } = this.testIds
+    const noUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button data-test-id="${UNX_spellCheck}" data-action="getSuggestion" class="${selectorClass}">${suggestion}</button></p>` :``;
     let qUi = ``;
     let countUi = ``;
     if(numberOfProducts > 0) {

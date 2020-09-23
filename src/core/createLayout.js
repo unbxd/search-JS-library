@@ -70,19 +70,11 @@ const createLayout = function() {
     } = this.options;
     const {
         facetsEl,
-        selectedFacetsEl,
-        selectedFacetTemplate,
-        multiLevelFacetTemplate,
-        facetTemplate,
-        facetItemTemplate
+        selectedFacetsEl
     } = facet;
     const {
         spellCheck
     } = this.options;
-    selectedFacetTemplate.bind(this);
-    multiLevelFacetTemplate.bind(this);
-    facetTemplate.bind(this);
-    facetItemTemplate.bind(this);
     if(spellCheck.el) {
         spellCheck.el.innerHTML = ``;
         spellCheck.el.appendChild(this.spellCheckWrapper);
@@ -96,7 +88,6 @@ const createLayout = function() {
         selectedFacetsEl.appendChild(this.selectedFacetWrapper)
     }
     if(breadcrumb.enabled) {
-        breadcrumb.template.bind(this);
         if(breadcrumb.el){
             breadcrumb.el.innerHTML = ``;
             breadcrumb.el.appendChild(this.breadcrumbWrapper);
