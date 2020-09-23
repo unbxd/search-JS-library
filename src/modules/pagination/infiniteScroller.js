@@ -26,13 +26,13 @@ function getDocHeight() {
     );
 }
 
-const infiniteScroller = function() {
+const onInfiniteScroll = function() {
    if ((getDocHeight() - 20) <= (getScrollXY()[1] + window.innerHeight))
     {
-        if(!this.viewState.isInfiniteStarted) {
+        if(!this.viewState.isInfiniteStarted && !this.state.loading) {
             this.viewState.isInfiniteStarted = true;
             this.renderNewResults('next');
         }
     }
 };
-export default infiniteScroller;
+export default onInfiniteScroll;

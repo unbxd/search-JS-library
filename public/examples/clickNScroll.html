@@ -20,7 +20,7 @@
   />
   </head>
   <style>
-    .unx-pagination-size-block {
+    .unx-pagination-size-block, .UNX-change-pagination-wrap {
       display: flex;
       justify-content: center;
       margin: 20px;
@@ -180,9 +180,9 @@
         apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
         hashMode:true,
         updateUrls:true,
-        searchBoxSelector: document.getElementById("unbxdInput"),
+        searchBoxEl: document.getElementById("unbxdInput"),
         searchTrigger: "click",
-        searchButtonSelector: document.getElementById("searchBtn"),
+        searchButtonEl: document.getElementById("searchBtn"),
         products:{
           el:document.getElementById("searchResultsWrapper"),
           productType:"SEARCH",
@@ -228,7 +228,7 @@
         },
         productView:{
           el: document.getElementById("productViewTypeContainer"),
-          viewTypes: getView()
+          defaultViewType: getView()
         },
         banner: {
           el: document.getElementById("bannerContainer"),
@@ -270,7 +270,7 @@
           // gridCount:getGridCount()
           },
           productView:{
-            viewTypes: getView()
+            defaultViewType: getView()
           }
         });
         window.unbxdSearch.reRender();

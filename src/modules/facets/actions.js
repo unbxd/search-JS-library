@@ -1,5 +1,6 @@
 const findChangedFacet = function(e) {
     const elem = e.target;
+    this.viewState.lastDidYouMean = "";
     const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
     const dataSet = selected.dataset;
     const {
@@ -15,12 +16,18 @@ const findChangedFacet = function(e) {
     const ln = (selectedfacets) ?Object.keys(selectedfacets).length:0;
     const ql = Object.keys(qState.selectedFacets).length;
     const {
-        productType
+        productType,
+        facet
     } = this.options;
+    const {
+        applyMultipleFilters
+    } = facet;
     const {
         events,
         actions
     } = this;
+    const ranges = this.state.rangeFacet[facetName];
+    const isSelections = Object.keys(qState.rangeFacet);
     if(facetAction === actions.changeFacet) {
         const selectedfacetInfo = this.getSelectedFacet(facetName);
         const selectedOpt = {
@@ -53,7 +60,7 @@ const findChangedFacet = function(e) {
                 id
             },'facetClick');
             const fl = selectedfacets[facetName].length;
-            if(ql > 0 && ln === 1 && fl === 0 && this.options.facet.applyMultipleFilters) {
+            if(ql > 0 && ln === 1 && fl === 0 && applyMultipleFilters) {
                 this.setPageStart(0);
                 this.getResults();
             }
@@ -90,6 +97,22 @@ const findChangedFacet = function(e) {
         this.setPageStart(0);
         this.getResults();
     }
+    if(facetAction === "deleteSelectedRange") {
+        const {
+            facetName,
+            id
+        } = dataSet;
+        const range  = id.replace(/[^\w\s]/gi, '').split(" TO ");
+        this.setRangeFacet({
+            start:range[0],
+            end:range[1],
+            facetName,
+            applyMultiple:true
+        });
+        this.setPageStart(0);
+        this.getResults();
+
+    }
 
     if(action === actions.setCategoryFilter) {
         if(productType === "SEARCH") {
@@ -111,8 +134,7 @@ const findChangedFacet = function(e) {
         this.getResults();
         this.getCallbackActions(dataSet,'facetClick');
     }
-    const ranges = this.state.rangeFacet[facetName];
-    const isSelections = Object.keys(qState.rangeFacet);
+
     
     if(action === "setRange") {
         let already = false
@@ -138,7 +160,7 @@ const findChangedFacet = function(e) {
             this.state.rangeFacet = [];
             this.applyRangeFacet();
         }
-        if(!this.options.facet.applyMultipleFilters ){
+        if(!applyMultipleFilters ){
             this.setPageStart(0);
             this.applyRangeFacet();
         }

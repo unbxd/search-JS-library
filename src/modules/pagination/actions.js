@@ -50,6 +50,7 @@ function paginationAction(e){
         pageAction,
         pageNo
     } = e.target.dataset;
+    this.viewState.lastDidYouMean = "";
     if(pageAction === 'paginate'){
         this.setPageStart(pageNo);
         this.getResults();

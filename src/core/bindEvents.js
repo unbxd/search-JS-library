@@ -1,7 +1,7 @@
-
+import debounce from "../modules/utils/debounce";
 function bindEvents(){
     const {
-        searchButtonSelector,
+        searchButtonEl,
         searchTrigger,
         products,
         facet,
@@ -10,13 +10,13 @@ function bindEvents(){
         sort,
         pagesize,
         spellCheck,
-        searchBoxSelector,
+        searchBoxEl,
         actionChangeClass,
         actionBtnClass,
         breadcrumb
     } = this.options;
-    if(searchBoxSelector) {
-        searchBoxSelector.addEventListener("keydown", (e) => {
+    if(searchBoxEl) {
+        searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;
             if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
                 if(val !== ""){
@@ -36,8 +36,8 @@ function bindEvents(){
             //wrapper.addEventListener(pagination.action, this.paginationAction.bind(this));
         });
     }
-    if(searchButtonSelector) {
-        searchButtonSelector.addEventListener(searchTrigger,this.setInputValue.bind(this));
+    if(searchButtonEl) {
+        searchButtonEl.addEventListener(searchTrigger,this.setInputValue.bind(this));
     }
     this.delegate(
         this.spellCheckWrapper,
@@ -90,7 +90,9 @@ function bindEvents(){
     }
 
     if(this.options.pagination.type === 'INFINITE_SCROLL') {
-        document.addEventListener("scroll",this.onInfinteScroll.bind(this));
+        document.addEventListener("scroll",debounce(()=>{
+            this.onInfiniteScroll.bind(this)();
+        },1000));
     }
     this.delegate(
         this.pageSizeWrapper,

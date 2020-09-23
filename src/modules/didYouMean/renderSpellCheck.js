@@ -15,6 +15,10 @@ const renderDidYouMean = function (suggestion) {
     const {
         viewState
     } = this;
+    const {
+        loadedFromSuggestion,
+        lastDidYouMean
+    } = viewState;
     if(type !== "FIXED_PAGINATION" && pages) {
         const {
             start,
@@ -25,25 +29,19 @@ const renderDidYouMean = function (suggestion) {
     }
     let sugString = didYouMean.length >0 ? didYouMean[0].suggestion :"";
     if(enabled) {
-        if(sugString ) {
-            if(viewState.lastDidYouMean !== userInput) {
-                this.viewState.lastDidYouMean = userInput;
-                this.getResults(sugString);
-            }
+        if(sugString && !loadedFromSuggestion) {
+            this.viewState.lastDidYouMean = userInput;
+            this.viewState.loadedFromSuggestion = true;
+            this.getResults(sugString);
+            return this.options.spellCheck.template.bind(this)(sugString,userInput,pages); 
         }
-        if(viewState.lastDidYouMean && sugString ==="" && viewState.loadedFromSuggestion){
-            this.viewState.lastDidYouMean = null;
-            this.viewState.loadedFromSuggestion = false;
-            return this.options.spellCheck.template.bind(this)(userInput,sugString,pages)
+        if(lastDidYouMean) {
+            return this.options.spellCheck.template.bind(this)(userInput,lastDidYouMean,pages);
         }
-        if(viewState.lastDidYouMean && sugString ==="") {
-            return this.options.spellCheck.template.bind(this)(userInput,viewState.lastDidYouMean,pages);
-        }else {
-            return this.options.spellCheck.template.bind(this)(userInput,sugString,pages)
-        }
+        return this.options.spellCheck.template.bind(this)(userInput,"",pages); 
         
     }else {
-        return this.options.spellCheck.template.bind(this)(userInput,sugString,pages);
+        return this.options.spellCheck.template.bind(this)(userInput,"",pages);
     }
 }
 export default renderDidYouMean;

@@ -1,4 +1,4 @@
-const renderProductViewType =  function(productViewType, selectedViewType) {
+const renderProductViewType =  function(selectedViewType, productViewType) {
     const isDisabled = (this.getSearchResults())?false:true;
     const {
         selectedViewTypeClass,

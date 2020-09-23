@@ -10,7 +10,7 @@ function renderProductViewTypeUI(){
         if(results && results.numberOfProducts === 0) {
             productView.el.innerHTML = ``;
         }else {
-            productView.el.innerHTML = this.options.productView.template.bind(this)(productView, productViewType); 
+            productView.el.innerHTML = this.options.productView.template.bind(this)(productViewType, productView); 
         }
     }
 };
