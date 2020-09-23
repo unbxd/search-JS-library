@@ -20,11 +20,12 @@
   />
   </head>
   <style>
-    .unx-pagination-size-block {
+    .UNX-pagination-size-block {
       display: flex;
+      align-items: center;
       justify-content: center;
-      margin: 20px;
-    }
+      padding: 24px;
+  }
     .UNX-page-items {
       background: #000000;
       color: #FFF;
@@ -187,9 +188,9 @@
         updateUrls:true
       });
       window.unbxdSearch.updateConfig({
-        searchBoxSelector: document.getElementById("unbxdInput"),
+        searchBoxEl: document.getElementById("unbxdInput"),
         searchTrigger: "click",
-        searchButtonSelector: document.getElementById("searchBtn"),
+        searchButtonEl: document.getElementById("searchBtn"),
         products:{
           el:document.getElementById("searchResultsWrapper"),
           productType:"SEARCH",

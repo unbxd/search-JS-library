@@ -114,9 +114,9 @@
         apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
         hashMode:false,
         updateUrls:true,
-        searchBoxSelector: document.getElementById("unbxdInput"),
+        searchBoxEl: document.getElementById("unbxdInput"),
         searchTrigger: "click",
-        searchButtonSelector: document.getElementById("searchBtn"),
+        searchButtonEl: document.getElementById("searchBtn"),
         products:{
           el:document.getElementById("searchResultsWrapper"),
           productType:"SEARCH",
@@ -166,7 +166,7 @@
         },
         productView:{
           el: document.getElementById("productViewTypeContainer"),
-          viewTypes: "GRID"
+          defaultViewType: "GRID"
         },
         banner: {
           el: document.getElementById("bannerContainer"),
@@ -185,7 +185,7 @@
 
 
       //click scroll pagination
-      window.unbxdSearch.updateConfig({
+     /* window.unbxdSearch.updateConfig({
           sort:{
             action:'click',
             template: function(selectedSort) {
@@ -208,7 +208,7 @@
                 return sortBtnsUI;
             }
           }
-      });
+      });*/
 
     </script>
     <script>

@@ -107,9 +107,9 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false. Defaults to true. |
 | actionBtnClass  | String  | "UNX-action-item" | CSS classname to add to any elements on which you want to trigger any clicks |
 | actionChangeClass  | String  | "UNX-action-change" | CSS class, if you want to trigger change on your custom input elements, add this class |
-| actionCallback  | Function  | NA | Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the `this` context  |
+| onAction  | Function  | NA | Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the `this` context  |
 | searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config to to "query" | 
-| sdkHostName | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
+| searchEndPoint | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
 
 
 # Products Config
@@ -207,7 +207,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | OPTIONS | DATATYPE | DESCRIPTION |
 |----------|----------|----------|
 | el                        	| Element  	| Element in which to render the product views component |
-| viewTypes                 	| String   	| Product view types to be displayed: "LIST" or 'GRID" |
+| defaultViewType                 	| String   	| Product view types to be displayed: "LIST" or 'GRID" |
 | action                    	| String   	| Action on which product view change should be triggerd: "click" or "change" |
 | viewTypeClass             	| String   	| Additonal CSS class name to be added to the product view type elements |
 | selectedViewTypeClass     	| String   	| Additional CSS class name to be added to the selected view type element |
@@ -257,6 +257,17 @@ variant options can be configured here
 |----------|----------|----------|
 | template | Function |  |
 | el | Element | Element in which to render the no results component |
+
+
+# Methods
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|----------|----------|----------|
+| reRender | function | to render the page again. eg:unbxdSearch.reRender() |
+| updateConfig | function | for updating the options in run time. eg:unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}}) |
+| getCategoryPage | function | to render the category page. eg:unbxdSearch.getCategoryPage() |
+| getBrowsePage | function | to render the browse page. eg:unbxdSearch.getBrowsePage() |
+| getResults | function | to make the new search api call, eg: unbxdSearch.getResults("dress") |
 
 ## Contributions
 
