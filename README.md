@@ -101,32 +101,25 @@ This provides you the power of entire Javascript to build your desired HTML stri
 |----------|----------|----------|----------|
 | siteKey | String | NA | This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account. |
 | apiKey | String | NA | This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account. |
-| searchBoxSelector | | | |
-| searchPath | | | |
-| products | Object | Refer section | Products related configurations. You can find all the configs in [Products Config](#Products-Config) section|
-| facet | Object | Refer section | Facet configurations. You can find all the configs in [Facets Config](#Facets-Config) section|
-| pagination | Object | Refer section | Pagination component configurations. You can find all the configs in [Pagination Config](#Pagination-Config) section |
-| pageSize | Object | Refer section | Page Size component configurations. You can find all the page size configs in [Page Size Config](#Page-Size-Config) section |
-| sort | Object | Refer section | Sort component configurations. You can find all the configs in [Sort Config](#Sort-Config) section |
-| productView | Object | Refer section | Product view type (list view or grid view) configurations. You can find all the configs in [Product Views Config](#Product-Views-Config) section|
-| breadcrumb | Object | Refer section | Bread crumb component configurations. You can find all the configs in [Breadcrumb Config](#Breadcrumb-Config) section |
-| spellCheck | Object | Refer section | Spellcheck component configurations. You can find all the configs in [Spell Check Config](#Spell-Check-Config) section. Please ignore incase of _browse_ or _category_ pages.|
-| banner | Object | Refer section | Banner component configurations. You can find all the configs in [Banner Config](#Banner-Config) section. |
-| variants | Object | Refer section | Set this object, if you have want to display variant products. You can find all the variants configs in [Variants Config](#Variants-Config) section |
-| swatches | Object | Refer section | Set this object, if you have want to display swatches on your product cards. You can find all the swatch configs in [Swatches Config](#Swatches-Config) section |
-| loader | Object | Refer section | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
-| noResults | Object | Refer section | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
-| unbxdAnalytics | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events. |
-| hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using query params |
-| updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false |
-| actionBtnClass  | String  | "UNX-action-item" | CSS class name to add to any elements on which you want to trigger click event |
-| actionChangeClass  | String  | "UNX-action-change" | CSS class name to be added to any custom input elements on which you want to trigger change event |
-| actionCallback  | Function  | `function(event, context) {}` | Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the `this` context  |
-| onEvent | Function | function(state, type) {} | Callback that gets called after every event  |
-| extraParams | Object | `{ "version":"V2" }` | Any additional parameters you want to send in the search API call |
-| productId | String | "uniqueId" | The field name which denotes the unique identifier for each product |
-| searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config value to "query" | 
-| sdkHostName | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
+| products | Object | NA | Products related configurations. You can find all the configs in [Products Config](#Products-Config) section|
+| facet | Object | NA | Facet configurations. You can find all the configs in [Facets Config](#Facets-Config) section|
+| pagination | Object | NA | Pagination component configurations. You can find all the configs in [Pagination Config](#Pagination-Config) section |
+| pageSize | Object | NA | Page Size component configurations. You can find all the page size configs in [Page Size Config](#Page-Size-Config) section |
+| sort | Object | NA | Sort component configurations. You can find all the configs in [Sort Config](#Sort-Config) section |
+| productView | Object | NA | Product view type (list view or grid view) configurations. You can find all the configs in [Product Views Config](#Product-Views-Config) section|
+| breadcrumb | Object | NA | Bread crumb component configurations. You can find all the configs in [Breadcrumb Config](#Breadcrumb-Config) section |
+| spellCheck | Object | NA | Spellcheck component configurations. You can find all the configs in [Spell Check Config](#Spell-Check-Config) section. Please ignore incase of _browse_ and _category_.|
+| variants | Object | NA | Set this object, if you have want to display variant products. You can find all the variants configs in [Variants Config](#Variants-Config) section |
+| loader | Object | NA | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
+| noResults | Object | NA | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
+| unbxdAnalytics | Boolean | false | Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events |
+| hashMode | Boolean | false | Turn this flag on if you want the URL update to happen on hash instead of using the history API. Defaults to false. |
+| updateUrls | Boolean | true | If you do not want the URLs to be updated on any search param change, set this config to false. Defaults to true. |
+| actionBtnClass  | String  | "UNX-action-item" | CSS classname to add to any elements on which you want to trigger any clicks |
+| actionChangeClass  | String  | "UNX-action-change" | CSS class, if you want to trigger change on your custom input elements, add this class |
+| onAction  | Function  | NA | Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the `this` context  |
+| searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config to to "query" | 
+| searchEndPoint | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
 
 # Products Config
 
@@ -233,15 +226,14 @@ This provides you the power of entire Javascript to build your desired HTML stri
 
 # Product Views Config
 
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| el                        	| Element  	| null | Element in which to render the product views component |
+| OPTIONS | DATATYPE | DESCRIPTION |
+|----------|----------|----------|
+| el                        	| Element  	| Element in which to render the product views component |
+| defaultViewType                 	| String   	| Product view types to be displayed: "LIST" or 'GRID" |
+| action                    	| String   	| Action on which product view change should be triggerd: "click" or "change" |
+| viewTypeClass             	| String   	| Additonal CSS class name to be added to the product view type elements |
+| selectedViewTypeClass     	| String   	| Additional CSS class name to be added to the selected view type element |
 | template                      | Function  | [default](src/modules/productViewType/index.js) | Customise the look and feel of the product views component by using this function. This function gets 2 parameters: the product views config (i.e. this complete object) and the selected view type |
-| viewTypes                 	| String   	| "GRID" | Product view types to be displayed: "LIST" or 'GRID" |
-| action                    	| String   	| "click" | Action on which product view change should be triggerd: "click" or "change" |
-| viewTypeClass             	| String   	| "UNX-product-view" | Additonal CSS class name to be added to the product view type elements |
-| selectedViewTypeClass     	| String   	| "UNX-selected-product-view" | Additional CSS class name to be added to the selected view type element |
-
 
 # Breadcrumb Config
 
@@ -308,6 +300,16 @@ breadcrumb options are available here.
 | el | Element | NA | Element in which to render the no results component |
 | template | Function | `function(query){return '<div class="UNX-no-results"> No Results found '+ query + '</div>'}` | Customise the look and feel of the no results component by using this function. You will get the searched query as param to this function |
 
+
+# Methods
+
+| OPTIONS | DATATYPE | DESCRIPTION |
+|----------|----------|----------|
+| reRender | function | to render the page again. eg:unbxdSearch.reRender() |
+| updateConfig | function | for updating the options in run time. eg:unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}}) |
+| getCategoryPage | function | to render the category page. eg:unbxdSearch.getCategoryPage() |
+| getBrowsePage | function | to render the browse page. eg:unbxdSearch.getBrowsePage() |
+| getResults | function | to make the new search api call, eg: unbxdSearch.getResults("dress") |
 
 ## Contributions
 

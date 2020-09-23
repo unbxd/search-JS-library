@@ -32,7 +32,7 @@ const didYouMeanUI =  function(query,suggestion,pages) {
     const {
         UNX_spellCheck
     } = this.testIds
-    const noUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button data-test-id="${UNX_spellCheck}" data-action="getSuggestion" class="${selectorClass}">${suggestion}</button></p>` :``;
+    const noUi = (suggestion) ? `<p class="UNX-no-result"> Your search "<strong>${suggestion}</strong>" did not match any products. Did you mean <button data-test-id="${UNX_spellCheck}" data-action="getSuggestion" class="${selectorClass}">${query}</button>? </p>` :``;
     let qUi = ``;
     let countUi = ``;
     if(numberOfProducts > 0) {
@@ -42,7 +42,8 @@ const didYouMeanUI =  function(query,suggestion,pages) {
         qUi = `<p class="UNX-suggestion-p">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
     }
     return  [`<div class="UNX-spellcheck-block">`,
+            noUi,
             qUi,
-        `${noUi}</div>`].join('');
+        `</div>`].join('');
 }
 export default didYouMeanUI

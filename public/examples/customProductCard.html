@@ -286,9 +286,9 @@
             });
 
             window.unbxdSearch.updateConfig({
-            searchBoxSelector: document.getElementById("unbxdInput"),
+            searchBoxEl: document.getElementById("unbxdInput"),
             searchTrigger: "click",
-            searchButtonSelector: document.getElementById("searchBtn"),
+            searchButtonEl: document.getElementById("searchBtn"),
             products:{
                 el:document.getElementById("searchResultsWrapper"),
                 productType:"SEARCH",
@@ -452,7 +452,7 @@
             },
             productView:{
                 el: document.getElementById("productViewTypeContainer"),
-                viewTypes: "GRID"
+                defaultViewType: "GRID"
             },
             banner: {
                 el: document.getElementById("bannerContainer"),
@@ -466,7 +466,7 @@
                 swatchColors: "color"
                 }
             },
-            actionCallback:function(e, ctx) {
+            onAction:function(e, ctx) {
                 console.log(e.target,this,ctx)
             },
             onEvent:unbxdCallbackEcma

@@ -93,12 +93,12 @@ const createLayout = function() {
             breadcrumb.el.appendChild(this.breadcrumbWrapper);
         }
     }
-    if(banner.el){
+    if(banner.el && banner.enabled){
         banner.el.innerHTML = ``;
         banner.template.bind(this);
         banner.el.appendChild(this.bannerWrapper);
     }
-    if(sort.el){
+    if(sort.el && sort.enabled){
         sort.el.innerHTML = ``;
         sort.el.appendChild(this.sortWrapper);
     }
@@ -107,7 +107,7 @@ const createLayout = function() {
         products.el.innerHTML=``;
         products.el.appendChild(this.searchResultsWrapper);
     }
-    if(pagesize.el){
+    if(pagesize.el && pagesize.enabled){
         pagesize.el.innerHTML = ``;
         pagesize.el.appendChild(this.pageSizeWrapper);
     }

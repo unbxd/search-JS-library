@@ -1,10 +1,10 @@
 
-const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt) {
+const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, facetConfig) {
     let ui = "";
     let {
         multiLevelFacetSelectorClass,
         facetClass
-    } = this.options.facet;
+    } = facetConfig;
     const {
         UNX_facetLevel
     } = this.testIds;

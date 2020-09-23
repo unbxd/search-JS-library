@@ -8,20 +8,15 @@ const setSuggestion = function(e) {
     const {
         dataset
     } = target || {};
+    const {
+        userInput
+    } = this.state;
     if(dataset && dataset.action === "getSuggestion") {
-        const {
-            lastDidYouMean
-        } = this.viewState;
-        if(didLength > 0) {
-            this.setPageStart(0);
-            this.getResults(txt[0]);
-        }
-        if(lastDidYouMean) {
-            this.setPageStart(0);
-            this.getResults(lastDidYouMean);
-            this.viewState.loadedFromSuggestion = true;
-        }
-
+        this.resetAll();
+        this.setPageStart(0);
+        this.getResults(userInput);
+        this.viewState.lastDidYouMean = null;
+        this.viewState.loadedFromSuggestion = false;
     }
 }
 const setSpellCheck = (prototype) => {

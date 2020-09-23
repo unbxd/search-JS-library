@@ -19,20 +19,21 @@ import {
 import renderProductViewType from '../modules/productViewType';
 import bannerTemplateUI from '../modules/banners';
 import pageSizeUi from '../modules/pageSize/pageSizeView';
+import swatchTemplate from "../modules/swatches/ui";
 const options = {
     productId:"uniqueId",
-    searchBoxSelector:null,
+    searchBoxEl:null,
     siteKey:"demo-spanish-unbxd809051588861207",
     apiKey:"f19768e22b49909798bc2411fa3dd963",
     searchPath:"",
-    sdkHostName:"https://search.unbxd.io/",
+    searchEndPoint:"https://search.unbxd.io/",
     products:{
         el:null,
         template:productTemplate,
         productItemClass:"product-item", // to find out product
         productType:"SEARCH",
         gridCount:1,
-        productClick: function(product,e) {
+        onProductClick: function(product,e) {
         },
         productAttributes: [
             "title",
@@ -72,7 +73,7 @@ const options = {
         action:'click', // CLICK or CHANGE
         viewTypeClass:'UNX-product-view',
         selectedViewTypeClass:'UNX-selected-product-view',
-        viewTypes:'GRID'
+        defaultViewType:'GRID'
     },
 
     loader:{
@@ -115,6 +116,7 @@ const options = {
     },
 
     sort: {
+        enabled:true,
         el:null,
         selectedSortClass:'UNX-selected-sort',
         sortClass:'UNX-sort-item',
@@ -180,7 +182,7 @@ const options = {
         pageClass:"UNX-page-items",
         selectedPageClass:"UNX-selected-page-item",
         type:'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
-        inifinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
+        infinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
         onPaginate:function(paginationInfo){},
         action:'click',
@@ -188,6 +190,7 @@ const options = {
     },
 
     pagesize: {
+        enabled:true,
         pageSize:12,
         options:[8,12,16,20,24],
         pageSizeClass:"UNX-pagesize",
@@ -198,6 +201,7 @@ const options = {
     },
 
     banner: {
+        enabled:true,
         el:null,
         template:bannerTemplateUI,
         count:1
@@ -207,45 +211,14 @@ const options = {
         enabled:false,
         attributesMap:{},
         swatchClass:'UNX-swatch-btn',
-        template:function(swatchData, swatches) {
-            const {
-                swatchImgs = []
-            } = swatchData;
-            let btnUI = ``;
-            let btnList = ``;
-            let imgsUI = ``;
-            const {
-                swatchClass
-            } = swatches;
-            const {
-                UNX_swatchClrBtn
-            } = this.testIds;
-            if(swatchImgs.length > 1) {
-                swatchImgs.forEach((item,id) => {
-                    const sid = this.generateRid("unx_swatch_");
-                    const sCss = (id === 0) ? '':' UNX-swatch-hidden';
-                    const bCss = (id === 0) ? ' UNX-selected-swatch':'';
-                    const data = item.split("::");
-                    if(data){
-                        btnUI+= [`<button data-test-id="${UNX_swatchClrBtn}${id}" data-swatch-id="${sid}" data-action="changeSwatch" class="${swatchClass} ${sid} ${bCss}" style="background-color:${data[0]}"> </button>`].join('');
-                        imgsUI+=`<div id="${sid}" class="UNX-img-wrapper ${sCss}"><img class="UNX-img-block" src="${data[1]}"/></div>`
-                    }
-                });
-                btnList = `<div class="UNX-swatch-color-list">${btnUI}</div>`;
-            }
-            return {
-                btnList:btnList,
-                imgList:imgsUI,
-            };
-        }
+        template:swatchTemplate
     },
-    rangeWidget:renderRangeFacets,
     unbxdAnalytics:false,
     hashMode:false,
     updateUrls:true,
     actionBtnClass:"UNX-action-item",
     actionChangeClass:"UNX-action-change",
-    actionCallback: function(e,ctx) {
+    onAction: function(e,ctx) {
     }
    // searchQueryParam:null
 };

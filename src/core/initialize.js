@@ -11,7 +11,7 @@ const initialize = function() {
     this.unxSelectors = unxSelectors;
     this.renderDidYouMean.bind(this);
     this.options.onEvent.bind(this);
-    this.options.products.productClick.bind(this);
+    this.options.products.onProductClick.bind(this);
     this.reRender = reRender.bind(this);
     this.bindEvents = bindEvents.bind(this);
     this.bindEvents();

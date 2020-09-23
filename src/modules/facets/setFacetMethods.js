@@ -42,7 +42,7 @@ function renderMultiLevelFacet(bucketedFacet,isExpanded) {
     const {
         isCollapsible
     } = facet;
-    const valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet, breadCrumb, facet);
+    const valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet, breadCrumb,"", facet);
     bucketedUi += self.options.facet.facetTemplate.bind(self)(bucketedFacet, valueUI,isExpanded,null, facet);
     let styles = (isExpanded)? openFacet:closeFacet;
     if(!isCollapsible) {
@@ -181,9 +181,9 @@ const renderTextFacet = function(facetItem,selectedFacet,isExpanded,facetSearchT
             }
             if(selected) {
                 if(self.options.facet.selectedFacetsEl) {
-                    selectedFacetsUI += self.options.facet.selectedFacetTemplate.bind(self)(facetItem,value,"",facet);
+                    selectedFacetsUI += self.options.facet.selectedFacetItemTemplate.bind(self)(facetItem,value,"",facet);
                 }
-                return self.options.facet.selectedFacetTemplate.bind(self)(facetItem,value,facetSearchTxt,facet)
+                return self.options.facet.selectedFacetItemTemplate.bind(self)(facetItem,value,facetSearchTxt,facet)
             } else{
                 return self.options.facet.facetItemTemplate.bind(self)(facetItem, value,facetSearchTxt)
             }
@@ -213,7 +213,7 @@ const renderFacets = function(){
         expandedFacets,
         lastAction
     } = this.viewState;
-    if(lastAction === "updatedRangeSlider") {
+    if(lastAction === "updatedRangeSlider" && applyMultipleFilters) {
         return false;
     }
     const self = this;
@@ -224,6 +224,8 @@ const renderFacets = function(){
     } = this;
     facetsWrapper.innerHTML = ``;
     const selectedFacets = this.getSelectedFacets();
+    const selectedRanges  =this.getSelectedRanges();
+    console.log(selectedFacets,"selectedFacets");
     allFacets.forEach((facetItem,idx) => {
         const {
             facetType,
@@ -245,16 +247,13 @@ const renderFacets = function(){
             facetsWrapper.innerHTML += this.renderRangeFacet(facetItem,isExpanded,"");
         }
         if(facetType === "category") {
-            facetsWrapper.innerHTML += this.renderMultiLevelFacet(facetItem,isExpanded,"");
+            facetsWrapper.innerHTML += this.renderMultiLevelFacet(facetItem,isExpanded,facetSearchTxt);
         }
         this.viewState.facetElementMap[facetName] = facetName;
         let shouldRenderSelected = true;
         const qState = this.getStateFromUrl();
         const ql = Object.keys(qState.selectedFacets).length;
-        if((lastAction === "addedAFacet" || lastAction ==="deletedAfacet")  && applyMultipleFilters && ql === 0) {
-            shouldRenderSelected = false;
-        }
-        if(selectedFacetsEl && selectedFacets && shouldRenderSelected ) {
+        if(selectedFacetsEl  && shouldRenderSelected ) {
             const k = Object.keys(selectedFacets);
             let selectedUi = ``;
             for(let i=0;i<k.length;i++){
@@ -266,8 +265,9 @@ const renderFacets = function(){
                         count,
                         dataId
                     } = item;
-                    selectedUi += this.options.facet.selectedFacetTemplate.bind(this)({
-                        facetName:j
+                    selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
+                        facetName:j,
+                        facetType:"text"
                     },{
                         name:name,
                         dataId:(dataId)?dataId:name,
@@ -275,7 +275,22 @@ const renderFacets = function(){
                     });
                 })
             }
-            selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetItemTemplate(selectedUi, facet);
+            let r = Object.keys(selectedRanges);
+            for(let j=0;j<r.length;j++){
+                const l = r[j];
+                const val = selectedRanges[l];
+                val.forEach(rEl=>{
+                    selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
+                        facetName:l,
+                        facetType:"range"
+                    },{
+                        name:rEl.replace(/[^\w\s]/gi, ''),
+                        dataId:rEl
+                    });
+
+                })
+            }
+            selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetTemplate(selectedUi, facet);
         }
 
     })

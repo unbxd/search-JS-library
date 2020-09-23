@@ -24,9 +24,18 @@ const trackProductClick = function(value){
 const trackImpression = function(){
     const results = this.getSearchResults();
     const query = this.getSearchQuery();
+    const  {
+        productType
+    } = this.options;
     const {
         products
     } = results;
+    let obj = { 
+        'pids_list' : []
+    };
+    if(productType ==="SEARCH") {
+        obj['query'] = query;
+    }
     if(products) {
         let pids = [];
         products.forEach(product => {
@@ -37,10 +46,8 @@ const trackImpression = function(){
             const pid = sku || uniqueId;
             pids.push(pid)
         });
-        Unbxd.track('search_impression', { 
-            'query' : query,
-            'pids_list' : pids
-        });  
+        obj['pids_list'] = pids;
+        Unbxd.track('search_impression',obj);  
     }
 }
 const trackFacetClick = function(state,type){

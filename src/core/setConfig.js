@@ -30,7 +30,8 @@ const setConfig = function(options = {}, props = {}) {
         this.options.showSwatches = (swatches && swatches.enabled) ? swatches.enabled :options.swatches.enabled;
     }
     if(productView) {
-        this.viewState.productViewType = (productView.viewTypes) ? productView.viewTypes: options.productView.viewTypes;
+        this.viewState.productViewType = (productView.defaultViewType) ? productView.defaultViewType: options.productView.defaultViewType;
+        this.options.productView.productViewType = this.viewState.productViewType;
     }
     
 }

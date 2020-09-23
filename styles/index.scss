@@ -352,10 +352,13 @@ body {
     margin: 0px;
     background: transparent;
     border-color: transparent;
+    padding: 0;
 }
 .UNX-no-result {
-  font-size: 10px;
   margin: 0px;
+}
+.UNX-suggestion-p {
+  margin: 2px 0px;
 }
 .UNX-result-info {
   color: #717989;
@@ -557,8 +560,8 @@ button.UNX-page-next {
   color: #0c94f7;
 }
 .UNX-list-block {
-  display: table;
   width: 100%;
+  display: block;
 }
 .UNX-text-facet-wrap {
   position: relative;
@@ -703,6 +706,7 @@ button.UNX-facet-open:before {
 .UNX-facets-selections {
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
 }
 .UNX-selected-facets-inner {
   flex-direction: row;
@@ -755,7 +759,9 @@ button.UNX-facet-open:before {
   background: #000000;
   color: #FFFFFF;
 }
-
+.UNX-selected-facets-inner .UNX-facet-count {
+  display: none;
+}
 @media only screen and (max-width: 1200px) {
   .UNX-result-wrapper {
     grid-template-columns: 33.3% 33.3% 33.3%;
