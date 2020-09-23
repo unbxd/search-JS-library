@@ -1,5 +1,5 @@
 
-function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetSearchTxt){
+function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem){
     const {
         facetName,
         facetType
