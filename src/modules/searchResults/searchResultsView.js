@@ -31,7 +31,7 @@ const renderSearch =  function() {
             if(swatches.enabled) {
                 swatchUI = this.renderSwatchBtns(product);
             }
-            productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType);
+            productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
             if(row === gridCount -  1) {
                 productsUI += `</div>`;
             }
@@ -45,7 +45,7 @@ const renderSearch =  function() {
             if(swatches.enabled) {
                 swatchUI = this.renderSwatchBtns(product);
             }
-            return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType);
+            return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
         }).join('');
     }
 

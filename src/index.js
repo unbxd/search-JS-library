@@ -30,7 +30,6 @@ class UnbxdSearch extends UnbxdSearchCore {
             loadedFromSuggestion:false,
             setFromSuggest:false,
             facetElementMap:{},
-            lastFacets:[],
             initialised:false
         };
         this.setConfig = setConfig.bind(this);
@@ -59,7 +58,10 @@ class UnbxdSearch extends UnbxdSearchCore {
             viewType
         } = urlParams || {};
         if(type ==="lastBack") {
-            onEvent(this,"lastBack");
+            if(this.viewState.productViewType !== viewType ){
+                this.viewState.productViewType = viewType;
+                this.reRender();
+            }
         }
         if(type === beforeApiCall) { 
             onEvent(this,beforeApiCall);
@@ -84,7 +86,6 @@ class UnbxdSearch extends UnbxdSearchCore {
             if(loader && loader.el) {
                 loader.el.innerHTML = ``;
             }
-            console.error("Some error occured. please check whether the given sitekey and apikey is correct")
         }
     }
     delegate(delgationElem,evt,elem,fn){
