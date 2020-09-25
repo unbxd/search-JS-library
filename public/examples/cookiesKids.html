@@ -205,15 +205,8 @@ window.unbxdSearch = new UnbxdSearch({
     mapping:{
         "imageUrl":"v_imageUrl"
     }
-  }
-});
-
-window.unbxdSearch.updateConfig({
-  searchBoxEl: document.getElementById("unbxdInput"),
-  searchTrigger: "click",
-  searchButtonEl: document.getElementById("searchBtn"),
+  },
   products:{
-    el:document.getElementById("searchResultsWrapper"),
     productType:"SEARCH",
     productAttributes:["title", "imageUrl", "display_size", "CompareAtPrice", "freshness", "srp", "max_price", "display_price_range", "productUrl", "min_price", "uniqueId", "discount", "brand", "relevantDocument", "discontinued", "qtysold", "catfacetvalues"],
     attributesMap:{
@@ -223,7 +216,16 @@ window.unbxdSearch.updateConfig({
         'unxStrikePrice':'null',
         'unxId':'uniqueId',
         'unxDescription':'productDescription'
-    },
+    }
+  }
+});
+
+window.unbxdSearch.updateConfig({
+  searchBoxEl: document.getElementById("unbxdInput"),
+  searchTrigger: "click",
+  searchButtonEl: document.getElementById("searchBtn"),
+  products:{
+    el:document.getElementById("searchResultsWrapper"),
     productClick: function(product,e) {
         console.log(product,"product,index",e);
     }

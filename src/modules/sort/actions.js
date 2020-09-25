@@ -10,6 +10,7 @@ function sortAction(e) {
     const {
         changeSort
     } = this.events;
+    this.checkFacets();
     if(action === this.actions.clearSort) {
         this.applySort("");
         this.options.onEvent(this,action);
@@ -20,6 +21,7 @@ function sortAction(e) {
             sort:value
         });
     }
+    
 };
 export {
     sortAction as default

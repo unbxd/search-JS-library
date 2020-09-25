@@ -78,6 +78,12 @@ const trackFacetClick = function(state,type){
     const query = this.getSearchQuery();
     Unbxd.track('facets', {'query':query,'facets':facetArr});
 }
+const trackCategoryPageLoad = function(instance,type) {
+    if(window.UnbxdAnalyticsConf){
+        window.UnbxdAnalyticsConf["page_type"] ="CATEGORY_PATH";
+        Unbxd.track("categoryPage", window.UnbxdAnalyticsConf);
+    }
+}
 const getCallbackActions = function(state,type) {
     const Unbxd = window.Unbxd || null;
     if(Unbxd && state){
@@ -93,6 +99,8 @@ const getCallbackActions = function(state,type) {
             break;
             case 'facetClick':
                 this.trackFacetClick(state,type);
+            case 'categoryPage':
+                this.trackCategoryPageLoad(state,type);
             break;
         }
     }
@@ -105,7 +113,8 @@ const setAnalytics = (prototype) => {
         getCallbackActions,
         trackProductClick,
         trackImpression,
-        trackFacetClick
+        trackFacetClick,
+        trackCategoryPageLoad
     })
 }
 
@@ -115,5 +124,6 @@ export {
     getCallbackActions,
     trackProductClick,
     trackImpression,
-    trackFacetClick
+    trackFacetClick,
+    trackCategoryPageLoad
 };

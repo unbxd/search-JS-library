@@ -17,6 +17,9 @@ const initialize = function() {
     this.bindEvents();
     const urlParams = this.getQueryParams();
     const ln = Object.keys(urlParams).length;
+    const {
+        defaultViewType
+    } = this.options.productView;
     if(ln > 0){
         const {
             viewType
@@ -25,6 +28,8 @@ const initialize = function() {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;
         }
+    } else {
+        this.options.extraParams.viewType = defaultViewType;
     }
     this.renderProductViewTypeUI();
 

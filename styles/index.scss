@@ -289,44 +289,56 @@ body {
   font-weight: 300;
   margin-bottom: 16px;
 }
-.UNX-line-wrap {
-  height: 6px;
+.UNX-range-slider-wrap{
+  padding:30px;
+}
+.UNX-range-slider-wrap .UNX-range-slider-wrapper {
+  height: 8px;
   border-radius: 3px;
   background-color: #f2f3f7;
-  left: 7px;
-  position: absolute;
+  left: 0px;
   margin: auto;
   top: 0;
   bottom: 0;
+  width:100%;
 }
-.UNX-line-wrap .UNX-line-inner {
-  height: 6px;
-  border-radius: 3px;
-  background: #1d2e44;
-  top: 0;
+.UNX-range-slider-wrapper .noUi-target {
+  padding: 0 4px;
 }
-.UNX-round-handle {
-  height: 18px;
-  width: 18px;
-  border: 1px solid #dae1e9;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px 0 rgba(133, 146, 172, 0.27);
-  position: absolute;
+.UNX-range-slider-wrapper .noUi-connect {
+  background: #000000;
+}
+
+.UNX-range-slider-wrapper .noUi-handle:before,
+.UNX-range-slider-wrapper .noUi-handle:after {
+  display: none;
+}
+.UNX-range-slider-wrapper .noUi-handle {
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  z-index: 9;
+  top:-8px;
+  right: -13px;
 }
+.UNX-range-slider-wrapper .noUi-handle:focus{
+  outline: solid 1px transparent;
+}
+
+
 .UNX-result-wrapper {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
 }
-.UNX-range-slider-wrapper {
-  height: 20px;
-  margin: 15px 0;
+.UNX-range-slider-wrap {
+  min-height: 100px;
   position: relative;
 }
+.UNX-range-value-block {
+  width: 100%;
+  clear: both;
+  padding: 12px 0px;
+}
+
 .UNX-primary-btn,
 .UNX-default-btn {
   background: #323949;
@@ -441,6 +453,7 @@ button.UNX-page-next {
   top: 0;
   bottom: 0;
   display: flex;
+  display: -ms-flexbox;
   width: 100%;
   height: 100%;
   align-items: center;
@@ -449,7 +462,8 @@ button.UNX-page-next {
   font-weight: bold;
   z-index: 11;
   font-size: 39px;
-  background: #ffffffb5;
+  background-color: #FFFFFF;
+  opacity: .8;
   left: 0;
 }
 
@@ -651,16 +665,15 @@ button.UNX-facet-open:before {
 }
 
 .UNX-facets-item {
-  height: auto;
-  overflow:scroll;
+  max-height:500px;
+  overflow-y:auto;
 }
 .UNX-view-more {
   height: 100px;
 }
 .UNX-accordian-open .UNX-facets-all {
-  max-height: 300px;
+  max-height: inherit;
   opacity: 1;
-  overflow: scroll;
 }
 .UNX-view-more-row {
   display: flex;

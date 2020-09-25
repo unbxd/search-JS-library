@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000" />
+    <title>Unbxd Sdk playground - Range Slider with noUiSlider</title>
+    <!--required frame works should be loaded here-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css" integrity="sha512-30YMvFlZRwPH3TcDlPWZofkzGwIwDAKshEue1qWet2yWEQ4Y/X+WnV1aTuNldE3Hbpcl5Zz4PxoXJKMMQvBHGQ==" crossorigin="anonymous" />
+    <link
+    href="../dist/css/vanillaSearch.css"
+    rel="stylesheet"
+  />
+  </head>
+  <style>
+  </style>
+
+  <body>
+
+      <div class="UNX-header">
+          <div class="UNX-header-inner">
+              <div class="UNX-logo">
+                  UNBXD
+              </div>
+              <div class="UNX-input-wrapper">
+                  <input id="unbxdInput" class="UNX-input"/>
+                  <button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
+              </div>
+          </div>
+      </div>
+
+      <div class="UNX-results-container">
+          <div class="UNX-head-wrapper">
+              <div class="UNX-selected-actions">
+                  <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
+                  <div class="UNX-selected-facet-wrapper" id="selectedFacetWrapper"></div>
+              </div>
+              <div class="UNX-product-type-block" id="productViewTypeContainer"></div>
+          </div>
+          <div class="UNX-product-results">
+              <div class="UNX-facet-wrapper">
+                  <div class="UNX-fxd-facet">
+                      <div class="UNX-selected-facet-wrapper UNX-selected-f-m" id="selectedMFacetWrapper"></div>
+                      <div class="UNX-multilevel-block" id="bucketedFacetWrapper"></div>
+                      <div class="UNX-text-facet-block" id="facetsWrapper"></div>
+                      <div class="UNX-range-block" id="rangeFacetWrapper"></div>
+                      <div class="UNX-m-facet-row">
+                          <button data-action="applyFacets" class="UNX-primary-btn UNX-facet-trigger">Apply</button>
+                          <button data-action="clearFacets" class="UNX-default-btn UNX-facet-trigger">Clear</button>
+                      </div>
+                      
+                  </div>
+                  <div class="UNX-m-facet-row">
+                      <button class="UNX-m-facet-btn UNX-facet-trigger fa fa-filter"></button>
+                  </div>
+              </div>
+              <div class="UNX-product-list">
+                  <div class="UNX-result-header">
+                      <div id="didYouMeanWrapper"></div>
+                      <div class="UNX-result-right">
+                          <div class="UNX-change-products" id="changeNoOfProducts"></div>
+                          <div class="UNX-sort-wrapper" id="sortWrapper"></div>
+                          <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
+                          <div id="" class="UNX-change-pagination-wrap unxPagination"></div>
+                      </div>
+                  </div>
+                  <div id="bannerContainer"></div>
+                  <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+                  <div id="" class="UNX-change-pagination-wrap UNX-m-page unxPagination"></div>
+              </div>
+          </div>
+          <div class="UNX-loader-container" id="loaderEl"></div>
+          <div id="noResultWrapper"></div>
+          <div id="clickScrollContainer">
+          </div>
+      </div>
+    <!--<script
+      type="text/javascript"
+      src="../dist/js/vanillaSearch.js"
+    />-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js" integrity="sha512-hwgsSKm7cPjNHLACxyMGVRrd7cH+wveyYM1ZxWxxbCZd/pXdMukyuIrrCjt2I7iLsmYDk02B1ZUcarEv1A3RVQ==" crossorigin="anonymous"></script>
+    <script src="../dist/js/vanillaSearch.js"></script>
+    <script type="text/javascript">
+      /* * * CONFIGURATION * * */
+      var UnbxdSiteName = "demo-unbxd700181503576558";
+      (function() {
+        var ubx = document.createElement("script");
+        ubx.type = "text/javascript";
+        ubx.async = true;
+        ubx.src = "//d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js";
+        (
+          document.getElementsByTagName("head")[0] ||
+          document.getElementsByTagName("body")[0]
+        ).appendChild(ubx);
+      })();
+
+      const unbxdCallbackEcma = function (instance, type,data){
+      }
+      window.unbxdSearch = new UnbxdSearch({
+        siteKey: "demo-unbxd700181503576558",
+        apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+        hashMode:true,
+        updateUrls:true,
+        searchBoxEl: document.getElementById("unbxdInput"),
+        searchTrigger: "click",
+        searchButtonEl: document.getElementById("searchBtn"),
+        products:{
+            productType:"SEARCH",
+        }
+    });
+    window.unbxdSearch.updateConfig({
+        products:{
+            el:document.getElementById("searchResultsWrapper"),
+            productType:"SEARCH",
+            productClick: function(product,e) {
+            }
+        },
+        spellCheck: {
+            enabled: true,
+            el: document.getElementById("didYouMeanWrapper")
+        },
+        noResults: {
+            el: document.getElementById("noResultWrapper")
+        },
+        facet: {
+            facetsEl: document.getElementById("facetsWrapper"),
+            selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+            applyMultipleFilters:false,
+            defaultOpen:"FIRST",
+            onFacetLoad:function(facets){
+            const self = this;
+            const {
+                facet
+            } = this.options;
+            const {
+                rangeWidgetConfig
+            } = facet;
+            facets.forEach(facetItem => {
+                const {
+                facetType,
+                facetName,
+                gap
+                } = facetItem;
+                const {
+                prefix
+                } = rangeWidgetConfig;
+
+                if(facetType === "range") {
+                const rangeId = `${facetName}_slider`;
+                const sliderElem = document.getElementById(rangeId);
+                let {
+                    end,
+                    gap,
+                    max,
+                    min,
+                    start
+                } = facetItem;
+                const selectedValues = sliderElem.dataset;
+                if(selectedValues) {
+                    start = Number(selectedValues.x),
+                    end = Number(selectedValues.y)
+                }
+                this[rangeId] = noUiSlider.create(sliderElem, {
+                    start: [start, end],
+                    tooltips: [{
+                    to: function (value) {
+                        return `${prefix} ${Math.round(value)}`;
+                    }},
+                    {
+                        to: function (value) {
+                            return `${prefix} ${Math.round(value)}`;
+                        }
+                    }
+                    ],
+                    connect: true,
+                    range: {
+                        'min': 0,
+                        'max': max
+                    },
+                    format: {
+                        to: function (value) {
+                            return Math.round(value);
+                        },
+                        from: function (value) {
+                            return Math.round(value);
+                        }
+                    },
+                    padding: 0,
+                    margin: 0,
+                });
+                this[rangeId].on("set", function(data){
+                const newData = {
+                    start: data[0],
+                    end: data[1],
+                    facetName,
+                    gap
+                };
+                self.setRangeSlider(newData);
+            });
+
+            }
+
+            });
+            },
+            isCollapsible:true,
+            isSearchable:true,
+            enableViewMore:false,
+            rangeTemplate: function(range, selectedRange, facet){
+            const {
+                facetName,
+                start,
+                end
+            } = range;
+            let min = start;
+            let max = end;
+            if(selectedRange.length > 0) {
+                const sel  = selectedRange[0].replace(/[^\w\s]/gi, '').split(" TO ");
+                min = sel[0];
+                max = sel[1];
+            }
+            const rangId = `${facetName}_slider`;
+            return [`<div id="${facetName}"  data-id="${facetName}" class=" UNX-range-slider-wrap">`,
+                            `<div class="UNX-value-container UNX-range-value-block" ></div>`,
+                            `<div id="${rangId}" data-x="${min}" data-y="${max}" class="UNX-range-slider-wrapper"></div>`,
+                        `</div>`,
+                    `<div>`,
+                `</div>`].join('')
+            }
+        },
+        pagination: {
+            type:'INFINITE_SCROLL',
+            el:document.querySelector("#clickScrollContainer"),
+            onPaginate:function(data) {
+            }
+        },
+        breadcrumb: {
+            el: document.getElementById("breadcrumpContainer")
+        },
+        pagesize: {
+            el: document.getElementById("changeNoOfProducts")
+        },
+
+        sort: {
+            el: document.getElementById("sortWrapper"),
+            options: [
+            {
+                value: "min_price desc",
+                text: "Price High to Low"
+            },
+            {
+                value: "min_price asc",
+                text: " Price Low to High"
+            }
+            ]
+        },
+        loader :{
+            el:document.getElementById("loaderEl")
+        },
+        productView:{
+            el: document.getElementById("productViewTypeContainer"),
+            defaultViewType: "GRID"
+        },
+        banner: {
+            el: document.getElementById("bannerContainer"),
+            count: 1
+        },
+        swatches: {
+            enabled: true,
+            attributesMap: {
+            swatchList: "color",
+            swatchImgs: "unbxd_color_mapping",
+            swatchColors: "color"
+            }
+        },
+        onAction:function(e, ctx) {
+        },
+        onEvent:unbxdCallbackEcma
+
+    })
+
+    </script>
+    <script>
+    </script>
+  </body>
+</html>

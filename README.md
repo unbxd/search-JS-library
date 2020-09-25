@@ -314,6 +314,7 @@ breadcrumb options are available here.
 | getCategoryPage | function | to render the category page. eg:unbxdSearch.getCategoryPage() |
 | getBrowsePage | function | to render the browse page. eg:unbxdSearch.getBrowsePage() |
 | getResults | function | to make the new search api call, eg: unbxdSearch.getResults("dress") |
+| setRangeSlider | function | to apply a range filter from the slider eg: unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200}) |
 
 ## Contributions
 

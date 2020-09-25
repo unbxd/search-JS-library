@@ -12,6 +12,7 @@ function onPageViewTypeClick(e) {
     const {
         viewAction,
     } = dataSet;
+    this.checkFacets();
     if(productViewType !== viewAction ) {
         this.viewState.productViewType = viewAction;
         const {
@@ -21,6 +22,7 @@ function onPageViewTypeClick(e) {
             "viewType":viewAction
         });
         this.setPageStart(0);
+        this.state.isBack = false;
         this.getResults.bind(this)();
 
     }
