@@ -1,4 +1,4 @@
-export default function(product,idx,swatchUI,productViewType){
+export default function(product,idx,swatchUI,productViewType,products ){
     const {
         unxTitle,
         unxImageUrl,
@@ -7,9 +7,6 @@ export default function(product,idx,swatchUI,productViewType){
         unxPrice,
         unxDescription
     } = product; 
-    const {
-        products
-    } = this.options;
     const {
         productItemClass
     }  = products;

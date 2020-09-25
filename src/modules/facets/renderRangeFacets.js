@@ -1,105 +1,44 @@
-const renderRangeFacets = function(rangeFacets, selectedRanges) {
-    const self = this;
-    const getRangesFrom = (sRanges, xMin = 0, yMin = 100) => {
-        let sArr = [];
-        sRanges.forEach(sRange => {
-            const trimmed = sRange.replace(/(^")|("$)/g, '').replace(/\"{2,}/g, '"').replace(/\\\"/g, '"').replace(/(^\[)|(\]$)/g, '');
-            const rangArr = trimmed.split(" TO ");
-            sArr.push(Number(rangArr[0]));
-            sArr.push(Number(rangArr[1]));
-        })
-        sArr = sArr.sort((a, b) => a-b);
-        let x = xMin;
-        let y = yMin;
-        if(sArr.length >= 2) {
-            x = sArr[0];
-            y = sArr[sArr.length -1];
-        }
-        return {
-            start:x,
-            end:y
-        };
-    }
-    const onStop = (data) => {
-        const  {
-            left,
-            right,
-            props : {
-                end,
-                facetName,
-                displayName,
-                gap
-            } = {}
-        } = data;
-        const newData = {
-            start: left,
-            end: right,
-            facetName,
-            displayName,
-            gap
-        }
-        this.viewState.lastAction = "updatedRangeSlider";
-        this.setRangeFilter(newData);
-        if(!self.options.applyMultipleFilters) {
-            this.setPageStart(0);
-            this.applyRangeFacet();
-        }
-    }
+const renderRangeFacets = function(range, selectedRange, facet) {
     const {
-        rangeFacet
-    } = this.state;
-    const {
-        facet
-    } = this.options;
-    const {
-        actionBtnClass
-    } = this.options;   
-
-
-    const rangeFacetTemplate = rangeFacets.map(item => {
-        const {
-            facetName,
-            displayName,
-            position,
-            values,
-            start,
+        facetName,
+        values,
+      } = range;
+      let valueUI = ``;
+      const {
+        facetClass,
+        selectedFacetClass,
+        applyMultipleFilters,
+        applyButtonText,
+            clearButtonText,
+      } = facet;
+      const selected = selectedRange.length > 0 ? true :false;
+      values.forEach(item =>{
+          const {
+            from,
             end
-        } = item;
-        const selectedRange = rangeFacet[facetName];
-        let minX = start;
-        let minY = end;
-        const isExpanded =  this.isExpandedFacet(facetName);
-        if(selectedRange) {
-            const {
-                start,
-                end
-            } = getRangesFrom(selectedRange,values.start,values.end);
-            minX = start;
-            minY = end;
+          } = item;
+        const isSelected = this.isSelectedRange(facetName,item);
+        const btnCss = (isSelected) ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}`:`${facetClass}`;
+        valueUI +=[`<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
+            `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
+            `<span class="UNX-facet-count">(${from.count})</span>`,
+      `</button>`].join('');
+      });
+      let clearBtn = ``;
+        let applyBtn = ``;
+        if(selected) {
+            if(applyMultipleFilters) {
+                applyBtn = `<button class="UNX-default-btn ${facetClass} UNX-facet-primary" data-action="applyRange"> ${applyButtonText}</button>`;
+            }
+            clearBtn = `<button class="UNX-default-btn UNX-facet-clear  ${facetClass}" data-action="clearRangeFacets">${clearButtonText}</button>`;
         }
-        const rangeSliderElem =  new self.RangeSlider({
-            facetName,
-            displayName,
-            position,
-            values,
-            onStop,
-            minX,
-            minY,
-            start:0,
-            end,
-            wrapper:self.facetsWrapper,
-            rangeConfig: facet.rangeWidgetConfig,
-            ...facet,
-            actionBtnClass
-        }).render();
-    
-        const rangeUi = this.options.facet.facetTemplate.bind(this)(item, rangeSliderElem, isExpanded, null,facet);
-        return  [`<div data-test-id="${this.testIds.UNX_rangeslider}" class="range-facet">`,
-                    rangeUi,
-                    `</div>`].join('');
-            }).join('');
-        return rangeFacetTemplate;
-}
+    return [`<div class="UNX-range-wrapper">`,
+        valueUI,
+        `<div class="UNX-price-action-row">`,
+            applyBtn,clearBtn,
+        `<div>`,
+      `</div>`].join('')
+};
 export {
     renderRangeFacets
 };

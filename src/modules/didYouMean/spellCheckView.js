@@ -23,11 +23,13 @@ const didYouMeanUI =  function(query,suggestion,pages) {
         selectorClass
     } = this.options.spellCheck;
     const {
-        products
+        productType
     } = this.options;
     let newQuery = query;
-    if(products.productType !=="SEARCH" ) {
-        newQuery = " ";
+    if(productType !=="SEARCH" ) {
+        const catId = this.getCategoryId() || "";
+        const cId = decodeURIComponent(catId).split(">");
+        newQuery = cId[cId.length-1] || cId[0] ;
     }
     const {
         UNX_spellCheck

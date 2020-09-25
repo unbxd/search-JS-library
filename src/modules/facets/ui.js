@@ -17,7 +17,7 @@ function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem){
     const {
         UNX_uFilter
     } = this.testIds;
-    let action = "deleteFacetValue"
+    let action = "deleteSelectedFacetValue"
     if(facetType === "range") {
         action = "deleteSelectedRange"
     }
@@ -48,6 +48,7 @@ function selectedFacetUI(selections, facet) {
 function facetItemUiElem (facet , value,facetSearchTxt) {
     const {
         facetName,
+        isSelected
     } = facet;
     const  {
         name,
@@ -55,7 +56,8 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
         dataId
     } = value;
     let {
-        facetClass
+        facetClass,
+        selectedFacetClass
     } = this.options.facet;
     const {
         UNX_uFilter
@@ -65,7 +67,12 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
             facetClass +=' UNX-search-hidden'
         }
     }
-    return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="changeFacet" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+    let action =  "changeFacet";
+    if(isSelected) {
+        facetClass += ` ${selectedFacetClass}`
+        action = "deleteFacetValue";
+    }
+    return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
                 `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
             `</button>`].join('');
 }

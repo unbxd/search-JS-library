@@ -1,6 +1,5 @@
 const renderDidYouMean = function (suggestion) {
-    const {
-        noResultQuery,
+    let {
         userInput
     } = this.state;
     const pages = this.getPaginationInfo() || {};

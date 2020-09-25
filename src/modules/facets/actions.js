@@ -47,6 +47,24 @@ const findChangedFacet = function(e) {
             id
         },'facetClick');
     }
+    if(facetAction === "deleteSelectedFacetValue") {
+        if(this.findSelectedFacet(facetName)) {
+            this.viewState.lastAction = "deletedAfacet";
+            this.deleteAFacet.bind(this)(facetName, id);
+            this.options.onEvent(this,events.deleteFacetValue, {
+                facetName
+            });
+            this.getCallbackActions({
+                facetName,
+                facetAction,
+                id
+            },'facetClick');
+                this.setPageStart(0);
+                this.getResults();
+
+        }
+    }
+    
     if(facetAction === actions.deleteFacetValue) {
         if(this.findSelectedFacet(facetName)) {
             this.viewState.lastAction = "deletedAfacet";
@@ -94,6 +112,7 @@ const findChangedFacet = function(e) {
     if(facetAction === "clearAllFacets") {
         this.viewState.lastAction = "clearAllFacets";
         this.state.selectedFacets = [];
+        this.state.rangeFacet = [];
         this.setPageStart(0);
         this.getResults();
     }
@@ -109,6 +128,7 @@ const findChangedFacet = function(e) {
             facetName,
             applyMultiple:true
         });
+        
         this.setPageStart(0);
         this.getResults();
 
@@ -121,6 +141,7 @@ const findChangedFacet = function(e) {
         } else {
             this.setCategoryId(dataSet, this);
         }
+        this.setPageStart(0);
         this.getResults();
         this.getCallbackActions(dataSet,'facetClick');
     }
@@ -131,6 +152,7 @@ const findChangedFacet = function(e) {
         } else {
             this.setCategoryId(dataSet, this);
         }
+        this.setPageStart(0);
         this.getResults();
         this.getCallbackActions(dataSet,'facetClick');
     }
