@@ -308,7 +308,6 @@ breadcrumb options are available here.
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| el | Element | NA | Element in which to render the no results component |
 | template | Function | `function(query){return '<div class="UNX-no-results"> No Results found '+ query + '</div>'}` | Customise the look and feel of the no results component by using this function. You will get the searched query as param to this function |
 
 # Instance Methods
