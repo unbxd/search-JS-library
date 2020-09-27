@@ -2,29 +2,31 @@ import {
     findChangedFacet
 } from './actions';
 
-function renderRangeFacet(facet,isExpanded) {
+function renderRangeFacet(rangeFacet, isExpanded) {
     const {
         facetName
-    } = facet;
+    } = rangeFacet;
     const {
         openFacet,
         closeFacet
     } = this.cssList;
     const {
+        facet
+    } = this.options;
+    const {
         isCollapsible
-    } = this.options.facet;
+    } = facet;
     const selectedRanges = this.state.rangeFacet;
-    const facetUI =  this.options.facet.rangeTemplate.bind(this)([facet],selectedRanges);
+    const selectedRange = selectedRanges[facetName] || [];
+    const facetUI =  this.options.facet.rangeTemplate.bind(this)(rangeFacet,selectedRange, facet);
+    const rangeUi = this.options.facet.facetTemplate.bind(this)(rangeFacet, facetUI, isExpanded, null,facet);
     let styles = (isExpanded)? openFacet:closeFacet;
     if(!isCollapsible) {
         styles="";
     }
-    return `<div id="${facetName}" class="UNX-facet-item-d range-facets-block ${styles}">${facetUI}<div>`
+    return `<div id="${facetName}" class="UNX-facet-item-d range-facets-block ${styles}">${rangeUi}<div>`
 }
 
-function setRangeFilter(data){
-    this.setRangeFacet(data)
-}
 function renderMultiLevelFacet(bucketedFacet,isExpanded) {
     const breadCrumb = this.getBreadCrumbsList();
     let bucketedUi = ``;
@@ -54,11 +56,9 @@ const isSelectedRange = function(facetName,range){
     const selections = this.getSelectedRanges(facetName);
     const {
         from,
-        to,
         end
     } = range;
-    const last = end || to;
-    const aR = `[${from.name} TO ${last.name}]`
+    const aR = `[${from.name} TO ${end.name}]`
     if(selections && selections.indexOf(aR) >= 0) {
         return true
     }
@@ -89,7 +89,6 @@ const getSearchFacetsText = function(facet) {
 
 const reRenderTextFacet = function(facetName) {
     const {
-        textFacetWrapper,
         facetClass
     } = this.options.facet;
     const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
@@ -127,7 +126,6 @@ const getAllTextFacets = function() {
     })
 }
 const getAllRangeFacets = function() {
-    
     const ranges = this.getRanges();
     return ranges.map(item => {
         item.facetType = "range";
@@ -148,7 +146,12 @@ const getAllFacets = function() {
     const multiFacets = this.getAllCategory();
     let all  = [...multiFacets,...texts,...ranges];
     return all.sort(sortFacets);
-
+}
+const setRangeSlider = function(value) {
+    this.setRangeFacet(value)
+    this.viewState.lastAction = "updatedRangeSlider";
+    this.setPageStart(0);
+    this.applyRangeFacet();
 }
 const renderTextFacet = function(facetItem,selectedFacet,isExpanded,facetSearchTxt, onlyValues) {
     let valuesUI = [];
@@ -160,7 +163,6 @@ const renderTextFacet = function(facetItem,selectedFacet,isExpanded,facetSearchT
         openFacet,
         closeFacet
     } = this.cssList;
-    let selectedFacetsUI = ``;
     const self = this;
     const {
         facet
@@ -180,11 +182,10 @@ const renderTextFacet = function(facetItem,selectedFacet,isExpanded,facetSearchT
                 })
             }
             if(selected) {
-                if(self.options.facet.selectedFacetsEl) {
-                    selectedFacetsUI += self.options.facet.selectedFacetItemTemplate.bind(self)(facetItem,value,"",facet);
-                }
-                return self.options.facet.selectedFacetItemTemplate.bind(self)(facetItem,value,facetSearchTxt,facet)
+                facetItem.isSelected = true;
+                return self.options.facet.facetItemTemplate.bind(self)(facetItem,value,facetSearchTxt,facet)
             } else{
+                facetItem.isSelected = false;
                 return self.options.facet.facetItemTemplate.bind(self)(facetItem, value,facetSearchTxt)
             }
         });
@@ -219,13 +220,11 @@ const renderFacets = function(){
     const self = this;
     const allFacets = this.getAllFacets();
     const {
-        facetsWrapper,
-        selectedFacetWrapper
+        facetsWrapper
     } = this;
     facetsWrapper.innerHTML = ``;
     const selectedFacets = this.getSelectedFacets();
     const selectedRanges  =this.getSelectedRanges();
-    console.log(selectedFacets,"selectedFacets");
     allFacets.forEach((facetItem,idx) => {
         const {
             facetType,
@@ -250,51 +249,65 @@ const renderFacets = function(){
             facetsWrapper.innerHTML += this.renderMultiLevelFacet(facetItem,isExpanded,facetSearchTxt);
         }
         this.viewState.facetElementMap[facetName] = facetName;
-        let shouldRenderSelected = true;
-        const qState = this.getStateFromUrl();
-        const ql = Object.keys(qState.selectedFacets).length;
-        if(selectedFacetsEl  && shouldRenderSelected ) {
-            const k = Object.keys(selectedFacets);
-            let selectedUi = ``;
-            for(let i=0;i<k.length;i++){
-                const j = k[i];
-                const vals = selectedFacets[j];
-                vals.forEach(item => {
-                    const {
-                        name,
-                        count,
-                        dataId
-                    } = item;
-                    selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
-                        facetName:j,
-                        facetType:"text"
-                    },{
-                        name:name,
-                        dataId:(dataId)?dataId:name,
-                        count:count?count:0
-                    });
-                })
-            }
-            let r = Object.keys(selectedRanges);
-            for(let j=0;j<r.length;j++){
-                const l = r[j];
-                const val = selectedRanges[l];
-                val.forEach(rEl=>{
-                    selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
-                        facetName:l,
-                        facetType:"range"
-                    },{
-                        name:rEl.replace(/[^\w\s]/gi, ''),
-                        dataId:rEl
-                    });
-
-                })
-            }
-            selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetTemplate(selectedUi, facet);
-        }
-
     })
     this.options.facet.onFacetLoad.bind(this)(allFacets);
+}
+const renderSelectedFacets = function() {
+    const selectedFacets = this.getSelectedFacets();
+    const selectedRanges  =this.getSelectedRanges();
+    const k = Object.keys(selectedFacets);
+    let selectedUi = ``;
+    const {
+        facet
+    } = this.options;
+    for(let i=0;i<k.length;i++){
+        const j = k[i];
+        const vals = selectedFacets[j];
+        vals.forEach(item => {
+            const {
+                name,
+                count,
+                dataId
+            } = item;
+            selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
+                facetName:j,
+                facetType:"text"
+            },{
+                name:name,
+                dataId:(dataId)?dataId:name,
+                count:count?count:0
+            });
+        })
+    }
+    let r = Object.keys(selectedRanges);
+    for(let j=0;j<r.length;j++){
+        const l = r[j];
+        const val = selectedRanges[l];
+        val.forEach(rEl=>{
+            selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
+                facetName:l,
+                facetType:"range"
+            },{
+                name:rEl.replace(/[^\w\s]/gi, ''),
+                dataId:rEl
+            })
+        })
+    }
+    this.selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetTemplate(selectedUi, facet);
+}
+const checkFacets = function() {
+    const {
+        applyMultipleFilters
+    } = this.options.facet;
+    if(applyMultipleFilters){
+        const qS = this.getStateFromUrl();
+        const {
+            selectedFacets,
+            selectedRanges
+        } = qS;
+        this.state.selectedFacets = selectedFacets;
+        this.state.selectedRanges = selectedRanges;
+    }
 }
 
 
@@ -302,7 +315,6 @@ const renderFacets = function(){
 const setFacets = (prototype) => {
     prototype = Object.assign(prototype,{
         findChangedFacet,
-        setRangeFilter,
         isSelectedRange,
         clearAllFacets,
         isExpandedFacet,
@@ -317,14 +329,16 @@ const setFacets = (prototype) => {
         renderTextFacet,
         renderRangeFacet,
         renderMultiLevelFacet,
-        renderFacets
+        renderFacets,
+        renderSelectedFacets,
+        checkFacets,
+        setRangeSlider
     })
 };
 
 export {
     setFacets as default,
     findChangedFacet,
-    setRangeFilter,
     clearAllFacets,
     isExpandedFacet,
     setSearchFacetsText,
@@ -338,5 +352,8 @@ export {
     renderTextFacet,
     renderRangeFacet,
     renderMultiLevelFacet,
-    renderFacets
+    renderFacets,
+    renderSelectedFacets,
+    checkFacets,
+    setRangeSlider
 };

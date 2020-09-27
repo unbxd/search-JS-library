@@ -1,7 +1,7 @@
 ## Changelog
 
 
-## [0.2.0] - 2020-09-23
+## [0.2.0] - 2020-09-25
 
 ### Changed
 - changed searchBoxSelector to searchBoxEl
@@ -11,6 +11,9 @@
 - inifinteScrollTriggerEl to infinteScrollTriggerEl
 - moved rangeWidget under facet Object
 - actionCallback to onAction
+- Removed range slider from the sdk, by default checkboxes will be rendered
+- Added example page to configure the range slider
+
 
 ### Added
 - added optional 'enable' property with the config objects

@@ -10,7 +10,6 @@ import setBreadCrumbs from '../modules/breadcrumbs/setBreadcrumbs';
 import setSwatches from '../modules/swatches/setSwatches';
 import setPageSize from '../modules/pageSize/setPageSize';
 import setAnalytics from '../modules/analytics/setAnalytics';
-import RangeSlider from '../modules/widgets/RangeSlider';
 import initialize from '../core/initialize';
 
 const setSearchWidget = function(config){
@@ -123,12 +122,14 @@ const getCategoryPage = function() {
     this.resetAll();
     this.options.productType = "CATEGORY";
     this.options.products.productType = "CATEGORY";
+    this.getCallbackActions(this,'categoryPage');
     this.getResults();
 }
 const getBrowsePage = function() {
     this.resetAll();
     this.options.productType = "BROWSE";
     this.options.products.productType = "BROWSE";
+    this.getCallbackActions(this,'categoryPage');
     this.getResults();
 }
 const resetViewState = function() {
@@ -147,7 +148,6 @@ const setMethods = (UnbxdSearch) => {
         prototype
     } = UnbxdSearch;
     prototype.renderBannerUI = renderBannerUI;
-    prototype.RangeSlider = RangeSlider;
     prototype.setSearchWidget = setSearchWidget;
     prototype.setFacetWidget = setFacetWidget;
     prototype.updateConfig = updateConfig;

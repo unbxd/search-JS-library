@@ -7,7 +7,8 @@ const reRender = function(){
         searchBoxEl,
         loader,
         breadcrumb,
-        productView
+        productView,
+        facet
     } = this.options;
     const {
         beforeRender,
@@ -72,6 +73,7 @@ const reRender = function(){
         }
     }
     this.renderFacets();
+    this.renderSelectedFacets();
     this.renderBannerUI();
     this.renderProductViewTypeUI();
     this.renderPageSize();

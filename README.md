@@ -136,7 +136,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 |----------|----------|----------|----------|
 | productType | String | "SEARCH" | Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY |
 | el | Element | null | Element in which to render the search results |
-| template | Function | [default](src/modules/searchResults/ui.js) | Customise the look and feel of the product card by returning your custom HTML string from this function. This function gets 2 parameters: complete product object and index of the current product |
+| template | Function | [default](src/modules/searchResults/ui.js) | Customise the look and feel of the product card by returning your custom HTML string from this function. This function gets 5 parameters: complete product object and index of the current product, swatches, selected view type, product config |
 | productAttributes | Array |  `["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]` | This is an array of all required fields for generating the result template. This is helpful to load the results faster. |
 | attributesMap | Object |  `{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}` | Field mappings for the data to be displayed in the product card |
 | gridCount | Number | Adjusts as per screen size | If you want to have grid type user interface, then you can configure how many columns you want to have in a row with this config. By default it will adjust according to screen size. |
@@ -321,6 +321,7 @@ breadcrumb options are available here.
 | getCategoryPage | function | Call this function to render the category page. Ex: `unbxdSearch.getCategoryPage()` |
 | getBrowsePage | function | Call this function to render the browse page. Ex: `unbxdSearch.getBrowsePage()` |
 | getResults | function | Call this function to refetch the search results. Ex: `unbxdSearch.getResults("dress")` |
+| setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
 
 ## Contributions
 
