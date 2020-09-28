@@ -1,6 +1,13 @@
 ## Changelog
 
 
+## [1.0.0] - 2020-09-28
+
+### Added
+- Added more examples
+- Added gzip
+
+
 ## [0.2.0] - 2020-09-25
 
 ### Changed
