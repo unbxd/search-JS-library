@@ -157,6 +157,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | selectedFacetsEl | Element | null | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks |
 | selectedFacetTemplate | Function | [default](src/modules/facets/ui.js) | Customise the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
 | selectedFacetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customise the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
+| clearAllText | String | "Clear All" | The text to show for the clear all button that clears all selected facets |
 | rangeTemplate | Function |  [default](src/modules/facets/renderRangeFacets.js) | Customise the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
 | rangeWidgetConfig | Object | NA | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs  |
 | facetMultilevel | Boolean | true | Turn this on to send the multilevel parameter in the search API |
@@ -321,7 +322,8 @@ breadcrumb options are available here.
 | getCategoryPage | function | Call this function to render the category page. Ex: `unbxdSearch.getCategoryPage()` |
 | getBrowsePage | function | Call this function to render the browse page. Ex: `unbxdSearch.getBrowsePage()` |
 | getResults | function | Call this function to refetch the search results. Ex: `unbxdSearch.getResults("dress")` |
-| setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
+
+<!--- | setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` | -->
 
 ## Contributions
 
