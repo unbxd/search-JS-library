@@ -68,6 +68,7 @@ const options = {
     },
     startPageNo:0,
     productView : {
+        enabled:true,
         el:null,
         template:renderProductViewType,
         action:'click', // CLICK or CHANGE

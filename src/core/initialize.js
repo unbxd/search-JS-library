@@ -18,7 +18,8 @@ const initialize = function() {
     const urlParams = this.getQueryParams();
     const ln = Object.keys(urlParams).length;
     const {
-        defaultViewType
+        defaultViewType,
+        enabled
     } = this.options.productView;
     if(ln > 0){
         const {
@@ -31,7 +32,9 @@ const initialize = function() {
     } else {
         this.options.extraParams.viewType = defaultViewType;
     }
-    this.renderProductViewTypeUI();
+    if(enabled) {
+        this.renderProductViewTypeUI();
+    }
 
 }
 export default initialize;

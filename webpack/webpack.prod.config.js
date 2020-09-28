@@ -3,6 +3,7 @@ const packageJson = require('../package.json');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const S3Plugin = require('webpack-s3-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -54,6 +55,21 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '../css/[name].css',
       chunkFilename: '../css/[name].css'
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      filename(pathData) {
+        const {
+          dir,
+          name,
+          ext
+        } = pathData;
+        if (ext === ".css") {
+          return `${dir}${name}.min.css`
+        }
+        return `${name}.min.js`;
+      }
+
     })
     
   ],
@@ -100,14 +116,6 @@ module.exports = {
             }
           ]
 
-        },
-        {
-          test: /\.template\.js$/,
-          loader: 'minify-template-literal-loader',
-          options: {
-            caseSensitive: true,
-            collapseWhitespace: true
-          }
         }
         
     ]
