@@ -127,7 +127,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | productId | String | "uniqueId" | The field name which denotes the unique identifier for each product |
 | defaultFilters | Object | null | Default filters to apply to all search API requests |
 | searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config value to "query" | 
-| sdkHostName | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
+| searchEndPoint | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
 | searchPath | String | "" | Any additional path string to be added to the URL. This is useful incase you have an SPA and the search page is hosted on a subpath of your site |
 
 # Products Config
@@ -192,16 +192,16 @@ This provides you the power of entire Javascript to build your desired HTML stri
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| enabled | Boolean | true | Turn this off if you do not want the pagination widget |     
+| enabled | Boolean | true | Turn this off if you do not want the pagination widget |
+| type                      	| String   	| "CLICK_N_SCROLL" | Type of pagination: "FIXED_PAGINATION" or "INFINITE_SCROLL" or "CLICK_N_SCROLL" |
 | el                        	| Element  	| null | Element in which to render the pagination component  |
 | template                  	| Function 	| [default](src/modules/pagination/fixedPaginationView.js) | Customise the look and feel of the pagination by returning your custom HTML string from this function. This function gets 1 parameter: an object that has the pagination information |  
-| pageClass | String | "UNX-page-items" | |
-| selectedPageClass | String | "UNX-selected-page-item" | |
-| type                      	| String   	| "CLICK_N_SCROLL" | Type of pagination: "FIXED_PAGINATION" or "INFINITE_SCROLL" or "CLICK_N_SCROLL" |
+| pageClass | String | "UNX-page-items" | CSS classname for the pagination component |
+| selectedPageClass | String | "UNX-selected-page-item" | CSS classname for selected page item |
 | onPaginate                	| `function(paginationInfo){}` 	| NA | Callback function that gets called after a pagination action |
-| pageLimit | Number | 6 | |
-| inifinteScrollTriggerEl | Element | window | |
-| heightDiffToTriggerNextPage | Number | 100 | |
+| pageLimit | Number | 6 | Number of pages to show upfront (when `type` is `FIXED_PAGINATION`) |
+| infinteScrollTriggerEl | Element | window | Element on which to detect infinite scroll page boundary (when `type` is set to `INFINITE_SCROLL`) |
+| heightDiffToTriggerNextPage | Number | 100 | Height of the page to consider to fetch the next page data (when `type` is set to `INFINITE_SCROLL`) |
 | action                    	| String   	| "click" | Action on which pagination should trigger: "click" or "change" |
 
 
@@ -284,7 +284,7 @@ breadcrumb options are available here.
 | enabled | Boolean | false | Turn this flag on for enabling swatches |
 | attributesMap | Object | `{swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}` | Field mapping of the catalog attributes to the swatch attributes |
 | swatchClass | String | "UNX-swatch-btn" | Additional CSS class name for the swatches |
-| template | Function | NA | Customise the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters |
+| template | Function | [default](src/modules/swatches/ui.js) | Customise the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters |
 
 # Banner Config
 
@@ -308,19 +308,20 @@ breadcrumb options are available here.
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| el | Element | NA | Element in which to render the no results component |
 | template | Function | `function(query){return '<div class="UNX-no-results"> No Results found '+ query + '</div>'}` | Customise the look and feel of the no results component by using this function. You will get the searched query as param to this function |
 
-# Methods
+# Instance Methods
+
+**Note:** All the below functions can be called on the instance returned by the `UnbxdSearch` constructor function
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |----------|----------|----------|
-| reRender | function | to render the page again. eg:unbxdSearch.reRender() |
-| updateConfig | function | for updating the options in run time. eg:unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}}) |
-| getCategoryPage | function | to render the category page. eg:unbxdSearch.getCategoryPage() |
-| getBrowsePage | function | to render the browse page. eg:unbxdSearch.getBrowsePage() |
-| getResults | function | to make the new search api call, eg: unbxdSearch.getResults("dress") |
-| setRangeSlider | function | to apply a range filter from the slider eg: unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200}) |
+| reRender | function | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
+| updateConfig | function | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
+| getCategoryPage | function | Call this function to render the category page. Ex: `unbxdSearch.getCategoryPage()` |
+| getBrowsePage | function | Call this function to render the browse page. Ex: `unbxdSearch.getBrowsePage()` |
+| getResults | function | Call this function to refetch the search results. Ex: `unbxdSearch.getResults("dress")` |
+| setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
 
 ## Contributions
 
