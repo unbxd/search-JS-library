@@ -112,7 +112,7 @@ const options = {
     breadcrumb:{
         enabled:true,
         el:null,
-        selectorClass:"bread-crumb",
+        selectorClass:"UNX-bread-crumb",
         template:breadCrumbsUI
     },
 

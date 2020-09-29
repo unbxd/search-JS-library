@@ -15,7 +15,8 @@
     "start": "webpack-dev-server --open --config ./webpack/webpack.config.js",
     "build:prod": "webpack --config ./webpack/webpack.prod.config.js",
     "server": "http-server ./public",
-    "generate-docs": "jsdoc -c ./docs/jsDoc.json "
+    "generate-docs": "jsdoc -c ./docs/jsDoc.json ",
+    "upload-s3":"node s3Upload.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

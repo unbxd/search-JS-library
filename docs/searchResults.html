@@ -38,7 +38,7 @@
     <li class="nav-link ">
         <a href="pagination.html">pagination</a>
     </li>
-    <li class="nav-link ">
+    <li class="nav-link">
         <a href="productviewtype.html">product view type</a>
     </li>
     <li class="nav-link">
@@ -56,8 +56,8 @@
     <li class="nav-link">
             <a href="loaders.html">Loaders</a>
         </li>
-        <li class="nav-link nav-current-link">
-            <a href="searchResults.html">Search Results</a>
+        <li class="nav-link ">
+            <a href="products.html">Products</a>
         </li>
         <li>
             <h6>Api Docs</h6>
@@ -74,107 +74,98 @@
           <li class="nav-link ">
             <a href="overRidingDefaultMethods.html">Override Methods</a>
           </li>
-
 </nav>
 
 <div id="main">
-  <h3>Search Results</h3>
-  <p> Product cards will be rendered here.</p>
+  <h3>Products</h3>
+  <p>This is the component which renders the product cards. The template function receives each product object and its position as second argument</p>
 
-<script type="text/plain" class="language-javascript">
-
-    products:{
-        el:document.getElementById("searchResultsWrapper"),
-        template : function(product,idx){
-            //product  - object - each product details
-            //idx - number - index of the product
-            const {
-                unxTitle,
-                unxImageUrl,
-                uniqueId,
-                unxStrikePrice,
-                unxPrice,
-                unxDescription
-            } = product; 
-            let swatchUI = ``;
-            const {
-                swatches,
-                products
-            } = this.options;
-            const {
-                productItemClass
-            }  = products;
-            if(swatches.enabled) {
-                swatchUI = this.renderSwatchBtns(product);
+        <script type="text/plain" class="language-javascript">
+            products:{
+                el:null,
+                template:function() {
+                    const searchResults = this.getSearchResults();
+                    if(!searchResults) {
+                        return ``;
+                    }
+                    const {
+                        products
+                    } = searchResults;
+                    const self = this;
+                    const {
+                        swatches
+                    } = this.options;
+                    const {
+                        gridCount
+                    } = this.options.products;
+                    const {
+                        productViewType
+                    } = this.viewState;
+                    let productsUI = ``;
+                    const idx = Number(this.state.startPageNo);
+                    let swatchUI = ``;
+                    if(productViewType === "GRID" && gridCount && gridCount > 1) {
+                        products.forEach((product, index) => {
+                            const row = index % gridCount;
+                            if(row === 0) {
+                                productsUI += `<div class="UNX-row">`;
+                            }
+                            const pRank  = index+idx+1;
+                            const mappedProduct = this.mapProductAttrs(product);
+                            if(swatches.enabled) {
+                                swatchUI = this.renderSwatchBtns(product);
+                            }
+                            productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+                            if(row === gridCount -  1) {
+                                productsUI += `</div>`;
+                            }
+                
+                        })
+                
+                    } else {
+                        productsUI = products.map((product,index) => {
+                            const pRank  = index+idx+1;
+                            const mappedProduct = this.mapProductAttrs(product);
+                            if(swatches.enabled) {
+                                swatchUI = this.renderSwatchBtns(product);
+                            }
+                            return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+                        }).join('');
+                    }
+                
+                
+                    return  productsUI;
+                },
+                productItemClass:"product-item", // to find out product
+                productType:"SEARCH",
+                gridCount:1,
+                onProductClick: function(product,e) {
+                },
+                productAttributes: [
+                    "title",
+                    "uniqueId",
+                    "price",
+                    "sku",
+                    "imageUrl",
+                    "displayPrice",
+                    "salePrice",
+                    "sortPrice",
+                    "productDescription",
+                    "unbxd_color_mapping",
+                    "colorName",
+                    "color"
+                ],
+                attributesMap:{
+                    'unxTitle':'title',
+                    'unxImageUrl':'imageUrl',
+                    'unxPrice':'salePrice',
+                    'unxStrikePrice':'displayPrice',
+                    'unxId':'uniqueId',
+                    'unxDescription':'productDescription'
+                }
+        
             }
-            const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
-            const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
-            let strikeUi = ``;
-            if(unxStrikePrice) {
-                strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
-            }
-            const {
-                productViewType
-            } = this.viewState;
-            let cardType = ``;
-            let descUI = ``;
-            if(productViewType === "GRID") {
-                cardType = "UNX-grid-card"
-            } else {
-                cardType = "UNX-list-card";
-                descUI = `<p class="UNX-description">${unxDescription}</p>`;
-            }
-            return `<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">  
-                        <div class="UNX-img-wrapper">
-                            <img class="UNX-img-block" src="${imgUrl}"/>
-                        </div>
-                        <div class="UNX-product-content">
-                            <h3 class="UNX-product-title">${unxTitle} </h3>
-                            <div class="UNX-swatch-wrapper">
-                                ${swatchUI}
-                            </div>
-                            ${descUI}
-                            <div class="UNX-price-row">
-                                ${priceUI}
-                                ${strikeUi}
-                            </div>
-                        </div>
-            </div>`
-        },
-        productItemClass:"product-item", // to find out product
-        productType:"SEARCH", // type of search
-        gridCount:4,// how many columns in a row 
-        //callback function for the product click
-        onProductClick: function(product,e) {
-            console.log(product,"product,index",e);
-        },
-        //required attributes to render the product
-        productAttributes: [
-            "title",
-            "uniqueId",
-            "price",
-            "sku",
-            "imageUrl",
-            "displayPrice",
-            "salePrice",
-            "sortPrice",
-            "productDescription",
-            "unbxd_color_mapping",
-            "colorName",
-            "color"
-        ],
-        //default mapping for the current template
-        attributesMap:{
-            'unxTitle':'title',
-            'unxImageUrl':'imageUrl',
-            'unxPrice':'salePrice',
-            'unxStrikePrice':'displayPrice',
-            'unxId':'uniqueId',
-            'unxDescription':'productDescription'
-        }
-
-    }
-</script>
+        </script>
 
 </div>
 
