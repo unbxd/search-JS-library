@@ -80,31 +80,34 @@
   <h3>PageSize</h3>
   <p> The total number of results to be displayed in a single call. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3  then 15 or 18 or 21).</p>
 
-        <script type="text/plain" class="language-javascript">
-pagesize: {
-    pageSize:12,\\default number of products
-    options:[8,12,16,20,24], \\giving user to choose how many results he want
-    pageSizeClass:"UNX-pagesize",\\class selector for the element
-    selectedPageSizeClass:"UNX-selected-pagesize",\\for highlighting selected page size by user
-    action:'change', \\ for firing page size after user selection, available options are 'click' or 'change'
-    template: function(pagesize) {
-        let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
-        pagesize.options.forEach((opt)=>{
-            if(pagesize.pageSize == opt) {
-                ui+=`<option selected class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`
-            } else{
-                ui+=`<option id="${opt}">${opt}</option>`
-            }
-            
-        });
-        ui+= `</select>`
-        return `<div class="UNX-pagesize-block">
-            ${ui}
-        </div>`;
-    },
-    el:document.getElementById("changeNoOfProducts") \\element to place the rendered template
-}
-        </script>
+<script type="text/plain" class="language-javascript">
+    pagesize: {
+        enabled:true,
+        pageSize:12,
+        options:[8,12,16,20,24],
+        pageSizeClass:"UNX-pagesize",
+        selectedPageSizeClass:"UNX-selected-pagesize",
+        action:'change',
+        template:function(selected, pagesize) {
+            const {
+                UNX_pagesize
+            } = this.testIds;
+            let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
+            pagesize.options.forEach((opt,i)=>{
+                const tId = `data-test-id="${UNX_pagesize}${i+1}"`;
+                if(selected == opt) {
+                    ui+=`<option selected ${tId} class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`;
+                } else{
+                    ui+=`<option ${tId} id="${opt}">${opt}</option>`;
+                }
+                
+            });
+            ui+= `</select>`
+            return `<div class="UNX-pagesize-block">${ui}</div>`;
+        },
+        el:null
+    }
+</script>
 
 </div>
 

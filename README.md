@@ -57,7 +57,7 @@ You can also use a global-friendly UMD build:
 
 ```html
 
-<script  src="https://libraries.unbxdapi.com/search-sdk/v0.1.7/vanillaSearch.js"  type="text/javascript"></script>
+<script  src="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.js"  type="text/javascript"></script>
 
 ```
 
@@ -65,7 +65,7 @@ And to get our default theme, include the CSS as shown below
 
 ```html
 
-<link  href="https://libraries.unbxdapi.com/search-sdk/v0.1.7/vanillaSearch.css"  rel="stylesheet"></script>
+<link  href="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.css"  rel="stylesheet"></script>
 
 ```
 
@@ -87,6 +87,8 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 - <a  href="https://codesandbox.io/s/range-checkboxes-rwuqb">Range slider as checkboxes </a>
 - <a  href="https://codesandbox.io/s/friendly-microservice-to3r8">Customised</a>
 - <a  href="public/examples/internetExplorer.html">IE11</a>
+- <a  href="https://codesandbox.io/s/categorypage-4e8bc">Category Page</a>
+- <a  href="https://codesandbox.io/s/rangeslider-p23l9">RangeSlider</a>
 
 
 # Full configuration List
@@ -157,6 +159,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | selectedFacetsEl | Element | null | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks |
 | selectedFacetTemplate | Function | [default](src/modules/facets/ui.js) | Customise the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
 | selectedFacetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customise the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
+| clearAllText | String | "Clear All" | The text to show for the clear all button that clears all selected facets |
 | rangeTemplate | Function |  [default](src/modules/facets/renderRangeFacets.js) | Customise the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
 | rangeWidgetConfig | Object | NA | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs  |
 | facetMultilevel | Boolean | true | Turn this on to send the multilevel parameter in the search API |
@@ -321,7 +324,8 @@ breadcrumb options are available here.
 | getCategoryPage | function | Call this function to render the category page. Ex: `unbxdSearch.getCategoryPage()` |
 | getBrowsePage | function | Call this function to render the browse page. Ex: `unbxdSearch.getBrowsePage()` |
 | getResults | function | Call this function to refetch the search results. Ex: `unbxdSearch.getResults("dress")` |
-| setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
+
+<!--- | setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` | -->
 
 ## Contributions
 

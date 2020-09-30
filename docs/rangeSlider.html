@@ -80,133 +80,119 @@
 
 <div id="main">
   <h3>RangeSlider</h3>
-  <p> If you wish to have a different Range Slider </p>
+  <p> If you wish to have a range slider  </p>
 
 <script type="text/plain" class="language-javascript">
-    import UnbxdSearchComponent from '@unbxd-ui/vanilla-search-library';
-    class Range{
-        constructor(props) {
-        }
-        render(){
-            return `<div>New range Slider</div>`
+    //stylesheet<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css" integrity="sha512-30YMvFlZRwPH3TcDlPWZofkzGwIwDAKshEue1qWet2yWEQ4Y/X+WnV1aTuNldE3Hbpcl5Zz4PxoXJKMMQvBHGQ==" crossorigin="anonymous" />
+    //script <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js" integrity="sha512-hwgsSKm7cPjNHLACxyMGVRrd7cH+wveyYM1ZxWxxbCZd/pXdMukyuIrrCjt2I7iLsmYDk02B1ZUcarEv1A3RVQ==" crossorigin="anonymous"></script>
+
+    facet: {
+        facetsEl: document.getElementById("facetsWrapper"),
+        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+        applyMultipleFilters: false,
+        defaultOpen: "FIRST",
+        onFacetLoad: function(facets) {
+            const self = this;
+            const {
+                facet
+            } = this.options;
+            const {
+                rangeWidgetConfig
+            } = facet;
+            facets.forEach(facetItem => {
+                const {
+                    facetType,
+                    facetName,
+                    gap
+                } = facetItem;
+                const {
+                    prefix
+                } = rangeWidgetConfig;
+
+                if (facetType === "range") {
+                    const rangeId = `${facetName}_slider`;
+                    const sliderElem = document.getElementById(rangeId);
+                    let {
+                        end,
+                        gap,
+                        max,
+                        min,
+                        start
+                    } = facetItem;
+                    const selectedValues = sliderElem.dataset;
+                    if (selectedValues) {
+                        start = Number(selectedValues.x),
+                            end = Number(selectedValues.y)
+                    }
+                    this[rangeId] = noUiSlider.create(sliderElem, {
+                        start: [start, end],
+                        tooltips: [{
+                                to: function(value) {
+                                    return `${prefix} ${Math.round(value)}`;
+                                }
+                            },
+                            {
+                                to: function(value) {
+                                    return `${prefix} ${Math.round(value)}`;
+                                }
+                            }
+                        ],
+                        connect: true,
+                        range: {
+                            'min': 0,
+                            'max': max
+                        },
+                        format: {
+                            to: function(value) {
+                                return Math.round(value);
+                            },
+                            from: function(value) {
+                                return Math.round(value);
+                            }
+                        },
+                        padding: 0,
+                        margin: 0,
+                    });
+                    this[rangeId].on("set", function(data) {
+                        const newData = {
+                            start: data[0],
+                            end: data[1],
+                            facetName,
+                            gap
+                        };
+                        self.setRangeSlider(newData);
+                    });
+
+                }
+
+            });
+        },
+        isCollapsible: true,
+        isSearchable: true,
+        enableViewMore: false,
+        rangeTemplate: function(range, selectedRange, facet) {
+            const {
+                facetName,
+                start,
+                end
+            } = range;
+            let min = start;
+            let max = end;
+            if (selectedRange.length > 0) {
+                const sel = selectedRange[0].replace(/[^\w\s]/gi, '').split(" TO ");
+                min = sel[0];
+                max = sel[1];
+            }
+            const rangId = `${facetName}_slider`;
+            return [`<div id="${facetName}"  data-id="${facetName}" class=" UNX-range-slider-wrap">`,
+                `<div class="UNX-value-container UNX-range-value-block" ></div>`,
+                `<div id="${rangId}" data-x="${min}" data-y="${max}" class="UNX-range-slider-wrapper"></div>`,
+                `</div>`,
+                `<div>`,
+                `</div>`
+            ].join('')
         }
     }
-    UnbxdSearchComponent.prototype.RangeSlider  = Range;
-
-
-
-    or 
-
-
-    function Range(props) {
-        this.rangeProps = props;
-        return this;
-    };
-    Range.prototype.render = function (){
-        console.log(this.rangeProps);
-        return "<div>New range Slider</div>"
-    }
-    UnbxdSearchComponent.prototype.RangeSlider  = Range;
-    
-
-//props
-{
-    "facetName": "price",
-    "displayName": "Price",
-    "position": 4,
-
-    //ranges
-    "values": [
-        {
-        "from": {
-            "name": 40,
-            "count": 32,
-            "dataId": 40
-        },
-        "to": {
-            "name": 60,
-            "count": 122,
-            "dataId": 60
-        }
-        },
-        {
-        "from": {
-            "name": 60,
-            "count": 122,
-            "dataId": 60
-        },
-        "to": {
-            "name": 80,
-            "count": 67,
-            "dataId": 80
-        }
-        },
-        {
-        "from": {
-            "name": 80,
-            "count": 67,
-            "dataId": 80
-        },
-        "to": {
-            "name": 100,
-            "count": 24,
-            "dataId": 100
-        }
-        },
-        {
-        "from": {
-            "name": 100,
-            "count": 24,
-            "dataId": 100
-        },
-        "to": {
-            "name": 120,
-            "count": 5,
-            "dataId": 120
-        }
-        },
-        {
-        "from": {
-            "name": 120,
-            "count": 5,
-            "dataId": 120
-        },
-        "to": {
-            "name": 140,
-            "count": 2,
-            "dataId": 140
-        }
-        },
-        {
-        "from": {
-            "name": 140,
-            "count": 2,
-            "dataId": 140
-        },
-        "to": {
-            "name": 180,
-            "count": 1,
-            "dataId": 180
-        }
-        }
-    ],
-
-    "minX": 12,
-    "minY": 180,
-    "start": 0,
-    "end": "180.0",
-    "wrapper": {},
-    //from the range widget config
-    "rangeConfig": {
-        "minLabel": "",
-        "maxLabel": "",
-        "prefix": "$",
-        "submitBtnTxt": "Filter By Price",
-        "clearBtnTxt": "Clear"
-    }
-    }
-
-      
 </script>
 
 </div>

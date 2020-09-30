@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.css"
+      href="../dist/css/vanillaSearch.css"
       rel="stylesheet"
     />
     <style type="text/css">
@@ -90,128 +90,84 @@
           <div id="noResultWrapper"></div>
           <div id="clickScrollContainer" class="UNX-change-pagination-wrap"></div>
       </div>
-     <script src="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.js"></script>
+      <script src="https://libraries.unbxdapi.com/search-sdk/v0.2.0/vanillaSearch.js"></script>
     <script >
-      /* * * CONFIGURATION * * */
-      var UnbxdSiteName = "demo-unbxd700181503576558";
-      (function() {
-        var ubx = document.createElement("script");
-        ubx.type = "text/javascript";
-        ubx.async = true;
-        ubx.src = "//d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js";
-        (
-          document.getElementsByTagName("head")[0] ||
-          document.getElementsByTagName("body")[0]
-        ).appendChild(ubx);
-      })();
 
-      var unbxdCallbackEcma = function (instance, type,data){
-      }
+        const unbxdCallbackEcma = function (instance, type, data) {};
 
-
-      window.unbxdSearch = new UnbxdSearch({
+        window.unbxdSearch = new UnbxdSearch({
         siteKey: "demo-unbxd700181503576558",
         apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-        hashMode:false,
-        updateUrls:true,
-        searchBoxEl: document.getElementById("unbxdInput"),
+        hashMode: false,
+        updateUrls: true,
         searchTrigger: "click",
-        searchButtonEl: document.getElementById("searchBtn"),
-        products:{
-          el:document.getElementById("searchResultsWrapper"),
-          productType:"SEARCH",
-          productClick: function(product,e) {
-              console.log(product,"product,index",e);
-          }
-        },
-        pagination: {
-          type:'CLICK_N_SCROLL',
-          el:document.getElementById("clickScrollContainer")
+        products: {
+            productType: "SEARCH"
+        }
+        });
+
+        window.unbxdSearch.updateConfig({
+            searchBoxEl: document.getElementById("unbxdInput"),
+            searchTrigger: "click",
+            searchButtonEl: document.getElementById("searchBtn"),
+        products: {
+            el: document.getElementById("searchResultsWrapper"),
+            productType: "SEARCH"
         },
         spellCheck: {
-          enabled: true,
-          el: document.getElementById("didYouMeanWrapper")
-        },
-        noResults: {
-            el: document.getElementById("noResultWrapper")
+            enabled: true,
+            el: document.getElementById("didYouMeanWrapper")
         },
         facet: {
-          facetsEl: document.getElementById("facetsWrapper"),
-          selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-          rangeFacetEl: document.getElementById("rangeFacetWrapper"),
-          multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-          applyMultipleFilters:false
+            facetsEl: document.getElementById("facetsWrapper"),
+            selectedFacetsEl: document.getElementById("selectedFacetWrapper")
+        },
+        pagination: {
+            el: document.getElementById("clickScrollContainer"),
+            type: "FIXED_PAGINATION",
+            pageLimit: 4
         },
         breadcrumb: {
-          el: document.getElementById("breadcrumpContainer")
+            el: document.getElementById("breadcrumpContainer")
         },
         pagesize: {
-          el: document.getElementById("changeNoOfProducts")
+            el: document.getElementById("changeNoOfProducts")
         },
+
         sort: {
-          el: document.getElementById("sortWrapper"),
-          options: [
+            el: document.getElementById("sortWrapper"),
+            options: [
             {
-              value: "sortPrice desc",
-              text: "Price High to Low"
+                value: "sortPrice desc",
+                text: "Price High to Low"
             },
             {
-              value: "sortPrice asc",
-              text: " Price Low to High"
+                value: "sortPrice asc",
+                text: " Price Low to High"
             }
-          ]
+            ]
         },
-        loader :{
-            el:document.getElementById("loaderEl")
+        loader: {
+            el: document.getElementById("loaderEl")
         },
-        productView:{
-          el: document.getElementById("productViewTypeContainer"),
-          defaultViewType: "GRID"
+        productView: {
+            el: document.getElementById("productViewTypeContainer"),
+            viewTypes: "GRID"
         },
         banner: {
-          el: document.getElementById("bannerContainer"),
-          count: 1
+            el: document.getElementById("bannerContainer"),
+            count: 1
         },
         swatches: {
-          enabled: true,
-          attributesMap: {
+            enabled: true,
+            attributesMap: {
             swatchList: "color",
             swatchImgs: "unbxd_color_mapping",
             swatchColors: "color"
-          }
-        }
-      });
-
-
-
-      //click scroll pagination
-     /* window.unbxdSearch.updateConfig({
-          sort:{
-            action:'click',
-            template: function(selectedSort) {
-                var sortBtnsUI = "";
-                var self = this;
-                this.options.sort.options.forEach(function(item, index) {
-                    var selectedCss = "";
-                    if (item.value === selectedSort) {
-                        selectedCss = self.options.sort.selectedSortClass;
-                    }
-                    sortBtnsUI += [
-                    '<button class="btn UNX-sort-btn '+self.options.sort.sortClass+' ' + selectedCss + '"',
-                    'value="' +
-                        item.value +
-                        '" data-action="changeSort"> ' +
-                        item.text +
-                        "</button>"
-                    ].join("");
-                });
-                return sortBtnsUI;
             }
-          }
-      });*/
+        }
+        });
 
-    </script>
-    <script>
     </script>
   </body>
 </html>

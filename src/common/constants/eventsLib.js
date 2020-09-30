@@ -15,7 +15,8 @@ const events = {
     pagePrev:"PAGE_PREV",
     changeInput:"CHANGE_INPUT",
     setCategoryFilter:"SET_CATEGORY_FILTER",
-    deleteCategoryFilter:"DELETE_CATEGORY_FILTER"
+    deleteCategoryFilter:"DELETE_CATEGORY_FILTER",
+    pageSizeChange:"PAGESIZE_CHANGE"
 };
 
 export default events;

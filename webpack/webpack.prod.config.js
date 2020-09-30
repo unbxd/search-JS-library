@@ -3,6 +3,7 @@ const packageJson = require('../package.json');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const S3Plugin = require('webpack-s3-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -24,38 +25,48 @@ module.exports = {
       usedExports: true
   },
   plugins: [
-    // new S3Plugin({
-    //     // Only upload css and js
-    //     include: ["public/dist/vanillaSearch.js"],
-    //     s3Options: {
-    //         accessKeyId: process.env.ASSETS_AWS_KEY_ID, // Your AWS access key
-    //         secretAccessKey: process.env.ASSETS_AWS_SECRET_KEY, // Your AWS secret key
-    //     },
-    //     s3UploadOptions: {
-    //         Bucket: "unbxd", // Your bucket name
-    //         // Here we set the Content-Encoding header for all the gzipped files to "gzip"
-    //         ContentEncoding() {
-    //             return "gzip"
-    //         },
-    //         // Here we set the Content-Type header for the gzipped files to their 
-    //         // appropriate values, so the browser can interpret them properly
-    //         ContentType(fileName) {
-    //             if (/\.css/.test(fileName)) {
-    //                 return "text/css";
-    //             }
-    //             if (/\.js/.test(fileName)) {
-    //                 return "text/javascript";
-    //             }
-    //         }
-    //     },
-    //     basePath: `/search-sdk/v${packageJson.version}/`, // This is the name the uploaded directory will be given
-    //     directory: 'public/dist' // This is the directory you want to upload
-    // })
     new MiniCssExtractPlugin({
       filename: '../css/[name].css',
       chunkFilename: '../css/[name].css'
+    }),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      filename(pathData) {
+        const {
+          dir,
+          name,
+          ext
+        } = pathData;
+        if (ext === ".css") {
+          return `${dir}${name}.min.css`
+        }
+        return `${name}.min.js`;
+      }
+
     })
-    
+    /*
+    new S3Plugin({
+      include: ["/public/dist/js/vanillaSearch.min.js", "/public/dist/css/vanillaSearch.min.css"],
+      s3Options: {
+          accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+          secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      },
+      s3UploadOptions: {
+          Bucket: "unbxd", 
+          ContentEncoding() {
+              return "gzip"
+          },
+          ContentType(fileName) {
+              if (/\.css/.test(fileName)) {
+                  return "text/css";
+              }
+              if (/\.js/.test(fileName)) {
+                  return "text/javascript";
+              }
+          }
+      },
+      basePath: `/search-sdk/v${packageJson.version}/` // This is the name the uploaded directory will be given
+    })*/
   ],
   resolve: {
     alias: {
@@ -100,14 +111,6 @@ module.exports = {
             }
           ]
 
-        },
-        {
-          test: /\.template\.js$/,
-          loader: 'minify-template-literal-loader',
-          options: {
-            caseSensitive: true,
-            collapseWhitespace: true
-          }
         }
         
     ]

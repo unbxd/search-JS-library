@@ -78,24 +78,24 @@
 
 <div id="main">
   <h3>Banners</h3>
-  <p> will render the banner comes from search results</p>
+  <p> will render the banners comes from search results</p>
 
 <script type="text/plain" class="language-javascript">
 
-    banner: {
-        el:document.getElementById("bannerContainer"),
-        template:(banners) => {
-        //banners - array of banner images
-            const bannerUI = banners.map((item) => {
-                const {
-                    imageUrl
-                } = item;
-                return `<div><img style="max-width:100%" src="${imageUrl}"/></div>`
-            }).join('');
-            return `${bannerUI}`
-        },
-        count:1
-    }
+  banner: {
+    enabled:true,
+    el:null,
+    template:function(banners, bannerOpts){
+      const bannerUI = banners.map((item) => {
+          const {
+              imageUrl
+          } = item;
+          return `<div><img style="max-width:100%" src="${imageUrl}"/></div>`
+      }).join('');
+      return `${bannerUI}`
+    },
+    count:1
+}
 </script>
 
 </div>
