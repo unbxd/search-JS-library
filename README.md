@@ -57,7 +57,7 @@ You can also use a global-friendly UMD build:
 
 ```html
 
-<script  src="https://libraries.unbxdapi.com/search-sdk/v0.1.7/vanillaSearch.js"  type="text/javascript"></script>
+<script  src="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.js"  type="text/javascript"></script>
 
 ```
 
@@ -65,7 +65,7 @@ And to get our default theme, include the CSS as shown below
 
 ```html
 
-<link  href="https://libraries.unbxdapi.com/search-sdk/v0.1.7/vanillaSearch.css"  rel="stylesheet"></script>
+<link  href="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.css"  rel="stylesheet"></script>
 
 ```
 
@@ -87,6 +87,8 @@ API documentation is available <a  href="http://cxdoc.unbxd.io/search-JS-library
 - <a  href="https://codesandbox.io/s/range-checkboxes-rwuqb">Range slider as checkboxes </a>
 - <a  href="https://codesandbox.io/s/friendly-microservice-to3r8">Customised</a>
 - <a  href="public/examples/internetExplorer.html">IE11</a>
+- <a  href="https://codesandbox.io/s/categorypage-4e8bc">Category Page</a>
+- <a  href="https://codesandbox.io/s/rangeslider-p23l9">RangeSlider</a>
 
 
 # Full configuration List

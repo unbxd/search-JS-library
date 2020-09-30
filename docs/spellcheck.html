@@ -77,91 +77,43 @@
   <h3>Spell Check</h3>
   <p>This module will be rendering the search results summary and spell check suggestion for current search query.</p>
 
-      <script type="text/plain" class="language-javascript">
-  spellCheck:{
-    enabled:true, //for enabling the widget
-    el:document.getElementById("didYouMeanWrapper"), //element to place the template
-    //default template from library
-    template: function(query,suggestion,pages) {
-      //each arguments are explained below with examples
-        const {
-            start,
-            productsLn,
-            numberOfProducts
-        } = pages;
-        const {
-            selectorClass
-        } = this.options.spellCheck
-        const suggestionUi = (suggestion) ? `<p class="UNX-no-result">Search instead for <button class="${selectorClass}">${suggestion}</button></p>` :``;
-        return  `<div class="UNX-spellcheck-block">
-            <p class="UNX-suggestion">Showing results for <strong>${suggestion}</strong> <span class="UNX-result-info"> - ${start} to ${productsLn+start} of ${numberOfProducts} products</span></p>
-            ${suggestionUi}
-        </div>`;
-    },
-    selectorClass: "UNX-suggestion" //class selector for suggestion element
-  }
+<script type="text/plain" class="language-javascript">
+  function(query,suggestion,pages) {
+    const {
+        start,
+        productsLn,
+        numberOfProducts
+    } = pages;
+    const {
+        selectorClass
+    } = this.options.spellCheck;
+    const {
+        productType
+    } = this.options;
+    let newQuery = query;
+    if(productType !=="SEARCH" ) {
+        const catId = this.getCategoryId() || "";
+        const cId = decodeURIComponent(catId).split(">");
+        newQuery = cId[cId.length-1] || cId[0] ;
+    }
+    const {
+        UNX_spellCheck
+    } = this.testIds
+    const noUi = (suggestion) ? `<p class="UNX-no-result"> Your search "<strong>${suggestion}</strong>" did not match any products. Did you mean <button data-test-id="${UNX_spellCheck}" data-action="getSuggestion" class="${selectorClass}">${query}</button>? </p>` :``;
+    let qUi = ``;
+    let countUi = ``;
+    if(numberOfProducts > 0) {
+        countUi = `<span class="UNX-result-info">  -  ${start+1} to ${productsLn+start} of ${numberOfProducts} products</span>`;
+    }
+    if(pages && newQuery){
+        qUi = `<p class="UNX-suggestion-p">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
+    }
+    return  [`<div class="UNX-spellcheck-block">`,
+            noUi,
+            qUi,
+        `</div>`].join('');
+}
 </script>
-
-  <p>Template function arguments are listed below</p>
-  <table>
-    <thead>
-      <tr>
-        <th>Argument</th>
-        <th>Data type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-            query
-        </td>
-        <td>
-            String
-        </td>
-        <td>
-            current search term
-        </td>
-      </tr>
-      <tr>
-          <td>
-              suggestion
-          </td>
-          <td>
-              String
-          </td>
-          <td>
-              suggest search term
-          </td>
-        </tr>
-        <tr>
-            <td>
-                pages
-            </td>
-            <td>
-                Object
-            </td>
-            <td>
-                details search response </br>
-                <pre>
-                  <code class="language-js">
-  {
-    "numberOfProducts": 194,
-    "start": 0,
-    "productsLn": 12,
-    "rows": 12,
-    "noOfPages": 17,
-    "currentPage": 1,
-    "isNext": true,
-    "isPrev": false
-  }
-                  </code>
-                </pre>
-
-            </td>
-          </tr>
-    </tbody>
-  </table>
 
 </div>
 

@@ -75,7 +75,9 @@ const reRender = function(){
     this.renderFacets();
     this.renderSelectedFacets();
     this.renderBannerUI();
-    this.renderProductViewTypeUI();
+    if(productView.enabled){
+        this.renderProductViewTypeUI();
+    }
     this.renderPageSize();
     sortWrapper.innerHTML = this.renderSort();
     if(pagination.type !== "INFINITE_SCROLL"){

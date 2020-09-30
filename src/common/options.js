@@ -68,6 +68,7 @@ const options = {
     },
     startPageNo:0,
     productView : {
+        enabled:true,
         el:null,
         template:renderProductViewType,
         action:'click', // CLICK or CHANGE
@@ -111,7 +112,7 @@ const options = {
     breadcrumb:{
         enabled:true,
         el:null,
-        selectorClass:"bread-crumb",
+        selectorClass:"UNX-bread-crumb",
         template:breadCrumbsUI
     },
 

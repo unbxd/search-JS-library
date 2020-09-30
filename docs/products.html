@@ -81,77 +81,90 @@
   <p>This is the component which renders the product cards. The template function receives each product object and its position as second argument</p>
 
         <script type="text/plain" class="language-javascript">
-products:{
-    el:document.getElementById("searchResultsWrapper"),
-    template : function(product,idx,swatchUI,productViewType){
-        //product object
-        //idx is the position in the list
-        //swatchUI swatch ui as string
-        //productViewType //GRID or LIST
-        const {
-            unxTitle,
-            unxImageUrl,
-            uniqueId,
-            unxStrikePrice,
-            unxPrice,
-            unxDescription
-        } = product; 
-        const {
-            products
-        } = this.options;
-        const {
-            productItemClass
-        }  = products;
+            products:{
+                el:null,
+                template:function() {
+                    const searchResults = this.getSearchResults();
+                    if(!searchResults) {
+                        return ``;
+                    }
+                    const {
+                        products
+                    } = searchResults;
+                    const self = this;
+                    const {
+                        swatches
+                    } = this.options;
+                    const {
+                        gridCount
+                    } = this.options.products;
+                    const {
+                        productViewType
+                    } = this.viewState;
+                    let productsUI = ``;
+                    const idx = Number(this.state.startPageNo);
+                    let swatchUI = ``;
+                    if(productViewType === "GRID" && gridCount && gridCount > 1) {
+                        products.forEach((product, index) => {
+                            const row = index % gridCount;
+                            if(row === 0) {
+                                productsUI += `<div class="UNX-row">`;
+                            }
+                            const pRank  = index+idx+1;
+                            const mappedProduct = this.mapProductAttrs(product);
+                            if(swatches.enabled) {
+                                swatchUI = this.renderSwatchBtns(product);
+                            }
+                            productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+                            if(row === gridCount -  1) {
+                                productsUI += `</div>`;
+                            }
+                
+                        })
+                
+                    } else {
+                        productsUI = products.map((product,index) => {
+                            const pRank  = index+idx+1;
+                            const mappedProduct = this.mapProductAttrs(product);
+                            if(swatches.enabled) {
+                                swatchUI = this.renderSwatchBtns(product);
+                            }
+                            return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+                        }).join('');
+                    }
+                
+                
+                    return  productsUI;
+                },
+                productItemClass:"product-item", // to find out product
+                productType:"SEARCH",
+                gridCount:1,
+                onProductClick: function(product,e) {
+                },
+                productAttributes: [
+                    "title",
+                    "uniqueId",
+                    "price",
+                    "sku",
+                    "imageUrl",
+                    "displayPrice",
+                    "salePrice",
+                    "sortPrice",
+                    "productDescription",
+                    "unbxd_color_mapping",
+                    "colorName",
+                    "color"
+                ],
+                attributesMap:{
+                    'unxTitle':'title',
+                    'unxImageUrl':'imageUrl',
+                    'unxPrice':'salePrice',
+                    'unxStrikePrice':'displayPrice',
+                    'unxId':'uniqueId',
+                    'unxDescription':'productDescription'
+                }
         
-        const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
-        const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
-        let strikeUi = ``;
-        if(unxStrikePrice) {
-            strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
-        }
-        let cardType = ``;
-        let descUI = ``;
-        if(productViewType === "GRID") {
-            cardType = "UNX-grid-card"
-        } else {
-            cardType = "UNX-list-card";
-            descUI = `<p class="UNX-description">${unxDescription}</p>`;
-        }
-        return [`<div id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,
-                    `<div class="UNX-img-wrapper"><img class="UNX-img-block" src="${imgUrl}"/></div>`,
-                    `<div class="UNX-product-content">`,
-                        `<h3 class="UNX-product-title">${unxTitle}</h3>`,
-                        `<div class="UNX-swatch-wrapper">${swatchUI}</div>`,
-                        descUI,
-                        `<div class="UNX-price-row">${priceUI} ${strikeUi}</div>`,
-                    `</div>`,
-                `</div>`].join('')
-    },
-    //class selector for the each product otem
-    productItemClass:"product-item", // to find out product
-    //search type "SEARCH" or "BROWSE" or "CATEGORY"
-    productType:"SEARCH",
-    // if the products loaded in grid view, here you can set how many columns you want in a row
-    gridCount:4,
-    call back function which run on after a click on the card
-    //product - corresponding product item
-    //e - event
-    onProductClick: function(product,e) {
-        console.log(product,"product,index",e);
-    },
-    //attributes required to render the ui
-    productAttributes: ['title','uniqueId', 'sku', 'rating'],
-    //if you are using default template, you can map to this properteis
-    attributesMap:{
-        'unxTitle':'title',
-        'unxImageUrl':'imageUrl',
-        'unxPrice':'salePrice',
-        'unxStrikePrice':'displayPrice',
-        'unxId':'uniqueId',
-        'unxDescription':'productDescription'
-    }
-
-}
+            }
         </script>
 
 </div>
