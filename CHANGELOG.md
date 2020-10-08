@@ -6,6 +6,7 @@
 ### Added
 - Added more examples
 - Added gzip
+- Fixed analytics issues when we integrate with Unbxd Autosuggest
 
 
 ## [0.2.0] - 2020-09-25
