@@ -86,7 +86,13 @@ const trackCategoryPageLoad = function(instance,type) {
 }
 const getCallbackActions = function(state,type) {
     const Unbxd = window.Unbxd || null;
-    if(Unbxd && state){
+    const {
+        unbxdAnalytics
+    } = this.options;
+    if(!Unbxd || !unbxdAnalytics || (Unbxd && !Unbxd.track)) {
+        return false;
+    }
+    if(state){
         switch(type) {
             case 'CHANGE_INPUT':
                 this.trackSearch(state);
