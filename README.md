@@ -134,14 +134,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | urlAttributes | Array | ["filter","sort","rows","start","viewType","category-filter"] | these keys will update the url with every user actions |
 | setUrlFromState | Function | null | here you can customise the url as per your requirement |
 | setStateFromUrl | Function | null | once you customise the url you can you use this method to update the state of the library. refer the default method [here](https://github.com/unbxd/search-JS-core/blob/master/src/modules/url/setStateFromUrl.js)  |
-| getQueryParams | Function | null | here you can decode the url and return the params.  Refer this [methods](https://github.com/unbxd/search-JS-core/blob/master/src/modules/url/getQueryParams.js). you need to return an object in below format
-<pre><code>{
-    "q": "dress",
-    "filter": [ "size_uFilter:M OR size_uFilter:L","type_uFilter:Rompers"],
-    "sort": "",
-    "rows": 12,
-    "start": 0
-} </code></pre> |
+| getQueryParams | Function | null | here you can decode the url and return the params.  Refer this [methods](https://github.com/unbxd/search-JS-core/blob/master/src/modules/url/getQueryParams.js). you need to return an object in below format<code>{"q": "dress","filter": [ "size_uFilter:M OR size_uFilter:L", "type_uFilter:Rompers"],"sort": "","rows": 12,"start": 0 } </code> |
 
 # Products Config
 
