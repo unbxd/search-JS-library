@@ -133,18 +133,8 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | searchPath | String | "" | Any additional path string to be added to the URL. This is useful incase you have an SPA and the search page is hosted on a subpath of your site |
 | urlAttributes | Array | ["filter","sort","rows","start","viewType","category-filter"] | these keys will update the url with every user actions |
 | setUrlFromState | Function | null | here you can customise the url as per your requirement |
-| setStateFromUrl | Function | null | once you customise the url you can you use this method to update the state of the library. refer the default method [here] (https://github.com/unbxd/search-JS-core/blob/master/src/modules/url/setStateFromUrl.js)  |
-| getQueryParams | Function | null | here you can decode the url and return the params in below format. `{
-  "q": "dress",
-  "filter": [
-    "occasion_uFilter:\"Party\" OR occasion_uFilter:\"Day\" OR occasion_uFilter:\"Casual\"",
-    "color_uFilter:\"Pink\"",
-    "size_uFilter:\"L\""
-  ],
-  "sort": "min_price desc",
-  "rows": "12",
-  "start": "0"
-}` |
+| setStateFromUrl | Function | null | once you customise the url you can you use this method to update the state of the library. refer the default method [here](https://github.com/unbxd/search-JS-core/blob/master/src/modules/url/setStateFromUrl.js)  |
+| getQueryParams | Function | null | here you can decode the url and return the params.  Refer this [methods](https://github.com/unbxd/search-JS-core/blob/master/src/modules/url/getQueryParams.js) |
 
 # Products Config
 
