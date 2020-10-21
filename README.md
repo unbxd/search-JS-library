@@ -144,7 +144,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
   "sort": "min_price desc",
   "rows": "12",
   "start": "0"
-}  |
+}` |
 
 # Products Config
 
