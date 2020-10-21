@@ -53,7 +53,10 @@ module.exports = {
   devServer: {
     contentBase: Path.join(__dirname, '../src'),
     port: 9000,
-    watchContentBase: true
+    watchContentBase: true,
+    historyApiFallback: {
+      index: Path.resolve(__dirname, '../demo/index.html')
+    }
   },
   module: {
     rules: [

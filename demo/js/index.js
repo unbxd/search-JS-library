@@ -107,7 +107,7 @@ btnEls.forEach(item => {
 window.unbxdSearch = new UnbxdSearch({
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    hashMode: true,
+    hashMode: false,
     updateUrls: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
@@ -282,7 +282,8 @@ window.unbxdSearch.updateConfig({
         }
     },
     onAction: function(e, ctx) {},
-    onEvent: unbxdCallbackEcma
+    onEvent: unbxdCallbackEcma,
+    urlAttributes:["filter","sort","rows","start","viewType","category-filter"]
 
 })
 

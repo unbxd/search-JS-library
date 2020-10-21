@@ -33,7 +33,8 @@ class UnbxdSearch extends UnbxdSearchCore {
             initialised:false
         };
         this.setConfig = setConfig.bind(this);
-        this.setConfig(options,props);
+        const newOptions = Object.assign(this.options,options);
+        this.setConfig(newOptions,props);
         this.events = events;
         this.actions = actions;
         this.cssList = cssClasses;
@@ -55,10 +56,13 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         const urlParams = this.getQueryParams();
         const {
+            productViewType
+        } = this.viewState;
+        const {
             viewType
         } = urlParams || {};
         if(type ==="lastBack") {
-            if(this.viewState.productViewType !== viewType ){
+            if(viewType && productViewType !== viewType ){
                 this.viewState.productViewType = viewType;
                 this.reRender();
             }
@@ -73,7 +77,7 @@ class UnbxdSearch extends UnbxdSearchCore {
             if(viewType) {
                 this.viewState.productViewType = viewType;
             } else {
-                this.viewState.productViewType = productView.defaultViewType;
+                this.viewState.productViewType = (productViewType) ?productViewType : productView.defaultViewType;
             }
             onEvent(this,afterApiCall);
             this.reRender();
