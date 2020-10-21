@@ -27,6 +27,7 @@ const options = {
     apiKey:"f19768e22b49909798bc2411fa3dd963",
     searchPath:"",
     searchEndPoint:"https://search.unbxd.io/",
+    urlAttributes:["filter","sort","rows","start","viewType","category-filter"],
     products:{
         el:null,
         template:productTemplate,
@@ -220,7 +221,9 @@ const options = {
     actionBtnClass:"UNX-action-item",
     actionChangeClass:"UNX-action-change",
     onAction: function(e,ctx) {
-    }
-   // searchQueryParam:null
+    },
+    setUrlFromState:null,
+    setStateFromUrl:null,
+    getQueryParams:null
 };
 export default options;
