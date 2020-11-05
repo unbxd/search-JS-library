@@ -183,6 +183,8 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | searchQueryParam | String | "q" | If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called "query" like "query=dress", then set this config value to "query" | 
 | searchEndPoint | String | "https://search.unbxd.io" | Domain name of the search API endpoint |
 | searchPath | String | "" | Any additional path string to be added to the URL. This is useful incase you have an SPA and the search page is hosted on a subpath of your site |
+| getCategoryId | Function | null | By default Category ID will be taken from unbxdPageConf object, but if you wish to customize use this function to return the category ID  |
+| setCategoryId | Function | null | This method helps to navigate through the breadcrumbs, you can customize the logic here   |
 
 ## Products Config
 
@@ -232,9 +234,6 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | enableViewMore | Booelan | false | Turn this on for enabling view more or less functionality for individual facets  |
 | viewMoreText | Array | ["show all", "show less"] | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"] |
 | viewMoreLimit | Number | 3 | Will show view more only if the facet values are greater than this value |
-| getCategoryId | Function | null | By default Category ID will be taken from unbxdPageConf object, but if you wish to customize use this function to return the category ID  |
-| setCategoryId | Function | null | This method helps to navigate through the breadcrumbs, you can customize the logic here   |
-
 
 ## Facet Range Widget Config
 
