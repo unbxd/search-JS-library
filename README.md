@@ -415,8 +415,6 @@ Raise any issues or new feature requests using [Github Issues](https://github.co
 
 ## Contributions
 
-Use  for requests
-
 To contribute to the project, read the [contribution guidelines](CONTRIBUTE.md)
 
 ## Changelog
