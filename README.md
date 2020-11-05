@@ -180,6 +180,8 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | enableViewMore | Booelan | false | Turn this on for enabling view more or less functionality for individual facets  |
 | viewMoreText | Array | ["show all", "show less"] | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"] |
 | viewMoreLimit | Number | 3 | Will show view more only if the facet values are greater than this value |
+| getCategoryId | Function | null | by default category id will be taken from unbxdPageConf, you wish to customise add your logic here  |
+| setCategoryId | Function | null | this methods helps to navigate through the breadcrumbs, you can customise the logic here   |
 
 
 # Facet Range Widget Config
@@ -324,7 +326,11 @@ breadcrumb options are available here.
 | getCategoryPage | function | Call this function to render the category page. Ex: `unbxdSearch.getCategoryPage()` |
 | getBrowsePage | function | Call this function to render the browse page. Ex: `unbxdSearch.getBrowsePage()` |
 | getResults | function | Call this function to refetch the search results. Ex: `unbxdSearch.getResults("dress")` |
+| resetFacets | function | use this method to reset the facets state. Ex: `unbxdSearch.resetFacets()` |
+| resetAll | function | method to reset state of the app. Ex: `unbxdSearch.resetAll()` |
 
+
+resetFacets
 <!--- | setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` | -->
 
 ## Contributions
