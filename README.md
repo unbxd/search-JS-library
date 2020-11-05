@@ -326,12 +326,11 @@ breadcrumb options are available here.
 | getCategoryPage | function | Call this function to render the category page. Ex: `unbxdSearch.getCategoryPage()` |
 | getBrowsePage | function | Call this function to render the browse page. Ex: `unbxdSearch.getBrowsePage()` |
 | getResults | function | Call this function to refetch the search results. Ex: `unbxdSearch.getResults("dress")` |
-| resetFacets | function | use this method to reset the facets state. Ex: `unbxdSearch.resetFacets()` |
-| resetAll | function | method to reset state of the app. Ex: `unbxdSearch.resetAll()` |
+| resetFacets | function | use this method to reset the selected facets. Ex: `unbxdSearch.resetFacets()` |
+| resetAll | function | method to reset the page, selected facets, selected sort, pagination. Ex: `unbxdSearch.resetAll()` |
+| setPageStart | function | method to set the the pagination number. Ex: `unbxdSearch.setPageStart(0)` |
+| setRangeSlider | function | method to apply a range filter value. Ex:`unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
 
-
-resetFacets
-<!--- | setRangeSlider | function | Call this function to apply a range filter from the slider. Ex: `unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` | -->
 
 ## Contributions
 
