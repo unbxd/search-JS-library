@@ -21,11 +21,11 @@ A JavaScript library for building performant and quick search experiences with U
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>iOS Safari |
 | --------- | --------- | --------- | --------- | --------- |
-| IE11, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
+| IE11<sup>*</sup>, Edge| last 2 versions| last 2 versions| last 2 versions| last 2 versions
 
 
 (*) You need to use polyfills for making it work in IE browser. 
-Please refer this <a  href="public/examples/internetExplorer.html">example</a> for more details
+Please refer this <a  href="public/examples/internetExplorer.html" target="_blank">example</a> for more details
 
 ## Getting started
 
@@ -88,11 +88,13 @@ And to get our default theme, include the CSS as shown below.
 
 ```
 
-Now you are ready to start using the library
+Now you are ready to start using the library.
 
 ### Invoke with configs
 
-Invoke the `UnbxdSearch` constructor with the desired configs
+Invoke the `UnbxdSearch` constructor with the desired configs.
+
+You can find a sample invocation below:
 
 ```shell
 const unbxdSearch = new UnbxdSearch({
@@ -409,11 +411,11 @@ Include the Search JS Library, followed by Autosuggest Library and then the Anal
 
 ## Issues & Feature Requests
 
-Raise any issues or new feature requests [here](https://github.com/unbxd/search-JS-library/issues)
+Raise any issues or new feature requests using [Github Issues](https://github.com/unbxd/search-JS-library/issues)
 
 ## Contributions
 
-Use [Github issues](https://github.com/unbxd/search-JS-library/issues) for requests
+Use  for requests
 
 To contribute to the project, read the [contribution guidelines](CONTRIBUTE.md)
 
