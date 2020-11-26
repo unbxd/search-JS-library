@@ -54,14 +54,22 @@ class UnbxdSearch extends UnbxdSearchCore {
             afterApiCall,
         } = this.events;
         const urlParams = this.getQueryParams();
-        const {
+        let {
             viewType
         } = urlParams || {};
-        if(type ==="lastBack") {
-            if(this.viewState.productViewType !== viewType ){
-                this.viewState.productViewType = viewType;
-                this.reRender();
-            }
+        if(!viewType) {
+            viewType = productView.defaultViewType;
+            this.viewState.productViewType = viewType;
+            this.options.extraParams.viewType = viewType;
+        }
+        if(this.viewState.lastAction === "viewType") {
+            viewType = this.viewState.productViewType;
+            this.options.extraParams.viewType = viewType;
+            this.viewState.lastAction = "";
+        }
+        if(this.viewState.productViewType !== viewType ){
+            this.viewState.productViewType = viewType;
+            this.options.extraParams.viewType = viewType;
         }
         if(type === beforeApiCall) { 
             onEvent(this,beforeApiCall);
@@ -70,11 +78,6 @@ class UnbxdSearch extends UnbxdSearchCore {
             }
         }
         if(type === afterApiCall) { 
-            if(viewType) {
-                this.viewState.productViewType = viewType;
-            } else {
-                this.viewState.productViewType = productView.defaultViewType;
-            }
             onEvent(this,afterApiCall);
             this.reRender();
         }

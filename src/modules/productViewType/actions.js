@@ -23,6 +23,7 @@ function onPageViewTypeClick(e) {
         });
         this.setPageStart(0);
         this.state.isBack = false;
+        this.viewState.lastAction = "viewType";
         this.getResults.bind(this)();
 
     }
