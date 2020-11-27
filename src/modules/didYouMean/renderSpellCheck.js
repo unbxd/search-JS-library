@@ -33,6 +33,8 @@ const renderDidYouMean = function (suggestion) {
             this.viewState.loadedFromSuggestion = true;
             this.getResults(sugString);
             return this.options.spellCheck.template.bind(this)(sugString,userInput,pages); 
+        }else {
+            this.viewState.lastDidYouMean = "";
         }
         if(lastDidYouMean) {
             return this.options.spellCheck.template.bind(this)(userInput,lastDidYouMean,pages);

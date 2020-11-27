@@ -7,6 +7,8 @@
 - Added more examples
 - Added gzip
 - Fixed analytics issues when we integrate with Unbxd Autosuggest
+- Added source build for the debugging
+- removed support for categoryPath filter.
 
 
 ## [0.2.0] - 2020-09-25

@@ -1,11 +1,17 @@
 function onBreadCrumbClick(e){
 };
 function renderBreadCrumbs() {
-    const data = this.getBreadCrumbsList();
-    const {
-        breadcrumb
-    } = this.options;
-    return this.options.breadcrumb.template(data, breadcrumb);
+    const selectedCategories = this.getSelectedMultilevelFacet();
+    let ui = ``;
+    selectedCategories.forEach((item) => {
+        const data = this.getBreadCrumbsList(item);
+        const {
+            breadcrumb
+        } = this.options;
+        ui += this.options.breadcrumb.template(data, breadcrumb);
+
+    });
+    return ui;
 }
 export {
     onBreadCrumbClick,

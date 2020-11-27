@@ -599,6 +599,9 @@ button.UNX-page-next {
   background: transparent;
   border: solid 1px transparent;
 }
+.UNX-facet-header *{
+  pointer-events:none;
+}
 .UNX-search-hidden {
   display: none;
 }
@@ -616,8 +619,10 @@ button.UNX-page-next {
   font-weight: 300;
   line-height: 32px;
 }
-button.UNX-facet-open:before {
+.UNX-facet-open:after {
   content:"-";
+  font-size: 26px;
+  line-height: 20px;
 }
 .UNX-searchable-facets {
   font-weight: 900;
@@ -644,7 +649,7 @@ button.UNX-facet-open:before {
   font-size: 12px;
   opacity: .5;
 }
-.UNX-facet-close:before {
+.UNX-facet-close:after {
   content:"+";
   font-size: 20px;
   line-height: 20px;
