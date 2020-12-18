@@ -56,7 +56,8 @@ const options = {
             'unxStrikePrice':'displayPrice',
             'unxId':'uniqueId',
             'unxDescription':'productDescription'
-        }
+        },
+        defaultImage:"No Image available Url Here "
 
     },
     searchQueryParam:"q",

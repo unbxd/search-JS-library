@@ -8,9 +8,13 @@ export default function(product,idx,swatchUI,productViewType,products ){
         unxDescription
     } = product; 
     const {
-        productItemClass
+        productItemClass,
+        defaultImage
     }  = products;
-    const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+    let imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+    if(!imgUrl) {
+        imgUrl = defaultImage;
+    }
     let imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" src="${imgUrl}"/></div>`;
     const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
     let strikeUi = ``;
