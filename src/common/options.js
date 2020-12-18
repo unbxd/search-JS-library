@@ -57,7 +57,7 @@ const options = {
             'unxId':'uniqueId',
             'unxDescription':'productDescription'
         },
-        defaultImage:"No Image available Url Here "
+        defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
 
     },
     searchQueryParam:"q",
