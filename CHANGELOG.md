@@ -1,6 +1,11 @@
 ## Changelog
 
 
+## [2.0.1] - 2020-12-22
+
+### Added
+- Added the default image config for the product template (defaultImage: "image url here")
+
 ## [2.0.0] - 2020-09-28
 
 ### Added
