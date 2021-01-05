@@ -56,7 +56,8 @@ const options = {
             'unxStrikePrice':'displayPrice',
             'unxId':'uniqueId',
             'unxDescription':'productDescription'
-        }
+        },
+        defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
 
     },
     searchQueryParam:"q",
