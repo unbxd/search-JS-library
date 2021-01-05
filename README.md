@@ -198,6 +198,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | gridCount | Number | Adjusts as per screen size | If you want to have grid type user interface, then you can configure how many columns you want to have in a row with this config. By default it will adjust according to screen size. |
 | productItemClass | String | "product-item" | Additional class name to be added to each product card |
 | onProductClick | Function | `function(product, event) {}` | Callback functions called on click of a product card. This function gets the product object & the event object as params |
+| defaultImage | String | "https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg" | If product doesnt contain image url, by default this image will be shown |
 
 ## Facets Config
 

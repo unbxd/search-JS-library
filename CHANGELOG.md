@@ -5,6 +5,7 @@
 
 ### Added
 - Added the default image config for the product template (defaultImage: "image url here")
+- LIST/GRID viewtype fix when updateUrl param is false
 
 ## [2.0.0] - 2020-09-28
 
