@@ -57,15 +57,15 @@ class UnbxdSearch extends UnbxdSearchCore {
         let {
             viewType
         } = urlParams || {};
-        if(!viewType) {
-            viewType = productView.defaultViewType;
-            this.viewState.productViewType = viewType;
-            this.options.extraParams.viewType = viewType;
-        }
         if(this.viewState.lastAction === "viewType") {
             viewType = this.viewState.productViewType;
             this.options.extraParams.viewType = viewType;
             this.viewState.lastAction = "";
+        }
+        if(!viewType) {
+            viewType = this.viewState.productViewType || productView.defaultViewType;
+            this.viewState.productViewType = viewType;
+            this.options.extraParams.viewType = viewType;
         }
         if(this.viewState.productViewType !== viewType ){
             this.viewState.productViewType = viewType;

@@ -27,7 +27,10 @@ function getDocHeight() {
 }
 
 const onInfiniteScroll = function() {
-   if ((getDocHeight() - 20) <= (getScrollXY()[1] + window.innerHeight))
+    const {
+        heightDiffToTriggerNextPage
+    } = this.options.pagination;
+   if ((getDocHeight() - 20) <= (getScrollXY()[1] + window.innerHeight+heightDiffToTriggerNextPage))
     {
         if(!this.viewState.isInfiniteStarted && !this.state.loading) {
             this.viewState.isInfiniteStarted = true;
