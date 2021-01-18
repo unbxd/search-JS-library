@@ -185,6 +185,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | searchPath | String | "" | Any additional path string to be added to the URL. This is useful incase you have an SPA and the search page is hosted on a subpath of your site |
 | getCategoryId | Function | null | By default Category ID will be taken from unbxdPageConf object, but if you wish to customize use this function to return the category ID  |
 | setCategoryId | Function | null | This method helps to navigate through the breadcrumbs, you can customize the logic here   |
+| onQueryRedirect | Function | null | customise your logic here to handle the redirect configured in api |
 
 ## Products Config
 
@@ -351,6 +352,7 @@ breadcrumb options are available here.
 | el                        	| Element  	| null | Element in which to render the Banner component |
 | template                  	| Function 	| [default](src/modules/banners/index.js) | Customize the look and feel of the banner component by returning your custom HTML string from this function. This function get the list of banners as the parameter. |
 | count                     	| Number   	| 1 | Indicates the number of banners to be shown |
+| openNewTab                    | Boolean   | false | by default landing page url load in same tab, if you want to load in another tab configured it to true |
 
 
 ## Loader Config
