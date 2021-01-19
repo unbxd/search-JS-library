@@ -206,7 +206,8 @@ const options = {
         enabled:true,
         el:null,
         template:bannerTemplateUI,
-        count:1
+        count:1,
+        openNewTab:false
     },
 
     swatches:{
