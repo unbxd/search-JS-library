@@ -90,7 +90,7 @@ function bindEvents(){
     }
 
     if(this.options.pagination.type === 'INFINITE_SCROLL') {
-        document.addEventListener("scroll",debounce(()=>{
+        pagination.infinteScrollTriggerEl.addEventListener("scroll",debounce(()=>{
             this.onInfiniteScroll.bind(this)();
         },1000));
     }
