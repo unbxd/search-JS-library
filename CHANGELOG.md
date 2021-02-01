@@ -10,6 +10,11 @@
 - Added openNewTab flag to load the landing page url in same tab or new tab
 - infinite scroll on custom element bug fix.
 
+
+### Changed
+- updated the version from js-core
+- fixed the special character issue in multilevel facets.
+
 ## [2.0.0] - 2020-09-28
 
 ### Added
