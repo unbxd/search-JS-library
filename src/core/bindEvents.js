@@ -33,8 +33,12 @@ function bindEvents(){
                 `.${pagination.pageClass}`,
                 this.paginationAction.bind(this)
             )
-            //wrapper.addEventListener(pagination.action, this.paginationAction.bind(this));
         });
+        if(pagination.type === 'INFINITE_SCROLL') {
+            pagination.infinteScrollTriggerEl.addEventListener("scroll",debounce(()=>{
+                this.onInfiniteScroll.bind(this)();
+            },1000));
+        }
     }
     if(searchButtonEl) {
         searchButtonEl.addEventListener(searchTrigger,this.setInputValue.bind(this));
@@ -87,12 +91,6 @@ function bindEvents(){
             "."+productView.viewTypeClass,
             this.onPageViewTypeClick.bind(this)
         )
-    }
-
-    if(this.options.pagination.type === 'INFINITE_SCROLL') {
-        pagination.infinteScrollTriggerEl.addEventListener("scroll",debounce(()=>{
-            this.onInfiniteScroll.bind(this)();
-        },1000));
     }
     this.delegate(
         this.pageSizeWrapper,
