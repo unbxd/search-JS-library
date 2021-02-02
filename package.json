@@ -19,7 +19,8 @@
     "upload-s3": "node s3Upload.js",
     "build:dev": "webpack ---config ./webpack/webpack.dev.build.js",
     "semantic-release": "semantic-release",
-    "commit": "cz"
+    "commit": "cz",
+    "test":"webpack ---config ./webpack/webpack.dev.build.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
