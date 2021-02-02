@@ -1,6 +1,14 @@
 ## Changelog
 
 
+## [2.0.1] - 2020-12-22
+
+### Added
+- Added the default image config for the product template (defaultImage: "image url here")
+- LIST/GRID viewtype fix when updateUrl param is false
+- Added onQueryRedirect method on options to handle the ridirect
+- Added openNewTab flag to load the landing page url in same tab or new tab
+
 ## [2.0.0] - 2020-09-28
 
 ### Added

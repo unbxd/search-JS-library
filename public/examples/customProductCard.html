@@ -352,7 +352,8 @@
                         unbxd_color_mapping,
                         listPrice,
                         autosuggest,
-                        colorName
+                        colorName,
+                        displayPrice
                     } = product;
                     const {
                         products
@@ -379,7 +380,7 @@
                         })
                     }
 
-                    const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
+                    const priceUI = `<span class="UNX-sale-price">${displayPrice}</span>`;
                     let strikeUi = ``;
                     if (unxStrikePrice) {
                         strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
