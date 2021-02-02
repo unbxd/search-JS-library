@@ -17,7 +17,7 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
             } = item;
             let lTid = `data-test-id="${UNX_facetLevel}${level}"`;
             const levelCss = `${multiLevelFacetSelectorClass}  UNX-category-level-${level}`
-            ui += [`<button ${lTid} data-parent="${filterField}" data-level="${level}" data-name="${value}"`,
+            ui += [`<button ${lTid} data-parent="${filterField}" data-level="${level}" data-name="${encodeURIComponent(value)}"`,
             `class=" ${levelCss} UNX-selected-crumb ${facetClass}" data-action = "clearCategoryFilter">`,
                 `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${decodeURIComponent(value)}</label>`,
             `</button>`].join('')
@@ -48,7 +48,7 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
             }
         }
         return [`<button ${lTid} data-parent="${multiLevelField}" data-level="${level}"`,
-            `class="${multiLevelFacetSelectorClass} ${levelCss} ${facetClass}" data-name="${name}" data-action = "setCategoryFilter">`,
+            `class="${multiLevelFacetSelectorClass} ${levelCss} ${facetClass}" data-name="${encodeURIComponent(name)}" data-action = "setCategoryFilter">`,
             `<label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`].join('')
     })
     ui += `<div class="UNX-category-values">${valueUI.join('')}</div>`
