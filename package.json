@@ -23,7 +23,7 @@
     "test":"webpack ---config ./webpack/webpack.dev.build.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.5",
+    "@babel/core": "^7.12.13",
     "@babel/node": "^7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
@@ -88,7 +88,7 @@
   "author": "Unbxd",
   "license": "ISC",
   "dependencies": {
-    "@unbxd-ui/unbxd-search-core": "0.2.8",
+    "@unbxd-ui/unbxd-search-core": "0.2.9",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "element-dataset": "^2.2.6"
