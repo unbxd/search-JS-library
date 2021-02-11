@@ -1,7 +1,10 @@
 import createElement from "../modules/utils/createElement";
 const createLayout = function() {
+    const {
+        wrapperTag
+    } = this.options.products;
     this.searchResultsWrapper = createElement(
-        "DIV",
+        wrapperTag,
         "",{
             class:"UNX-search-results-block UNX-result-wrapper"
         }
