@@ -29,6 +29,7 @@ const options = {
     searchEndPoint:"https://search.unbxd.io/",
     products:{
         el:null,
+        wrapperTag:'DIV',
         template:productTemplate,
         productItemClass:"product-item", // to find out product
         productType:"SEARCH",
