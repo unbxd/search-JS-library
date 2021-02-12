@@ -1,0 +1,9 @@
+export default function() {
+    return this.createElement(
+        "DIV",
+        "",
+        {
+            class:"UNX-page-size-block"
+        }
+    )
+}
