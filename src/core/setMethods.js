@@ -11,6 +11,9 @@ import setSwatches from '../modules/swatches/setSwatches';
 import setPageSize from '../modules/pageSize/setPageSize';
 import setAnalytics from '../modules/analytics/setAnalytics';
 import initialize from '../core/initialize';
+import createLayout from  './createLayout';
+import setComponentWrappers from './componentWrappers';
+import createElement from "../modules/utils/createElement";
 
 const setSearchWidget = function(config){
     const {
@@ -151,6 +154,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.setSearchWidget = setSearchWidget;
     prototype.setFacetWidget = setFacetWidget;
     prototype.updateConfig = updateConfig;
+    prototype.createLayout = createLayout;
     prototype.initialize = initialize;
     prototype.extraActions = extraActions;
     prototype.extraActionsChange = extraActionsChange;
@@ -158,6 +162,8 @@ const setMethods = (UnbxdSearch) => {
     prototype.getBrowsePage = getBrowsePage;
     prototype.resetViewState = resetViewState;
     prototype.generateRid = generateRid;
+    prototype.createElement = createElement;
+    setComponentWrappers(prototype)
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);
