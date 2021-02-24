@@ -1,9 +1,13 @@
 export default function() {
+    const {
+        tagName,
+        attributes = {},
+        events
+    } = this.options.pagesize;
     return this.createElement(
-        "DIV",
-        "",
-        {
-            class:"UNX-page-size-block"
-        }
-    )
+        tagName,
+        Object.assign({},attributes),
+        events,
+        this
+    );
 }

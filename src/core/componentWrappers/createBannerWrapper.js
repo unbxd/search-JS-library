@@ -1,8 +1,13 @@
 export default function() {
+    const {
+        tagName,
+        attributes = {},
+        events
+    } = this.options.banner;
     return this.createElement(
-        "DIV",
-        "",{
-            class:"UNX-banner-block"
-        }
+        tagName,
+        Object.assign({},attributes),
+        events,
+        this
     );
 };

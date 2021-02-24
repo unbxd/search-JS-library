@@ -1,8 +1,13 @@
 export default function(){
+    const {
+        tagName,
+        attributes = {},
+        events
+    } = this.options.facet;
     return this.createElement(
-        "DIV",
-        "",{
-            class:"UNX-facets-results-block"
-        }
+        tagName,
+        Object.assign({},attributes),
+        events,
+        this
     );
 };

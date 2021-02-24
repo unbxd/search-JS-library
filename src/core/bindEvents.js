@@ -84,9 +84,9 @@ function bindEvents(){
             this.findChangedFacet.bind(this)
         )
     }
-    if(productView.el){
+    if(this.productViewTypeWrapper){
         this.delegate(
-            productView.el,
+            this.productViewTypeWrapper,
             productView.action,
             "."+productView.viewTypeClass,
             this.onPageViewTypeClick.bind(this)
