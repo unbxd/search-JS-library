@@ -8,6 +8,7 @@ import createSortWrapper from "./createSortWrapper";
 import createSelectedFacetWrapper from "./createSelectedFacetWrapper";
 import createSpellCheckWrapper from "./createSpellCheckWrapper";
 import createPaginationWrapper from "./createPaginationWrapper";
+import createProductViewTypeWrapper from "./createProductViewTypeWrapper";
 
 const setComponentWrappers = (prototype) => {
     prototype = Object.assign(prototype,{
@@ -19,7 +20,8 @@ const setComponentWrappers = (prototype) => {
         createSortWrapper,
         createSelectedFacetWrapper,
         createSpellCheckWrapper,
-        createPaginationWrapper
+        createPaginationWrapper,
+        createProductViewTypeWrapper
     })
 };
 
@@ -33,5 +35,6 @@ export {
     createSortWrapper,
     createSelectedFacetWrapper,
     createSpellCheckWrapper,
-    createPaginationWrapper
+    createPaginationWrapper,
+    createProductViewTypeWrapper
 };

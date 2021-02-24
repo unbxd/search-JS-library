@@ -1,8 +1,13 @@
 export default function() {
+    const {
+        tagName,
+        attributes = {},
+        events
+    } = this.options.pagination;
     return this.createElement(
-        "DIV",
-        "",{
-            class:"UNX-pagination-size-block"
-        }
+        tagName,
+        Object.assign({},attributes),
+        events,
+        this
     );
 }

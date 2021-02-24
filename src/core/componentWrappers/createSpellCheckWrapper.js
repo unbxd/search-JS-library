@@ -1,8 +1,13 @@
 export default function(){
+    const {
+        tagName,
+        attributes = {},
+        events
+    } = this.options.spellCheck;
     return this.createElement(
-        "DIV",
-        "",{
-            class:"UNX-spellcheck-wrapper"
-        }
+        tagName,
+        Object.assign({},attributes),
+        events,
+        this
     );
 }

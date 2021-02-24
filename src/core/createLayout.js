@@ -7,6 +7,7 @@ const createLayout = function() {
     this.sortWrapper = this.createSortWrapper();
     this.selectedFacetWrapper = this.createSelectedFacetWrapper();
     this.spellCheckWrapper = this.createSpellCheckWrapper();
+    this.productViewTypeWrapper = this.createProductViewTypeWrapper()
     this.paginationWrappers = [];
     const getPaginationWrapper = () =>{
         const elem = this.createPaginationWrapper();
@@ -20,7 +21,8 @@ const createLayout = function() {
         sort,
         products,
         pagesize,
-        pagination
+        pagination,
+        productView
     } = this.options;
     const {
         facetsEl,
@@ -64,6 +66,10 @@ const createLayout = function() {
     if(pagesize.el && pagesize.enabled){
         pagesize.el.innerHTML = ``;
         pagesize.el.appendChild(this.pageSizeWrapper);
+    }
+    if(productView.el) {
+        productView.el.innerHTML = ``;
+        productView.el.appendChild(this.productViewTypeWrapper)
     }
     if(pagination.enabled) {
         const {

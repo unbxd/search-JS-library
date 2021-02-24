@@ -1,8 +1,13 @@
 export default function() {
+    const {
+        tagName,
+        attributes = {},
+        events
+    } = this.options.breadcrumb;
     return this.createElement(
-        "DIV",
-        "",{
-            class:"UNX-breadcrumbs-block"
-        }
-    )
+        tagName,
+        Object.assign({},attributes),
+        events,
+        this
+    );
 };
