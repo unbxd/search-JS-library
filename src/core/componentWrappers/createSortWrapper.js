@@ -2,12 +2,12 @@ export default function() {
 
     const {
         tagName,
-        attributes = {},
+        htmlAttributes = {},
         events
     } = this.options.sort;
     return this.createElement(
         tagName,
-        Object.assign({},attributes),
+        Object.assign({},htmlAttributes),
         events,
         this
     );
