@@ -196,7 +196,6 @@ This provides you the power of entire Javascript to build your desired HTML stri
 |----------|----------|----------|----------|
 | productType | String | "SEARCH" | Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY |
 | el | Element | null | Element in which to render the search results |
-| wrapperTag | String | "DIV" | html tag to create the product element, by default it will be 'DIV' |
 | template | Function | [default](src/modules/searchResults/ui.js) | Customize the look and feel of the product card by returning your custom HTML string from this function. This function gets 5 parameters: complete product object and index of the current product, swatches, selected view type, product config |
 | productAttributes | Array |  `["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]` | This is an array of all required fields for generating the result template. This is helpful to load the results faster. |
 | attributesMap | Object |  `{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}` | Field mappings for the data to be displayed in the product card |
@@ -218,12 +217,6 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | facetMultiSelect | Booelan | true | Turn this off if you want to disable the multiple selection of facets |
 | facetClass | String | "UNX-facets-block" | Additional CSS class name to add to the the facet items |
 | facetAction | String | "click | Event based on which to trigger facet selection / deselection: "click" or "change" |
-| selectedFacetClass | String | "UNX-selected-facet-btn" | Additional CSS class name for the selected facet items |
-| selectedFacetsEl | Element | null | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks |
-| selectedFacetTemplate | Function | [default](src/modules/facets/ui.js) | Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
-| selectedFacetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
-| selectedFacetConfig | Object | { tagName:"DIV", htmlAttributes:{ class:"UNX-selected-facet-lb" }, events:{} } | object will be containing the configuration for the selected facet wrapper config |
-| clearAllText | String | "Clear All" | The text to show for the clear all button that clears all selected facets |
 | rangeTemplate | Function |  [default](src/modules/facets/renderRangeFacets.js) | Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
 | rangeWidgetConfig | Object | NA | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs  |
 | facetMultilevel | Boolean | true | Turn this on to send the multilevel parameter in the search API |
@@ -256,6 +249,26 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | minLabel | String | "" | Text for the lower end of the range slider |
 | maxLabel | String | "" | Text for the higher end of the range slider |
 | prefix | String | "$" | Prefix text to be added to the range widget value. Example "$" for price facet |
+
+## Selected Facets Config
+
+| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
+|----------|----------|----------|----------|
+| selectedFacetClass | String | "UNX-selected-facet-btn" | Additional CSS class name for the selected facet items |
+| el | Element | null | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks |
+| tagName | String | "DIV" | html element for the product wrapper. by default it is div.  |
+| htmlAttributes | Object | {class:"UNX-search-results-block UNX-result-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
+| events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+| facetAction | String | "click | Event based on which to trigger selected facet deselection: "click" or "change" |
+| template | Function | [default](src/modules/facets/ui.js) | Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 3 parameters: the selected facet complete block , the selected facet value and selectedFacetsConfig itself |
+| itemTemplate | Function | [default](src/modules/facets/ui.js) | Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 4 parameters: the selected facet complete block, selected facet value, facet config and selected facets config |
+| clearAllText | String | "Clear All" | The text to show for the clear all button that clears all selected facets |
+| clearFacetsSelectorClass | String | "UNX-clear-facet" | Class name for the button to clear the selected facets |
+| removeFacetsSelectorClass | String | "UNX-remove-facet" | Class name for the button to delete selected facets |
+| tagName | String | "DIV" | html element for the selected facet wrapper. by default it is div.  |
+| htmlAttributes | Object | {class:"UNX-selected-facet-lb"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
+| events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+
 
 
 ## Pagination Config

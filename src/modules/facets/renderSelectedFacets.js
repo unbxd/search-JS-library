@@ -1,15 +1,20 @@
 export default function() {
-    const selectedFacets = this.getSelectedFacets();
+    const selectedFacetsInfo = this.getSelectedFacets();
     const selectedRanges = this.getSelectedRanges();
-    const k = Object.keys(selectedFacets);
+    const k = Object.keys(selectedFacetsInfo);
     let selectedUi = ``;
     const {
+        selectedFacets,
         facet
     } = this.options;
+    let itemTemplate  = selectedFacets.itemTemplate;
+    if(facet.selectedFacetItemTemplate) {
+        itemTemplate = facet.selectedFacetItemTemplate;
+    }
     for (let i = 0; i < k.length; i++) {
         const j = k[i];
         const isCategoryFacet = this.isCategoryFacet(j);
-        const vals = selectedFacets[j];
+        const vals = selectedFacetsInfo[j];
         if (!isCategoryFacet) {
             vals.forEach(item => {
                 const {
@@ -17,14 +22,14 @@ export default function() {
                     count,
                     dataId
                 } = item;
-                selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
+                selectedUi += itemTemplate.bind(this)({
                     facetName: j,
                     facetType: "text"
                 }, {
                     name: name,
                     dataId: (dataId) ? dataId : name,
                     count: count ? count : 0
-                });
+                },facet,selectedFacets);
             })
         }
 
@@ -34,15 +39,19 @@ export default function() {
         const l = r[j];
         const val = selectedRanges[l];
         val.forEach(rEl => {
-            selectedUi += this.options.facet.selectedFacetItemTemplate.bind(this)({
+            selectedUi += itemTemplate.bind(this)({
                 facetName: l,
                 facetType: "range"
             }, {
                 name: rEl.replace(/[^\w\s]/gi, ''),
                 dataId: rEl
-            })
+            },facet,selectedFacets)
         })
     }
-    this.selectedFacetWrapper.innerHTML = this.options.facet.selectedFacetTemplate(selectedUi, facet);
+    let selectedFacetTemp = selectedFacets.template.bind(this);
+    if(facet.selectedFacetTemplate)  {
+        selectedFacetTemp  =  facet.selectedFacetTemplate.bind(this.options.facet);
+    }
+    this.selectedFacetWrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
 }
 ;

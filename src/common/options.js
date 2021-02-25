@@ -152,6 +152,21 @@ const options = {
         },
         events:{}
     },
+    selectedFacets:{
+        selectedFacetClass:"UNX-selected-facet-btn",
+        el:null,
+        template:selectedFacetUI,
+        itemTemplate:selectedFacetItemTemplateUI,
+        clearAllText:"Clear All",
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-selected-facet-lb"
+        },
+        events:{},
+        facetAction:"click",
+        clearFacetsSelectorClass:'UNX-clear-facet',
+        removeFacetsSelectorClass:'UNX-remove-facet',
+    },
 
 
     facet: {
@@ -167,13 +182,6 @@ const options = {
         selectedFacetTemplate:selectedFacetUI,
         selectedFacetItemTemplate:selectedFacetItemTemplateUI,
         clearAllText:"Clear All",
-        selectedFacetConfig:{
-            tagName:"DIV",
-            htmlAttributes:{
-                class:"UNX-selected-facet-lb"
-            },
-            events:{}
-        },
 
 
         rangeTemplate:renderRangeFacets,
