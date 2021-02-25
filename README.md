@@ -461,17 +461,6 @@ UnbxdSearchComponent.prototype.reRender = function(){
 
 }
 ```
-With es5 way.
-```html
-<script  src="https://libraries.unbxdapi.com/search-sdk/v2.0.1/vanillaSearch.min.js"  type="text/javascript"></script>
-```
-```shell
-UnbxdSearch.prototype.reRender = function(){
-
-}
-var unbxdSearch = new UnbxdSearch({...options})
-```
-
 
 
 
