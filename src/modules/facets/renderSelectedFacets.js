@@ -49,7 +49,7 @@ export default function() {
         })
     }
     let selectedFacetTemp = selectedFacets.template.bind(this);
-    if(facet.selectedFacetTemplate)  {
+    if(facet.selectedFacetTemplate && facet.selectedFacetsEl)  {
         selectedFacetTemp  =  facet.selectedFacetTemplate.bind(this.options.facet);
     }
     this.selectedFacetWrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
