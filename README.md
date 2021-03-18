@@ -116,7 +116,7 @@ const unbxdSearch = new UnbxdSearch({
         ]
     },
     noResults: {
-        el: document.getElementById("noResultWrapper")
+        template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
     facet: {
         facetsEl: document.getElementById("facetsWrapper"),
