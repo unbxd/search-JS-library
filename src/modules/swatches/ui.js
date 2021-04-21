@@ -1,4 +1,4 @@
-export default function(swatchData, swatches) {
+export default function(swatchData, swatches,product) {
     const {
         swatchImgs = []
     } = swatchData;
@@ -11,6 +11,9 @@ export default function(swatchData, swatches) {
     const {
         UNX_swatchClrBtn
     } = this.testIds;
+    const {
+        unxTitle
+    } = product;
     if(swatchImgs.length > 1) {
         swatchImgs.forEach((item,id) => {
             const sid = this.generateRid("unx_swatch_");
@@ -18,8 +21,8 @@ export default function(swatchData, swatches) {
             const bCss = (id === 0) ? ' UNX-selected-swatch':'';
             const data = item.split("::");
             if(data){
-                btnUI+= [`<button data-test-id="${UNX_swatchClrBtn}${id}" data-swatch-id="${sid}" data-action="changeSwatch" class="${swatchClass} ${sid} ${bCss}" style="background-color:${data[0]}"> </button>`].join('');
-                imgsUI+=`<div id="${sid}" class="UNX-img-wrapper ${sCss}"><img class="UNX-img-block" src="${data[1]}"/></div>`
+                btnUI+= [`<button value="swatch color ${data[0]}" data-test-id="${UNX_swatchClrBtn}${id}" data-swatch-id="${sid}" data-action="changeSwatch" class="${swatchClass} ${sid} ${bCss}" style="background-color:${data[0]}"> swatch color ${data[0]} </button>`].join('');
+                imgsUI+=`<div id="${sid}" class="UNX-img-wrapper ${sCss}"><img alt="${unxTitle} for the ${data[0]}" class="UNX-img-block" src="${data[1]}"/></div>`
             }
         });
         btnList = `<div class="UNX-swatch-color-list">${btnUI}</div>`;
