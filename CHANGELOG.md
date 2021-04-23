@@ -8,6 +8,7 @@
 - LIST/GRID viewtype fix when updateUrl param is false
 - Added onQueryRedirect method on options to handle the ridirect
 - Added openNewTab flag to load the landing page url in same tab or new tab
+- infinite scroll on custom element bug fix.
 
 ## [2.0.0] - 2020-09-28
 
