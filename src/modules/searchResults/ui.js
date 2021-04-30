@@ -15,7 +15,7 @@ export default function(product,idx,swatchUI,productViewType,products ){
     if(!imgUrl) {
         imgUrl = defaultImage;
     }
-    let imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" src="${imgUrl}"/></div>`;
+    let imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" alt="${unxTitle}" src="${imgUrl}"/></div>`;
     const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
     let strikeUi = ``;
     if(unxStrikePrice) {
