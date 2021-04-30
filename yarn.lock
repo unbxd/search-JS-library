@@ -1648,10 +1648,10 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
-"@unbxd-ui/unbxd-search-core@0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.3.1.tgz#790b96c66b86d573d9a5efc70ff4b7005a6d18ae"
-  integrity sha512-6V87Nbc5teKa7LE7PqQ3/QQbt4RN1AXPIq3XPv1y7Ebcha1xzJeah/6HYby1c1qrgw7SlhbM7h+MP2d9l2ubrA==
+"@unbxd-ui/unbxd-search-core@0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.3.2.tgz#41b346c2ebfa52a5dbd8922ced3038beabd43f01"
+  integrity sha512-sf9dhWWVY4MGxZBZMy/Miiu0cx8V6mHGKXUjIsPZFh+XlsQenlD79wp1itOgv7hrUyEIsp+SAUGes9g75i4pYg==
   dependencies:
     babel-polyfill "^6.26.0"
     babel-runtime "^6.26.0"
