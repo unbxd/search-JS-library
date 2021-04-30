@@ -3,7 +3,7 @@ function renderSwatchBtns(product) {
     const {
         swatches
     } = this.options;
-    return this.options.swatches.template.bind(this)(swatchData,swatches);
+    return this.options.swatches.template.bind(this)(swatchData,swatches,product);
 };
 export default renderSwatchBtns;
 

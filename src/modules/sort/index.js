@@ -32,7 +32,8 @@ const sortTemplate = function(selectedSort, sortConfig) {
     })
     return [`<div class="UNX-sort-block">`,
         `<span class="UNX-sort-header">Sort By</span>`,
-        `<select data-test-id="${UNX_unbxdSorter}" data-action="changeSort" id="unbxdSorter" class="${sortClass}">`,
+        `<label class="UNX-hidden" for="unxSortSelect">Sort By</label>`,
+        `<select data-test-id="${UNX_unbxdSorter}" name="unxSortSelect" data-action="changeSort" id="unxSortSelect" class="${sortClass}">`,
             `<option value="">Relevancy</option>`,
             optionsUI,
         `</select>`,

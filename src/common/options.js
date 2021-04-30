@@ -208,7 +208,7 @@ const options = {
 
         isCollapsible:true,
         isSearchable:true,
-        searchPlaceHolder:"",
+        searchPlaceHolder:"Search Filter",
         textFacetWrapper:"UNX-facets-item",
         defaultOpen:"ALL",
         enableViewMore:false,
