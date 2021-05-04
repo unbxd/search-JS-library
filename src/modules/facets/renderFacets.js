@@ -5,8 +5,7 @@ export default function(){
     const {
         defaultOpen,
         applyMultipleFilters,
-        isCollapsible,
-        selectedFacetsEl
+        isCollapsible
     } = facet;
     const {
         expandedFacets,

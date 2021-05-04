@@ -10,13 +10,15 @@ function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfi
         dataId
     } = selectedFacetItem;
     const {
-        facetClass,
         selectedFacetClass,
         removeFacetsSelectorClass
-    } = this.options.facet;
+    } = selectedFacetsConfig;
     const {
         UNX_uFilter
     } = this.testIds;
+    const {
+        facetClass
+    } = facetConfig;
     let action = "deleteSelectedFacetValue"
     if(facetType === "range") {
         action = "deleteSelectedRange"
@@ -32,14 +34,14 @@ function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfi
 function selectedFacetUI(selections, facet,selectedFacetsConfig) {
     const {
         clearAllText,
-        clearFacetsSelectorClass
-    } = facet;
-    const selectedFClass = (this.selectedFacetClass)?this.selectedFacetClass:selectedFacetsConfig.selectedFacetClass;
+        clearFacetsSelectorClass,
+        selectedFacetClass
+    } = selectedFacetsConfig;
     if(selections.length > 0) {
         return [`<div class="UNX-facets-selections">`,
             `<h5 class="UNX-selected-facet-header">Selected Filters</h5>`,
             `<div class="UNX-selected-facets-inner">${selections}</div>`,
-            `<button class="${clearFacetsSelectorClass} ${selectedFClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
+            `<button class="${clearFacetsSelectorClass} ${selectedFacetClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
        `</div>`].join('');
     } else {
         return ``;

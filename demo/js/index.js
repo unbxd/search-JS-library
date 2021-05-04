@@ -105,8 +105,8 @@ btnEls.forEach(item => {
     item.addEventListener("click", toggleMobileFacets)
 })
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "demo-german-unbxd809051586180937",
+    apiKey: "16e3cf8d510c50106d64f1ebb919b34e",
     hashMode: true,
     updateUrls: true,
     searchBoxEl: document.getElementById("unbxdInput"),
@@ -131,9 +131,11 @@ window.unbxdSearch.updateConfig({
     noResults: {
         el: document.getElementById("noResultWrapper")
     },
+    selectedFacets: {
+        el :document.getElementById("selectedFacetWrapper")
+    },
     facet: {
         facetsEl: document.getElementById("facetsWrapper"),
-        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         applyMultipleFilters: false,
         defaultOpen: "FIRST",
         onFacetLoad: function(facets) {

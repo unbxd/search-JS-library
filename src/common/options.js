@@ -176,13 +176,7 @@ const options = {
         facetMultiSelect:true,
         facetClass:"UNX-facets-block",
         facetAction:"click",
-
         selectedFacetClass:"UNX-selected-facet-btn",
-        selectedFacetsEl:null,
-        selectedFacetTemplate:selectedFacetUI,
-        selectedFacetItemTemplate:selectedFacetItemTemplateUI,
-        clearAllText:"Clear All",
-
 
         rangeTemplate:renderRangeFacets,
         rangeWidgetConfig: {

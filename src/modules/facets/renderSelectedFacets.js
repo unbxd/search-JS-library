@@ -48,10 +48,7 @@ export default function() {
             },facet,selectedFacets)
         })
     }
-    let selectedFacetTemp = selectedFacets.template.bind(this);
-    if(facet.selectedFacetTemplate && facet.selectedFacetsEl)  {
-        selectedFacetTemp  =  facet.selectedFacetTemplate.bind(this.options.facet);
-    }
+    let selectedFacetTemp =(facet.selectedFacetTemplate)? facet.selectedFacetTemplate.bind(this.options.facet) : selectedFacets.template.bind(this);
     this.selectedFacetWrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
 }
 ;
