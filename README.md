@@ -265,8 +265,6 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | clearAllText | String | "Clear All" | The text to show for the clear all button that clears all selected facets |
 | clearFacetsSelectorClass | String | "UNX-clear-facet" | Class name for the button to clear the selected facets |
 | removeFacetsSelectorClass | String | "UNX-remove-facet" | Class name for the button to delete selected facets |
-| tagName | String | "DIV" | html element for the selected facet wrapper. by default it is div.  |
-| htmlAttributes | Object | {class:"UNX-selected-facet-lb"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
 
