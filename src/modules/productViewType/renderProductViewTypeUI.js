@@ -8,9 +8,9 @@ function renderProductViewTypeUI(){
         } = this.viewState;
         const results = this.getSearchResults();
         if(results && results.numberOfProducts === 0) {
-            productView.el.innerHTML = ``;
+            this.productViewTypeWrapper.innerHTML = ``;
         }else {
-            productView.el.innerHTML = this.options.productView.template.bind(this)(productViewType, productView); 
+            this.productViewTypeWrapper.innerHTML = this.options.productView.template.bind(this)(productViewType, productView); 
         }
     }
 };

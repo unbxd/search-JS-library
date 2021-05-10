@@ -24,7 +24,7 @@ const renderProductViewType =  function(selectedViewType, productViewType) {
         listBtn = `<button ${lTAttr} id="listBtn" disabled class="${listBtnCss} disabled-btn" data-view-action="LIST" >List</button>`;
         gridBtn = `<button ${gTAttr} id="gridBtn" disabled class="${gridBtnCss}  disabled-btn"data-view-action="GRID" >Grid</button>`;
     }
-    return `<div class='product-view-container'>${listBtn} ${gridBtn} </div>`
+    return `${listBtn} ${gridBtn}`
 
 }
 export default renderProductViewType;

@@ -16,7 +16,10 @@ const setConfig = function(options = {}, props = {}) {
         this.options.applyMultipleFilters = (typeof(facet.applyMultipleFilters) === "boolean") ? facet.applyMultipleFilters : options.facet.applyMultipleFilters;
     }
     if(pagesize) {
-        this.options.pageSize = (pagesize.pageSize) ? pagesize.pageSize : options.pagesize.pageSize;
+        this.options.pageSize = pagesize.pageSize || options.pagesize.pageSize;
+        this.state.pageSize = this.options.pageSize;
+    } else {
+        this.options.pageSize = options.pagesize.pageSize;
         this.state.pageSize = this.options.pageSize;
     }
     if(products) {

@@ -107,7 +107,6 @@ btnEls.forEach(item => {
 window.unbxdSearch = new UnbxdSearch({
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    hashMode: true,
     updateUrls: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
