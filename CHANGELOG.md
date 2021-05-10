@@ -1,5 +1,11 @@
 ## Changelog
 
+## [2.0.2] - 2021-05-10
+
+## Added
+
+- Accessibility changes added.
+
 
 ## [2.0.1] - 2020-12-22
 
