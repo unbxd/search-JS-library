@@ -43,7 +43,7 @@ const trackImpression = function(){
                 sku,
                 uniqueId
             } = product
-            const pid = sku || uniqueId;
+            const pid = uniqueId || sku;
             pids.push(pid)
         });
         obj['pids_list'] = pids;

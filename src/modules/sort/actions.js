@@ -1,12 +1,13 @@
 function sortAction(e) {
     const elem = e.target;
     this.viewState.lastDidYouMean = "";
-    const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
+    const selected = (this.options.sort.action === "click") ? elem:elem.options[elem.selectedIndex];
     const dataSet = selected.dataset;    
     const {
-        action
+        action,
+        value
     } = elem.dataset;
-    const value = elem.value;
+    const sortVal = elem.value || value || "" ;
     const {
         changeSort
     } = this.events;
@@ -16,9 +17,9 @@ function sortAction(e) {
         this.options.onEvent(this,action);
     }
     if(action === this.actions.changeSort) {
-        this.applySort(value);
+        this.applySort(sortVal);
         this.options.onEvent(this,changeSort, {
-            sort:value
+            sort:sortVal
         });
     }
     
