@@ -22,15 +22,16 @@ const createLayout = function() {
         products,
         pagesize,
         pagination,
-        productView
+        productView,
+        selectedFacets
     } = this.options;
     const {
-        facetsEl,
-        selectedFacetsEl
+        facetsEl
     } = facet;
     const {
         spellCheck
     } = this.options;
+
     if(spellCheck.el) {
         spellCheck.el.innerHTML = ``;
         spellCheck.el.appendChild(this.spellCheckWrapper);
@@ -39,9 +40,9 @@ const createLayout = function() {
        facetsEl.innerHTML = ``;
        facetsEl.appendChild(this.facetsWrapper);
     }
-    if(selectedFacetsEl) {
-        selectedFacetsEl.innerHTML = ``;
-        selectedFacetsEl.appendChild(this.selectedFacetWrapper)
+    if(selectedFacets.enabled && selectedFacets.el) {
+        selectedFacets.el.innerHTML = ``;
+        selectedFacets.el.appendChild(this.selectedFacetWrapper)
     }
     if(breadcrumb.enabled) {
         if(breadcrumb.el){

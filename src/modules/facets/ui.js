@@ -1,5 +1,5 @@
 
-function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem){
+function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,selectedFacetsConfig){
     const {
         facetName,
         facetType
@@ -29,16 +29,17 @@ function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem){
                 `<button class="UNX-delete-facet ${removeFacetsSelectorClass} ${css}" data-id="${dataId}" data-facet-action="${action}" data-facet-name="${facetName}">x</button></div>`
             ].join('');
 }
-function selectedFacetUI(selections, facet) {
+function selectedFacetUI(selections, facet,selectedFacetsConfig) {
     const {
         clearAllText,
         clearFacetsSelectorClass
     } = facet;
+    const selectedFClass = (this.selectedFacetClass)?this.selectedFacetClass:selectedFacetsConfig.selectedFacetClass;
     if(selections.length > 0) {
         return [`<div class="UNX-facets-selections">`,
             `<h5 class="UNX-selected-facet-header">Selected Filters</h5>`,
             `<div class="UNX-selected-facets-inner">${selections}</div>`,
-            `<button class="${clearFacetsSelectorClass} ${this.selectedFacetClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
+            `<button class="${clearFacetsSelectorClass} ${selectedFClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
        `</div>`].join('');
     } else {
         return ``;
