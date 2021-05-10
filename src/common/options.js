@@ -60,7 +60,7 @@ const options = {
         },
         defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-search-results-block UNX-result-wrapper"
         },
         events:{}
@@ -83,7 +83,7 @@ const options = {
         selectedViewTypeClass:'UNX-selected-product-view',
         defaultViewType:'GRID',
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"product-view-container"
         },
         events:{}
@@ -120,7 +120,7 @@ const options = {
         template: didYouMeanUI,
         selectorClass: "UNX-suggestion",
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-spellcheck-wrapper"
         },
         events:{}
@@ -132,7 +132,7 @@ const options = {
         selectorClass:"UNX-bread-crumb",
         template:breadCrumbsUI,
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-breadcrumbs-block"
         },
         events:{}
@@ -147,7 +147,7 @@ const options = {
         options:sortOptions,
         action:'change',
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-sort-block-lb"
         },
         events:{}
@@ -169,7 +169,7 @@ const options = {
         clearAllText:"Clear All",
         selectedFacetConfig:{
             tagName:"DIV",
-            attributes:{
+            htmlAttributes:{
                 class:"UNX-selected-facet-lb"
             },
             events:{}
@@ -208,7 +208,7 @@ const options = {
         viewMoreLimit:3,
 
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-facets-results-block"
         },
         events:{}
@@ -227,7 +227,7 @@ const options = {
         action:'click',
         pageLimit:6,
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-pagination-size-block"
         },
         events:{}
@@ -243,7 +243,7 @@ const options = {
         template:pageSizeUi,
         el:null,
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-page-size-block"
         },
         events:{}
@@ -256,7 +256,7 @@ const options = {
         count:1,
         openNewTab:false,
         tagName:"DIV",
-        attributes:{
+        htmlAttributes:{
             class:"UNX-banner-block"
         },
         events:{}
