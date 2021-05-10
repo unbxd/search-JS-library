@@ -8,6 +8,15 @@
 - LIST/GRID viewtype fix when updateUrl param is false
 - Added onQueryRedirect method on options to handle the ridirect
 - Added openNewTab flag to load the landing page url in same tab or new tab
+- infinite scroll on custom element bug fix.
+- Added method to get all the selected facets - instance.getAllSelectedFacets()
+- Added a method to get the total count of selected facets - instance.getSelectedFacetsCount()
+- Added a method to get the total count of selected facet values - instance.getSelectedFacetValueCount()
+
+
+### Changed
+- fixed the special character issue in multilevel facets.
+- fixed the issue while getting selected multilevel facet method
 
 ## [2.0.0] - 2020-09-28
 
