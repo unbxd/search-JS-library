@@ -189,7 +189,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | getCategoryId | Function | null | By default Category ID will be taken from unbxdPageConf object, but if you wish to customize use this function to return the category ID  |
 | setCategoryId | Function | null | This method helps to navigate through the breadcrumbs, you can customize the logic here   |
 | onQueryRedirect | Function | null | customise your logic here to handle the redirect configured in api |
-
+| browseQueryParam | String | "p" | this will be the default query param for the browse and category|
 ## Products Config
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
@@ -425,6 +425,9 @@ breadcrumb options are available here.
 | resetAll | function | Call this method to reset the all the page elements like selected facets, selected sort option, pagination etc. Ex: `unbxdSearch.resetAll()` |
 | setPageStart | function | Call this method to set the the page number. Ex: `unbxdSearch.setPageStart(0)` |
 | setRangeSlider | function | Call this method to update the range filter value. Ex:`unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
+| getSelectedFacetsCount | function | Call this function if you want to  get the total count of selected facets Ex: `unbxdSearch.getSelectedFacetsCount()` |
+| getAllSelectedFacets | function | Call this function to get all the selected facets Ex: `unbxdSearch.getAllSelectedFacets()` |
+| getSelectedFacetValueCount | function | Call this function to get the total count of selected facet values. Ex: `unbxdSearch.getSelectedFacetValueCount()` |
 
 ## API Documentation
 

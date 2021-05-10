@@ -67,6 +67,7 @@ const options = {
 
     },
     searchQueryParam:"q",
+    browseQueryParam:'p',
     defaultFilters : null, //or object with keys
     noResults: {
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
