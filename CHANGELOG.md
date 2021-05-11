@@ -1,5 +1,13 @@
 ## Changelog
 
+## [2.0.2] - 2021-05-10
+
+## Added
+
+- Accessibility changes added.
+- Seperated selected facets config
+- Github action
+
 
 ## [2.0.1] - 2020-12-22
 
@@ -15,10 +23,10 @@
 - Added tagName, events and htmlAttributes to each config so that wrapper element created by sdk can be easily customised by customer
 - Added browseQueryParam to set the default category param for the category/ browse calls.
 
-
 ### Changed
 - fixed the special character issue in multilevel facets.
 - fixed the issue while getting selected multilevel facet method
+- deprecated the selected facets config from facet config.
 
 ## [2.0.0] - 2020-09-28
 
