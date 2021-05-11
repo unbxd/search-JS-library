@@ -1,12 +1,9 @@
 export default function() {
     const {
-        selectedFacetConfig = {}
-    } = this.options.facet;
-    const {
         tagName,
         htmlAttributes = {},
         events
-    } = selectedFacetConfig;
+    } = this.options.selectedFacets;
     return this.createElement(
         tagName,
         Object.assign({},htmlAttributes),

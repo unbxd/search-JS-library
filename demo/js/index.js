@@ -130,9 +130,11 @@ window.unbxdSearch.updateConfig({
     noResults: {
         el: document.getElementById("noResultWrapper")
     },
+    selectedFacets: {
+        el: document.getElementById("selectedFacetWrapper")
+    },
     facet: {
         facetsEl: document.getElementById("facetsWrapper"),
-        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         applyMultipleFilters: false,
         defaultOpen: "FIRST",
         onFacetLoad: function(facets) {
