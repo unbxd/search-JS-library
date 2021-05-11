@@ -65,13 +65,20 @@ function bindEvents(){
         "."+facet.facetClass, 
         this.findChangedFacet.bind(this)
     )
-    if(selectedFacets && selectedFacets.el){
+    if(facet.selectedFacetsEl) {
         this.delegate(
             this.selectedFacetWrapper, 
-            selectedFacets.facetAction, 
-            "."+selectedFacets.selectedFacetClass, 
-            this.findChangedFacet.bind(this)
-        )
+            facet.facetAction, 
+            "."+facet.selectedFacetClass, 
+            this.findChangedFacet.bind(this))
+
+    } else {
+            this.delegate(
+                this.selectedFacetWrapper, 
+                selectedFacets.facetAction, 
+                "."+selectedFacets.selectedFacetClass, 
+                this.findChangedFacet.bind(this)
+            )
     }
     if(this.breadcrumbWrapper) {
         this.delegate(

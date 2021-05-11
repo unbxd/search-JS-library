@@ -40,10 +40,17 @@ const createLayout = function() {
        facetsEl.innerHTML = ``;
        facetsEl.appendChild(this.facetsWrapper);
     }
-    if(selectedFacets.enabled && selectedFacets.el) {
-        selectedFacets.el.innerHTML = ``;
-        selectedFacets.el.appendChild(this.selectedFacetWrapper)
+    if(facet.selectedFacetsEl) {
+        console.log(`selectedFacetsEl option is depricated from v2.0.2, please use selectedFacets option to configure selected facets elements and template`)
+        facet.selectedFacetsEl.innerHTML = ``;
+        facet.selectedFacetsEl.appendChild(this.selectedFacetWrapper);
+    } else {
+        if(selectedFacets.enabled && selectedFacets.el) {
+            selectedFacets.el.innerHTML = ``;
+            selectedFacets.el.appendChild(this.selectedFacetWrapper)
+        }
     }
+
     if(breadcrumb.enabled) {
         if(breadcrumb.el){
             breadcrumb.el.innerHTML = ``;

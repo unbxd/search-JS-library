@@ -7,7 +7,7 @@ export default function() {
         selectedFacets,
         facet
     } = this.options;
-    let itemTemplate  = selectedFacets.itemTemplate;
+    let itemTemplate  = (facet.selectedFacetItemTemplate) ? facet.selectedFacetItemTemplate.bind(this) : selectedFacets.itemTemplate.bind(this);
     for (let i = 0; i < k.length; i++) {
         const j = k[i];
         const isCategoryFacet = this.isCategoryFacet(j);
@@ -19,7 +19,7 @@ export default function() {
                     count,
                     dataId
                 } = item;
-                selectedUi += itemTemplate.bind(this)({
+                selectedUi += itemTemplate({
                     facetName: j,
                     facetType: "text"
                 }, {
@@ -36,7 +36,7 @@ export default function() {
         const l = r[j];
         const val = selectedRanges[l];
         val.forEach(rEl => {
-            selectedUi += itemTemplate.bind(this)({
+            selectedUi += itemTemplate({
                 facetName: l,
                 facetType: "range"
             }, {
@@ -45,6 +45,6 @@ export default function() {
             },facet,selectedFacets)
         })
     }
-    let selectedFacetTemp = selectedFacets.template.bind(this);
+    let selectedFacetTemp = (facet.selectedFacetTemplate) ? facet.selectedFacetTemplate.bind(this): selectedFacets.template.bind(this);
     this.selectedFacetWrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
 };
