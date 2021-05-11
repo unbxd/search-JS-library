@@ -20,8 +20,8 @@
 - Added method to get all the selected facets - instance.getAllSelectedFacets()
 - Added a method to get the total count of selected facets - instance.getSelectedFacetsCount()
 - Added a method to get the total count of selected facet values - instance.getSelectedFacetValueCount()
-- Added selectedFacets config to manage selected facets, its seperated from facet config
-- Added extra parameters to selected facet template and item template methods
+- Added tagName, events and htmlAttributes to each config so that wrapper element created by sdk can be easily customised by customer
+- Added browseQueryParam to set the default category param for the category/ browse calls.
 
 ### Changed
 - fixed the special character issue in multilevel facets.
