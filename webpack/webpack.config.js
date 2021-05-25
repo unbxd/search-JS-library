@@ -13,7 +13,6 @@ module.exports = {
   mode:'development',
   devtool: 'inline-source-map',
   target: "web",
-  watch:true,
   output: {
     path: Path.join(__dirname, '../public'),
     filename: 'js/[name].js',
