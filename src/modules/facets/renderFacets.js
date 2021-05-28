@@ -22,6 +22,7 @@ export default function(){
     facetsWrapper.innerHTML = ``;
     const selectedFacets = this.getSelectedFacets();
     const selectedRanges  =this.getSelectedRanges();
+    let facetHtml = ``;
     allFacets.forEach((facetItem,idx) => {
         const {
             facetType,
@@ -37,15 +38,17 @@ export default function(){
         const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
         const selectedFacet = selectedFacets[facetName];
         if(facetType === "text") {
-            facetsWrapper.innerHTML += this.renderTextFacet(facetItem,selectedFacet,isExpanded,facetSearchTxt);
+            facetHtml += this.renderTextFacet(facetItem,selectedFacet,isExpanded,facetSearchTxt);
         }
         if(facetType === "range") {
-            facetsWrapper.innerHTML += this.renderRangeFacet(facetItem,isExpanded,"");
+            facetHtml += this.renderRangeFacet(facetItem,isExpanded,"");
         }
         if(facetType === "category") {
-            facetsWrapper.innerHTML += this.renderMultiLevelFacet(facetItem,isExpanded,facetSearchTxt);
+            facetHtml += this.renderMultiLevelFacet(facetItem,isExpanded,facetSearchTxt);
         }
         this.viewState.facetElementMap[facetName] = facetName;
-    })
+    });
+    facetsWrapper.innerHTML += facetHtml;
     this.options.facet.onFacetLoad.bind(this)(allFacets);
+    return facetHtml;
 };

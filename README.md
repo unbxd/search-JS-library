@@ -16,6 +16,10 @@
 
 A JavaScript library for building performant and quick search experiences with Unbxd.
 
+| Statements                  | Branches                | Functions                 | Lines             |
+| --------------------------- | ----------------------- | ------------------------- | ----------------- |
+| ![Statements](https://img.shields.io/badge/Coverage-84.01%25-yellow.svg) | ![Branches](https://img.shields.io/badge/Coverage-66.93%25-red.svg) | ![Functions](https://img.shields.io/badge/Coverage-81.41%25-yellow.svg) | ![Lines](https://img.shields.io/badge/Coverage-83.98%25-yellow.svg) |
+
 
 ## Browsers support
 

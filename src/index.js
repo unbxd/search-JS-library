@@ -40,6 +40,20 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.testIds = testIds;
         this.updateConfig();
         this.options.onEvent(this, 'initialised');
+        this.reRender();
+        if(!this.viewState.initialised) {
+            if(this.options.hashMode) {
+                window.onhashchange= this.onLocationChange.bind(this);
+            } else {
+                window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+            }
+            const urlParams = this.getQueryParams();
+            const ln = Object.keys(urlParams).length;
+            if(ln > 0){
+                window.setTimeout(this.renderFromUrl.bind(this),500);
+            }
+            this.viewState.initialised = true;
+        }
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
