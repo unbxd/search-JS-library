@@ -73,7 +73,7 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
         facetClass += ` ${selectedFacetClass}`
         action = "deleteFacetValue";
     }
-    return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+    return [`<button data-facet-type="text" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
                 `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
             `</button>`].join('');
 }

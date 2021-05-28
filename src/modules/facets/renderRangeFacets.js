@@ -19,7 +19,7 @@ const renderRangeFacets = function(range, selectedRange, facet) {
           } = item;
         const isSelected = this.isSelectedRange(facetName,item);
         const btnCss = (isSelected) ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}`:`${facetClass}`;
-        valueUI +=[`<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
+        valueUI +=[`<button data-facet-type="range" class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
             `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
             `<span class="UNX-facet-count">(${from.count})</span>`,
       `</button>`].join('');

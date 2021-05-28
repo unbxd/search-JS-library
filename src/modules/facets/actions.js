@@ -111,8 +111,8 @@ const findChangedFacet = function(e) {
     }
     if(facetAction === "clearAllFacets") {
         this.viewState.lastAction = "clearAllFacets";
-        this.state.selectedFacets = [];
-        this.state.rangeFacet = [];
+        this.state.selectedFacets = {};
+        this.state.rangeFacet = {};
         this.setPageStart(0);
         this.getResults();
     }
@@ -188,7 +188,7 @@ const findChangedFacet = function(e) {
         }
     }
     if(action === "clearRangeFacets") {
-        this.state.rangeFacet = [];
+        this.state.rangeFacet = {};
         this.renderFacets();
         if(isSelections.length > 0) {;
             this.applyRangeFacet();
