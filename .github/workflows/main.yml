@@ -31,8 +31,11 @@ jobs:
             - name: Install Dependencies
               run: yarn install --frozen-lockfile
 
-            - name: Run Test
-              run: yarn test
+            - name: Code Coverage Report
+              uses: romeovs/lcov-reporter-action@v0.2.19
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                lcov-file: ./coverage/lcov.info
 
     build:
         name: Build ⚙️
