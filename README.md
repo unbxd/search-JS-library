@@ -74,7 +74,7 @@ You can also use a global-friendly UMD build:
 
 ```html
 
-<script  src="https://libraries.unbxdapi.com/search-sdk/v2.0.1/vanillaSearch.min.js"  type="text/javascript"></script>
+<script  src="https://libraries.unbxdapi.com/search-sdk/v2.0.3/vanillaSearch.min.js"  type="text/javascript"></script>
 
 ```
 
@@ -84,7 +84,7 @@ And to get our default theme, include the CSS as shown below.
 
 ```html
 
-<link  href="https://libraries.unbxdapi.com/search-sdk/v2.0.1/vanillaSearch.min.css"  rel="stylesheet"></script>
+<link  href="https://libraries.unbxdapi.com/search-sdk/v2.0.3/vanillaSearch.min.css"  rel="stylesheet"></script>
 
 ```
 
