@@ -169,7 +169,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | breadcrumb | Object | Refer section | Bread crumb component configurations. You can find all the configs in [Breadcrumb Config](#Breadcrumb-Config) section |
 | spellCheck | Object | Refer section | Spellcheck component configurations. You can find all the configs in [Spell Check Config](#Spell-Check-Config) section. Please ignore incase of _browse_ or _category_ pages.|
 | banner | Object | Refer section | Banner component configurations. You can find all the configs in [Banner Config](#Banner-Config) section. |
-| variants | Object | Refer section | Set this object, if you have want to display variant products. You can find all the variants configs in [Variants Config](#Variants-Config) section |
+| variants | Object | Refer section | Set this object, if you have want to display variant products. by default variants will be undefined. You can find all the variants configs in [Variants Config](#Variants-Config) section |
 | swatches | Object | Refer section | Set this object, if you have want to display swatches on your product cards. You can find all the swatch configs in [Swatches Config](#Swatches-Config) section |
 | loader | Object | Refer section | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
 | noResults | Object | Refer section | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
