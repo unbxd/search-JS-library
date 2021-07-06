@@ -94,18 +94,7 @@ const options = {
         template:function(){return `<div class="UNX-loader">Loading search results....</div>`},
         el:null
     },
-    variants:{
-        enabled:false,
-        count:5,
-        groupBy:'v_colour',
-        attributes:[
-            "title",
-            "v_imageUrl"
-        ],
-        mapping:{
-            "image_url":"v_imageUrl"
-        }
-    },
+    variants:undefined,
 
     extraParams:{
         "version":"V2",
