@@ -53,6 +53,7 @@ function paginationAction(e){
     this.checkFacets();
     this.viewState.lastDidYouMean = "";
     if(pageAction === 'paginate'){
+        this.viewState.lastAction = "pagination";
         this.setPageStart(pageNo);
         this.getResults();
     } else{
