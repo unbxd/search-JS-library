@@ -108,10 +108,202 @@
       var unbxdCallbackEcma = function (instance, type,data){
       }
 
+        const hashMap = [
+            {
+                value:"price",
+                type:"range",
+                displayValue:"price"
+            },
+            {
+                value:"brands_uFilter",
+                type:"filter",
+                displayValue:"newbrands"
+            },
+            {
+                value:"capGangways_uFilter",
+                type:"filter",
+                displayValue:"cap"
+            },
+            {
+                value:"handrailTypeGangways_uFilter",
+                type:"filter",
+                displayValue:"handrailType"
+            },
+            {
+                value:"lengthGangways_uFilter",
+                type:"filter",
+                displayValue:"length"
+            },
+            {
+                value:"widthGangways_uFilter",
+                type:"filter",
+                displayValue:"width"
+            }
+        ];
+        const getTypeMap = function(value) {
+            let selected = null;
+            const l = hashMap.length;
+            for( let i =0; i<l;i++){
+                if(hashMap[i].displayValue === value){
+                    selected = hashMap[i].type;
+                    break;
+                }
+            }
+            return selected;
+        }
+        const getFacetNameMap = function(value) {
+            let selected = null;
+            const l = hashMap.length;
+            for( let i =0; i<l;i++){
+                if(hashMap[i].value === value){
+                    selected = hashMap[i].displayValue;
+                    break;
+                }
+            }
+            return selected;
+        }
+        const getFacetValueMap = function(name) {
+            let selected = null;
+            const l = hashMap.length;
+            for( let i =0; i<l;i++){
+                if(hashMap[i].displayValue === name){
+                    selected = hashMap[i].value;
+                    break;
+                }
+            }
+            return selected;
+        }
+        const getFacetValueUrl = function(selectedFacets) {
+            const facetArr = Object.keys(selectedFacets);
+            let facetStr = ``;
+            facetArr.forEach((item,i) => {
+                const valueArr = selectedFacets[item];
+                facetStr += `/${getFacetNameMap(item)}/`
+                valueArr.forEach((value,i) => {
+                    const {
+                        name
+                    } = value;
+                    const val = spaceToHiphen(name);
+                    if(i == 0) {
+                        facetStr += `${val}`;
+                    } else {
+                        facetStr += `/${val}`;
+                    }
+                })
+            })
+            return facetStr;
+        }
+        const getRangeValueUrl = function(rangeFacet) {
+            const facetArr = Object.keys(rangeFacet);
+            let facetStr = ``;
+            facetArr.forEach((item,i) => {
+                const valueArr = rangeFacet[item][0].replace(" TO ","-").replace("[","").replace("]","");
+                facetStr += `/${getFacetNameMap(item)}/${valueArr}`;
+            })
+            return facetStr;
+        }
+        UnbxdSearch.prototype.setUrl = function(reload) {
+            const {
+                userInput,
+                selectedFacets,
+                rangeFacet,
+                startPageNo
+            } = this.state;
+            let facetStr = ``;
+            facetStr += getFacetValueUrl(selectedFacets);
+            facetStr += getRangeValueUrl(rangeFacet);
+            let newUrl = `/${userInput}${facetStr}`;
+            const currUrl = location.hash.replace("#","");
+            if(currUrl !== newUrl) {
+                location.hash = newUrl
+            }
+        }
+
+        const spaceToHiphen = function(str) {
+            return str.replace(/\s/g , "-");
+        }
+        const hiphenToSpace = function(str) {
+            return str.replace(/-/g, " ");
+        }
+
+
+
+        UnbxdSearch.prototype.getQueryParams = function(pathState) {
+            let q = location.hash
+            let uri = q.replace("#/","");
+            if(pathState) {
+                uri = pathState;
+            }
+            const splited = uri.split('/');
+            let chunks = [];
+
+            splited.forEach((item,index) => {
+                if(item !== "" && item !== "#" ) {
+                    chunks.push(item);
+                }
+            })
+            let params = {
+                q:"",
+                filter:[]
+            };
+            let pointer = 0;
+            let lastType=null;
+            let filterName="";
+            let filterValue = "";
+            for (let i=0; i < chunks.length ; i++) {
+                let data= chunks[i];
+                if(i === 0) {
+                    params.q = data;
+                } else {
+                    const type = getTypeMap(data)
+                    switch(type) {
+                    case "filter":
+                        lastType = "filter"
+                        filterName = getFacetValueMap(data);
+                        if(filterValue !== "") {
+                            params.filter.push(filterValue);
+                        }
+                        filterValue = filterName;
+                        pointer = i+1;
+                    break;
+                    case "range":
+                        lastType = "range"
+                        params.filter.push(filterValue);
+                        filterName = getFacetValueMap(data);
+                        filterValue = filterName;
+                        pointer = i+1;
+                    break;
+                    default:
+                        if(lastType === "filter") {
+                            const val = hiphenToSpace(data);
+                            if(lastType === "filter" && filterName && filterValue.indexOf(filterName) >= 0 & i === pointer ) {
+                                filterValue += `:${val}`;
+                                pointer = i;
+                            }
+                            if(lastType === "filter" && filterName && filterValue.indexOf(filterName) >= 0 & i > pointer ) {
+                                filterValue += ` OR ${filterName}:${val}`;
+                            }
+                        }
+                        if(lastType === "range") {
+                            const value = `:[${data.replace("-"," TO ")}]`
+                            filterValue += value
+                        }
+                    }
+                }
+            }
+            if(filterValue !="") {
+                params.filter.push(filterValue);
+                filterValue = "";
+            }
+            return params;
+        };
+
+
+
 
       window.unbxdSearch = new UnbxdSearch({
-        siteKey: "demo-unbxd700181503576558",
-        apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+        siteKey: "stage-industrialproducts-com820111617393495",
+        apiKey: "a9229f5229147034e58ae920dc1fdeea",
         hashMode:false,
         updateUrls:true,
         searchBoxEl: document.getElementById("unbxdInput"),

@@ -5,8 +5,12 @@ const bannerTemplateUI = (banners, bannerOpts) => {
     const bannerUI = banners.map((item) => {
         const {
             imageUrl,
-            landingUrl
+            landingUrl,
+            bannerHtml
         } = item;
+        if(bannerHtml) {
+            return bannerHtml;
+        }
         let hrefStr = ``;
         if(landingUrl) {
             hrefStr +=`href=${landingUrl}`
