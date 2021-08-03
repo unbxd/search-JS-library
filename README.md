@@ -477,6 +477,7 @@ var unbxdSearch = new UnbxdSearch({...options})
 - <a  href="public/examples/internetExplorer.html">IE11</a>
 - <a  href="https://codesandbox.io/s/categorypage-4e8bc">Category Page</a>
 - <a  href="https://codesandbox.io/s/rangeslider-p23l9">RangeSlider</a>
+- <a  href="https://codesandbox.io/s/custom-seo-url-jjg4k">Custom Url Format </a>
 
 ## Tips & Tricks
 
