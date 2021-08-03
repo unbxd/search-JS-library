@@ -18,7 +18,7 @@
     "generate-docs": "jsdoc -c ./docs/jsDoc.json ",
     "upload-s3": "node s3Upload.js",
     "build:dev": "webpack ---config ./webpack/webpack.dev.build.js",
-    "test":"webpack ---config ./webpack/webpack.dev.build.js"
+    "test": "webpack ---config ./webpack/webpack.dev.build.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",
@@ -79,7 +79,7 @@
   "author": "Unbxd",
   "license": "ISC",
   "dependencies": {
-    "@unbxd-ui/unbxd-search-core": "0.3.5",
+    "@unbxd-ui/unbxd-search-core": "0.3.6",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "element-dataset": "^2.2.6"

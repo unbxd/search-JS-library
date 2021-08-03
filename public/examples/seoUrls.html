@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+      <meta name="theme-color" content="#000000" />
+      <title>Infinite Scroll</title>
+      <!--required frame works should be loaded here-->
+      <link
+         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+         rel="stylesheet"
+         />
+      <link
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+         rel="stylesheet"
+         />
+      <link
+         href="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.css"
+         rel="stylesheet"
+         />
+      <style type="text/css">
+         .unx-pagination-size-block {
+         display: flex;
+         justify-content: center;
+         margin: 20px;
+         }
+         .UNX-page-items {
+         background: #000000;
+         color: #FFF;
+         padding: 12px;
+         border-color: #000000;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="UNX-header">
+         <div class="UNX-header-inner">
+            <div class="UNX-logo">
+               UNBXD
+            </div>
+            <div class="UNX-input-wrapper">
+               <input id="unbxdInput" class="UNX-input"/>
+               <button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
+            </div>
+         </div>
+      </div>
+      <div class="UNX-results-container">
+         <div class="UNX-head-wrapper">
+            <div class="UNX-selected-actions">
+               <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
+               <div class="UNX-selected-facet-wrapper" id="selectedFacetWrapper"></div>
+            </div>
+            <div class="UNX-product-type-block" id="productViewTypeContainer"></div>
+         </div>
+         <div class="UNX-product-results">
+            <div class="UNX-facet-wrapper">
+               <div class="UNX-fxd-facet">
+                  <div class="UNX-selected-facet-wrapper UNX-selected-f-m" id="selectedMFacetWrapper"></div>
+                  <div class="UNX-multilevel-block" id="bucketedFacetWrapper"></div>
+                  <div class="UNX-text-facet-block" id="facetsWrapper"></div>
+                  <div class="UNX-range-block" id="rangeFacetWrapper"></div>
+                  <div class="UNX-m-facet-row">
+                     <button data-action="applyFacets" class="UNX-primary-btn UNX-facet-trigger">Apply</button>
+                     <button data-action="clearFacets" class="UNX-default-btn UNX-facet-trigger">Clear</button>
+                  </div>
+               </div>
+               <div class="UNX-m-facet-row">
+                  <button class="UNX-m-facet-btn UNX-facet-trigger fa fa-filter"></button>
+               </div>
+            </div>
+            <div class="UNX-product-list">
+               <div class="UNX-result-header">
+                  <div id="didYouMeanWrapper" class="UNX-didyou-mean"></div>
+                  <div class="UNX-result-right">
+                     <div class="UNX-change-products" id="changeNoOfProducts"></div>
+                     <div class="UNX-sort-wrapper" id="sortWrapper"></div>
+                     <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
+                  </div>
+               </div>
+               <div id="bannerContainer"></div>
+               <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+            </div>
+         </div>
+         <div class="UNX-loader-container" id="loaderEl">
+         </div>
+         <div id="noResultWrapper"></div>
+         <div id="clickScrollContainer" class="UNX-change-pagination-wrap"></div>
+      </div>
+      <script src="https://libraries.unbxdapi.com/search-sdk/v2.0.1/vanillaSearch.min.js"></script>
+      <script>
+      var UnbxdSiteName = "demo-unbxd700181503576558";
+      (function() {
+          var ubx = document.createElement("script");
+          ubx.type = "text/javascript";
+          ubx.async = true;
+          ubx.src = "//d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js";
+          (
+              document.getElementsByTagName("head")[0] ||
+              document.getElementsByTagName("body")[0]
+          ).appendChild(ubx);
+      })();
+      const getFacetValueUrl = function(selectedFacets) {
+          const facetArr = Object.keys(selectedFacets);
+          let facetStr = ``;
+          if (facetArr.length > 0) {
+              facetArr.forEach((item, i) => {
+                  const valueArr = selectedFacets[item];
+                  if (valueArr.length > 0) {
+                      facetStr += `/${item)}/`;
+                      valueArr.forEach((value, i) => {
+                          const {
+                              name
+                          } = value;
+                          if (i == 0) {
+                              facetStr += `${name}`;
+                          } else {
+                              facetStr += `/${name}`;
+                          }
+                      })
+                  }
+              })
+          }
+          return facetStr;
+      }
+
+      const getCategoryValueUrl = function(categoryValue) {
+          const facetArr = categoryValue.categoryPath;
+          let facetStr = ``;
+          if (facetArr) {
+              facetArr.forEach((item, i) => {
+                  facetStr += `/${item}`
+              });
+          }
+          return facetStr;
+      }
+      UnbxdSearch.prototype.setUrl = function(reload) {
+          const {
+              userInput,
+              selectedFacets,
+              rangeFacet,
+              categoryFilter
+          } = this.state;
+          let facetStr = ``;
+          facetStr += getCategoryValueUrl(categoryFilter);
+          facetStr += getFacetValueUrl(selectedFacets);
+          facetStr += getRangeValueUrl(rangeFacet);
+          let newUrl = `${facetStr}/q=${userInput}`;
+          const currUrl = location.pathname;
+          if (currUrl !== `${newUrl}`) {
+              //location.pathname= newUrl;
+              history.pushState(newUrl, null, newUrl)
+          }
+      }
+      UnbxdSearch.prototype.getQueryParams = function(pathState) {
+          let q = location.pathname;
+          let uri = q.replace("/", "");
+          if (pathState) {
+              uri = pathState;
+          }
+          const splited = uri.split('/');
+          let chunks = [];
+          splited.forEach((item, index) => {
+              if (item !== "" && item !== "#") {
+                  chunks.push(item);
+              }
+          })
+          let params = {
+              q: "",
+              filter: [],
+              "category-filter": ""
+          };
+          let pointer = 0;
+          let lastType = null;
+          let filterName = "";
+          let filterValue = "";
+          for (let i = 0; i < chunks.length; i++) {
+              let data = chunks[i];
+              if (data.indexOf("q=") >= 0) {
+                  params.q = `${data.replace("q=","")}`;
+              } else {
+                  const type = getTypeMap(data)
+                  switch (type) {
+                      case "filter":
+                          lastType = "filter"
+                          filterName = getFacetValueMap(data);
+                          if (filterValue !== "") {
+                              params.filter.push(filterValue);
+                          }
+                          filterValue = filterName;
+                          pointer = i + 1;
+                          break;
+                      case "range":
+                          lastType = "range"
+                          params.filter.push(filterValue);
+                          filterName = getFacetValueMap(data);
+                          filterValue = filterName;
+                          pointer = i + 1;
+                          break;
+                      default:
+                          if (lastType === null) {
+                              let dataVal = hiphenToSpace(data);
+                              let val = params["category-filter"];
+                              if (val === "") {
+                                  params["category-filter"] = encodeURIComponent(dataVal);
+                              } else {
+                                  params["category-filter"] = `${val}>${dataVal}`;
+                              }
+                          }
+                          if (lastType === "filter") {
+                              const val = hiphenToSpace(data);
+                              if (lastType === "filter" && filterName && filterValue.indexOf(filterName) >= 0 & i === pointer) {
+                                  filterValue += `:${val}`;
+                                  pointer = i;
+                              }
+                              if (lastType === "filter" && filterName && filterValue.indexOf(filterName) >= 0 & i > pointer) {
+                                  filterValue += ` OR ${filterName}:${val}`;
+                              }
+                          }
+                          if (lastType === "range") {
+                              const value = `:[${data.replace("-"," TO ")}]`
+                              filterValue += value
+                          }
+                  }
+              }
+          }
+          if (filterValue != "") {
+              params.filter.push(filterValue);
+              filterValue = "";
+          }
+          return params;
+      };
+
+      var unbxdCallbackEcma = function(instance, type, data) {}
+
+
+      window.unbxdSearch = new UnbxdSearch({
+          siteKey: "demo-unbxd700181503576558",
+          apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+          hashMode: false,
+          updateUrls: true,
+          searchBoxEl: document.getElementById("unbxdInput"),
+          searchTrigger: "click",
+          searchButtonEl: document.getElementById("searchBtn"),
+          products: {
+              el: document.getElementById("searchResultsWrapper"),
+              productType: "SEARCH",
+              productClick: function(product, e) {
+                  console.log(product, "product,index", e);
+              }
+          },
+          pagination: {
+              type: 'CLICK_N_SCROLL',
+              el: document.getElementById("clickScrollContainer")
+          },
+          spellCheck: {
+              enabled: true,
+              el: document.getElementById("didYouMeanWrapper")
+          },
+          noResults: {
+              el: document.getElementById("noResultWrapper")
+          },
+          facet: {
+              facetsEl: document.getElementById("facetsWrapper"),
+              selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+              rangeFacetEl: document.getElementById("rangeFacetWrapper"),
+              multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
+              applyMultipleFilters: false
+          },
+          breadcrumb: {
+              el: document.getElementById("breadcrumpContainer")
+          },
+          pagesize: {
+              el: document.getElementById("changeNoOfProducts")
+          },
+          sort: {
+              el: document.getElementById("sortWrapper"),
+              options: [{
+                      value: "sortPrice desc",
+                      text: "Price High to Low"
+                  },
+                  {
+                      value: "sortPrice asc",
+                      text: " Price Low to High"
+                  }
+              ]
+          },
+          loader: {
+              el: document.getElementById("loaderEl")
+          },
+          productView: {
+              el: document.getElementById("productViewTypeContainer"),
+              defaultViewType: "GRID"
+          },
+          banner: {
+              el: document.getElementById("bannerContainer"),
+              count: 1
+          },
+          swatches: {
+              enabled: true,
+              attributesMap: {
+                  swatchList: "color",
+                  swatchImgs: "unbxd_color_mapping",
+                  swatchColors: "color"
+              }
+          }
+      });
+      </script>
+   </body>
+</html>
