@@ -8,6 +8,7 @@
 - variant config is removed by default. so variants config need to be added in the options to enable variants in api.
 - onPaginate callback fix(was not working for the page numbers in the fixed pagination)
 - added support for html in banner template
+- removed the styles directly applying to the html elements outside the sdk
 
 
 ## [2.0.2] - 2021-05-10
