@@ -9,6 +9,8 @@
 - onPaginate callback fix(was not working for the page numbers in the fixed pagination)
 - added support for html in banner template
 - removed the styles directly applying to the html elements outside the sdk
+- fixed : analytics was not fiing for range filters
+- fixed : product duplication in infinite scroll
 
 
 ## [2.0.2] - 2021-05-10

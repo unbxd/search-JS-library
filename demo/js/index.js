@@ -104,16 +104,69 @@ const btnEls = document.querySelectorAll(".UNX-facet-trigger");
 btnEls.forEach(item => {
     item.addEventListener("click", toggleMobileFacets)
 })
+UnbxdSearch.prototype.setUrl = function(reload) {
+    const {
+        productType,
+        hashMode,
+        searchPath,
+        onQueryRedirect
+    } = this.options;
+    const {
+        userInput,
+        urlLoad,
+        isHistory,
+        responseObj = {},
+        startPageNo
+    } = this.state;
+    const {
+        productViewType
+    } = this.viewState;
+    const {
+        redirect
+    } = responseObj;
+    if(typeof onQueryRedirect === "function") {
+        onQueryRedirect(this, redirect);
+    }
+    let facetStr = ``;
+    facetStr += this.urlFlattenFacets();
+    facetStr += this.getRangeFilterStr();
+    facetStr += this.categoryFilterUrlStr();
+    if(startPageNo > 0) {
+        facetStr += this.getPageStartStr()
+    }
+    facetStr += `&viewType=${productViewType}`;
+    const q = `q=${userInput}${facetStr}${this.getSortUrlString()}`;
+    this.state.urlState = q;
+    const isPath = location.pathname.includes(searchPath);
+    if(hashMode) {
+        const newQ = `#${q}`;
+        if(isPath && (newQ !== location.hash)) {
+            location.hash = q;
+        }
+    } else {
+        if(isHistory && !urlLoad && isPath){
+            const newQ  = `?${q}`;
+            if(decodeURI(newQ) !== decodeURI(location.search)) {
+                window.history.pushState(q, null, newQ);
+                this.state.urlLoad = false;
+            }
+        }
+        if(reload && isPath){
+            location.search = q;
+        }
+    }
+}
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "demo-german-unbxd809051586180937",
+  apiKey: "16e3cf8d510c50106d64f1ebb919b34e",
     updateUrls: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
     products: {
         productType: "SEARCH",
-    }
+    },
+    unbxdAnalytics:true
 });
 window.unbxdSearch.updateConfig({
     products: {
@@ -242,7 +295,7 @@ window.unbxdSearch.updateConfig({
     pagination: {
         type: 'INFINITE_SCROLL',
         el: document.querySelector("#clickScrollContainer"),
-        onPaginate: function(data) {}
+        onPaginate: function(data) {console.log(data,"data")}
     },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")

@@ -61,8 +61,19 @@ const reRenderTextFacet = function(facetName) {
     })
 }
 
+
 const setRangeSlider = function(value) {
     this.setRangeFacet(value)
+    const {
+        facetName,
+        start,
+        end
+    } =value;
+    this.getCallbackActions({
+        facetName,
+        facetAction:'changeFacet',
+        id: facetName
+    },'facetClick');
     this.viewState.lastAction = "updatedRangeSlider";
     this.setPageStart(0);
     this.applyRangeFacet();
