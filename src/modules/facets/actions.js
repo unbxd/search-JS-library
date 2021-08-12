@@ -128,6 +128,11 @@ const findChangedFacet = function(e) {
             facetName,
             applyMultiple:true
         });
+        this.getCallbackActions({
+            facetName,
+            facetAction,
+            id
+        },'facetClick');
         
         this.setPageStart(0);
         this.getResults();
@@ -186,6 +191,11 @@ const findChangedFacet = function(e) {
             this.setPageStart(0);
             this.applyRangeFacet();
         }
+        this.getCallbackActions({
+            facetName,
+            facetAction,
+            id
+        },'facetClick');
     }
     if(action === "clearRangeFacets") {
         this.state.rangeFacet = [];

@@ -34,6 +34,7 @@ const onInfiniteScroll = function() {
     {
         if(!this.viewState.isInfiniteStarted && !this.state.loading) {
             this.viewState.isInfiniteStarted = true;
+            this.viewState.lastAction = "pagination";
             this.renderNewResults('next');
         }
     }
