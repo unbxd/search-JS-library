@@ -83,21 +83,72 @@
         var UnbxdSiteName = "demo-unbxd700181503576558";
     </script>
     <script src="https://d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js"></script>
-    <script src="../dist/js/vanillaSearch.js"></script>
+    <script src="https://libraries.unbxdapi.com/search-sdk/v2.0.3/vanillaSearch.min.js"></script>
     <script>
         const unbxdCallbackEcma = function(instance, type, data) {};
         window.UnbxdAnalyticsConf = {
             page: "cat1820001"
         };
         window.UnbxdAnalyticsConf["page_type"] = "CATEGORY_PATH";
+            
+UnbxdSearch.prototype.setUrl = function(reload) {
+    const {
+        productType,
+        hashMode,
+        searchPath,
+        onQueryRedirect
+    } = this.options;
+    const {
+        userInput,
+        urlLoad,
+        isHistory,
+        responseObj = {},
+        startPageNo
+    } = this.state;
+    const {
+        productViewType
+    } = this.viewState;
+    const {
+        redirect
+    } = responseObj;
+    if(typeof onQueryRedirect === "function") {
+        onQueryRedirect(this, redirect);
+    }
+    let facetStr = ``;
+    facetStr += this.urlFlattenFacets();
+    facetStr += this.getRangeFilterStr();
+    facetStr += this.categoryFilterUrlStr();
+    if(startPageNo > 0) {
+        facetStr += this.getPageStartStr()
+    }
+    facetStr += `&viewType=${productViewType}`;
+    const q = `q=${userInput}${facetStr}${this.getSortUrlString()}`;
+    this.state.urlState = q;
+    const isPath = location.pathname.includes(searchPath);
+    if(hashMode) {
+        const newQ = `#${q}`;
+        if(isPath && (newQ !== location.hash)) {
+            location.hash = q;
+        }
+    } else {
+        if(isHistory && !urlLoad && isPath){
+            const newQ  = `?${q}`;
+            if(decodeURI(newQ) !== decodeURI(location.search)) {
+                window.history.pushState(q, null, newQ);
+                this.state.urlLoad = false;
+            }
+        }
+        if(reload && isPath){
+            location.search = q;
+        }
+    }
+}
 
         window.unbxdSearch = new UnbxdSearch({
             siteKey: "demo-unbxd700181503576558",
             apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
             hashMode: false,
-            updateUrls: false
-        });
-        window.unbxdSearch.updateConfig({
+            updateUrls: true,
             searchBoxSelector: document.getElementById("unbxdInput"),
             searchTrigger: "click",
             searchButtonSelector: document.getElementById("searchBtn"),

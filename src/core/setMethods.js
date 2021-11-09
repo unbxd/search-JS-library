@@ -69,7 +69,7 @@ const extraActions = function(e) {
         const {
             facetElementMap
         } = this.viewState;
-        const fI=document.getElementById(facetElementMap[facetName]);
+        const fI = target.closest(`.${facetElementMap[facetName]}`);
         if(facetAction === "facetOpen") {
             this.viewState.expandedFacets[facetName] = true;
             target.classList.add(openBtn);
@@ -145,6 +145,9 @@ const generateRid = (custom="unx_") => {
     return custom + Math.random().toString(36).substr(2, 9);
 };
 
+const createFacetsLayout = function() {
+
+};
 
 const setMethods = (UnbxdSearch) => {
     const {
@@ -163,6 +166,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.resetViewState = resetViewState;
     prototype.generateRid = generateRid;
     prototype.createElement = createElement;
+    prototype.createFacetsLayout = createFacetsLayout;
     setComponentWrappers(prototype)
     setInput(prototype);
     setProductViewType(prototype);

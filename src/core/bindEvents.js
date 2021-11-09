@@ -34,18 +34,24 @@ function bindEvents(){
                 `.${pagination.pageClass}`,
                 this.paginationAction.bind(this)
             )
-            //wrapper.addEventListener(pagination.action, this.paginationAction.bind(this));
         });
     }
-    if(searchButtonEl) {
-        searchButtonEl.addEventListener(searchTrigger,this.setInputValue.bind(this));
+    if (facet.facetsEl) {
+         this.facetWrappers.forEach(wrapper => {
+            this.delegate(wrapper, facet.facetAction, `.${facet.facetClass}`, this.findChangedFacet.bind(this));
+            this.delegate(wrapper, 'change', '.' + actionChangeClass, this.extraActionsChange.bind(this));
+			this.delegate(wrapper, 'keyup', '.' + actionChangeClass, this.extraActionsChange.bind(this));
+			this.delegate(wrapper, 'click', '.' + actionBtnClass, this.extraActions.bind(this));
+        });
+	}
+    if (searchButtonEl) {
+        searchButtonEl.addEventListener(searchTrigger, this.setInputValue.bind(this));
     }
-    this.delegate(
-        this.spellCheckWrapper,
-        "click",
-        `.${spellCheck.selectorClass}`,
-        this.setSuggestion.bind(this)
-    );
+    if (spellCheck.el) {
+        this.spellCheckWrappers.forEach(wrapper => {
+			this.delegate(wrapper, 'click', `.${spellCheck.selectorClass}`, this.setSuggestion.bind(this));
+		});
+    }
     //productItemSelector
     this.delegate(
         this.searchResultsWrapper,
@@ -53,32 +59,25 @@ function bindEvents(){
         `.${products.productItemClass}`,
         this.onProductItemClick.bind(this)
     );
-    this.delegate(
-        this.sortWrapper, 
-        sort.action, 
-        "."+sort.sortClass,
-        this.sortAction.bind(this)
-    )
-    this.delegate(
-        this.facetsWrapper, 
-        facet.facetAction, 
-        "."+facet.facetClass, 
-        this.findChangedFacet.bind(this)
-    )
+    if (sort.el) {
+		this.sortWrappers.forEach(wrapper => {
+			this.delegate(wrapper, sort.action, `.${sort.sortClass}`, this.sortAction.bind(this));
+		});
+	}
+    
     if(facet.selectedFacetsEl) {
-        this.delegate(
-            this.selectedFacetWrapper, 
-            facet.facetAction, 
-            "."+facet.selectedFacetClass, 
-            this.findChangedFacet.bind(this))
-
+        this.selectedFacetWrappers.forEach(wrapper => {
+			this.delegate(wrapper, facet.facetAction, `.${facet.selectedFacetClass}`, this.findChangedFacet.bind(this));
+		});
     } else {
-            this.delegate(
-                this.selectedFacetWrapper, 
-                selectedFacets.facetAction, 
-                "."+selectedFacets.selectedFacetClass, 
-                this.findChangedFacet.bind(this)
-            )
+        this.selectedFacetWrappers.forEach(wrapper => {
+			this.delegate(
+				wrapper,
+				selectedFacets.facetAction,
+				`.${selectedFacets.selectedFacetClass}`,
+				this.findChangedFacet.bind(this)
+			);
+		});
     }
     if(this.breadcrumbWrapper) {
         this.delegate(
@@ -108,24 +107,7 @@ function bindEvents(){
         `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );
-    this.delegate(
-        this.facetsWrapper, 
-        'change', 
-        "."+actionChangeClass, 
-        this.extraActionsChange.bind(this)
-    )
-    this.delegate(
-        this.facetsWrapper, 
-        'keyup', 
-        "."+actionChangeClass, 
-        this.extraActionsChange.bind(this)
-    )
-    this.delegate(
-        this.facetsWrapper, 
-        'click', 
-        "."+actionBtnClass, 
-        this.extraActions.bind(this)
-    )
+    
     if(!this.viewState.initialised) {
         if(this.options.hashMode) {
             window.onhashchange= this.onLocationChange.bind(this);

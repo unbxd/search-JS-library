@@ -43,5 +43,5 @@ export default function(facetItem,selectedFacet,isExpanded,facetSearchTxt, onlyV
     if(!isCollapsible) {
         styles="";
     }
-    return `<div id="${facetName}" class="UNX-facet-item-d ${styles}">${facetUI}</div>`
+    return `<div class="UNX-facet-item-d ${facetName} ${styles}">${facetUI}</div>`;
 };

@@ -46,5 +46,7 @@ export default function() {
         })
     }
     let selectedFacetTemp = (facet.selectedFacetTemplate) ? facet.selectedFacetTemplate.bind(this): selectedFacets.template.bind(this);
-    this.selectedFacetWrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
+    this.selectedFacetWrappers.forEach((wrapper) => {
+         wrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
+    })
 };

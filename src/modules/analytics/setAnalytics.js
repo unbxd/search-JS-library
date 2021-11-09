@@ -80,7 +80,7 @@ const trackFacetClick = function(state,type){
 }
 const trackCategoryPageLoad = function(instance,type) {
     if(window.UnbxdAnalyticsConf){
-        window.UnbxdAnalyticsConf["page_type"] ="CATEGORY_PATH";
+        //window.UnbxdAnalyticsConf["page_type"] ="CATEGORY_PATH";
         Unbxd.track("categoryPage", window.UnbxdAnalyticsConf);
     }
 }
