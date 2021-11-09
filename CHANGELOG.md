@@ -8,6 +8,8 @@
 - variant config is removed by default. so variants config need to be added in the options to enable variants in api.
 - onPaginate callback fix(was not working for the page numbers in the fixed pagination)
 - added support for html in banner template
+- added support for rendering components in multiple containers
+
 - removed the styles directly applying to the html elements outside the sdk
 - fixed : analytics was not fiing for range filters
 - fixed : product duplication in infinite scroll
