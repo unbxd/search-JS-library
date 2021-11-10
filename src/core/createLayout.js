@@ -136,7 +136,7 @@ const createLayout = function() {
         } = pagination;
         if(el){
             let els = el;
-            if(el.length) {
+            if(!el.length) {
                 els = [el];
             }
             els.forEach(element => {
