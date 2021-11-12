@@ -1,5 +1,12 @@
 ## Changelog
 
+
+## [2.0.4] - 2021-11-12
+
+- added support for rendering components in multiple containers
+
+
+
 ## [2.0.3] - 2021-07-27
 
 ## Changed
@@ -8,7 +15,6 @@
 - variant config is removed by default. so variants config need to be added in the options to enable variants in api.
 - onPaginate callback fix(was not working for the page numbers in the fixed pagination)
 - added support for html in banner template
-- added support for rendering components in multiple containers
 
 - removed the styles directly applying to the html elements outside the sdk
 - fixed : analytics was not fiing for range filters
