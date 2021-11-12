@@ -20,6 +20,7 @@ import renderProductViewType from '../modules/productViewType';
 import bannerTemplateUI from '../modules/banners';
 import pageSizeUi from '../modules/pageSize/pageSizeView';
 import swatchTemplate from "../modules/swatches/ui";
+
 const options = {
     productId:"uniqueId",
     searchBoxEl:null,
@@ -57,10 +58,16 @@ const options = {
             'unxId':'uniqueId',
             'unxDescription':'productDescription'
         },
-        defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
+        defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-search-results-block UNX-result-wrapper"
+        },
+        events:{}
 
     },
     searchQueryParam:"q",
+    browseQueryParam:'p',
     defaultFilters : null, //or object with keys
     noResults: {
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
@@ -75,25 +82,19 @@ const options = {
         action:'click', // CLICK or CHANGE
         viewTypeClass:'UNX-product-view',
         selectedViewTypeClass:'UNX-selected-product-view',
-        defaultViewType:'GRID'
+        defaultViewType:'GRID',
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"product-view-container"
+        },
+        events:{}
     },
 
     loader:{
         template:function(){return `<div class="UNX-loader">Loading search results....</div>`},
         el:null
     },
-    variants:{
-        enabled:false,
-        count:5,
-        groupBy:'v_colour',
-        attributes:[
-            "title",
-            "v_imageUrl"
-        ],
-        mapping:{
-            "image_url":"v_imageUrl"
-        }
-    },
+    variants:undefined,
 
     extraParams:{
         "version":"V2",
@@ -107,14 +108,24 @@ const options = {
         enabled:true,
         el:null,
         template: didYouMeanUI,
-        selectorClass: "UNX-suggestion"
+        selectorClass: "UNX-suggestion",
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-spellcheck-wrapper"
+        },
+        events:{}
     },
 
     breadcrumb:{
         enabled:true,
         el:null,
         selectorClass:"UNX-bread-crumb",
-        template:breadCrumbsUI
+        template:breadCrumbsUI,
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-breadcrumbs-block"
+        },
+        events:{}
     },
 
     sort: {
@@ -124,7 +135,28 @@ const options = {
         sortClass:'UNX-sort-item',
         template:sortTemplate,
         options:sortOptions,
-        action:'change'
+        action:'change',
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-sort-block-lb"
+        },
+        events:{}
+    },
+    selectedFacets:{
+        enabled:true,
+        selectedFacetClass:"UNX-selected-facet-btn",
+        el:null,
+        template:selectedFacetUI,
+        itemTemplate:selectedFacetItemTemplateUI,
+        clearAllText:"Clear All",
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-selected-facet-lb"
+        },
+        events:{},
+        facetAction:"click",
+        clearFacetsSelectorClass:'UNX-clear-facet',
+        removeFacetsSelectorClass:'UNX-remove-facet',
     },
 
 
@@ -140,8 +172,8 @@ const options = {
         selectedFacetsEl:null,
         selectedFacetTemplate:selectedFacetUI,
         selectedFacetItemTemplate:selectedFacetItemTemplateUI,
+        
         clearAllText:"Clear All",
-
 
         rangeTemplate:renderRangeFacets,
         rangeWidgetConfig: {
@@ -167,14 +199,18 @@ const options = {
 
         isCollapsible:true,
         isSearchable:true,
-        searchPlaceHolder:"",
+        searchPlaceHolder:"Search Filter",
         textFacetWrapper:"UNX-facets-item",
         defaultOpen:"ALL",
         enableViewMore:false,
         viewMoreText:["show all", "show less"],
         viewMoreLimit:3,
 
-
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-facets-results-block"
+        },
+        events:{}
     },
 
     pagination : {
@@ -188,7 +224,12 @@ const options = {
         heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
         onPaginate:function(paginationInfo){},
         action:'click',
-        pageLimit:6
+        pageLimit:6,
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-pagination-size-block"
+        },
+        events:{}
     },
 
     pagesize: {
@@ -199,7 +240,12 @@ const options = {
         selectedPageSizeClass:"UNX-selected-pagesize",
         action:'change',
         template:pageSizeUi,
-        el:null
+        el:null,
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-page-size-block"
+        },
+        events:{}
     },
 
     banner: {
@@ -207,7 +253,13 @@ const options = {
         el:null,
         template:bannerTemplateUI,
         count:1,
-        openNewTab:false
+        openNewTab:false,
+        tagName:"DIV",
+        htmlAttributes:{
+            class:"UNX-banner-block"
+        },
+        events:{}
+
     },
 
     swatches:{
@@ -222,6 +274,18 @@ const options = {
     actionBtnClass:"UNX-action-item",
     actionChangeClass:"UNX-action-change",
     onAction: function(e,ctx) {
+    },
+    onQueryRedirect:(self, redirect)=>{
+        if(redirect) {
+            const {
+                value,
+                type
+            } = redirect;
+            if(type === "url") {
+                location.href =  value;                                                           
+            }
+            return false;
+        }
     }
    // searchQueryParam:null
 };

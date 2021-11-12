@@ -3,10 +3,8 @@
 import unxSelectors from '../common/constants/selectors';
 import reRender from './reRender';
 import bindEvents from './bindEvents';
-import createLayout from '../core/createLayout';
 
 const initialize = function() {
-    this.createLayout = createLayout.bind(this);
     this.createLayout();
     this.unxSelectors = unxSelectors;
     this.renderDidYouMean.bind(this);

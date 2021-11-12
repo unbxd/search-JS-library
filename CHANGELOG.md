@@ -1,5 +1,26 @@
 ## Changelog
 
+## [2.0.3] - 2021-07-27
+
+## Changed
+
+- fixed the product duplicating issue with infinite scroll while applying facets.
+- variant config is removed by default. so variants config need to be added in the options to enable variants in api.
+- onPaginate callback fix(was not working for the page numbers in the fixed pagination)
+- added support for html in banner template
+- removed the styles directly applying to the html elements outside the sdk
+- fixed : analytics was not fiing for range filters
+- fixed : product duplication in infinite scroll
+
+
+## [2.0.2] - 2021-05-10
+
+## Added
+
+- Accessibility changes added.
+- Seperated selected facets config
+- Github action
+
 
 ## [2.0.1] - 2020-12-22
 
@@ -8,6 +29,17 @@
 - LIST/GRID viewtype fix when updateUrl param is false
 - Added onQueryRedirect method on options to handle the ridirect
 - Added openNewTab flag to load the landing page url in same tab or new tab
+- infinite scroll on custom element bug fix.
+- Added method to get all the selected facets - instance.getAllSelectedFacets()
+- Added a method to get the total count of selected facets - instance.getSelectedFacetsCount()
+- Added a method to get the total count of selected facet values - instance.getSelectedFacetValueCount()
+- Added tagName, events and htmlAttributes to each config so that wrapper element created by sdk can be easily customised by customer
+- Added browseQueryParam to set the default category param for the category/ browse calls.
+
+### Changed
+- fixed the special character issue in multilevel facets.
+- fixed the issue while getting selected multilevel facet method
+- deprecated the selected facets config from facet config.
 
 ## [2.0.0] - 2020-09-28
 

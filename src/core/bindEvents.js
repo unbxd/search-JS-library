@@ -13,7 +13,8 @@ function bindEvents(){
         searchBoxEl,
         actionChangeClass,
         actionBtnClass,
-        breadcrumb
+        breadcrumb,
+        selectedFacets
     } = this.options;
     if(searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
@@ -69,8 +70,15 @@ function bindEvents(){
             this.selectedFacetWrapper, 
             facet.facetAction, 
             "."+facet.selectedFacetClass, 
-            this.findChangedFacet.bind(this)
-        )
+            this.findChangedFacet.bind(this))
+
+    } else {
+            this.delegate(
+                this.selectedFacetWrapper, 
+                selectedFacets.facetAction, 
+                "."+selectedFacets.selectedFacetClass, 
+                this.findChangedFacet.bind(this)
+            )
     }
     if(this.breadcrumbWrapper) {
         this.delegate(
@@ -80,9 +88,9 @@ function bindEvents(){
             this.findChangedFacet.bind(this)
         )
     }
-    if(productView.el){
+    if(this.productViewTypeWrapper){
         this.delegate(
-            productView.el,
+            this.productViewTypeWrapper,
             productView.action,
             "."+productView.viewTypeClass,
             this.onPageViewTypeClick.bind(this)

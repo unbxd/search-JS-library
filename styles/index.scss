@@ -1,16 +1,6 @@
-*,
-body {
-  font-family: "Roboto", sans-serif;
+.UNX-header *,
+.UNX-results-container * {
   box-sizing: border-box;
-}
-button {
-  outline-color: transparent !important;
-  border-radius:1px;
-}
-body {
-  background-color: #f6f6f6;
-  margin:0;
-  padding:0
 }
 .UNX-header {
   background: #f6f6f6;
@@ -133,7 +123,7 @@ body {
   padding-right: 12px;
 }
 .UNX-strike-price {
-  color: #e75178;
+  color: #d7194a;
   font-size: 14px;
   letter-spacing: 0;
   line-height: 17px;
@@ -150,6 +140,8 @@ body {
   height: 24px;
   width: 24px;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.43);
+  overflow: hidden;
+  color: transparent
 }
 .UNX-selected-swatch,
 .UNX-swatch-btn:focus {
@@ -193,7 +185,7 @@ body {
   left: 0;
 }
 .UNX-facet-count {
-  color: #a7a7a7;
+  color: #4d4d4d;
   font-size: 12px;
   display: inline-block;
   padding-left: 6px;
@@ -272,7 +264,7 @@ body {
   color: rgba(0, 0, 0, 0.4);
 }
 .UNX-clear-facet {
-  color: #717989;
+  color: #3f434b;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0;
@@ -354,7 +346,7 @@ body {
   color: #323949;
 }
 .UNX-spellcheck-block {
-  color: #717989;
+  color: #494f5a;
   font-size: 14px;
   line-height: 15px;
   margin: 5px 0px;
@@ -373,7 +365,7 @@ body {
   margin: 2px 0px;
 }
 .UNX-result-info {
-  color: #717989;
+  color: #494f5a;
   font-size: 14px;
   line-height: 15px;
 }
@@ -780,6 +772,7 @@ button.UNX-page-next {
 .UNX-selected-facets-inner .UNX-facet-count {
   display: none;
 }
+
 @media only screen and (max-width: 1200px) {
   .UNX-result-wrapper {
     grid-template-columns: 33.3% 33.3% 33.3%;

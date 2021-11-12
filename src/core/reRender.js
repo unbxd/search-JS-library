@@ -45,9 +45,13 @@ const reRender = function(){
         breadcrumbWrapper,
         spellCheckWrapper
     } = this;
+    const {
+        noResultLoaded,
+        isInfiniteStarted
+    } = this.viewState;
     if(results && results.numberOfProducts === 0) {
         onEvent(this,beforeNoResultRender);
-        this.state.noResultLoaded = true;
+        this.viewState.noResultLoaded = true;
         searchResultsWrapper.classList.add(noResultCss);
         searchResultsWrapper.innerHTML = this.renderNoResults(query);
         if(!qParams.filter) {
@@ -60,15 +64,16 @@ const reRender = function(){
         searchResultsWrapper.classList.remove("UNX-grid-block");
         searchResultsWrapper.classList.add(viewCss);
         searchResultsWrapper.classList.remove(noResultCss);
-        if(this.viewState.isInfiniteStarted){
+        if(isInfiniteStarted){
             this.viewState.isInfiniteStarted = false;
-            if(this.state.noResultLoaded) {
-                this.state.noResultLoaded = false;
+            if(noResultLoaded) {
+                this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
                 searchResultsWrapper.innerHTML += this.renderSearch();
             }
         } else {
+            searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
         }
     }
