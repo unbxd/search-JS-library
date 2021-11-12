@@ -20,6 +20,17 @@
   />
   </head>
   <style>
+    .unx-pagination-size-block {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+    .UNX-page-items {
+      background: #000000;
+      color: #FFF;
+      padding: 12px;
+      border-color: #000000;
+  }
   </style>
 
   <body>
@@ -68,25 +79,22 @@
                           <div class="UNX-change-products" id="changeNoOfProducts"></div>
                           <div class="UNX-sort-wrapper" id="sortWrapper"></div>
                           <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
-                          <div id="" class="UNX-change-pagination-wrap unxPagination"></div>
                       </div>
                   </div>
                   <div id="bannerContainer"></div>
                   <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
-                  <div id="" class="UNX-change-pagination-wrap UNX-m-page unxPagination"></div>
               </div>
           </div>
           <div class="UNX-loader-container" id="loaderEl"></div>
           <div id="noResultWrapper"></div>
-          <div id="clickScrollContainer">
-          </div>
+          <div id="clickScrollContainer" class="UNX-change-pagination-wrap"></div>
       </div>
     <!--<script
       type="text/javascript"
       src="../dist/js/vanillaSearch.js"
     />-->
     
-    <script src="https://libraries.unbxdapi.com/search-sdk/v2.0.3/vanillaSearch.min.js"></script>
+    <script src="../dist/js/vanillaSearch.js"></script>
     <script type="text/javascript">
       /* * * CONFIGURATION * * */
       var UnbxdSiteName = "demo-unbxd700181503576558";
@@ -168,79 +176,108 @@
       }
 
       window.unbxdSearch = new UnbxdSearch({
-        siteKey: "prod-cookieskids-com808271562744920",
-        apiKey: "1c8c3ff5d59cf85f256311199bad47bc",
+        siteKey: "stage-wexphotovideo12641621579774",
+  apiKey: "b39e1570c277be1fcd63ecdf1abb39b1",
+  hashMode:true,
+  updateUrls:true,
+  searchBoxEl: document.getElementById("unbxdInput"),
+  searchTrigger: "click",
+  searchButtonEl: document.getElementById("searchBtn"),
+  products:{
+    el:document.getElementById("searchResultsWrapper"),
+    productType:"SEARCH",
+    productClick: function(product,e) {
+      console.log(product,"product,index",e);
+    },
+    attributesMap:{
+      "unxPrice":"displaySalePrice"
+    },
+    productAttributes: [
+      "title",
+      "uniqueId",
+      "price",
+      "sku",
+      "imageUrl",
+      "displaySalePrice",
+      "salePrice",
+      "sortPrice",
+      "productDescription",
+      "unbxd_color_mapping",
+      "colorName",
+      "color",
+      "size",
+      "listPrice",
+      "autosuggest"
+    ]
+  },
+  spellCheck: {
+    enabled: true,
+    el: document.getElementById("didYouMeanWrapper")
+  },
+  noResults: {
+      el: document.getElementById("noResultWrapper")
+  },
+  facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+    applyMultipleFilters:false,
+    defaultOpen:"FIRST",
+    onFacetLoad:function(facets){
+    },
+    isCollapsible:true,
+    isSearchable:true,
+    enableViewMore:false,
+  },
+  pagination: {
+    type:'FIXED_PAGINATION',
+    el:document.querySelector("#clickScrollContainer"),
+    onPaginate:function(data) {
+    }
+  },
+  breadcrumb: {
+    el: document.getElementById("breadcrumpContainer")
+  },
+  pagesize: {
+    el: document.getElementById("changeNoOfProducts")
+  },
+
+  sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [
+      {
+        value: "sortPrice desc",
+        text: "Price High to Low"
+      },
+      {
+        value: "sortPrice asc",
+        text: " Price Low to High"
+      }
+    ]
+  },
+  loader :{
+      el:document.getElementById("loaderEl")
+  },
+  productView:{
+    el: document.getElementById("productViewTypeContainer"),
+    defaultViewType: "GRID"
+  },
+  banner: {
+    el: document.getElementById("bannerContainer"),
+    count: 1
+  },
+  swatches: {
+    enabled: true,
+    attributesMap: {
+      swatchList: "color",
+      swatchImgs: "unbxd_color_mapping",
+      swatchColors: "color"
+    }
+  },
+  onAction:function(e, ctx) {
+  },
+  onEvent:unbxdCallbackEcma
       });
 
-      window.unbxdSearch.updateConfig({
-        searchBoxEl: document.getElementById("unbxdInput"),
-        searchTrigger: "click",
-        searchButtonEl: document.getElementById("searchBtn"),
-        products:{
-          el:document.getElementById("searchResultsWrapper"),
-          productType:"SEARCH",
-          productClick: function(product,e) {
-              console.log(product,"product,index",e);
-          }
-        },
-        spellCheck: {
-          enabled: true,
-          el: document.getElementById("didYouMeanWrapper")
-        },
-        noResults: {
-            el: document.getElementById("noResultWrapper")
-        },
-        facet: {
-          facetsEl: document.getElementById("facetsWrapper"),
-          selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-          rangeFacetEl: document.getElementById("rangeFacetWrapper"),
-          multiLevelFacetEl: document.getElementById("bucketedFacetWrapper"),
-          applyMultipleFilters:checkMobile()
-        },
-        pagination: {
-          type:'INFINITE_SCROLL',
-          heightDiffToTriggerNextPage:240
-        },
-        breadcrumb: {
-          el: document.getElementById("breadcrumpContainer")
-        },
-        pagesize: {
-          el: document.getElementById("changeNoOfProducts")
-        },
-
-        sort: {
-          el: document.getElementById("sortWrapper"),
-          options: [
-            {
-              value: "sortPrice desc",
-              text: "Price High to Low"
-            },
-            {
-              value: "sortPrice asc",
-              text: " Price Low to High"
-            }
-          ]
-        },
-        loader :{
-            el:document.getElementById("loaderEl")
-        },
-        productView:{
-          el: document.getElementById("productViewTypeContainer"),
-          defaultViewType: getView()
-        },
-        banner: {
-          el: document.getElementById("bannerContainer"),
-          count: 1
-        },
-        swatches: {
-          enabled: true,
-          attributesMap: {
-            swatchList: "color",
-            swatchImgs: "unbxd_color_mapping",
-            swatchColors: "color"
-          }
-        }
-      });
 
       const setUnbxdSearch = ()=> {
         window.unbxdSearch.updateConfig({

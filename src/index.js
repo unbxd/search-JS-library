@@ -82,6 +82,9 @@ class UnbxdSearch extends UnbxdSearchCore {
         }
         if(type === afterApiCall) { 
             onEvent(this,afterApiCall);
+            if(this.state.products.length > 0) {
+                this.viewState.noResultLoaded = false;
+            }
             this.reRender();
         }
         if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) {

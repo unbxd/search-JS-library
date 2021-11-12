@@ -48,7 +48,7 @@ const reRenderTextFacet = function(facetName) {
         facetClass
     } = this.options.facet;
     const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
-    const items = document.querySelectorAll(`#${facetName} .${facetClass}`);
+    const items = document.querySelectorAll(`.${facetName} .${facetClass}`);
     items.forEach(item => {
         const {
             id

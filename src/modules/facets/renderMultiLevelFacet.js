@@ -21,5 +21,5 @@ export default function(bucketedFacet, isExpanded) {
     if (!isCollapsible) {
         styles = "";
     }
-    return `<div id="${facetName}" class="UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ${styles}">${bucketedUi}</div>`
+    return `<div class="${facetName} UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ${styles}">${bucketedUi}</div>`;
 };

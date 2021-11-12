@@ -1,7 +1,7 @@
 const triggerNextPage = (context,next) =>{
+    context.viewState.lastAction = "pagination";
     context.setPageStart(next);
     context.getResults();
-    context.viewState.lastAction = "pagination";
     context.options.onEvent(context,context.events.pageNext, {
         value:next
     });
@@ -20,29 +20,30 @@ function renderNewResults(action) {
         isNext,
         isPrev
     } = pageInfo;
-    if(pagination.type === "CLICK_N_SCROLL") {
-        const next = start+rows;
-        this.viewState.isInfiniteStarted = true;
-        if(isNext){
-            triggerNextPage(this,next);
-            this.viewState.lastAction = "pagination";
-        }
-    }
-    if(action === this.actions.next){
+    if(pagination.type === "CLICK_N_SCROLL" || pagination.type === "INFINITE_SCROLL") {
         const next = start+rows;
         if(isNext){
+            this.viewState.isInfiniteStarted = true;
             triggerNextPage(this,next);
-            this.viewState.lastAction = "pagination";
         }
-    }
-    if(action === this.actions.prev){
-        const prev = start-rows;
-        if(isPrev){
-            triggerNextPage(this,prev);
-            onEvent(this,this.events.pagePrev, {
-                value:prev
-            });
+    } else {
+        if(action === this.actions.next){
+            const next = start+rows;
+            if(isNext){
+                triggerNextPage(this,next);
+            }
         }
+        if(action === this.actions.prev){
+            const prev = start-rows;
+            if(isPrev){
+                this.viewState.lastAction = "pagination";
+                triggerNextPage(this,prev);
+                onEvent(this,this.events.pagePrev, {
+                    value:prev
+                });
+            }
+        }
+
     }
 };
 function paginationAction(e){

@@ -20,5 +20,5 @@ export default function(rangeFacet, isExpanded) {
     if(!isCollapsible) {
         styles="";
     }
-    return `<div id="${facetName}" class="UNX-facet-item-d range-facets-block ${styles}">${rangeUi}</div>`
+    return `<div class="${facetName} UNX-facet-item-d range-facets-block ${styles}">${rangeUi}</div>`;
 };
