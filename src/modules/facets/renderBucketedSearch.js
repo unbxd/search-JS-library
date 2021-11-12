@@ -40,7 +40,8 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
     const valueUI = values.map(item => {
         const {
             name,
-            count
+            count,
+            dataId
         } = item;
         if(facetSearchTxt && facetSearchTxt.length > 0) {
             if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
@@ -48,7 +49,7 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
             }
         }
         return [`<button ${lTid} data-parent="${multiLevelField}" data-level="${level}"`,
-            `class="${multiLevelFacetSelectorClass} ${levelCss} ${facetClass}" data-name="${name}" data-action = "setCategoryFilter">`,
+            `class="${multiLevelFacetSelectorClass} ${levelCss} ${facetClass}" data-name="${dataId}" data-action = "setCategoryFilter">`,
             `<label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`].join('')
     })
     ui += `<div class="UNX-category-values">${valueUI.join('')}</div>`

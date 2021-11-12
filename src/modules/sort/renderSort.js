@@ -3,11 +3,15 @@ function renderSort(){
     const{
         sort
     } = this.options;
-    if(results && results.numberOfProducts === 0) {
-        return ``
-    }else {
-        return this.options.sort.template.bind(this)(this.getSelectedSort(), sort);
-        
-    }
+    const {
+        sortWrappers
+    } = this;
+    sortWrappers.forEach(wrapper => {
+		let ui = ``;
+		if (results && results.numberOfProducts > 0) {
+			ui = this.options.sort.template.bind(this)(this.getSelectedSort(), sort);
+		}
+		wrapper.innerHTML = ui;
+	});
 }
 export default renderSort;

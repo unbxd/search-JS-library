@@ -40,10 +40,8 @@ const reRender = function(){
     }
     const {
         searchResultsWrapper,
-        sortWrapper,
         paginationWrappers,
-        breadcrumbWrapper,
-        spellCheckWrapper
+        breadcrumbWrapper
     } = this;
     const {
         noResultLoaded,
@@ -84,7 +82,7 @@ const reRender = function(){
         this.renderProductViewTypeUI();
     }
     this.renderPageSize();
-    sortWrapper.innerHTML = this.renderSort();
+    this.renderSort();
     if(pagination.type !== "INFINITE_SCROLL"){
         paginationWrappers.forEach((pagination)=>{
             pagination.innerHTML = this.renderPagination();
@@ -97,11 +95,11 @@ const reRender = function(){
         }
     }
     if(breadcrumb.enabled){
-        breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
+        this.renderBreadCrumbs();
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el) {
-        spellCheckWrapper.innerHTML = this.renderDidYouMean(suggestion);
+        this.renderDidYouMean(suggestion);
     }
 
     if(lastAction === "pagination" ) {
