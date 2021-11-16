@@ -1422,10 +1422,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.0.0.tgz#067a6c49dc7a5c2412a505628e26902ae967bf6f"
   integrity sha512-TmCW5HoZ2o2/z2EYi109jLqIaPIi9y/lc2LmDCWzuCi35bcaQ+OtUh6nwBiFK7SOu25FAU5+YKdqFZUwtqGSdg==
 
-"@unbxd-ui/unbxd-search-core@0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.3.5.tgz#72c156151ca55f8346bbcabefb0cf243aa8051fb"
-  integrity sha512-FiNGkKT4T1wImlZzVmQrPI+d9LIBeqD7uxu9gRiYY1eEWBGj6mT88IQbtmtaoUESDru++AKKZmJPg19z8aI51g==
+"@unbxd-ui/unbxd-search-core@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.4.1.tgz#de88d1d801deaadd320a185a9ecccde01b359d54"
+  integrity sha512-DmW8Wou7XXV1k/GQcI9g6qssYNBl9ZFieneolSDF4UueUH9wOe90QER8pSEbewotP4OxN5uFLOH/zjAKmPh86Q==
   dependencies:
     babel-polyfill "^6.26.0"
     babel-runtime "^6.26.0"
@@ -1925,9 +1925,9 @@ autoprefixer@^9.8.6:
     postcss-value-parser "^4.1.0"
 
 aws-sdk@^2.282.1:
-  version "2.939.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.939.0.tgz#c07c9d726bcb2ffdb69016f880ae310ad72f36a5"
-  integrity sha512-2KEAtTlVMDcpHP6+P9JU+mXTNhX3KZ0StW0Qi87oh8EUoRITZj64FrUylNvrCg69thCliAcNzBdlA1g5Iq+qEA==
+  version "2.1030.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1030.0.tgz#24a856af3d2b8b37c14a8f59974993661c66fd82"
+  integrity sha512-to0STOb8DsSGuSsUb/WCbg/UFnMGfIYavnJH5ZlRCHzvCFjTyR+vfE8ku+qIZvfFM4+5MNTQC/Oxfun2X/TuyA==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
