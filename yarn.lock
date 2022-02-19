@@ -1422,10 +1422,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.0.0.tgz#067a6c49dc7a5c2412a505628e26902ae967bf6f"
   integrity sha512-TmCW5HoZ2o2/z2EYi109jLqIaPIi9y/lc2LmDCWzuCi35bcaQ+OtUh6nwBiFK7SOu25FAU5+YKdqFZUwtqGSdg==
 
-"@unbxd-ui/unbxd-search-core@0.3.5":
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.3.5.tgz#72c156151ca55f8346bbcabefb0cf243aa8051fb"
-  integrity sha512-FiNGkKT4T1wImlZzVmQrPI+d9LIBeqD7uxu9gRiYY1eEWBGj6mT88IQbtmtaoUESDru++AKKZmJPg19z8aI51g==
+"@unbxd-ui/unbxd-search-core@0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.4.1.tgz#de88d1d801deaadd320a185a9ecccde01b359d54"
+  integrity sha512-DmW8Wou7XXV1k/GQcI9g6qssYNBl9ZFieneolSDF4UueUH9wOe90QER8pSEbewotP4OxN5uFLOH/zjAKmPh86Q==
   dependencies:
     babel-polyfill "^6.26.0"
     babel-runtime "^6.26.0"
@@ -8766,9 +8766,9 @@ url-join@^2.0.5:
   integrity sha1-WvIvGMBSoACkjXuCxenC4v7tpyg=
 
 url-parse@^1.4.3, url-parse@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.1.tgz#d5fa9890af8a5e1f274a2c98376510f6425f6e3b"
-  integrity sha512-HOfCOUJt7iSYzEx/UqgtwKRMC6EU91NFhsCHMv9oM03VJcVo2Qrp8T8kI9D7amFf1cu+/3CEhgb3rF9zL7k85Q==
+  version "1.5.7"
+  resolved "https://registry.yarnpkg.com/url-parse/-/url-parse-1.5.7.tgz#00780f60dbdae90181f51ed85fb24109422c932a"
+  integrity sha512-HxWkieX+STA38EDk7CE9MEryFeHCKzgagxlGvsdS7WBImq9Mk+PGwiT56w82WI3aicwJA8REp42Cxo98c8FZMA==
   dependencies:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
