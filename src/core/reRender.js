@@ -95,7 +95,7 @@ const reRender = function(){
         }
     }
     if(breadcrumb.enabled){
-        this.renderBreadCrumbs();
+        breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
     const suggestion = this.getSpellCheckSuggested();
     if(spellCheck.el) {

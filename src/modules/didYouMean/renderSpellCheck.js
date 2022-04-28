@@ -28,22 +28,19 @@ const renderDidYouMean = function (suggestion) {
     }
     let sugString = didYouMean.length >0 ? didYouMean[0].suggestion :"";
     let ui = ``;
-    if(enabled) {
-        if(sugString && !loadedFromSuggestion) {
-            this.viewState.lastDidYouMean = userInput;
-            this.viewState.loadedFromSuggestion = true;
+    
+    if(sugString && !loadedFromSuggestion) {
+        this.viewState.lastDidYouMean = userInput;
+        this.viewState.loadedFromSuggestion = true;
+        if(enabled) {
             this.getResults(sugString);
-            ui =  this.options.spellCheck.template.bind(this)(sugString,userInput,pages); 
-        }else {
-            this.viewState.lastDidYouMean = "";
         }
-        if(lastDidYouMean) {
-            ui = this.options.spellCheck.template.bind(this)(userInput,lastDidYouMean,pages);
-        }
-        ui = this.options.spellCheck.template.bind(this)(userInput,"",pages); 
-        
-    } else {
-        ui = this.options.spellCheck.template.bind(this)(userInput,"",pages);
+    }else {
+        this.viewState.lastDidYouMean = "";
+    }
+    ui = this.options.spellCheck.template.bind(this)(userInput,lastDidYouMean,pages);
+    if(!enabled && sugString) {
+        ui =  this.options.spellCheck.template.bind(this)(sugString,userInput,pages); 
     }
     this.spellCheckWrappers.forEach((wrapper) => {
         wrapper.innerHTML = ui;

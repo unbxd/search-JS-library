@@ -14,7 +14,7 @@ const setSuggestion = function(e) {
     if(dataset && dataset.action === "getSuggestion") {
         this.resetAll();
         this.setPageStart(0);
-        this.getResults(userInput);
+        this.getResults(didLength ? txt[0]:userInput);
         this.viewState.lastDidYouMean = null;
         this.viewState.loadedFromSuggestion = false;
     }

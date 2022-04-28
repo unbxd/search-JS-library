@@ -17,13 +17,11 @@ export default function(facetItem,selectedFacet,isExpanded,facetSearchTxt, onlyV
     } = facet;
     if(values.length > 0) {
         valuesUI = values.map((value, index) => {
-            const  {
-                name,
-            } = value;
+            const { dataId } = value;
             let selected = false;
             if(selectedFacet) {
                 selected = selectedFacet.some((facet) => {
-                    return facet.name === name
+                    return facet.dataId === dataId;
                 })
             }
             if(selected) {
