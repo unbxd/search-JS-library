@@ -20,7 +20,8 @@ const didYouMeanUI =  function(query,suggestion,pages) {
         numberOfProducts
     } = pages;
     const {
-        selectorClass
+        selectorClass,
+        enabled
     } = this.options.spellCheck;
     const {
         productType
@@ -41,6 +42,9 @@ const didYouMeanUI =  function(query,suggestion,pages) {
         countUi = `<span class="UNX-result-info">  -  ${start+1} to ${productsLn+start} of ${numberOfProducts} products</span>`;
     }
     if(pages && newQuery){
+        if(!enabled) {
+            newQuery = suggestion || query
+        }
         qUi = `<p class="UNX-suggestion-p">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
     }
     return  [`<div class="UNX-spellcheck-block">`,
@@ -49,3 +53,4 @@ const didYouMeanUI =  function(query,suggestion,pages) {
         `</div>`].join('');
 }
 export default didYouMeanUI
+

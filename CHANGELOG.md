@@ -1,6 +1,12 @@
 ## Changelog
 
 
+## [2.0.5] - 2022-04-28
+
+- Fixed spellcheck suggestion issue
+- Fixed the api selected category filter issue
+- comparing facet values to the encoded string
+
 ## [2.0.4] - 2021-11-12
 
 - added support for rendering components in multiple containers

@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link
-      href="https://libraries.unbxdapi.com/search-sdk/v2.0.0/vanillaSearch.min.css"
+      href="https://libraries.unbxdapi.com/search-sdk/v2.0.4/vanillaSearch.min.css"
       rel="stylesheet"
     />
     <style type="text/css">
@@ -90,7 +90,7 @@
           <div id="noResultWrapper"></div>
           <div id="clickScrollContainer" class="UNX-change-pagination-wrap"></div>
       </div>
-     <script src="https://libraries.unbxdapi.com/search-sdk/v2.0.3/vanillaSearch.min.js"></script>
+     <script src="https://libraries.unbxdapi.com/search-sdk/v2.0.4/vanillaSearch.min.js"></script>
     <script >
       /* * * CONFIGURATION * * */
       var UnbxdSiteName = "demo-unbxd700181503576558";
@@ -130,7 +130,47 @@
         },
         spellCheck: {
           enabled: true,
-          el: document.getElementById("didYouMeanWrapper")
+          el: document.getElementById("didYouMeanWrapper"),
+          template:function(query,suggestion,pages) {
+              const {
+                  start,
+                  productsLn,
+                  numberOfProducts
+              } = pages;
+              const {
+                  selectorClass
+              } = this.options.spellCheck;
+              const {
+                  productType
+              } = this.options;
+              const {
+                didYouMean
+              } = this.state;
+              let newQuery = query;
+              if(productType !=="SEARCH" ) {
+                  const catId = this.getCategoryId() || "";
+                  const cId = decodeURIComponent(catId).split(">");
+                  newQuery = cId[cId.length-1] || cId[0] ;
+              }
+              const {
+                  UNX_spellCheck
+              } = this.testIds;
+              const suggestionTxt = didYouMean && didYouMean.length > 0 ? didYouMean[0].suggestion:''
+              console.log(query,suggestion,this,"xzcscz")
+              const noUi = (suggestionTxt) ? `<p class="UNX-no-result"> Your search "<strong>${suggestion}</strong>" did not match any products. Did you mean <button data-test-id="${UNX_spellCheck}" data-action="getSuggestion" class="${selectorClass}">${suggestionTxt}</button>? </p>` :``;
+              let qUi = ``;
+              let countUi = ``;
+              if(numberOfProducts > 0) {
+                  countUi = `<span class="UNX-result-info">  -  ${start+1} to ${productsLn+start} of ${numberOfProducts} products</span>`;
+              }
+              if(pages && newQuery){
+                  qUi = `<p class="UNX-suggestion-p">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
+              }
+              return  [`<div class="UNX-spellcheck-block">`,
+                      noUi,
+                      qUi,
+                  `</div>`].join('');
+          }
         },
         noResults: {
             el: document.getElementById("noResultWrapper")
