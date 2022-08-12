@@ -1,5 +1,7 @@
 ## Changelog
+## [2.0.5] - 2022-07-04
 
+- Shortened url, removed fields, variant fields, facet multiselect versions, etc
 
 ## [2.0.5] - 2022-04-28
 
