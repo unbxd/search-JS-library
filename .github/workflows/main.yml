@@ -15,7 +15,7 @@ jobs:
     
         name: Publish To Prod 🚀
         runs-on: ubuntu-latest
-        if: github.ref == feature-workflows
+        if: github.event_name == 'pull_request'
         steps:
             - name: Akshay
               uses: actions/checkout@v2
