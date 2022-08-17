@@ -15,6 +15,7 @@ jobs:
     
         name: Publish To Prod 🚀
         runs-on: ubuntu-latest
+        if: github.ref == search-JS-library/feature-workflows
         steps:
             - name: Akshay
               uses: actions/checkout@v2
