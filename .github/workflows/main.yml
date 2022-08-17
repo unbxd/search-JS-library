@@ -17,12 +17,12 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event_name == 'pull_request' || github.ref == 'refs/heads/feature-workflows' 
         steps:
-            - name: ${{github.ref}}
+            - name: ${{github.ref}} - ${{github.branch}}
               uses: actions/checkout@v2
 
             - name: Build final JS file
               run: |
-                $echo "hello nikhil"
+                echo "hello nikhil"
                 webpack --config ./webpack/webpack.prod.config.js
 
 
