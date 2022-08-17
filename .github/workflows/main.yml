@@ -22,7 +22,6 @@ jobs:
 
             - name: Build final JS file
               run: |
-                echo "hello nikhil"
                 webpack --config ./webpack/webpack.prod.config.js
 
 
