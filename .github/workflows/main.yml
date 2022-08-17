@@ -19,3 +19,10 @@ jobs:
         steps:
             - name: ${{github.ref}}
               uses: actions/checkout@v2
+
+            - name: Build final JS file
+              run: |
+                $echo "hello nikhil"
+                webpack --config ./webpack/webpack.prod.config.js
+
+
