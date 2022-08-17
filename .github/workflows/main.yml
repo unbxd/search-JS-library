@@ -15,7 +15,7 @@ jobs:
     
         name: Publish To Prod 🚀
         runs-on: ubuntu-latest
-        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/feature-workflows'
+        if: github.event_name == 'pull_request' && github.ref == 'refs/heads/feature-workflows' 
         steps:
             - name: Akshay
               uses: actions/checkout@v2
