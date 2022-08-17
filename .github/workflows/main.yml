@@ -17,7 +17,7 @@ jobs:
         runs-on: ubuntu-latest
         if: github.event_name == 'pull_request' || github.ref == 'refs/heads/feature-workflows' 
         steps:
-            - name: ${{github.ref}} - ${{github.branch}}
+            - name: ${{github.ref}} - ${{github.branch_name}}
               uses: actions/checkout@v2
 
             - name: Build final JS file
