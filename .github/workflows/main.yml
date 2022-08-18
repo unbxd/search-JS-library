@@ -108,10 +108,10 @@ jobs:
             - name: Run Build
               run: yarn build:prod
 
-            - name: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            - name: {{ secrets.AWS_ACCESS_KEY_ID }}
               run: echo ${{ secrets.AWS_ACCESS_KEY_ID }}
 
-            - name: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            - name: {{ secrets.AWS_SECRET_ACCESS_KEY }}
               run: echo ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
             - name: Configure AWS credentials
