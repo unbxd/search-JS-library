@@ -83,7 +83,7 @@ jobs:
               uses: cycjimmy/semantic-release-action@v2.5.3
 
     publish-to-master:
-        name: Publish to master
+        name: ${{github.branch_name}}
         needs: publish
         if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.branch_name == 'feature-workflows'
         runs-on: ubuntu-latest
