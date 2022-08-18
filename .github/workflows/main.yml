@@ -10,18 +10,45 @@ defaults:
     run:
         shell: bash
 jobs:
-    
-    publish-to-prod:
-    
-        name: Publish To Prod 🚀
+    publish-to-master:
+        name: Publish to master
+        
         runs-on: ubuntu-latest
-        if: github.event_name == 'pull_request' || github.ref == 'refs/heads/feature-workflows' 
+        needs: publish
         steps:
-            - name: ${{github.ref}} - ${{github.branch_name}}
+            - name: Pre-reqs
               uses: actions/checkout@v2
 
-            - name: Build final JS file
+            - name: Setup node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 15
+
+            - name: Check Cache
+              uses: actions/cache@v2
+              with:
+                  path: '**/node_modules'
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+            - name: Install Dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Run Build
+              run: yarn build:prod
+
+            - name: Configure AWS credentials
+              id: configure-aws
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: us-east-1
+
+            - name: Run aws cp command
+              id: aws-upload
+              env:
+                AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
+                DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
               run: |
-                webpack --config ./webpack/webpack.prod.config.js
-
-
+                echo ${{ steps.infer_env.outputs.BUILD_TAG }}
+                echo ${{ steps.infer_env.outputs }}
