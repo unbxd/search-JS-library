@@ -10,9 +10,81 @@ defaults:
     run:
         shell: bash
 jobs:
+    test:
+        name: Test 🧪
+        runs-on: ubuntu-latest
+        steps:
+            - name: Pre-reqs
+              uses: actions/checkout@v2
+
+            - name: Setup node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 15
+
+            - name: Check Cache
+              uses: actions/cache@v2
+              with:
+                  path: '**/node_modules'
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+            - name: Install Dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Run Test
+              run: yarn test
+
+    build:
+        name: Build ⚙️
+        runs-on: ubuntu-latest
+        needs: test
+        steps:
+            - name: Pre-reqs
+              uses: actions/checkout@v2
+
+            - name: Setup node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 15
+
+            - name: Check Cache
+              uses: actions/cache@v2
+              with:
+                  path: '**/node_modules'
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+            - name: Install Dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Run Build
+              run: yarn build:prod
+    publish:
+        name: Publish 🚀
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Pre-reqs
+              uses: actions/checkout@v2
+
+            - name: Setup node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 15
+            - name: Check Cache
+              uses: actions/cache@v2
+              with:
+                  path: '**/node_modules'
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+            - name: Install Dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Run Semantic Release
+              uses: cycjimmy/semantic-release-action@v2.5.3
+
     publish-to-master:
         name: Publish to master
-        
+        if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.branch_name == 'feature-workflows'
         runs-on: ubuntu-latest
         steps:
             - name: Pre-reqs
@@ -35,6 +107,14 @@ jobs:
             - name: Run Build
               run: yarn build:prod
 
+            - name: Configure AWS credentials
+              id: configure-aws
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: us-east-1
+
             - name: Extract version
               id: extract_version
               uses: Saionaro/extract-package-version@v1.0.6
@@ -48,5 +128,5 @@ jobs:
                 AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
                 DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
               run: |
-                echo ${{ steps.infer_env.outputs.BUILD_TAG }}
-                echo ${{ steps.infer_env.outputs }}
+                aws s3 cp public/dist/js/vanillaSearch.min.js s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000' --content-encoding 'gzip'
+                aws s3 cp public/dist/css/vanillaSearch.min.css s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.css --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000' --content-encoding 'gzip'
