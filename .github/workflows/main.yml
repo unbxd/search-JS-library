@@ -102,7 +102,7 @@ jobs:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-            - name: ${{github.branch_name}}
+            - name: ${{github.ref}}
               run: yarn install --frozen-lockfile
 
             - name: Run Build
