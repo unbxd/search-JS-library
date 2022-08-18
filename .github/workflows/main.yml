@@ -85,7 +85,7 @@ jobs:
     publish-to-master:
         name: Publish to master
         # needs: publish
-        # if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.branch_name == 'feature-workflows'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/feature-workflows'
         runs-on: ubuntu-latest
         steps:
             - name: ${{github.event_name}}
