@@ -35,6 +35,13 @@ jobs:
             - name: Run Build
               run: yarn build:prod
 
+            - name: Extract version
+              id: extract_version
+              uses: Saionaro/extract-package-version@v1.0.6
+
+            - name: Print version
+              run: echo ${{ steps.extract_version.outputs.version }}
+
             - name: Run aws cp command
               id: aws-upload
               env:
