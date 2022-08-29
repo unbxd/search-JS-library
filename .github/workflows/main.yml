@@ -6,6 +6,10 @@ env:
     CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+
 defaults:
     run:
         shell: bash
@@ -31,16 +35,16 @@ jobs:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-            - name: Install Dependencies
-              run: yarn install --frozen-lockfile
-
-            - name: Configure AWS credentials
+            - name: Configure AWS credentials 
               id: configure-aws
               uses: aws-actions/configure-aws-credentials@v1
               with:
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                 aws-region: ${{ secrets.AWS_DEFAULT_REGION}}
+
+            - name: Install Dependencies
+              run: yarn install --frozen-lockfile
 
             - name: Run Build
               run: yarn build:prod
