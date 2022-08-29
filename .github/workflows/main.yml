@@ -35,13 +35,11 @@ jobs:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-            - name: Configure AWS credentials 
-              id: configure-aws
-              uses: aws-actions/configure-aws-credentials@master
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1
               with:
-                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                aws-region: ${{ secrets.AWS_DEFAULT_REGION}}
+                role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
+                aws-region: us-east-1
 
             - name: Install Dependencies
               run: yarn install --frozen-lockfile
