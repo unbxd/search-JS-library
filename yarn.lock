@@ -1504,10 +1504,10 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-17.0.29.tgz"
   integrity sha512-tx5jMmMFwx7wBwq/V7OohKDVb/JwJU5qCVkeLMh1//xycAJ/ESuw9aJ9SEtlCZDYi2pBfe4JkisSoAtbOsBNAA==
 
-"@unbxd-ui/unbxd-search-core@^0.4.10":
-  version "0.4.10"
-  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.4.10.tgz#842ba81e768c8b961d134125a10bfbb1270e1c90"
-  integrity sha512-py1z5LmwnEZp9OOvCbyUAvjKF6aZMdSgo9nwPBa/Bx3QYMtmBtTqWXV/FcpiBdZhEL5muscF6ZxMbYm0sOqFMg==
+"@unbxd-ui/unbxd-search-core@^0.4.11":
+  version "0.4.11"
+  resolved "https://registry.yarnpkg.com/@unbxd-ui/unbxd-search-core/-/unbxd-search-core-0.4.11.tgz#3f7a500d96beef9dc73155bfe751e6f747b7182c"
+  integrity sha512-BAjPRi0jcOI13/VtSy+80mEqC/8hlW7hUjWOzAlUtSIYDk2EMiK6koe5XWuu/3FHCKP3c3Ztymd0KrVjXaBuHg==
   dependencies:
     babel-polyfill "^6.26.0"
     babel-runtime "^6.26.0"
