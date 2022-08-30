@@ -6,115 +6,48 @@ env:
     CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+
 defaults:
     run:
         shell: bash
 jobs:
-    # test:
-    #     name: Test 🧪
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Pre-reqs
-    #           uses: actions/checkout@v2
-
-    #         - name: Setup node
-    #           uses: actions/setup-node@v2
-    #           with:
-    #               node-version: 15
-
-    #         - name: Check Cache
-    #           uses: actions/cache@v2
-    #           with:
-    #               path: '**/node_modules'
-    #               key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-    #         - name: Install Dependencies
-    #           run: yarn install --frozen-lockfile
-
-    #         - name: Run Test
-    #           run: yarn test
-
-    # build:
-    #     name: Build ⚙️
-    #     runs-on: ubuntu-latest
-    #     needs: test
-    #     steps:
-    #         - name: Pre-reqs
-    #           uses: actions/checkout@v2
-
-    #         - name: Setup node
-    #           uses: actions/setup-node@v2
-    #           with:
-    #               node-version: 15
-
-    #         - name: Check Cache
-    #           uses: actions/cache@v2
-    #           with:
-    #               path: '**/node_modules'
-    #               key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-    #         - name: Install Dependencies
-    #           run: yarn install --frozen-lockfile
-
-    #         - name: Run Build
-    #           run: yarn build:prod
-    # publish:
-    #     name: Publish 🚀
-    #     runs-on: ubuntu-latest
-    #     needs: build
-    #     steps:
-    #         - name: Pre-reqs
-    #           uses: actions/checkout@v2
-
-    #         - name: Setup node
-    #           uses: actions/setup-node@v2
-    #           with:
-    #               node-version: 15
-    #         - name: Check Cache
-    #           uses: actions/cache@v2
-    #           with:
-    #               path: '**/node_modules'
-    #               key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-    #         - name: Install Dependencies
-    #           run: yarn install --frozen-lockfile
-
-    #         - name: Run Semantic Release
-    #           uses: cycjimmy/semantic-release-action@v2.5.3
 
     publish-to-master:
         name: Publish to master
         # needs: publish
-        if: github.event_name == 'push' && github.ref == 'refs/heads/feature-workflows'
+        # if: github.event_name == 'push' && github.ref == 'refs/heads/feature-workflows'
         runs-on: ubuntu-latest
         steps:
-            - name: ${{github.event_name}}
+            - name: Pre-reqs
               uses: actions/checkout@v2
 
-            - name: ${{github.event.action}}
+            - name: Setup node
               uses: actions/setup-node@v2
               with:
                   node-version: 15
 
-            - name: ${{github.event.pull_request.merged}}
+            - name: Check Cache
               uses: actions/cache@v2
               with:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-            - name: ${{github.ref}}
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                role-to-assume: arn:aws:iam::123456789100:role/my-github-actions-role
+                aws-region: us-east-1
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+            - name: Install Dependencies
               run: yarn install --frozen-lockfile
 
             - name: Run Build
               run: yarn build:prod
-
-            - name: Configure AWS credentials
-              id: configure-aws
-              uses: aws-actions/configure-aws-credentials@v1
-              with:
-                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                aws-region: us-east-1
 
             - name: Extract version
               id: extract_version
@@ -129,5 +62,4 @@ jobs:
                 AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
                 DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
               run: |
-                aws s3 cp public/dist/js/vanillaSearch.min.js s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000' --content-encoding 'gzip'
-                aws s3 cp public/dist/css/vanillaSearch.min.css s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.css --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000' --content-encoding 'gzip'
+                aws s3 cp public/dist/js/vanillaSearch.min.js s3://unbxd/search-sdk/vvv${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000' --content-encoding 'gzip'
