@@ -1,4 +1,8 @@
 ## Changelog
+## [2.0.5] - 2022-08-29
+Update core js version for keeping customer params, and fix reload url issues
+
+- Shortened url, removed fields, variant fields, facet multiselect versions, etc
 ## [2.0.5] - 2022-07-04
 
 - Shortened url, removed fields, variant fields, facet multiselect versions, etc
