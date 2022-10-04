@@ -1,5 +1,5 @@
 const reRender = function(){
-    console.log('akshay 2')
+    console.log('akshay 3')
     const {
         onEvent,
         spellCheck,
