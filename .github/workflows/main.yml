@@ -56,10 +56,17 @@ jobs:
             - name: Print version
               run: echo ${{ steps.extract_version.outputs.version }}
 
+            - name: CompressFiles
+              uses: stefh/ghaction-CompressFiles@v2
+              with:
+                path: 'public/dist/js/vanillaSearch.min.js'
+                extensions: '.js,.css,.html'
+                tools: 'brotli,gzip'
+
             - name: Run aws cp command
               id: aws-upload
               env:
                 AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
                 DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
               run: |
-                aws s3 cp public/dist/js/vanillaSearch.min.js s3://unbxd/search-sdk/vvv${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000' --content-encoding 'gzip'
+                aws s3 cp public/dist/js/vanillaSearch.min.js s3://unbxd/search-sdk/sss${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000' --content-encoding 'gzip'
