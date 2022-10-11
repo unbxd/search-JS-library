@@ -19,7 +19,7 @@ run in developement environment
 ``` 
 generate the bundle
 ```shell
-    npm run build:prod
+    npm run build
 ``` 
 
 ## Pull Request Process
