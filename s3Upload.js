@@ -14,7 +14,7 @@ exec(uploadCss, (err, stdout, stderr) => {
      console.log(`stderr: ${stderr}`);
     }
 });
-
+ 
 exec(uploadJs, (err, stdout, stderr) => {
     if (err) {
       //some err occurred

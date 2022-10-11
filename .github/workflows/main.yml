@@ -5,7 +5,12 @@ on:
 env:
     CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+    NPM_TOKEN_JS_LIBRARY: '${{ secrets.NPM_TOKEN_JS_LIBRARY }}'
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
+
 defaults:
     run:
         shell: bash
@@ -34,10 +39,11 @@ jobs:
             - name: Run Test
               run: yarn test
 
-    build:
-        name: Build ⚙️
-        runs-on: ubuntu-latest
+    release:
+        name: Release
         needs: test
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        runs-on: ubuntu-latest
         steps:
             - name: Pre-reqs
               uses: actions/checkout@v2
@@ -52,32 +58,49 @@ jobs:
               with:
                   path: '**/node_modules'
                   key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-region: us-east-1
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
             - name: Install Dependencies
               run: yarn install --frozen-lockfile
 
             - name: Run Build
-              run: yarn build:prod
-    publish:
-        name: Publish 🚀
-        runs-on: ubuntu-latest
-        needs: build
-        steps:
-            - name: Pre-reqs
-              uses: actions/checkout@v2
+              run: yarn build
 
-            - name: Setup node
-              uses: actions/setup-node@v2
+            - name: Extract version
+              id: extract_version
+              uses: Saionaro/extract-package-version@v1.0.6
+
+            - name: Print version
+              run: echo ${{ steps.extract_version.outputs.version }}
+
+            - name: Run aws cp command
+              id: aws-upload
+              env:
+                AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
+                DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
+              run: |
+                aws s3 cp public/dist/js/vanillaSearch.min.js s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000'
+
+            - name: Publish package
+              uses: JS-DevTools/npm-publish@v1
               with:
-                  node-version: 15
-            - name: Check Cache
-              uses: actions/cache@v2
-              with:
-                  path: '**/node_modules'
-                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+                token: ${{ secrets.NPM_TOKEN_JS_LIBRARY }}
 
-            - name: Install Dependencies
-              run: yarn install --frozen-lockfile
-
-            - name: Run Semantic Release
-              uses: cycjimmy/semantic-release-action@v2.5.3
+            - name: Slack Notification
+              uses: rtCamp/action-slack-notify@v2
+              if: always()
+              env:
+                SLACK_WEBHOOK: ${{ secrets.PLATFORM_SLACK_WEBHOOK_URL }}
+                SLACK_USERNAME: "Vanilla JS SDK" 
+                SLACK_MSG_AUTHOR: ${{ github.actor }} 
+                SLACK_CHANNEL: '#ss-builds'
+                SLACK_COLOR: ${{ job.status }}
+                SLACK_ICON: https://github.com/rtCamp.png?size=48
+                SLACK_TITLE: Image
+                SLACK_MESSAGE: ${{ steps.extract_version.outputs.version }}

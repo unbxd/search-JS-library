@@ -1,6 +1,6 @@
 {
   "name": "@unbxd-ui/vanilla-search-library",
-  "version": "2.0.18",
+  "version": "2.0.19",
   "description": "A JavaScript library for building performant and quick search experiences with Unbxd",
   "main": "public/dist/js/vanillaSearch.js",
   "repository": {
@@ -13,7 +13,7 @@
   "homepage": "https://github.com/unbxd/search-JS-library#readme",
   "scripts": {
     "start": "webpack-dev-server --open --config ./webpack/webpack.config.js",
-    "build:prod": "webpack --config ./webpack/webpack.prod.config.js",
+    "build": "webpack --config ./webpack/webpack.prod.config.js",
     "server": "http-server ./public",
     "generate-docs": "jsdoc -c ./docs/jsDoc.json ",
     "upload-s3": "node s3Upload.js",
@@ -79,7 +79,7 @@
   "author": "Unbxd",
   "license": "ISC",
   "dependencies": {
-    "@unbxd-ui/unbxd-search-core": "^0.4.20",
+    "@unbxd-ui/unbxd-search-core": "^0.4.21",
     "babel-polyfill": "^6.26.0",
     "babel-runtime": "^6.26.0",
     "element-dataset": "^2.2.6"
