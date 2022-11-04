@@ -48,6 +48,10 @@ const reRender = function(){
         isInfiniteStarted
     } = this.viewState;
     if(results && results.numberOfProducts === 0) {
+        let redirect = this.state.responseObj.redirect || {};
+        if(Object.keys(redirect).length) {
+            return;
+        }
         onEvent(this,beforeNoResultRender);
         this.viewState.noResultLoaded = true;
         searchResultsWrapper.classList.add(noResultCss);
