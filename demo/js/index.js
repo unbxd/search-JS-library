@@ -1,17 +1,108 @@
 import UnbxdSearch from "../../src/index";
 
+let routeTemplate = `
+<div class="UNX-header">
+        <div class="UNX-header-inner">
+            <div class="UNX-logo">
+                UNBXD
+            </div>
+            <div class="UNX-input-wrapper">
+                <input id="unbxdInput" class="UNX-input" />
+                <button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
+            </div>
+        </div>
+        <nav id="categoryLinks" class="UNX-naviagtion-wrap">
+            <button data-id="itemGroupIds:185" class="nav-links" data-path="/sectionals">Sectionals</a>
+            <button data-id="itemGroupIds:1800" class="nav-links" data-path="/beds">Beds</button>
+            
+        </nav>
+    </div>
+
+    <div class="UNX-results-container">
+        <div class="UNX-head-wrapper">
+            <div class="UNX-selected-actions">
+                <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
+                <div class="UNX-selected-facet-wrapper" id="selectedFacetWrapper"></div>
+            </div>
+            <div class="UNX-product-type-block" id="productViewTypeContainer"></div>
+        </div>
+        <div class="UNX-product-results">
+            <div class="UNX-facet-wrapper">
+                <h2 class="UNX-filter-header">Filter By</h2>
+                <div class="UNX-fxd-facet">
+                    <div class="UNX-selected-facet-wrapper UNX-selected-f-m" id="selectedMFacetWrapper"></div>
+                    <div class="UNX-multilevel-block" id="bucketedFacetWrapper"></div>
+                    <div class="UNX-text-facet-block" id="facetsWrapper"></div>
+                    <div class="UNX-range-block" id="rangeFacetWrapper"></div>
+                    <div class="UNX-m-facet-row">
+                        <button data-action="applyFacets" class="UNX-primary-btn UNX-facet-trigger">Apply</button>
+                        <button data-action="clearFacets" class="UNX-default-btn UNX-facet-trigger">Clear</button>
+                    </div>
+
+                </div>
+                <div class="UNX-m-facet-row">
+                    <button class="UNX-m-facet-btn UNX-facet-trigger fa fa-filter"></button>
+                </div>
+            </div>
+            <div class="UNX-product-list">
+                <div class="UNX-result-header">
+                    <div id="didYouMeanWrapper"></div>
+                    <div class="UNX-result-right">
+                        <div class="UNX-change-products" id="changeNoOfProducts"></div>
+                        <div class="UNX-sort-wrapper" id="sortWrapper"></div>
+                        <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
+                        <div id="" class="UNX-change-pagination-wrap unxPagination"></div>
+                    </div>
+                </div>
+                <div id="bannerContainer"></div>
+                <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+                <div id="" class="UNX-change-pagination-wrap UNX-m-page unxPagination"></div>
+            </div>
+        </div>
+        <div class="UNX-loader-container" id="loaderEl"></div>
+        <div id="noResultWrapper"></div>
+        <div id="clickScrollContainer">
+        </div>
+    </div>
+`;
+
+const routes = {
+  '/' : routeTemplate,
+  '/sectionals' : routeTemplate,
+  '/beds' : routeTemplate,
+};
+
+const rootDiv = document.getElementById('root');
+rootDiv.innerHTML = routes[window.location.pathname];
+
+if(location.href.indexOf("sectionals") > 0) {
+    window.UnbxdAnalyticsConf = {
+        page: "itemGroupIds:185"
+    };
+} else if(location.href.indexOf("beds") > 0) {
+    window.UnbxdAnalyticsConf = {
+        page: "itemGroupIds:1800"
+    };
+} else {
+    window.UnbxdAnalyticsConf = {};
+}
+
 
 const setCategory = function(e) {
     const el = e.target;
     const {
-        dataset
+        dataset,
+        path
     } = el;
     if (dataset && dataset.id) {
+        window.history.pushState({}, null, path);
+        // rootDiv.innerHTML = routes[el.pathname];
         window.UnbxdAnalyticsConf = {
             page: dataset.id
         };
         window.unbxdSearch.getCategoryPage();
     }
+   
 };
 const navElem = document.getElementById("categoryLinks");
 navElem.addEventListener("click", setCategory);
@@ -63,7 +154,6 @@ const checkRangeTemplate = function(range, selectedRange, facet) {
     ].join('')
 }
 
-
 const unbxdCallbackEcma = function(instance, type, data) {
     console.log(type, data, 'type,data');
 }
@@ -104,61 +194,10 @@ const btnEls = document.querySelectorAll(".UNX-facet-trigger");
 btnEls.forEach(item => {
     item.addEventListener("click", toggleMobileFacets)
 })
-UnbxdSearch.prototype.setUrl = function(reload) {
-    const {
-        productType,
-        hashMode,
-        searchPath,
-        onQueryRedirect
-    } = this.options;
-    const {
-        userInput,
-        urlLoad,
-        isHistory,
-        responseObj = {},
-        startPageNo
-    } = this.state;
-    const {
-        productViewType
-    } = this.viewState;
-    const {
-        redirect
-    } = responseObj;
-    if(typeof onQueryRedirect === "function") {
-        onQueryRedirect(this, redirect);
-    }
-    let facetStr = ``;
-    facetStr += this.urlFlattenFacets();
-    facetStr += this.getRangeFilterStr();
-    facetStr += this.categoryFilterUrlStr();
-    if(startPageNo > 0) {
-        facetStr += this.getPageStartStr()
-    }
-    facetStr += `&viewType=${productViewType}`;
-    const q = `q=${userInput}${facetStr}${this.getSortUrlString()}`;
-    this.state.urlState = q;
-    const isPath = location.pathname.includes(searchPath);
-    if(hashMode) {
-        const newQ = `#${q}`;
-        if(isPath && (newQ !== location.hash)) {
-            location.hash = q;
-        }
-    } else {
-        if(isHistory && !urlLoad && isPath){
-            const newQ  = `?${q}`;
-            if(decodeURI(newQ) !== decodeURI(location.search)) {
-                window.history.pushState(q, null, newQ);
-                this.state.urlLoad = false;
-            }
-        }
-        if(reload && isPath){
-            location.search = q;
-        }
-    }
-}
+
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-german-unbxd809051586180937",
-  apiKey: "16e3cf8d510c50106d64f1ebb919b34e",
+    siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
+  apiKey: "e2082aeb3a7f0ac8955c879daf7673e8",
     updateUrls: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
@@ -339,7 +378,3 @@ window.unbxdSearch.updateConfig({
     onEvent: unbxdCallbackEcma
 
 })
-
-
-
-//window.unbxdSearch.initialize();
