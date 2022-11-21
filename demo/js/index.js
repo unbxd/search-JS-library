@@ -75,13 +75,6 @@ const routes = {
 const rootDiv = document.getElementById('root');
 rootDiv.innerHTML = routes[window.location.pathname];
 
-
-
-window.addEventListener('popstate', () => {
-    performRouteActions();
-});
-
-
 const setCategory = function (e) {
     const el = e.target;
     const {
@@ -186,7 +179,66 @@ const toggleMobileFacets = (e) => {
 const btnEls = document.querySelectorAll(".UNX-facet-trigger");
 btnEls.forEach(item => {
     item.addEventListener("click", toggleMobileFacets)
-})
+});
+
+let performRouteActions = () => {
+    console.log("Parent popstate called");
+    if (location.pathname === "/sectionals") {
+        window.UnbxdAnalyticsConf = {
+            page: "itemGroupIds:185"
+        };
+        unbxdSearch.options.productType = "CATEGORY";
+        console.log("Parent popstate sectionals called");
+    } else if (location.pathname === "/beds") {
+        window.UnbxdAnalyticsConf = {
+            page: "itemGroupIds:1800"
+        };
+        unbxdSearch.options.productType = "CATEGORY";
+        console.log("Parent popstate beds called");
+    } else {
+        console.log("analytics conf emptied");
+        window.UnbxdAnalyticsConf = {};
+        unbxdSearch.options.productType = "SEARCH";
+        console.log("Parent popstate home called");
+    }
+}
+
+
+
+window.addEventListener('popstate', () => {
+    performRouteActions();
+});
+
+let searchButtonEl = document.getElementById("searchBtn");
+let searchBoxEl = document.getElementById("unbxdInput");
+
+searchButtonEl.addEventListener("click", () => {
+    if (unbxdSearch.options.productType !== 'SEARCH') {
+        window.UnbxdAnalyticsConf = {};
+        unbxdSearch.options.productType = 'SEARCH';
+        window.history.pushState({
+                replace: true
+            },"","/")
+    }
+});
+
+
+searchBoxEl.addEventListener("keydown", (e) => {
+        const val = e.target.value;
+        if (e.key === 13) {  //checks whether the pressed key is "Enter"
+            if(val !== ""){
+                if (unbxdSearch.options.productType !== 'SEARCH') {
+                    window.UnbxdAnalyticsConf = {};
+                    unbxdSearch.options.productType = 'SEARCH';
+                    window.history.pushState({
+                            replace: true
+                        },"","/")
+                }
+            }
+        }
+});
+
+
 
 window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
@@ -371,22 +423,5 @@ window.unbxdSearch.updateConfig({
     onEvent: unbxdCallbackEcma
 
 });
-
-let performRouteActions = () => {
-    if (location.href.indexOf("sectionals") > 0) {
-        window.UnbxdAnalyticsConf = {
-            page: "itemGroupIds:185"
-        };
-        unbxdSearch.options.productType = "CATEGORY"
-    } else if (location.href.indexOf("beds") > 0) {
-        window.UnbxdAnalyticsConf = {
-            page: "itemGroupIds:1800"
-        };
-        unbxdSearch.options.productType = "CATEGORY"
-    } else {
-        window.UnbxdAnalyticsConf = {};
-        unbxdSearch.options.productType = "SEARCH"
-    }
-}
-
 performRouteActions();
+
