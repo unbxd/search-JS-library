@@ -67,48 +67,41 @@ let routeTemplate = `
 `;
 
 const routes = {
-  '/' : routeTemplate,
-  '/sectionals' : routeTemplate,
-  '/beds' : routeTemplate,
+    '/': routeTemplate,
+    '/sectionals': routeTemplate,
+    '/beds': routeTemplate,
 };
 
 const rootDiv = document.getElementById('root');
 rootDiv.innerHTML = routes[window.location.pathname];
 
-if(location.href.indexOf("sectionals") > 0) {
-    window.UnbxdAnalyticsConf = {
-        page: "itemGroupIds:185"
-    };
-} else if(location.href.indexOf("beds") > 0) {
-    window.UnbxdAnalyticsConf = {
-        page: "itemGroupIds:1800"
-    };
-} else {
-    window.UnbxdAnalyticsConf = {};
-}
 
 
-const setCategory = function(e) {
+window.addEventListener('popstate', () => {
+    performRouteActions();
+});
+
+
+const setCategory = function (e) {
     const el = e.target;
     const {
-        dataset,
-        path
+        dataset
     } = el;
     if (dataset && dataset.id) {
-        window.history.pushState({}, null, path);
+        window.history.pushState(null, null, dataset.path);
         // rootDiv.innerHTML = routes[el.pathname];
         window.UnbxdAnalyticsConf = {
             page: dataset.id
         };
         window.unbxdSearch.getCategoryPage();
     }
-   
+
 };
 const navElem = document.getElementById("categoryLinks");
 navElem.addEventListener("click", setCategory);
 
 
-const checkRangeTemplate = function(range, selectedRange, facet) {
+const checkRangeTemplate = function (range, selectedRange, facet) {
     const {
         displayName,
         facetName,
@@ -132,8 +125,8 @@ const checkRangeTemplate = function(range, selectedRange, facet) {
         const isSelected = this.isSelectedRange(facetName, item);
         const btnCss = (isSelected) ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}` : `${facetClass}`;
         valueUI += [`<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
-            `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
-            `<span class="UNX-facet-count">(${from.count})</span>`,
+        `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
+        `<span class="UNX-facet-count">(${from.count})</span>`,
             `</button>`
         ].join('');
     });
@@ -154,7 +147,7 @@ const checkRangeTemplate = function(range, selectedRange, facet) {
     ].join('')
 }
 
-const unbxdCallbackEcma = function(instance, type, data) {
+const unbxdCallbackEcma = function (instance, type, data) {
     console.log(type, data, 'type,data');
 }
 
@@ -197,7 +190,7 @@ btnEls.forEach(item => {
 
 window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
-  apiKey: "e2082aeb3a7f0ac8955c879daf7673e8",
+    apiKey: "e2082aeb3a7f0ac8955c879daf7673e8",
     updateUrls: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
@@ -205,13 +198,13 @@ window.unbxdSearch = new UnbxdSearch({
     products: {
         productType: "SEARCH",
     },
-    unbxdAnalytics:true
+    unbxdAnalytics: true
 });
 window.unbxdSearch.updateConfig({
     products: {
         el: document.getElementById("searchResultsWrapper"),
         productType: "SEARCH",
-        productClick: function(product, e) {
+        productClick: function (product, e) {
             console.log(product, "product,index", e);
         }
     },
@@ -229,7 +222,7 @@ window.unbxdSearch.updateConfig({
         facetsEl: document.getElementById("facetsWrapper"),
         applyMultipleFilters: false,
         defaultOpen: "FIRST",
-        onFacetLoad: function(facets) {
+        onFacetLoad: function (facets) {
             const self = this;
             const {
                 facet
@@ -265,15 +258,15 @@ window.unbxdSearch.updateConfig({
                     this[rangeId] = noUiSlider.create(sliderElem, {
                         start: [start, end],
                         tooltips: [{
-                                to: function(value) {
-                                    return `${prefix} ${Math.round(value)}`;
-                                }
-                            },
-                            {
-                                to: function(value) {
-                                    return `${prefix} ${Math.round(value)}`;
-                                }
+                            to: function (value) {
+                                return `${prefix} ${Math.round(value)}`;
                             }
+                        },
+                        {
+                            to: function (value) {
+                                return `${prefix} ${Math.round(value)}`;
+                            }
+                        }
                         ],
                         connect: true,
                         range: {
@@ -281,17 +274,17 @@ window.unbxdSearch.updateConfig({
                             'max': max
                         },
                         format: {
-                            to: function(value) {
+                            to: function (value) {
                                 return Math.round(value);
                             },
-                            from: function(value) {
+                            from: function (value) {
                                 return Math.round(value);
                             }
                         },
                         padding: 0,
                         margin: 0,
                     });
-                    this[rangeId].on("set", function(data) {
+                    this[rangeId].on("set", function (data) {
                         const newData = {
                             start: data[0],
                             end: data[1],
@@ -308,7 +301,7 @@ window.unbxdSearch.updateConfig({
         isCollapsible: true,
         isSearchable: true,
         enableViewMore: false,
-        rangeTemplate: function(range, selectedRange, facet) {
+        rangeTemplate: function (range, selectedRange, facet) {
             const {
                 facetName,
                 start,
@@ -324,7 +317,7 @@ window.unbxdSearch.updateConfig({
             const rangId = `${facetName}_slider`;
             return [`<div id="${facetName}"  data-id="${facetName}" class=" UNX-range-slider-wrap">`,
                 `<div class="UNX-value-container UNX-range-value-block" ></div>`,
-                `<div id="${rangId}" data-x="${min}" data-y="${max}" class="UNX-range-slider-wrapper"></div>`,
+            `<div id="${rangId}" data-x="${min}" data-y="${max}" class="UNX-range-slider-wrapper"></div>`,
                 `</div>`,
                 `<div>`,
                 `</div>`
@@ -334,7 +327,7 @@ window.unbxdSearch.updateConfig({
     pagination: {
         type: 'INFINITE_SCROLL',
         el: document.querySelector("#clickScrollContainer"),
-        onPaginate: function(data) {console.log(data,"data")}
+        onPaginate: function (data) { console.log(data, "data") }
     },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
@@ -346,13 +339,13 @@ window.unbxdSearch.updateConfig({
     sort: {
         el: document.getElementById("sortWrapper"),
         options: [{
-                value: "min_price desc",
-                text: "Price High to Low"
-            },
-            {
-                value: "min_price asc",
-                text: " Price Low to High"
-            }
+            value: "min_price desc",
+            text: "Price High to Low"
+        },
+        {
+            value: "min_price asc",
+            text: " Price Low to High"
+        }
         ]
     },
     loader: {
@@ -374,7 +367,26 @@ window.unbxdSearch.updateConfig({
             swatchColors: "color"
         }
     },
-    onAction: function(e, ctx) {},
+    onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
 
-})
+});
+
+let performRouteActions = () => {
+    if (location.href.indexOf("sectionals") > 0) {
+        window.UnbxdAnalyticsConf = {
+            page: "itemGroupIds:185"
+        };
+        unbxdSearch.options.productType = "CATEGORY"
+    } else if (location.href.indexOf("beds") > 0) {
+        window.UnbxdAnalyticsConf = {
+            page: "itemGroupIds:1800"
+        };
+        unbxdSearch.options.productType = "CATEGORY"
+    } else {
+        window.UnbxdAnalyticsConf = {};
+        unbxdSearch.options.productType = "SEARCH"
+    }
+}
+
+performRouteActions();
