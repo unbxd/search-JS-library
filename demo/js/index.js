@@ -188,12 +188,14 @@ let performRouteActions = () => {
             page: "itemGroupIds:185"
         };
         unbxdSearch.options.productType = "CATEGORY";
+        window.unbxdSearch.getCategoryPage();
         console.log("Parent popstate sectionals called");
     } else if (location.pathname === "/beds") {
         window.UnbxdAnalyticsConf = {
             page: "itemGroupIds:1800"
         };
         unbxdSearch.options.productType = "CATEGORY";
+        window.unbxdSearch.getCategoryPage();
         console.log("Parent popstate beds called");
     } else {
         console.log("analytics conf emptied");
@@ -202,8 +204,6 @@ let performRouteActions = () => {
         console.log("Parent popstate home called");
     }
 }
-
-
 
 window.addEventListener('popstate', () => {
     performRouteActions();
@@ -224,18 +224,18 @@ searchButtonEl.addEventListener("click", () => {
 
 
 searchBoxEl.addEventListener("keydown", (e) => {
-        const val = e.target.value;
-        if (e.key === 13) {  //checks whether the pressed key is "Enter"
-            if(val !== ""){
-                if (unbxdSearch.options.productType !== 'SEARCH') {
-                    window.UnbxdAnalyticsConf = {};
-                    unbxdSearch.options.productType = 'SEARCH';
-                    window.history.pushState({
-                            replace: true
-                        },"","/")
-                }
+    const val = e.target.value;
+    if (e.key === "Enter") { 
+        if(val !== ""){
+            if (unbxdSearch.options.productType !== 'SEARCH') {
+                window.UnbxdAnalyticsConf = {};
+                unbxdSearch.options.productType = 'SEARCH';
+                window.history.pushState({
+                        replace: true
+                    },"","/")
             }
         }
+    }
 });
 
 
