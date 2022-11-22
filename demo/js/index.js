@@ -90,6 +90,7 @@ const setCategory = function (e) {
     }
 
 };
+
 const navElem = document.getElementById("categoryLinks");
 navElem.addEventListener("click", setCategory);
 
@@ -148,6 +149,7 @@ let showFacet = false;
 window.resizeTimer = null;
 
 const facetBlock = document.querySelector(".UNX-fxd-facet");
+
 const checkMobile = () => {
     const w = window.innerWidth;
     if (w < 980) {
@@ -155,6 +157,7 @@ const checkMobile = () => {
     }
     return false;
 };
+
 const toggleMobileFacets = (e) => {
     showFacet = !showFacet;
     const {
@@ -182,26 +185,19 @@ btnEls.forEach(item => {
 });
 
 let performRouteActions = () => {
-    console.log("Parent popstate called");
     if (location.pathname === "/sectionals") {
         window.UnbxdAnalyticsConf = {
             page: "itemGroupIds:185"
         };
         unbxdSearch.options.productType = "CATEGORY";
-        window.unbxdSearch.getCategoryPage();
-        console.log("Parent popstate sectionals called");
     } else if (location.pathname === "/beds") {
         window.UnbxdAnalyticsConf = {
             page: "itemGroupIds:1800"
         };
         unbxdSearch.options.productType = "CATEGORY";
-        window.unbxdSearch.getCategoryPage();
-        console.log("Parent popstate beds called");
     } else {
-        console.log("analytics conf emptied");
         window.UnbxdAnalyticsConf = {};
         unbxdSearch.options.productType = "SEARCH";
-        console.log("Parent popstate home called");
     }
 }
 
@@ -222,7 +218,6 @@ searchButtonEl.addEventListener("click", () => {
     }
 });
 
-
 searchBoxEl.addEventListener("keydown", (e) => {
     const val = e.target.value;
     if (e.key === "Enter") { 
@@ -238,7 +233,22 @@ searchBoxEl.addEventListener("keydown", (e) => {
     }
 });
 
+let productType = "";
 
+if (location.pathname === "/sectionals") {
+    window.UnbxdAnalyticsConf = {
+        page: "itemGroupIds:185"
+    };
+    productType = "CATEGORY";
+} else if (location.pathname === "/beds") {
+    window.UnbxdAnalyticsConf = {
+        page: "itemGroupIds:1800"
+    };
+    productType = "CATEGORY";
+} else {
+    window.UnbxdAnalyticsConf = {};
+    productType = "SEARCH";
+}
 
 window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
@@ -248,14 +258,15 @@ window.unbxdSearch = new UnbxdSearch({
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
     products: {
-        productType: "SEARCH",
+        productType: productType,
     },
     unbxdAnalytics: true
 });
+
 window.unbxdSearch.updateConfig({
     products: {
         el: document.getElementById("searchResultsWrapper"),
-        productType: "SEARCH",
+        productType: productType,
         productClick: function (product, e) {
             console.log(product, "product,index", e);
         }
@@ -421,7 +432,10 @@ window.unbxdSearch.updateConfig({
     },
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
-
 });
-performRouteActions();
+
+
+
+
+
 
