@@ -48,7 +48,8 @@ const options = {
             "productDescription",
             "unbxd_color_mapping",
             "colorName",
-            "color"
+            "color",
+            "productUrl"
         ],
         attributesMap:{
             'unxTitle':'title',

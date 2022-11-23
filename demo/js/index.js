@@ -260,15 +260,20 @@ window.unbxdSearch = new UnbxdSearch({
     products: {
         productType: productType,
     },
-    unbxdAnalytics: true
+    unbxdAnalytics: true,
+    pagination: {
+        type: 'INFINITE_SCROLL',
+        el: document.querySelector("#clickScrollContainer"),
+        onPaginate: function (data) { console.log(data, "data") }
+    }
 });
 
 window.unbxdSearch.updateConfig({
     products: {
         el: document.getElementById("searchResultsWrapper"),
         productType: productType,
-        productClick: function (product, e) {
-            console.log(product, "product,index", e);
+        onProductClick: function (product, e) {
+            history.pushState(null,null, `${product.variants[0].productUrl}`);
         }
     },
     spellCheck: {
@@ -387,11 +392,11 @@ window.unbxdSearch.updateConfig({
             ].join('')
         }
     },
-    pagination: {
-        type: 'INFINITE_SCROLL',
-        el: document.querySelector("#clickScrollContainer"),
-        onPaginate: function (data) { console.log(data, "data") }
-    },
+    // pagination: {
+    //     type: 'INFINITE_SCROLL',
+    //     el: document.querySelector("#clickScrollContainer"),
+    //     onPaginate: function (data) { console.log(data, "data") }
+    // },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
     },
