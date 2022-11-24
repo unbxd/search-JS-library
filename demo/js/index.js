@@ -262,7 +262,7 @@ window.unbxdSearch = new UnbxdSearch({
     },
     unbxdAnalytics: true,
     pagination: {
-        type: 'INFINITE_SCROLL',
+        type: 'FIXED_PAGINATION',
         el: document.querySelector("#clickScrollContainer"),
         onPaginate: function (data) { console.log(data, "data") }
     }
@@ -392,11 +392,6 @@ window.unbxdSearch.updateConfig({
             ].join('')
         }
     },
-    // pagination: {
-    //     type: 'INFINITE_SCROLL',
-    //     el: document.querySelector("#clickScrollContainer"),
-    //     onPaginate: function (data) { console.log(data, "data") }
-    // },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
     },

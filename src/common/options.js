@@ -287,6 +287,24 @@ const options = {
             }
             return false;
         }
+    },
+    setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey) => {
+        if (locationParam === newUrl) {
+            return;
+        } else if (productType === "CATEGORY") {
+            /** Do not navigate to base category page  */
+            if (!isUnbxdKey) {
+                history.replaceState(null, "", newUrl);
+            } else {
+                history.pushState(null, "", newUrl);
+            }
+        } else {
+            if (history.state && history.state.replace) {
+                history.replaceState(null, "", newUrl);
+            } else {
+                history.pushState(null, "", newUrl);
+            }
+        }
     }
    // searchQueryParam:null
 };
