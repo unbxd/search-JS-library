@@ -288,6 +288,9 @@ const options = {
             return false;
         }
     },
+    onNoUnbxdKeyRouting:() => {
+        history.go();
+    },
     setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey) => {
         if (locationParam === newUrl) {
             return;
