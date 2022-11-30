@@ -48,7 +48,8 @@ const options = {
             "productDescription",
             "unbxd_color_mapping",
             "colorName",
-            "color"
+            "color",
+            "productUrl"
         ],
         attributesMap:{
             'unxTitle':'title',
@@ -285,6 +286,27 @@ const options = {
                 location.href =  value;                                                           
             }
             return false;
+        }
+    },
+    onNoUnbxdKeyRouting:() => {
+        history.go();
+    },
+    setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey) => {
+        if (locationParam === newUrl) {
+            return;
+        } else if (productType === "CATEGORY") {
+            /** Do not navigate to base category page  */
+            if (!isUnbxdKey) {
+                history.replaceState(null, "", newUrl);
+            } else {
+                history.pushState(null, "", newUrl);
+            }
+        } else {
+            if (history.state && history.state.replace) {
+                history.replaceState(null, "", newUrl);
+            } else {
+                history.pushState(null, "", newUrl);
+            }
         }
     }
    // searchQueryParam:null

@@ -107,7 +107,6 @@ function bindEvents(){
         `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );
-    debugger;
     if(!this.viewState.initialised) {
         window.addEventListener('popstate',this.onLocationChange.bind(this),false);
         // if(this.options.hashMode) {
