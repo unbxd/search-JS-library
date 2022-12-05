@@ -265,7 +265,8 @@ window.unbxdSearch = new UnbxdSearch({
         type: 'FIXED_PAGINATION',
         el: document.querySelector("#clickScrollContainer"),
         onPaginate: function (data) { console.log(data, "data") }
-    }
+    },
+    allowExternalUrlParams: true
 });
 
 window.unbxdSearch.updateConfig({
@@ -402,11 +403,11 @@ window.unbxdSearch.updateConfig({
     sort: {
         el: document.getElementById("sortWrapper"),
         options: [{
-            value: "min_price desc",
+            value: "price desc",
             text: "Price High to Low"
         },
         {
-            value: "min_price asc",
+            value: "price asc",
             text: " Price Low to High"
         }
         ]
