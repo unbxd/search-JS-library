@@ -283,7 +283,9 @@ const options = {
                 type
             } = redirect;
             if(type === "url") {
-                location.href =  value;                                                           
+                location.href =  value;  
+                /** To open redirect in new tab (rare scenario) */ 
+                // window.open(value, "_blank");                                                        
             }
             return false;
         }
