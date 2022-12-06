@@ -190,7 +190,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | setCategoryId | Function | null | This method helps to navigate through the breadcrumbs, you can customize the logic here   |
 | onQueryRedirect | Function | null | customise your logic here to handle the redirect configured in api |
 | browseQueryParam | String | "p" | this will be the default query param for the browse and category|
-| setRoutingStrategies | Function | null | customise your logic here to handle the browser back scenarios. Params: locationParam(search/hash based on hashMode), newUrl(param string), productType, isUnbxdKey(whether unbxd params exist in url) |
+| setRoutingStrategies | Function | null | customise your logic here to handle the browser back scenarios. Params: locationParam(search/hash based on hashMode), newUrl(param string), productType, isUnbxdKey(whether unbxd params exist in url), replace(whether history should replace) |
 | onNoUnbxdKeyRouting | Function | null | history action when there is no unbxd key in the url during browser back |
 
 ## Products Config
