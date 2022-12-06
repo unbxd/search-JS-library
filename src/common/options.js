@@ -293,7 +293,7 @@ const options = {
     onNoUnbxdKeyRouting:() => {
         history.go();
     },
-    setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey) => {
+    setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
         if (locationParam === newUrl) {
             return;
         } else if (productType === "CATEGORY") {
@@ -304,7 +304,7 @@ const options = {
                 history.pushState(null, "", newUrl);
             }
         } else {
-            if (history.state && history.state.replace) {
+            if ((history.state && history.state.replace) || replace) {
                 history.replaceState(null, "", newUrl);
             } else {
                 history.pushState(null, "", newUrl);
