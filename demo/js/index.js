@@ -14,7 +14,6 @@ let routeTemplate = `
         <nav id="categoryLinks" class="UNX-naviagtion-wrap">
             <button data-id="itemGroupIds:185" class="nav-links" data-path="/sectionals">Sectionals</a>
             <button data-id="itemGroupIds:1800" class="nav-links" data-path="/beds">Beds</button>
-            
         </nav>
     </div>
 
@@ -67,7 +66,7 @@ let routeTemplate = `
 `;
 
 const routes = {
-    '/': routeTemplate,
+    '/search': routeTemplate,
     '/sectionals': routeTemplate,
     '/beds': routeTemplate,
 };
@@ -214,7 +213,7 @@ searchButtonEl.addEventListener("click", () => {
         unbxdSearch.options.productType = 'SEARCH';
         window.history.pushState({
                 replace: true
-            },"","/")
+            },"","/search?abc=true")
     }
 });
 
@@ -227,7 +226,7 @@ searchBoxEl.addEventListener("keydown", (e) => {
                 unbxdSearch.options.productType = 'SEARCH';
                 window.history.pushState({
                         replace: true
-                    },"","/")
+                    },"","/search?abc=true")
             }
         }
     }
@@ -251,6 +250,9 @@ if (location.pathname === "/sectionals") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
+    // siteKey: "ss-unbxd-priyal-dev-2022812041656321154",
+    // apiKey: "74346ae3ffdcc7cd664f6ce8a18e4c7d",
+  // searchEndPoint: "https://wingman-argocd.unbxd.io/",
     siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
     apiKey: "e2082aeb3a7f0ac8955c879daf7673e8",
     updateUrls: true,
