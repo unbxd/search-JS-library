@@ -4,7 +4,7 @@ title: Getting Started
 nav_order: 2
 ---
 
-# JS Library documentation
+# Getting Started
 {: .fs-9 }
 
 Quick Integration with Unbxd Template
