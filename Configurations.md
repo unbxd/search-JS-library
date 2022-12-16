@@ -430,7 +430,11 @@ The following options are available under the object:
 | template | Function | [default](src/modules/swatches/ui.js) | Customize the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters |
 
 ## Banner Config
+Configure the banner display by setting the “banner” config object.
 
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
+
+The following options are available under the object:
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | enabled | Boolean | false | Turn this flag on for enabling Banner |
@@ -447,6 +451,9 @@ The following options are available under the object:
 
 ## Loader Config
 
+Configure page loader to be shown when fetching search API results by setting the “loader” config object.  
+The following options are available under the object:  
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | el | Element | null | Element in which to render the loader component |
@@ -455,13 +462,19 @@ The following options are available under the object:
 
 ## No Results Config
 
+Configure the display to be rendered when there are no results by setting the “noResults” config object.
+The following options are available under the object:  
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | template | Function | `function(query){return '<div class="UNX-no-results"> No Results found '+ query + '</div>'}` | Customize the look and feel of the no results component by using this function. You will get the searched query as param to this function |
 
 ## Instance Methods
 
-**Note:** All the below functions can be called on the instance returned by the `UnbxdSearch` constructor function
+
+This section documents the different methods exposed by the Library that you can use to perform various actions.
+
+> NOTE: All the below methods can be called on the instance object returned by UnbxdSearch constructor.
 
 | OPTIONS | DATATYPE | DESCRIPTION |
 |----------|----------|----------|
