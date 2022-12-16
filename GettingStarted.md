@@ -1,3 +1,15 @@
+- [JS Library documentation](#js-library-documentation)
+    - [Version](#version)
+  - [Quick Integration with Unbxd Template](#quick-integration-with-unbxd-template)
+  - [Quick Integration to your Site](#quick-integration-to-your-site)
+    - [Nomenclature](#nomenclature)
+  - [More Information](#more-information)
+    - [Tips\& tricks](#tips-tricks)
+    - [Raise Issues](#raise-issues)
+    - [Stay up to date](#stay-up-to-date)
+  - [List of available Configurations](#list-of-available-configurations)
+
+
 JS Library documentation
 ========================
 

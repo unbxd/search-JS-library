@@ -690,15 +690,3 @@ dl.param-type {
     width: 100%;
   }
 }
-table {
-  table-layout: fixed;
-  border-collapse: collapse;
-}
-td {
-  padding: 20px;
-  border: solid 1px #cacaca;
-  vertical-align: baseline;
-}
-.nav-current-link a{
-  color: #040404;
-}
