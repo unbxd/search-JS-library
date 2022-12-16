@@ -1,9 +1,26 @@
+---
+layout: default
+title: Banners
+parent: Configurations
+nav_order: 1
+---
 
-## Banner Config
+# Banners
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+## Behavior
 Configure the banner display by setting the “banner” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
 
+## Config
 The following options are available under the object:
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
@@ -15,3 +32,7 @@ The following options are available under the object:
 | tagName | String | "DIV" | html element for the banner wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"UNX-banner-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+
+
+## Examples
+Exmaple here-------

@@ -1,4 +1,27 @@
 
+---
+layout: default
+title: Configurations
+nav_order: 3
+has_children: true
+permalink: /docs/configurations
+---
+
+# Configurations
+{: .fs-9 }
+
+---
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+
+
+
+
 Detailed integration guide
 --------------------------
 

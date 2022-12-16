@@ -1,10 +1,28 @@
+---
+layout: default
+title: Facets
+parent: Configurations
+nav_order: 2
+---
 
-## Facets Config
+# Facets
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+## Behavior
 
 Facets are the products filters provided on your webpage  which allows customers to narrow down the search result set.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)
 
+
+## Config
 To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
@@ -57,3 +75,46 @@ The following are the various options available for configuring the range widget
 | minLabel | String | "" | Text for the lower end of the range slider |
 | maxLabel | String | "" | Text for the higher end of the range slider |
 | prefix | String | "$" | Prefix text to be added to the range widget value. Example "$" for price facet |
+
+
+## Example
+Sample “facet” config
+```js
+ facet: {
+       facetsEl: document.getElementById("facetsWrapper"),
+       facetTemplate:function(facetObj, children, isExpanded,facetSearchTxt, facet){},
+       facetItemTemplate:function(facet,value, facetSearchText){},
+       facetMultiSelect:true,
+       facetClass:"UNX-facets-block",
+       facetAction:"click",
+       selectedFacetClass:"UNX-selected-facet-btn",
+       selectedFacetsEl:null,
+       selectedFacetTemplate:function(selections, facet){},
+       selectedFacetItemTemplate:function(selectedFacet,selectedFacetItem){},
+       clearAllText:"Clear All",
+       rangeWidgetConfig: {
+           "minLabel":"",
+           "maxLabel":"",
+           "prefix":'$'
+       },
+       facetMultilevel:true,
+       facetMultilevelName:"Category",
+       multiLevelFacetSelectorClass:"UNX-multilevel-facet",
+       facetDepth:4,
+       clearFacetsSelectorClass: "UNX-clear-facet",
+       removeFacetsSelectorClass: "UNX-remove-facet",
+       onFacetLoad:function(facets){
+       },
+       applyMultipleFilters:false,
+       applyButtonText:"Apply",
+       clearButtonText:"clear",
+       isCollapsible:true,
+       isSearchable:true,
+       searchPlaceHolder:"",
+       textFacetWrapper:"UNX-facets-item",
+       defaultOpen:"ALL",
+       enableViewMore:false,
+       viewMoreText:["show all", "show less"],
+       viewMoreLimit:3
+   }
+```

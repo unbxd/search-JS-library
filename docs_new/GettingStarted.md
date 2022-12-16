@@ -7,9 +7,6 @@ nav_order: 2
 # Getting Started
 {: .fs-9 }
 
-Quick Integration with Unbxd Template
-{: .fs-6 .fw-300 }
-
 ---
 
 ## Table of contents
@@ -17,6 +14,8 @@ Quick Integration with Unbxd Template
 
 1. TOC
 {:toc}
+
+
 
 
 There are two ways in which you can quickly get up and running with our default template to try out our JS Library functionalities:
