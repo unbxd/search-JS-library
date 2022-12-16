@@ -1,0 +1,12 @@
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: true
+include:
+  - BannerConfig.md
+  - README.md
+  - BreadCrumbConfig.md
+  - FacetsConfig.md
+  - GettingStarted.md
+  - Configurations.md
