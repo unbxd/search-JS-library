@@ -71,6 +71,7 @@ This traditional type of pagination displays the set number of products on one p
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 
+#### Example 
 ```js
 pagination : {
   enabled:true,
@@ -151,6 +152,8 @@ If you wish to have a button to load next results, you can choose this option
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
 
+#### Example 
+
 ```js
 pagination: {
   el: document.getElementById("clickScrollContainer"),
@@ -168,6 +171,8 @@ pagination: {
 ### Infinite Scroll
 
 If you wish to load new results by scrolling down, you can configure this option
+
+#### Example 
 
 ```js
 pagination: {
