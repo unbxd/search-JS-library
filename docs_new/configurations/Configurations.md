@@ -73,6 +73,7 @@ products:{
 }
 });
 ```
+
 | OPTIONS | DATATYPE | REQUIRED | DEFAULT VALUE | DESCRIPTION | DEPENDENCY |
 |----------|----------|----------|----------|----------|----------|
 | prou=ductType | String | true |  search | Used to indicate if the page is search or category. Possible values: search (or) category. “search” -> the search term in the url is used by library. “category”->  the getCategoryID function will be invoked to identify the category which needs to be displayed for the given url. | For Search page (i.e. productType= “SEARCH”). For Category page (i.e. productType= “CATEGORY”),  getCategoryID function must be provided |
@@ -87,6 +88,7 @@ products:{
 }
 });
 ```
+
 Configuring the Page
 --------------------
 
