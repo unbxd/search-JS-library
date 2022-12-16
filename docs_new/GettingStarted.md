@@ -1,36 +1,23 @@
 ---
+layout: default
 title: Getting Started
-layout: home
+nav_order: 2
 ---
 
-
-- [JS Library documentation](#js-library-documentation)
-    - [Version](#version)
-  - [Quick Integration with Unbxd Template](#quick-integration-with-unbxd-template)
-  - [Quick Integration to your Site](#quick-integration-to-your-site)
-    - [Nomenclature](#nomenclature)
-  - [More Information](#more-information)
-    - [Tips\& tricks](#tips-tricks)
-    - [Raise Issues](#raise-issues)
-    - [Stay up to date](#stay-up-to-date)
-  - [List of available Configurations](#list-of-available-configurations)
-
-
-JS Library documentation
-========================
-
-> This document is ONLY for the customers using the new console. For the older version, [refer to the documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/).
-
->IMPORTANT: Since we are gradually migrating all our customers toward our new upgraded console, we would slowly deprecate the older version. 
-
-Unbxd Search JS Library helps you build awesome search experiences with Unbxd Search powering the search results page. With a few simple configurations, you can quickly get up and running with our default template to experience the Unbxd Search functionalities.
-
-### Version
-
-The current version is _v2.0.0_.
+# JS Library documentation
+{: .fs-9 }
 
 Quick Integration with Unbxd Template
--------------------------------------
+{: .fs-6 .fw-300 }
+
+---
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 
 There are two ways in which you can quickly get up and running with our default template to try out our JS Library functionalities:
 
