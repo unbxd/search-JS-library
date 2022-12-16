@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Range SLider
+title: Range Slider
 parent: Custom Integrations
 nav_order: 1
 ---

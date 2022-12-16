@@ -114,6 +114,7 @@ In the following sections, we will discuss how to configure and render each of t
 ## Search input box & search button selector
 
 The following two configurations are used by the library to bind keyboard and mouse events to the search input field and search button on your website.
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | searchBoxEl | Element | null | Configure the search input element on which to listen to search query changes |

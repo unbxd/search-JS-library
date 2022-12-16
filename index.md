@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Home
+title: Introduction
 nav_order: 1
-description: "JS Library documentation"
+description: "Unbxd JS Library documentation"
 permalink: /
 ---
 
