@@ -34,3 +34,34 @@ The following options are available under the breadcrumb:
 | tagName | String | "DIV" | html element for the breadcrumb wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"UNX-breadcrumbs-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+
+## Example
+
+Sample code for the breadcrumbs widget
+```js
+breadcrumb:{
+  enabled:true,
+  el:null,
+  selectorClass:"UNX-bread-crumb",
+  template:function(breadcrumbs, breadcrumb){
+    let ui = ``;
+    const {
+        selectorClass
+    } = breadcrumb;
+    breadcrumbs.forEach((item ,id )=> {
+        const {
+            level,
+            filterField,
+            value
+        } = item;
+        const css = `${selectorClass} UNX-bread-crumb-item`;
+        if(id > 0) {
+            ui += `<span class="UNX-slash"> / </span>`;
+        }
+        ui += [`<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
+        `${decodeURIComponent(value)}</button>`].join('')
+    })
+    return `<div class="bread-crumb-main">${ui}</div>`
+  }
+}
+```

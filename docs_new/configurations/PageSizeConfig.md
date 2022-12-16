@@ -17,7 +17,7 @@ nav_order: 6
 ---
 
 ## Behavior
-Page Size widget allows you to configure the number of products shown on each page:
+Page Size widget allows you to configure the number of products shown on each page. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3 then 15 or 18 or 21).
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)  
 
@@ -52,7 +52,23 @@ pageSize: {
        pageSizeClass:"UNX-pagesize",
        selectedPageSizeClass:"UNX-selected-pagesize",
        action:'change',
-       template:function(){},
-       el:null
+       el:null,
+       template:function(selected, pagesize) {
+        const {
+            UNX_pagesize
+        } = this.testIds;
+        let ui = `<select  class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
+        pagesize.options.forEach((opt,i)=>{
+            const tId = `data-test-id="${UNX_pagesize}${i+1}"`;
+            if(selected == opt) {
+                ui+=`<option selected ${tId} class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`;
+            } else{
+                ui+=`<option ${tId} id="${opt}">${opt}</option>`;
+            }
+
+        });
+        ui+= `</select>`
+        return `<div class="UNX-pagesize-block">${ui}</div>`;
+    },
    }
 ```

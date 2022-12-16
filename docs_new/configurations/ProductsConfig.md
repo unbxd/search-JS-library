@@ -18,7 +18,7 @@ nav_order: 8
 
 ## Behavior
 
-This is the place where products from the search results will be rendered.
+This is the place where products from the search results will be rendered. The template function receives each product object and its position as second argument.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)
 
@@ -48,34 +48,87 @@ Sample “products” config:
 
 ```js
 products:{
-       el: document.getElementById("searchResultsWrapper"),
-       template:function(product,idx,swatchUI,productViewType){ return ``},
-       productType:"SEARCH",
-       gridCount:1,
-       onProductClick: function(product,e) {
-       },
-       productAttributes: [
-           "title",
-           "uniqueId",
-           "price",
-           "sku",
-           "imageUrl",
-           "displayPrice",
-           "salePrice",
-           "sortPrice",
-           "productDescription",
-           "unbxd_color_mapping",
-           "colorName",
-           "color"
-       ],
-       attributesMap:{
-           'unxTitle':'title',
-           'unxImageUrl':'imageUrl',
-           'unxPrice':'salePrice',
-           'unxStrikePrice':'displayPrice',
-           'unxId':'uniqueId',
-           'unxDescription':'productDescription'
-       }
- 
-   }
+    el:null,
+    template:function() {
+        const searchResults = this.getSearchResults();
+        if(!searchResults) {
+            return ``;
+        }
+        const {
+            products
+        } = searchResults;
+        const self = this;
+        const {
+            swatches
+        } = this.options;
+        const {
+            gridCount
+        } = this.options.products;
+        const {
+            productViewType
+        } = this.viewState;
+        let productsUI = ``;
+        const idx = Number(this.state.startPageNo);
+        let swatchUI = ``;
+        if(productViewType === "GRID" && gridCount && gridCount > 1) {
+            products.forEach((product, index) => {
+                const row = index % gridCount;
+                if(row === 0) {
+                    productsUI += `<div class="UNX-row">`;
+                }
+                const pRank  = index+idx+1;
+                const mappedProduct = this.mapProductAttrs(product);
+                if(swatches.enabled) {
+                    swatchUI = this.renderSwatchBtns(product);
+                }
+                productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+                if(row === gridCount -  1) {
+                    productsUI += `</div>`;
+                }
+
+            })
+
+        } else {
+            productsUI = products.map((product,index) => {
+                const pRank  = index+idx+1;
+                const mappedProduct = this.mapProductAttrs(product);
+                if(swatches.enabled) {
+                    swatchUI = this.renderSwatchBtns(product);
+                }
+                return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+            }).join('');
+        }
+
+
+        return  productsUI;
+    },
+    productItemClass:"product-item", // to find out product
+    productType:"SEARCH",
+    gridCount:1,
+    onProductClick: function(product,e) {
+    },
+    productAttributes: [
+        "title",
+        "uniqueId",
+        "price",
+        "sku",
+        "imageUrl",
+        "displayPrice",
+        "salePrice",
+        "sortPrice",
+        "productDescription",
+        "unbxd_color_mapping",
+        "colorName",
+        "color"
+    ],
+    attributesMap:{
+        'unxTitle':'title',
+        'unxImageUrl':'imageUrl',
+        'unxPrice':'salePrice',
+        'unxStrikePrice':'displayPrice',
+        'unxId':'uniqueId',
+        'unxDescription':'productDescription'
+    }
+
+}
 ```

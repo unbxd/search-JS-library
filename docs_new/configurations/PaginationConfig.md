@@ -176,3 +176,5 @@ pagination: {
   heightDiffToTriggerNextPage: 100, 
 }
 ```
+
+## More Information

@@ -35,5 +35,22 @@ The following options are available under the object:
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
 
-## Examples
-Exmaple here-------
+## Example
+Sample banner configuration
+
+```js
+banner: {
+    enabled:true,
+    el:null,
+    template:function(banners, bannerOpts){
+      const bannerUI = banners.map((item) => {
+          const {
+              imageUrl
+          } = item;
+          return `<div><img style="max-width:100%" src="${imageUrl}"/></div>`
+      }).join('');
+      return `${bannerUI}`
+    },
+    count:1
+}
+```

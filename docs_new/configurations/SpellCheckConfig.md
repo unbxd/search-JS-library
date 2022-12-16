@@ -46,7 +46,41 @@ Sample “spellCheck” config
 spellCheck:{
     enabled:true,
     el:document.getElementById("didYouMeanWrapper"),
-    template: function(query,suggestion,pages) { return ``},
-    selectorClass: "UNX-suggestion"
+    selectorClass: "UNX-suggestion",
+    template: function(query,suggestion,pages) {
+    const {
+        start,
+        productsLn,
+        numberOfProducts
+    } = pages;
+    const {
+        selectorClass
+    } = this.options.spellCheck;
+    const {
+        productType
+    } = this.options;
+    let newQuery = query;
+    if(productType !=="SEARCH" ) {
+        const catId = this.getCategoryId() || "";
+        const cId = decodeURIComponent(catId).split(">");
+        newQuery = cId[cId.length-1] || cId[0] ;
+    }
+    const {
+        UNX_spellCheck
+    } = this.testIds
+    const noUi = (suggestion) ? `<p class="UNX-no-result"> Your search "<strong>${suggestion}</strong>" did not match any products. Did you mean <button data-test-id="${UNX_spellCheck}" data-action="getSuggestion" class="${selectorClass}">${query}</button>? </p>` :``;
+    let qUi = ``;
+    let countUi = ``;
+    if(numberOfProducts > 0) {
+        countUi = `<span class="UNX-result-info">  -  ${start+1} to ${productsLn+start} of ${numberOfProducts} products</span>`;
+    }
+    if(pages && newQuery){
+        qUi = `<p class="UNX-suggestion-p">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
+    }
+    return  [`<div class="UNX-spellcheck-block">`,
+            noUi,
+            qUi,
+        `</div>`].join('');
+    },
 }
 ```
