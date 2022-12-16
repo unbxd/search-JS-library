@@ -14,7 +14,7 @@
 
 # search-JS-library
 
-A JavaScript library for building performant and quick search experiences with Unbxd. Jai
+A JavaScript library for building performant and quick search experiences with Unbxd.
 
 
 ## Browsers support
