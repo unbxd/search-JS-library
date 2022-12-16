@@ -20,19 +20,10 @@ nav_order: 7
 
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
-**Fixed Pagination**
 
-This traditional type of pagination displays the set number of products on one page.
+## Config
 
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
-
-**Click & Scroll**
-
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
-
-You can configure the pagination feature by updating the required configs under the “pagination” config object.  
-  
-The following are the various options available under the “pagination” config object:
+You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
@@ -69,4 +60,119 @@ pagination : {
        action:'click',
        pageLimit:6
    }
+```
+
+## Types of Pagination
+
+
+### Fixed Pagination
+
+This traditional type of pagination displays the set number of products on one page along with the previous and next buttons to navigate between the pages.
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
+
+```js
+pagination : {
+  enabled:true,
+  el:null,
+  template:function (paginationData, pagination) {
+    if(!paginationData) {
+        return ``;
+    }
+    const {
+        currentPage,
+        isNext,
+        isPrev,
+        noOfPages,
+        productsLn,
+        numberOfProducts,
+        rows
+    } = paginationData;
+    const {
+        pageClass,
+        selectedPageClass,
+        pageLimit
+    } = pagination;
+    const {
+        UNX_pageNumber
+    } = this.testIds;
+    if(numberOfProducts <= productsLn) {
+        return ``;
+    }
+    let nextBtn = `<button class="UNX-next-btn UNX-page-next ${pageClass}" data-page-action="next">></button>`;
+    let prevBtn = `<button class="UNX-prev-btn UNX-page-prev ${pageClass}" data-page-action="prev"><</button>`;
+    let pageNumbers = ``;
+    let pages = noOfPages < pageLimit ? noOfPages:pageLimit;
+    let startPoint=1;
+    let r = Math.ceil(pageLimit/2);
+    let point = currentPage - r ;
+    if(point > 0 ) {
+        startPoint = point;
+        pages = currentPage+r;
+    }
+    const ls = currentPage+r;
+    if(ls >= noOfPages){
+        const diff = ls-noOfPages;
+        startPoint = startPoint-diff;
+        if(startPoint<=0) {
+            startPoint = 1
+        }
+        pages = noOfPages;
+    }
+
+    for(let i=startPoint;i<=pages;i++) {
+        const tId = `${UNX_pageNumber}${i}`
+        const pageClassSelected = (i === currentPage) ?selectedPageClass :'';
+        pageNumbers += `<button data-test-id="${tId}" data-page-action="paginate" data-page-no="${(i-1)*rows}" class="UNX-page-button ${pageClass} ${pageClassSelected}">${i}</button>`
+    }
+    if(!isNext) {
+        nextBtn = `<button disabled class="UNX-next-btn UNX-page-next">></button>`;
+    }
+    if(!isPrev) {
+        prevBtn = `<button disabled class="UNX-prev-btn UNX-page-prev"><</button>`;
+    }
+    return [`<div class="UNX-pagination-block">`,
+        prevBtn,
+        `<div class="UNX-page-no-block">${pageNumbers}</div>`,
+        nextBtn,
+    `</div>`].join('');
+  },
+  pageClass:"UNX-page-items",
+  selectedPageClass:"UNX-selected-page-item",
+  type:'FIXED_PAGINATION', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+  onPaginate:function(paginationInfo){},
+  action:'click',
+  pageLimit:6
+}
+```
+
+### Click & Scroll
+If you wish to have a button to load next results, you can choose this option
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
+
+```js
+pagination: {
+  el: document.getElementById("clickScrollContainer"),
+  type:'CLICK_N_SCROLL',
+  action:'click',
+  template:function(pageData, pagination) {
+    const {
+        pageClass
+    } = pagination;
+    return `<div class="UNX-click-scroll"><button data-test-id="${this.testIds.UNX_loadMore}" class="UNX-click-n-scroll ${pageClass}">Load More</button></div>`
+  }
+}
+```
+
+### Infinite Scroll
+
+If you wish to load new results by scrolling down, you can configure this option
+
+```js
+pagination: {
+  type:'INFINITE_SCROLL',
+  infiniteScrollTriggerEl: window, 
+  heightDiffToTriggerNextPage: 100, 
+}
 ```
