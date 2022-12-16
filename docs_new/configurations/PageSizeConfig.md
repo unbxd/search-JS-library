@@ -1,9 +1,20 @@
-- [Page Size](#page-size)
-  - [Behavior](#behavior)
-  - [Configuration](#configuration)
-  - [Example](#example)
+---
+layout: default
+title: Page Size
+parent: Configurations
+nav_order: 6
+---
 
 # Page Size
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 ## Behavior
 Page Size widget allows you to configure the number of products shown on each page:

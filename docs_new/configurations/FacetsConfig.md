@@ -15,6 +15,7 @@ nav_order: 2
 {:toc}
 
 ---
+
 ## Behavior
 
 Facets are the products filters provided on your webpage  which allows customers to narrow down the search result set.
@@ -23,7 +24,9 @@ Facets are the products filters provided on your webpage  which allows customer
 
 
 ## Config
+
 To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | facetsEl | Element |  null | Element in which to render the facets |

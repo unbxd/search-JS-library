@@ -1,10 +1,31 @@
+---
+layout: default
+title: Product View
+parent: Configurations
+nav_order: 9
+---
 
-## Product Views Config
+# Product View
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## Behavior
+
 You can configure the way in which the products have to be displayed (List or Grid) with the Product Views widget.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
 
+## Config
+
 Update the options under the “productView” config object to configure the product view feature.  
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | enabled | Boolean | true | Turn this off if you do not want the product view component |
@@ -18,3 +39,18 @@ Update the options under the “productView” config object to configure the pr
 | htmlAttributes | Object | {class:"product-view-container"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
+## Example
+
+Sample “productView” config
+
+```js
+productView : {
+  enabled:true,
+       el:null,
+       template:renderProductViewType,
+       action: “click”, // CLICK or CHANGE
+       viewTypeClass: “UNX-product-view”,
+       selectedViewTypeClass: “UNX-selected-product-view”,
+       viewTypes: “GRID”
+   }
+```

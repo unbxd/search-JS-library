@@ -1,11 +1,30 @@
+---
+layout: default
+title: Spell Check
+parent: Configurations
+nav_order: 11
+---
 
-## Spell Check Config
+# Spell Check
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## Behavior
 
 The spell check feature provides **spelling suggestions** or **spell-checks** for misspelled search queries.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/spellcheck-1.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/spellcheck-1.png)
 
 In such cases, the context-aware algorithm of Unbxd understands your visitor’s intent and sends a “**Did You Mean**” response along with a search result set for the query, if any.
+
+## Config
 
 You can configure the spellcheck feature by updating the required configs under the “spellCheck” config object.  
 
@@ -19,3 +38,15 @@ You can configure the spellcheck feature by updating the required configs under 
 | htmlAttributes | Object | {class:"UNX-spellcheck-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
+## Example
+
+Sample “spellCheck” config
+
+```js
+spellCheck:{
+    enabled:true,
+    el:document.getElementById("didYouMeanWrapper"),
+    template: function(query,suggestion,pages) { return ``},
+    selectorClass: "UNX-suggestion"
+}
+```

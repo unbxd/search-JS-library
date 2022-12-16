@@ -1,10 +1,29 @@
+---
+layout: default
+title: Breadcrumbs
+parent: Configurations
+nav_order: 3
+---
 
-## Breadcrumb Config
+# Breadcrumbs
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## Behavior
 To render the breadcrumb component, set the “breadcrumb” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
 
+## Config
 The following options are available under the breadcrumb:
+
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|

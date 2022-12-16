@@ -1,7 +1,29 @@
-## Loader Config
+---
+layout: default
+title: Loader
+parent: Configurations
+nav_order: 4
+---
 
-Configure page loader to be shown when fetching search API results by setting the “loader” config object.  
+# Loader
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## Behavior
+
+Configure page loader to be shown when fetching search API results by setting the “loader” config object. 
+
+## Config
+
 The following options are available under the object:  
+
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|

@@ -22,6 +22,7 @@ Configure the banner display by setting the “banner” config object.
 
 ## Config
 The following options are available under the object:
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | enabled | Boolean | false | Turn this flag on for enabling Banner |

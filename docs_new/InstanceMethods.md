@@ -1,9 +1,26 @@
+---
+layout: default
+title: Methods and Events
+nav_order: 4
+---
+
+# Methods and Events
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 
 ## Instance Methods
 
 
 This section documents the different methods exposed by the Library that you can use to perform various actions.
 
+{: .info}
 > NOTE: All the below methods can be called on the instance object returned by UnbxdSearch constructor.
 
 | OPTIONS | DATATYPE | DESCRIPTION |
@@ -20,3 +37,8 @@ This section documents the different methods exposed by the Library that you can
 | getSelectedFacetsCount | function | Call this function if you want to  get the total count of selected facets Ex: `unbxdSearch.getSelectedFacetsCount()` |
 | getAllSelectedFacets | function | Call this function to get all the selected facets Ex: `unbxdSearch.getAllSelectedFacets()` |
 | getSelectedFacetValueCount | function | Call this function to get the total count of selected facet values. Ex: `unbxdSearch.getSelectedFacetValueCount()` |
+
+
+## SDK Events
+
+This section documents the different events fired by the Unbxd Library that you can use to perform various actions.

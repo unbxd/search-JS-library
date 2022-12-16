@@ -1,4 +1,23 @@
-## Pagination Config
+---
+layout: default
+title: Pagination
+parent: Configurations
+nav_order: 7
+---
+
+# Pagination
+{: .no_toc }
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## Behavior
+
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
 **Fixed Pagination**
@@ -14,6 +33,7 @@ This traditional type of pagination displays the set number of products on one p
 You can configure the pagination feature by updating the required configs under the “pagination” config object.  
   
 The following are the various options available under the “pagination” config object:
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | enabled | Boolean | true | Turn this off if you do not want the pagination widget |
@@ -31,3 +51,22 @@ The following are the various options available under the “pagination” confi
 | htmlAttributes | Object | {class:"UNX-pagination-size-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
+## Example
+
+Sample “pagination” config
+
+```js
+pagination : {
+       enabled:true,
+       el: document.querySelector("#clickScrollContainer"),
+       template: function (paginationData, pagination) { return ``},
+       pageClass:"UNX-page-items",
+       selectedPageClass:"UNX-selected-page-item",
+       type:'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+       infinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
+       heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,   
+       onPaginate:function(paginationInfo){},
+       action:'click',
+       pageLimit:6
+   }
+```

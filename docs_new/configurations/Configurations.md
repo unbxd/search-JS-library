@@ -1,4 +1,3 @@
-
 ---
 layout: default
 title: Configurations
@@ -17,9 +16,6 @@ permalink: docs_new/configurations
 
 1. TOC
 {:toc}
-
-
-
 
 
 Detailed integration guide

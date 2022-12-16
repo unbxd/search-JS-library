@@ -1,14 +1,31 @@
+---
+layout: default
+title: Products
+parent: Configurations
+nav_order: 8
+---
 
-## Products Config
+# Products
+{: .no_toc }
 
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
+
+## Behavior
 
 This is the place where products from the search results will be rendered.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)
 
-You can configure the search results section by updating the required configs under the “products” config
+## Config
 
 The following are the various options available under the “products” config object:
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | productType | String | "SEARCH" | Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY |
@@ -23,3 +40,42 @@ The following are the various options available under the “products” config 
 | tagName | String | "DIV" | html element for the product wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"UNX-search-results-block UNX-result-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+
+
+## Example
+
+Sample “products” config:
+
+```js
+products:{
+       el: document.getElementById("searchResultsWrapper"),
+       template:function(product,idx,swatchUI,productViewType){ return ``},
+       productType:"SEARCH",
+       gridCount:1,
+       onProductClick: function(product,e) {
+       },
+       productAttributes: [
+           "title",
+           "uniqueId",
+           "price",
+           "sku",
+           "imageUrl",
+           "displayPrice",
+           "salePrice",
+           "sortPrice",
+           "productDescription",
+           "unbxd_color_mapping",
+           "colorName",
+           "color"
+       ],
+       attributesMap:{
+           'unxTitle':'title',
+           'unxImageUrl':'imageUrl',
+           'unxPrice':'salePrice',
+           'unxStrikePrice':'displayPrice',
+           'unxId':'uniqueId',
+           'unxDescription':'productDescription'
+       }
+ 
+   }
+```
