@@ -1,3 +1,9 @@
+---
+title: Getting Started
+layout: home
+---
+
+
 - [JS Library documentation](#js-library-documentation)
     - [Version](#version)
   - [Quick Integration with Unbxd Template](#quick-integration-with-unbxd-template)

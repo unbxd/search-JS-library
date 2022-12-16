@@ -1,7 +1,10 @@
-plugins:
-  - jekyll-relative-links
-relative_links:
-  enabled: true
-  collections: true
-include:
-  - BannerConfig.md
+title: Just the Docs Template
+description: A starter template for a Jeykll site using the Just the Docs theme!
+theme: just-the-docs
+
+url: https://just-the-docs.github.io
+
+logo: "https://media.trustradius.com/product-logos/5Z/p0/788HZRQPMQRE.PNG"
+
+aux_links:
+  Template Repository: https://github.com/just-the-docs/just-the-docs-template

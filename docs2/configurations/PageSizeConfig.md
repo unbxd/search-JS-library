@@ -1,12 +1,20 @@
+- [Page Size](#page-size)
+  - [Behavior](#behavior)
+  - [Configuration](#configuration)
+  - [Example](#example)
 
-## Page Size Config
+# Page Size
+
+## Behavior
 Page Size widget allows you to configure the number of products shown on each page:
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)  
 
+
+
+## Configuration
 To render the Page Size widget, you need to configure the “pageSize” config object.
 
-  
 The following are the various options available under the object: 
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
@@ -23,3 +31,17 @@ The following are the various options available under the object:
 | htmlAttributes | Object | {class:"UNX-selected-pagesize"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
+## Example
+Sample “pageSize” config
+```js
+pageSize: {
+  enabled:true,
+       pageSize:12,
+       options:[8,12,16,20,24],
+       pageSizeClass:"UNX-pagesize",
+       selectedPageSizeClass:"UNX-selected-pagesize",
+       action:'change',
+       template:function(){},
+       el:null
+   }
+```
