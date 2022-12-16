@@ -60,7 +60,8 @@ swatches:{
    }
 ```
 
-{: .warning } Note:  If you wants swatches, variants count should be higher, and “groupBy” field should be present in mapped fields config as shown below:
+{: .warning } 
+NOTE: If you wants swatches, variants count should be higher, and “groupBy” field should be present in mapped fields config as shown below:
 
 ```js
 variants:{
