@@ -35,7 +35,7 @@ The following options are available under the object:
 | mapping                   	| Object   	| `{"image_url": "v_imageUrl"}` | Field mapping of the catalog attributes to the variant attributes. This is needed to render the variant information correctly. |
 
 
-## Example
+## Use Cases
 
 Sample “variants” config
 

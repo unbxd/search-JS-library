@@ -35,7 +35,7 @@ The following options are available under the object:
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
 
-## Example
+## Use Cases
 Sample banner configuration
 
 ```js

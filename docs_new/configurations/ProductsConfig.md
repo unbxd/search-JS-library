@@ -42,7 +42,7 @@ The following are the various options available under the “products” config 
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
 
-## Example
+## Use Cases
 
 Sample “products” config:
 

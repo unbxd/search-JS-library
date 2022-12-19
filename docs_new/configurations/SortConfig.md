@@ -39,7 +39,7 @@ The following are the various options available under the object:
 | htmlAttributes | Object | {class:"UNX-sort-block-lb"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
-## Example
+## Use Cases
 
 Sample “sort” config
 

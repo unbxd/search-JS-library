@@ -38,7 +38,7 @@ You can configure the spellcheck feature by updating the required configs under 
 | htmlAttributes | Object | {class:"UNX-spellcheck-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
-## Example
+## Use Cases
 
 Sample “spellCheck” config
 

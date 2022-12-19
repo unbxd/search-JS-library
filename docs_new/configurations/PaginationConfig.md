@@ -42,7 +42,7 @@ You can configure the pagination feature by updating the required configs under 
 | htmlAttributes | Object | {class:"UNX-pagination-size-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
-## Example
+## Use Cases
 
 Sample “pagination” config
 
@@ -71,7 +71,7 @@ This traditional type of pagination displays the set number of products on one p
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 
-#### Example 
+#### Use Cases 
 ```js
 pagination : {
   enabled:true,
@@ -152,7 +152,7 @@ If you wish to have a button to load next results, you can choose this option
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
 
-#### Example 
+#### Use Cases 
 
 ```js
 pagination: {
@@ -172,7 +172,7 @@ pagination: {
 
 If you wish to load new results by scrolling down, you can configure this option
 
-#### Example 
+#### Use Cases 
 
 ```js
 pagination: {

@@ -108,7 +108,7 @@ The following are the various options available for configuring the range widget
 | prefix | String | "$" | Prefix text to be added to the range widget value. Example "$" for price facet |
 
 
-## Example
+## Use Cases
 Sample “facet” config
 ```js
 facet: {
