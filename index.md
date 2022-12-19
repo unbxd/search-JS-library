@@ -19,6 +19,7 @@ A JavaScript library for building performant and quick search experiences with U
 
 {: .info }
 > IMPORTANT: This document is ONLY for the customers using the new console. For the older version, [refer to the documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/). Since we are gradually migrating all our customers toward our new upgraded console, we would slowly deprecate the older version. 
+> ---
 
 Unbxd Search JS Library helps you build awesome search experiences with Unbxd Search powering the search results page. With a few simple configurations, you can quickly get up and running with our default template to experience the Unbxd Search functionalities.
 
