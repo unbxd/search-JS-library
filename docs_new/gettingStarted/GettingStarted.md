@@ -23,7 +23,6 @@ This documentation has two ways of integrating with the Unbxd Search library.
 2. [Integration with your site](/docs_new/gettingStarted/DetailedIntegration.md)
 
 ## Nomenclature
-{: .fs-9 }
 
 You will see below terms more:
 

@@ -108,7 +108,7 @@ Here is a graphical representation of the various sections on a search results p
 In the following sections, we will discuss how to configure and render each of these features with the Unbxd Search JS Library.
 
 
-## Search input box & search button selector
+## Configuring the Search Input Box
 
 The following two configurations are used by the library to bind keyboard and mouse events to the search input field and search button on your website.
 
@@ -136,7 +136,7 @@ window.unbxdSearch = new UnbxdSearch({
 ```
 
 
-## Configurations list
+## List Of Available Configurations
 
 
 You can find the list of the available configurations in [this Github link](/docs_new/configurations/Configurations.md). 
