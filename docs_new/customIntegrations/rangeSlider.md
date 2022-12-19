@@ -15,13 +15,13 @@ nav_order: 1
 {:toc}
 
 ---
-## Requirement
+## User Requirement
 If you wish to have a range slider, this is an example with the integration with noUISlider
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)
 
 
-## Additional Information
+## More Information
 
 **Include CSS file**
 https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css
