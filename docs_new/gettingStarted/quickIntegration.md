@@ -5,6 +5,10 @@ nav_order: 2
 parent: Getting Started
 ---
 
+# Quick Integration
+{: .fs-9 }
+
+---
 
 ## Table of contents
 {: .no_toc .text-delta }

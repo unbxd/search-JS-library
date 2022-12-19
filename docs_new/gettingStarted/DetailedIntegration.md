@@ -5,14 +5,17 @@ nav_order: 3
 parent: Getting Started
 ---
 
+# Detailed Integration
+{: .fs-9 }
+
+---
+
 ## Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
-
-## Detailed Integration
 
 The final integrated result that we are aiming at with this quickstart can be seen at this [codesandbox](https://codesandbox.io/s/categoryfacet-t0q7l).  
   
