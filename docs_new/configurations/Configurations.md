@@ -33,10 +33,6 @@ This provides you the power of entire Javascript to build your desired HTML stri
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
-| siteKey | String | NA | This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account. |
-| apiKey | String | NA | This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account. |
-| searchBoxEl | Element | null | Configure the search input element on which to listen to search query changes |
-| searchButtonEl | Element | NA | Configure your search button here. Clicking on  this will load the results based the input value provided in "searchBoxEl"  |
 | products | Object | Refer section | Products related configurations. You can find all the configs in [Products Config](#Products-Config) section|
 | facet | Object | Refer section | Facet configurations. You can find all the configs in [Facets Config](#Facets-Config) section|
 | pagination | Object | Refer section | Pagination component configurations. You can find all the configs in [Pagination Config](#Pagination-Config) section |
