@@ -76,7 +76,7 @@ products:{
 
 | OPTIONS | DATATYPE | REQUIRED | DEFAULT VALUE | DESCRIPTION | DEPENDENCY |
 |----------|----------|----------|----------|----------|----------|
-| prou=ductType | String | true |  search | Used to indicate if the page is search or category. Possible values: search (or) category. “search” -> the search term in the url is used by library. “category”->  the getCategoryID function will be invoked to identify the category which needs to be displayed for the given url. | For Search page (i.e. productType= “SEARCH”). For Category page (i.e. productType= “CATEGORY”),  getCategoryID function must be provided |
+| prouductType | String | true |  search | Used to indicate if the page is search or category. Possible values: search (or) category. “search” -> the search term in the url is used by library. “category”->  the getCategoryID function will be invoked to identify the category which needs to be displayed for the given url. | For Search page (i.e. productType= “SEARCH”). For Category page (i.e. productType= “CATEGORY”),  getCategoryID function must be provided |
 
 At the end of this step, you should choose a “productType” of the page that you want to render and pass it in the config as shown below:
 ```js
