@@ -5,10 +5,6 @@ nav_order: 2
 parent: Getting Started
 ---
 
-# Quick Integration
-{: .fs-9 }
-
----
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -52,7 +48,7 @@ Refer to [this section](https://unbxd.com/docs/site-search/documentation/configu
     Finally, open index.html in your browser to view the search results landing page for your catalog with the Unbxd default template.
 
 
-## Integration to your Site
+## Quick Integration to your Site
 
 To integrate the JS Library into your site, follow the following steps:
 

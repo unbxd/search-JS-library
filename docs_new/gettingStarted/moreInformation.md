@@ -5,10 +5,6 @@ nav_order: 4
 parent: Getting Started
 ---
 
-# More Information
-{: .fs-9 }
-
----
 
 ## Table of contents
 {: .no_toc .text-delta }
@@ -16,6 +12,7 @@ parent: Getting Started
 1. TOC
 {:toc}
 
+## More Information
 
 For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
 
