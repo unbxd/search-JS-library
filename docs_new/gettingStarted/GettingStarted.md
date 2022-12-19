@@ -17,6 +17,10 @@ permalink: docs_new/gettingStarted
 1. TOC
 {:toc}
 
+## Introduction
+This documentation has two ways of integrating with the Unbxd Search library. 
+1. [Quick Integration with Unbxd Template](/docs_new/gettingStarted/quickIntegration.md)
+2. [Integration with your site](/docs_new/gettingStarted/DetailedIntegration.md)
 
 ## Nomenclature
 {: .fs-9 }
@@ -48,6 +52,5 @@ Facing some issues? look for solutions or create an issue [here](https://github.
 
 ## Stay up to date
 
-  
 Look at the [changelog](https://github.com/unbxd/search-JS-library/blob/master/CHANGELOG.md) to see the latest version & history.
 
