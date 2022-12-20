@@ -24,7 +24,7 @@ Facets are the products filters provided on your webpage  which allows customer
 
 ## Types of FacetsEl
 
-There are 3 types of Facets available.
+There are 3 types of Facets available. hello
 
 1. Text facets
 1. Range facets
