@@ -17,7 +17,7 @@ nav_order: 3
 ---
 
 ## Behavior
-To render the breadcrumb component, set the “breadcrumb” config object.
+To render the breadcrumb component, set the “breadcrumb” config object. hello everyone
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
 
