@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Quick Integration
-nav_order: 2
+title: Quick Setup On Local
+nav_order: 1
 parent: Getting Started
 ---
 
-# Quick Integration
+# Quick Setup
 {: .fs-9 }
 
 ---
@@ -16,7 +16,7 @@ parent: Getting Started
 1. TOC
 {:toc}
 
-## Quick Integration with Unbxd Template
+## Quick Setup with Unbxd Template
 
 There are two ways in which you can quickly get up and running with our default template to try out our JS Library functionalities:
 
