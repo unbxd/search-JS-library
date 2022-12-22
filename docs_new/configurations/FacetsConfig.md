@@ -43,57 +43,43 @@ Multilevel facets are a special kind of facets which is applicable only for the 
 
 To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
 
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| facetsEl | Element |  null | Element in which to render the facets |
-| facetTemplate | Function | [default](src/modules/facets/ui.js) | Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. `isCollapsible` is set to true) and the search text entered for this facet block (if `isSearchable` is set to true) |
-| facetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block. |
-| facetMultiSelect | Booelan | true | Turn this off if you want to disable the multiple selection of facets |
-| facetClass | String | "UNX-facets-block" | Additional CSS class name to add to the the facet items |
-| facetAction | String | "click | Event based on which to trigger facet selection / deselection: "click" or "change" |
-| selectedFacetClass | String | "UNX-selected-facet-btn" | Additional CSS class name for the selected facet items |
-| selectedFacetsEl | Element | null | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks |
-| selectedFacetTemplate | Function | [default](src/modules/facets/ui.js) | Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
-| selectedFacetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value |
-| selectedFacetConfig | Object | { tagName:"DIV", htmlAttributes:{ class:"UNX-selected-facet-lb" }, events:{} } | object will be containing the configuration for the selected facet wrapper config |
-| clearAllText | String | "Clear All" | The text to show for the clear all button that clears all selected facets |
-| rangeTemplate | Function |  [default](src/modules/facets/renderRangeFacets.js) | Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available |
-| rangeWidgetConfig | Object | NA | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs  |
-| facetMultilevel | Boolean | true | Turn this on to send the multilevel parameter in the search API |
-| facetMultilevelName | String | "Category" | Set the multilevel field name using this config |
-| multiLevelFacetSelectorClass | String | "UNX-multilevel-facet" | Class name for each multi level facet item |
-| multiLevelFacetTemplate | Function | [default](src/modules/facets/renderBucketedSearch.js) | Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if `isSearchable` is set to true) |
-| facetDepth | Number | 4 | Configure how many levels of category filter you want to have by setting this value |
-| clearFacetsSelectorClass | String | "UNX-clear-facet" | Class name for the button to clear the selected facets |
-| removeFacetsSelectorClass | String | "UNX-remove-facet" | Class name for the button to delete selected facets |
-| onFacetLoad | Function | `function(facets) {}` | Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter |
-| applyMultipleFilters | false | Boolean | Turn this on if you want to apply multiple filters together |
-| applyButtonText | String | "Apply" | The text to show for the apply button (when `applyMultipleFilters` is set as true) |
-| clearButtonText | String | "clear" | The text to show for the clear button (when `applyMultipleFilters` is set as true) |
-| isCollapsible | Boolean | true | Turn this off if you do not want to have a collapsible accordian for each facet block |
-| defaultOpen | String | "ALL" | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are "ALL" , "FIRST" , "NONE" |
-| isSearchable | Boolean | true | Turn this on if you want to have search feature for each facet block |
-| searchPlaceHolder | String | "" | Placeholder text for the facet search input |
-| enableViewMore | Booelan | false | Turn this on for enabling view more or less functionality for individual facets  |
-| viewMoreText | Array | ["show all", "show less"] | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"] |
-| viewMoreLimit | Number | 3 | Will show view more only if the facet values are greater than this value |
-| tagName | String | "DIV" | html element for the facet wrapper. by default it is div.  |
-| htmlAttributes | Object | {class:"UNX-facets-results-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
-| events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
-
-
-## Facet Range Widget Config
-You can configure the range sliders by setting the “rangeWidgetConfig” object under the “facet” object. Range facets will be rendered automatically along with other facets if it is configured on the console dashboard.
-
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)
-
-The following are the various options available for configuring the range widget
-
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| minLabel | String | "" | Text for the lower end of the range slider |
-| maxLabel | String | "" | Text for the higher end of the range slider |
-| prefix | String | "$" | Prefix text to be added to the range widget value. Example "$" for price facet |
+| OPTIONS                      | DATATYPE | DEFAULT VALUE                                                                  | DESCRIPTION                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------------------- | -------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| facetsEl                     | Element  | null                                                                           | Element in which to render the facets                                                                                                                                                                                                                                                                                                                                    |
+| facetTemplate                | Function | [default](src/modules/facets/ui.js)                                            | Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. `isCollapsible` is set to true) and the search text entered for this facet block (if `isSearchable` is set to true) |
+| facetItemTemplate            | Function | [default](src/modules/facets/ui.js)                                            | Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block.                                                                                                                                      |
+| facetMultiSelect             | Booelan  | true                                                                           | Turn this off if you want to disable the multiple selection of facets                                                                                                                                                                                                                                                                                                    |
+| facetClass                   | String   | "UNX-facets-block"                                                             | Additional CSS class name to add to the the facet items                                                                                                                                                                                                                                                                                                                  |
+| facetAction                  | String   | "click                                                                         | Event based on which to trigger facet selection / deselection: "click" or "change"                                                                                                                                                                                                                                                                                       |
+| selectedFacetClass           | String   | "UNX-selected-facet-btn"                                                       | Additional CSS class name for the selected facet items                                                                                                                                                                                                                                                                                                                   |
+| selectedFacetsEl             | Element  | null                                                                           | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks                                                                                                                                                                                                                           |
+| selectedFacetTemplate        | Function | [default](src/modules/facets/ui.js)                                            | Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value                                                                                                                                                          |
+| selectedFacetItemTemplate    | Function | [default](src/modules/facets/ui.js)                                            | Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value                                                                                                                                                                 |
+| selectedFacetConfig          | Object   | { tagName:"DIV", htmlAttributes:{ class:"UNX-selected-facet-lb" }, events:{} } | object will be containing the configuration for the selected facet wrapper config                                                                                                                                                                                                                                                                                        |
+| clearAllText                 | String   | "Clear All"                                                                    | The text to show for the clear all button that clears all selected facets                                                                                                                                                                                                                                                                                                |
+| rangeTemplate                | Function | [default](src/modules/facets/renderRangeFacets.js)                             | Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available                                                                                                                                                                                              |
+| rangeWidgetConfig            | Object   | NA                                                                             | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs                                                                                                                                                                                                                            |
+| facetMultilevel              | Boolean  | true                                                                           | Turn this on to send the multilevel parameter in the search API                                                                                                                                                                                                                                                                                                          |
+| facetMultilevelName          | String   | "Category"                                                                     | Set the multilevel field name using this config                                                                                                                                                                                                                                                                                                                          |
+| multiLevelFacetSelectorClass | String   | "UNX-multilevel-facet"                                                         | Class name for each multi level facet item                                                                                                                                                                                                                                                                                                                               |
+| multiLevelFacetTemplate      | Function | [default](src/modules/facets/renderBucketedSearch.js)                          | Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if `isSearchable` is set to true)                                                                                                |
+| facetDepth                   | Number   | 4                                                                              | Configure how many levels of category filter you want to have by setting this value                                                                                                                                                                                                                                                                                      |
+| clearFacetsSelectorClass     | String   | "UNX-clear-facet"                                                              | Class name for the button to clear the selected facets                                                                                                                                                                                                                                                                                                                   |
+| removeFacetsSelectorClass    | String   | "UNX-remove-facet"                                                             | Class name for the button to delete selected facets                                                                                                                                                                                                                                                                                                                      |
+| onFacetLoad                  | Function | `function(facets) {}`                                                          | Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter                                                                                                                                                                                                                                           |
+| applyMultipleFilters         | false    | Boolean                                                                        | Turn this on if you want to apply multiple filters together                                                                                                                                                                                                                                                                                                              |
+| applyButtonText              | String   | "Apply"                                                                        | The text to show for the apply button (when `applyMultipleFilters` is set as true)                                                                                                                                                                                                                                                                                       |
+| clearButtonText              | String   | "clear"                                                                        | The text to show for the clear button (when `applyMultipleFilters` is set as true)                                                                                                                                                                                                                                                                                       |
+| isCollapsible                | Boolean  | true                                                                           | Turn this off if you do not want to have a collapsible accordian for each facet block                                                                                                                                                                                                                                                                                    |
+| defaultOpen                  | String   | "ALL"                                                                          | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are "ALL" , "FIRST" , "NONE"                                                                                                                                                                                                                                           |
+| isSearchable                 | Boolean  | true                                                                           | Turn this on if you want to have search feature for each facet block                                                                                                                                                                                                                                                                                                     |
+| searchPlaceHolder            | String   | ""                                                                             | Placeholder text for the facet search input                                                                                                                                                                                                                                                                                                                              |
+| enableViewMore               | Booelan  | false                                                                          | Turn this on for enabling view more or less functionality for individual facets                                                                                                                                                                                                                                                                                          |
+| viewMoreText                 | Array    | ["show all", "show less"]                                                      | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"]                                                                                                                                                                                                                 |
+| viewMoreLimit                | Number   | 3                                                                              | Will show view more only if the facet values are greater than this value                                                                                                                                                                                                                                                                                                 |
+| tagName                      | String   | "DIV"                                                                          | html element for the facet wrapper. by default it is div.                                                                                                                                                                                                                                                                                                                |
+| htmlAttributes               | Object   | {class:"UNX-facets-results-block"}                                             | by default it contains classes for the wrapper. you can add more classes or any attributes                                                                                                                                                                                                                                                                               |
+| events                       | object   | {}                                                                             | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.                                                                                                                                                                                                                                   |
 
 
 ## Use Cases
@@ -394,18 +380,34 @@ facet: {
 ### Range Sliders
 
 #### User Requirement
-If you wish to have a range slider, this is an example with the integration with noUISlider
+If you wish to have a range slider, this is an example with the integration with noUISlider.
+
+Range facets will be rendered automatically along with other facets if it is configured on the console dashboard.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)
 
 
 #### More Information
 
-**Include CSS file**
-https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css
+The right way of fetching the min and max values for the UI slider is from the 'stats' key within the search API. To get this stats key in the API response, you will have to pass `{stats: 'price'}` in the `extraParams` config. This approach will also avoid showing empty results on a site if there is any error with the slider.
 
-**Include JS file**
-https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js
+
+The following are the various options available for configuring the range widget
+
+| OPTIONS  | DATATYPE | DEFAULT VALUE | DESCRIPTION                                                                    |
+| -------- | -------- | ------------- | ------------------------------------------------------------------------------ |
+| minLabel | String   | ""            | Text for the lower end of the range slider                                     |
+| maxLabel | String   | ""            | Text for the higher end of the range slider                                    |
+| prefix   | String   | "$"           | Prefix text to be added to the range widget value. Example "$" for price facet |
+
+
+Steps to get a range slider:
+
+1. Include JS file - https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js
+2. Include CSS file - https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css
+3. Add this to your config `extraParams: {stats: 'price'}`
+4. Verify if you are getting the `stats` key (with min, max, etc) in the search API response 
+5. The code for `onFacetLoad` has to be as shown in the below config
 
 
 #### Code Snippet
@@ -416,82 +418,109 @@ facet: {
     selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
     applyMultipleFilters: false,
     defaultOpen: "FIRST",
-    onFacetLoad: function(facets) {
-        const self = this;
-        const {
-            facet
-        } = this.options;
-        const {
-            rangeWidgetConfig
-        } = facet;
-        facets.forEach(facetItem => {
-            const {
-                facetType,
-                facetName,
-                gap
-            } = facetItem;
-            const {
-                prefix
-            } = rangeWidgetConfig;
+    onFacetLoad: function (facets) {
+            document.getElementById("unbxdInput").value = "";
+            // let priceSliderEle = document.getElementsByClassName('UNX-product-item grid__item grid-product');
+            // if(priceSliderEle.length < 4 && priceSliderEle.length != 0){
+            //     document.querySelector('.price').style.display = 'none'
+            // }
+            let _this = this;
+            let self = this;
+            let facet = this.options.facet;
+            let rangeWidgetConfig = facet.rangeWidgetConfig;
+            facets.forEach(function (facetItem) {
+                let facetType = facetItem.facetType,
+                    facetName = facetItem.facetName,
+                    gap = facetItem.gap;
+                let prefix = rangeWidgetConfig.prefix;
+                if (facetType === "range") {
+                    let rangeId = "".concat(facetName, "_slider");
+                    let sliderElem = document.getElementById(rangeId);
+                    let end = facetItem.end,
+                        _gap = facetItem.gap,
+                        max = facetItem.max,
+                        min = facetItem.min,
+                        start = facetItem.start;
+                    let selectedValues = sliderElem.dataset;
 
-            if (facetType === "range") {
-                const rangeId = `${facetName}_slider`;
-                const sliderElem = document.getElementById(rangeId);
-                let {
-                    end,
-                    gap,
-                    max,
-                    min,
-                    start
-                } = facetItem;
-                const selectedValues = sliderElem.dataset;
-                if (selectedValues) {
-                    start = Number(selectedValues.x),
-                        end = Number(selectedValues.y)
+
+                    // first time
+                        // store the current q as prev q and current stats as prev stateblock_state
+                    // second timers 
+                        // if prev query is same as current query then
+                            // use prev stats or min and max values
+                            
+                        // if prev query is not same as new query then
+                            // use current stats for min and max
+                            // update prevQuery = current query
+                            // update currnet stats = prev stats for current
+
+
+                    if(!window.prevQuery) {
+                        window.prevQuery = window.unbxdSearch.getSearchQuery()
+                        
+                        const stats = window.unbxdSearch.state.responseObj.stats || {}
+                        window.prevStats = stats || {};
+                         min = Math.floor(stats.price.min) || 0;
+                         max = Math.ceil(stats.price.max) || 0;
+                    } else {
+                        if(window.prevQuery === window.unbxdSearch.getSearchQuery()){
+                            const stats = window.prevStats || {}
+                         min = Math.floor(stats.price.min) || 0;
+                         max = Math.ceil(stats.price.max) || 0;
+                        } else {
+                            const stats = window.unbxdSearch.state.responseObj.stats || {}
+                         min = Math.floor(stats.price.min) || 0;
+                         max = Math.ceil(stats.price.max) || 0;
+                         window.prevStats = window.unbxdSearch.state.responseObj.stats;
+                         window.prevQuery = window.unbxdSearch.getSearchQuery()
+                        }
+                    }
+
+                    if (selectedValues) {
+                        start = Number(selectedValues.x);
+                        end = Number(selectedValues.y);
+                    }
+                   
+                    _this[ rangeId ] = noUiSlider.create(sliderElem, {
+                        start: [ start, end ],
+                        tooltips: [ {
+                            to: function to(value) {
+                                return "".concat(prefix, " ").concat(Math.round(value));
+                            }
+                        }, {
+                            to: function to(value) {
+                                return "".concat(prefix, " ").concat(Math.round(value));
+                            }
+                        } ],
+                        connect: true,
+                        range: {
+                            min: min,
+                            max: max
+                        },
+                        format: {
+                            to: function to(value) {
+                                return Math.round(value);
+                            },
+                            from: function from(value) {
+                                return Math.round(value);
+                            }
+                        },
+                        padding: 0,
+                        margin: 0,
+                    });
+                    _this[ rangeId ].on("set", function (data) {
+                        let newData = {
+                            start: data[ 0 ],
+                            end: data[ 1 ],
+                            facetName: facetName,
+                            gap: _gap
+                        };
+                        self.setRangeSlider(newData);
+                    });
                 }
-                this[rangeId] = noUiSlider.create(sliderElem, {
-                    start: [start, end],
-                    tooltips: [{
-                            to: function(value) {
-                                return `${prefix} ${Math.round(value)}`;
-                            }
-                        },
-                        {
-                            to: function(value) {
-                                return `${prefix} ${Math.round(value)}`;
-                            }
-                        }
-                    ],
-                    connect: true,
-                    range: {
-                        'min': 0,
-                        'max': max
-                    },
-                    format: {
-                        to: function(value) {
-                            return Math.round(value);
-                        },
-                        from: function(value) {
-                            return Math.round(value);
-                        }
-                    },
-                    padding: 0,
-                    margin: 0,
-                });
-                this[rangeId].on("set", function(data) {
-                    const newData = {
-                        start: data[0],
-                        end: data[1],
-                        facetName,
-                        gap
-                    };
-                    self.setRangeSlider(newData);
-                });
-
-            }
-
-        });
-    },
+            });
+        },,
     isCollapsible: true,
     isSearchable: true,
     enableViewMore: false,
