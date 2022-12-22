@@ -2,7 +2,7 @@
 layout: default
 title: Banners
 parent: Configurations
-nav_order: 1
+nav_order: 9
 ---
 
 # Banners
@@ -17,7 +17,6 @@ nav_order: 1
 ---
 
 ## Definition
-
 
 ## Behavior
 Configure the banner display by setting the “banner” config object.

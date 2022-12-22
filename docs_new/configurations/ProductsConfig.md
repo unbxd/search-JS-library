@@ -2,7 +2,7 @@
 layout: default
 title: Products
 parent: Configurations
-nav_order: 8
+nav_order: 1
 ---
 
 # Products
@@ -15,6 +15,8 @@ nav_order: 8
 {:toc}
 
 ---
+
+## Definition
 
 ## Behavior
 
@@ -43,6 +45,8 @@ The following are the various options available under the “products” config 
 
 
 ## Use Cases
+
+### Sample Example
 
 Sample “products” config:
 

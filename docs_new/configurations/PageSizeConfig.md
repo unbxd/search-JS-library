@@ -2,7 +2,7 @@
 layout: default
 title: Page Size
 parent: Configurations
-nav_order: 6
+nav_order: 4
 ---
 
 # Page Size
@@ -15,6 +15,8 @@ nav_order: 6
 {:toc}
 
 ---
+
+## Definition
 
 ## Behavior
 Page Size widget allows you to configure the number of products shown on each page. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3 then 15 or 18 or 21).
@@ -43,6 +45,8 @@ The following are the various options available under the object:
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
 ## Use Cases
+
+### Sample Example
 Sample “pageSize” config
 ```js
 pageSize: {

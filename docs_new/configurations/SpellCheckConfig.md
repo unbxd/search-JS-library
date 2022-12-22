@@ -2,7 +2,7 @@
 layout: default
 title: Spell Check
 parent: Configurations
-nav_order: 11
+nav_order: 8
 ---
 
 # Spell Check
@@ -15,6 +15,7 @@ nav_order: 11
 {:toc}
 
 ---
+## Definition
 
 ## Behavior
 
@@ -40,6 +41,7 @@ You can configure the spellcheck feature by updating the required configs under 
 
 ## Use Cases
 
+### Sample Example
 Sample “spellCheck” config
 
 ```js

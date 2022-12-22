@@ -2,7 +2,7 @@
 layout: default
 title: Sorting
 parent: Configurations
-nav_order: 10
+nav_order: 5
 ---
 
 # Sorting
@@ -15,6 +15,8 @@ nav_order: 10
 {:toc}
 
 ---
+
+## Definition
 
 ## Behavior
 
@@ -41,6 +43,7 @@ The following are the various options available under the object:
 
 ## Use Cases
 
+### Sample Example
 Sample “sort” config
 
 ```js

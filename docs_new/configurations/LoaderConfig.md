@@ -2,7 +2,7 @@
 layout: default
 title: Loader
 parent: Configurations
-nav_order: 4
+nav_order: 12
 ---
 
 # Loader
@@ -15,6 +15,8 @@ nav_order: 4
 {:toc}
 
 ---
+
+## Definition
 
 ## Behavior
 

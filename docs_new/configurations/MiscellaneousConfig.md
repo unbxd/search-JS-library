@@ -2,7 +2,7 @@
 layout: default
 title: Miscellaneous
 parent: Configurations
-nav_order: 15
+nav_order: 14
 ---
 
 # Miscellaneous
@@ -16,7 +16,7 @@ nav_order: 15
 
 ---
 
-
+## Miscellaneous Configurations
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|

@@ -2,7 +2,7 @@
 layout: default
 title: Swatches
 parent: Configurations
-nav_order: 12
+nav_order: 11
 ---
 
 # Swatches
@@ -16,10 +16,31 @@ nav_order: 12
 
 ---
 
+## Definition
+
 ## Behavior
 
 Configure swatches display by using the configs in this section.  
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
+
+{: .warning } 
+NOTE: If you wants swatches, variants count should be higher, and “groupBy” field should be present in mapped fields config as shown below:
+
+```js
+variants:{
+       enabled:false,
+       count:5,
+       groupBy:'v_colour',
+       attributes:[
+           "title",
+           "v_imageUrl"
+       ],
+       mapping:{
+           "image_url":"v_imageUrl"
+       }
+   }
+```
+
 
 ## Configuration
 
@@ -34,6 +55,7 @@ The following options are available under the object:
 
 ## Use Cases
 
+### Sample Example
 Sample “swatches” config
 
 ```js
@@ -60,20 +82,3 @@ swatches:{
    }
 ```
 
-{: .warning } 
-NOTE: If you wants swatches, variants count should be higher, and “groupBy” field should be present in mapped fields config as shown below:
-
-```js
-variants:{
-       enabled:false,
-       count:5,
-       groupBy:'v_colour',
-       attributes:[
-           "title",
-           "v_imageUrl"
-       ],
-       mapping:{
-           "image_url":"v_imageUrl"
-       }
-   }
-```

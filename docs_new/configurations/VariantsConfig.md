@@ -2,7 +2,7 @@
 layout: default
 title: Variants
 parent: Configurations
-nav_order: 14
+nav_order: 10
 ---
 
 # Variants
@@ -15,6 +15,8 @@ nav_order: 14
 {:toc}
 
 ---
+
+## Definition
 
 ## Behavior
 
@@ -36,6 +38,8 @@ The following options are available under the object:
 
 
 ## Use Cases
+
+### Sample Example 
 
 Sample “variants” config
 

@@ -2,7 +2,7 @@
 layout: default
 title: Breadcrumbs
 parent: Configurations
-nav_order: 3
+nav_order: 7
 ---
 
 # Breadcrumbs
@@ -15,6 +15,7 @@ nav_order: 3
 {:toc}
 
 ---
+## Definition
 
 ## Behavior
 To render the breadcrumb component, set the “breadcrumb” config object.
@@ -36,6 +37,8 @@ The following options are available under the breadcrumb:
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
 ## Use Cases
+
+### Sample Example
 
 Sample code for the breadcrumbs widget
 ```js

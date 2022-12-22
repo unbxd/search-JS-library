@@ -2,7 +2,7 @@
 layout: default
 title: Product View
 parent: Configurations
-nav_order: 9
+nav_order: 6
 ---
 
 # Product View
@@ -15,6 +15,8 @@ nav_order: 9
 {:toc}
 
 ---
+
+## Definition
 
 ## Behavior
 
@@ -41,6 +43,7 @@ Update the options under the “productView” config object to configure the pr
 
 ## Use Cases
 
+### Sample Example
 Sample “productView” config
 
 ```js

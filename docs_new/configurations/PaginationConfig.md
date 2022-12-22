@@ -2,7 +2,7 @@
 layout: default
 title: Pagination
 parent: Configurations
-nav_order: 7
+nav_order: 3
 ---
 
 # Pagination
@@ -16,9 +16,32 @@ nav_order: 7
 
 ---
 
+## Definition
+This feature will helps the users to navigate the products for any search/browse request. In many applications the UI for these sorted results are displayed to the user in "pages" containing a fixed number of matching results, and users don’t typically look at results past the first few pages worth of results.
+
 ## Behavior
 
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
+
+
+## Types of Pagination
+
+
+### Fixed Pagination
+
+This traditional type of pagination displays the set number of products on one page along with the previous and next buttons to navigate between the pages.
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
+
+
+### Click & Scroll
+If you wish to have a button to load next results, you can choose this option
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
+
+
+### Infinite Scroll
+If you wish to load new results by scrolling down, you can configure this option
 
 
 ## Configuration
@@ -44,6 +67,8 @@ You can configure the pagination feature by updating the required configs under 
 
 ## Use Cases
 
+### Sample Example
+
 Sample “pagination” config
 
 ```js
@@ -62,16 +87,8 @@ pagination : {
    }
 ```
 
-## Types of Pagination
-
 
 ### Fixed Pagination
-
-This traditional type of pagination displays the set number of products on one page along with the previous and next buttons to navigate between the pages.
-
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
-
-#### Use Cases 
 ```js
 pagination : {
   enabled:true,
@@ -147,12 +164,7 @@ pagination : {
 }
 ```
 
-### Click & Scroll
-If you wish to have a button to load next results, you can choose this option
-
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
-
-#### Use Cases 
+### Click and Scroll
 
 ```js
 pagination: {
@@ -170,10 +182,6 @@ pagination: {
 
 ### Infinite Scroll
 
-If you wish to load new results by scrolling down, you can configure this option
-
-#### Use Cases 
-
 ```js
 pagination: {
   type:'INFINITE_SCROLL',
@@ -182,4 +190,3 @@ pagination: {
 }
 ```
 
-## More Information
