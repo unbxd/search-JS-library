@@ -15,6 +15,10 @@ nav_order: 1
 {:toc}
 
 ---
+
+## Definition
+
+
 ## Behavior
 Configure the banner display by setting the “banner” config object.
 
@@ -36,6 +40,9 @@ The following options are available under the object:
 
 
 ## Use Cases
+
+### Sample Example
+
 Sample banner configuration
 
 ```js

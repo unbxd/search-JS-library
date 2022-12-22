@@ -16,40 +16,28 @@ nav_order: 2
 
 ---
 
+## Definitions
+
+Faceting provides your visitors an interface to select desired field values (or product attributes or search listing page) in order to filter their search results. 
+
 ## Behavior
 
-Facets are the products filters provided on your webpage  which allows customers to narrow down the search result set.
+Facets are the products filters provided on your webpage which allows customers to narrow down the search result set.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)
 
-## Types of FacetsEl
+## Types of Facets
 
-There are 3 types of Facets available. hello
+There are 3 types of Facets available.
 
-1. Text facets
-1. Range facets
-1. Category facets
+### Text facets
+This feature enables faceting on any searchable field.
 
+### Range facets
+This feature is applicable for all numeric searchable fields.
 
-Each facet item requires folliwing data attributes
-
-**data-facet-action**
-This param need to be configured for triggering the user action
-
-Available configurations are
-
-1. deleteFacet - for deleting all the selected filters under a facet
-1. changeFacet - for selecting a facet
-1. clearAllFacets - this will clear all the facets
-1. deleteFacetValue - for unselecting a filter
-
-**data-facet-name**
-library needs facet_name here.
-
-
-**data-id**
-required filter value here
-
+### Multilevel facets
+Multilevel facets are a special kind of facets which is applicable only for the fields belonging to the path fieldType supporting the hierarchy returns the facet values in the hierarchial.
 
 ## Config
 
@@ -109,6 +97,9 @@ The following are the various options available for configuring the range widget
 
 
 ## Use Cases
+
+### Sample Example
+
 Sample “facet” config
 ```js
 facet: {
@@ -395,5 +386,136 @@ facet: {
     enableViewMore:false,
     viewMoreText:["show all", "show less"],
     viewMoreLimit:3,
+}
+```
+
+
+
+### Range Sliders
+
+#### User Requirement
+If you wish to have a range slider, this is an example with the integration with noUISlider
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)
+
+
+#### More Information
+
+**Include CSS file**
+https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css
+
+**Include JS file**
+https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js
+
+
+#### Code Snippet
+
+```js
+facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+    applyMultipleFilters: false,
+    defaultOpen: "FIRST",
+    onFacetLoad: function(facets) {
+        const self = this;
+        const {
+            facet
+        } = this.options;
+        const {
+            rangeWidgetConfig
+        } = facet;
+        facets.forEach(facetItem => {
+            const {
+                facetType,
+                facetName,
+                gap
+            } = facetItem;
+            const {
+                prefix
+            } = rangeWidgetConfig;
+
+            if (facetType === "range") {
+                const rangeId = `${facetName}_slider`;
+                const sliderElem = document.getElementById(rangeId);
+                let {
+                    end,
+                    gap,
+                    max,
+                    min,
+                    start
+                } = facetItem;
+                const selectedValues = sliderElem.dataset;
+                if (selectedValues) {
+                    start = Number(selectedValues.x),
+                        end = Number(selectedValues.y)
+                }
+                this[rangeId] = noUiSlider.create(sliderElem, {
+                    start: [start, end],
+                    tooltips: [{
+                            to: function(value) {
+                                return `${prefix} ${Math.round(value)}`;
+                            }
+                        },
+                        {
+                            to: function(value) {
+                                return `${prefix} ${Math.round(value)}`;
+                            }
+                        }
+                    ],
+                    connect: true,
+                    range: {
+                        'min': 0,
+                        'max': max
+                    },
+                    format: {
+                        to: function(value) {
+                            return Math.round(value);
+                        },
+                        from: function(value) {
+                            return Math.round(value);
+                        }
+                    },
+                    padding: 0,
+                    margin: 0,
+                });
+                this[rangeId].on("set", function(data) {
+                    const newData = {
+                        start: data[0],
+                        end: data[1],
+                        facetName,
+                        gap
+                    };
+                    self.setRangeSlider(newData);
+                });
+
+            }
+
+        });
+    },
+    isCollapsible: true,
+    isSearchable: true,
+    enableViewMore: false,
+    rangeTemplate: function(range, selectedRange, facet) {
+        const {
+            facetName,
+            start,
+            end
+        } = range;
+        let min = start;
+        let max = end;
+        if (selectedRange.length > 0) {
+            const sel = selectedRange[0].replace(/[^\w\s]/gi, '').split(" TO ");
+            min = sel[0];
+            max = sel[1];
+        }
+        const rangId = `${facetName}_slider`;
+        return [`<div id="${facetName}"  data-id="${facetName}" class=" UNX-range-slider-wrap">`,
+            `<div class="UNX-value-container UNX-range-value-block" ></div>`,
+            `<div id="${rangId}" data-x="${min}" data-y="${max}" class="UNX-range-slider-wrapper"></div>`,
+            `</div>`,
+            `<div>`,
+            `</div>`
+        ].join('')
+    }
 }
 ```
