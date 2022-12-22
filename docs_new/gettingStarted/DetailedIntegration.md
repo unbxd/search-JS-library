@@ -6,7 +6,7 @@ parent: Getting Started
 ---
 
 # Detailed Integration
-{: .fs-9 }
+{: .fs-9 } {: .no_toc }
 
 ---
 
