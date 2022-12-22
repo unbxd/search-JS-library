@@ -24,7 +24,7 @@ The spell check feature provides **spelling suggestions** or **spell-checks** fo
 
 In such cases, the context-aware algorithm of Unbxd understands your visitor’s intent and sends a “**Did You Mean**” response along with a search result set for the query, if any.
 
-## Config
+## Configuration
 
 You can configure the spellcheck feature by updating the required configs under the “spellCheck” config object.  
 

@@ -20,7 +20,7 @@ nav_order: 5
 
 Configure the display to be rendered when there are no results by setting the “noResults” config object.
 
-## Config
+## Configuration
 
 The following options are available under the object:  
 

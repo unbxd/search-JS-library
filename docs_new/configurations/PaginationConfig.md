@@ -21,7 +21,7 @@ nav_order: 7
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
 
-## Config
+## Configuration
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
 

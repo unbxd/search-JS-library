@@ -21,7 +21,7 @@ nav_order: 12
 Configure swatches display by using the configs in this section.  
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
 
-## Config
+## Configuration
 
 The following options are available under the object:
 

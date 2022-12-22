@@ -22,7 +22,7 @@ You can configure the way in which the products have to be displayed (List or Gr
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
 
-## Config
+## Configuration
 
 Update the options under the “productView” config object to configure the product view feature.  
 
