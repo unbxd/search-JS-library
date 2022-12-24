@@ -1,0 +1,37 @@
+title: JS Library documentation
+description: A JavaScript library for building performant and quick search experiences with Unbxd.
+theme: just-the-docs
+
+url: https://unbxd.github.io
+
+logo: "https://unbxd.com/static/new-unbxd-logo-7f8465b0fbaa773dcac9bc14897f7d34.svg"
+
+aux_links:
+  Template Repository: https://github.com/unbxd/search-JS-library/
+
+back_to_top: true
+back_to_top_text: "Back to top"
+
+footer_content: "Copyright &copy; © 2022 <a href=\"https://unbxd.com/\">Unbxd</a> Inc, All Rights Reserved."
+
+
+# Aux links for the upper right navigation
+aux_links:
+  "View on GitHub":
+    - "https://github.com/unbxd/search-JS-library/"
+
+# Makes Aux links open in a new tab. Default is false
+aux_links_new_tab: true
+
+# External navigation links
+nav_external_links:
+  - title: View on GitHub
+    url: https://github.com/unbxd/search-JS-library/
+
+# Footer "Edit this page on GitHub" link text
+gh_edit_link: true # show or hide edit this page link
+gh_edit_link_text: "Edit this page on GitHub"
+gh_edit_repository: "https://github.com/unbxd/search-JS-library" # the github URL for your repo
+gh_edit_branch: "documentation" # the branch that your docs is served from
+# gh_edit_source: docs # the source that your files originate from
+gh_edit_view_mode: "edit" # "tree" or "edit" if you want the user to jump into the editor immediately
