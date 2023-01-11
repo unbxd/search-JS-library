@@ -23,20 +23,6 @@ Configure the banner display by setting the “banner” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
 
-## Configuration
-The following options are available under the object:
-
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| enabled | Boolean | false | Turn this flag on for enabling Banner |
-| el                        	| Element  	| null | Element in which to render the Banner component |
-| template                  	| Function 	| [default](src/modules/banners/index.js) | Customize the look and feel of the banner component by returning your custom HTML string from this function. This function get the list of banners as the parameter. |
-| count                     	| Number   	| 1 | Indicates the number of banners to be shown |
-| openNewTab                    | Boolean   | false | by default landing page url load in same tab, if you want to load in another tab configured it to true |
-| tagName | String | "DIV" | html element for the banner wrapper. by default it is div.  |
-| htmlAttributes | Object | {class:"UNX-banner-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
-| events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
-
 
 ## Configuration
 The following options are available under the object:
@@ -61,7 +47,65 @@ null
 #### Description
 Element in which to render the Banner component
 
+### template
+#### Key 
+template
+#### Data Type
+Function 
+#### Default
+[default](src/modules/banners/index.js) 
+#### Description
+Customize the look and feel of the banner component by returning your custom HTML string from this function. This function get the list of banners as the parameter. 
 
+### count 
+#### Key 
+count 
+#### Data Type
+Number 
+#### Default
+1 
+#### Description
+Indicates the number of banners to be shown 
+
+### openNewTab
+#### Key 
+openNewTab
+#### Data Type
+Boolean 
+#### Default
+false 
+#### Description
+by default landing page url load in same tab, if you want to load in another tab configured it to true 
+
+### tagName 
+#### Key 
+tagName 
+#### Data Type
+String 
+#### Default
+"DIV" 
+#### Description
+html element for the banner wrapper. by default it is div.
+
+### htmlAttributes 
+#### Key 
+htmlAttributes 
+#### Data Type
+Object 
+#### Default
+{class:"UNX-banner-block"} 
+#### Description
+by default it contains classes for the wrapper. you can add more classes or any attributes 
+
+### events 
+#### Key 
+events 
+#### Data Type
+object 
+#### Default
+{} 
+#### Description
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object
 
 
 ## Use Cases
