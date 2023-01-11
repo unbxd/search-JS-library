@@ -2,7 +2,7 @@
 layout: default
 title: Spell Check
 parent: Configurations
-nav_order: 8
+nav_order: 11
 ---
 
 # Spell Check

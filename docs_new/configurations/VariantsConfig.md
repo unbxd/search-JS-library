@@ -2,7 +2,7 @@
 layout: default
 title: Variants
 parent: Configurations
-nav_order: 10
+nav_order: 13
 ---
 
 # Variants

@@ -2,7 +2,7 @@
 layout: default
 title: Banners
 parent: Configurations
-nav_order: 9
+nav_order: 12
 ---
 
 # Banners

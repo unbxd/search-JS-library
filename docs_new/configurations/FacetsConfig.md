@@ -2,7 +2,7 @@
 layout: default
 title: Facets
 parent: Configurations
-nav_order: 2
+nav_order: 5
 ---
 
 # Facets

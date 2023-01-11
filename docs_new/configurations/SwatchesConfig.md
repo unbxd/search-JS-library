@@ -2,7 +2,7 @@
 layout: default
 title: Swatches
 parent: Configurations
-nav_order: 11
+nav_order: 14
 ---
 
 # Swatches
