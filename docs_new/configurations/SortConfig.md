@@ -2,7 +2,7 @@
 layout: default
 title: Sorting
 parent: Configurations
-nav_order: 5
+nav_order: 8
 ---
 
 # Sorting

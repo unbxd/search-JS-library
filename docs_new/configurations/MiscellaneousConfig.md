@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Miscellaneous
+title: Others
 parent: Configurations
-nav_order: 14
+nav_order: 17
 ---
 
-# Miscellaneous
+# Others
 {: .no_toc }
 
 ## Table of contents
@@ -16,7 +16,7 @@ nav_order: 14
 
 ---
 
-## Miscellaneous Configurations
+## Other Configurations
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|

@@ -2,7 +2,7 @@
 layout: default
 title: Product View
 parent: Configurations
-nav_order: 6
+nav_order: 9
 ---
 
 # Product View
