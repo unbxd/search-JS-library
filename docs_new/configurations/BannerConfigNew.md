@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Banners
+title: Banners New
 parent: Configurations
 nav_order: 12
 ---
 
-# Banners
+# Banners New
 {: .no_toc }
 
 ## Table of contents
