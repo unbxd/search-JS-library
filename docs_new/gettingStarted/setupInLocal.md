@@ -38,11 +38,11 @@ parent: Getting Started
         "unxDescription":"<<description attribute>>"
         };
         ```
-    2. Provide product attributes to be returned from the search api:
+    2. Provide **product attributes** to be returned from the search api:
         ```js
         productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
         ```
-5. Run the following commands in terminal:<br/>
+5. Run the following commands in terminal inside the unzipped folder:<br/>
 Install required version of node using nvm:<br/>
 ```nvm install v14.15.0```<br/>
 Use that version of node:<br/>
