@@ -23,13 +23,17 @@ parent: Getting Started
 
 [![alt text for screen readers](../assets/zip.png)](ZIP from codesandbox)
 3. Run the following commands in terminal:
-```nvm install v14.15.0
-nvm use v14.15.0
-npm install
-npm run start```
+Install required version of node using nvm:
+```nvm install v14.15.0```
+Use that version of node:
+```nvm use v14.15.0```
+Install dependencies:
+```npm install```
+Run the webpack server:
+```npm run start```
 
 Additional links for above tools:
-[Download Node](3https://nodejs.org/en/download/)
+[Download Node](3https://nodejs.org/en/download/)<br/>
 [Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)
 
 
