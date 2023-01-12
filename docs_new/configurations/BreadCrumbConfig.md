@@ -16,6 +16,17 @@ nav_order: 10
 
 ---
 ## Definition
+In e-commerce, 'breadcrumbs' refer to a navigation element that allows users to see the hierarchical structure of the website and understand their location within the site. They are typically displayed as a series of links that indicate the path that a user has taken to reach the current page.
+
+For example, if a user is on a product page for a specific item, the breadcrumb might show: Home > Clothing > T-shirts > Men's T-shirts > [Product Name]
+
+This way, the user can easily understand where they are within the website and navigate to other sections of the site.
+
+Breadcrumbs are usually displayed at the top of a page, above the main content area. They can be helpful for users that have landed on a page from a search engine, external link or other website, as it allows them to understand the context of the page and navigate to other related sections.
+
+Additionally, it can help users that are not familiar with the website structure to easily navigate, and also to return to a specific location on the website, by clicking on the breadcrumb links.
+
+Breadcrumbs can also be used to highlight the relevance of the product or category that user is currently browsing in the website.
 
 ## Behavior
 To render the breadcrumb component, set the “breadcrumb” config object.

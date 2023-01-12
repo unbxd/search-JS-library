@@ -17,9 +17,24 @@ nav_order: 6
 ---
 
 ## Definition
-This feature will helps the users to navigate the products for any search/browse request. In many applications the UI for these sorted results are displayed to the user in "pages" containing a fixed number of matching results, and users don’t typically look at results past the first few pages worth of results.
+
+In e-commerce, pagination refers to the process of dividing search results or product listings into multiple pages, which allows users to navigate through the pages of products. It is used to split large sets of products into smaller, more manageable chunks, which can improve the performance of the website and also user experience.
+
+There are several different types of pagination that can be used in e-commerce, including:
+
+**Fixed Pagination**: This type of pagination is the most common and allows users to navigate through the pages of products by clicking on page numbers or by clicking on the next and previous buttons. The page numbers and buttons are usually displayed at the bottom of the search results or product listings.
+
+**Infinite Scroll**: This type of pagination loads the next set of products automatically as the user scrolls to the bottom of the page, eliminating the need for the user to click on next or page numbers. This type of pagination can be helpful for users that want to quickly browse through a large number of products without having to manually click through pages, but it could also lead to lower engagement and higher bounce rates if not implemented well.
+
+**Click & Scroll**: This type is similar to the infinite scroll pagination, but it includes a "load more" button, so users can load the next set of products at their own discretion. This can be beneficial for users that may want to control the amount of information they see at once and also, it can be helpful for the website to limit the amount of data loaded at once to improve the performance.
+
+It's important to note that the pagination should be consistent, clear, and easy to understand in order to improve the user experience. Also the right pagination method depends on the specific needs of the website and its target audience.
+
+
 
 ## Behavior
+
+This feature will helps the users to navigate the products for any search/browse request. In many applications the UI for these sorted results are displayed to the user in "pages" containing a fixed number of matching results, and users don’t typically look at results past the first few pages worth of results.
 
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
