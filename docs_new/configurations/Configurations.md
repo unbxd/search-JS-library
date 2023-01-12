@@ -9,8 +9,11 @@ permalink: docs_new/configurations
 # Configurations
 {: .fs-9 }
 
----
+Unbxd SDK configurations include setting the API key and Site key, customizing search parameters, setting autocomplete and tracking options, and configuring search result templates to optimize search and product discovery functionality for an e-commerce website.
+{: .fs-6 .fw-300 }
 
+---
+<!-- 
 ## Table of contents
 {: .no_toc .text-delta }
 
@@ -45,4 +48,4 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | variants | Object | Refer section | Set this object, if you have want to display variant products. by default variants will be undefined. You can find all the variants configs in [Variants Config](#Variants-Config) section |
 | swatches | Object | Refer section | Set this object, if you have want to display swatches on your product cards. You can find all the swatch configs in [Swatches Config](#Swatches-Config) section |
 | loader | Object | Refer section | Loader component configurations. You can find all the configs in [Loader Config](#Loader-Config) section |
-| noResults | Object | Refer section | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section |
+| noResults | Object | Refer section | No results component configurations. You can find all the configs in [No Results Config](#No-Results-Config) section | -->
