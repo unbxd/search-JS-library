@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Setup On Local
+title: Setup In Local
 nav_order: 1
 parent: Getting Started
 ---
@@ -25,6 +25,10 @@ parent: Getting Started
 3. Unzip the folder
 4. Customize the config inside **src/js** as per the feed:</br>
     1. Change **siteKey** and **apiKey**.
+    ```js
+    siteKey: "<<site key",
+    apiKey: "api key"
+    ```
     2. Modify **attributesMap** inside **products** object.
         ```js
         attributesMap: {
