@@ -22,7 +22,23 @@ parent: Getting Started
 2. Click on Export to ZIP option.
 
     [![alt text for screen readers](../assets/zip.png)](ZIP from codesandbox)
-3. Run the following commands in terminal:<br/>
+3. Unzip the folder
+4. Customize the config inside **src/js** as per the feed:</br>
+    1. Change **siteKey** and **apiKey**.
+    2. Modify **attributesMap** inside **products** object.
+        ```js
+        attributesMap: {
+        "unxTitle": "<<title attribute>>",
+        "unxImageUrl": "<<image url attribute>>",
+        "unxPrice": "<<price attribute>>",
+        "unxDescription":"<<description attribute>>"
+        };
+        ```
+    2. Provide product attributes to be returned from the search api:
+        ```js
+        productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
+        ```
+5. Run the following commands in terminal:<br/>
 Install required version of node using nvm:<br/>
 ```nvm install v14.15.0```<br/>
 Use that version of node:<br/>
