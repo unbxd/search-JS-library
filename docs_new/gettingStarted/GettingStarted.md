@@ -44,8 +44,6 @@ This documentation has multiple ways of exploring/integrating with the Unbxd Sea
 3. [Integration with your site](/docs_new/gettingStarted/DetailedIntegration.md)
 
 
-## More Information
-
 For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
 
 

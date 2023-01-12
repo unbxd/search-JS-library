@@ -5,7 +5,7 @@ nav_order: 7
 ---
 
 # FAQs
-{: .fs-9 }
+{: .fs-9 .no_toc}
 
 ---
 
@@ -17,6 +17,18 @@ nav_order: 7
 
 
 ## How do I get an API key and Site key to use with the SDK?
+To use the Unbxd SDK, you will need an API key and a Site key. To obtain these keys, you will need to create an account with Unbxd and set up a new project. Once you have an account and a project set up, you can then generate the keys from the Unbxd dashboard. The process may vary depending on the Unbxd's current pricing plans and offerings, but here is the general idea of how it works:
+
+Sign up for an account with Unbxd on their website, if you don't have an account yet.
+Once logged in, navigate to the project dashboard, where you will be able to see a list of your current projects.
+Select the project you want to add the SDK to or create a new one
+Locate the API key and Site key on the project dashboard, where they will be displayed as a long string of characters.
+Copy the keys and use them in your code to configure the SDK.
+It's important to keep the keys safe, as they grant access to the Unbxd service and should be handled and stored securely like any other sensitive information. You should also make sure to keep your account login credentials safe and not share it with others.
+
+It's also worth mentioning that some plans or usage of the service may change the way you get access to the keys, as well as the number of allowed keys and keys rotation strategies, check the documentation or reach out to Unbxd's support for more information about the specific way to access and use the keys.
+
+
 
 ## What are the system requirements for using the SDK?
 
