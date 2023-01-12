@@ -15,6 +15,9 @@ nav_order: 4
 
 ---
 
+## Overview
+The Unbxd Vanilla JS SDK is a lightweight JavaScript library that allows for easy integration of the Unbxd search and product discovery platform with an e-commerce website. It includes a set of JavaScript methods and callbacks that can be used to customize and extend the functionality of the SDK.
+
 ## Instance Methods
 
 

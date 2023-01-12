@@ -17,6 +17,15 @@ nav_order: 16
 ---
 
 ## Definition
+In e-commerce, a 'loader' is a visual element that is used to indicate to users that the website or application is currently loading or processing information. Loaders are commonly used in situations where a page is taking longer than expected to load or a process is taking longer than usual, such as when a user submits a form or initiates a search.
+
+The loader is usually a simple animation, like a spinning wheel or a progress bar, that is displayed on the screen to let the user know that something is happening in the background. The loader will typically be displayed on the page until the process is complete, at which point it will be replaced with the relevant information or next page.
+
+Loaders are useful in e-commerce websites as they can improve the user experience by providing users with visual feedback on the status of a task and help to reduce frustration if the load time is longer.
+
+Additionally, loaders can be used to indicate to users that a server is currently processing their request, This can help to improve the trust on the website by making the users more aware of what is happening behind the scenes.
+
+It is important to note that using loaders should be balanced with the performance of the website, as excessive use of loaders, or showing loaders for too long can negatively affect the user experience, making the website feel slow or unresponsive.
 
 ## Behavior
 

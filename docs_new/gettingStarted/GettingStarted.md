@@ -18,16 +18,36 @@ permalink: docs_new/gettingStarted
 {:toc}
 
 ## Introduction
+Unbxd Vanilla JS SDK is a software development kit (SDK) provided by Unbxd, that allows e-commerce websites to easily integrate Unbxd's search and product discovery functionality. The SDK is built on Vanilla JavaScript and provides an easy-to-use JavaScript API that can be used to configure, initiate and customize search requests.
+
+The SDK can be used to configure the search engine, set the API and Site key, initiate the search, retrieve the autocomplete suggestions, track various search and product events, and more.
+
+This SDK does not have any dependencies on any other JavaScript frameworks or libraries, which makes it lightweight and easy to integrate into an e-commerce website. It can be easily added to the website by including a script tag on the page where it is needed, and it can be customized and extended using JavaScript methods and callbacks.
+
+Additionally, SDK provides several functionalities like, but not limited to:
+-Autocomplete suggestions
+-Instant search results
+-Tracking search queries and clicks
+-Search analytics
+-Search-as-you-type
+-Spelling suggestions
+-Faceted search
+-Customizable search result templates.
+
+These functionalities are designed to improve the user experience on the e-commerce website by providing a powerful search experience, increasing the relevance of search results and providing a more personalized shopping experience for users.
+
+It is important to note that in order to use the Unbxd Vanilla JS SDK, the e-commerce website needs to have an account with Unbxd, and must have the necessary Site and API keys to properly configure the SDK and connect it to the Unbxd platform.
+
 This documentation has multiple ways of exploring/integrating with the Unbxd Search library.
 1. [Quick Setup with Unbxd Template](/docs_new/gettingStarted/quickIntegration.md)
 2. [Quick Setup on CodeSandbox](/docs_new/gettingStarted/quickSetupOnCodeSandbox.md)
 3. [Integration with your site](/docs_new/gettingStarted/DetailedIntegration.md)
 
 
-
 ## More Information
 
 For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
+
 
 ## Important Note
 

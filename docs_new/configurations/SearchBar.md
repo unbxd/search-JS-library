@@ -16,7 +16,18 @@ nav_order: 3
 
 ---
 
-## Configuring the Search Input Box
+## Definition
+A search bar in an e-commerce page is a user interface element that allows users to quickly and easily search for specific products within an online store's catalog. It typically appears at the top of an e-commerce website's home page, and is often prominently displayed in a larger font and contrasting color to make it easy for users to find.
+
+
+## Behavior
+When a user enters a search term into the bar and hits the enter key or clicks the search button, the system will conduct a search of the online store's catalog and return a list of products that match the search term. The results are usually presented in a list format, with a thumbnail image of each product, its name, and its price.
+
+Search bar feature can include an autocomplete functionality which suggest or dropdown the matching keywords, or it may also include advanced search functionality that allows users to filter their results by various criteria such as product category, brand, price range, and more.
+
+The search bar is an important tool for e-commerce websites as it allows users to easily find the products they are looking for and help to increase the chance of them making a purchase.
+
+## Configuration
 
 The following two configurations are used by the library to bind keyboard and mouse events to the search input field and search button on your website.
 

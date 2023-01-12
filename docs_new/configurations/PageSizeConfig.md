@@ -17,6 +17,11 @@ nav_order: 7
 ---
 
 ## Definition
+In e-commerce, "page size" refers to the number of products that are displayed on a single page of search results or product listings. It allows users to control how many items they see at a time, by giving them the option to choose from different page sizes such as 10, 20, 50 or 100 items per page.
+
+The purpose of this feature is to help users quickly find and view the products they are interested in, without having to scroll through an excessive number of items. It can also improve the overall user experience by making it easier to scan and compare products. Additionally, for some e-commerce website, the page size concept can help to improve site performance and loading time.
+
+Some e-commerce websites also provide pagination options so that users can navigate through the pages of search results or product listings by clicking on page numbers or next/previous buttons.
 
 ## Behavior
 Page Size widget allows you to configure the number of products shown on each page. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3 then 15 or 18 or 21).

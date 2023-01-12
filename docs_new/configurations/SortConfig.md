@@ -17,6 +17,16 @@ nav_order: 8
 ---
 
 ## Definition
+"Sort" functionality in an e-commerce page allows users to rearrange the products displayed on a search results or product listing page in a specific order. The sorting options provided by the e-commerce websites varies but the most common ones are:
+
+Sort by relevance: This is the default sorting option, it orders the products based on how well they match the search criteria or the filter settings.
+Sort by price: This allows users to sort products by price, in either ascending or descending order.
+Sort by popularity: This orders the products based on their popularity, like number of sales, views, or ratings.
+Sort by newness: This orders the products based on their recency, usually the newest products are listed first.
+Sort by Brand: This allow the users to sort products by brand name.
+This functionality can help users quickly find the products that are most relevant or interesting to them, based on their specific needs and preferences. It allows users to quickly identify products in a particular price range, or newly added items, making it more convenient for them to find what they are looking for.
+
+It is also common to find that e-commerce websites will have a default sort order when a user visits a category or search results, but also provides the user with a way to change and adjust the sort order as they wish.
 
 ## Behavior
 

@@ -17,6 +17,13 @@ nav_order: 13
 ---
 
 ## Definition
+In e-commerce, 'variant' products refer to different versions of a product that have some variations in terms of features, size, color, style, or any other aspect of the product. These variations are usually used to offer customers a range of options when purchasing a product.
+
+For example, a clothing item like a shirt may be available in different sizes, colors and styles, so each size/color/style would be considered as a variant of the same product. Another example can be a phone, where the different storage options and colors represent different variants of that phone.
+
+Variant products are typically grouped together in a single product listing, with options for selecting the specific variant, like color and size, from a drop-down list or by clicking on thumbnails of the different variations. This way, the user can easily compare the different options and select the one that best meets their needs and preferences.
+
+Having variant products can give e-commerce website a chance to increase their product catalog, also improving the chances of a user finding exactly what they are looking for and ultimately increasing the chances of a purchase.
 
 ## Behavior
 
