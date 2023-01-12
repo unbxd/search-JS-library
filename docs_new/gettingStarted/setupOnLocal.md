@@ -21,4 +21,6 @@ parent: Getting Started
 1. Hit https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v demo url in browser.
 2. Click on Export to ZIP option.
 
-[![alt text for screen readers](../../zip.png)](ZIP from codesandbox)
+[![alt text for screen readers](../assets/zip.png)](ZIP from codesandbox)
+
+
