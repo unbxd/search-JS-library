@@ -1,11 +1,23 @@
-# Contributing
+---
+layout: default
+title: How To Contribute
+nav_order: 8
+---
+
+# How To Contribute
+{: .fs-9 .no_toc}
+
+---
+
+## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change. 
 
+
 ## Setting Up
 
-clone the repo
+Clone the repo
 ```shell
     git clone https://github.com/unbxd/search-JS-library.
 ```
@@ -13,11 +25,11 @@ clone the repo
 ```shell
     npm install
 ```
-run in developement environment
+Run in developement environment
 ```shell
     npm start
 ``` 
-generate the bundle
+Generate the bundle
 ```shell
     npm run build
 ``` 

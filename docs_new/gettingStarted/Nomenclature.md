@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Nomenclature
+title: Understanding the basics
 nav_order: 1
 parent: Getting Started
 ---
 
-# Nomenclature
-{: .fs-9 }
+# Understanding the basics
+{: .fs-9 .no_toc}
 
 ---
 
@@ -27,10 +27,7 @@ An e-commerce page typically includes a variety of different elements and compon
 5. The checkout, which is where users can review their cart, enter shipping and payment information, and complete their purchase.
    
 
-
-
-
-## Understanding The Page
+## Understanding The E-commerce Page
 
 Before we delve into the next set of configs, let’s first understand the most common sections present in a search results page or category landing page.  
 A search results page or a category landing page is made up of the following set of sections:
