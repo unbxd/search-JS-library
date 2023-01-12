@@ -18,9 +18,18 @@ parent: Getting Started
 
 ## Setup in local
 
-1. Hit https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v demo url in browser.
+1. Hit [demo playground url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
 2. Click on Export to ZIP option.
 
 [![alt text for screen readers](../assets/zip.png)](ZIP from codesandbox)
+3. Run the following commands in terminal:
+```nvm install v14.15.0
+nvm use v14.15.0
+npm install
+npm run start```
+
+Additional links for above tools:
+[Download Node](3https://nodejs.org/en/download/)
+[Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)
 
 
