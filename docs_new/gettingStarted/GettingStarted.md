@@ -7,7 +7,7 @@ permalink: docs_new/gettingStarted
 ---
 
 # Getting Started
-{: .fs-9 }
+{: .fs-9 .no_toc }
 
 ---
 
