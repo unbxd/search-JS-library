@@ -57,6 +57,17 @@ For any issue that you face during integration or need updates on the changes, f
 *   Include the CSS inside the <head> tag of your HTML *page* & the scripts at the end of the body tag. This will ensure that the page rendering is not blocked by the javascript files.
 *   Please do not overwrite the `setUrl` method from the SDK. This method is used by the sdk to set the url based on user actions, and it evolves over time.
 
+## Dos and Don'ts
+When it comes to the dos and don'ts, some of the things to keep in mind could be:
+
+1. Do make sure that you have the necessary Site and API keys to properly configure the SDK and connect it to the Unbxd platform
+2. Do test the SDK on a development environment before deploying it to production.
+3. Do ensure that the SDK is properly configured, and that the necessary data is being passed correctly
+4. Don't share the Site and API keys publicly, as it could allow others to access your Unbxd account without your permission.
+5. Don't include the SDK in your website without first understanding the implications on the data privacy, and take necessary steps to protect it
+6. Don't use the SDK on a website that is not authorized by Unbxd
+7. Do check the website analytics after integrating the SDK and make sure that the search and product events are tracked correctly, if not check the documentation again or reach out to Unbxd support.
+
 ## Raise Issues  
 
 Facing some issues? look for solutions or create an issue [here](https://github.com/unbxd/search-JS-library/issues).
