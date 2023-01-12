@@ -1,3 +1,14 @@
+---
+layout: default
+title: How To Contribute
+nav_order: 8
+---
+
+# How To Contribute
+{: .fs-9 .no_toc}
+
+---
+
 # Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue,
