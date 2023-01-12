@@ -21,19 +21,19 @@ parent: Getting Started
 1. Hit [demo playground url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
 2. Click on Export to ZIP option.
 
-[![alt text for screen readers](../assets/zip.png)](ZIP from codesandbox)
-3. Run the following commands in terminal:
-Install required version of node using nvm:
-```nvm install v14.15.0```
-Use that version of node:
-```nvm use v14.15.0```
-Install dependencies:
-```npm install```
-Run the webpack server:
-```npm run start```
+    [![alt text for screen readers](../assets/zip.png)](ZIP from codesandbox)
+3. Run the following commands in terminal:<br/>
+Install required version of node using nvm:<br/>
+```nvm install v14.15.0```<br/>
+Use that version of node:<br/>
+```nvm use v14.15.0```<br/>
+Install dependencies:<br/>
+```npm install```<br/>
+Run the webpack server:<br/>
+```npm run start```<br/>
 
-Additional links for above tools:
+Additional links for above tools:<br/>
 [Download Node](3https://nodejs.org/en/download/)<br/>
-[Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)
+[Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)<br/>
 
 
