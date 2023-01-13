@@ -26,8 +26,8 @@ parent: Getting Started
 4. Customize the config inside **src/js** as per the feed:</br>
     1. Change **siteKey** and **apiKey**.
     ```js
-    siteKey: "<<site key",
-    apiKey: "api key"
+    siteKey: "<<site key>>",
+    apiKey: "<<api key>>"
     ```
     2. Modify **attributesMap** inside **products** object.
         ```js
