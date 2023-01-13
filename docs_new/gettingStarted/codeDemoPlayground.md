@@ -1,6 +1,6 @@
 ---
 layout: default
-title: CodeDemoPlayground
+title: Code Demo Playground
 nav_order: 2
 parent: Getting Started
 ---
@@ -25,8 +25,7 @@ parent: Getting Started
 4. [Check & edit config options](./setupInLocal#code-config-customizations)(Optional)
 5. Open the website url generated on the RHS to view the demo website.
 
-{: .note }
-One can play around with the config. Post saving, the changes should be reflected in the generated website url.
+Note: One can play around with the config. Post saving, the changes should be reflected in the generated website url.
 
 
 
