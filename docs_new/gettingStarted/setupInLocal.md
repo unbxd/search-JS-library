@@ -23,7 +23,8 @@ parent: Getting Started
 
     [![Click on Export to ZIP option](../assets/zip.png)](ZIP from codesandbox)
 3. Unzip the folder
-4. Customize the config inside **src/js** as per the feed:</br>
+4.  ## Code Config customizations
+    Customize the config inside **src/js** as per the feed:</br>
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
@@ -42,9 +43,10 @@ parent: Getting Started
         ```js
         productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
         ```
-    4. Configure the correct category ids for the **UnbxdAnalyticsConf** window object in the   following places:
-        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid1.png)](UnbxdAnalyticsConf variable configuration)
-        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)
+    4. Configure the correct category ids for the **UnbxdAnalyticsConf** window object in the   following places:<br/>
+    
+        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid1.png)](UnbxdAnalyticsConf variable configuration)<br/>
+        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/>
 
 5. Run the following commands in terminal inside the unzipped folder:<br/>
 Install required version of node using nvm:<br/>
