@@ -21,13 +21,14 @@ parent: Getting Started
 1. Hit [demo playground url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
 2. Click on Export to ZIP option.
 
-    [![alt text for screen readers](../assets/zip.png)](ZIP from codesandbox)
+    [![Click on Export to ZIP option](../assets/zip.png)](ZIP from codesandbox)
 3. Unzip the folder
-4. Customize the config inside **src/js** as per the feed:</br>
+4.  ## Code Config customizations
+    Customize the config inside **src/js** as per the feed:
     1. Change **siteKey** and **apiKey**.
     ```js
-    siteKey: "<<site key",
-    apiKey: "api key"
+    siteKey: "<<site key>>",
+    apiKey: "<<api key>>"
     ```
     2. Modify **attributesMap** inside **products** object.
         ```js
@@ -38,10 +39,16 @@ parent: Getting Started
         "unxDescription":"<<description attribute>>"
         };
         ```
-    2. Provide **product attributes** to be returned from the search api:
+    3. Provide **product attributes** to be returned from the search api:
         ```js
         productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
         ```
+    4. Configure the correct category ids for the **UnbxdAnalyticsConf** window object in the   following places:<br/>
+
+        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid1.png)](UnbxdAnalyticsConf variable configuration)
+        
+        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/>
+
 5. Run the following commands in terminal inside the unzipped folder:<br/>
 Install required version of node using nvm:<br/>
 ```nvm install v14.15.0```<br/>
