@@ -31,39 +31,49 @@ To use Unbxd Javascript Search SDK it would typically be integrated on the e-com
 It's important to note that the nomenclature and the elements present on the e-commerce page may vary across different website, but the Unbxd Javascript Search SDK can be integrated in any e-commerce website.
 
 
-This documentation has multiple ways of exploring/integrating with the Unbxd Search library.
-1. [Quick Setup with Unbxd Template](/docs_new/gettingStarted/quickIntegration.md)
-2. [Quick Setup on CodeSandbox](/docs_new/gettingStarted/quickSetupOnCodeSandbox.md)
-3. [Integration with your site](/docs_new/gettingStarted/DetailedIntegration.md)
+
+## Understanding The Page
+
+An e-commerce page typically includes a variety of different elements and components, each with its own specific nomenclature. These elements include, but are not limited to:
+
+1. The header, which typically includes the logo, main navigation, and search bar.
+2. The product listing, which is the area of the page where products are displayed.
+3. The product details page, which is the page that is shown when a user clicks on a product from the product listing.
+4. The cart, which is where users can view and manage the items they've added to their cart.
+5. The checkout, which is where users can review their cart, enter shipping and payment information, and complete their purchase.
+
+Before we delve into the next set of configs, let’s first understand the most common sections present in a search results page or category landing page.  
+A search results page or a category landing page is made up of the following set of sections:
+
+1.  Products list section
+    1.  View type could be grid or list view
+    2.  Sort by widget
+    3.  Pagination widget with no. of products per page control
+    4.  Pagination could be an infinite scroll or page number based
+    5.  Number of results loaded on a page
+2.  Facets section
+3.  Spell check / search results message section
+4.  Merchandising banners section  
+      
+Here is a graphical representation of the various sections on a search results page:
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/graphical-rep-in-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/graphical-rep-in-sdk.png)
+
+In the following sections, we will discuss how to configure and render each of these features with the Unbxd Search JS Library.
 
 
-For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
 
+## Nomenclature
 
-## Important Note
+You will see below terms more:
 
-*   If you are including our Search JS Library, [Autosuggest Library](https://unbxd.com/docs/site-search/integration-documentation/autosuggest-sdk/) & [Analytics Library](https://unbxd.com/docs/site-search/integration-documentation/browser-integration/) in your HTML page, the order of the files are important.  
-    Include the Search JS Library, followed by Autosuggest Library and then the Analytics JS Library. This should be followed by the code to invoke the library.
-*   Always ensure you are invoking the library (i.e. calling the **UnbxdSearch** constructor) after you have included it either via URL or via npm
-*   Include the CSS inside the <head> tag of your HTML *page* & the scripts at the end of the body tag. This will ensure that the page rendering is not blocked by the javascript files.
-*   Please do not overwrite the `setUrl` method from the SDK. This method is used by the sdk to set the url based on user actions, and it evolves over time.
+*   `el` – The term el refers to a DOM element. So the rendered component will be rendered inside this DOM element.  
+    Ex: document.getElementById(“searchResultsWrapper”).
 
-## Dos and Don'ts
-When it comes to the dos and don'ts, some of the things to keep in mind could be:
-
-1. Do make sure that you have the necessary Site and API keys to properly configure the SDK and connect it to the Unbxd platform
-2. Do test the SDK on a development environment before deploying it to production.
-3. Do ensure that the SDK is properly configured, and that the necessary data is being passed correctly
-4. Don't share the Site and API keys publicly, as it could allow others to access your Unbxd account without your permission.
-5. Don't include the SDK in your website without first understanding the implications on the data privacy, and take necessary steps to protect it
-6. Don't use the SDK on a website that is not authorized by Unbxd
-7. Do check the website analytics after integrating the SDK and make sure that the search and product events are tracked correctly, if not check the documentation again or reach out to Unbxd support.
-
-## Raise Issues  
-
-Facing some issues? look for solutions or create an issue [here](https://github.com/unbxd/search-JS-library/issues).
-
-
-## Stay up to date
-Look at the [changelog](https://github.com/unbxd/search-JS-library/blob/master/CHANGELOG.md) to see the latest version & history.
-
+*   `template` – templates are functions where you can return the HTML string that needs to be rendered. This provides you the power of entire Javascript to build your desired HTML string
+*   All of the class names generated by the library will have the prefix **“UNX-“**. So you can use it to customize styles.
+*   All templates are provided as functions where you can return the HTML string that needs to be rendered. This provides you the power of entire Javascript to build your desired HTML string.
+*   All of the classnames generated by the library will have the prefix `UNX-`. So you can use it to customize styles.
+*   `tagName` -will be html element wrapper created by the sdk, by default it will be “DIV”. If the template required wrapper element changes we can customise here.
+*   `htmlAttributes` -its an object where you can customise the html attributes like class, id and data-*. key will be attribute name and value will be attribute value.
+*   `events` - this is an object you can add your own events to it. key will be event name(click) and value should be a function.
