@@ -18,10 +18,7 @@ nav_order: 4
 ## Instance Methods
 
 
-This section documents the different methods exposed by the sdk that you can use to perform various actions.
-
-{: .info}
-<!-- > NOTE: All the below methods can be called on the instance object returned by UnbxdSearch constructor. -->
+This section documents the different methods exposed by the sdk/sdk config that you can use to perform various actions.
 
 
 | OPTIONS | ARGUMENTS | DESCRIPTION |
