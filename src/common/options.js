@@ -22,19 +22,19 @@ import pageSizeUi from '../modules/pageSize/pageSizeView';
 import swatchTemplate from "../modules/swatches/ui";
 
 const options = {
-    productId:"uniqueId",
-    searchBoxEl:null,
-    siteKey:"demo-spanish-unbxd809051588861207",
-    apiKey:"f19768e22b49909798bc2411fa3dd963",
-    searchPath:"",
-    searchEndPoint:"https://search.unbxd.io/",
-    products:{
-        el:null,
-        template:productTemplate,
-        productItemClass:"product-item", // to find out product
-        productType:"SEARCH",
-        gridCount:1,
-        onProductClick: function(product,e) {
+    productId: "uniqueId",
+    searchBoxEl: null,
+    siteKey: "demo-spanish-unbxd809051588861207",
+    apiKey: "f19768e22b49909798bc2411fa3dd963",
+    searchPath: "",
+    searchEndPoint: "https://search.unbxd.io/",
+    products: {
+        el: null,
+        template: productTemplate,
+        productItemClass: "product-item", // to find out product
+        productType: "SEARCH",
+        gridCount: 1,
+        onProductClick: function (product, e) {
         },
         productAttributes: [
             "title",
@@ -50,245 +50,283 @@ const options = {
             "colorName",
             "color"
         ],
-        attributesMap:{
-            'unxTitle':'title',
-            'unxImageUrl':'imageUrl',
-            'unxPrice':'salePrice',
-            'unxStrikePrice':'displayPrice',
-            'unxId':'uniqueId',
-            'unxDescription':'productDescription'
+        attributesMap: {
+            'unxTitle': 'title',
+            'unxImageUrl': 'imageUrl',
+            'unxPrice': 'salePrice',
+            'unxStrikePrice': 'displayPrice',
+            'unxId': 'uniqueId',
+            'unxDescription': 'productDescription'
         },
-        defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-search-results-block UNX-result-wrapper"
+        defaultImage: "https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-search-results-block UNX-result-wrapper"
         },
-        events:{}
+        events: {}
 
     },
-    searchQueryParam:"q",
-    browseQueryParam:'p',
-    defaultFilters : null, //or object with keys
+    searchQueryParam: "q",
+    browseQueryParam: 'p',
+    defaultFilters: null, //or object with keys
     noResults: {
-        template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
+        template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },
-    onEvent: (state,type) =>{
+    onEvent: (state, type) => {
     },
-    startPageNo:0,
-    productView : {
-        enabled:true,
-        el:null,
-        template:renderProductViewType,
-        action:'click', // CLICK or CHANGE
-        viewTypeClass:'UNX-product-view',
-        selectedViewTypeClass:'UNX-selected-product-view',
-        defaultViewType:'GRID',
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"product-view-container"
+    startPageNo: 0,
+    productView: {
+        enabled: true,
+        el: null,
+        template: renderProductViewType,
+        action: 'click', // CLICK or CHANGE
+        viewTypeClass: 'UNX-product-view',
+        selectedViewTypeClass: 'UNX-selected-product-view',
+        defaultViewType: 'GRID',
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "product-view-container"
         },
-        events:{}
+        events: {}
     },
 
-    loader:{
-        template:function(){return `<div class="UNX-loader">Loading search results....</div>`},
-        el:null
+    loader: {
+        template: function () { return `<div class="UNX-loader">Loading search results....</div>` },
+        el: null
     },
-    variants:undefined,
+    variants: undefined,
 
-    extraParams:{
-        "version":"V2",
+    extraParams: {
+        "version": "V2",
         /*"facet.multilevel":"categoryPath",
         "f.categoryPath.displayName":"category",
         "f.categoryPath.max.depth":"4",
         "f.categoryPath.facet.limit":"100"*/
     },
 
-    spellCheck:{
-        enabled:true,
-        el:null,
+    spellCheck: {
+        enabled: true,
+        el: null,
         template: didYouMeanUI,
         selectorClass: "UNX-suggestion",
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-spellcheck-wrapper"
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-spellcheck-wrapper"
         },
-        events:{}
+        events: {}
     },
 
-    breadcrumb:{
-        enabled:true,
-        el:null,
-        selectorClass:"UNX-bread-crumb",
-        template:breadCrumbsUI,
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-breadcrumbs-block"
+    breadcrumb: {
+        enabled: true,
+        el: null,
+        selectorClass: "UNX-bread-crumb",
+        template: breadCrumbsUI,
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-breadcrumbs-block"
         },
-        events:{}
+        events: {}
     },
 
     sort: {
-        enabled:true,
-        el:null,
-        selectedSortClass:'UNX-selected-sort',
-        sortClass:'UNX-sort-item',
-        template:sortTemplate,
-        options:sortOptions,
-        action:'change',
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-sort-block-lb"
+        enabled: true,
+        el: null,
+        selectedSortClass: 'UNX-selected-sort',
+        sortClass: 'UNX-sort-item',
+        template: sortTemplate,
+        options: sortOptions,
+        action: 'change',
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-sort-block-lb"
         },
-        events:{}
+        events: {}
     },
-    selectedFacets:{
-        enabled:true,
-        selectedFacetClass:"UNX-selected-facet-btn",
-        el:null,
-        template:selectedFacetUI,
-        itemTemplate:selectedFacetItemTemplateUI,
-        clearAllText:"Clear All",
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-selected-facet-lb"
+    selectedFacets: {
+        enabled: true,
+        selectedFacetClass: "UNX-selected-facet-btn",
+        el: null,
+        template: selectedFacetUI,
+        itemTemplate: selectedFacetItemTemplateUI,
+        clearAllText: "Clear All",
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-selected-facet-lb"
         },
-        events:{},
-        facetAction:"click",
-        clearFacetsSelectorClass:'UNX-clear-facet',
-        removeFacetsSelectorClass:'UNX-remove-facet',
+        events: {},
+        facetAction: "click",
+        clearFacetsSelectorClass: 'UNX-clear-facet',
+        removeFacetsSelectorClass: 'UNX-remove-facet',
     },
 
 
     facet: {
-        facetsEl:null,
-        facetTemplate:facetUIElem,
-        facetItemTemplate:facetItemUiElem,
-        facetMultiSelect:true,
-        facetClass:"UNX-facets-block",
-        facetAction:"click",
+        facetsEl: null,
+        facetTemplate: facetUIElem,
+        facetItemTemplate: facetItemUiElem,
+        facetMultiSelect: true,
+        facetClass: "UNX-facets-block",
+        facetAction: "click",
 
-        selectedFacetClass:"UNX-selected-facet-btn",
-        selectedFacetsEl:null,
-        selectedFacetTemplate:selectedFacetUI,
-        selectedFacetItemTemplate:selectedFacetItemTemplateUI,
-        
-        clearAllText:"Clear All",
+        selectedFacetClass: "UNX-selected-facet-btn",
+        selectedFacetsEl: null,
+        selectedFacetTemplate: selectedFacetUI,
+        selectedFacetItemTemplate: selectedFacetItemTemplateUI,
 
-        rangeTemplate:renderRangeFacets,
+        clearAllText: "Clear All",
+
+        rangeTemplate: renderRangeFacets,
         rangeWidgetConfig: {
-            "minLabel":"",
-            "maxLabel":"",
-            "prefix":'$'
+            "minLabel": "",
+            "maxLabel": "",
+            "prefix": '$'
         },
 
-        facetMultilevel:true,
-        facetMultilevelName:'Category',
-        multiLevelFacetSelectorClass:'UNX-multilevel-facet',
-        multiLevelFacetTemplate:multiLevelFacetUI,
-        facetDepth:4,
-        clearFacetsSelectorClass:'UNX-clear-facet',
-        removeFacetsSelectorClass:'UNX-remove-facet',
-        onFacetLoad:function(facets){
+        facetMultilevel: true,
+        facetMultilevelName: 'Category',
+        multiLevelFacetSelectorClass: 'UNX-multilevel-facet',
+        multiLevelFacetTemplate: multiLevelFacetUI,
+        facetDepth: 4,
+        clearFacetsSelectorClass: 'UNX-clear-facet',
+        removeFacetsSelectorClass: 'UNX-remove-facet',
+        onFacetLoad: function (facets) {
         },
 
-        applyMultipleFilters:false,
-        applyButtonText:"Apply",
-        clearButtonText:"clear",
+        applyMultipleFilters: false,
+        applyButtonText: "Apply",
+        clearButtonText: "clear",
 
 
-        isCollapsible:true,
-        isSearchable:true,
-        searchPlaceHolder:"Search Filter",
-        textFacetWrapper:"UNX-facets-item",
-        defaultOpen:"ALL",
-        enableViewMore:false,
-        viewMoreText:["show all", "show less"],
-        viewMoreLimit:3,
+        isCollapsible: true,
+        isSearchable: true,
+        searchPlaceHolder: "Search Filter",
+        textFacetWrapper: "UNX-facets-item",
+        defaultOpen: "ALL",
+        enableViewMore: false,
+        viewMoreText: [ "show all", "show less" ],
+        viewMoreLimit: 3,
 
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-facets-results-block"
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-facets-results-block"
         },
-        events:{}
+        events: {}
     },
 
-    pagination : {
-        enabled:true,
-        el:null,
-        template:paginationUI,
-        pageClass:"UNX-page-items",
-        selectedPageClass:"UNX-selected-page-item",
-        type:'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
-        infinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
-        heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,    
-        onPaginate:function(paginationInfo){},
-        action:'click',
-        pageLimit:6,
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-pagination-size-block"
+    pagination: {
+        enabled: true,
+        el: null,
+        template: paginationUI,
+        pageClass: "UNX-page-items",
+        selectedPageClass: "UNX-selected-page-item",
+        type: 'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+        infinteScrollTriggerEl: window, //if paginationType = INFINITE_SCROLL
+        heightDiffToTriggerNextPage: 100, //if paginationType = INFINITE_SCROLL,    
+        onPaginate: function (paginationInfo) { },
+        action: 'click',
+        pageLimit: 6,
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-pagination-size-block"
         },
-        events:{}
-    },
+        events: {},
 
+        // el: document.querySelectorAll(".unxPagination"),
+        type: "CLICK_N_SCROLL",
+        // pageClass: "UNX_loadMore",
+        action: "click",
+        // template: function (paginationData, event, pagination) {
+
+        //     if (!paginationData) {
+        //         return ``;
+        //     }
+        //     const {
+        //         currentPage,
+        //         isNext,
+        //         isPrev,
+        //         noOfPages,
+        //         productsLn,
+        //         numberOfProducts,
+        //         rows
+        //     } = paginationData;
+        //     const {
+        //         pageClass,
+        //         selectedPageClass,
+        //         pageLimit
+        //     } = this.options.pagination;
+        //     const {
+        //         UNX_pageNumber
+        //     } = this.testIds;
+
+        //     if (numberOfProducts < productsLn) {
+        //         return ``;
+        //     }
+
+        //     if (numberOfProducts > $(".UNX-product-content").length) {
+        //         $("#paginationContainer").show();
+        //     } else {
+        //         $("#paginationContainer").hide();
+        //     }
+        //     return `<div class="UNX-click-scroll"><button data-test-id="${this.testIds.UNX_loadMore}" class="UNX-click-n-scroll ${pageClass}">View More</button></div>`
+        // },
+    },
     pagesize: {
-        enabled:true,
-        pageSize:12,
-        options:[8,12,16,20,24],
-        pageSizeClass:"UNX-pagesize",
-        selectedPageSizeClass:"UNX-selected-pagesize",
-        action:'change',
-        template:pageSizeUi,
-        el:null,
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-page-size-block"
+        enabled: true,
+        pageSize: 12,
+        options: [ 8, 12, 16, 20, 24 ],
+        pageSizeClass: "UNX-pagesize",
+        selectedPageSizeClass: "UNX-selected-pagesize",
+        action: 'change',
+        template: pageSizeUi,
+        el: null,
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-page-size-block"
         },
-        events:{}
+        events: {}
     },
 
     banner: {
-        enabled:true,
-        el:null,
-        template:bannerTemplateUI,
-        count:1,
-        openNewTab:false,
-        tagName:"DIV",
-        htmlAttributes:{
-            class:"UNX-banner-block"
+        enabled: true,
+        el: null,
+        template: bannerTemplateUI,
+        count: 1,
+        openNewTab: false,
+        tagName: "DIV",
+        htmlAttributes: {
+            class: "UNX-banner-block"
         },
-        events:{}
+        events: {}
 
     },
 
-    swatches:{
-        enabled:false,
-        attributesMap:{},
-        swatchClass:'UNX-swatch-btn',
-        template:swatchTemplate
+    swatches: {
+        enabled: false,
+        attributesMap: {},
+        swatchClass: 'UNX-swatch-btn',
+        template: swatchTemplate
     },
-    unbxdAnalytics:false,
-    hashMode:false,
-    updateUrls:true,
-    actionBtnClass:"UNX-action-item",
-    actionChangeClass:"UNX-action-change",
-    onAction: function(e,ctx) {
+    unbxdAnalytics: false,
+    hashMode: false,
+    updateUrls: true,
+    actionBtnClass: "UNX-action-item",
+    actionChangeClass: "UNX-action-change",
+    onAction: function (e, ctx) {
     },
-    onQueryRedirect:(self, redirect)=>{
-        if(redirect) {
+    onQueryRedirect: (self, redirect) => {
+        if (redirect) {
             const {
                 value,
                 type
             } = redirect;
-            if(type === "url") {
-                location.href =  value;  
-                /** To open redirect in new tab (rare scenario) */ 
+            if (type === "url") {
+                location.href = value;
+                /** To open redirect in new tab (rare scenario) */
                 // window.open(value, "_blank");                                                        
             }
             return false;
         }
     }
-   // searchQueryParam:null
+    // searchQueryParam:null
 };
 export default options;
