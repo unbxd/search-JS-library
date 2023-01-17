@@ -22,7 +22,8 @@ This section documents the different methods exposed by the sdk/sdk config that 
 
 | OPTIONS | ARGUMENTS | DESCRIPTION |
 |----------|----------|----------|
-| reRender | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
+| reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
+| updateConfig | (New Config Object) | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
 
 ## SDK Events
 
