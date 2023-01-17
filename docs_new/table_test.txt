@@ -1,3 +1,0 @@
-<!-- | getSelectedFacetsCount | function | Call this function if you want to  get the total count of selected facets Ex: `unbxdSearch.getSelectedFacetsCount()` | -->
-<!-- | getAllSelectedFacets | function | Call this function to get the count of the selected facets Ex: `unbxdSearch.getAllSelectedFacets()` | -->
-<!-- | getSelectedFacetValueCount | function | Call this function to get the total count of selected facet values. Ex: `unbxdSearch.getSelectedFacetValueCount()` | -->

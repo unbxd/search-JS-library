@@ -15,7 +15,7 @@ nav_order: 4
 
 ---
 
-## Instance Methods
+## Methods
 
 This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
 
@@ -34,8 +34,10 @@ This section documents the different methods exposed by the sdk/sdk config that 
 | setPageStart |  | Call this method to set the the page number. Ex: `unbxdSearch.setPageStart(0)` |
 | setRangeSlider |  | Call this method to update the range filter value. Ex:`unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
 | getCategoryId | | Use this config function to return category id for a particular category page |
-| setCategoryId | ({level, parent, name, action}, self) `level: ccategory depth level`,`name: categpry path name` | In case of multilevel category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the path variable for the search api |
+| setCategoryId | ({level, parent, name, action}, self) `level: category depth level`,`name: category path name` | In case of multilevel category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the path variable for the search api payload |
 
-## SDK Events
+## Events
 
 This section documents the different events fired by the Unbxd Library that you can use to perform various actions.
+
+
