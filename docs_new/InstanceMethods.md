@@ -18,17 +18,18 @@ nav_order: 4
 ## Instance Methods
 
 
-This section documents the different methods exposed by the Library that you can use to perform various actions.
+This section documents the different methods exposed by the sdk that you can use to perform various actions.
 
 {: .info}
-> NOTE: All the below methods can be called on the instance object returned by UnbxdSearch constructor.
+<!-- > NOTE: All the below methods can be called on the instance object returned by UnbxdSearch constructor. -->
+
 
 | OPTIONS | ARGUMENTS | DESCRIPTION |
 |----------|----------|----------|
-| reRender |  | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
-| updateConfig |  | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
+| reRender | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
+| updateConfig | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
 | onQueryRedirect | (self, redirect, urlBeforeRedirect) | This config function holds the redirect logic for a query to which the response contains redirect information. Sample Search api response: 
-```js{redirect:{type:”url”,value:”https://www.unbxd.com”}```;
+```{redirect:{type:”url”,value:”https://www.unbxd.com”}```
 Parameter **redirected=true** is added in the browser url when replace state param is true in history.
 It is **not** recommended to open redirect in a new tab. In such a case, the custom client logic for above mentioned search input handlers should take care to not push state when switching to search from category. 
 Important Arguments: 
