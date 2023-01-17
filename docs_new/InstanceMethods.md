@@ -20,7 +20,7 @@ nav_order: 4
 This section documents the different methods exposed by the sdk/sdk config that you can use to perform various actions.
 
 
-| OPTIONS | ARGUMENTS | DESCRIPTION |
+| OPTIONS | <div style="width:300px">ARGUMENTS</div> | DESCRIPTION |
 |----------|----------|----------|
 | reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
 | updateConfig | (config) | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
