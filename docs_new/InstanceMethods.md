@@ -17,10 +17,10 @@ nav_order: 4
 
 ## Instance Methods
 
-This section documents the different methods exposed by the sdk/sdk config that you can use to perform various actions.
+This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
 
 
-| OPTIONS | ARGUMENTS&nbsp; &nbsp; &nbsp; &nbsp; | DESCRIPTION |
+| OPTIONS | ARGUMENTS | DESCRIPTION |
 |----------|----------|----------|
 | reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
 | updateConfig | (config) | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
@@ -33,6 +33,8 @@ This section documents the different methods exposed by the sdk/sdk config that 
 | resetAll |  | Call this method to reset the all the page elements like selected facets, selected sort option, pagination etc. Ex: `unbxdSearch.resetAll()` |
 | setPageStart |  | Call this method to set the the page number. Ex: `unbxdSearch.setPageStart(0)` |
 | setRangeSlider |  | Call this method to update the range filter value. Ex:`unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
+| getCategoryId | | Use this config function to return category id for a particular category page |
+| setCategoryId | ({level, parent, name, action}, self) `level: ccategory depth level`,`name: categpry path name` | In case of multilevel category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the path variable for the search api |
 
 ## SDK Events
 
