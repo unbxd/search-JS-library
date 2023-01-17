@@ -16,6 +16,15 @@ nav_order: 11
 
 ---
 ## Definition
+In an e-commerce platform, 'spell check' feature refers to a functionality that helps users to find products even if they have made a spelling mistake when searching for them.
+
+This feature utilizes natural language processing (NLP) and machine learning algorithms to automatically detect and correct spelling errors in the user's search query. When a user enters a search term that contains a spelling mistake, the system will automatically check the spelling of the term against a dictionary of correctly spelled words. If the system detects a spelling mistake, it will try to suggest the correct spelling and show the search results based on that correction.
+
+For example, if a user types in "iphone11" instead of "iPhone 11", the system will recognize the mistake and correct the spelling, displaying the search results for "iPhone 11".
+
+This feature can help to improve the user experience by reducing the chances of users entering search terms that do not match any products in the online store's catalog and also increase the accuracy of search results.
+
+Additionally, by using machine learning models, the spell check feature can improve its performance over time, becoming better at recognizing and correcting spelling errors. This can help to increase the chances of users finding the products they are looking for, even if they make a spelling mistake.
 
 ## Behavior
 

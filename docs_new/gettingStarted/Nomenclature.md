@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Nomenclature
+title: Understanding the basics
 nav_order: 1
 parent: Getting Started
 ---
 
-# Nomenclature
-{: .fs-9 }
+# Understanding the basics
+{: .fs-9 .no_toc}
 
 ---
 
@@ -17,8 +17,17 @@ parent: Getting Started
 {:toc}
 
 
-## Understanding The Page
+## Overview
+An e-commerce page typically includes a variety of different elements and components, each with its own specific nomenclature. These elements include, but are not limited to:
 
+1. The header, which typically includes the logo, main navigation, and search bar.
+2. The product listing, which is the area of the page where products are displayed.
+3. The product details page, which is the page that is shown when a user clicks on a product from the product listing.
+4. The cart, which is where users can view and manage the items they've added to their cart.
+5. The checkout, which is where users can review their cart, enter shipping and payment information, and complete their purchase.
+   
+
+## Understanding The E-commerce Page
 
 Before we delve into the next set of configs, let’s first understand the most common sections present in a search results page or category landing page.  
 A search results page or a category landing page is made up of the following set of sections:
