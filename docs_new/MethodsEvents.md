@@ -138,42 +138,105 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 
 This section documents the different events fired by the Unbxd Library that you can use to perform custom actions. The **onEvent** config function is called
 
-| NAME | SCENARIO WHEN EVENT FIRED | ARGUMENTS | 
-|----------|----------|----------|
-| BEFORE_API_CALL | Right before the search api is called | |
-| AFTER_API_CALL | If the search api call is successful | |
-| BEFORE_RENDER | First step of execution of the **reRender** function | |
-| BEFORE_NO_RESULTS_RENDER | Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function | |
-| AFTER_NO_RESULTS_RENDER | After rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function | |
-| AFTER_RENDER | Last step of execution of the **reRender** function | |
-| DELETE_FACET | Delete Facet action is initiated | 
+## NAME
+BEFORE_API_CALL
+
+## SCENARIO WHEN EVENT FIRED
+Right before the search api is called
+
+## NAME
+AFTER_API_CALL
+
+## SCENARIO WHEN EVENT FIRED
+If the search api call is successful
+
+## NAME
+BEFORE_RENDER
+
+## SCENARIO WHEN EVENT FIRED
+First step of execution of the **reRender** function
+
+## NAME
+BEFORE_NO_RESULTS_RENDER
+
+## SCENARIO WHEN EVENT FIRED
+Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
+
+## NAME
+BEFORE_NO_RESULTS_RENDER
+
+## SCENARIO WHEN EVENT FIRED
+Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
+
+## NAME
+AFTER_NO_RESULTS_RENDER
+
+## SCENARIO WHEN EVENT FIRED
+After rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
+
+## NAME
+AFTER_RENDER
+
+## SCENARIO WHEN EVENT FIRED
+Last step of execution of the **reRender** function
+
+## NAME
+DELETE_FACET
+
+## SCENARIO WHEN EVENT FIRED
+Delete Facet action is initiated
+
+## ARGUMENTS
 ```js
 { facetName }
 ```
-|
-| FACETS_CLICK | Change facet action is initiated | 
+
+## NAME
+FACETS_CLICK
+
+## SCENARIO WHEN EVENT FIRED
+Change facet action is initiated
+
+## ARGUMENTS
 ```js
 {
     facetName,
     facetData
 }
 ```
-|
-| CLEAR_SORT | Current sort data is cleared | |
-| CHANGE_SORT | Sort data is changed with new values on change sort action | 
+
+## NAME
+CLEAR_SORT
+
+## SCENARIO WHEN EVENT FIRED
+Current sort data is cleared
+
+## NAME
+CHANGE_SORT
+
+## SCENARIO WHEN EVENT FIRED
+Sort data is changed with new values on change sort action
+
+## ARGUMENTS
 ```js
 {
     sort:sortVal
 }
 ```
-| 
-| PAGE_NEXT | Next page is triggered | 
+
+## NAME
+PAGE_NEXT
+
+## SCENARIO WHEN EVENT FIRED
+Next page is triggered
+
+## ARGUMENTS
 ```js
 {
     value:next
 }
 ```
-|
+
 
 
 
