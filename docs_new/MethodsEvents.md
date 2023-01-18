@@ -161,7 +161,7 @@ This section documents the different events fired by the Unbxd Library that you 
 
 -   ### Name
     BEFORE_NO_RESULTS_RENDER
-    #### Scenario when event fired
+    ### Scenario when event fired
     Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
 -   ### Name
