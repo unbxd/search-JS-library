@@ -232,6 +232,42 @@ This section documents the different events fired by the Unbxd Library that you 
     }
     ```
 
+-   #### Name
+    CHANGE_INPUT
+    #### Scenario when event fired
+    On keywdown of searchbox element
+
+-   #### Name
+    SET_CATEGORY_FILTER
+    #### Scenario when event fired
+    In search page, if category facet is clicked (**setCategoryFilter** action is used)
+    #### Arguments
+    ```js
+    dataSet
+    ```
+    dataSet: Facet element data set
+
+-   #### Name
+    DELETE_CATEGORY_FILTER
+    #### Scenario when event fired
+    In search page, if category facet is cleared (**clearCategoryFilter** action is used)
+    #### Arguments
+    ```js
+    dataSet
+    ```
+    dataSet: Facet element data set
+
+-   #### Name
+    PAGESIZE_CHANGE
+    #### Scenario when event fired
+    On click of any of the page size options
+    #### Arguments
+    ```js
+    {
+        count:val
+    }
+    ```
+
 
 
 
