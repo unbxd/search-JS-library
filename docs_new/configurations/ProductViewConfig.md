@@ -26,11 +26,15 @@ Grid view, on the other hand, displays products in a grid format with multiple p
 
 Both the grid and list view have their own advantages and disadvantages, and it depends on the e-commerce website which view is used as default or an option for the users to switch between them. Some websites use grid view as the default, while others use list view. Some websites provide an option for the users to switch between views so they can choose which format they prefer.
 
+---
+
 ## Behavior
 
 You can configure the way in which the products have to be displayed (List or Grid) with the Product Views widget.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
+
+---
 
 ## Configurations
 
@@ -48,6 +52,8 @@ Update the options under the “productView” config object to configure the pr
 | tagName | String | "DIV" | html element for the product view type wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"product-view-container"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+
+---
 
 ## Use Cases
 

@@ -18,11 +18,15 @@ nav_order: 12
 
 ## Definition
 
+---
+
 ## Behavior
 Configure the banner display by setting the “banner” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
 
+
+---
 
 ## Configurations
 The following options are available under the object:
@@ -107,6 +111,8 @@ object
 #### Description
 by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object
 
+
+---
 
 ## Use Cases
 

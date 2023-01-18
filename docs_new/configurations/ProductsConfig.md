@@ -25,11 +25,15 @@ The products are usually grouped into categories, like for example clothing, ele
 
 The availability of a wide range of products and the ability to easily find and compare them is a key factor in the success of an e-commerce website, as it helps to attract and retain customers, and ultimately drive sales.
 
+---
+
 ## Behavior
 
 This is the place where products from the search results will be rendered. The template function receives each product object and its position as second argument.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)
+
+---
 
 ## Configurations
 
@@ -50,6 +54,8 @@ The following are the various options available under the “products” config 
 | htmlAttributes | Object | {class:"UNX-search-results-block UNX-result-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
+
+---
 
 ## Use Cases
 

@@ -26,6 +26,8 @@ This feature can help to improve the user experience by reducing the chances of 
 
 Additionally, by using machine learning models, the spell check feature can improve its performance over time, becoming better at recognizing and correcting spelling errors. This can help to increase the chances of users finding the products they are looking for, even if they make a spelling mistake.
 
+---
+
 ## Behavior
 
 The spell check feature provides **spelling suggestions** or **spell-checks** for misspelled search queries.
@@ -33,6 +35,8 @@ The spell check feature provides **spelling suggestions** or **spell-checks** fo
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/spellcheck-1.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/spellcheck-1.png)
 
 In such cases, the context-aware algorithm of Unbxd understands your visitor’s intent and sends a “**Did You Mean**” response along with a search result set for the query, if any.
+
+---
 
 ## Configurations
 
@@ -47,6 +51,8 @@ You can configure the spellcheck feature by updating the required configs under 
 | tagName | String | "DIV" | html element for the spellcheck wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"UNX-spellcheck-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+
+---
 
 ## Use Cases
 

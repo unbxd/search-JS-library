@@ -27,6 +27,8 @@ Both the Site key and API keys are required to properly configure the SDK and al
 
 It's important to keep the Site and API keys safe, as they grant access to the Unbxd service, and should be handled and stored securely, like any other sensitive information.
 
+---
+
 ## Behavior
 
 Once installed, you need to authenticate the Unbxd library using your Unbxd account keys (also known as Authentication Keys).
@@ -45,6 +47,8 @@ For multiple site keys, check if you have:
 
 To get your Site Key and API Key in the console, please refer to the steps mentioned in the [Configure Site section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/).
 
+
+---
 
 ## Configurations
 Pass the Site Key and API Key that you get from the console in the “siteKey” and “APIKey” configs.  

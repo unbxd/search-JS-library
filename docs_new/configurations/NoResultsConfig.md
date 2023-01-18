@@ -21,9 +21,13 @@ A "no results" or "zero results" page is a type of error page that is displayed 
 
 This page usually contains a message indicating that no results were found and often include suggestions such as trying different search terms, modifying the filter settings, or exploring other parts of the website. Sometimes they also include related products or categories as well.
 
+---
+
 ## Behavior
 
 Configure the display to be rendered when there are no results by setting the “noResults” config object.
+
+---
 
 ## Configurations
 

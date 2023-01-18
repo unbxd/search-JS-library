@@ -27,9 +27,13 @@ Additionally, loaders can be used to indicate to users that a server is currentl
 
 It is important to note that using loaders should be balanced with the performance of the website, as excessive use of loaders, or showing loaders for too long can negatively affect the user experience, making the website feel slow or unresponsive.
 
+---
+
 ## Behavior
 
 Configure page loader to be shown when fetching search API results by setting the “loader” config object. 
+
+---
 
 ## Configurations
 

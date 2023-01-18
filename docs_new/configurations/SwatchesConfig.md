@@ -25,6 +25,8 @@ Swatches can also be used for non-color related variations, like for example for
 
 The main advantage of swatches is that it allow users to get a better sense of the product before purchasing and also, it can make it easier for the user to find the exact variant they are looking for by just looking at the visual representation.
 
+---
+
 ## Behavior
 
 Configure swatches display by using the configs in this section.  
@@ -49,6 +51,8 @@ variants:{
 ```
 
 
+---
+
 ## Configurations
 
 The following options are available under the object:
@@ -59,6 +63,8 @@ The following options are available under the object:
 | attributesMap | Object | `{swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}` | Field mapping of the catalog attributes to the swatch attributes |
 | swatchClass | String | "UNX-swatch-btn" | Additional CSS class name for the swatches |
 | template | Function | [default](src/modules/swatches/ui.js) | Customize the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters |
+
+---
 
 ## Use Cases
 
