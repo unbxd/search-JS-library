@@ -139,14 +139,14 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 
 This section documents the different events fired by the Unbxd Library that you can use to perform custom actions. The **onEvent** config function is called
 
--   ##### Name
+-   #### Name
     BEFORE_API_CALL
-    ##### Scenario when event fired
+    #### Scenario when event fired
     Right before the search api is called
 
--   ##### Name
+-   #### Name
     AFTER_API_CALL
-    ##### Scenario when event fired
+    #### Scenario when event fired
     If the search api call is successful
 
 -   #### Name
