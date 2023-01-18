@@ -36,6 +36,103 @@ This section documents the different methods exposed by the sdk/sdk config that 
 | getCategoryId | | Use this config function to return category id for a particular category page |
 | setCategoryId | ({level, parent, name, action}, self) `level: category depth level`,`name: category path name` | In case of multilevel category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the path variable for the search api payload |
 
+Examples:
+```js
+onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
+    if(redirect) {
+        const {
+            value,
+            type
+        } = redirect;
+        if(type === "url") {
+            /** If opening in same tab */
+            if(history.state && history.state.replace) {
+                history.replaceState(null,"",urlBeforeRedirect);
+            }
+            
+            location.href =  value;  
+
+            /** If opening redirect in new tab (rare scenario), 
+             * then browser back + history push on search should be handled by client 
+             * (especially switching betsween category to search page scenarios)
+             * Note: This is not recommended */                                                       
+        }
+        return false;
+    }
+}
+```
+
+```js
+onBackFromRedirect: (hashMode) => {
+    let urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
+    let backFromRedirect = urlSearchParam.get("redirected");
+    if(backFromRedirect) {
+        history.go(-1);
+    }
+}
+```
+
+```js
+onNoUnbxdKeyRouting:() => {
+    history.go();
+}
+```
+
+```js
+setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
+    if (locationParam === newUrl) {
+        return;
+    } else if (productType === "CATEGORY") {
+        /** Do not navigate to base category page  */
+        if (!isUnbxdKey) {
+            history.replaceState(null, "", newUrl);
+        } else {
+            history.pushState(null, "", newUrl);
+        }
+    } else {
+        if ((history.state && history.state.replace) || replace) {
+            history.replaceState(null, "", newUrl);
+        } else {
+            history.pushState(null, "", newUrl);
+        }
+    }
+}
+```
+
+```js
+ setCategoryId: function(param, self) {
+    const {
+        level,
+        parent,
+        name,
+        action
+        } = param;
+        let page = ``;
+        let fPath = ``;
+        let pathArr = [];
+        const l = Number(level);
+        const breadCrumbs = self.getBreadCrumbsList("categoryPath");
+        breadCrumbs.forEach((element,i) => {
+            const {
+                filterField,
+                value
+            } = element;
+            fPath = filterField;
+            if(l > i) {
+                pathArr.push(value);
+            }
+        });
+        if(l>breadCrumbs.length) {
+            pathArr.push(decodeURIComponent(name));  
+        }
+        page = pathArr.join(">");
+        if(window.UnbxdAnalyticsConf) {
+            window.UnbxdAnalyticsConf.page = "categoryPath:\""+page+"\"";
+        }
+}
+```
+
+
 ## Events
 
 This section documents the different events fired by the Unbxd Library that you can use to perform various actions.
