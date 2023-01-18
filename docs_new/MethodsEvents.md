@@ -147,49 +147,67 @@ This section documents the different events fired by the Unbxd Library that you 
     Right before the search api is called
 
 -   ### Name
+    {: .no_toc }
     AFTER_API_CALL
     ### Scenario when event fired
+    {: .no_toc }
     If the search api call is successful
 
 -   ### Name
+    {: .no_toc }
     BEFORE_RENDER
     ### Scenario when event fired
+    {: .no_toc }
     First step of execution of the **reRender** function
 
 -   ### Name
+    {: .no_toc }
     BEFORE_NO_RESULTS_RENDER
     ### Scenario when event fired
+    {: .no_toc }
     Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
 -   ### Name
+    {: .no_toc }
     BEFORE_NO_RESULTS_RENDER
     ### Scenario when event fired
+    {: .no_toc }
     Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
 -   ### Name
+    {: .no_toc }
     AFTER_NO_RESULTS_RENDER
     ### Scenario when event fired
+    {: .no_toc }
     After rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
 
 -   ### Name
+    {: .no_toc }
     AFTER_RENDER
     ### Scenario when event fired
+    {: .no_toc }
     Last step of execution of the **reRender** function
 
 -   ### Name
+    {: .no_toc }
     DELETE_FACET
     ### Scenario when event fired
+    {: .no_toc }
     On deleting a facet. (**deleteFacet** action is used)
     ### Arguments
+    {: .no_toc }
     ```js
     { facetName }
     ```
 
 -   ### Name
+    {: .no_toc }
     FACETS_CLICK
     ### Scenario when event fired
+    {: .no_toc }
     On changing a facet value (**changeFacet** action is used)
     ### Arguments
+    {: .no_toc }
     ```js
     {
         facetName,
@@ -198,15 +216,20 @@ This section documents the different events fired by the Unbxd Library that you 
     ```
 
 -   ### Name
+    {: .no_toc }
     CLEAR_SORT
     ### Scenario when event fired
+    {: .no_toc }
     Current sort data is cleared (**clearSort** action is used)
 
 -   ### Name
+    {: .no_toc }
     CHANGE_SORT
     ### Scenario when event fired
+    {: .no_toc }
     Sort data is changed with new values (**changeSort** action is used)
     ### Arguments
+    {: .no_toc }
     ```js
     {
         sort:sortVal
@@ -214,10 +237,13 @@ This section documents the different events fired by the Unbxd Library that you 
     ```
 
 -   ### Name
+    {: .no_toc }
     PAGE_NEXT
     ### Scenario when event fired
+    {: .no_toc }
     On click of a next page (**next** action is used)
     ### Arguments
+    {: .no_toc }
     ```js
     {
         value:next
@@ -225,10 +251,13 @@ This section documents the different events fired by the Unbxd Library that you 
     ```
 
 -   ### Name
+    {: .no_toc }
     PAGE_PREV
     ### Scenario when event fired
+    {: .no_toc }
     On click of a previous page (**prev** action is used)
     ### Arguments
+    {: .no_toc }
     ```js
     {
         value:prev
@@ -236,35 +265,46 @@ This section documents the different events fired by the Unbxd Library that you 
     ```
 
 -   ### Name
+    {: .no_toc }
     CHANGE_INPUT
     ### Scenario when event fired
+    {: .no_toc }
     On keywdown of searchbox element
 
 -   ### Name
+    {: .no_toc }
     SET_CATEGORY_FILTER
     ### Scenario when event fired
+    {: .no_toc }
     In search page, if category facet is clicked (**setCategoryFilter** action is used)
     ### Arguments
+    {: .no_toc }
     ```js
     dataSet
     ```
     dataSet: Facet element data set
 
 -   ### Name
+    {: .no_toc }
     DELETE_CATEGORY_FILTER
     ### Scenario when event fired
+    {: .no_toc }
     In search page, if category facet is cleared (**clearCategoryFilter** action is used)
     ### Arguments
+    {: .no_toc }
     ```js
     dataSet
     ```
     dataSet: Facet element data set
 
 -   ### Name
+    {: .no_toc }
     PAGESIZE_CHANGE
     ### Scenario when event fired
+    {: .no_toc }
     On click of any of the page size options
     ### Arguments
+    {: .no_toc }
     ```js
     {
         count:val
