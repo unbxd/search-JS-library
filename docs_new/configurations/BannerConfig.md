@@ -28,6 +28,35 @@ Configure the banner display by setting the “banner” config object.
 ## Configuration
 The following options are available under the object:
 
+### enabled
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn this flag on for enabling Banner
+
+#### Default Value
+false
+
+#### Available Options
+true, false
+
+
+### el
+{: .d-inline-block }
+
+Element
+{: .label  }
+
+Element in which to render the Banner component
+
+#### Default Value
+null
+
+#### Available Options
+document.getElementById(), document.getElementsByClassName(), document.getElementsByName(), document.getElementsByTagName(), document.getElementsByTagNameNS()
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | enabled | Boolean | false | Turn this flag on for enabling Banner |
