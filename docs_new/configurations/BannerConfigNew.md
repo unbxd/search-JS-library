@@ -108,7 +108,7 @@ object
 by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object
 
 
-## Use Cases
+## Examples
 
 ### Sample Example
 

@@ -60,7 +60,7 @@ The following options are available under the object:
 | swatchClass | String | "UNX-swatch-btn" | Additional CSS class name for the swatches |
 | template | Function | [default](src/modules/swatches/ui.js) | Customize the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters |
 
-## Use Cases
+## Examples
 
 ### Sample Example
 Sample “swatches” config
