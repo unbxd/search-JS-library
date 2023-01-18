@@ -41,7 +41,7 @@ This feature is applicable for all numeric searchable fields.
 ### Multilevel facets
 Multilevel facets are a special kind of facets which is applicable only for the fields belonging to the path fieldType supporting the hierarchy returns the facet values in the hierarchial.
 
-## Configuration
+## Configurations
 
 To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
 

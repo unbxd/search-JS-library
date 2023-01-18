@@ -30,7 +30,7 @@ Page Size widget allows you to configure the number of products shown on each pa
 
 
 
-## Configuration
+## Configurations
 To render the Page Size widget, you need to configure the “pageSize” config object.
 
 The following are the various options available under the object: 

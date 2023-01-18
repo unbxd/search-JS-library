@@ -34,7 +34,7 @@ Sorting allows you to rearrange the search results based on certain fields in a 
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/sort-options-main.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/sort-options-main.png)
 
-## Configuration
+## Configurations
 
 The following are the various options available under the object:
 

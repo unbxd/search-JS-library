@@ -49,7 +49,7 @@ variants:{
 ```
 
 
-## Configuration
+## Configurations
 
 The following options are available under the object:
 

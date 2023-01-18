@@ -31,7 +31,7 @@ Configure variants display by setting the “variants” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/variants-SDK.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/variants-SDK.png)
 
-## Configuration
+## Configurations
 
 The following options are available under the object:
 

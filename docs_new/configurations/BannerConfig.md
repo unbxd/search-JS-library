@@ -25,7 +25,7 @@ Configure the banner display by setting the “banner” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
 
-## Configuration
+## Configurations
 The following options are available under the object:
 
 ### enabled
@@ -37,9 +37,11 @@ Boolean
 Turn this flag on for enabling Banner
 
 #### Default Value
+{: .no_toc }
 false
 
 #### Available Options
+{: .no_toc }
 true, false
 
 ---
@@ -53,9 +55,11 @@ Element
 Element in which to render the Banner component
 
 #### Default Value
+{: .no_toc }
 null
 
 #### Available Options
+{: .no_toc }
 getElementById(), getElementsByClassName(), getElementsByName(), etc.
 
 ---
@@ -76,6 +80,7 @@ Expected return value: HTML string
 
 
 #### Default Value
+{: .no_toc }
 ```js
 function (banners, bannerOpts) => {
     const {
@@ -104,6 +109,7 @@ function (banners, bannerOpts) => {
 }
 ```
 #### Available Options
+{: .no_toc }
 This function can be overwritten to customize the banner.
 
 ---
@@ -117,9 +123,11 @@ Number
 Indicates the number of banners to be shown
 
 #### Default Value
+{: .no_toc }
 1
 
 #### Available Options
+{: .no_toc }
 true, false
 
 ---
@@ -133,9 +141,11 @@ Boolean
 By default landing page url load in same tab, if you want to load in another tab configured it to true
 
 #### Default Value
+{: .no_toc }
 false
 
 #### Available Options
+{: .no_toc }
 true, false
 
 --- 
@@ -149,9 +159,11 @@ String
 This is the html element for the banner wrapper. by default it is div.
 
 #### Default Value
+{: .no_toc }
 'div'
 
 #### Available Options
+{: .no_toc }
 Any valid html tag in which you like the banner code to be wrapped in.
 
 --- 
@@ -165,11 +177,13 @@ Object
 By default it contains classes for the wrapper. you can add more classes or any attributes.
 
 #### Default Value
+{: .no_toc }
 ```js
 {class:"UNX-banner-block"}
 ```
 
 #### Available Options
+{: .no_toc }
 Any valid html attribute can be passed as `key: value` pairs inside an object.
 
 --- 
@@ -183,11 +197,13 @@ Object
 By default it will be empty. You can add further javascript events by keys and function as values. context will be the current object.
 
 #### Default Value
+{: .no_toc }
 ```js
 {}
 ```
 
 #### Available Options
+{: .no_toc }
 You can add further javascript events by keys and function as values. context will be the current object.
 
 --- 

@@ -59,7 +59,7 @@ If you wish to have a button to load next results, you can choose this option
 If you wish to load new results by scrolling down, you can configure this option
 
 
-## Configuration
+## Configurations
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
 

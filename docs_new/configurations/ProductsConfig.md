@@ -31,7 +31,7 @@ This is the place where products from the search results will be rendered. The t
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)
 
-## Configuration
+## Configurations
 
 The following are the various options available under the “products” config object:
 

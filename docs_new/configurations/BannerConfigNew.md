@@ -24,7 +24,7 @@ Configure the banner display by setting the “banner” config object.
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
 
 
-## Configuration
+## Configurations
 The following options are available under the object:
 
 ### enabled
