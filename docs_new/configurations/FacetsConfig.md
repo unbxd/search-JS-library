@@ -22,8 +22,6 @@ In e-commerce, facets (also known as filters or attributes) are a way to allow c
 
 For example, an e-commerce website for clothing would have facets such as Size, Color, Material, Brand, Gender and so on. By selecting options from the available facets, customers can narrow down the search results to only show products that match the criteria they've selected. This can make it easier for customers to find the specific products they're looking for, and can also increase the chances that they'll make a purchase.
 
----
-
 ## Behavior
 
 Facets are the products filters provided on your webpage which allows customers to narrow down the search result set.
@@ -42,8 +40,6 @@ This feature is applicable for all numeric searchable fields.
 
 ### Multilevel facets
 Multilevel facets are a special kind of facets which is applicable only for the fields belonging to the path fieldType supporting the hierarchy returns the facet values in the hierarchial.
-
----
 
 ## Configurations
 
@@ -87,8 +83,6 @@ To render the facets on the search results page,  you can use the “facet” c
 | htmlAttributes               | Object   | {class:"UNX-facets-results-block"}                                             | by default it contains classes for the wrapper. you can add more classes or any attributes                                                                                                                                                                                                                                                                               |
 | events                       | object   | {}                                                                             | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.                                                                                                                                                                                                                                   |
 
-
----
 
 ## Use Cases
 

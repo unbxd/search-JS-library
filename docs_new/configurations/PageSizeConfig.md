@@ -23,16 +23,12 @@ The purpose of this feature is to help users quickly find and view the products 
 
 Some e-commerce websites also provide pagination options so that users can navigate through the pages of search results or product listings by clicking on page numbers or next/previous buttons.
 
----
-
 ## Behavior
 Page Size widget allows you to configure the number of products shown on each page. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3 then 15 or 18 or 21).
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)  
 
 
-
----
 
 ## Configurations
 To render the Page Size widget, you need to configure the “pageSize” config object.
@@ -52,8 +48,6 @@ The following are the various options available under the object:
 | tagName | String | "DIV" | html element for the page size wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"UNX-selected-pagesize"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
-
----
 
 ## Use Cases
 

@@ -20,14 +20,10 @@ nav_order: 12
 
 In e-commerce, a banner is a graphical advertisement that is typically displayed on a web page or email. Banners are often used to promote a product or service, or to direct visitors to a specific landing page. They can come in a variety of sizes and formats, such as static images, animated gifs, or video. Banners are often used as part of online advertising campaigns to generate more traffic to a website and to increase conversions and sales.
 
----
-
 ## Behavior
 Configure the banner display by setting the “banner” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
-
----
 
 ## Configurations
 The following options are available under the object:
@@ -212,8 +208,6 @@ You can add further javascript events by keys and function as values. context wi
 
 --- 
 
-
----
 
 ## Use Cases
 

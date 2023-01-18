@@ -32,8 +32,6 @@ It's important to note that the pagination should be consistent, clear, and easy
 
 
 
----
-
 ## Behavior
 
 This feature will helps the users to navigate the products for any search/browse request. In many applications the UI for these sorted results are displayed to the user in "pages" containing a fixed number of matching results, and users don’t typically look at results past the first few pages worth of results.
@@ -61,8 +59,6 @@ If you wish to have a button to load next results, you can choose this option
 If you wish to load new results by scrolling down, you can configure this option
 
 
----
-
 ## Configurations
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
@@ -83,8 +79,6 @@ You can configure the pagination feature by updating the required configs under 
 | tagName | String | "DIV" | html element for the pagination wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"UNX-pagination-size-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
-
----
 
 ## Use Cases
 

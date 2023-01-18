@@ -28,14 +28,10 @@ Additionally, it can help users that are not familiar with the website structure
 
 Breadcrumbs can also be used to highlight the relevance of the product or category that user is currently browsing in the website.
 
----
-
 ## Behavior
 To render the breadcrumb component, set the “breadcrumb” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
-
----
 
 ## Configurations
 The following options are available under the breadcrumb:
@@ -50,8 +46,6 @@ The following options are available under the breadcrumb:
 | tagName | String | "DIV" | html element for the breadcrumb wrapper. by default it is div.  |
 | htmlAttributes | Object | {class:"UNX-breadcrumbs-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
-
----
 
 ## Use Cases
 
