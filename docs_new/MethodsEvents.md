@@ -138,55 +138,55 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 
 This section documents the different events fired by the Unbxd Library that you can use to perform custom actions. The **onEvent** config function is called
 
-## Name
+### Name
 BEFORE_API_CALL
-## Scenario when event fired
+### Scenario when event fired
 Right before the search api is called
 
-## Name
+### Name
 AFTER_API_CALL
-## Scenario when event fired
+### Scenario when event fired
 If the search api call is successful
 
-## Name
+### Name
 BEFORE_RENDER
-## Scenario when event fired
+### Scenario when event fired
 First step of execution of the **reRender** function
 
-## Name
+### Name
 BEFORE_NO_RESULTS_RENDER
-## Scenario when event fired
+### Scenario when event fired
 Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
-## Name
+### Name
 BEFORE_NO_RESULTS_RENDER
-## Scenario when event fired
+### Scenario when event fired
 Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
-## Name
+### Name
 AFTER_NO_RESULTS_RENDER
-## Scenario when event fired
+### Scenario when event fired
 After rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
 
-## Name
+### Name
 AFTER_RENDER
-## Scenario when event fired
+### Scenario when event fired
 Last step of execution of the **reRender** function
 
-## Name
+### Name
 DELETE_FACET
-## Scenario when event fired
+### Scenario when event fired
 Delete Facet action is initiated
-## Arguments
+### Arguments
 ```js
 { facetName }
 ```
 
-## Name
+### Name
 FACETS_CLICK
-## Scenario when event fired
+### Scenario when event fired
 Change facet action is initiated
-## Arguments
+### Arguments
 ```js
 {
     facetName,
@@ -194,27 +194,27 @@ Change facet action is initiated
 }
 ```
 
-## Name
+### Name
 CLEAR_SORT
-## Scenario when event fired
+### Scenario when event fired
 Current sort data is cleared
 
-## Name
+### Name
 CHANGE_SORT
-## Scenario when event fired
+### Scenario when event fired
 Sort data is changed with new values on change sort action
-## Arguments
+### Arguments
 ```js
 {
     sort:sortVal
 }
 ```
 
-## Name
+### Name
 PAGE_NEXT
-## Scenario when event fired
+### Scenario when event fired
 Next page is triggered
-## Arguments
+### Arguments
 ```js
 {
     value:next
