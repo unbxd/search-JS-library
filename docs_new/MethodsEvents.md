@@ -139,55 +139,55 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 
 This section documents the different events fired by the Unbxd Library that you can use to perform custom actions. The **onEvent** config function is called
 
--   #### Name
+-   ### Name
     BEFORE_API_CALL
-    #### Scenario when event fired
+    ### Scenario when event fired
     Right before the search api is called
 
--   #### Name
+-   ### Name
     AFTER_API_CALL
-    #### Scenario when event fired
+    ### Scenario when event fired
     If the search api call is successful
 
--   #### Name
+-   ### Name
     BEFORE_RENDER
-    #### Scenario when event fired
+    ### Scenario when event fired
     First step of execution of the **reRender** function
 
--   #### Name
+-   ### Name
+    BEFORE_NO_RESULTS_RENDER
+    ### Scenario when event fired
+    Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
+
+-   ### Name
     BEFORE_NO_RESULTS_RENDER
     #### Scenario when event fired
     Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
--   #### Name
-    BEFORE_NO_RESULTS_RENDER
-    #### Scenario when event fired
-    Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
-
--   #### Name
+-   ### Name
     AFTER_NO_RESULTS_RENDER
-    #### Scenario when event fired
+    ### Scenario when event fired
     After rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
 
--   #### Name
+-   ### Name
     AFTER_RENDER
-    #### Scenario when event fired
+    ### Scenario when event fired
     Last step of execution of the **reRender** function
 
--   #### Name
+-   ### Name
     DELETE_FACET
-    #### Scenario when event fired
+    ### Scenario when event fired
     On deleting a facet. (**deleteFacet** action is used)
-    #### Arguments
+    ### Arguments
     ```js
     { facetName }
     ```
 
--   #### Name
+-   ### Name
     FACETS_CLICK
-    #### Scenario when event fired
+    ### Scenario when event fired
     On changing a facet value (**changeFacet** action is used)
-    #### Arguments
+    ### Arguments
     ```js
     {
         facetName,
@@ -195,74 +195,74 @@ This section documents the different events fired by the Unbxd Library that you 
     }
     ```
 
--   #### Name
+-   ### Name
     CLEAR_SORT
-    #### Scenario when event fired
+    ### Scenario when event fired
     Current sort data is cleared (**clearSort** action is used)
 
--   #### Name
+-   ### Name
     CHANGE_SORT
-    #### Scenario when event fired
+    ### Scenario when event fired
     Sort data is changed with new values (**changeSort** action is used)
-    #### Arguments
+    ### Arguments
     ```js
     {
         sort:sortVal
     }
     ```
 
--   #### Name
+-   ### Name
     PAGE_NEXT
-    #### Scenario when event fired
+    ### Scenario when event fired
     On click of a next page (**next** action is used)
-    #### Arguments
+    ### Arguments
     ```js
     {
         value:next
     }
     ```
 
--   #### Name
+-   ### Name
     PAGE_PREV
-    #### Scenario when event fired
+    ### Scenario when event fired
     On click of a previous page (**prev** action is used)
-    #### Arguments
+    ### Arguments
     ```js
     {
         value:prev
     }
     ```
 
--   #### Name
+-   ### Name
     CHANGE_INPUT
-    #### Scenario when event fired
+    ### Scenario when event fired
     On keywdown of searchbox element
 
--   #### Name
+-   ### Name
     SET_CATEGORY_FILTER
-    #### Scenario when event fired
+    ### Scenario when event fired
     In search page, if category facet is clicked (**setCategoryFilter** action is used)
-    #### Arguments
+    ### Arguments
     ```js
     dataSet
     ```
     dataSet: Facet element data set
 
--   #### Name
+-   ### Name
     DELETE_CATEGORY_FILTER
-    #### Scenario when event fired
+    ### Scenario when event fired
     In search page, if category facet is cleared (**clearCategoryFilter** action is used)
-    #### Arguments
+    ### Arguments
     ```js
     dataSet
     ```
     dataSet: Facet element data set
 
--   #### Name
+-   ### Name
     PAGESIZE_CHANGE
-    #### Scenario when event fired
+    ### Scenario when event fired
     On click of any of the page size options
-    #### Arguments
+    ### Arguments
     ```js
     {
         count:val
