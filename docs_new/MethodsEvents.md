@@ -148,78 +148,90 @@ This section documents the different events fired by the Unbxd Library that you 
     ##### Scenario when event fired
     If the search api call is successful
 
-### Name
-BEFORE_RENDER
-### Scenario when event fired
-First step of execution of the **reRender** function
+-   #### Name
+    BEFORE_RENDER
+    #### Scenario when event fired
+    First step of execution of the **reRender** function
 
-### Name
-BEFORE_NO_RESULTS_RENDER
-### Scenario when event fired
-Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
+-   #### Name
+    BEFORE_NO_RESULTS_RENDER
+    #### Scenario when event fired
+    Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
-### Name
-BEFORE_NO_RESULTS_RENDER
-### Scenario when event fired
-Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
+-   #### Name
+    BEFORE_NO_RESULTS_RENDER
+    #### Scenario when event fired
+    Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
-### Name
-AFTER_NO_RESULTS_RENDER
-### Scenario when event fired
-After rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
+-   #### Name
+    AFTER_NO_RESULTS_RENDER
+    #### Scenario when event fired
+    After rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
 
-### Name
-AFTER_RENDER
-### Scenario when event fired
-Last step of execution of the **reRender** function
+-   #### Name
+    AFTER_RENDER
+    #### Scenario when event fired
+    Last step of execution of the **reRender** function
 
-### Name
-DELETE_FACET
-### Scenario when event fired
-Delete Facet action is initiated
-### Arguments
-```js
-{ facetName }
-```
+-   #### Name
+    DELETE_FACET
+    #### Scenario when event fired
+    On deleting a facet. (**deleteFacet** action is used)
+    #### Arguments
+    ```js
+    { facetName }
+    ```
 
-### Name
-FACETS_CLICK
-### Scenario when event fired
-Change facet action is initiated
-### Arguments
-```js
-{
-    facetName,
-    facetData
-}
-```
+-   #### Name
+    FACETS_CLICK
+    #### Scenario when event fired
+    On changing a facet value (**changeFacet** action is used)
+    #### Arguments
+    ```js
+    {
+        facetName,
+        facetData
+    }
+    ```
 
-### Name
-CLEAR_SORT
-### Scenario when event fired
-Current sort data is cleared
+-   #### Name
+    CLEAR_SORT
+    #### Scenario when event fired
+    Current sort data is cleared (**clearSort** action is used)
 
-### Name
-CHANGE_SORT
-### Scenario when event fired
-Sort data is changed with new values on change sort action
-### Arguments
-```js
-{
-    sort:sortVal
-}
-```
+-   #### Name
+    CHANGE_SORT
+    #### Scenario when event fired
+    Sort data is changed with new values (**changeSort** action is used)
+    #### Arguments
+    ```js
+    {
+        sort:sortVal
+    }
+    ```
 
-### Name
-PAGE_NEXT
-### Scenario when event fired
-Next page is triggered
-### Arguments
-```js
-{
-    value:next
-}
-```
+-   #### Name
+    PAGE_NEXT
+    #### Scenario when event fired
+    On click of a next page (**next** action is used)
+    #### Arguments
+    ```js
+    {
+        value:next
+    }
+    ```
+
+-   #### Name
+    PAGE_PREV
+    #### Scenario when event fired
+    On click of a previous page (**prev** action is used)
+    #### Arguments
+    ```js
+    {
+        value:prev
+    }
+    ```
+
 
 
 
