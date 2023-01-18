@@ -35,7 +35,8 @@ This section documents the different methods exposed by the sdk/sdk config that 
 | setRangeSlider |  | Call this method to update the range filter value. Ex:`unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
 | getCategoryId | | Use this config function to return category id for a particular category page |
 | setCategoryId | ({level, parent, name, action}, self) `level: category depth level`,`name: category path name` | In case of multilevel category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the path variable for the search api payload |
-| onEvent | (instance,type,state) `type: Name of the event, state: Event state metadata`| Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events)
+| onEvent | (instance,type,state) `type: Name of the event, state: Event state metadata`| Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events) |
+| onAction | (element,context) `element: html element on which the action is triggered, context:context object`| Use this config function for facet element handlers like **change**, **keyup**, **click** |
 
 Examples:
 ```js
