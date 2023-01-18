@@ -20,7 +20,7 @@ nav_order: 4
 This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
 
 
-| OPTIONS | ARGUMENTS | DESCRIPTION |
+| OPTIONS | Arguments | DESCRIPTION |
 |----------|----------|----------|
 | reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
 | updateConfig | (config) | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
@@ -138,66 +138,55 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 
 This section documents the different events fired by the Unbxd Library that you can use to perform custom actions. The **onEvent** config function is called
 
-## NAME
+## Name
 BEFORE_API_CALL
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Right before the search api is called
 
-## NAME
+## Name
 AFTER_API_CALL
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 If the search api call is successful
 
-## NAME
+## Name
 BEFORE_RENDER
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 First step of execution of the **reRender** function
 
-## NAME
+## Name
 BEFORE_NO_RESULTS_RENDER
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
-## NAME
+## Name
 BEFORE_NO_RESULTS_RENDER
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 
-## NAME
+## Name
 AFTER_NO_RESULTS_RENDER
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 After rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
 
-## NAME
+## Name
 AFTER_RENDER
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Last step of execution of the **reRender** function
 
-## NAME
+## Name
 DELETE_FACET
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Delete Facet action is initiated
-
-## ARGUMENTS
+## Arguments
 ```js
 { facetName }
 ```
 
-## NAME
+## Name
 FACETS_CLICK
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Change facet action is initiated
-
-## ARGUMENTS
+## Arguments
 ```js
 {
     facetName,
@@ -205,32 +194,27 @@ Change facet action is initiated
 }
 ```
 
-## NAME
+## Name
 CLEAR_SORT
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Current sort data is cleared
 
-## NAME
+## Name
 CHANGE_SORT
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Sort data is changed with new values on change sort action
-
-## ARGUMENTS
+## Arguments
 ```js
 {
     sort:sortVal
 }
 ```
 
-## NAME
+## Name
 PAGE_NEXT
-
-## SCENARIO WHEN EVENT FIRED
+## Scenario when event fired
 Next page is triggered
-
-## ARGUMENTS
+## Arguments
 ```js
 {
     value:next
