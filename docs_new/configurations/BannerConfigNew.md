@@ -110,7 +110,7 @@ by default it will be empty. you can add further javascript events by keys and f
 
 ## Examples
 
-### Sample Example
+### Default Example
 
 Sample banner configuration
 

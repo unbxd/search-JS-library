@@ -49,7 +49,7 @@ The following options are available under the breadcrumb:
 
 ## Examples
 
-### Sample Example
+### Default Example
 
 Sample code for the breadcrumbs widget
 ```js

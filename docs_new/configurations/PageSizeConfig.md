@@ -51,7 +51,7 @@ The following are the various options available under the object:
 
 ## Examples
 
-### Sample Example
+### Default Example
 Sample “pageSize” config
 ```js
 pageSize: {

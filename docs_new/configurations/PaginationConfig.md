@@ -82,7 +82,7 @@ You can configure the pagination feature by updating the required configs under 
 
 ## Examples
 
-### Sample Example
+### Default Example
 
 Sample “pagination” config
 

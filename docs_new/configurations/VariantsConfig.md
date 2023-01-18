@@ -46,7 +46,7 @@ The following options are available under the object:
 
 ## Examples
 
-### Sample Example 
+### Default Example 
 
 Sample “variants” config
 

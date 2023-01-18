@@ -50,7 +50,7 @@ You can configure the spellcheck feature by updating the required configs under 
 
 ## Examples
 
-### Sample Example
+### Default Example
 Sample “spellCheck” config
 
 ```js

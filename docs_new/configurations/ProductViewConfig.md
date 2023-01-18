@@ -51,7 +51,7 @@ Update the options under the “productView” config object to configure the pr
 
 ## Examples
 
-### Sample Example
+### Default Example
 Sample “productView” config
 
 ```js

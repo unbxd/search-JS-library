@@ -211,7 +211,7 @@ You can add further javascript events by keys and function as values. context wi
 
 ## Examples
 
-### Sample Example
+### Default Example
 
 Sample banner configuration
 

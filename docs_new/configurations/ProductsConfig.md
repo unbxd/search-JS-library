@@ -53,7 +53,7 @@ The following are the various options available under the “products” config 
 
 ## Examples
 
-### Sample Example
+### Default Example
 
 Sample “products” config:
 

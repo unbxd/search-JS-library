@@ -86,7 +86,7 @@ To render the facets on the search results page,  you can use the “facet” c
 
 ## Examples
 
-### Sample Example
+### Default Example
 
 Sample “facet” config
 ```js
