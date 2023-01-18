@@ -35,7 +35,7 @@ This section documents the different methods exposed by the sdk/sdk config that 
 | setRangeSlider |  | Call this method to update the range filter value. Ex:`unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})` |
 | getCategoryId | | Use this config function to return category id for a particular category page |
 | setCategoryId | ({level, parent, name, action}, self) `level: category depth level`,`name: category path name` | In case of multilevel category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the path variable for the search api payload |
-| onEvent | (instance,type,state) `type: Name of the event, state: Event state metadata`| Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#Events)
+| onEvent | (instance,type,state) `type: Name of the event, state: Event state metadata`| Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events)
 
 Examples:
 ```js
@@ -139,17 +139,18 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 This section documents the different events fired by the Unbxd Library that you can use to perform custom actions. The **onEvent** config function is called
 
 | NAME | SCENARIO WHEN EVENT FIRED | ARGUMENTS | 
-|----------|----------|
-| BEFORE_API_CALL | Right before the search api is called |
-| AFTER_API_CALL | If the search api call is successful |
-| BEFORE_RENDER | First step of execution of the **reRender** function |
-| BEFORE_NO_RESULTS_RENDER | Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function |
-| AFTER_NO_RESULTS_RENDER | After rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function |
-| AFTER_RENDER | Last step of execution of the **reRender** function |
+|----------|----------|----------|
+| BEFORE_API_CALL | Right before the search api is called | |
+| AFTER_API_CALL | If the search api call is successful | |
+| BEFORE_RENDER | First step of execution of the **reRender** function | |
+| BEFORE_NO_RESULTS_RENDER | Before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function | |
+| AFTER_NO_RESULTS_RENDER | After rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function | |
+| AFTER_RENDER | Last step of execution of the **reRender** function | |
 | DELETE_FACET | Delete Facet action is initiated | 
 ```js
 { facetName }
 ```
+|
 | FACETS_CLICK | Change facet action is initiated | 
 ```js
 {
@@ -158,13 +159,14 @@ This section documents the different events fired by the Unbxd Library that you 
 }
 ```
 |
-| CLEAR_SORT | Current sort data is cleared |
+| CLEAR_SORT | Current sort data is cleared | |
 | CHANGE_SORT | Sort data is changed with new values on change sort action | 
 ```js
 {
     sort:sortVal
 }
 ```
+| 
 | PAGE_NEXT | Next page is triggered | 
 ```js
 {
