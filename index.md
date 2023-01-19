@@ -47,7 +47,7 @@ It's important to note that the nomenclature and the elements present on the e-c
 ---
 
 {: .info }
-> IMPORTANT: This document is ONLY for the customers using the new console. For the older version, [refer to the documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/). Since we are gradually migrating all our customers toward our new upgraded console, we would slowly deprecate the older version. 
+> IMPORTANT: This document is ONLY for the customers using the new console. For the older version, [refer to the documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/). Since we are gradually migrating all our customers toward our new upgraded console, we would slowly **deprecate** the older version. 
 
 
 ## Important Note
