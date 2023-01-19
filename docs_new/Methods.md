@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Methods and Events
+title: Methods
 nav_order: 4
 ---
 

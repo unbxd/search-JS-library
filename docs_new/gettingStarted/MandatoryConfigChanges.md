@@ -1,0 +1,43 @@
+---
+layout: default
+title: Mandatory config changes
+nav_order: 2
+has_children: true
+permalink: docs_new/gettingStarted
+---
+
+# Mandatory Config Changes
+{: .fs-9 .no_toc }
+
+---
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+Customize the config inside **src/js/index.js** as per the feed:
+1. Change **siteKey** and **apiKey**.
+```js
+siteKey: "<<site key>>",
+apiKey: "<<api key>>"
+```
+2. Modify **attributesMap** inside **products** object.
+    ```js
+    attributesMap: {
+    "unxTitle": "<<title attribute>>",
+    "unxImageUrl": "<<image url attribute>>",
+    "unxPrice": "<<price attribute>>",
+    "unxDescription":"<<description attribute>>"
+    };
+    ```
+3. Provide **product attributes** to be returned from the search api:
+    ```js
+    productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
+    ```
+4. Configure the correct category ids for the **UnbxdAnalyticsConf** window object in the   following places:<br/>
+
+    [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid1.png)](UnbxdAnalyticsConf variable configuration)
+    
+    [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/>

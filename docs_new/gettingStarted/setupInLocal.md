@@ -23,8 +23,7 @@ parent: Getting Started
 
     [![Click on Export to ZIP option](../assets/zip.png)](ZIP from codesandbox)
 3. Unzip the folder
-4.  ## Code Config customizations
-    Customize the config inside **src/js** as per the feed:
+4.  Customize the config inside **src/js/index.js** as per the feed:
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
