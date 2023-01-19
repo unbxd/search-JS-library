@@ -17,6 +17,8 @@ nav_order: 17
 ---
 
 ## Other Configurations
+ 
+something
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
