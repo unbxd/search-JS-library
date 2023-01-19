@@ -59,7 +59,7 @@ The following options are available under the object:
 Boolean
 {: .label }
 
-Turn this flag on for enabling Banner
+Turn this flag on for enabling swatches
 
 #### Default Value
 {: .no_toc }
@@ -71,21 +71,87 @@ true, false
 
 ---
 
-### el
+### attributesMap
 {: .d-inline-block }
 
-Element
+Object
 {: .label  }
 
-Element in which to render the Banner component
+Field mapping of the catalog attributes to the swatch attributes
 
 #### Default Value
 {: .no_toc }
-null
+{swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
 
 #### Usecases
 {: .no_toc }
-getElementById(), getElementsByClassName(), getElementsByName(), etc.
+
+---
+### swatchClass
+{: .d-inline-block }
+
+String
+{: .label  }
+
+Additional CSS class name for the swatches
+
+#### Default Value
+{: .no_toc }
+“UNX-swatch-btn”
+
+#### Usecases
+{: .no_toc }
+
+---
+### template
+{: .d-inline-block }
+
+Function
+{: .label  }
+
+Customize the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters
+
+#### Default Value
+{: .no_toc }
+```js
+
+export default function(swatchData, swatches,product) {
+    const {
+        swatchImgs = []
+    } = swatchData;
+    let btnUI = ``;
+    let btnList = ``;
+    let imgsUI = ``;
+    const {
+        swatchClass
+    } = swatches;
+    const {
+        UNX_swatchClrBtn
+    } = this.testIds;
+    const {
+        unxTitle
+    } = product;
+    if(swatchImgs.length > 1) {
+        swatchImgs.forEach((item,id) => {
+            const sid = this.generateRid("unx_swatch_");
+            const sCss = (id === 0) ? '':' UNX-swatch-hidden';
+            const bCss = (id === 0) ? ' UNX-selected-swatch':'';
+            const data = item.split("::");
+            if(data){
+                btnUI+= [`<button value="swatch color ${data[0]}" data-test-id="${UNX_swatchClrBtn}${id}" data-swatch-id="${sid}" data-action="changeSwatch" class="${swatchClass} ${sid} ${bCss}" style="background-color:${data[0]}"> swatch color ${data[0]} </button>`].join('');
+                imgsUI+=`<div id="${sid}" class="UNX-img-wrapper ${sCss}"><img alt="${unxTitle} for the ${data[0]}" class="UNX-img-block" src="${data[1]}"/></div>`
+            }
+        });
+        btnList = `<div class="UNX-swatch-color-list">${btnUI}</div>`;
+    }
+    return {
+        btnList:btnList,
+        imgList:imgsUI,
+    };
+};
+```
+#### Usecases
+{: .no_toc }
 
 ---
 
