@@ -34,7 +34,7 @@ The spell check feature provides **spelling suggestions** or **spell-checks** fo
 
 In such cases, the context-aware algorithm of Unbxd understands your visitor’s intent and sends a “**Did You Mean**” response along with a search result set for the query, if any.
 
-## Configuration
+## Configurations
 
 You can configure the spellcheck feature by updating the required configs under the “spellCheck” config object.  
 
@@ -48,9 +48,9 @@ You can configure the spellcheck feature by updating the required configs under 
 | htmlAttributes | Object | {class:"UNX-spellcheck-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
-## Use Cases
+## Examples
 
-### Sample Example
+### Default Example
 Sample “spellCheck” config
 
 ```js
