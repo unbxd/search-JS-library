@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Mandatory config changes
+title: Integrate with your site
 nav_order: 2
 has_children: true
 permalink: docs_new/gettingStarted
 ---
 
-# Mandatory Config Changes
+# Integrate with your site
 {: .fs-9 .no_toc }
 
 ---
