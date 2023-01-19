@@ -31,7 +31,7 @@ It is important to note that using loaders should be balanced with the performan
 
 Configure page loader to be shown when fetching search API results by setting the “loader” config object. 
 
-## Configuration
+## Configurations
 
 The following options are available under the object:  
 

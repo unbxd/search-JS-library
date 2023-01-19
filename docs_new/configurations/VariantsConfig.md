@@ -31,7 +31,7 @@ Configure variants display by setting the “variants” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/variants-SDK.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/variants-SDK.png)
 
-## Configuration
+## Configurations
 
 The following options are available under the object:
 
@@ -44,9 +44,9 @@ The following options are available under the object:
 | mapping                   	| Object   	| `{"image_url": "v_imageUrl"}` | Field mapping of the catalog attributes to the variant attributes. This is needed to render the variant information correctly. |
 
 
-## Use Cases
+## Examples
 
-### Sample Example 
+### Default Example 
 
 Sample “variants” config
 

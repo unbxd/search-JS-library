@@ -27,7 +27,7 @@ Search bar feature can include an autocomplete functionality which suggest or dr
 
 The search bar is an important tool for e-commerce websites as it allows users to easily find the products they are looking for and help to increase the chance of them making a purchase.
 
-## Configuration
+## Configurations
 
 The following two configurations are used by the library to bind keyboard and mouse events to the search input field and search button on your website.
 

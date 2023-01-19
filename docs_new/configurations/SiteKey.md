@@ -46,7 +46,7 @@ For multiple site keys, check if you have:
 To get your Site Key and API Key in the console, please refer to the steps mentioned in the [Configure Site section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/).
 
 
-## Configuration
+## Configurations
 Pass the Site Key and API Key that you get from the console in the “siteKey” and “APIKey” configs.  
   
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |

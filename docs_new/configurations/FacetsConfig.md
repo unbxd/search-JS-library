@@ -41,7 +41,7 @@ This feature is applicable for all numeric searchable fields.
 ### Multilevel facets
 Multilevel facets are a special kind of facets which is applicable only for the fields belonging to the path fieldType supporting the hierarchy returns the facet values in the hierarchial.
 
-## Configuration
+## Configurations
 
 To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
 
@@ -84,9 +84,9 @@ To render the facets on the search results page,  you can use the “facet” c
 | events                       | object   | {}                                                                             | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.                                                                                                                                                                                                                                   |
 
 
-## Use Cases
+## Examples
 
-### Sample Example
+### Default Example
 
 Sample “facet” config
 ```js
