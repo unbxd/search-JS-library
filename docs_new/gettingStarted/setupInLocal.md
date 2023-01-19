@@ -17,13 +17,15 @@ parent: Getting Started
 {:toc}
 
 ## Setup in local
+The below steps will help you set up an ecommerce website in your local machine, with the unbxd search api integrated. 
+The demo data is of fashion vertical.
 
 1. Hit [demo playground url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
 2. Click on Export to ZIP option.
 
     [![Click on Export to ZIP option](../assets/zip.png)](ZIP from codesandbox)
 3. Unzip the folder
-4.  Customize the config inside **src/js/index.js** as per the feed:
+4.  Customize the config inside **src/js/index.js** as per the feed (optional)
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
@@ -58,7 +60,8 @@ Install dependencies:<br/>
 Run the webpack server:<br/>
 ```npm run start```<br/>
 
-Additional links for above tools:<br/>
+{ .info }
+> Additional links for above tools:<br/>
 [Download Node](3https://nodejs.org/en/download/)<br/>
 [Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)<br/>
 
