@@ -32,7 +32,7 @@ You can configure the way in which the products have to be displayed (List or Gr
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
 
-## Configuration
+## Configurations
 
 Update the options under the “productView” config object to configure the product view feature.  
 
@@ -49,9 +49,9 @@ Update the options under the “productView” config object to configure the pr
 | htmlAttributes | Object | {class:"product-view-container"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
 | events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
 
-## Use Cases
+## Examples
 
-### Sample Example
+### Default Example
 Sample “productView” config
 
 ```js

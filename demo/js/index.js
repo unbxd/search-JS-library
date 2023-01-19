@@ -293,7 +293,7 @@ window.unbxdSearch.updateConfig({
         }
     },
     pagination: {
-        type: 'INFINITE_SCROLL',
+        type: 'CLICK_N_SCROLL',
         el: document.querySelector("#clickScrollContainer"),
         onPaginate: function(data) {console.log(data,"data")}
     },
