@@ -99,7 +99,9 @@ List of fields you need for each variant
 
 #### Default Value
 {: .no_toc }
+```js
 ["title", "v_imageUrl"]			
+```
 
 #### Usecases
 {: .no_toc }
@@ -117,7 +119,9 @@ Field mapping of the catalog attributes to the variant attributes. This is neede
 
 #### Default Value
 {: .no_toc }
+``` js
 {"image_url": "v_imageUrl"}	
+```
 
 #### Usecases
 {: .no_toc }

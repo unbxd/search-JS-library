@@ -153,7 +153,9 @@ by default it contains classes for the wrapper. you can add more classes or any 
 
 #### Default Value
 {: .no_toc }
+```js
 {class:”UNX-breadcrumbs-block”}
+```
 
 #### Usecases
 {: .no_toc }

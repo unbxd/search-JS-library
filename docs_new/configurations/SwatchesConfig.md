@@ -81,7 +81,9 @@ Field mapping of the catalog attributes to the swatch attributes
 
 #### Default Value
 {: .no_toc }
+```js
 {swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
+```
 
 #### Usecases
 {: .no_toc }

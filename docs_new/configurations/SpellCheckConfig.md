@@ -85,7 +85,7 @@ Customize the look and feel of the spellcheck component by returning your custom
 #### Default Value
 {: .no_toc }
 ```js
-const didYouMeanUI =  function(query,suggestion,pages) {
+function(query,suggestion,pages) {
     const {
         start,
         productsLn,
