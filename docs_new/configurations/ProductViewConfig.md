@@ -114,7 +114,6 @@ function(selectedViewType, productViewType) {
 
 #### Usecases
 {: .no_toc }
-true, false
 
 ---
 ### defaultViewType
