@@ -32,7 +32,7 @@ unbxdSearch.reRender()
 Call this function for updating the config options in run time.
 #### arguments
 {: .no_toc }
-config: Object with new config information (Only the updated keys need to be present)
+**config**: Object with new config information (Only the updated keys need to be present)
 #### example
 {: .no_toc }
 ```js
