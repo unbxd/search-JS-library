@@ -53,6 +53,46 @@ variants:{
 
 The following options are available under the object:
 
+### enabled
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn this flag on for enabling Banner
+
+#### Default Value
+{: .no_toc }
+false
+
+#### Usecases
+{: .no_toc }
+true, false
+
+---
+
+### el
+{: .d-inline-block }
+
+Element
+{: .label  }
+
+Element in which to render the Banner component
+
+#### Default Value
+{: .no_toc }
+null
+
+#### Usecases
+{: .no_toc }
+getElementById(), getElementsByClassName(), getElementsByName(), etc.
+
+---
+
+### template
+{: .d-inline-block }
+
+
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
 | enabled | Boolean | false | Turn this flag on for enabling swatches |
