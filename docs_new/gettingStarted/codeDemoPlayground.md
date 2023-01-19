@@ -17,6 +17,10 @@ parent: Getting Started
 {:toc}
 
 ## Check demo playground
+The below steps will help you view a demo of how the search sdk works. 
+It is a simple ecommerce website with search & category pages. 
+The latest unbxd search sdk is integrated with the same. 
+The demo data is of fashion vertical.
 
 1. Create an account & sign in to https://codesandbox.io/(Optional, but recommended, so as to get unlimited free codesandboxes)
 2. Hit [demo code url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.

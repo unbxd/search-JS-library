@@ -17,7 +17,7 @@ permalink: docs_new/gettingStarted
 1. TOC
 {:toc}
 
-Customize the config inside **src/js/index.js** as per the feed:
+Customize the config inside **src/js/index.js**, to see the data related to your sitekey:
 1. Change **siteKey** and **apiKey**.
 ```js
 siteKey: "<<site key>>",

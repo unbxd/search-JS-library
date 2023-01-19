@@ -17,7 +17,7 @@ parent: Getting Started
 {:toc}
 
 ## Setup in local
-The below steps will help you set up an ecommerce website in your local machine, with the unbxd search api integrated. 
+The below steps will help you set up a simple ecommerce website with search & category pages in your local machine. The latest unbxd search sdk is integrated with the same. 
 The demo data is of fashion vertical.
 
 1. Hit [demo playground url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
