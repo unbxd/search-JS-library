@@ -35,21 +35,245 @@ This is the place where products from the search results will be rendered. The t
 
 The following are the various options available under the “products” config object:
 
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| productType | String | "SEARCH" | Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY |
-| el | Element | null | Element in which to render the search results |
-| template | Function | [default](src/modules/searchResults/ui.js) | Customize the look and feel of the product card by returning your custom HTML string from this function. This function gets 5 parameters: complete product object and index of the current product, swatches, selected view type, product config |
-| productAttributes | Array |  `["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]` | This is an array of all required fields for generating the result template. This is helpful to load the results faster. |
-| attributesMap | Object |  `{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}` | Field mappings for the data to be displayed in the product card |
-| gridCount | Number | Adjusts as per screen size | If you want to have grid type user interface, then you can configure how many columns you want to have in a row with this config. By default it will adjust according to screen size. |
-| productItemClass | String | "product-item" | Additional class name to be added to each product card |
-| onProductClick | Function | `function(product, event) {}` | Callback functions called on click of a product card. This function gets the product object & the event object as params |
-| defaultImage | String | "https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg" | If product doesnt contain image url, by default this image will be shown |
-| tagName | String | "DIV" | html element for the product wrapper. by default it is div.  |
-| htmlAttributes | Object | {class:"UNX-search-results-block UNX-result-wrapper"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
-| events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+### productType
+{: .d-inline-block }
 
+String
+{: .label }
+
+Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY.
+
+#### Default Value
+{: .no_toc }
+“SEARCH”
+
+#### Usecases
+{: .no_toc }
+
+### el
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Element in which to render the search results.
+
+#### Default Value
+{: .no_toc }
+null
+
+#### Usecases
+{: .no_toc }
+
+### template
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize the look and feel of the product card by returning your custom HTML string from this function. This function gets 5 parameters: complete product object and index of the current product, swatches, selected view type, product config.
+
+#### Default Value
+{: .no_toc }
+``` js
+function(product,idx,swatchUI,productViewType,products ){
+    const {
+        unxTitle,
+        unxImageUrl,
+        uniqueId,
+        unxStrikePrice,
+        unxPrice,
+        unxDescription
+    } = product; 
+    const {
+        productItemClass,
+        defaultImage
+    }  = products;
+    let imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0]:unxImageUrl;
+    if(!imgUrl) {
+        imgUrl = defaultImage;
+    }
+    let imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" alt="${unxTitle}" src="${imgUrl}"/></div>`;
+    const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
+    let strikeUi = ``;
+    if(unxStrikePrice) {
+        strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`
+    }
+    let cardType = ``;
+    let descUI = ``;
+    if(productViewType === "GRID") {
+        cardType = "UNX-grid-card"
+    } else {
+        cardType = "UNX-list-card";
+        descUI = `<p class="UNX-description">${unxDescription}</p>`;
+    }
+    let swatchBtnUI = ``;
+    const {
+        btnList,
+        imgList 
+    } = swatchUI || {};
+    if(btnList) {
+        swatchBtnUI = `<div class="UNX-swatch-wrapper">${btnList}</div>`;
+    }
+    if(imgList) {
+        imagesUI = imgList; 
+    }
+    return [`<div id="${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,,
+                `<div class="UNX-images-block">${imagesUI}</div>`,
+                `<div class="UNX-product-content">`,
+                    `<h3 class="UNX-product-title">${unxTitle}</h3>`,
+                    swatchBtnUI,
+                    descUI,
+                    `<div class="UNX-price-row">${priceUI} ${strikeUi}</div>`,
+                `</div>`,
+            `</div>`].join('')
+};
+```
+
+#### Usecases
+{: .no_toc }
+
+### productAttributes
+{: .d-inline-block }
+
+Array
+{: .label }
+
+This is an array of all required fields for generating the result template. This is helpful to load the results faster.
+
+#### Default Value
+{: .no_toc }
+```js
+["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
+```
+
+#### Usecases
+{: .no_toc }
+
+### attributesMap
+{: .d-inline-block }
+
+Object
+{: .label }
+
+Field mappings for the data to be displayed in the product card.
+
+#### Default Value
+{: .no_toc }
+```js
+{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
+```
+
+#### Usecases
+{: .no_toc }
+
+### gridCount
+{: .d-inline-block }
+
+Number
+{: .label }
+
+If you want to have grid type user interface, then you can configure how many columns you want to have in a row with this config. By default it will adjust according to screen size.
+
+#### Default Value
+{: .no_toc }
+Adjusts as per screen size
+
+#### Usecases
+{: .no_toc }
+
+
+### productItemClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Additional class name to be added to each product card.
+
+#### Default Value
+{: .no_toc }
+“product-item”
+
+#### Usecases
+{: .no_toc }
+
+### onProductClick
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Callback functions called on click of a product card. This function gets the product object & the event object as params.
+#### Default Value
+{: .no_toc }
+```js
+    function(product, event) {}	
+```
+
+#### Usecases
+{: .no_toc }
+
+### defaultImage
+{: .d-inline-block }
+
+String
+{: .label }
+
+If product doesnt contain image url, by default this image will be shown
+
+#### Default Value
+{: .no_toc }
+“https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”	
+
+#### Usecases
+{: .no_toc }
+
+### tagName
+{: .d-inline-block }
+
+String
+{: .label }
+
+html element for the product wrapper. by default it is div.
+#### Default Value
+{: .no_toc }
+“DIV”	
+
+#### Usecases
+{: .no_toc }
+
+### htmlAttributes
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+by default it contains classes for the wrapper. you can add more classes or any attributes
+
+#### Default Value
+{: .no_toc }
+```js
+{class:”UNX-search-results-block UNX-result-wrapper”}
+```
+
+#### Usecases
+{: .no_toc }
+
+### events
+{: .d-inline-block }
+
+object
+{: .label }
+
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+#### Default Value
+{: .no_toc }
+{}
+
+#### Usecases
+{: .no_toc }
 
 ## Examples
 
