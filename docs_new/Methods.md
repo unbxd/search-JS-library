@@ -16,6 +16,7 @@ nav_order: 4
 ---
 
 # Methods
+{: .no_toc }
 
 This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
 

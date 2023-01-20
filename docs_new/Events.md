@@ -16,6 +16,7 @@ nav_order: 5
 ---
 
 # Events
+{: .no_toc }
 
 This section documents the different events fired by the Unbxd Library that you can use to perform custom actions. The **onEvent** config function is used to catch these events
 
