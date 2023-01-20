@@ -32,6 +32,7 @@ parent: Getting Started
     ```
 
 3. Invoke the sdk along with the custom config object:
+
     ### Example:
     {: .no_toc }
     ```js
@@ -239,7 +240,7 @@ parent: Getting Started
             productType = "SEARCH";
         }
     ```
-    6. Set the correct **productType** in the products config, i.e. "SEARCH" for search results page, or "CATEGORY" for category pages
+    6. Set the correct **productType** in the products config, i.e. "SEARCH" for search     results page, or "CATEGORY" for category pages.
     ### Example:
     {: .no_toc }
     ```js
