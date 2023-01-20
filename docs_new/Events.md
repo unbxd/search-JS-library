@@ -160,5 +160,3 @@ onEvent: function(instance, "PAGESIZE_CHANGE", {
 ### Arguments
 {: .no_toc }
 val: New page size
-
----
