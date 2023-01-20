@@ -179,10 +179,10 @@ unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})
 ---
 ### setCategoryId
 In case of category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the category path variable for the search api payload.
-### arguments
+#### arguments
 {: .no_toc }
-**level**: Category depth level.
-**name**: Category path name.
+**level**: Category depth level.  
+**name**: Category path name.  
 #### example
 {: .no_toc }
 ```js
@@ -220,9 +220,9 @@ setCategoryId: function(param, self) {
 ---
 ### onEvent
 Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events) .
-### arguments
+####
 {: .no_toc }
-**type**: Name of the event, state: Event state metadata
+**type**: Name of the event, state: Event state metadata  
 **instance**: 
 #### example
 {: .no_toc }
@@ -232,10 +232,10 @@ Use this config function for adding any custom code based on an **event type** s
 ---
 ### onAction
 Use this config function for facet element handlers like **change**, **keyup**, **click** .
-### arguments
+#### arguments
 {: .no_toc }
-**element**: html element on which the action is triggered
-**context**: context object i.e. unbxdSearch
+**element**: html element on which the action is triggered  
+**context**: context object i.e. unbxdSearch  
 #### example
 {: .no_toc }
 ```js
@@ -281,7 +281,7 @@ Routing action when the url does not have any unbxd key.
 | onEvent | (instance,type,state) `type: Name of the event, state: Event state metadata`| Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events) |
 | onAction | (element,context) `element: html element on which the action is triggered, context:context object i.e. unbxdSearch`| Use this config function for facet element handlers like **change**, **keyup**, **click** | -->
 
-Examples:
+<!-- Examples: -->
 <!-- ```js
 onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
     if(redirect) {
@@ -316,12 +316,12 @@ onBackFromRedirect: (hashMode) => {
     }
 }
 ``` -->
-
+<!-- 
 ```js
 onNoUnbxdKeyRouting:() => {
     history.go();
 }
-```
+``` -->
 
 <!-- ```js
 setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
