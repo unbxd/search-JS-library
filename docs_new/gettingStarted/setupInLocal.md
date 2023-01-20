@@ -1,13 +1,8 @@
 ---
 layout: default
 title: Setup In Local
-nav_order: 1
+nav_order: 2
 parent: Getting Started
----
-
-# Quick Setup
-{: .fs-9 }
-
 ---
 
 ## Table of contents
@@ -17,14 +12,15 @@ parent: Getting Started
 {:toc}
 
 ## Setup in local
+The below steps will help you set up a simple ecommerce website with search & category pages in your local machine. The latest unbxd search sdk is integrated with the same. 
+The demo data is of fashion vertical.
 
 1. Hit [demo playground url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
 2. Click on Export to ZIP option.
 
     [![Click on Export to ZIP option](../assets/zip.png)](ZIP from codesandbox)
 3. Unzip the folder
-4.  ## Code Config customizations
-    Customize the config inside **src/js** as per the feed:
+4.  Customize the config inside **src/js/index.js** as per the feed (optional)
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
@@ -59,7 +55,8 @@ Install dependencies:<br/>
 Run the webpack server:<br/>
 ```npm run start```<br/>
 
-Additional links for above tools:<br/>
+{: .info }
+> Additional links for above tools:<br/>
 [Download Node](3https://nodejs.org/en/download/)<br/>
 [Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)<br/>
 
