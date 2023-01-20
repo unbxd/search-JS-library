@@ -15,6 +15,8 @@ nav_order: 7
 1. TOC
 {:toc}
 
+---
+
 # General queries
 
 ## What types of search queries can the Unbxd SDK handle?
@@ -32,8 +34,9 @@ The Unbxd SDK automatically updates the search index with new and updated produc
 ## Does the SDK provide analytics and reporting?
 Yes, the Unbxd SDK provides detailed analytics and reporting on search and product discovery performance. It allows you to track metrics such as search query volume, click-through rate, and conversion rate.
 
+---
 
-# Integration queries
+# Integration Related Queries
 
 ## How do I get an API key and Site key to use with the SDK?
 To use the Unbxd SDK, you will need an API key and a Site key. To obtain these keys, you will need to create an account with Unbxd and set up a new project. Once you have an account and a project set up, you can then generate the keys from the Unbxd dashboard. The process may vary depending on the Unbxd's current pricing plans and offerings, but here is the general idea of how it works:
@@ -75,9 +78,9 @@ You can create a sandbox or a test environment for developers to test the integr
 
 ---
 
-# Pagination Queries
+# Pagination Related Queries
 ## What are the different types of pagination supported by Unbxd Search SDK?
-There are several types of pagination that can be used in e-commerce:
+There are 3 types of pagination that can be used in e-commerce:
 
 **Infinite Scrolling**: In this type of pagination, new items are automatically loaded as the user scrolls to the bottom of the page, allowing the user to seamlessly scroll through all the products. This method is best for mobile devices as it allows for a continuous browsing experience.
 
@@ -131,10 +134,10 @@ Yes, the Unbxd Search SDK allows you to customize the appearance of the paginati
 
 ---
 
-# Facet related queries
+# Facet Related Queries
 ## How to enable and make use of the faceted search functionality provided by the SDK?
 
-## What are facets in e-commerce and how do they work with the Unbxd Search SDK?
+## What are facets and how do they work with the Unbxd Search SDK?
 Facets are filters that allow users to narrow down their search results by specific attributes such as price, brand, color, etc. The Unbxd Search SDK allows for the implementation of facets on your e-commerce website, allowing users to easily filter the search results based on the attributes provided in the facets.
 
 ## How can I customize the facets that are displayed on my website?
@@ -150,29 +153,21 @@ The Unbxd Search SDK supports multi-select facets, which allow users to select m
 Yes, the Unbxd Search SDK provides detailed analytics and reporting on the performance of your facets. You can track metrics such as the number of clicks on a facet, the number of search results returned after applying a facet, and conversion rate. This allows you to understand how your users are interacting with your facets and make any necessary adjustments to improve the user experience.
 
 ---
-# Sorting related queries
+# Sorting Related Queries
 
-## Can the Unbxd Search SDK be used to sort the search results by different criteria?
-Yes, the Unbxd Search SDK allows you to sort the search results by different criteria such as relevance, price, and popularity. You can set the sorting criteria by calling the setSort method on the Unbxd object and passing in the sort field and order. For example, to sort the results by price in descending order, you can use the following code:
-```js
-unbxd.setSort("price", "desc");
-```
-
-### How I allow users to sort the search results on my website?
+## How do I allow users to sort the search results on my website?
 You can do this by creating a drop-down menu or a set of buttons on your website that allows the user to select the sorting criteria. 
 
 ## Can I set a default sorting criteria for the search results?
 Yes, the Unbxd Search SDK allows you to set a default sorting criteria for the search results. You can do this by calling the `setSort` method on the Unbxd object before performing the search and passing in the default sorting criteria.
 
-## How does the Unbxd Search SDK handle sorting when multiple sorting criteria are applied?
+## How does the Unbxd handle multiple sorting criteria?
 The Unbxd Search SDK allows you to set multiple sorting criteria and will apply them in the order they are set. For example, if you set the sorting criteria as “price” and “popularity”, it will first sort the results by price and then by popularity.
 
-## Can I track the performance of the sorting functionality?
-Yes, the Unbxd Search SDK provides detailed analytics and reporting on the performance of the sorting functionality. You can track metrics such as the number of clicks on a sorting option and the number of search results returned after applying a sorting criteria. This allows you to understand how your users are interacting with the sorting options and make any necessary adjustments to improve the user experience.
 
 ---
 
-# Banners related queries
+# Banners Related Queries
 
 ## Can the Unbxd Search SDK be used to display banners on my e-commerce website?
 Yes, the Unbxd Search SDK allows you to display banners on your e-commerce website. You can use the SDK to target specific products, categories, or users and display personalized banners based on their search and browsing behavior.
@@ -182,26 +177,20 @@ Yes, the Unbxd Search SDK allows you to personalize the banners by passing a cus
 
 ---
 
-# Spellcheck related queries
+# Spellcheck Related Queries
 
-## Does the Unbxd Search SDK provide spell-checking functionality?
-Yes, the Unbxd Search SDK provides spell-checking functionality which can help to correct spelling errors in the search queries made by users and return more accurate results.
-
-## How does the spell-checking functionality work in the Unbxd?
-Unbxd uses advanced algorithms to identify and correct spelling errors in the search queries made by users. It takes into account the context of the query and the specific terms used in the search and suggests alternate terms or corrected versions of the query.
+## Does Unbxd provide spell-checking functionality?
+Yes, Unbxd provides spell-checking functionality which can help to correct spelling errors in the search queries made by users and return more accurate results. Unbxd uses advanced algorithms to identify and correct spelling errors in the search queries made by users. It takes into account the context of the query and the specific terms used in the search and suggests alternate terms or corrected versions of the query.
 
 ## Can I customize the spell-checking functionality in the Unbxd Search SDK?
 Yes, the Unbxd Search SDK allows you to customize the spell-checking functionality to match the specific requirements of your e-commerce website. You can adjust the settings for the spell-checking algorithm, such as the level of tolerance for spelling errors and the suggestions that are provided to the users.
 
+
 ---
 
-# Other queries
+# Other Queries
 
 ## How to handle errors while making calls to the Unbxd search SDK?
-
-## How to enable and make use of the autocomplete functionality provided by the SDK?
-
-## How to enable and make use of the tracking functionality provided by the SDK?
 
 ## What is list view and grid view in product listing page?
 List view typically displays products in a vertical, scrolling list format, with each product represented by an individual item. Each item in the list typically includes a product image, name, price, and a brief description. The items are usually aligned vertically and take up the entire width of the screen, which allows for a lot of information to be visible at once, and can be helpful for users that want to compare multiple products quickly.
