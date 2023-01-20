@@ -8,7 +8,7 @@ nav_order: 12
 # Banners
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,19 +16,19 @@ nav_order: 12
 
 ---
 
-## Definition
+# Definition
 
 In e-commerce, a banner is a graphical advertisement that is typically displayed on a web page or email. Banners are often used to promote a product or service, or to direct visitors to a specific landing page. They can come in a variety of sizes and formats, such as static images, animated gifs, or video. Banners are often used as part of online advertising campaigns to generate more traffic to a website and to increase conversions and sales.
 
-## Behavior
+# Behavior
 Configure the banner display by setting the “banner” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Banner-sdk.png)
 
-## Configurations
+# Configurations
 The following options are available under the object:
 
-### enabled
+## enabled
 {: .d-inline-block }
 
 Boolean
@@ -36,17 +36,17 @@ Boolean
 
 Turn this flag on for enabling Banner
 
-#### Default Value
+### Default Value
 {: .no_toc }
 false
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
 ---
 
-### el
+## el
 {: .d-inline-block }
 
 Element
@@ -54,17 +54,17 @@ Element
 
 Element in which to render the Banner component
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
 getElementById(), getElementsByClassName(), getElementsByName(), etc.
 
 ---
 
-### template
+## template
 {: .d-inline-block }
 
 Function
@@ -79,7 +79,7 @@ This function passes two params:
 Expected return value: HTML string
 
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 function (banners, bannerOpts) => {
@@ -108,13 +108,13 @@ function (banners, bannerOpts) => {
     return `${bannerUI}`
 }
 ```
-#### Usecases
+### Usecases
 {: .no_toc }
 This function can be overwritten to customize the banner.
 
 ---
 
-### count
+## count
 {: .d-inline-block }
 
 Number
@@ -122,17 +122,17 @@ Number
 
 Indicates the number of banners to be shown
 
-#### Default Value
+### Default Value
 {: .no_toc }
 1
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
 ---
 
-### openNewTab
+## openNewTab
 {: .d-inline-block }
 
 Boolean
@@ -140,17 +140,17 @@ Boolean
 
 By default landing page url load in same tab, if you want to load in another tab configured it to true
 
-#### Default Value
+### Default Value
 {: .no_toc }
 false
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
 --- 
 
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
@@ -158,17 +158,17 @@ String
 
 This is the html element for the banner wrapper. by default it is div.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 'div'
 
-#### Usecases
+### Usecases
 {: .no_toc }
 Any valid html tag in which you like the banner code to be wrapped in.
 
 --- 
 
-### htmlAttributes
+## htmlAttributes
 {: .d-inline-block }
 
 Object
@@ -176,19 +176,19 @@ Object
 
 By default it contains classes for the wrapper. you can add more classes or any attributes.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 {class:"UNX-banner-block"}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 Any valid html attribute can be passed as `key: value` pairs inside an object.
 
 --- 
 
-### events
+## events
 {: .d-inline-block }
 
 Object
@@ -196,22 +196,22 @@ Object
 
 By default it will be empty. You can add further javascript events by keys and function as values. context will be the current object.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 {}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 You can add further javascript events by keys and function as values. context will be the current object.
 
 --- 
 
 
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 
 Sample banner configuration
 

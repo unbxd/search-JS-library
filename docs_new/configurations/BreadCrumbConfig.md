@@ -8,14 +8,14 @@ nav_order: 10
 # Breadcrumbs
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
 ---
-## Definition
+# Definition
 In e-commerce, 'breadcrumbs' refer to a navigation element that allows users to see the hierarchical structure of the website and understand their location within the site. They are typically displayed as a series of links that indicate the path that a user has taken to reach the current page.
 
 For example, if a user is on a product page for a specific item, the breadcrumb might show: Home > Clothing > T-shirts > Men's T-shirts > [Product Name]
@@ -28,15 +28,15 @@ Additionally, it can help users that are not familiar with the website structure
 
 Breadcrumbs can also be used to highlight the relevance of the product or category that user is currently browsing in the website.
 
-## Behavior
+# Behavior
 To render the breadcrumb component, set the “breadcrumb” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
 
-## Configurations
+# Configurations
 The following options are available under the breadcrumb:
 
-### enabled
+## enabled
 {: .d-inline-block }
 
 Boolean
@@ -44,17 +44,17 @@ Boolean
 
 Turn this flag on if you want to show breadcrumbs (if it is available) on your page
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
 ---
 
-### el
+## el
 {: .d-inline-block }
 
 Element
@@ -62,16 +62,16 @@ Element
 
 Element in which to render the breadcrumbs
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
 
-### template
+## template
 {: .d-inline-block }
 
 Function
@@ -79,7 +79,7 @@ Function
 
 Customize the look and feel of the breadcrumb component by defining this function that is expected to return a HTML string for the template. You will get the breadcrumbs list as parameter to this function
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js 
 function(breadcrumbs, breadcrumb){
@@ -104,28 +104,28 @@ function(breadcrumbs, breadcrumb){
 }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
 
-### selectorClass
+## selectorClass
 {: .d-inline-block }
 
 String
 {: .label }
 
 Additional CSS class name for each breadcrumb item
-#### Default Value
+### Default Value
 {: .no_toc }
 “bread-crumb”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
 
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
@@ -133,17 +133,17 @@ String
 
 html element for the breadcrumb wrapper. by default it is div.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “DIV”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
 
-### htmlAttributes	
+## htmlAttributes	
 {: .d-inline-block }
 
 Object
@@ -151,18 +151,18 @@ Object
 
 by default it contains classes for the wrapper. you can add more classes or any attributes
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 {class:”UNX-breadcrumbs-block”}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
 
-### events
+## events
 {: .d-inline-block }
 
 Object
@@ -170,18 +170,18 @@ Object
 
 by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 {}	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 
 Sample code for the breadcrumbs widget
 ```js

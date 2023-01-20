@@ -8,7 +8,7 @@ nav_order: 6
 # Pagination
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,7 +16,7 @@ nav_order: 6
 
 ---
 
-## Definition
+# Definition
 
 In e-commerce, pagination refers to the process of dividing search results or product listings into multiple pages, which allows users to navigate through the pages of products. It is used to split large sets of products into smaller, more manageable chunks, which can improve the performance of the website and also user experience.
 
@@ -32,38 +32,38 @@ It's important to note that the pagination should be consistent, clear, and easy
 
 
 
-## Behavior
+# Behavior
 
 This feature will helps the users to navigate the products for any search/browse request. In many applications the UI for these sorted results are displayed to the user in "pages" containing a fixed number of matching results, and users don’t typically look at results past the first few pages worth of results.
 
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
 
-## Types of Pagination
+# Types of Pagination
 
 
-### Fixed Pagination
+## Fixed Pagination
 
 This traditional type of pagination displays the set number of products on one page along with the previous and next buttons to navigate between the pages.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 
 
-### Click & Scroll
+## Click & Scroll
 If you wish to have a button to load next results, you can choose this option
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
 
 
-### Infinite Scroll
+## Infinite Scroll
 If you wish to load new results by scrolling down, you can configure this option
 
 
-## Configurations
+# Configurations
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
 
-### enabled
+## enabled
 {: .d-inline-block }
 
 Boolean
@@ -71,15 +71,15 @@ Boolean
 
 Turn this off if you do not want the pagination widget.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
-### type
+## type
 {: .d-inline-block }
 
 String
@@ -87,14 +87,14 @@ String
 
 Type of pagination: “FIXED_PAGINATION” or “INFINITE_SCROLL” or “CLICK_N_SCROLL”.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “CLICK_N_SCROLL”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### el
+## el
 {: .d-inline-block }
 
 Element
@@ -102,14 +102,14 @@ Element
 
 Element in which to render the pagination component.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### template
+## template
 {: .d-inline-block }
 
 Function
@@ -117,7 +117,7 @@ Function
 
 Customize the look and feel of the pagination by returning your custom HTML string from this function. This function gets 1 parameter: an object that has the pagination information.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 function (paginationData, pagination) {
@@ -185,10 +185,10 @@ function (paginationData, pagination) {
 
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### pageClass
+## pageClass
 {: .d-inline-block }
 
 String
@@ -196,14 +196,14 @@ String
 
 CSS classname for the pagination component.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-page-items”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### selectedPageClass
+## selectedPageClass
 {: .d-inline-block }
 
 String
@@ -211,15 +211,15 @@ String
 
 CSS classname for selected page item.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-selected-page-item”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### onPaginate
+## onPaginate
 {: .d-inline-block }
 
 Function
@@ -227,15 +227,15 @@ Function
 
 Callback function that gets called after a pagination action.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 NA
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### pageLimit
+## pageLimit
 {: .d-inline-block }
 
 Number
@@ -243,15 +243,15 @@ Number
 
 Number of pages to show upfront (when type is FIXED_PAGINATION).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 6
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### infinteScrollTriggerEl
+## infinteScrollTriggerEl
 {: .d-inline-block }
 
 Element
@@ -259,14 +259,14 @@ Element
 
 Element on which to detect infinite scroll page boundary (when type is set to INFINITE_SCROLL).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 window
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### heightDiffToTriggerNextPage
+## heightDiffToTriggerNextPage
 {: .d-inline-block }
 
 Number
@@ -274,14 +274,14 @@ Number
 
 Height of the page to consider to fetch the next page data (when type is set to INFINITE_SCROLL).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 100
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### action
+## action
 {: .d-inline-block }
 
 String
@@ -289,14 +289,14 @@ String
 
 Action on which pagination should trigger: “click” or “change”.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “click”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
@@ -304,14 +304,14 @@ String
 
 html element for the pagination wrapper. by default it is div.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “DIV”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### htmlAttributes
+## htmlAttributes
 {: .d-inline-block }
 
 Object
@@ -319,16 +319,16 @@ Object
 
 Tby default it contains classes for the wrapper. you can add more classes or any attributes.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
     {class:”UNX-pagination-size-block”}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### events
+## events
 {: .d-inline-block }
 
 object
@@ -336,17 +336,17 @@ object
 
 by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 {}
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 
 Sample “pagination” config
 
@@ -367,7 +367,7 @@ pagination : {
 ```
 
 
-### Fixed Pagination
+## Fixed Pagination
 ```js
 pagination : {
   enabled:true,
@@ -443,7 +443,7 @@ pagination : {
 }
 ```
 
-### Click and Scroll
+## Click and Scroll
 
 ```js
 pagination: {
@@ -459,7 +459,7 @@ pagination: {
 }
 ```
 
-### Infinite Scroll
+## Infinite Scroll
 
 ```js
 pagination: {

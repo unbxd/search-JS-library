@@ -8,14 +8,14 @@ nav_order: 11
 # Spell Check
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
 ---
-## Definition
+# Definition
 In an e-commerce platform, 'spell check' feature refers to a functionality that helps users to find products even if they have made a spelling mistake when searching for them.
 
 This feature utilizes natural language processing (NLP) and machine learning algorithms to automatically detect and correct spelling errors in the user's search query. When a user enters a search term that contains a spelling mistake, the system will automatically check the spelling of the term against a dictionary of correctly spelled words. If the system detects a spelling mistake, it will try to suggest the correct spelling and show the search results based on that correction.
@@ -26,7 +26,7 @@ This feature can help to improve the user experience by reducing the chances of 
 
 Additionally, by using machine learning models, the spell check feature can improve its performance over time, becoming better at recognizing and correcting spelling errors. This can help to increase the chances of users finding the products they are looking for, even if they make a spelling mistake.
 
-## Behavior
+# Behavior
 
 The spell check feature provides **spelling suggestions** or **spell-checks** for misspelled search queries.
 
@@ -34,11 +34,11 @@ The spell check feature provides **spelling suggestions** or **spell-checks** fo
 
 In such cases, the context-aware algorithm of Unbxd understands your visitor’s intent and sends a “**Did You Mean**” response along with a search result set for the query, if any.
 
-## Configurations
+# Configurations
 
 You can configure the spellcheck feature by updating the required configs under the “spellCheck” config object.
 
-### enabled
+## enabled
 {: .d-inline-block }
 
 Boolean
@@ -46,17 +46,17 @@ Boolean
 
 Turn this flag on for enabling spell check
 
-#### Default Value
+### Default Value
 {: .no_toc }
 false
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
 ---
 
-### el	
+## el	
 {: .d-inline-block }
 
 Element
@@ -64,17 +64,17 @@ Element
 
 Element in which to render the spellcheck component
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
 
-### template	
+## template	
 {: .d-inline-block }
 
 Function
@@ -82,7 +82,7 @@ Function
 
 Customize the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets 3 parameters: the search query, the suggested query text and a config object with product count details ({start, productsLn, numberOfProducts})
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 function(query,suggestion,pages) {
@@ -125,12 +125,12 @@ function(query,suggestion,pages) {
         `</div>`].join('');
 }
 ```
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-### selectorClass
+## selectorClass
 {: .d-inline-block }
 
 String
@@ -138,16 +138,16 @@ String
 
 Additional CSS class name for the spell check component
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-suggestion”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
@@ -155,16 +155,16 @@ String
 
 html element for the spellcheck wrapper. by default it is div.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “DIV”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-### htmlAttributes
+## htmlAttributes
 {: .d-inline-block }
 
 Object
@@ -172,16 +172,16 @@ Object
 
 by default it contains classes for the wrapper. you can add more classes or any attributes
 
-#### Default Value
+### Default Value
 {: .no_toc }
 {class:”UNX-spellcheck-wrapper”}
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-### events
+## events
 {: .d-inline-block }
 
 Object
@@ -189,18 +189,18 @@ Object
 
 by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 {}	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 Sample “spellCheck” config
 
 ```js

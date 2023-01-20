@@ -8,7 +8,7 @@ nav_order: 9
 # Product View
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,7 +16,7 @@ nav_order: 9
 
 ---
 
-## Definition
+# Definition
 
 In an e-commerce page, the list view and grid view are two different ways of displaying products to users.
 
@@ -26,17 +26,17 @@ Grid view, on the other hand, displays products in a grid format with multiple p
 
 Both the grid and list view have their own advantages and disadvantages, and it depends on the e-commerce website which view is used as default or an option for the users to switch between them. Some websites use grid view as the default, while others use list view. Some websites provide an option for the users to switch between views so they can choose which format they prefer.
 
-## Behavior
+# Behavior
 
 You can configure the way in which the products have to be displayed (List or Grid) with the Product Views widget.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
 
-## Configurations
+# Configurations
 
 Update the options under the “productView” config object to configure the product view feature.  
 
-### enabled
+## enabled
 {: .d-inline-block }
 
 Boolean
@@ -44,16 +44,16 @@ Boolean
 
 Turn this off if you do not want the product view component.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
 ---
-### el
+## el
 {: .d-inline-block }
 
 Element
@@ -61,16 +61,16 @@ Element
 
 Element in which to render the product views component
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-### template
+## template
 {: .d-inline-block }
 
 Function
@@ -78,7 +78,7 @@ Function
 
 Customize the look and feel of the product views component by using this function. This function gets 2 parameters: the selected view type and the product views config (i.e. this complete object)
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 function(selectedViewType, productViewType) {
@@ -112,11 +112,11 @@ function(selectedViewType, productViewType) {
 }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
-### defaultViewType
+## defaultViewType
 {: .d-inline-block }
 
 String
@@ -124,15 +124,15 @@ String
 
 Product view types to be displayed by default: “LIST” or ‘GRID”
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “GRID”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
-### action
+## action
 {: .d-inline-block }
 
 String
@@ -140,15 +140,15 @@ String
 
 Action on which product view change should be triggerd: “click” or “change”
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “click”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
-### viewTypeClass
+## viewTypeClass
 {: .d-inline-block }
 
 String
@@ -156,16 +156,16 @@ String
 
 Additonal CSS class name to be added to the product view type elements
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-product-view”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-### selectedViewTypeClass
+## selectedViewTypeClass
 {: .d-inline-block }
 
 String
@@ -173,18 +173,18 @@ String
 
 Additional CSS class name to be added to the selected view type element
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ``` js
 “UNX-selected-product-view”	
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
 ---
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
@@ -192,15 +192,15 @@ String
 
 html element for the product view type wrapper. by default it is div.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “DIV”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
-### htmlAttributes
+## htmlAttributes
 {: .d-inline-block }
 
 Object
@@ -208,17 +208,17 @@ Object
 
 By default it contains classes for the wrapper. you can add more classes or any attributes
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
     {class:”product-view-container”}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
-### events
+## events
 {: .d-inline-block }
 
 Object
@@ -226,18 +226,18 @@ Object
 
 By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 {}
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
 
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 Sample “productView” config
 
 ```js

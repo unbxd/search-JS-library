@@ -7,7 +7,7 @@ nav_order: 4
 # Methods and Events
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -15,37 +15,38 @@ nav_order: 4
 
 ---
 
-## Methods
+# Methods
+{: .no_toc }
 
 This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
 
 ---
-### reRender
+## reRender
 Call this function if you want to render the page again.
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.reRender()
 ```
 ---
-### updateConfig
+## updateConfig
 Call this function for updating the config options in run time.
-#### arguments
+### arguments
 {: .no_toc }
 **config**: Object with new config information (Only the updated keys need to be present)
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})
 ```
 ---
-### onQueryRedirect
+## onQueryRedirect
 This config function holds the redirect logic for a query to which the response contains redirect information. Sample Search api response: `{redirect:{type:”url”,value:”https://www.unbxd.com”}` Parameter **redirected=true** is added in the browser url when replace state param is true in history. It is **not** recommended to open redirect in a new tab. In such a case, the custom client logic for above mentioned search input handlers should take care to not push state when switching to search from category.
-#### arguments
+### arguments
 {: .no_toc }
 **redirect**: redirect response from search api  
 **urlBeforeRedirect**: url before the browser redirected  
-#### example
+### example
 {: .no_toc }
 ```js
 onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
@@ -72,12 +73,12 @@ onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
 }
 ```
 ---
-### onBackFromRedirect
+## onBackFromRedirect
 This config function holds the logic to manipulate history when we come back to the site from the redirected url. This is only called if history state replace was true. It looks for the redirected parameter to identify that page is back from redirected url.
-#### arguments
+### arguments
 {: .no_toc }
 **hashMode**: If sdk config has hashMode set to true.
-#### example
+### example
 {: .no_toc }
 ```js
 onBackFromRedirect: (hashMode) => {
@@ -89,16 +90,16 @@ onBackFromRedirect: (hashMode) => {
 }
 ```
 ---
-### setRoutingStrategies
+## setRoutingStrategies
 Custom implementation on clicking browser back & forward .
-#### arguments
+### arguments
 {: .no_toc }
 **locationParam**: Current location param string.  
 **newUrl**: New url string to replace the current string.  
 **productType**: SEARCH/CATEGORY  
 **isUnbxdKey**: True if any key required by sdk is present in the url  
 **replace**: Whether to replace history state or push to new state.  
-#### example
+### example
 {: .no_toc }
 ```js
 setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
@@ -121,69 +122,69 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 }
 ```
 ---
-### getCategoryPage
+## getCategoryPage
 Call this function to render the category page.
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.getCategoryPage()
 ```
 ---
-### getResults
+## getResults
 Call this function to refetch the search results.
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.getResults("dress")
 ```
 ---
-### resetFacets
+## resetFacets
 Call this method to reset the facets.
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.resetFacets()
 ```
 ---
-### resetAll
+## resetAll
 Call this method to reset all the page elements like selected facets, selected sort option, pagination etc.
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.resetAll()
 ```
 ---
-### setPageStart
+## setPageStart
 Call this method to set the the page number.
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.setPageStart(0)
 ```
 ---
-### setRangeSlider
+## setRangeSlider
 Call this method to update the range filter value.
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})
 ```
 ---
-### getCategoryId
+## getCategoryId
 Use this config function to return category id for a particular category page
-#### example
+### example
 {: .no_toc }
 ```js
 unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})
 ```
 ---
-### setCategoryId
+## setCategoryId
 In case of category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the category path variable for the search api payload.
-#### arguments
+### arguments
 {: .no_toc }
 **level**: Category depth level.  
 **name**: Category path name.  
-#### example
+### example
 {: .no_toc }
 ```js
 setCategoryId: function(param, self) {
@@ -218,13 +219,13 @@ setCategoryId: function(param, self) {
 }
 ```
 ---
-### onEvent
+## onEvent
 Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events) .
-#### arguments
+### arguments
 {: .no_toc }
 **type**: Name of the event, state: Event state metadata  
 **instance**: 
-#### example
+### example
 {: .no_toc }
 ```js
 onEvent: function(type,instance){
@@ -232,13 +233,13 @@ onEvent: function(type,instance){
 }
 ```
 ---
-### onAction
+## onAction
 Use this config function for facet element handlers like **change**, **keyup**, **click** .
-#### arguments
+### arguments
 {: .no_toc }
 **element**: html element on which the action is triggered  
 **context**: context object i.e. unbxdSearch  
-#### example
+### example
 {: .no_toc }
 ```js
 onAction: function(e, ctx) {
@@ -246,9 +247,9 @@ onAction: function(e, ctx) {
 }
 ```
 ---
-### onNoUnbxdKeyRouting
+## onNoUnbxdKeyRouting
 Routing action when the url does not have any unbxd key.
-#### example
+### example
 {: .no_toc}
 ```js
 onNoUnbxdKeyRouting:() => {

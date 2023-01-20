@@ -14,7 +14,7 @@ Unbxd SDK configurations include setting the API key and Site key, customizing s
 
 ---
 <!-- 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -23,7 +23,7 @@ Unbxd SDK configurations include setting the API key and Site key, customizing s
 
 
 
-## Full configuration List
+# Full configuration List
 
 **Note:**
 - All templates are provided as functions where you can return the HTML string that needs to be rendered.

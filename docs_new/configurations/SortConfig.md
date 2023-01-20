@@ -8,7 +8,7 @@ nav_order: 8
 # Sorting
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,7 +16,7 @@ nav_order: 8
 
 ---
 
-## Definition
+# Definition
 "Sort" functionality in an e-commerce page allows users to rearrange the products displayed on a search results or product listing page in a specific order. The sorting options provided by the e-commerce websites varies but the most common ones are:
 
 Sort by relevance: This is the default sorting option, it orders the products based on how well they match the search criteria or the filter settings.
@@ -28,17 +28,17 @@ This functionality can help users quickly find the products that are most releva
 
 It is also common to find that e-commerce websites will have a default sort order when a user visits a category or search results, but also provides the user with a way to change and adjust the sort order as they wish.
 
-## Behavior
+# Behavior
 
 Sorting allows you to rearrange the search results based on certain fields in a particular order.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/sort-options-main.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/sort-options-main.png)
 
-## Configurations
+# Configurations
 
 The following are the various options available under the object:
 
-### enabled
+## enabled
 {: .d-inline-block }
 
 Boolean
@@ -46,14 +46,14 @@ Boolean
 
 Turn this off if you do not want the sort component.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
-### el
+## el
 {: .d-inline-block }
 
 Element
@@ -61,13 +61,13 @@ Element
 
 Element in which to render the sort component.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
-### options
+## options
 {: .d-inline-block }
 
 Array
@@ -75,15 +75,15 @@ Array
 
 Array of sort options.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 [{value: "price desc",text: "Price High to Low"},{value: "price asc",text: " Price Low to High"},{value: "rating asc",text: " Rating Low to High"},{value: "rating desc",text: " Rating High to low"}]
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
-### sortClass
+## sortClass
 {: .d-inline-block }
 
 String
@@ -91,14 +91,14 @@ String
 
 CSS class name for the sort item, make sure you will be providing this information in template.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-sort-item”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### selectedSortClass
+## selectedSortClass
 {: .d-inline-block }
 
 String
@@ -106,14 +106,14 @@ String
 
 CSS class name for the selected sort item.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-selected-sort”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### template
+## template
 {: .d-inline-block }
 
 Function
@@ -121,7 +121,7 @@ Function
 
 Customize the look and feel of the sort component by using this function. This function gets 2 parameters: the selected sort value and the sort config (i.e. this complete object).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ``` js
 function(selectedSort, sortConfig) {
@@ -157,10 +157,10 @@ function(selectedSort, sortConfig) {
 
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### action
+## action
 {: .d-inline-block }
 
 String
@@ -168,14 +168,14 @@ String
 
 Action on which sort should trigger: “click” or “change” .
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “change”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
@@ -183,13 +183,13 @@ String
 
 html element for the sort wrapper. by default it is div.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “DIV”
 
-#### Usecases
+### Usecases
 {: .no_toc }
-### htmlAttributes	
+## htmlAttributes	
 {: .d-inline-block }
 
 Object
@@ -197,16 +197,16 @@ Object
 
 By default it contains classes for the wrapper. you can add more classes or any attributes.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ``` js
 {class:”UNX-sort-block-lb”}	
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### events
+## events
 {: .d-inline-block }
 
 Object
@@ -214,16 +214,16 @@ Object
 
 By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 {}
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 Sample “sort” config
 
 ```js
