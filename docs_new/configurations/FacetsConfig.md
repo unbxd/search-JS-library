@@ -70,7 +70,77 @@ Customize the look and feel of the facets block by returning your custom HTML st
 
 #### Default Value
 {: .no_toc }
+``` js
+function(facetObj, children, isExpanded,facetSearchTxt, facet) {
+        const {
+            displayName,
+            facetName,
+            multiLevelField,
+            facetType,
+            values
+        } = facetObj;
+        const {
+            facetClass,
+            applyMultipleFilters,
+            isCollapsible,
+            isSearchable,
+            searchPlaceHolder,
+            textFacetWrapper,
+            enableViewMore,
+            viewMoreText,
+            viewMoreLimit,
 
+            applyButtonText,
+            clearButtonText,
+
+        } = facet;
+        const {
+            actionBtnClass,
+            actionChangeClass
+        } = this.options;
+        const {
+            openBtn,
+            closeBtn
+        } = this.cssList;
+        let viewMoreUi = ``;
+        let viewMoreCss=``;
+        const selected = this.getSelectedFacets()[facetName];
+        const isFtr = (selected && selected.length >0)?true:false;
+        if(enableViewMore && facetType==="text" && values.length > viewMoreLimit ) {
+            viewMoreCss="UNX-view-more";
+            viewMoreUi = `<div class="UNX-view-more-row "><button class="${actionBtnClass}" data-facet-name="${facetName}" data-action="viewMore" data-id="${viewMoreText[0]}">${viewMoreText[0]}</button></div>`;
+        }
+        let clearUI = ``;
+        let applyBtn = ``;
+        if(isFtr){
+            clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}">${clearButtonText}</button>`;
+        }
+        if(applyMultipleFilters && isFtr) {
+            applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >${applyButtonText}</button>`
+        }
+        let collapsibleUI = ``;
+        let searchInput = ``;
+        if(isCollapsible){
+            if(isExpanded) {
+                collapsibleUI = `<button class="UNX-collapse-btn ${openBtn} ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetClose"></button>`
+            } else {
+                collapsibleUI = `<button class="UNX-collapse-btn ${closeBtn} ${actionBtnClass}" data-facet-name="${facetName}" data-facet-action="facetOpen"></button>`
+            }
+        }
+        if(isSearchable && facetSearchTxt !== null) {
+            searchInput =`<div class="UNX-searchable-facets"><input data-test-id="${this.testIds.UNX_searchFacets}" class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
+        }
+        return [`<div class="UNX-text-facet-wrap">`,
+                    `<div class="UNX-facet-header"> <h3>${displayName}</h3> ${collapsibleUI}</div>`,
+                    `<div class="UNX-facets-all">`,
+                        searchInput,
+                        `<div class="UNX-facets ${textFacetWrapper} ${viewMoreCss}">${children}</div>`,
+                        viewMoreUi,
+                        `<div class="UNX-facet-footer">${applyBtn} ${clearUI}</div>`,
+                    `</div>`,
+               `</div>`].join('');
+    }
+```
 
 #### Usecases
 {: .no_toc }
