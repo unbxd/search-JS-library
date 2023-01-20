@@ -11,13 +11,13 @@ permalink: docs_new/gettingStarted
 
 ---
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
-## Introduction
+# Introduction
 
 Unbxd Javascript Search SDK is a software development kit that allows e-commerce websites to easily integrate with Unbxd’s search and product discovery platform. It provides an easy-to-use JavaScript API that can be used to configure, initiate, and customize search requests, including:
 
@@ -37,7 +37,7 @@ This documentation has multiple ways of exploring/integrating with the Unbxd Sea
 
 For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
 
-## Understanding The Page
+# Understanding The Page
 
 An e-commerce page typically includes a variety of different elements and components, each with its own specific nomenclature. These elements include, but are not limited to:
 
@@ -68,7 +68,7 @@ In the following sections, we will discuss how to configure and render each of t
 
 
 
-## Nomenclature
+# Nomenclature
 
 You will see below terms more:
 

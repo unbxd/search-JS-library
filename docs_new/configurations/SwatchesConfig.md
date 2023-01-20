@@ -8,7 +8,7 @@ nav_order: 14
 # Swatches
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,7 +16,7 @@ nav_order: 14
 
 ---
 
-## Definition
+# Definition
 In e-commerce, 'swatches' refer to small graphical representations of a product's color, pattern, or texture that can be used to indicate the available options for a certain variant of a product. Swatches are commonly used to display the available colors of a product, such as clothing or home decor, allowing the users to see a visual representation of the options before they purchase.
 
 Swatches are usually displayed in a grid or list format, and when a user clicks on one of the swatches, the main product image will change to display the selected color or variant. They are commonly used in conjunction with the variant selection options, like color or pattern drop-down list or thumbnails.
@@ -25,7 +25,7 @@ Swatches can also be used for non-color related variations, like for example for
 
 The main advantage of swatches is that it allow users to get a better sense of the product before purchasing and also, it can make it easier for the user to find the exact variant they are looking for by just looking at the visual representation.
 
-## Behavior
+# Behavior
 
 Configure swatches display by using the configs in this section.  
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
@@ -49,11 +49,11 @@ variants:{
 ```
 
 
-## Configurations
+# Configurations
 
 The following options are available under the object:
 
-### enabled
+## enabled
 {: .d-inline-block }
 
 Boolean
@@ -61,17 +61,17 @@ Boolean
 
 Turn this flag on for enabling swatches
 
-#### Default Value
+### Default Value
 {: .no_toc }
 false
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
 ---
 
-### attributesMap
+## attributesMap
 {: .d-inline-block }
 
 Object
@@ -79,17 +79,17 @@ Object
 
 Field mapping of the catalog attributes to the swatch attributes
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 {swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
-### swatchClass
+## swatchClass
 {: .d-inline-block }
 
 String
@@ -97,15 +97,15 @@ String
 
 Additional CSS class name for the swatches
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-swatch-btn”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
-### template
+## template
 {: .d-inline-block }
 
 Function
@@ -113,7 +113,7 @@ Function
 
 Customize the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 
@@ -152,12 +152,12 @@ export default function(swatchData, swatches,product) {
     };
 };
 ```
-#### Usecases
+### Usecases
 {: .no_toc }
 
 ---
 
-### Default Example
+## Default Example
 Sample “swatches” config
 
 ```js

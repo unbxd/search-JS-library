@@ -8,7 +8,7 @@ nav_order: 4
 # Products
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,7 +16,7 @@ nav_order: 4
 
 ---
 
-## Definition
+# Definition
 In e-commerce, "products" refer to the items that are available for purchase on an online store. These can be physical goods, such as clothing, electronics, or furniture, or digital goods, such as software, music, or video content. 
 
 An e-commerce website typically includes a catalog of products, which can be searched, filtered, and sorted by various criteria such as product category, brand, price, and more. Each product typically has a detailed page that includes information such as a product image, name, description, price, and available options such as size, color, or material.
@@ -25,17 +25,17 @@ The products are usually grouped into categories, like for example clothing, ele
 
 The availability of a wide range of products and the ability to easily find and compare them is a key factor in the success of an e-commerce website, as it helps to attract and retain customers, and ultimately drive sales.
 
-## Behavior
+# Behavior
 
 This is the place where products from the search results will be rendered. The template function receives each product object and its position as second argument.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/search-result-render.png)
 
-## Configurations
+# Configurations
 
 The following are the various options available under the “products” config object:
 
-### productType
+## productType
 {: .d-inline-block }
 
 String
@@ -43,14 +43,14 @@ String
 
 Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “SEARCH”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### el
+## el
 {: .d-inline-block }
 
 Element
@@ -58,14 +58,14 @@ Element
 
 Element in which to render the search results.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### template
+## template
 {: .d-inline-block }
 
 Function
@@ -73,7 +73,7 @@ Function
 
 Customize the look and feel of the product card by returning your custom HTML string from this function. This function gets 5 parameters: complete product object and index of the current product, swatches, selected view type, product config.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ``` js
 function(product,idx,swatchUI,productViewType,products ){
@@ -130,10 +130,10 @@ function(product,idx,swatchUI,productViewType,products ){
 };
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### productAttributes
+## productAttributes
 {: .d-inline-block }
 
 Array
@@ -141,16 +141,16 @@ Array
 
 This is an array of all required fields for generating the result template. This is helpful to load the results faster.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 ["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### attributesMap
+## attributesMap
 {: .d-inline-block }
 
 Object
@@ -158,16 +158,16 @@ Object
 
 Field mappings for the data to be displayed in the product card.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 {"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### gridCount
+## gridCount
 {: .d-inline-block }
 
 Number
@@ -175,15 +175,15 @@ Number
 
 If you want to have grid type user interface, then you can configure how many columns you want to have in a row with this config. By default it will adjust according to screen size.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 Adjusts as per screen size
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### productItemClass
+## productItemClass
 {: .d-inline-block }
 
 String
@@ -191,30 +191,30 @@ String
 
 Additional class name to be added to each product card.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “product-item”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### onProductClick
+## onProductClick
 {: .d-inline-block }
 
 Function
 {: .label }
 
 Callback functions called on click of a product card. This function gets the product object & the event object as params.
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
     function(product, event) {}	
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### defaultImage
+## defaultImage
 {: .d-inline-block }
 
 String
@@ -222,28 +222,28 @@ String
 
 If product doesnt contain image url, by default this image will be shown
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
 {: .label }
 
 html element for the product wrapper. by default it is div.
-#### Default Value
+### Default Value
 {: .no_toc }
 “DIV”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### htmlAttributes
+## htmlAttributes
 {: .d-inline-block }
 
 Boolean
@@ -251,16 +251,16 @@ Boolean
 
 by default it contains classes for the wrapper. you can add more classes or any attributes
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 {class:”UNX-search-results-block UNX-result-wrapper”}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### events
+## events
 {: .d-inline-block }
 
 object
@@ -268,16 +268,16 @@ object
 
 by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 {}
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 
 Sample “products” config:
 

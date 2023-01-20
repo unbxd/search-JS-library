@@ -10,13 +10,13 @@ parent: Getting Started
 
 ---
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
-## Check demo playground
+# Check demo playground
 The below steps will help you view a demo of how the search sdk works. 
 It is a simple ecommerce website with search & category pages. 
 The latest unbxd search sdk is integrated with the same. 

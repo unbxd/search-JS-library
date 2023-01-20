@@ -10,13 +10,13 @@ parent: Getting Started
 
 ---
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
-## Integrate with your site
+# Integrate with your site
 
 Customize the config inside **src/js/index.js**, to see the data related to your sitekey:
 1. Change **siteKey** and **apiKey**.

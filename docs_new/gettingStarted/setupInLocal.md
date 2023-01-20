@@ -5,13 +5,13 @@ nav_order: 2
 parent: Getting Started
 ---
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
-## Setup in local
+# Setup in local
 The below steps will help you set up a simple ecommerce website with search & category pages in your local machine. The latest unbxd search sdk is integrated with the same. 
 The demo data is of fashion vertical.
 

@@ -8,7 +8,7 @@ nav_order: 5
 # Facets
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,36 +16,36 @@ nav_order: 5
 
 ---
 
-## Definition
+# Definition
 
 In e-commerce, facets (also known as filters or attributes) are a way to allow customers to narrow down their search results by selecting specific criteria. Facets are typically displayed on the left or right side of a search results page, and can include options such as price range, brand, color, size, and more. They allow customers to quickly and easily find the products they are looking for by narrowing down the options based on their specific needs and preferences.
 
 For example, an e-commerce website for clothing would have facets such as Size, Color, Material, Brand, Gender and so on. By selecting options from the available facets, customers can narrow down the search results to only show products that match the criteria they've selected. This can make it easier for customers to find the specific products they're looking for, and can also increase the chances that they'll make a purchase.
 
-## Behavior
+# Behavior
 
 Facets are the products filters provided on your webpage which allows customers to narrow down the search result set.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)
 
-## Types of Facets
+# Types of Facets
 
 There are 3 types of Facets available.
 
-### Text facets
+## Text facets
 This feature enables faceting on any searchable field.
 
-### Range facets
+## Range facets
 This feature is applicable for all numeric searchable fields.
 
-### Multilevel facets
+## Multilevel facets
 Multilevel facets are a special kind of facets which is applicable only for the fields belonging to the path fieldType supporting the hierarchy returns the facet values in the hierarchial.
 
-## Configurations
+# Configurations
 
 To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
 
-### facetsEl
+## facetsEl
 {: .d-inline-block }
 
 Element
@@ -53,14 +53,14 @@ Element
 
 Element in which to render the facets.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### facetTemplate
+## facetTemplate
 {: .d-inline-block }
 
 Function
@@ -68,7 +68,7 @@ Function
 
 Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ``` js
 function(facetObj, children, isExpanded,facetSearchTxt, facet) {
@@ -142,9 +142,9 @@ function(facetObj, children, isExpanded,facetSearchTxt, facet) {
     }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
-### facetItemTemplate
+## facetItemTemplate
 {: .d-inline-block }
 
 Function
@@ -152,7 +152,7 @@ Function
 
 Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 function facetItemUiElem (facet , value,facetSearchTxt) {
@@ -188,11 +188,11 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
-### facetMultiSelect
+## facetMultiSelect
 {: .d-inline-block }
 
 Booelan
@@ -200,15 +200,15 @@ Booelan
 
 Turn this off if you want to disable the multiple selection of facets.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
-### facetClass
+## facetClass
 {: .d-inline-block }
 
 String
@@ -216,15 +216,15 @@ String
 
 Additional CSS class name to add to the the facet items.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-facets-block”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### facetAction
+## facetAction
 {: .d-inline-block }
 
 String
@@ -232,29 +232,29 @@ String
 
 Event based on which to trigger facet selection / deselection: “click” or “change”.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “click"
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### selectedFacetClass
+## selectedFacetClass
 {: .d-inline-block }
 
 String
 {: .label }
 
 Additional CSS class name for the selected facet items.
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-selected-facet-btn"
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### selectedFacetsEl
+## selectedFacetsEl
 {: .d-inline-block }
 
 Element
@@ -262,14 +262,14 @@ Element
 
 Element in which to render the selected facets. If you don’t provide this element selected facets will be rendered along with the facet blocks.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 null	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### selectedFacetTemplate
+## selectedFacetTemplate
 {: .d-inline-block }
 
 Function
@@ -277,7 +277,7 @@ Function
 
 Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
     function selectedFacetUI(selections, facet,selectedFacetsConfig) {
@@ -298,11 +298,11 @@ Customize the look & feel of the selected facets block by returning your custom 
 }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### selectedFacetItemTemplate
+## selectedFacetItemTemplate
 {: .d-inline-block }
 
 Function
@@ -310,7 +310,7 @@ Function
 
 Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
     function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,selectedFacetsConfig){
@@ -345,10 +345,10 @@ Customize the look & feel of the selected facet by returning your custom HTML st
 }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### selectedFacetConfig
+## selectedFacetConfig
 {: .d-inline-block }
 
 Object
@@ -356,16 +356,16 @@ Object
 
 object will be containing the configuration for the selected facet wrapper config.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ``` js
     { tagName:”DIV”, htmlAttributes:{ class:”UNX-selected-facet-lb” }, events:{} }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### clearAllText
+## clearAllText
 {: .d-inline-block }
 
 String
@@ -373,15 +373,15 @@ String
 
 The text to show for the clear all button that clears all selected facets.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “Clear All”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### rangeTemplate
+## rangeTemplate
 {: .d-inline-block }
 
 Function
@@ -389,7 +389,7 @@ Function
 
 Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 function(range, selectedRange, facet) {
@@ -435,10 +435,10 @@ function(range, selectedRange, facet) {
 };
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### rangeWidgetConfig
+## rangeWidgetConfig
 {: .d-inline-block }
 
 Object
@@ -446,14 +446,14 @@ Object
 
 Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs
 
-#### Default Value
+### Default Value
 {: .no_toc }
 NA
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### facetMultilevel
+## facetMultilevel
 {: .d-inline-block }
 
 Boolean
@@ -461,14 +461,14 @@ Boolean
 
 Turn this on to send the multilevel parameter in the search API.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### facetMultilevelName
+## facetMultilevelName
 {: .d-inline-block }
 
 String
@@ -476,14 +476,14 @@ String
 
 Set the multilevel field name using this config.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “Category”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### multiLevelFacetSelectorClass
+## multiLevelFacetSelectorClass
 {: .d-inline-block }
 
 String
@@ -491,14 +491,14 @@ String
 
 Class name for each multi level facet item.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-multilevel-facet”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### multiLevelFacetTemplate
+## multiLevelFacetTemplate
 {: .d-inline-block }
 
 Function
@@ -506,7 +506,7 @@ Function
 
 Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 function(facet,selectedCategories,facetSearchTxt, facetConfig) {
@@ -573,10 +573,10 @@ function(facet,selectedCategories,facetSearchTxt, facetConfig) {
 }
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### facetDepth
+## facetDepth
 {: .d-inline-block }
 
 Number
@@ -584,14 +584,14 @@ Number
 
 Configure how many levels of category filter you want to have by setting this value.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 4
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### clearFacetsSelectorClass
+## clearFacetsSelectorClass
 {: .d-inline-block }
 
 String
@@ -599,14 +599,14 @@ String
 
 Class name for the button to clear the selected facets.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-clear-facet”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### removeFacetsSelectorClass
+## removeFacetsSelectorClass
 {: .d-inline-block }
 
 String
@@ -614,14 +614,14 @@ String
 
 Class name for the button to delete selected facets.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “UNX-remove-facet”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### onFacetLoad
+## onFacetLoad
 {: .d-inline-block }
 
 Function
@@ -629,16 +629,16 @@ Function
 
 Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
   function(facets) {}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### applyMultipleFilters
+## applyMultipleFilters
 {: .d-inline-block }
 
 Boolean
@@ -646,14 +646,14 @@ Boolean
 
 Turn this on if you want to apply multiple filters together.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 false
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### applyButtonText
+## applyButtonText
 {: .d-inline-block }
 
 String
@@ -661,14 +661,14 @@ String
 
 The text to show for the apply button (when applyMultipleFilters is set as true).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “Apply”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### clearButtonText
+## clearButtonText
 {: .d-inline-block }
 
 String
@@ -676,14 +676,14 @@ String
 
 The text to show for the clear button (when applyMultipleFilters is set as true).
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “clear”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### isCollapsible
+## isCollapsible
 {: .d-inline-block }
 
 Boolean
@@ -691,15 +691,15 @@ Boolean
 
 Turn this off if you do not want to have a collapsible accordian for each facet block.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
-### defaultOpen
+## defaultOpen
 {: .d-inline-block }
 
 String
@@ -707,14 +707,14 @@ String
 
 If “isCollapsible” is true, set this config to indicate the default open facet. Available options are “ALL” , “FIRST” , “NONE”.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “ALL”	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### isSearchable
+## isSearchable
 {: .d-inline-block }
 
 Boolean
@@ -722,15 +722,15 @@ Boolean
 
 Turn this on if you want to have search feature for each facet block.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 true
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
-### searchPlaceHolder
+## searchPlaceHolder
 {: .d-inline-block }
 
 String
@@ -738,14 +738,14 @@ String
 
 Placeholder text for the facet search input.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ””	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### enableViewMore
+## enableViewMore
 {: .d-inline-block }
 
 Booelan
@@ -753,15 +753,15 @@ Booelan
 
 Turn this on for enabling view more or less functionality for individual facets.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 false
 
-#### Usecases
+### Usecases
 {: .no_toc }
 true, false
 
-### viewMoreText
+## viewMoreText
 {: .d-inline-block }
 
 Array
@@ -769,16 +769,16 @@ Array
 
 The text to show for the view more / less button. Pass the 2 strings in array format [<viewMoreText>, viewLessText]. Ex: [“View more”, “View less”].
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ``` js
 [“show all”, “show less”]
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### viewMoreLimit
+## viewMoreLimit
 {: .d-inline-block }
 
 Number
@@ -786,14 +786,14 @@ Number
 
 Will show view more only if the facet values are greater than this value.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 3	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### tagName
+## tagName
 {: .d-inline-block }
 
 String
@@ -801,14 +801,14 @@ String
 
 html element for the facet wrapper. by default it is div.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 “DIV”
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### htmlAttributes
+## htmlAttributes
 {: .d-inline-block }
 
 Object
@@ -816,32 +816,32 @@ Object
 
 by default it contains classes for the wrapper. you can add more classes or any attributes.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 ```js
 {class:”UNX-facets-results-block”}
 ```
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
 
-### events
+## events
 {: .d-inline-block }
 
 object
 {: .label }
 
 by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-#### Default Value
+### Default Value
 {: .no_toc }
 {}	
 
-#### Usecases
+### Usecases
 {: .no_toc }
-## Examples
+# Examples
 
-### Default Example
+## Default Example
 
 Sample “facet” config
 ```js
@@ -1134,9 +1134,9 @@ facet: {
 
 
 
-### Range Sliders
+## Range Sliders
 
-#### User Requirement
+### User Requirement
 If you wish to have a range slider, this is an example with the integration with noUISlider.
 
 Range facets will be rendered automatically along with other facets if it is configured on the console dashboard.
@@ -1144,7 +1144,7 @@ Range facets will be rendered automatically along with other facets if it is con
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/facet-price-widget.png)
 
 
-#### More Information
+### More Information
 
 The right way of fetching the min and max values for the UI slider is from the 'stats' key within the search API. To get this stats key in the API response, you will have to pass `{stats: 'price'}` in the `extraParams` config. This approach will also avoid showing empty results on a site if there is any error with the slider.
 
@@ -1167,7 +1167,7 @@ Steps to get a range slider:
 5. The code for `onFacetLoad` has to be as shown in the below config
 
 
-#### Code Snippet
+### Code Snippet
 
 ```js
 facet: {

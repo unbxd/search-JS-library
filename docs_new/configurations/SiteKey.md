@@ -8,7 +8,7 @@ nav_order: 1
 # Authentication
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,7 +16,7 @@ nav_order: 1
 
 ---
 
-## Definition
+# Definition
 Unbxd is a provider of an e-commerce search and product discovery platform, and to integrate its SDK (Software Development Kit) on an e-commerce website, it requires the use of Site keys and API keys.
 
 A Site key is a unique identifier that is used to identify the e-commerce website where the Unbxd SDK is being integrated. It is used to link the SDK to the specific website and ensure that the search and product discovery functionality is only being used on that particular website.
@@ -27,7 +27,7 @@ Both the Site key and API keys are required to properly configure the SDK and al
 
 It's important to keep the Site and API keys safe, as they grant access to the Unbxd service, and should be handled and stored securely, like any other sensitive information.
 
-## Behavior
+# Behavior
 
 Once installed, you need to authenticate the Unbxd library using your Unbxd account keys (also known as Authentication Keys).
 
@@ -46,10 +46,10 @@ For multiple site keys, check if you have:
 To get your Site Key and API Key in the console, please refer to the steps mentioned in the [Configure Site section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/).
 
 
-## Configurations
+# Configurations
 Pass the Site Key and API Key that you get from the console in the “siteKey” and “APIKey” configs. 
 
-### siteKey
+## siteKey
 {: .d-inline-block }
 
 String
@@ -57,14 +57,14 @@ String
 
 This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 NA	
 
-#### Usecases
+### Usecases
 {: .no_toc }
 
-### apiKey	
+## apiKey	
 {: .d-inline-block }
 
 String
@@ -72,10 +72,10 @@ String
 
 This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account.
 
-#### Default Value
+### Default Value
 {: .no_toc }
 NA
 
-#### Usecases
+### Usecases
 {: .no_toc }
   
