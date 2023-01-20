@@ -45,45 +45,544 @@ Multilevel facets are a special kind of facets which is applicable only for the 
 
 To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
 
-| OPTIONS                      | DATATYPE | DEFAULT VALUE                                                                  | DESCRIPTION                                                                                                                                                                                                                                                                                                                                                              |
-| ---------------------------- | -------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| facetsEl                     | Element  | null                                                                           | Element in which to render the facets                                                                                                                                                                                                                                                                                                                                    |
-| facetTemplate                | Function | [default](src/modules/facets/ui.js)                                            | Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. `isCollapsible` is set to true) and the search text entered for this facet block (if `isSearchable` is set to true) |
-| facetItemTemplate            | Function | [default](src/modules/facets/ui.js)                                            | Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block.                                                                                                                                      |
-| facetMultiSelect             | Booelan  | true                                                                           | Turn this off if you want to disable the multiple selection of facets                                                                                                                                                                                                                                                                                                    |
-| facetClass                   | String   | "UNX-facets-block"                                                             | Additional CSS class name to add to the the facet items                                                                                                                                                                                                                                                                                                                  |
-| facetAction                  | String   | "click                                                                         | Event based on which to trigger facet selection / deselection: "click" or "change"                                                                                                                                                                                                                                                                                       |
-| selectedFacetClass           | String   | "UNX-selected-facet-btn"                                                       | Additional CSS class name for the selected facet items                                                                                                                                                                                                                                                                                                                   |
-| selectedFacetsEl             | Element  | null                                                                           | Element in which to render the selected facets. If you don't provide this element selected facets will be rendered along with the facet blocks                                                                                                                                                                                                                           |
-| selectedFacetTemplate        | Function | [default](src/modules/facets/ui.js)                                            | Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value                                                                                                                                                          |
-| selectedFacetItemTemplate    | Function | [default](src/modules/facets/ui.js)                                            | Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value                                                                                                                                                                 |
-| selectedFacetConfig          | Object   | { tagName:"DIV", htmlAttributes:{ class:"UNX-selected-facet-lb" }, events:{} } | object will be containing the configuration for the selected facet wrapper config                                                                                                                                                                                                                                                                                        |
-| clearAllText                 | String   | "Clear All"                                                                    | The text to show for the clear all button that clears all selected facets                                                                                                                                                                                                                                                                                                |
-| rangeTemplate                | Function | [default](src/modules/facets/renderRangeFacets.js)                             | Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available                                                                                                                                                                                              |
-| rangeWidgetConfig            | Object   | NA                                                                             | Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs                                                                                                                                                                                                                            |
-| facetMultilevel              | Boolean  | true                                                                           | Turn this on to send the multilevel parameter in the search API                                                                                                                                                                                                                                                                                                          |
-| facetMultilevelName          | String   | "Category"                                                                     | Set the multilevel field name using this config                                                                                                                                                                                                                                                                                                                          |
-| multiLevelFacetSelectorClass | String   | "UNX-multilevel-facet"                                                         | Class name for each multi level facet item                                                                                                                                                                                                                                                                                                                               |
-| multiLevelFacetTemplate      | Function | [default](src/modules/facets/renderBucketedSearch.js)                          | Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if `isSearchable` is set to true)                                                                                                |
-| facetDepth                   | Number   | 4                                                                              | Configure how many levels of category filter you want to have by setting this value                                                                                                                                                                                                                                                                                      |
-| clearFacetsSelectorClass     | String   | "UNX-clear-facet"                                                              | Class name for the button to clear the selected facets                                                                                                                                                                                                                                                                                                                   |
-| removeFacetsSelectorClass    | String   | "UNX-remove-facet"                                                             | Class name for the button to delete selected facets                                                                                                                                                                                                                                                                                                                      |
-| onFacetLoad                  | Function | `function(facets) {}`                                                          | Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter                                                                                                                                                                                                                                           |
-| applyMultipleFilters         | false    | Boolean                                                                        | Turn this on if you want to apply multiple filters together                                                                                                                                                                                                                                                                                                              |
-| applyButtonText              | String   | "Apply"                                                                        | The text to show for the apply button (when `applyMultipleFilters` is set as true)                                                                                                                                                                                                                                                                                       |
-| clearButtonText              | String   | "clear"                                                                        | The text to show for the clear button (when `applyMultipleFilters` is set as true)                                                                                                                                                                                                                                                                                       |
-| isCollapsible                | Boolean  | true                                                                           | Turn this off if you do not want to have a collapsible accordian for each facet block                                                                                                                                                                                                                                                                                    |
-| defaultOpen                  | String   | "ALL"                                                                          | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are "ALL" , "FIRST" , "NONE"                                                                                                                                                                                                                                           |
-| isSearchable                 | Boolean  | true                                                                           | Turn this on if you want to have search feature for each facet block                                                                                                                                                                                                                                                                                                     |
-| searchPlaceHolder            | String   | ""                                                                             | Placeholder text for the facet search input                                                                                                                                                                                                                                                                                                                              |
-| enableViewMore               | Booelan  | false                                                                          | Turn this on for enabling view more or less functionality for individual facets                                                                                                                                                                                                                                                                                          |
-| viewMoreText                 | Array    | ["show all", "show less"]                                                      | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"]                                                                                                                                                                                                                 |
-| viewMoreLimit                | Number   | 3                                                                              | Will show view more only if the facet values are greater than this value                                                                                                                                                                                                                                                                                                 |
-| tagName                      | String   | "DIV"                                                                          | html element for the facet wrapper. by default it is div.                                                                                                                                                                                                                                                                                                                |
-| htmlAttributes               | Object   | {class:"UNX-facets-results-block"}                                             | by default it contains classes for the wrapper. you can add more classes or any attributes                                                                                                                                                                                                                                                                               |
-| events                       | object   | {}                                                                             | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.                                                                                                                                                                                                                                   |
+### facetsEl
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Element in which to render the facets.
+
+#### Default Value
+{: .no_toc }
+null
+
+#### Usecases
+{: .no_toc }
+
+### facetTemplate
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
+
+#### Default Value
+{: .no_toc }
 
 
+#### Usecases
+{: .no_toc }
+### facetItemTemplate
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block.
+
+#### Default Value
+{: .no_toc }
+
+
+#### Usecases
+{: .no_toc }
+true, false
+
+### facetMultiSelect
+{: .d-inline-block }
+
+Booelan
+{: .label }
+
+Turn this off if you want to disable the multiple selection of facets.
+
+#### Default Value
+{: .no_toc }
+true
+
+#### Usecases
+{: .no_toc }
+true, false
+
+### facetClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Additional CSS class name to add to the the facet items.
+
+#### Default Value
+{: .no_toc }
+“UNX-facets-block”
+
+#### Usecases
+{: .no_toc }
+
+
+### facetAction
+{: .d-inline-block }
+
+String
+{: .label }
+
+Event based on which to trigger facet selection / deselection: “click” or “change”.
+
+#### Default Value
+{: .no_toc }
+“click"
+
+#### Usecases
+{: .no_toc }
+
+### selectedFacetClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Additional CSS class name for the selected facet items.
+#### Default Value
+{: .no_toc }
+“UNX-selected-facet-btn"
+
+#### Usecases
+{: .no_toc }
+
+
+### selectedFacetsEl
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Element in which to render the selected facets. If you don’t provide this element selected facets will be rendered along with the facet blocks.
+
+#### Default Value
+{: .no_toc }
+null	
+
+#### Usecases
+{: .no_toc }
+
+### selectedFacetTemplate
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
+
+#### Default Value
+{: .no_toc }
+
+
+#### Usecases
+{: .no_toc }
+
+
+### selectedFacetItemTemplate
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
+
+#### Default Value
+{: .no_toc }
+
+#### Usecases
+{: .no_toc }
+
+### selectedFacetConfig
+{: .d-inline-block }
+
+Object
+{: .label }
+
+object will be containing the configuration for the selected facet wrapper config.
+
+#### Default Value
+{: .no_toc }
+``` js
+    { tagName:”DIV”, htmlAttributes:{ class:”UNX-selected-facet-lb” }, events:{} }
+```
+
+#### Usecases
+{: .no_toc }
+
+### clearAllText
+{: .d-inline-block }
+
+String
+{: .label }
+
+The text to show for the clear all button that clears all selected facets.
+
+#### Default Value
+{: .no_toc }
+“Clear All”
+
+#### Usecases
+{: .no_toc }
+
+
+### rangeTemplate
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available.
+
+#### Default Value
+{: .no_toc }
+
+#### Usecases
+{: .no_toc }
+
+### rangeWidgetConfig
+{: .d-inline-block }
+
+Object
+{: .label }
+
+Configure the default range slider. Refer to the [Range Widget Config](#Facet-Range-Widget-Config) section below to view the detailed configs
+
+#### Default Value
+{: .no_toc }
+NA
+
+#### Usecases
+{: .no_toc }
+
+### facetMultilevel
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn this on to send the multilevel parameter in the search API.
+
+#### Default Value
+{: .no_toc }
+true
+
+#### Usecases
+{: .no_toc }
+
+### facetMultilevelName
+{: .d-inline-block }
+
+String
+{: .label }
+
+Set the multilevel field name using this config.
+
+#### Default Value
+{: .no_toc }
+“Category”
+
+#### Usecases
+{: .no_toc }
+
+### multiLevelFacetSelectorClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Class name for each multi level facet item.
+
+#### Default Value
+{: .no_toc }
+“UNX-multilevel-facet”
+
+#### Usecases
+{: .no_toc }
+
+### multiLevelFacetTemplate
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
+
+#### Default Value
+{: .no_toc }
+
+#### Usecases
+{: .no_toc }
+
+### facetDepth
+{: .d-inline-block }
+
+Number
+{: .label }
+
+Configure how many levels of category filter you want to have by setting this value.
+
+#### Default Value
+{: .no_toc }
+4
+
+#### Usecases
+{: .no_toc }
+
+### clearFacetsSelectorClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Class name for the button to clear the selected facets.
+
+#### Default Value
+{: .no_toc }
+“UNX-clear-facet”	
+
+#### Usecases
+{: .no_toc }
+
+### removeFacetsSelectorClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Class name for the button to delete selected facets.
+
+#### Default Value
+{: .no_toc }
+“UNX-remove-facet”
+
+#### Usecases
+{: .no_toc }
+
+### onFacetLoad
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter.
+
+#### Default Value
+{: .no_toc }
+```js
+  function(facets) {}
+```
+
+#### Usecases
+{: .no_toc }
+true, false
+
+### applyMultipleFilters
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn this on if you want to apply multiple filters together.
+
+#### Default Value
+{: .no_toc }
+false
+
+#### Usecases
+{: .no_toc }
+
+### applyButtonText
+{: .d-inline-block }
+
+String
+{: .label }
+
+The text to show for the apply button (when applyMultipleFilters is set as true).
+
+#### Default Value
+{: .no_toc }
+“Apply”
+
+#### Usecases
+{: .no_toc }
+
+### clearButtonText
+{: .d-inline-block }
+
+String
+{: .label }
+
+The text to show for the clear button (when applyMultipleFilters is set as true).
+
+#### Default Value
+{: .no_toc }
+“clear”
+
+#### Usecases
+{: .no_toc }
+
+### isCollapsible
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn this off if you do not want to have a collapsible accordian for each facet block.
+
+#### Default Value
+{: .no_toc }
+true
+
+#### Usecases
+{: .no_toc }
+true, false
+
+### defaultOpen
+{: .d-inline-block }
+
+String
+{: .label }
+
+If “isCollapsible” is true, set this config to indicate the default open facet. Available options are “ALL” , “FIRST” , “NONE”.
+
+#### Default Value
+{: .no_toc }
+“ALL”	
+
+#### Usecases
+{: .no_toc }
+
+### isSearchable
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn this on if you want to have search feature for each facet block.
+
+#### Default Value
+{: .no_toc }
+true
+
+#### Usecases
+{: .no_toc }
+true, false
+
+### searchPlaceHolder
+{: .d-inline-block }
+
+String
+{: .label }
+
+Placeholder text for the facet search input.
+
+#### Default Value
+{: .no_toc }
+””	
+
+#### Usecases
+{: .no_toc }
+true, false
+
+### enableViewMore
+{: .d-inline-block }
+
+Booelan
+{: .label }
+
+Turn this on for enabling view more or less functionality for individual facets.
+
+#### Default Value
+{: .no_toc }
+false
+
+#### Usecases
+{: .no_toc }
+true, false
+
+### viewMoreText
+{: .d-inline-block }
+
+Array
+{: .label }
+
+The text to show for the view more / less button. Pass the 2 strings in array format [<viewMoreText>, viewLessText]. Ex: [“View more”, “View less”].
+
+#### Default Value
+{: .no_toc }
+``` js
+[“show all”, “show less”]
+```
+
+#### Usecases
+{: .no_toc }
+
+### viewMoreLimit
+{: .d-inline-block }
+
+Number
+{: .label }
+
+Will show view more only if the facet values are greater than this value.
+
+#### Default Value
+{: .no_toc }
+3	
+
+#### Usecases
+{: .no_toc }
+
+### tagName
+{: .d-inline-block }
+
+String
+{: .label }
+
+html element for the facet wrapper. by default it is div.
+
+#### Default Value
+{: .no_toc }
+“DIV”
+
+#### Usecases
+{: .no_toc }
+
+### htmlAttributes
+{: .d-inline-block }
+
+Object
+{: .label }
+
+by default it contains classes for the wrapper. you can add more classes or any attributes.
+
+#### Default Value
+{: .no_toc }
+```js
+{class:”UNX-facets-results-block”}
+```
+
+#### Usecases
+{: .no_toc }
+
+
+### events
+{: .d-inline-block }
+
+object
+{: .label }
+
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+#### Default Value
+{: .no_toc }
+{}	
+
+#### Usecases
+{: .no_toc }
 ## Examples
 
 ### Default Example
