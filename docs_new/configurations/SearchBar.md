@@ -31,10 +31,35 @@ The search bar is an important tool for e-commerce websites as it allows users t
 
 The following two configurations are used by the library to bind keyboard and mouse events to the search input field and search button on your website.
 
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| searchBoxEl | Element | null | Configure the search input element on which to listen to search query changes |
-| searchButtonEl | Element | NA | Configure your search button here. Clicking on  this will load the results based the input value provided in "searchBoxEl
+### searchBoxEl
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Configure the search input element on which to listen to search query changes.
+
+#### Default Value
+{: .no_toc }
+null
+
+#### Usecases
+{: .no_toc }
+
+### searchButtonEl
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Configure your search button here. Clicking on this will load the results based the input value provided in “searchBoxEl".
+
+#### Default Value
+{: .no_toc }
+NA
+
+#### Usecases
+{: .no_toc }
 
 ```js
 <div class="UNX-input-wrapper">
