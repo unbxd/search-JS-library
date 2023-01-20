@@ -19,19 +19,19 @@ parent: Getting Started
 ## Integrate with your site
 
 1. Include the vanilla js search library via the link:
-```js
-<script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
-```
-{: .info }
-> The **latest version** can be found via the npm repository:
-  [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
+    ```js
+    <script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
+    ```
+    {: .info }
+    > The **latest version** can be found via the npm repository:
+    [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
 
 2. To get the default theme, include css in the link tag:
-```js
-<link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
-```
+    ```js
+    <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
+    ```
 
-3. Invoke the sdk along with the custom config object:
+<!-- 3. Invoke the sdk along with the custom config object:
 ### Example:
 {: .no_toc }
 ```js
@@ -249,4 +249,4 @@ window.unbxdSearch = new UnbxdSearch({
     ```
     ### Arguments:
     {: .no_toc }
-    productType: SEARCH/CATEGORY
+    productType: SEARCH/CATEGORY -->
