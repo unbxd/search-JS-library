@@ -39,14 +39,48 @@ Call this function for updating the config options in run time.
 unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})
 ```
 ---
-
+### setRoutingStrategies
+Custom implementation on clicking browser back & forward .
+#### arguments
+{: .no_toc }
+**locationParam**: Current location param string.
+**newUrl**: New url string to replace the current string.
+**productType**: SEARCH/CATEGORY
+**isUnbxdKey**: True if any key required by sdk is present in the url
+**replace**: Whether to replace history state or push to new state.
+#### example
+{: .no_toc }
+```js
+setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
+    if (locationParam === newUrl) {
+        return;
+    } else if (productType === "CATEGORY") {
+        /** Do not navigate to base category page  */
+        if (!isUnbxdKey) {
+            history.replaceState(null, "", newUrl);
+        } else {
+            history.pushState(null, "", newUrl);
+        }
+    } else {
+        if ((history.state && history.state.replace) || replace) {
+            history.replaceState(null, "", newUrl);
+        } else {
+            history.pushState(null, "", newUrl);
+        }
+    }
+}
+```
+---
 
 
 <!-- | reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
 | updateConfig | (config) | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
 | onQueryRedirect | (self, redirect, urlBeforeRedirect) `redirect: redirect response from search api`, `urlBeforeRedirect: url before the browser redirected` | This config function holds the redirect logic for a query to which the response contains redirect information. Sample Search api response: `{redirect:{type:”url”,value:”https://www.unbxd.com”}` Parameter **redirected=true** is added in the browser url when replace state param is true in history. It is **not** recommended to open redirect in a new tab. In such a case, the custom client logic for above mentioned search input handlers should take care to not push state when switching to search from category |
+
 | onBackFromRedirect | (hashMode) `hashMode: If sdk config has hashMode set to true` | This config function holds the logic to manipulate history when we come back to the site from the redirected url. This is only called if history state replace was true. It looks for the redirected parameter to identify that page is back from redirected url |
+
 | setRoutingStrategies | (locationParam, newUrl, productType, isUnbxdKey, replace) `locationParam: current location param string`, `newUrl: new url string to replace the current string`, `productType: SEARCH/CATEGORY`, `isUnbxdKey: true if any key required by sdk is present in the url`, `replace: whether to replace history state or push to new state` | Custom implementation on clicking browser back & forward |
+
 | getCategoryPage |  | Call this function to render the category page. Ex: `unbxdSearch.getCategoryPage()` |
 | getResults |  | Call this function to refetch the search results. Ex: `unbxdSearch.getResults("dress")` |
 | resetFacets |  | Call this method to reset the facets. Ex: `unbxdSearch.resetFacets()` |
@@ -100,7 +134,7 @@ onNoUnbxdKeyRouting:() => {
 }
 ```
 
-```js
+<!-- ```js
 setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
     if (locationParam === newUrl) {
         return;
@@ -119,7 +153,7 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
         }
     }
 }
-```
+``` -->
 
 ```js
  setCategoryId: function(param, self) {
