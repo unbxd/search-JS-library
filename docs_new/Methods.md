@@ -43,8 +43,8 @@ unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})
 This config function holds the redirect logic for a query to which the response contains redirect information. Sample Search api response: `{redirect:{type:”url”,value:”https://www.unbxd.com”}` Parameter **redirected=true** is added in the browser url when replace state param is true in history. It is **not** recommended to open redirect in a new tab. In such a case, the custom client logic for above mentioned search input handlers should take care to not push state when switching to search from category.
 #### arguments
 {: .no_toc }
-**redirect**: redirect response from search api
-**urlBeforeRedirect**: url before the browser redirected
+**redirect**: redirect response from search api  
+**urlBeforeRedirect**: url before the browser redirected  
 #### example
 {: .no_toc }
 ```js
@@ -93,11 +93,11 @@ onBackFromRedirect: (hashMode) => {
 Custom implementation on clicking browser back & forward .
 #### arguments
 {: .no_toc }
-**locationParam**: Current location param string.
-**newUrl**: New url string to replace the current string.
-**productType**: SEARCH/CATEGORY
-**isUnbxdKey**: True if any key required by sdk is present in the url
-**replace**: Whether to replace history state or push to new state.
+**locationParam**: Current location param string.  
+**newUrl**: New url string to replace the current string.  
+**productType**: SEARCH/CATEGORY  
+**isUnbxdKey**: True if any key required by sdk is present in the url  
+**replace**: Whether to replace history state or push to new state.  
 #### example
 {: .no_toc }
 ```js
@@ -183,8 +183,6 @@ In case of category facets in category page, this function is used to set the wi
 {: .no_toc }
 **level**: Category depth level.
 **name**: Category path name.
-**name**:
-**action**:
 #### example
 {: .no_toc }
 ```js
@@ -220,6 +218,41 @@ setCategoryId: function(param, self) {
 }
 ```
 ---
+### onEvent
+Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events) .
+### arguments
+{: .no_toc }
+**type**: Name of the event, state: Event state metadata
+**instance**: 
+#### example
+{: .no_toc }
+```js
+
+```
+---
+### onAction
+Use this config function for facet element handlers like **change**, **keyup**, **click** .
+### arguments
+{: .no_toc }
+**element**: html element on which the action is triggered
+**context**: context object i.e. unbxdSearch
+#### example
+{: .no_toc }
+```js
+
+```
+---
+
+### onNoUnbxdKeyRouting
+Routing action when the url does not have any unbxd key.
+### example
+{: .no_toc}
+```js
+    onNoUnbxdKeyRouting:() => {
+        history.go();
+    }
+```
+
 <!-- | reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
 
 | updateConfig | (config) | Call this function for updating the config options in run time. Ex: `unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})` |
