@@ -36,17 +36,149 @@ To render the breadcrumb component, set the “breadcrumb” config object.
 ## Configurations
 The following options are available under the breadcrumb:
 
+### enabled
+{: .d-inline-block }
 
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| enabled                   	| Boolean  	| true | Turn this flag on if you want to show breadcrumbs (if it is available) on your page |
-| el                        	| Element  	| null | Element in which to render the breadcrumbs |
-| template                  	| Function 	| [default](src/modules/breadcrumbs/breadcrumbsView.js) | Customize the look and feel of the breadcrumb component by defining this function that is expected to return a HTML string for the template. You will get the breadcrumbs list as parameter to this function |
-| selectorClass             	| String   	| "bread-crumb" | Additional CSS class name for each breadcrumb item |
-| tagName | String | "DIV" | html element for the breadcrumb wrapper. by default it is div.  |
-| htmlAttributes | Object | {class:"UNX-breadcrumbs-block"} | by default it contains classes for the wrapper. you can add more classes or any attributes |
-| events | object | {} | by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object. |
+Boolean
+{: .label }
 
+Turn this flag on if you want to show breadcrumbs (if it is available) on your page
+
+#### Default Value
+{: .no_toc }
+true
+
+#### Usecases
+{: .no_toc }
+true, false
+
+---
+
+### el
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Element in which to render the breadcrumbs
+
+#### Default Value
+{: .no_toc }
+null
+
+#### Usecases
+{: .no_toc }
+
+---
+
+### template
+{: .d-inline-block }
+
+Function
+{: .label }
+
+Customize the look and feel of the breadcrumb component by defining this function that is expected to return a HTML string for the template. You will get the breadcrumbs list as parameter to this function
+
+#### Default Value
+{: .no_toc }
+```js 
+function(breadcrumbs, breadcrumb){
+    let ui = ``;
+    const {
+        selectorClass
+    } = breadcrumb;
+    breadcrumbs.forEach((item ,id )=> {
+        const {
+            level,
+            filterField,
+            value
+        } = item;
+        const css = `${selectorClass} UNX-bread-crumb-item`;
+        if(id > 0) {
+            ui += `<span class="UNX-slash"> / </span>`;
+        }
+        ui += [`<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
+        `${decodeURIComponent(value)}</button>`].join('')
+    })
+    return `<div class="bread-crumb-main">${ui}</div>`
+}
+```
+
+#### Usecases
+{: .no_toc }
+
+---
+
+### selectorClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Additional CSS class name for each breadcrumb item
+#### Default Value
+{: .no_toc }
+“bread-crumb”	
+
+#### Usecases
+{: .no_toc }
+
+---
+
+### tagName
+{: .d-inline-block }
+
+String
+{: .label }
+
+html element for the breadcrumb wrapper. by default it is div.
+
+#### Default Value
+{: .no_toc }
+“DIV”	
+
+#### Usecases
+{: .no_toc }
+
+
+---
+
+### htmlAttributes	
+{: .d-inline-block }
+
+Object
+{: .label }
+
+by default it contains classes for the wrapper. you can add more classes or any attributes
+
+#### Default Value
+{: .no_toc }
+```js
+{class:”UNX-breadcrumbs-block”}
+```
+
+#### Usecases
+{: .no_toc }
+
+---
+
+### events
+{: .d-inline-block }
+
+Object
+{: .label }
+
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+#### Default Value
+{: .no_toc }
+{}	
+
+#### Usecases
+{: .no_toc }
+
+
+---
 ## Examples
 
 ### Default Example

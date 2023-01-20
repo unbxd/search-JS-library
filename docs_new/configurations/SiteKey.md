@@ -47,9 +47,35 @@ To get your Site Key and API Key in the console, please refer to the steps menti
 
 
 ## Configurations
-Pass the Site Key and API Key that you get from the console in the “siteKey” and “APIKey” configs.  
+Pass the Site Key and API Key that you get from the console in the “siteKey” and “APIKey” configs. 
+
+### siteKey
+{: .d-inline-block }
+
+String
+{: .label }
+
+This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account.
+
+#### Default Value
+{: .no_toc }
+NA	
+
+#### Usecases
+{: .no_toc }
+
+### apiKey	
+{: .d-inline-block }
+
+String
+{: .label }
+
+This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account.
+
+#### Default Value
+{: .no_toc }
+NA
+
+#### Usecases
+{: .no_toc }
   
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| siteKey | String | NA | This is the unique Site Key assigned by Unbxd to every site created in the console dashboard. Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the Site Key for your account. |
-| apiKey | String | NA | This is the unique API Key assigned to every site created in the console dashboard.  Refer to [this section](https://unbxd.com/docs/site-search/documentation/configure-site-profile/) for steps on how to get the API Key for your account. |
