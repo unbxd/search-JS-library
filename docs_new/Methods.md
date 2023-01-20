@@ -40,6 +40,7 @@ unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})
 ```
 ---
 
+### onQueryRedirect
 
 
 
