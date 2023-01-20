@@ -637,7 +637,6 @@ Callback function that gets called after each facet selection or deselection. Th
 
 #### Usecases
 {: .no_toc }
-true, false
 
 ### applyMultipleFilters
 {: .d-inline-block }
@@ -745,7 +744,6 @@ Placeholder text for the facet search input.
 
 #### Usecases
 {: .no_toc }
-true, false
 
 ### enableViewMore
 {: .d-inline-block }

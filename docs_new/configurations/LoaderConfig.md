@@ -35,8 +35,35 @@ Configure page loader to be shown when fetching search API results by setting th
 
 The following options are available under the object:  
 
+### el
+{: .d-inline-block }
 
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| el | Element | null | Element in which to render the loader component |
-| template | Function | `function(){return '<div class="UNX-loader">Loading search results....</div>'}` | Customize the look and feel of the loader component by using this function |
+Element
+{: .label }
+
+Element in which to render the loader component.
+
+#### Default Value
+{: .no_toc }
+null	
+
+#### Usecases
+{: .no_toc }
+
+### template
+{: .d-inline-block }
+
+Function
+{: .label }
+
+
+Customize the look and feel of the loader component by using this function.
+
+#### Default Value
+{: .no_toc }
+```js
+function(){return '<div class="UNX-loader">Loading search results....</div>'}
+```	
+
+#### Usecases
+{: .no_toc }
