@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Setup In Local
-nav_order: 1
+nav_order: 2
 parent: Getting Started
 ---
 

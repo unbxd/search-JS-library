@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Code Demo Playground
-nav_order: 2
+nav_order: 3
 parent: Getting Started
 ---
 
@@ -22,7 +22,7 @@ It is a simple ecommerce website with search & category pages.
 The latest unbxd search sdk is integrated with the same. 
 The demo data is of fashion vertical.
 
-1. Create an account & sign in to https://codesandbox.io/(Optional, but recommended, so as to get unlimited free codesandboxes)
+1. Create an account & sign in to [Sandbox Playground](https://codesandbox.io)(**Optional**, but **recommended**, so as to get unlimited free codesandboxes)
 2. Hit [demo code url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
 3. Click on the Fork Button
     [![Click on the Fork Button](../assets/fork.png)](Fork the demo sandbox)
@@ -52,7 +52,8 @@ The demo data is of fashion vertical.
         [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/>
 5. Open the website url generated on the RHS in a new tab, to view the demo website.
 
-Note: One can play around with the config. Post saving, the changes should be reflected in the generated website url.
+{: .info }
+> Note: One can play around with the config. Post saving, the changes should be reflected in the generated website url.
 
 
 

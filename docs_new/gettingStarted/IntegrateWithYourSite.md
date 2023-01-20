@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Integrate with your site
-nav_order: 2
+nav_order: 4
 parent: Getting Started
 ---
 
@@ -15,6 +15,8 @@ parent: Getting Started
 
 1. TOC
 {:toc}
+
+## Integrate with your site
 
 Customize the config inside **src/js/index.js**, to see the data related to your sitekey:
 1. Change **siteKey** and **apiKey**.
