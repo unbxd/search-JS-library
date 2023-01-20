@@ -177,7 +177,24 @@ Customize the look & feel of the selected facets block by returning your custom 
 
 #### Default Value
 {: .no_toc }
-
+```js
+    function selectedFacetUI(selections, facet,selectedFacetsConfig) {
+    const {
+        clearAllText,
+        clearFacetsSelectorClass
+    } = facet;
+    const selectedFClass = (this.selectedFacetClass)?this.selectedFacetClass:selectedFacetsConfig.selectedFacetClass;
+    if(selections.length > 0) {
+        return [`<div class="UNX-facets-selections">`,
+            `<h5 class="UNX-selected-facet-header">Selected Filters</h5>`,
+            `<div class="UNX-selected-facets-inner">${selections}</div>`,
+            `<button class="${clearFacetsSelectorClass} ${selectedFClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
+       `</div>`].join('');
+    } else {
+        return ``;
+    }
+}
+```
 
 #### Usecases
 {: .no_toc }
@@ -193,6 +210,38 @@ Customize the look & feel of the selected facet by returning your custom HTML st
 
 #### Default Value
 {: .no_toc }
+```js
+    function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,selectedFacetsConfig){
+    const {
+        facetName,
+        facetType
+    } = selectedFacet;
+    const  {
+        name,
+        count,
+        dataId
+    } = selectedFacetItem;
+    const {
+        facetClass,
+        selectedFacetClass,
+        removeFacetsSelectorClass
+    } = this.options.facet;
+    const {
+        UNX_uFilter
+    } = this.testIds;
+    let action = "deleteSelectedFacetValue"
+    if(facetType === "range") {
+        action = "deleteSelectedRange"
+    }
+    const css = ` ${facetClass} ${selectedFacetClass} `;
+    return [`<div class="UNX-selected-facets-wrap">`,
+                `<button data-test-id="${UNX_uFilter}" class="UNX-selected-facet-btn UNX-change-facet ${css}" data-facet-name="${facetName}" data-facet-action="${action}" data-id="${dataId}">`,
+                    `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
+                `</button>`,
+                `<button class="UNX-delete-facet ${removeFacetsSelectorClass} ${css}" data-id="${dataId}" data-facet-action="${action}" data-facet-name="${facetName}">x</button></div>`
+            ].join('');
+}
+```
 
 #### Usecases
 {: .no_toc }
