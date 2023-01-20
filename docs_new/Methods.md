@@ -40,8 +40,6 @@ unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})
 ```
 ---
 
-### onQueryRedirect
-
 
 
 <!-- | reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
