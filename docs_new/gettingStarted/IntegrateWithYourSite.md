@@ -32,7 +32,10 @@ parent: Getting Started
     ```
 
 -   Invoke the sdk along with the custom config object:
-    **Example:**
+
+    ### Example:
+    {: .no_toc }
+    
     ```js
         window.unbxdSearch = new UnbxdSearch({
         siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
@@ -220,7 +223,10 @@ parent: Getting Started
         ```
     - Add the correct query selectors based on your website, in the config
     - Configure the correct category ids for the **UnbxdAnalyticsConf** window object   wherever applicable
-    **Example:**
+
+    ### Example:
+    {: no_toc }
+
     ```js
         if (location.pathname === "/categoryPage1") {
             window.UnbxdAnalyticsConf = {
@@ -247,7 +253,7 @@ parent: Getting Started
         productType: productType, 
     }
     ```
-    
+
     ### Arguments:
     {: .no_toc }
 
