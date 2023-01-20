@@ -220,14 +220,16 @@ setCategoryId: function(param, self) {
 ---
 ### onEvent
 Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events) .
-####
+#### arguments
 {: .no_toc }
 **type**: Name of the event, state: Event state metadata  
 **instance**: 
 #### example
 {: .no_toc }
 ```js
-
+onEvent: function(type,instance){
+    //Custom code here
+}
 ```
 ---
 ### onAction
@@ -239,18 +241,19 @@ Use this config function for facet element handlers like **change**, **keyup**, 
 #### example
 {: .no_toc }
 ```js
-
+onAction: function(e, ctx) {
+    console.log(e.target,ctx);
+}
 ```
 ---
-
 ### onNoUnbxdKeyRouting
 Routing action when the url does not have any unbxd key.
-### example
+#### example
 {: .no_toc}
 ```js
-    onNoUnbxdKeyRouting:() => {
-        history.go();
-    }
+onNoUnbxdKeyRouting:() => {
+    history.go();
+}
 ```
 
 <!-- | reRender | | Call this function if you want to render the page again. Ex: `unbxdSearch.reRender()` |
