@@ -1,4 +1,4 @@
-const reRender = function(){
+const reRender = function () {
     const {
         onEvent,
         spellCheck,
@@ -17,9 +17,9 @@ const reRender = function(){
         afterRender
     } = this.events;
 
-    onEvent(this,beforeRender);
+    onEvent(this, beforeRender);
 
-    if(loader.el) {
+    if (loader.el) {
         loader.el.innerHTML = ``;
     }
     const results = this.getSearchResults();
@@ -30,12 +30,12 @@ const reRender = function(){
         lastAction,
         productViewType
     } = this.viewState;
-    
-    if(productType ==="SEARCH" && searchBoxEl){
+
+    if (productType === "SEARCH" && searchBoxEl) {
         searchBoxEl.value = this.state.userInput;
     }
 
-    if(productType !=="SEARCH" && searchBoxEl){
+    if (productType !== "SEARCH" && searchBoxEl) {
         searchBoxEl.value = "";
     }
     const {
@@ -47,28 +47,28 @@ const reRender = function(){
         noResultLoaded,
         isInfiniteStarted
     } = this.viewState;
-    if(results && results.numberOfProducts === 0) {
+    if (results && results.numberOfProducts === 0) {
         let redirect = this.state.responseObj.redirect || {};
-        if(Object.keys(redirect).length) {
+        if (Object.keys(redirect).length) {
             return;
         }
-        onEvent(this,beforeNoResultRender);
+        onEvent(this, beforeNoResultRender);
         this.viewState.noResultLoaded = true;
         searchResultsWrapper.classList.add(noResultCss);
         searchResultsWrapper.innerHTML = this.renderNoResults(query);
-        if(!qParams.filter) {
+        if (!qParams.filter) {
             this.renderFacets();
         }
-        onEvent(this,afterNoResultRender);
+        onEvent(this, afterNoResultRender);
     } else {
-        const viewCss = (productViewType === "LIST") ? "UNX-list-block" :"UNX-grid-block";
+        const viewCss = (productViewType === "LIST") ? "UNX-list-block" : "UNX-grid-block";
         searchResultsWrapper.classList.remove("UNX-list-block");
         searchResultsWrapper.classList.remove("UNX-grid-block");
         searchResultsWrapper.classList.add(viewCss);
         searchResultsWrapper.classList.remove(noResultCss);
-        if(isInfiniteStarted){
+        if (isInfiniteStarted) {
             this.viewState.isInfiniteStarted = false;
-            if(noResultLoaded) {
+            if (noResultLoaded) {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
@@ -82,32 +82,32 @@ const reRender = function(){
     this.renderFacets();
     this.renderSelectedFacets();
     this.renderBannerUI();
-    if(productView.enabled){
+    if (productView.enabled) {
         this.renderProductViewTypeUI();
     }
     this.renderPageSize();
     this.renderSort();
-    if(pagination.type !== "INFINITE_SCROLL"){
-        paginationWrappers.forEach((pagination)=>{
+    if (pagination.type !== "INFINITE_SCROLL") {
+        paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });
     } else {
-        if(paginationWrappers) {
-            paginationWrappers.forEach((pagination)=>{
+        if (paginationWrappers) {
+            paginationWrappers.forEach((pagination) => {
                 pagination.innerHTML = ``;
             });
         }
     }
-    if(breadcrumb.enabled){
+    if (breadcrumb.enabled) {
         breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
     const suggestion = this.getSpellCheckSuggested();
-    if(spellCheck.el) {
+    if (spellCheck.el) {
         this.renderDidYouMean(suggestion);
     }
 
-    if(lastAction === "pagination" ) {
-        if(pagination.type == "INFINITE_SCROLL") {
+    if (lastAction === "pagination") {
+        if (pagination.type == "INFINITE_SCROLL") {
             const {
                 productItemClass
             } = this.options.products;
@@ -115,12 +115,12 @@ const reRender = function(){
             window.scrollBy({
                 top: scrollBy,
                 left: 0,
-                behavior : "smooth"
+                behavior: "smooth"
             })
         }
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
 
     }
-    onEvent(this,afterRender);
+    onEvent(this, afterRender);
 };
 export default reRender;
