@@ -10,13 +10,13 @@ parent: Getting Started
 
 ---
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
 {:toc}
 
-## Integrate with your site
+# Integrate with your site
 
 -   Include the vanilla js search library via the link:
     ```js

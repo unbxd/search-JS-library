@@ -8,7 +8,7 @@ nav_order: 3
 # Search Box
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,25 +16,50 @@ nav_order: 3
 
 ---
 
-## Definition
+# Definition
 A search bar in an e-commerce page is a user interface element that allows users to quickly and easily search for specific products within an online store's catalog. It typically appears at the top of an e-commerce website's home page, and is often prominently displayed in a larger font and contrasting color to make it easy for users to find.
 
 
-## Behavior
+# Behavior
 When a user enters a search term into the bar and hits the enter key or clicks the search button, the system will conduct a search of the online store's catalog and return a list of products that match the search term. The results are usually presented in a list format, with a thumbnail image of each product, its name, and its price.
 
 Search bar feature can include an autocomplete functionality which suggest or dropdown the matching keywords, or it may also include advanced search functionality that allows users to filter their results by various criteria such as product category, brand, price range, and more.
 
 The search bar is an important tool for e-commerce websites as it allows users to easily find the products they are looking for and help to increase the chance of them making a purchase.
 
-## Configurations
+# Configurations
 
 The following two configurations are used by the library to bind keyboard and mouse events to the search input field and search button on your website.
 
-| OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
-|----------|----------|----------|----------|
-| searchBoxEl | Element | null | Configure the search input element on which to listen to search query changes |
-| searchButtonEl | Element | NA | Configure your search button here. Clicking on  this will load the results based the input value provided in "searchBoxEl
+## searchBoxEl
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Configure the search input element on which to listen to search query changes.
+
+### Default Value
+{: .no_toc }
+null
+
+### Usecases
+{: .no_toc }
+
+## searchButtonEl
+{: .d-inline-block }
+
+Element
+{: .label }
+
+Configure your search button here. Clicking on this will load the results based the input value provided in “searchBoxEl".
+
+### Default Value
+{: .no_toc }
+NA
+
+### Usecases
+{: .no_toc }
 
 ```js
 <div class="UNX-input-wrapper">

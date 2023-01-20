@@ -8,7 +8,7 @@ nav_order: 17
 # Others
 {: .no_toc }
 
-## Table of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -16,9 +16,7 @@ nav_order: 17
 
 ---
 
-## Other Configurations
-
-something
+# Other Configurations
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
 |----------|----------|----------|----------|
