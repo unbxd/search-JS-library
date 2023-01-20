@@ -52,11 +52,22 @@ It's important to note that the nomenclature and the elements present on the e-c
 
 ## Important Note
 
-*   If you are including our Search JS Library, [Autosuggest Library](https://unbxd.com/docs/site-search/integration-documentation/autosuggest-sdk/) & [Analytics Library](https://unbxd.com/docs/site-search/integration-documentation/browser-integration/) in your HTML page, the order of the files are important.  
-    Include the Search JS Library, followed by Autosuggest Library and then the Analytics JS Library. This should be followed by the code to invoke the library.
-*   Always ensure you are invoking the library (i.e. calling the **UnbxdSearch** constructor) after you have included it either via URL or via npm
-*   Include the CSS inside the <head> tag of your HTML *page* & the scripts at the end of the body tag. This will ensure that the page rendering is not blocked by the javascript files.
-*   Please do not overwrite the `setUrl` method from the SDK. This method is used by the sdk to set the url based on user actions, and it evolves over time.
+1. If you are including our Search JS Library, [Autosuggest Library](https://unbxd.com/docs/site-search/integration-documentation/autosuggest-sdk/) & [Analytics Library](https://unbxd.com/docs/site-search/integration-documentation/browser-integration/) in your HTML page, the order of the files are important.  Include the Search JS Library, followed by Autosuggest Library and then the Analytics JS Library. This should be followed by the code to invoke the library.
+2. Always ensure you are invoking the library (i.e. calling the **UnbxdSearch** constructor) after you have included it either via URL or via npm.
+3. Include the CSS inside the <head> tag of your HTML *page* & the scripts at the end of the body tag. This will ensure that the page rendering is not blocked by the javascript files.
+4. Please do not overwrite the `setUrl` method from the SDK. This method is used by the sdk to set the url based on user actions, and it evolves over time.
+
+## Error Handling
+Here are a few tips for handling errors while integrating the Unbxd JavaScript search SDK with your e-commerce website:
+
+1. Make sure to include the correct version of the SDK on your website. You can find the latest version on the Unbxd website.
+2. Check for any typos or errors in the API key or search configuration that you are using to initialize the SDK
+3. Verify that the SDK is properly loaded and initialized on your website. You can use browser developer tools to check for any JavaScript errors.
+4. Ensure that the search SDK is being initialized after the page has fully loaded.
+5. If you are still experiencing errors, you can contact Unbxd's support team for additional assistance. They will be able to provide more specific guidance based on your specific implementation.
+6. Always check the search SDK documentation for any recent updates and changes.
+7. You can also use browser developer tools to debug the javascript and check the network tab for any failed requests.
+8. If you are still facing issues, you can also check for any browser compatibility issues.
 
 ## Dos and Don'ts
 When it comes to the dos and don'ts, some of the things to keep in mind could be:
@@ -69,8 +80,8 @@ When it comes to the dos and don'ts, some of the things to keep in mind could be
 6. Don't use the SDK on a website that is not authorized by Unbxd
 7. Do check the website analytics after integrating the SDK and make sure that the search and product events are tracked correctly, if not check the documentation again or reach out to Unbxd support.
 
-## Raise Issues  
 
+## Raise Issues  
 Facing some issues? look for solutions or create an issue [here](https://github.com/unbxd/search-JS-library/issues).
 
 
