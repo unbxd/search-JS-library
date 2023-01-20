@@ -84,7 +84,39 @@ Customize each individual facet value by returning your custom HTML string from 
 
 #### Default Value
 {: .no_toc }
-
+```js
+function facetItemUiElem (facet , value,facetSearchTxt) {
+    const {
+        facetName,
+        isSelected
+    } = facet;
+    const  {
+        name,
+        count,
+        dataId
+    } = value;
+    let {
+        facetClass,
+        selectedFacetClass
+    } = this.options.facet;
+    const {
+        UNX_uFilter
+    } = this.testIds;
+    if(facetSearchTxt && facetSearchTxt.length > 0) {
+        if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
+            facetClass +=' UNX-search-hidden'
+        }
+    }
+    let action =  "changeFacet";
+    if(isSelected) {
+        facetClass += ` ${selectedFacetClass}`
+        action = "deleteFacetValue";
+    }
+    return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+                `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
+            `</button>`].join('');
+}
+```
 
 #### Usecases
 {: .no_toc }
