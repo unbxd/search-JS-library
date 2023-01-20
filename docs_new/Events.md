@@ -93,6 +93,10 @@ onEvent: function(instance, "PAGE_NEXT", {
     /** Custom code here */
 }
 ```
+### Arguments
+{: .no_toc }
+next: Page number
+
 ---
 ### PAGE_PREV
 Fired on click of a previous page (**prev** sdk action is used)
@@ -105,6 +109,10 @@ onEvent: function(instance, "PAGE_PREV", {
     /** Custom code here */
 }
 ```
+### Arguments
+{: .no_toc }
+prev: Page number
+
 ---
 ### CHANGE_INPUT
 Fired on keywdown of searchbox element
@@ -149,4 +157,8 @@ onEvent: function(instance, "PAGESIZE_CHANGE", {
     /** Custom code here */
 }
 ```
+### Arguments
+{: .no_toc }
+val: New page size
+
 ---
