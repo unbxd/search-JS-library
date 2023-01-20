@@ -119,7 +119,7 @@ onEvent: function(instance, "FACETS_CLICK", {
 ```
 ### Arguments
 {: .no_toc }
-facetName: facet name</br>
+facetName: facet name </br>
 facetData: selected facets data from the search object response
 
 ---

@@ -32,8 +32,8 @@ parent: Getting Started
     ```
 
 3. Invoke the sdk along with the custom config object:
-### Example:
-{: .no_toc }
+    ### Example:
+    {: .no_toc }
     ```js
         window.unbxdSearch = new UnbxdSearch({
         siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
