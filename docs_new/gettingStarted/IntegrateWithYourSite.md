@@ -2,8 +2,7 @@
 layout: default
 title: Integrate with your site
 nav_order: 2
-has_children: true
-permalink: docs_new/gettingStarted
+parent: Getting Started
 ---
 
 # Integrate with your site
