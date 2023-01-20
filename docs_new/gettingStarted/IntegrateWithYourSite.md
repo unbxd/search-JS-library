@@ -26,12 +26,12 @@ parent: Getting Started
     > The **latest version** can be found via the npm repository:
     [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
 
-2. To get the default theme, include css in the link tag:
+2. To get the default theme, include the library css in the link tag:
     ```js
     <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
     ```
 
-<!-- 3. Invoke the sdk along with the custom config object:
+3. Invoke the sdk along with the custom config object:
 ### Example:
 {: .no_toc }
 ```js
@@ -200,7 +200,7 @@ window.unbxdSearch = new UnbxdSearch({
 });
 ```
 
-4. Customize the config, to see the data related to your sitekey:
+<!-- 4. Customize the config, to see the data related to your sitekey:
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
@@ -249,4 +249,4 @@ window.unbxdSearch = new UnbxdSearch({
     ```
     ### Arguments:
     {: .no_toc }
-    productType: SEARCH/CATEGORY -->
+    productType: SEARCH/CATEGORY  -->
