@@ -53,7 +53,7 @@ To install the Unbxd JavaScript search SDK on your website, you can follow these
 1. Sign up for an Unbxd account and create an application to get your API key.
 2. Include the Unbxd JavaScript library on your website by adding the following code to the head of your HTML file:
 ```js
-<script src="https://unbxd.com/js-sdk/unbxd.search.min.js"></script>
+<script src="https://libraries.unbxdapi.com/search-sdk/v<latest_version_number>/vanillaSearch.min.js"></script>
 ```
 
 3. Initialize the Unbxd object by adding the following code to your JavaScript file:
@@ -62,13 +62,13 @@ var unbxd = new Unbxd.setSiteKey("YOUR_API_KEY").setSearchKey("YOUR_SEARCH_KEY")
 ```
 Make sure to replace "YOUR_API_KEY" and "YOUR_SEARCH_KEY" with the actual keys from your Unbxd account.
 
-4. Configure the search parameters and display the results on your website. You can refer to the Unbxd documentation for more information on how to do this.
+4. Configure the search parameters and display the results on your website. You can refer to the detailed documentation for more information on how to do this.
 
 5. Test your implementation by performing a search on your website and checking the results.
 
 6. Once you've confirmed that everything is working correctly, you can integrate the SDK into your production environment.
 
-Please note that this is a general guide, and the actual implementation may vary depending on the specific requirements of your website. It's always a good idea to refer to the Unbxd documentation and contact the Unbxd support team for any assistance.
+Please note that this is a general guide, and the actual implementation may vary depending on the specific requirements of your website. It's always a good idea to refer to the detailed documentation presented in this website and contact the Unbxd support team for any assistance.
 
 ## How can I test the SDK before deploying to production?
 You can create a sandbox or a test environment for developers to test the integration and functionality of the SDK before deploying it to a production environment. Sandbox environments usually have a separate api-key, site-key, index and configuration, and it's isolated from the production environment, so developers can test and experiment without affecting the live site.
@@ -126,6 +126,8 @@ Disadvantages:
 2. May not be suitable for users with slow internet connections
 3. May be difficult for users to find a specific product
 
+## Can I customize the appearance of the pagination controls?
+Yes, the Unbxd Search SDK allows you to customize the appearance of the pagination controls to match the look and feel of your e-commerce website. You can customize the layout, design, and call-to-action of the pagination controls.
 
 ---
 
@@ -148,6 +150,50 @@ The Unbxd Search SDK supports multi-select facets, which allow users to select m
 Yes, the Unbxd Search SDK provides detailed analytics and reporting on the performance of your facets. You can track metrics such as the number of clicks on a facet, the number of search results returned after applying a facet, and conversion rate. This allows you to understand how your users are interacting with your facets and make any necessary adjustments to improve the user experience.
 
 ---
+# Sorting related queries
+
+## Can the Unbxd Search SDK be used to sort the search results by different criteria?
+Yes, the Unbxd Search SDK allows you to sort the search results by different criteria such as relevance, price, and popularity. You can set the sorting criteria by calling the setSort method on the Unbxd object and passing in the sort field and order. For example, to sort the results by price in descending order, you can use the following code:
+```js
+unbxd.setSort("price", "desc");
+```
+
+### How I allow users to sort the search results on my website?
+You can do this by creating a drop-down menu or a set of buttons on your website that allows the user to select the sorting criteria. 
+
+## Can I set a default sorting criteria for the search results?
+Yes, the Unbxd Search SDK allows you to set a default sorting criteria for the search results. You can do this by calling the `setSort` method on the Unbxd object before performing the search and passing in the default sorting criteria.
+
+## How does the Unbxd Search SDK handle sorting when multiple sorting criteria are applied?
+The Unbxd Search SDK allows you to set multiple sorting criteria and will apply them in the order they are set. For example, if you set the sorting criteria as “price” and “popularity”, it will first sort the results by price and then by popularity.
+
+## Can I track the performance of the sorting functionality?
+Yes, the Unbxd Search SDK provides detailed analytics and reporting on the performance of the sorting functionality. You can track metrics such as the number of clicks on a sorting option and the number of search results returned after applying a sorting criteria. This allows you to understand how your users are interacting with the sorting options and make any necessary adjustments to improve the user experience.
+
+---
+
+# Banners related queries
+
+## Can the Unbxd Search SDK be used to display banners on my e-commerce website?
+Yes, the Unbxd Search SDK allows you to display banners on your e-commerce website. You can use the SDK to target specific products, categories, or users and display personalized banners based on their search and browsing behavior.
+
+## Can I use the SDK to personalize the banners?
+Yes, the Unbxd Search SDK allows you to personalize the banners by passing a custom HTML in the `template` field.
+
+---
+
+# Spellcheck related queries
+
+## Does the Unbxd Search SDK provide spell-checking functionality?
+Yes, the Unbxd Search SDK provides spell-checking functionality which can help to correct spelling errors in the search queries made by users and return more accurate results.
+
+## How does the spell-checking functionality work in the Unbxd?
+Unbxd uses advanced algorithms to identify and correct spelling errors in the search queries made by users. It takes into account the context of the query and the specific terms used in the search and suggests alternate terms or corrected versions of the query.
+
+## Can I customize the spell-checking functionality in the Unbxd Search SDK?
+Yes, the Unbxd Search SDK allows you to customize the spell-checking functionality to match the specific requirements of your e-commerce website. You can adjust the settings for the spell-checking algorithm, such as the level of tolerance for spelling errors and the suggestions that are provided to the users.
+
+---
 
 # Other queries
 
@@ -156,4 +202,11 @@ Yes, the Unbxd Search SDK provides detailed analytics and reporting on the perfo
 ## How to enable and make use of the autocomplete functionality provided by the SDK?
 
 ## How to enable and make use of the tracking functionality provided by the SDK?
+
+## What is list view and grid view in product listing page?
+List view typically displays products in a vertical, scrolling list format, with each product represented by an individual item. Each item in the list typically includes a product image, name, price, and a brief description. The items are usually aligned vertically and take up the entire width of the screen, which allows for a lot of information to be visible at once, and can be helpful for users that want to compare multiple products quickly.
+
+Grid view, on the other hand, displays products in a grid format with multiple products displayed in rows and columns. Each product is represented by a thumbnail image and can include the name, price, and a brief description. Grid view allows for a more compact display of products and is useful for situations where there are many products to be displayed on a single page. It’s usually preferred when the user wants to get an overview of the products quickly.
+
+Both the grid and list view have their own advantages and disadvantages, and it depends on the e-commerce website which view is used as default or an option for the users to switch between them. Some websites use grid view as the default, while others use list view. Some websites provide an option for the users to switch between views so they can choose which format they prefer.
 
