@@ -190,8 +190,6 @@ Yes, the Unbxd Search SDK allows you to customize the spell-checking functionali
 
 # Other Queries
 
-## How to handle errors while making calls to the Unbxd search SDK?
-
 ## What is list view and grid view in product listing page?
 List view typically displays products in a vertical, scrolling list format, with each product represented by an individual item. Each item in the list typically includes a product image, name, price, and a brief description. The items are usually aligned vertically and take up the entire width of the screen, which allows for a lot of information to be visible at once, and can be helpful for users that want to compare multiple products quickly.
 
