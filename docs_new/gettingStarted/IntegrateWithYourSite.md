@@ -35,7 +35,7 @@ parent: Getting Started
 
     ### Example:
     {: .no_toc }
-    
+
     ```js
         window.unbxdSearch = new UnbxdSearch({
         siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
@@ -203,12 +203,12 @@ parent: Getting Started
     ```
 
 -   Customize the config, to see the data related to your sitekey:
-    - Change **siteKey** and **apiKey**.
+    -   Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
     ```
-    - Modify **attributesMap** inside **products** object.
+    -   Modify **attributesMap** inside **products** object.
         ```js
         attributesMap: {
         "unxTitle": "<<title attribute>>",
@@ -217,12 +217,12 @@ parent: Getting Started
         "unxDescription":"<<description attribute>>"
         };
         ```
-    - Provide **product attributes** to be returned from the search api:
+    -   Provide **product attributes** to be returned from the search api:
         ```js
         productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
         ```
-    - Add the correct query selectors based on your website, in the config
-    - Configure the correct category ids for the **UnbxdAnalyticsConf** window object   wherever applicable
+    -   Add the correct query selectors based on your website, in the config
+    -   Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
 
     ### Example:
     {: no_toc }
@@ -243,7 +243,7 @@ parent: Getting Started
             productType = "SEARCH";
         }
     ```
-    - Set the correct **productType** in the products config, i.e. "SEARCH" for search     results page, or "CATEGORY" for category pages.
+    -   Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
     ### Example:
     {: .no_toc }
