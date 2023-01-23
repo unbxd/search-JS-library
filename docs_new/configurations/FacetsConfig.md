@@ -194,7 +194,6 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 
 ### Usecases
 {: .no_toc }
-true, false
 
 --- 
 ## facetMultiSelect
