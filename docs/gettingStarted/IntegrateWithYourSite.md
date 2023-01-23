@@ -8,8 +8,6 @@ parent: Getting Started
 # Integrate with your site
 {: .fs-9 .no_toc }
 
----
-
 
 1. Include the vanilla js search library via the link:
     ```js

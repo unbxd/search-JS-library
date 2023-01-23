@@ -8,8 +8,6 @@ parent: Getting Started
 # JS Demo Playground
 {: .fs-9 .no_toc}
 
----
-
 The below steps will help you view a demo of how the search sdk works. 
 It is a simple ecommerce website with search & category pages. 
 The latest unbxd search sdk is integrated with the same. 
