@@ -50,8 +50,7 @@ null
 ### Usecases
 {: .no_toc }
 
---- 
-
+---
 ## template
 {: .d-inline-block }
 

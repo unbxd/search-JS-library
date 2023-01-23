@@ -55,7 +55,6 @@ false
 true, false
 
 ---
-
 ## count
 {: .d-inline-block }
 
@@ -107,7 +106,6 @@ List of fields you need for each variant
 {: .no_toc }
 
 ---
-
 ## mapping
 {: .d-inline-block }
 
@@ -127,7 +125,6 @@ Field mapping of the catalog attributes to the variant attributes. This is neede
 {: .no_toc }
 
 ---
-
 # Examples
 
 ## Default Example 

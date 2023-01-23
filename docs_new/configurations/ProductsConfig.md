@@ -50,6 +50,7 @@ Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGOR
 ### Usecases
 {: .no_toc }
 
+---
 ## el
 {: .d-inline-block }
 
@@ -65,6 +66,7 @@ null
 ### Usecases
 {: .no_toc }
 
+---
 ## template
 {: .d-inline-block }
 
@@ -133,6 +135,7 @@ function(product,idx,swatchUI,productViewType,products ){
 ### Usecases
 {: .no_toc }
 
+---
 ## productAttributes
 {: .d-inline-block }
 
@@ -150,6 +153,7 @@ This is an array of all required fields for generating the result template. This
 ### Usecases
 {: .no_toc }
 
+---
 ## attributesMap
 {: .d-inline-block }
 
@@ -167,6 +171,7 @@ Field mappings for the data to be displayed in the product card.
 ### Usecases
 {: .no_toc }
 
+---
 ## gridCount
 {: .d-inline-block }
 
@@ -182,7 +187,7 @@ Adjusts as per screen size
 ### Usecases
 {: .no_toc }
 
-
+---
 ## productItemClass
 {: .d-inline-block }
 
@@ -198,6 +203,7 @@ Additional class name to be added to each product card.
 ### Usecases
 {: .no_toc }
 
+---
 ## onProductClick
 {: .d-inline-block }
 
@@ -214,6 +220,7 @@ Callback functions called on click of a product card. This function gets the pro
 ### Usecases
 {: .no_toc }
 
+---
 ## defaultImage
 {: .d-inline-block }
 
@@ -229,6 +236,7 @@ If product doesnt contain image url, by default this image will be shown
 ### Usecases
 {: .no_toc }
 
+---
 ## tagName
 {: .d-inline-block }
 
@@ -243,6 +251,7 @@ html element for the product wrapper. by default it is div.
 ### Usecases
 {: .no_toc }
 
+---
 ## htmlAttributes
 {: .d-inline-block }
 
@@ -261,7 +270,6 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {: .no_toc }
 
 ---
-
 ## events
 {: .d-inline-block }
 
@@ -278,7 +286,6 @@ by default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 
 ---
-
 # Examples
 
 ## Default Example

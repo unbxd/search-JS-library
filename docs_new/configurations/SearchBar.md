@@ -47,7 +47,6 @@ null
 {: .no_toc }
 
 ---
-
 ## searchButtonEl
 {: .d-inline-block }
 
@@ -64,7 +63,6 @@ NA
 {: .no_toc }
 
 ---
-
 ```js
 <div class="UNX-input-wrapper">
 <input id="unbxdInput" class="UNX-input" type="text"/>

@@ -70,7 +70,6 @@ false
 true, false
 
 ---
-
 ## attributesMap
 {: .d-inline-block }
 

@@ -55,7 +55,6 @@ false
 true, false
 
 ---
-
 ## el	
 {: .d-inline-block }
 
@@ -71,9 +70,7 @@ null
 ### Usecases
 {: .no_toc }
 
-
 ---
-
 ## template	
 {: .d-inline-block }
 

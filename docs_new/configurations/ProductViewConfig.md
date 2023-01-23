@@ -69,7 +69,6 @@ null
 {: .no_toc }
 
 ---
-
 ## template
 {: .d-inline-block }
 
@@ -231,7 +230,6 @@ By default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 
 ---
-
 # Examples
 
 ## Default Example

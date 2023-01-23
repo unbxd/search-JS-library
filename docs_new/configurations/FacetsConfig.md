@@ -197,7 +197,6 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 true, false
 
 --- 
-
 ## facetMultiSelect
 {: .d-inline-block }
 
@@ -215,7 +214,6 @@ true
 true, false
 
 --- 
-
 ## facetClass
 {: .d-inline-block }
 
@@ -232,8 +230,6 @@ Additional CSS class name to add to the the facet items.
 {: .no_toc }
 
 --- 
-
-
 ## facetAction
 {: .d-inline-block }
 
@@ -250,7 +246,6 @@ Event based on which to trigger facet selection / deselection: “click” or �
 {: .no_toc }
 
 --- 
-
 ## selectedFacetClass
 {: .d-inline-block }
 
@@ -266,7 +261,6 @@ Additional CSS class name for the selected facet items.
 {: .no_toc }
 
 --- 
-
 ## selectedFacetsEl
 {: .d-inline-block }
 
@@ -283,7 +277,6 @@ null
 {: .no_toc }
 
 --- 
-
 ## selectedFacetTemplate
 {: .d-inline-block }
 
@@ -317,7 +310,6 @@ Customize the look & feel of the selected facets block by returning your custom 
 {: .no_toc }
 
 --- 
-
 ## selectedFacetItemTemplate
 {: .d-inline-block }
 
@@ -365,7 +357,6 @@ Customize the look & feel of the selected facet by returning your custom HTML st
 {: .no_toc }
 
 --- 
-
 ## selectedFacetConfig
 {: .d-inline-block }
 
@@ -384,7 +375,6 @@ object will be containing the configuration for the selected facet wrapper confi
 {: .no_toc }
 
 --- 
-
 ## clearAllText
 {: .d-inline-block }
 
@@ -401,7 +391,6 @@ The text to show for the clear all button that clears all selected facets.
 {: .no_toc }
 
 --- 
-
 ## rangeTemplate
 {: .d-inline-block }
 
@@ -460,7 +449,6 @@ function(range, selectedRange, facet) {
 {: .no_toc }
 
 ---
-
 ## rangeWidgetConfig
 {: .d-inline-block }
 
@@ -477,7 +465,6 @@ NA
 {: .no_toc }
 
 --- 
-
 ## facetMultilevel
 {: .d-inline-block }
 
@@ -494,7 +481,6 @@ true
 {: .no_toc }
 
 --- 
-
 ## facetMultilevelName
 {: .d-inline-block }
 
@@ -511,7 +497,6 @@ Set the multilevel field name using this config.
 {: .no_toc }
 
 --- 
-
 ## multiLevelFacetSelectorClass
 {: .d-inline-block }
 
@@ -528,7 +513,6 @@ Class name for each multi level facet item.
 {: .no_toc }
 
 --- 
-
 ## multiLevelFacetTemplate
 {: .d-inline-block }
 
@@ -608,7 +592,6 @@ function(facet,selectedCategories,facetSearchTxt, facetConfig) {
 {: .no_toc }
 
 --- 
-
 ## facetDepth
 {: .d-inline-block }
 
@@ -625,7 +608,6 @@ Configure how many levels of category filter you want to have by setting this va
 {: .no_toc }
 
 --- 
-
 ## clearFacetsSelectorClass
 {: .d-inline-block }
 
@@ -642,7 +624,6 @@ Class name for the button to clear the selected facets.
 {: .no_toc }
 
 --- 
-
 ## removeFacetsSelectorClass
 {: .d-inline-block }
 
@@ -659,7 +640,6 @@ Class name for the button to delete selected facets.
 {: .no_toc }
 
 --- 
-
 ## onFacetLoad
 {: .d-inline-block }
 
@@ -678,7 +658,6 @@ Callback function that gets called after each facet selection or deselection. Th
 {: .no_toc }
 
 --- 
-
 ## applyMultipleFilters
 {: .d-inline-block }
 
@@ -695,7 +674,6 @@ false
 {: .no_toc }
 
 --- 
-
 ## applyButtonText
 {: .d-inline-block }
 
@@ -711,8 +689,7 @@ The text to show for the apply button (when applyMultipleFilters is set as true)
 ### Usecases
 {: .no_toc }
 
---- 
-
+---
 ## clearButtonText
 {: .d-inline-block }
 
@@ -729,7 +706,6 @@ The text to show for the clear button (when applyMultipleFilters is set as true)
 {: .no_toc }
 
 --- 
-
 ## isCollapsible
 {: .d-inline-block }
 
@@ -747,7 +723,6 @@ true
 true, false
 
 --- 
-
 ## defaultOpen
 {: .d-inline-block }
 
@@ -763,6 +738,7 @@ If “isCollapsible” is true, set this config to indicate the default open fac
 ### Usecases
 {: .no_toc }
 
+---
 ## isSearchable
 {: .d-inline-block }
 
@@ -779,8 +755,7 @@ true
 {: .no_toc }
 true, false
 
---- 
-
+---
 ## searchPlaceHolder
 {: .d-inline-block }
 
@@ -796,8 +771,7 @@ Placeholder text for the facet search input.
 ### Usecases
 {: .no_toc }
 
---- 
-
+---
 ## enableViewMore
 {: .d-inline-block }
 
@@ -815,7 +789,6 @@ false
 true, false
 
 --- 
-
 ## viewMoreText
 {: .d-inline-block }
 
@@ -833,8 +806,7 @@ The text to show for the view more / less button. Pass the 2 strings in array fo
 ### Usecases
 {: .no_toc }
 
---- 
-
+---
 ## viewMoreLimit
 {: .d-inline-block }
 
@@ -850,8 +822,7 @@ Will show view more only if the facet values are greater than this value.
 ### Usecases
 {: .no_toc }
 
---- 
-
+---
 ## tagName
 {: .d-inline-block }
 
@@ -867,8 +838,7 @@ html element for the facet wrapper. by default it is div.
 ### Usecases
 {: .no_toc }
 
---- 
-
+---
 ## htmlAttributes
 {: .d-inline-block }
 
@@ -886,8 +856,7 @@ by default it contains classes for the wrapper. you can add more classes or any 
 ### Usecases
 {: .no_toc }
 
---- 
-
+---
 ## events
 {: .d-inline-block }
 
