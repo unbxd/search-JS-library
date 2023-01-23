@@ -55,7 +55,7 @@ parent: Getting Started
     -   Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
 
     ### Example:
-    {: no_toc }
+    {: .no_toc }
 
     ```js
         if (location.pathname === "/categoryPage1") {
