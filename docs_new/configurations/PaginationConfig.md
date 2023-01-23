@@ -79,6 +79,7 @@ true
 {: .no_toc }
 true, false
 
+---
 ## type
 {: .d-inline-block }
 
@@ -94,6 +95,7 @@ Type of pagination: “FIXED_PAGINATION” or “INFINITE_SCROLL” or “CLICK_
 ### Usecases
 {: .no_toc }
 
+---
 ## el
 {: .d-inline-block }
 
@@ -109,6 +111,7 @@ null
 ### Usecases
 {: .no_toc }
 
+---
 ## template
 {: .d-inline-block }
 
@@ -188,6 +191,7 @@ function (paginationData, pagination) {
 ### Usecases
 {: .no_toc }
 
+---
 ## pageClass
 {: .d-inline-block }
 
@@ -203,6 +207,7 @@ CSS classname for the pagination component.
 ### Usecases
 {: .no_toc }
 
+---
 ## selectedPageClass
 {: .d-inline-block }
 
@@ -218,7 +223,7 @@ CSS classname for selected page item.
 ### Usecases
 {: .no_toc }
 
-
+---
 ## onPaginate
 {: .d-inline-block }
 
@@ -234,7 +239,7 @@ NA
 ### Usecases
 {: .no_toc }
 
-
+---
 ## pageLimit
 {: .d-inline-block }
 
@@ -250,7 +255,7 @@ Number of pages to show upfront (when type is FIXED_PAGINATION).
 ### Usecases
 {: .no_toc }
 
-
+---
 ## infinteScrollTriggerEl
 {: .d-inline-block }
 
@@ -266,6 +271,7 @@ window
 ### Usecases
 {: .no_toc }
 
+---
 ## heightDiffToTriggerNextPage
 {: .d-inline-block }
 
@@ -281,6 +287,7 @@ Height of the page to consider to fetch the next page data (when type is set to 
 ### Usecases
 {: .no_toc }
 
+---
 ## action
 {: .d-inline-block }
 
@@ -296,6 +303,7 @@ Action on which pagination should trigger: “click” or “change”.
 ### Usecases
 {: .no_toc }
 
+---
 ## tagName
 {: .d-inline-block }
 
@@ -311,6 +319,7 @@ html element for the pagination wrapper. by default it is div.
 ### Usecases
 {: .no_toc }
 
+---
 ## htmlAttributes
 {: .d-inline-block }
 
@@ -322,12 +331,13 @@ Tby default it contains classes for the wrapper. you can add more classes or any
 ### Default Value
 {: .no_toc }
 ```js
-    {class:”UNX-pagination-size-block”}
+{class:”UNX-pagination-size-block”}
 ```
 
 ### Usecases
 {: .no_toc }
 
+---
 ## events
 {: .d-inline-block }
 
@@ -343,7 +353,7 @@ by default it will be empty. you can add further javascript events by keys and f
 ### Usecases
 {: .no_toc }
 
-
+---
 # Examples
 
 ## Default Example

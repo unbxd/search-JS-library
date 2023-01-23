@@ -68,7 +68,6 @@ null
 ### Usecases
 {: .no_toc }
 
-
 ---
 ## template
 {: .d-inline-block }
@@ -163,7 +162,6 @@ Additonal CSS class name to be added to the product view type elements
 ### Usecases
 {: .no_toc }
 
-
 ---
 ## selectedViewTypeClass
 {: .d-inline-block }
@@ -178,10 +176,8 @@ Additional CSS class name to be added to the selected view type element
 ``` js
 “UNX-selected-product-view”	
 ```
-
 ### Usecases
 {: .no_toc }
-
 
 ---
 ## tagName
@@ -211,7 +207,7 @@ By default it contains classes for the wrapper. you can add more classes or any 
 ### Default Value
 {: .no_toc }
 ```js
-    {class:”product-view-container”}
+{class:”product-view-container”}
 ```
 
 ### Usecases
@@ -234,7 +230,6 @@ By default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 
 ---
-
 # Examples
 
 ## Default Example
