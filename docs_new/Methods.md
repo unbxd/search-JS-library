@@ -196,8 +196,8 @@ unbxdSearch.setRangeSlider({
 In case of category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the category path variable for the search api payload.
 ### arguments
 {: .no_toc }
-**1.level**: Category depth level.  
-**2.name**: Category path name.  
+**1. level**: Category depth level.  
+**2. name**: Category path name.  
 ### example
 {: .no_toc }
 ```js
@@ -237,8 +237,8 @@ setCategoryId: function(param, self) {
 Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [section](search-JS-library/docs_new/Events.html) .
 ### arguments
 {: .no_toc }
-**1.type**: Name of the event, state: Event state metadata  
-**2.instance**: 
+**1. type**: Name of the event, state: Event state metadata  
+**2. instance**: 
 ### example
 {: .no_toc }
 ```js
@@ -251,8 +251,8 @@ onEvent: function(type,instance){
 Use this config function for facet element handlers like **change**, **keyup**, **click** .
 ### arguments
 {: .no_toc }
-**1.element**: html element on which the action is triggered  
-**2.context**: context object i.e. unbxdSearch  
+**1. element**: html element on which the action is triggered  
+**2. context**: context object i.e. unbxdSearch  
 ### example
 {: .no_toc }
 ```js
