@@ -33,19 +33,21 @@ unbxdSearch.reRender()
 Call this function for updating the config options in run time.
 ### arguments
 {: .no_toc }
-**config**: Object with new config information (Only the updated keys need to be present)
+**1.config**: Object with new config information (Only the updated keys need to be present)
 ### example
 {: .no_toc }
 ```js
-unbxdSearch.updateConfig({facet:{applyMultipleFilters:true}})
+unbxdSearch.updateConfig({
+    facet:{applyMultipleFilters:true}
+    })
 ```
 ---
 ## onQueryRedirect
 This config function holds the redirect logic for a query to which the response contains redirect information. Sample Search api response: `{redirect:{type:”url”,value:”https://www.unbxd.com”}` Parameter **redirected=true** is added in the browser url when replace state param is true in history. It is **not** recommended to open redirect in a new tab. In such a case, the custom client logic for above mentioned search input handlers should take care to not push state when switching to search from category.
 ### arguments
 {: .no_toc }
-**redirect**: redirect response from search api  
-**urlBeforeRedirect**: url before the browser redirected  
+**1.redirect**: redirect response from search api  
+**2.urlBeforeRedirect**: url before the browser redirected  
 ### example
 {: .no_toc }
 ```js
@@ -77,7 +79,7 @@ onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
 This config function holds the logic to manipulate history when we come back to the site from the redirected url. This is only called if history state replace was true. It looks for the redirected parameter to identify that page is back from redirected url.
 ### arguments
 {: .no_toc }
-**hashMode**: If sdk config has hashMode set to true.
+**1.hashMode**: If sdk config has hashMode set to true.
 ### example
 {: .no_toc }
 ```js
@@ -94,11 +96,11 @@ onBackFromRedirect: (hashMode) => {
 Custom implementation on clicking browser back & forward .
 ### arguments
 {: .no_toc }
-**locationParam**: Current location param string.  
-**newUrl**: New url string to replace the current string.  
-**productType**: SEARCH/CATEGORY  
-**isUnbxdKey**: True if any key required by sdk is present in the url  
-**replace**: Whether to replace history state or push to new state.  
+**1.locationParam**: Current location param string.  
+**2.newUrl**: New url string to replace the current string.  
+**3.productType**: SEARCH/CATEGORY  
+**4.isUnbxdKey**: True if any key required by sdk is present in the url  
+**5.replace**: Whether to replace history state or push to new state.  
 ### example
 {: .no_toc }
 ```js
@@ -167,7 +169,12 @@ Call this method to update the range filter value.
 ### example
 {: .no_toc }
 ```js
-unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})
+unbxdSearch.setRangeSlider({
+    "start":0,
+    "end":573,
+    "facetName":"price",
+    "gap": 200
+    })
 ```
 ---
 ## getCategoryId
@@ -175,15 +182,20 @@ Use this config function to return category id for a particular category page
 ### example
 {: .no_toc }
 ```js
-unbxdSearch.setRangeSlider({"start":0,"end":573,"facetName":"price","gap": 200})
+unbxdSearch.setRangeSlider({
+    "start":0,
+    "end":573,
+    "facetName":"price",
+    "gap": 200
+    })
 ```
 ---
 ## setCategoryId
 In case of category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the category path variable for the search api payload.
 ### arguments
 {: .no_toc }
-**level**: Category depth level.  
-**name**: Category path name.  
+**1.level**: Category depth level.  
+**2.name**: Category path name.  
 ### example
 {: .no_toc }
 ```js
@@ -223,8 +235,8 @@ setCategoryId: function(param, self) {
 Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [section](/docs_new/events#events) .
 ### arguments
 {: .no_toc }
-**type**: Name of the event, state: Event state metadata  
-**instance**: 
+**1.type**: Name of the event, state: Event state metadata  
+**2.instance**: 
 ### example
 {: .no_toc }
 ```js
@@ -237,8 +249,8 @@ onEvent: function(type,instance){
 Use this config function for facet element handlers like **change**, **keyup**, **click** .
 ### arguments
 {: .no_toc }
-**element**: html element on which the action is triggered  
-**context**: context object i.e. unbxdSearch  
+**1.element**: html element on which the action is triggered  
+**2.context**: context object i.e. unbxdSearch  
 ### example
 {: .no_toc }
 ```js
