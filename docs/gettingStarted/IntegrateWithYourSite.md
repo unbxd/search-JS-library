@@ -47,10 +47,10 @@ parent: Getting Started
     4. Add the correct query selectors based on your website, in the config
     5. Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
 
-    ### Example:
-    {: .no_toc }
+        **Example:**
+        {: .no_toc }
 
-    ```js
+        ```js
         if (location.pathname === "/categoryPage1") {
             window.UnbxdAnalyticsConf = {
                 page: "categoryId1"
@@ -65,26 +65,22 @@ parent: Getting Started
             window.UnbxdAnalyticsConf = {};
             productType = "SEARCH";
         }
-    ```
-    -   Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
+        ```
+         
+    6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
-    ### Example:
-    {: .no_toc }
+        **Example:**
+        {: .no_toc }
 
-    ```js
-    products: {
-        productType: productType, 
-    }
-    ```
-
-    ### Arguments:
-    {: .no_toc }
-
-    productType: SEARCH/CATEGORY 
+        ```js
+        products: {
+            productType: productType,  //SEARCH/CATEGORY
+        }
+        ```
 
 4.    Invoke the sdk along with the custom config object:
 
-    ### Example:
+    **Example:**
     {: .no_toc }
 
     ```js
