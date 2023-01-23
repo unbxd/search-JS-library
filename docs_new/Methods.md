@@ -48,8 +48,8 @@ unbxdSearch.updateConfig({
 This config function holds the redirect logic for a query to which the response contains redirect information. Sample Search api response: `{redirect:{type:”url”,value:”https://www.unbxd.com”}` Parameter **redirected=true** is added in the browser url when replace state param is true in history. It is **not** recommended to open redirect in a new tab. In such a case, the custom client logic for above mentioned search input handlers should take care to not push state when switching to search from category.
 ### arguments
 {: .no_toc }
-**1. redirect**: redirect response from search api  
-**2. urlBeforeRedirect**: url before the browser redirected  
+**1. redirect**: Redirect response from search api.  
+**2. urlBeforeRedirect**: Url before the browser redirected.   
 ### example
 {: .no_toc }
 ```js
@@ -81,7 +81,7 @@ onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
 This config function holds the logic to manipulate history when we come back to the site from the redirected url. This is only called if history state replace was true. It looks for the redirected parameter to identify that page is back from redirected url.
 ### arguments
 {: .no_toc }
-**1. hashMode**: If sdk config has hashMode set to true.
+**1. hashMode**: If sdk config has hashMode set to true.  
 ### example
 {: .no_toc }
 ```js
@@ -234,7 +234,7 @@ setCategoryId: function(param, self) {
 ```
 ---
 ## onEvent
-Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [section](search-JS-library/docs_new/Events.html) .
+Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [section](https://unbxd.github.io/search-JS-library/docs_new/Events.html) .
 ### arguments
 {: .no_toc }
 **1.type**: Name of the event, state: Event state metadata  
