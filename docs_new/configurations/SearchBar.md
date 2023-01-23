@@ -65,8 +65,8 @@ NA
 ---
 ```js
 <div class="UNX-input-wrapper">
-<input id="unbxdInput" class="UNX-input" type="text"/>
-<button id="searchBtn" class="fa fa-search"></button>
+  <input id="unbxdInput" class="UNX-input" type="text"/>
+  <button id="searchBtn" class="fa fa-search"></button>
 </div>
 ```
 

@@ -214,7 +214,7 @@ Callback functions called on click of a product card. This function gets the pro
 ### Default Value
 {: .no_toc }
 ```js
-    function(product, event) {}	
+function(product, event) {}	
 ```
 
 ### Usecases

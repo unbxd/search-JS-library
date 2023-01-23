@@ -27,9 +27,9 @@ Pass a config parameter called “productType” to indicate whether you want to
 const  unbxdSearch = new UnbxdSearch({
  siteKey:"your site key",
  apiKey:"your API key",
-products:{
+ products:{
     productType:"CATEGORY" //SEARCH , CATEGORY or BROWSE
-}
+ }
 });
 ```
 

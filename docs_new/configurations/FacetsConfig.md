@@ -288,7 +288,7 @@ Customize the look & feel of the selected facets block by returning your custom 
 ### Default Value
 {: .no_toc }
 ```js
-    function selectedFacetUI(selections, facet,selectedFacetsConfig) {
+function selectedFacetUI(selections, facet,selectedFacetsConfig) {
     const {
         clearAllText,
         clearFacetsSelectorClass
@@ -321,7 +321,7 @@ Customize the look & feel of the selected facet by returning your custom HTML st
 ### Default Value
 {: .no_toc }
 ```js
-    function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,selectedFacetsConfig){
+function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,      selectedFacetsConfig){
     const {
         facetName,
         facetType
@@ -651,7 +651,7 @@ Callback function that gets called after each facet selection or deselection. Th
 ### Default Value
 {: .no_toc }
 ```js
-  function(facets) {}
+function(facets) {}
 ```
 
 ### Usecases
@@ -872,7 +872,6 @@ by default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 
 --- 
-
 # Examples
 
 ## Default Example
@@ -1202,7 +1201,6 @@ Steps to get a range slider:
 
 
 ### Code Snippet
-
 ```js
 facet: {
     facetsEl: document.getElementById("facetsWrapper"),

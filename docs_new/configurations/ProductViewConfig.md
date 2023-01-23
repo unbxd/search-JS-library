@@ -207,7 +207,7 @@ By default it contains classes for the wrapper. you can add more classes or any 
 ### Default Value
 {: .no_toc }
 ```js
-    {class:”product-view-container”}
+{class:”product-view-container”}
 ```
 
 ### Usecases
