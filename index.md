@@ -18,9 +18,9 @@ A JavaScript library for building performant and quick search experiences with U
 ---
 
 {: .note-title }
-> My note title
+> Important Note
 >
-> A paragraph with a custom title callout
+> This document is ONLY for the customers using the new console. For the older version, [refer to the documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/). Since we are gradually migrating all our customers toward our new upgraded console, we would slowly **deprecate** the older version.
 
 # Introduction
 
@@ -46,10 +46,6 @@ It is important to note that in order to use the Unbxd Vanilla JS SDK, the e-com
 
 It's important to note that the nomenclature and the elements present on the e-commerce page may vary across different website, but the Unbxd Javascript Search SDK can be integrated in any e-commerce website.
 
----
-
-# Important Note
-This document is ONLY for the customers using the new console. For the older version, [refer to the documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/). Since we are gradually migrating all our customers toward our new upgraded console, we would slowly **deprecate** the older version.
 
 # Prerequisite
 Please complete the Self Serve FTU flow for sign up, site creation, feed upload, relevancy, etc.
