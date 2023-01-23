@@ -76,10 +76,7 @@ parent: Getting Started
         }
         ```
 
-4.    Invoke the sdk along with the custom config object:
-
-    **Example:**
-    {: .no_toc }
+4.    Here's a sample demo config containing majority of the common features:
 
     ```js
         window.unbxdSearch = new UnbxdSearch({
