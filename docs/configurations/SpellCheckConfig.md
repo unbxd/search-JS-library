@@ -55,7 +55,6 @@ false
 true, false
 
 ---
-
 ## el	
 {: .d-inline-block }
 
@@ -71,9 +70,7 @@ null
 ### Usecases
 {: .no_toc }
 
-
 ---
-
 ## template	
 {: .d-inline-block }
 
@@ -128,7 +125,6 @@ function(query,suggestion,pages) {
 ### Usecases
 {: .no_toc }
 
-
 ---
 ## selectorClass
 {: .d-inline-block }
@@ -144,7 +140,6 @@ Additional CSS class name for the spell check component
 
 ### Usecases
 {: .no_toc }
-
 
 ---
 ## tagName
@@ -162,7 +157,6 @@ html element for the spellcheck wrapper. by default it is div.
 ### Usecases
 {: .no_toc }
 
-
 ---
 ## htmlAttributes
 {: .d-inline-block }
@@ -179,7 +173,6 @@ by default it contains classes for the wrapper. you can add more classes or any 
 ### Usecases
 {: .no_toc }
 
-
 ---
 ## events
 {: .d-inline-block }
@@ -195,7 +188,6 @@ by default it will be empty. you can add further javascript events by keys and f
 
 ### Usecases
 {: .no_toc }
-
 
 ---
 # Examples

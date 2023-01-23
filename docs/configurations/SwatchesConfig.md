@@ -70,7 +70,6 @@ false
 true, false
 
 ---
-
 ## attributesMap
 {: .d-inline-block }
 
@@ -156,7 +155,6 @@ export default function(swatchData, swatches,product) {
 {: .no_toc }
 
 ---
-
 ## Default Example
 Sample “swatches” config
 

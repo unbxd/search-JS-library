@@ -50,6 +50,7 @@ null
 ### Usecases
 {: .no_toc }
 
+---
 ## template
 {: .d-inline-block }
 
@@ -62,8 +63,11 @@ Customize the look and feel of the loader component by using this function.
 ### Default Value
 {: .no_toc }
 ```js
-function(){return '<div class="UNX-loader">Loading search results....</div>'}
+function(){
+    return '<div class="UNX-loader">Loading search results....</div>'
+}
 ```	
 
 ### Usecases
 {: .no_toc }
+
