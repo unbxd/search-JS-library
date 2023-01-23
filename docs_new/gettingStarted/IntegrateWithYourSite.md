@@ -31,7 +31,8 @@ parent: Getting Started
     <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
     ```
 
--   Customize the config, to see the data related to your sitekey:
+-   Customize the config, to see the data related to your sitekey. 
+    (A Sample config is mentioned at the end of this page)
     -   Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
