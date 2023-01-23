@@ -31,6 +31,64 @@ parent: Getting Started
     <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
     ```
 
+-   Customize the config, to see the data related to your sitekey. 
+    (A Sample config is mentioned at the end of this page)
+    -   Change **siteKey** and **apiKey**.
+    ```js
+    siteKey: "<<site key>>",
+    apiKey: "<<api key>>"
+    ```
+    -   Modify **attributesMap** inside **products** object.
+        ```js
+        attributesMap: {
+        "unxTitle": "<<title attribute>>",
+        "unxImageUrl": "<<image url attribute>>",
+        "unxPrice": "<<price attribute>>",
+        "unxDescription":"<<description attribute>>"
+        };
+        ```
+    -   Provide **product attributes** to be returned from the search api:
+        ```js
+        productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
+        ```
+    -   Add the correct query selectors based on your website, in the config
+    -   Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
+
+    ### Example:
+    {: .no_toc }
+
+    ```js
+        if (location.pathname === "/categoryPage1") {
+            window.UnbxdAnalyticsConf = {
+                page: "categoryId1"
+            };
+            productType = "CATEGORY";
+        } else if (location.pathname === "/categoryPage2") {
+            window.UnbxdAnalyticsConf = {
+                page: "categoryId2"
+            };
+            productType = "CATEGORY";
+        } else {
+            window.UnbxdAnalyticsConf = {};
+            productType = "SEARCH";
+        }
+    ```
+    -   Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
+
+    ### Example:
+    {: .no_toc }
+
+    ```js
+    products: {
+        productType: productType, 
+    }
+    ```
+
+    ### Arguments:
+    {: .no_toc }
+
+    productType: SEARCH/CATEGORY 
+
 -   Invoke the sdk along with the custom config object:
 
     ### Example:
@@ -201,60 +259,3 @@ parent: Getting Started
         }
         });
     ```
-
--   Customize the config, to see the data related to your sitekey:
-    -   Change **siteKey** and **apiKey**.
-    ```js
-    siteKey: "<<site key>>",
-    apiKey: "<<api key>>"
-    ```
-    -   Modify **attributesMap** inside **products** object.
-        ```js
-        attributesMap: {
-        "unxTitle": "<<title attribute>>",
-        "unxImageUrl": "<<image url attribute>>",
-        "unxPrice": "<<price attribute>>",
-        "unxDescription":"<<description attribute>>"
-        };
-        ```
-    -   Provide **product attributes** to be returned from the search api:
-        ```js
-        productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
-        ```
-    -   Add the correct query selectors based on your website, in the config
-    -   Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
-
-    ### Example:
-    {: no_toc }
-
-    ```js
-        if (location.pathname === "/categoryPage1") {
-            window.UnbxdAnalyticsConf = {
-                page: "categoryId1"
-            };
-            productType = "CATEGORY";
-        } else if (location.pathname === "/categoryPage2") {
-            window.UnbxdAnalyticsConf = {
-                page: "categoryId2"
-            };
-            productType = "CATEGORY";
-        } else {
-            window.UnbxdAnalyticsConf = {};
-            productType = "SEARCH";
-        }
-    ```
-    -   Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
-
-    ### Example:
-    {: .no_toc }
-
-    ```js
-    products: {
-        productType: productType, 
-    }
-    ```
-
-    ### Arguments:
-    {: .no_toc }
-
-    productType: SEARCH/CATEGORY 

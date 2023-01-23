@@ -220,7 +220,7 @@ setCategoryId: function(param, self) {
 ```
 ---
 ## onEvent
-Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in the [below section](#events) .
+Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [section](/docs_new/events#events) .
 ### arguments
 {: .no_toc }
 **type**: Name of the event, state: Event state metadata  

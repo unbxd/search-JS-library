@@ -5,11 +5,6 @@ nav_order: 1
 parent: Getting Started
 ---
 
-# Prerequisite
-{: .fs-9 }
-
----
-
 # Table of contents
 {: .no_toc .text-delta }
 
