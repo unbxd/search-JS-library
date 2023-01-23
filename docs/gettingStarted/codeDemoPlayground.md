@@ -1,22 +1,15 @@
 ---
 layout: default
-title: Code Demo Playground
+title: JS Demo Playground
 nav_order: 3
 parent: Getting Started
 ---
 
-# Code Playground
-{: .fs-9 }
+# JS Demo Playground
+{: .fs-9 .no_toc}
 
 ---
 
-# Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
-# Check demo playground
 The below steps will help you view a demo of how the search sdk works. 
 It is a simple ecommerce website with search & category pages. 
 The latest unbxd search sdk is integrated with the same. 
@@ -52,7 +45,7 @@ The demo data is of fashion vertical.
         [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/>
 5. Open the website url generated on the RHS in a new tab, to view the demo website.
 
-{: .info }
+{: .note }
 > Note: One can play around with the config. Post saving, the changes should be reflected in the generated website url.
 
 
