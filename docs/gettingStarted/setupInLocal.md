@@ -52,7 +52,7 @@ Install dependencies:<br/>
 Run the webpack server:<br/>
 ```npm run start```<br/>
 
-{: .note }
+{: .important }
 > Additional links for above tools:<br/>
 [Download Node](3https://nodejs.org/en/download/)<br/>
 [Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)<br/>
