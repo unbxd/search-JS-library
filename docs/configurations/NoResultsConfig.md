@@ -40,8 +40,11 @@ Customize the look and feel of the no results component by using this function. 
 ### Default Value
 {: .no_toc }
 ```js
-function(query){return '<div class="UNX-no-results"> No Results found '+ query + '</div>'}
+function(query){
+    return '<div class="UNX-no-results"> No Results found '+ query + '</div>'
+}
 ```	
 ### Usecases
 {: .no_toc }
+
 

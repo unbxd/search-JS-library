@@ -20,8 +20,8 @@ nav_order: 5
 
 This section documents the different events fired by the Unbxd Library that you can use to perform **custom actions**. The **onEvent** config function is used to catch these events
 
-{: .info }
-> Note: All events are async, and can be caught in the config callback function `onEvent`.
+{: .note }
+> All events are async, and can be caught in the config callback function `onEvent`.
 
 ## BEFORE_API_CALL
 Fired right before the search api is called
@@ -32,8 +32,9 @@ onEvent: function(instance, "BEFORE_API_CALL", null) {
     /** Custom code here */
 }
 ```
-{: .info }
-> Note: All data related to payload or browser url is already calculated **before** firing this event.
+
+{: .note }
+> All data related to payload or browser url is already calculated **before** firing this event.
 
 ---
 ## AFTER_API_CALL

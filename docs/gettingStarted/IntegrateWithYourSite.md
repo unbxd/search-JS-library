@@ -8,37 +8,28 @@ parent: Getting Started
 # Integrate with your site
 {: .fs-9 .no_toc }
 
----
 
-# Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
-# Integrate with your site
-
--   Include the vanilla js search library via the link:
+1. Include the vanilla js search library via the link:
     ```js
     <script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
     ```
-    {: .info }
+    {: .note }
     > The **latest version** can be found via the npm repository:
     [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
 
--   To get the default theme, include the library css in the link tag:
+2.  To get the default theme, include the library css in the link tag:
     ```js
     <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
     ```
 
--   Customize the config, to see the data related to your sitekey. 
+3. Customize the config, to see the data related to your sitekey. 
     (A Sample config is mentioned at the end of this page)
-    -   Change **siteKey** and **apiKey**.
+    1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
     ```
-    -   Modify **attributesMap** inside **products** object.
+    2. Modify **attributesMap** inside **products** object.
         ```js
         attributesMap: {
         "unxTitle": "<<title attribute>>",
@@ -47,17 +38,17 @@ parent: Getting Started
         "unxDescription":"<<description attribute>>"
         };
         ```
-    -   Provide **product attributes** to be returned from the search api:
+    3. Provide **product attributes** to be returned from the search api:
         ```js
         productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
         ```
-    -   Add the correct query selectors based on your website, in the config
-    -   Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
+    4. Add the correct query selectors based on your website, in the config
+    5. Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
 
-    ### Example:
-    {: .no_toc }
+        **Example:**
+        {: .no_toc }
 
-    ```js
+        ```js
         if (location.pathname === "/categoryPage1") {
             window.UnbxdAnalyticsConf = {
                 page: "categoryId1"
@@ -72,27 +63,20 @@ parent: Getting Started
             window.UnbxdAnalyticsConf = {};
             productType = "SEARCH";
         }
-    ```
-    -   Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
+        ```
+         
+    6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
-    ### Example:
-    {: .no_toc }
+        **Example:**
+        {: .no_toc }
 
-    ```js
-    products: {
-        productType: productType, 
-    }
-    ```
+        ```js
+        products: {
+            productType: productType,  //SEARCH/CATEGORY
+        }
+        ```
 
-    ### Arguments:
-    {: .no_toc }
-
-    productType: SEARCH/CATEGORY 
-
--   Invoke the sdk along with the custom config object:
-
-    ### Example:
-    {: .no_toc }
+4.    Here's a sample demo config containing majority of the common features:
 
     ```js
         window.unbxdSearch = new UnbxdSearch({

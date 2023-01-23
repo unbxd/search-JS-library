@@ -5,13 +5,10 @@ nav_order: 2
 parent: Getting Started
 ---
 
-# Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
 # Setup in local
+{: .fs-9 .no_toc }
+
+
 The below steps will help you set up a simple ecommerce website with search & category pages in your local machine. The latest unbxd search sdk is integrated with the same. 
 The demo data is of fashion vertical.
 
@@ -55,7 +52,7 @@ Install dependencies:<br/>
 Run the webpack server:<br/>
 ```npm run start```<br/>
 
-{: .info }
+{: .note }
 > Additional links for above tools:<br/>
 [Download Node](3https://nodejs.org/en/download/)<br/>
 [Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)<br/>

@@ -53,6 +53,8 @@ true
 ### Usecases
 {: .no_toc }
 true, false
+
+---
 ## el
 {: .d-inline-block }
 
@@ -67,6 +69,8 @@ null
 
 ### Usecases
 {: .no_toc }
+
+---
 ## options
 {: .d-inline-block }
 
@@ -83,6 +87,8 @@ Array of sort options.
 
 ### Usecases
 {: .no_toc }
+
+---
 ## sortClass
 {: .d-inline-block }
 
@@ -98,6 +104,7 @@ CSS class name for the sort item, make sure you will be providing this informati
 ### Usecases
 {: .no_toc }
 
+---
 ## selectedSortClass
 {: .d-inline-block }
 
@@ -113,6 +120,7 @@ CSS class name for the selected sort item.
 ### Usecases
 {: .no_toc }
 
+---
 ## template
 {: .d-inline-block }
 
@@ -160,6 +168,7 @@ function(selectedSort, sortConfig) {
 ### Usecases
 {: .no_toc }
 
+---
 ## action
 {: .d-inline-block }
 
@@ -175,6 +184,7 @@ Action on which sort should trigger: “click” or “change” .
 ### Usecases
 {: .no_toc }
 
+---
 ## tagName
 {: .d-inline-block }
 
@@ -189,6 +199,8 @@ html element for the sort wrapper. by default it is div.
 
 ### Usecases
 {: .no_toc }
+
+---
 ## htmlAttributes	
 {: .d-inline-block }
 
@@ -206,6 +218,7 @@ By default it contains classes for the wrapper. you can add more classes or any 
 ### Usecases
 {: .no_toc }
 
+---
 ## events
 {: .d-inline-block }
 
@@ -221,6 +234,7 @@ By default it will be empty. you can add further javascript events by keys and f
 ### Usecases
 {: .no_toc }
 
+---
 # Examples
 
 ## Default Example
