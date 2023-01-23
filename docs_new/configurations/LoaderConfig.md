@@ -50,6 +50,8 @@ null
 ### Usecases
 {: .no_toc }
 
+--- 
+
 ## template
 {: .d-inline-block }
 
@@ -67,3 +69,5 @@ function(){return '<div class="UNX-loader">Loading search results....</div>'}
 
 ### Usecases
 {: .no_toc }
+
+--- 

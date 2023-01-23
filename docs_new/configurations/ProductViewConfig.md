@@ -68,8 +68,8 @@ null
 ### Usecases
 {: .no_toc }
 
-
 ---
+
 ## template
 {: .d-inline-block }
 
@@ -163,7 +163,6 @@ Additonal CSS class name to be added to the product view type elements
 ### Usecases
 {: .no_toc }
 
-
 ---
 ## selectedViewTypeClass
 {: .d-inline-block }
@@ -178,10 +177,8 @@ Additional CSS class name to be added to the selected view type element
 ``` js
 “UNX-selected-product-view”	
 ```
-
 ### Usecases
 {: .no_toc }
-
 
 ---
 ## tagName

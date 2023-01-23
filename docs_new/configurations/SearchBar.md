@@ -46,6 +46,8 @@ null
 ### Usecases
 {: .no_toc }
 
+---
+
 ## searchButtonEl
 {: .d-inline-block }
 
@@ -60,6 +62,8 @@ NA
 
 ### Usecases
 {: .no_toc }
+
+---
 
 ```js
 <div class="UNX-input-wrapper">

@@ -50,6 +50,9 @@ true
 ### Usecases
 {: .no_toc }
 true, false
+
+--- 
+
 ## el
 {: .d-inline-block }
 
@@ -65,6 +68,7 @@ null
 ### Usecases
 {: .no_toc }
 
+--- 
 
 ## pageSize
 {: .d-inline-block }
@@ -81,6 +85,8 @@ Number of results to be shown per page.
 ### Usecases
 {: .no_toc }
 
+--- 
+
 ## options
 {: .d-inline-block }
 
@@ -95,6 +101,8 @@ Array of desired page sizes to be rendered. It is suggested that the value be a 
 
 ### Usecases
 {: .no_toc }
+
+---
 
 ## pageSizeClass
 {: .d-inline-block }
@@ -111,6 +119,8 @@ Additional CSS class name to be added to the page size element.
 ### Usecases
 {: .no_toc }
 
+--- 
+
 ## selectedPageSizeClass
 {: .d-inline-block }
 
@@ -126,6 +136,8 @@ Additional CSS class name to be added to the selected page size option.
 ### Usecases
 {: .no_toc }
 
+--- 
+
 ## action
 {: .d-inline-block }
 
@@ -140,6 +152,8 @@ Action on which page size change should trigger: “click” or “change”.
 
 ### Usecases
 {: .no_toc }
+
+--- 
 
 ## template
 {: .d-inline-block }
@@ -173,6 +187,9 @@ function(selected, pagesize) {
 
 ### Usecases
 {: .no_toc }
+
+--- 
+
 ## tagName
 {: .d-inline-block }
 
@@ -187,6 +204,8 @@ html element for the page size wrapper. by default it is div.
 
 ### Usecases
 {: .no_toc }
+
+--- 
 
 ## htmlAttributes
 {: .d-inline-block }
@@ -205,6 +224,8 @@ by default it contains classes for the wrapper. you can add more classes or any 
 ### Usecases
 {: .no_toc }
 
+--- 
+
 ## events
 {: .d-inline-block }
 
@@ -219,6 +240,9 @@ by default it will be empty. you can add further javascript events by keys and f
 
 ### Usecases
 {: .no_toc }
+
+---
+
 # Examples
 
 ## Default Example

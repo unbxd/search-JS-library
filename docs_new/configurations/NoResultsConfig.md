@@ -45,3 +45,5 @@ function(query){return '<div class="UNX-no-results"> No Results found '+ query +
 ### Usecases
 {: .no_toc }
 
+--- 
+

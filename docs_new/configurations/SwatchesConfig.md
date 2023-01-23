@@ -156,7 +156,6 @@ export default function(swatchData, swatches,product) {
 {: .no_toc }
 
 ---
-
 ## Default Example
 Sample “swatches” config
 

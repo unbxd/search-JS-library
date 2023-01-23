@@ -260,6 +260,8 @@ by default it contains classes for the wrapper. you can add more classes or any 
 ### Usecases
 {: .no_toc }
 
+---
+
 ## events
 {: .d-inline-block }
 
@@ -274,6 +276,8 @@ by default it will be empty. you can add further javascript events by keys and f
 
 ### Usecases
 {: .no_toc }
+
+---
 
 # Examples
 
