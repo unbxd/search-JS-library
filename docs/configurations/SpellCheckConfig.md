@@ -43,6 +43,8 @@ You can configure the spellcheck feature by updating the required configs under 
 
 Boolean
 {: .label }
+Required
+{: .label .label-red }
 
 Turn this flag on for enabling spell check
 
@@ -60,6 +62,8 @@ true, false
 
 Element
 {: .label }
+Required
+{: .label .label-red }
 
 Element in which to render the spellcheck component
 
