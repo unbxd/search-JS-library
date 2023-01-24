@@ -75,7 +75,13 @@ null
 {: .no_toc }
 ```js
 breadcrumb: {
-		el: document.getElementById('breadcrumpContainer'),
+    enabled: true,
+	el: document.getElementById('breadcrumpContainer')
+}
+
+breadcrumb: {
+    enabled: true,
+	el: document.querySelector(".breadcrumbHeder"),
 }
 ```
 ---
