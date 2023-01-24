@@ -62,8 +62,10 @@ true, false
 
 Element
 {: .label }
+Required
+{: .label .label-red }
 
-Element in which to render the breadcrumbs
+Element in which to render the breadcrumbs.
 
 ### Default Value
 {: .no_toc }
@@ -71,7 +73,11 @@ null
 
 ### Scenarios
 {: .no_toc }
-
+```js
+breadcrumb: {
+		el: document.getElementById('breadcrumpContainer'),
+}
+```
 ---
 
 ## template
