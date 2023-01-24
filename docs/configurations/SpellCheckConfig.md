@@ -52,9 +52,9 @@ Turn this flag on for enabling spell check
 {: .no_toc }
 false
 
-### Usecases
+### Available options
 {: .no_toc }
-true, false
+true, false - For enable spellcheck enabled value should be true.
 
 ---
 ## el	
@@ -65,14 +65,11 @@ Element
 Required
 {: .label .label-red }
 
-Element in which to render the spellcheck component
+Element in which to render the spellcheck component.
 
 ### Default Value
 {: .no_toc }
 null
-
-### Usecases
-{: .no_toc }
 
 ---
 ## template	
@@ -128,7 +125,7 @@ function(query,suggestion,pages) {
 ```
 ### Usecases
 {: .no_toc }
-
+Via template we can customize spellcheck look and feel.
 ---
 ## selectorClass
 {: .d-inline-block }
