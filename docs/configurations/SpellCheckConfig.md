@@ -55,6 +55,8 @@ false
 ### Available options
 {: .no_toc }
 true, false - For enable spellcheck enabled value should be true.
+1. true: 
+2. false:
 
 ---
 ## el	
@@ -66,11 +68,14 @@ Required
 {: .label .label-red }
 
 Element in which to render the spellcheck component.
-
 ### Default Value
 {: .no_toc }
 null
 
+### Example
+```js 
+{el: document.getElementById("didYouMeanWrapper")}
+```
 ---
 ## template	
 {: .d-inline-block }
@@ -138,9 +143,6 @@ Additional CSS class name for the spell check component
 ### Default Value
 {: .no_toc }
 “UNX-suggestion”	
-
-### Usecases
-{: .no_toc }
 
 ---
 ## tagName
