@@ -16,24 +16,17 @@ nav_order: 2
 
 ---
 
+# Definition
 Unbxd has two product offerings:
 
 *   SEARCH:  powers search results pages 
 *   BROWSE or CATEGORY: powers category listing pages
 
+# Behavior
 Pass a config parameter called “productType” to indicate whether you want to render the search results page (productType= “SEARCH”) or the category listing page (productType= “CATEGORY”)
 
-```js
-const  unbxdSearch = new UnbxdSearch({
- siteKey:"your site key",
- apiKey:"your API key",
- products:{
-    productType:"CATEGORY" //SEARCH , CATEGORY or BROWSE
- }
-});
-```
-
-## prouductType
+# Configurations
+## productType
 {: .d-inline-block }
 
 String
@@ -48,14 +41,16 @@ null
 ### Usecases
 {: .no_toc }
 
----
+
+# Sample Example
 At the end of this step, you should choose a “productType” of the page that you want to render and pass it in the config as shown below:
+
 ```js
 const  unbxdSearch = new UnbxdSearch({
- siteKey: "-your site key-",
- apiKey: "-your API key-",
- products:{
-        productType:"SEARCH"
- }
+   siteKey: "-your site key-",
+   apiKey: "-your API key-",
+   products:{
+      productType:"SEARCH"
+   }
 });
 ```
