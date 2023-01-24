@@ -72,7 +72,7 @@ Function
 
 Customize the look and feel of the banner component by returning your custom HTML string from this function. This function get the list of banners as the parameter.
 
-This function passes two params:
+This function accepts two params:
 `banners` - lorem ipsum lorem ipsum
 `bannerOpts` - lorem ipsum lorem ipsum
 

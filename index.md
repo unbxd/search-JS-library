@@ -17,8 +17,8 @@ A JavaScript library for building performant and quick search experiences with U
 
 ---
 
-{: .note-title }
-> Important Note
+{: .important-title }
+> Important
 >
 > This document is ONLY for the customers using the new console.Please refer to [this documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/) for the older version. Since we are gradually migrating all our customers toward our new upgraded console, we would slowly **deprecate** the older version.
 

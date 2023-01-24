@@ -13,7 +13,7 @@ parent: Getting Started
     ```js
     <script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
     ```
-    {: .note }
+    {: .important }
     > The **latest version** can be found via the npm repository:
     [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
 
