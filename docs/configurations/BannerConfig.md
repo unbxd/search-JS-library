@@ -212,9 +212,7 @@ You can add further javascript events by keys and function as values. context wi
 --- 
 
 
-# Examples
-
-## Default Example
+# Default Example
 
 Sample banner configuration
 
@@ -234,3 +232,8 @@ banner: {
     count:1
 }
 ```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:
