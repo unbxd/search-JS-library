@@ -32,6 +32,9 @@ The following options are available under the object:
 {: .d-inline-block }
 
 Boolean
+{: .label }
+
+Required
 {: .label .label-red}
 
 "Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "banner feature" refers to the ability to display banners or advertisements on the website.
