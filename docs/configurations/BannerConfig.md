@@ -52,6 +52,9 @@ true, false
 Element
 {: .label  }
 
+Required
+{: .label  }
+
 Element in which to render the Banner component
 
 ### Default Value
