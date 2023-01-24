@@ -51,57 +51,57 @@ More information can be found [here](./../prerequisites)
     
             1.   Configure the correct category path and the page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
                     
-                    **Example:**
-                    {: .no_toc }
+                **Example:**
+                {: .no_toc }
 
-                    ```js
-                    if (location.pathname === "/categoryPage1") {
-                        window.UnbxdAnalyticsConf = {
-                            page: "categoryPath:categoryPath1",
-                            page_type: 'BOOLEAN'
-                        };
-                        productType = "CATEGORY";
-                    } else if (location.pathname === "/categoryPage2") {
-                        window.UnbxdAnalyticsConf = {
-                            page: "categoryPath:categoryPath2",
-                            page_type: 'BOOLEAN'
-                        };
-                        productType = "CATEGORY";
-                    } else {
-                        window.UnbxdAnalyticsConf = {};
-                        productType = "SEARCH";
-                    }
+                ```js
+                if (location.pathname === "/categoryPage1") {
+                    window.UnbxdAnalyticsConf = {
+                        page: "categoryPath:categoryPath1",
+                        page_type: 'BOOLEAN'
+                    };
+                    productType = "CATEGORY";
+                } else if (location.pathname === "/categoryPage2") {
+                    window.UnbxdAnalyticsConf = {
+                        page: "categoryPath:categoryPath2",
+                        page_type: 'BOOLEAN'
+                    };
+                    productType = "CATEGORY";
+                } else {
+                    window.UnbxdAnalyticsConf = {};
+                    productType = "SEARCH";
+                }
                     ```
             OR
 
             2.   Configure the correct category id and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
             Also set **browseQueryParam** in the config accordingly.
                     
-                    **Example:**
-                    {: .no_toc }
+                **Example:**
+                {: .no_toc }
 
-                    ```js
-                    if (location.pathname === "/<<categoryPage1>>") {
-                        window.UnbxdAnalyticsConf = {
-                            page: "categoryPathId:categoryId1",
-                            page_type: 'BOOLEAN'
-                        };
-                        productType = "CATEGORY";
-                    } else if (location.pathname === "/<<categoryPage2>>") {
-                        window.UnbxdAnalyticsConf = {
-                            page: "categoryPathId:categoryId2",
-                            page_type: 'BOOLEAN'
-                        };
-                        productType = "CATEGORY";
-                    } else {
-                        window.UnbxdAnalyticsConf = {};
-                        productType = "SEARCH";
-                    }
-                    ```
+                ```js
+                if (location.pathname === "/<<categoryPage1>>") {
+                    window.UnbxdAnalyticsConf = {
+                        page: "categoryPathId:categoryId1",
+                        page_type: 'BOOLEAN'
+                    };
+                    productType = "CATEGORY";
+                } else if (location.pathname === "/<<categoryPage2>>") {
+                    window.UnbxdAnalyticsConf = {
+                        page: "categoryPathId:categoryId2",
+                        page_type: 'BOOLEAN'
+                    };
+                    productType = "CATEGORY";
+                } else {
+                    window.UnbxdAnalyticsConf = {};
+                    productType = "SEARCH";
+                }
+                ```
 
-                    ```js
-                    browseQueryParam: "p-id"
-                    ```
+                ```js
+                browseQueryParam: "p-id"
+                ```
 
         
     6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.

@@ -7,7 +7,7 @@ parent: Getting Started
 
 # Integrate with apparel feed
 
-{ .important }
+{: .important }
 > Note: The sample apparel feed is used from the self serve dashboard via the csv upload feature. 
 
 ## Prerequisite
@@ -88,8 +88,9 @@ More information can be found [here](./../prerequisites)
 
 ## Sample configuration with the apparel feed containing majority of the common features
 
-{ .important }
+{: .important }
 > Note: All Element selectors will change as per your website
+
 
     ```js
         window.unbxdSearch = new UnbxdSearch({
