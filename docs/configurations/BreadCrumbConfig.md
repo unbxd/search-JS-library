@@ -53,8 +53,8 @@ true
 
 ### Available options
 {: .no_toc }
-**true**  
-**false**
+1.true  
+2.false
 
 ---
 
@@ -83,8 +83,6 @@ These are some of the examples of how "el" can be used .
 ```js
 	el: document.querySelector(".breadcrumbHeder"),
 ```
-
-You can use other element selectors such as getElementsByClassName() ,getElementsByTagName(), querySelectorAll() . 
 ---
 
 ## template
@@ -141,7 +139,6 @@ template: function (breadcrumbs, breadcrumb) {
 }
 ```
 
-
 ---
 
 ## selectorClass
@@ -180,12 +177,6 @@ tagName: "div"
 ### Other Options
 {: .no_toc }
 Any valid HTML tag can be used here to wrap the entire breadcrumb code
-<!-- ```js
-tagName: "span", 
-tagName: "ul", 
-tagName: "li", 
-etc...
-``` -->
 
 ---
 
@@ -206,13 +197,7 @@ You can add different html attributes here which will get added
 ### Other Options
 {: .no_toc }
 Any valid HTML attributes like class, id, title, style etc... can be mentioned here
-<!-- ```js
-{
-    class: "Custom-breadcrummbs",
-    style: "background-color: red;font-size: 50px;",
-    color: "yellow"
-}
-``` -->
+
 ---
 # Examples
 
@@ -246,4 +231,4 @@ breadcrumb:{
   }
 }
 ```
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
+---
