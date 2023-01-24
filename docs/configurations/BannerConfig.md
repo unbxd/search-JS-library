@@ -34,7 +34,9 @@ The following options are available under the object:
 Boolean
 {: .label }
 
-Turn this flag on for enabling Banner
+"Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "banner feature" refers to the ability to display banners or advertisements on the website.
+
+When the "enabled" flag is turned on, the banner feature will be active and banners or advertisements will be displayed on the website. This can be used to promote new products, sales, or other special offers. When the "enabled" flag is turned off, the banner feature will be disabled and no banners or advertisements will be displayed on the website.
 
 ### Default Value
 {: .no_toc }
@@ -42,7 +44,8 @@ false
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true - banners or advertisements will be displayed on the website 
+2. false - the banner feature will be disabled
 
 ---
 

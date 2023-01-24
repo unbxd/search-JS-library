@@ -17,10 +17,10 @@ A JavaScript library for building performant and quick search experiences with U
 
 ---
 
-{: .important-title }
+{: .warning-title }
 > Important
 >
-> This document is ONLY for the customers using the new console.Please refer to [this documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/) for the older version. Since we are gradually migrating all our customers toward our new upgraded console, we would slowly **deprecate** the older version.
+> This document is ONLY for customers integrated with the new version of SDK (V2 integrations). Please refer to [this documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/) for the versions of integrations. Since we are gradually migrating all our customers toward our new upgraded SDKs, we would slowly **deprecate** the older version.
 
 # Introduction
 
@@ -52,11 +52,17 @@ Please complete the Self Serve FTU flow for sign up, site creation, feed upload,
 [Self Serve Dashboard Documentation](https://unbxd.com/docs/site-search/integration-documentation/onboarding-flow/)
 
 
-# Raise Issues  
-Facing some issues? look for solutions or create an issue [here](https://github.com/unbxd/search-JS-library/issues).
+# Need Help?
+If you need assistance or are looking for technical help, please search this documentation website to find relevant information. You can also contact Unbxd's support team for additional assistance. Feel free to write to [support@unbxd.com](support@unbxd.com) or buzz us on [+1.85555.UNBXD](+1.85555.UNBXD). We will be able to provide more guidance based on your specific implementation.
+
+
+# Contribute to this documentation
+If you come across any mistakes or wish to make a contribution to this document, please submit a pull request on GitHub. Additional instructions on how to contribute can be found [here](/docs/CONTRIBUTE.md).
+
+
+# Contribute to SDK code
+If you would like to contribute to the JS SDK, please submit a pull request with your fix. [here](https://github.com/unbxd/search-JS-library/issues).
 
 
 # Stay up to date
-Look at the [changelog](https://github.com/unbxd/search-JS-library/blob/master/CHANGELOG.md) to see the latest version & history.
-
-
+Please refer to the [changelog](/docs/CHANGELOG.md) to stay informed about the most recent releases and bug fixes, and to track the history of changes.
