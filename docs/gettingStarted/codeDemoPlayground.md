@@ -1,7 +1,7 @@
 ---
 layout: default
 title: JS Demo Playground
-nav_order: 3
+nav_order: 4
 parent: Getting Started
 ---
 

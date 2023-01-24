@@ -1,12 +1,14 @@
 ---
 layout: default
 title: Integrate with your site
-nav_order: 4
+nav_order: 3
 parent: Getting Started
+has_children: true
+permalink: docs_new/integrateWithYourSite
 ---
 
 # Integrate with your site
-{: .fs-9 .no_toc }
+{: .fs-9 }
 
 
 ## Prerequisite
@@ -48,8 +50,8 @@ This will have content about the phoenix FTU flow, as well as configuring catego
         ```js
         productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
         ```
-    4. Add the correct query selectors based on your website, in the config
-    5. Configure the correct category ids for the **UnbxdAnalyticsConf** window object    wherever applicable
+    4. Add the correct **query selectors** based on your website, in the config.
+    5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for category page click or category page load, and the page_type
 
         **Example:**
         {: .no_toc }
@@ -57,12 +59,14 @@ This will have content about the phoenix FTU flow, as well as configuring catego
         ```js
         if (location.pathname === "/categoryPage1") {
             window.UnbxdAnalyticsConf = {
-                page: "categoryId1"
+                page: "categoryPath:categoryPath1",
+                page_type: 'BOOLEAN'
             };
             productType = "CATEGORY";
         } else if (location.pathname === "/categoryPage2") {
             window.UnbxdAnalyticsConf = {
-                page: "categoryId2"
+                page: "categoryPath:categoryPath2",
+                page_type: 'BOOLEAN'
             };
             productType = "CATEGORY";
         } else {
@@ -70,6 +74,9 @@ This will have content about the phoenix FTU flow, as well as configuring catego
             productType = "SEARCH";
         }
         ```
+
+        { .important }
+        > Note: If the feed has category id, 
          
     6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
