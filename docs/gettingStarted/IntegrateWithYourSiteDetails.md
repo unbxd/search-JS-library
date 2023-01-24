@@ -121,7 +121,7 @@ More information can be found [here](./../prerequisites)
         ```
 
 
-## Sample configuration with the unbxd demo sitekey feed containing majority of the common features
+## Sample configuration with the unbxd demo sitekey feed
 
 {: .important }
 > Note: All Element selectors must change as per your website
