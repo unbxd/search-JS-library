@@ -45,7 +45,7 @@ Boolean
 Required
 {: .label .label-red }
 
-Turn this flag on if you want to show breadcrumbs (if it is available) on your page
+Turn this flag on if you want to show breadcrumbs (if it is available) on your page.
 
 ### Default Value
 {: .no_toc }
@@ -53,7 +53,8 @@ true
 
 ### Available options
 {: .no_toc }
-true, false
+**true**  
+**false**
 
 ---
 
@@ -71,22 +72,19 @@ Element in which to render the breadcrumbs.
 {: .no_toc }
 null
 
-### Custom Usecases
-#### Usecase 1
+### Other options
+These are some of the examples of how "el" can be used .
+#### Option 1
 {: .no_toc }
-```js
-breadcrumb: {
-    enabled: true,  
-	el: document.getElementById('breadcrumpContainer')
-}
+```js 
+    el: document.getElementById('breadcrumpContainer')
 ```
-#### Usecase 2
+#### Option 2
 ```js
-breadcrumb: {
-    enabled: true,  
 	el: document.querySelector(".breadcrumbHeder"),
-}
 ```
+
+You can use other element selectors such as getElementsByClassName() ,getElementsByTagName(), querySelectorAll() . 
 ---
 
 ## template
@@ -152,16 +150,17 @@ template: function (breadcrumbs, breadcrumb) {
 String
 {: .label }
 
-Additional CSS class name for each breadcrumb item
+This class name will be added in addition to the 'UNX-bread-crumb-item' class to each breadcrumb item. You can choose to override the default class "UNX-bread-crumb", or add your own class name. 
+
 ### Default Value
 {: .no_toc }
 "UNX-bread-crumb"	
 
-### Usecases
+<!-- ### Usecases
 {: .no_toc }
 ```js
 selectorClass: "custom-bread-crumbClass"
-```
+``` -->
 ---
 
 ## tagName
@@ -174,13 +173,19 @@ Html element for the N wrapper.
 
 ### Default Value
 {: .no_toc }
-“DIV”	
-
-### Usecases
-{: .no_toc }
 ```js
-tagName: "span"
+tagName: "div"
 ```
+
+### Other Options
+{: .no_toc }
+Any valid HTML tag can be used here to wrap the entire breadcrumb code
+<!-- ```js
+tagName: "span", 
+tagName: "ul", 
+tagName: "li", 
+etc...
+``` -->
 
 ---
 
@@ -190,7 +195,7 @@ tagName: "span"
 Object
 {: .label }
 
-You can add different html attributes here which needed to be added a
+You can add different html attributes here which will get added
 
 ### Default Value
 {: .no_toc }
@@ -198,15 +203,16 @@ You can add different html attributes here which needed to be added a
 {class:”UNX-breadcrumbs-block”}
 ```
 
-### Usecases
+### Other Options
 {: .no_toc }
-```js
+Any valid HTML attributes like class, id, title, style etc... can be mentioned here
+<!-- ```js
 {
     class: "Custom-breadcrummbs",
     style: "background-color: red;font-size: 50px;",
     color: "yellow"
 }
-```
+``` -->
 ---
 # Examples
 
