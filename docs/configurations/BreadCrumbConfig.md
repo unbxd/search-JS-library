@@ -157,7 +157,7 @@ Additional CSS class name for each breadcrumb item
 ### Usecases
 {: .no_toc }
 ```js
-selectorClass: "custom-bread-crumbClass",
+selectorClass: "custom-bread-crumbClass"
 ```
 ---
 
@@ -167,7 +167,7 @@ selectorClass: "custom-bread-crumbClass",
 String
 {: .label }
 
-html element for the breadcrumb wrapper. by default it is div.
+Html element for the N wrapper.
 
 ### Default Value
 {: .no_toc }
@@ -175,7 +175,9 @@ html element for the breadcrumb wrapper. by default it is div.
 
 ### Usecases
 {: .no_toc }
-
+```js
+tagName: "span"
+```
 
 ---
 
@@ -185,7 +187,7 @@ html element for the breadcrumb wrapper. by default it is div.
 Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes
+You can add different html attributes here which needed to be added a
 
 ### Default Value
 {: .no_toc }
@@ -195,25 +197,13 @@ by default it contains classes for the wrapper. you can add more classes or any 
 
 ### Usecases
 {: .no_toc }
-
----
-
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}	
-
-### Usecases
-{: .no_toc }
-
-
+```js
+{
+    class: "Custom-breadcrummbs",
+    style: "background-color: red;font-size: 50px;",
+    color: "yellow"
+}
+```
 ---
 # Examples
 
