@@ -161,24 +161,6 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {: .no_toc }
 
 ---
-
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}	
-
-### Usecases
-{: .no_toc }
-
-
----
 # Examples
 
 ## Default Example
