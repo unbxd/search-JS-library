@@ -40,7 +40,10 @@ When the "enabled" flag is turned on, the banner feature will be active and bann
 
 ### Default Value
 {: .no_toc }
-false
+
+```js
+enabled: false
+```
 
 ### Scenarios
 {: .no_toc }
@@ -62,7 +65,10 @@ Required
 
 ### Default Value
 {: .no_toc }
-null
+
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
@@ -74,6 +80,7 @@ There are several HTML selectors that can be used to locate the banner element i
 * querySelector: This method retrieves the first element that matches a given CSS selector
 * querySelectorAll: This method retrieves all elements that match a given CSS selector
 * getElementsByName: This method retrieves all elements with a given name attribute.
+
 These selectors are part of the Document Object Model (DOM) API, which allows developers to access and manipulate the elements of an HTML or XML document. These selectors are commonly used in JavaScript to locate and manipulate specific elements on a webpage.
 
 ---
@@ -124,11 +131,11 @@ function (banners, bannerOpts) => {
 ```
 ### Scenarios
 {: .no_toc }
-This function can be overwritten to customize the banner.
+For additional information on custom scenarios, please refer to the [section](#usecases) on use cases located below.
 
 ---
 
-## count
+<!-- ## count
 {: .d-inline-block }
 
 Number
@@ -144,7 +151,7 @@ Indicates the number of banners to be shown
 {: .no_toc }
 true, false
 
----
+--- -->
 
 ## openNewTab
 {: .d-inline-block }
@@ -152,15 +159,20 @@ true, false
 Boolean
 {: .label }
 
-By default landing page url load in same tab, if you want to load in another tab configured it to true
+"Open in new tab" is a feature that allows the user to control whether a link or page should be opened in a new tab or the same tab when clicked. This feature provides the user with more control over their browsing experience and allows them to keep multiple pages open at once.
 
 ### Default Value
 {: .no_toc }
-false
+
+```js
+openNewTab: false
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true - opens in new tab
+2. false - opens in same tab
+
 
 --- 
 
@@ -170,15 +182,18 @@ true, false
 String
 {: .label }
 
-This is the html element for the banner wrapper. by default it is div.
+"tagName" refers to the name of an HTML tag used to wrap or structure the content (banner) on a webpage.
 
 ### Default Value
 {: .no_toc }
-'div'
+
+```js
+tagName: div
+```
 
 ### Scenarios
 {: .no_toc }
-Any valid html tag in which you like the banner code to be wrapped in.
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 
 --- 
 
@@ -188,37 +203,17 @@ Any valid html tag in which you like the banner code to be wrapped in.
 Object
 {: .label }
 
-By default it contains classes for the wrapper. you can add more classes or any attributes.
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element.. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
 ```js
-{class:"UNX-banner-block"}
+htmlAttributes: { class:"UNX-banner-block" }
 ```
 
 ### Scenarios
 {: .no_toc }
 Any valid html attribute can be passed as `key: value` pairs inside an object.
-
---- 
-
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-By default it will be empty. You can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-```js
-{}
-```
-
-### Scenarios
-{: .no_toc }
-You can add further javascript events by keys and function as values. context will be the current object.
 
 --- 
 
