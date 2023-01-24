@@ -213,7 +213,7 @@ Sample code for the breadcrumbs widget
 ```js
 breadcrumb:{
   enabled:true,
-  el:null,
+  el: document.getElementById("breadcrumpContainer"),
   selectorClass:"UNX-bread-crumb",
   template:function(breadcrumbs, breadcrumb){
     let ui = ``;
@@ -228,7 +228,7 @@ breadcrumb:{
         } = item;
         const css = `${selectorClass} UNX-bread-crumb-item`;
         if(id > 0) {
-            ui += `<span class="UNX-slash"> / </span>`;
+            ui += `<span class="UNX-slash"> to </span>`;
         }
         ui += [`<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
         `${decodeURIComponent(value)}</button>`].join('')
@@ -237,3 +237,4 @@ breadcrumb:{
   }
 }
 ```
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
