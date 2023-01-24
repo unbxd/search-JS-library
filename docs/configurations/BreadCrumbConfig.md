@@ -71,14 +71,17 @@ Element in which to render the breadcrumbs.
 {: .no_toc }
 null
 
-### Usecases
+### Custom Usecases
+#### Usecase 1
 {: .no_toc }
 ```js
 breadcrumb: {
     enabled: true,  
 	el: document.getElementById('breadcrumpContainer')
 }
-
+```
+#### Usecase 2
+```js
 breadcrumb: {
     enabled: true,  
 	el: document.querySelector(".breadcrumbHeder"),
