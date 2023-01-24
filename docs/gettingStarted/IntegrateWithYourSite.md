@@ -1,17 +1,14 @@
 ---
 layout: default
-title: Integrate with sample apparel feed 
-nav_order: 3
+title: Integrate with your site details
+nav_order: 4
 parent: Getting Started
 ---
 
-# Integrate with apparel feed
-
-{ .important }
-> Note: The sample apparel feed is used from the self serve dashboard via the csv upload feature. 
+# Integrate with your site information
 
 ## Prerequisite
-Please complete the FTU flow along with the dimensions mapping for fields like title, imageUrl, price, and categoryPath. 
+Please complete the FTU flow along with the dimensions mapping for fields like title, imageUrl, price, and categoryPath for your actual feed. 
 More information can be found [here](./../prerequisites)
 
 ## Integration Instructions
@@ -38,42 +35,75 @@ More information can be found [here](./../prerequisites)
     2. Modify **attributesMap** inside **products** object.
         ```js
         attributesMap: {
-        "unxTitle": "title",
-        "unxImageUrl": "imageURL",
-        "unxPrice": "price",
-        "unxDescription":"short_desc"
+        "unxTitle": "<<title attribute>>",
+        "unxImageUrl": "<<image url attribute>>",
+        "unxPrice": "<<price attribute>>",
+        "unxDescription":"<<description attribute>>"
         };
         ```
     3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned.
         ```js
-        productAttributes: ["title","imageURL","price","short_desc"]
+        productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
         ```
     4. Add the correct **query selectors** based on your website, in the config.
-    5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well
-        /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed **/
+    5. Configure category data:
+       Either category path, or category ids can be used.
+    
+            1.   Configure the correct category path and the page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+                    
+                    **Example:**
+                    {: .no_toc }
 
-        **Example:**
-        {: .no_toc }
+                    ```js
+                    if (location.pathname === "/categoryPage1") {
+                        window.UnbxdAnalyticsConf = {
+                            page: "categoryPath:categoryPath1",
+                            page_type: 'BOOLEAN'
+                        };
+                        productType = "CATEGORY";
+                    } else if (location.pathname === "/categoryPage2") {
+                        window.UnbxdAnalyticsConf = {
+                            page: "categoryPath:categoryPath2",
+                            page_type: 'BOOLEAN'
+                        };
+                        productType = "CATEGORY";
+                    } else {
+                        window.UnbxdAnalyticsConf = {};
+                        productType = "SEARCH";
+                    }
+                    ```
+            OR
 
-        ```js
-        if (location.pathname === "/<<categoryPage1>>") {
-            window.UnbxdAnalyticsConf = {
-                page: "categoryPath:categoryPath1",
-                page_type: 'BOOLEAN'
-            };
-            productType = "CATEGORY";
-        } else if (location.pathname === "/<<categoryPage2>>") {
-            window.UnbxdAnalyticsConf = {
-                page: "categoryPath:categoryPath2",
-                page_type: 'BOOLEAN'
-            };
-            productType = "CATEGORY";
-        } else {
-            window.UnbxdAnalyticsConf = {};
-            productType = "SEARCH";
-        }
-        ```
+            2.   Configure the correct category id and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+            Also set **browseQueryParam** in the config accordingly.
+                    
+                    **Example:**
+                    {: .no_toc }
 
+                    ```js
+                    if (location.pathname === "/<<categoryPage1>>") {
+                        window.UnbxdAnalyticsConf = {
+                            page: "categoryPathId:categoryId1",
+                            page_type: 'BOOLEAN'
+                        };
+                        productType = "CATEGORY";
+                    } else if (location.pathname === "/<<categoryPage2>>") {
+                        window.UnbxdAnalyticsConf = {
+                            page: "categoryPathId:categoryId2",
+                            page_type: 'BOOLEAN'
+                        };
+                        productType = "CATEGORY";
+                    } else {
+                        window.UnbxdAnalyticsConf = {};
+                        productType = "SEARCH";
+                    }
+                    ```
+
+                    ```js
+                    browseQueryParam: "p-id"
+                    ```
+
+        
     6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
         **Example:**
@@ -89,7 +119,7 @@ More information can be found [here](./../prerequisites)
 ## Sample configuration with the apparel feed containing majority of the common features
 
 { .important }
-> Note: All Element selectors will change as per your website
+> Note: All Element selectors must change as per your website
 
     ```js
         window.unbxdSearch = new UnbxdSearch({
