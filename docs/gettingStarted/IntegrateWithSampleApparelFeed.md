@@ -49,8 +49,8 @@ More information can be found [here](./../prerequisites)
         productAttributes: ["title","imageURL","price","short_desc"]
         ```
     4. Add the correct **query selectors** based on your website, in the config.
-    5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well
-        /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed **/
+    5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well <br/>
+    /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed from backend **/
 
         **Example:**
         {: .no_toc }
