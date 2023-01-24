@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Explore Demo Code
-nav_order: 2
+nav_order: 1
 parent: Getting Started
 ---
 
