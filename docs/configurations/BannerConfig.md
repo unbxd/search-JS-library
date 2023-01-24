@@ -32,7 +32,7 @@ The following options are available under the object:
 {: .d-inline-block }
 
 Boolean
-{: .label }
+{: .label .label-red}
 
 "Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "banner feature" refers to the ability to display banners or advertisements on the website.
 
@@ -59,7 +59,7 @@ Element
 {: .label  }
 
 Required
-{: .label  }
+{: .label  .label-red}
 
 "el" is an HTML element in an e-commerce page that is designated to display banners or advertisements. This allows developers to control the placement of the banners on the webpage and to ensure that they are displayed in a prominent and visible location. The "el element" can be set by providing the id or class of the element in the code.
 
