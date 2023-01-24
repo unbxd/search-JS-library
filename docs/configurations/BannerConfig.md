@@ -68,12 +68,12 @@ null
 {: .no_toc }
 There are several HTML selectors that can be used to locate the banner element in an e-commerce page:
 
-getElementById: This method retrieves an element by its unique id attribute.
-getElementsByClassName: This method retrieves all elements with a given class name.
-getElementsByTagName: This method retrieves all elements with a given tag name (e.g. div, span, etc.).
-querySelector: This method retrieves the first element that matches a given CSS selector.
-querySelectorAll: This method retrieves all elements that match a given CSS selector.
-getElementsByName: This method retrieves all elements with a given name attribute.
+* getElementById: This method retrieves an element by its unique id attribute.
+* getElementsByClassName: This method retrieves all elements with a given class name
+* getElementsByTagName: This method retrieves all elements with a given tag name (e.g. div, span, etc.)
+* querySelector: This method retrieves the first element that matches a given CSS selector
+* querySelectorAll: This method retrieves all elements that match a given CSS selector
+* getElementsByName: This method retrieves all elements with a given name attribute.
 These selectors are part of the Document Object Model (DOM) API, which allows developers to access and manipulate the elements of an HTML or XML document. These selectors are commonly used in JavaScript to locate and manipulate specific elements on a webpage.
 
 ---
