@@ -54,9 +54,8 @@ false
 
 ### Available options
 {: .no_toc }
-true, false - For enable spellcheck enabled value should be true.
-1. true: 
-2. false:
+1. true
+2. false
 
 ---
 ## el	
@@ -72,7 +71,7 @@ Element in which to render the spellcheck component.
 {: .no_toc }
 null
 
-### Example
+### Other options
 ```js 
 {el: document.getElementById("didYouMeanWrapper")}
 ```
@@ -131,7 +130,9 @@ function(query,suggestion,pages) {
 ### Usecases
 {: .no_toc }
 Via template we can customize spellcheck look and feel.
+
 ---
+
 ## selectorClass
 {: .d-inline-block }
 
@@ -174,9 +175,9 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {: .no_toc }
 
 ---
-# Examples
 
-## Default Example
+
+# Default Example
 Sample “spellCheck” config
 
 ```js
@@ -221,3 +222,8 @@ spellCheck:{
     },
 }
 ```
+
+
+# Custom Usecases
+
+## Usecase 1: 
