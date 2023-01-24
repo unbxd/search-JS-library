@@ -32,7 +32,7 @@ It's important to note that the pagination should be consistent, clear, and easy
 
 
 
-# Behavior
+## Behavior
 
 This feature will helps the users to navigate the products for any search/browse request. In many applications the UI for these sorted results are displayed to the user in "pages" containing a fixed number of matching results, and users don’t typically look at results past the first few pages worth of results.
 
