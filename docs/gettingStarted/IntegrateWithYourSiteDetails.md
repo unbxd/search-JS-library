@@ -5,7 +5,11 @@ nav_order: 4
 parent: Getting Started
 ---
 
+1. TOC
+{:toc}
+
 # Integrate with your site information
+{: .no_toc }
 
 ## Prerequisite
 Please complete the FTU flow along with the dimensions mapping for fields like title, imageUrl, price, and categoryPath for your actual feed. 
@@ -112,7 +116,7 @@ More information can be found [here](./../prerequisites)
 
         ```js
         products: {
-            productType: productType,  //SEARCH/CATEGORY
+            productType: "<<SEARCH/CATEGORY>>",  
         }
         ```
 
@@ -122,7 +126,7 @@ More information can be found [here](./../prerequisites)
 {: .important }
 > Note: All Element selectors must change as per your website
 
-[Sample config](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js)
+[Sample config from js demo playground](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js)
 
 
 

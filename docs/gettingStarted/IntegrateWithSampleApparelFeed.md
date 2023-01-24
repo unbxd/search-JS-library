@@ -5,7 +5,11 @@ nav_order: 3
 parent: Getting Started
 ---
 
+1. TOC
+{:toc}
+
 # Integrate with apparel feed
+{: .no_toc }
 
 {: .important }
 > Note: The sample apparel feed is used from the self serve dashboard via the csv upload feature. 
@@ -84,9 +88,13 @@ More information can be found [here](./../prerequisites)
             productType: productType,  //SEARCH/CATEGORY
         }
         ```
+    7. If it is a staging sitekey, set the correct search end point
+        ```js
+        searchEndPoint: "https://wingman-argocd.unbxd.io/"
+        ```
 
 
-## Sample configuration with the apparel feed containing majority of the common features
+## Sample configuration with the apparel feed
 
 {: .important }
 > Note: All Element selectors will change as per your website
