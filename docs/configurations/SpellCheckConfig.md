@@ -26,7 +26,7 @@ This feature can help to improve the user experience by reducing the chances of 
 
 Additionally, by using machine learning models, the spell check feature can improve its performance over time, becoming better at recognizing and correcting spelling errors. This can help to increase the chances of users finding the products they are looking for, even if they make a spelling mistake.
 
-# Behavior
+## Behavior
 
 The spell check feature provides **spelling suggestions** or **spell-checks** for misspelled search queries.
 
