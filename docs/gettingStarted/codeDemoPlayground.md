@@ -17,7 +17,7 @@ The demo data is of fashion vertical.
 2. Hit [demo code url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
 3. Click on the Fork Button
     [![Click on the Fork Button](../assets/fork.png)](Fork the demo sandbox)
-4. Customize the config inside **src/js/index.js** as per the feed:
+<!-- 4. Customize the config inside **src/js/index.js** as per the feed:
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
@@ -40,8 +40,8 @@ The demo data is of fashion vertical.
 
         [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid1.png)](UnbxdAnalyticsConf variable configuration)
         
-        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/>
-5. Open the website url generated on the RHS in a new tab, to view the demo website.
+        [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/> -->
+4. Open the website url generated on the RHS in a new tab, to view the demo website.
 
 {: .important }
 > Note: One can play around with the config. Post saving, the changes should be reflected in the generated website url.

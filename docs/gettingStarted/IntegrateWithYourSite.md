@@ -9,6 +9,12 @@ parent: Getting Started
 {: .fs-9 .no_toc }
 
 
+## Prerequisite
+This will have content about the phoenix FTU flow, as well as configuring category pages
+
+## Integration instructions
+
+
 1. Include the vanilla js search library via the link:
     ```js
     <script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
@@ -23,7 +29,7 @@ parent: Getting Started
     ```
 
 3. Customize the config, to see the data related to your sitekey. 
-    (A Sample config is mentioned at the end of this page)
+    (A Sample config can be found [here]())
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
