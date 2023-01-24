@@ -43,7 +43,7 @@ The demo data is of fashion vertical.
         [![Configure the correct category ids for the UnbxdAnalyticsConf window object](../assets/categoryid2.png)](UnbxdAnalyticsConf variable configuration)<br/>
 5. Open the website url generated on the RHS in a new tab, to view the demo website.
 
-{: .note }
+{: .important }
 > Note: One can play around with the config. Post saving, the changes should be reflected in the generated website url.
 
 
