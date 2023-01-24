@@ -58,7 +58,7 @@ Element
 Required
 {: .label  }
 
-Element in which to render the Banner component
+"el" is an HTML element in an e-commerce page that is designated to display banners or advertisements. This allows developers to control the placement of the banners on the webpage and to ensure that they are displayed in a prominent and visible location. The "el element" can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
@@ -66,7 +66,15 @@ null
 
 ### Scenarios
 {: .no_toc }
-getElementById(), getElementsByClassName(), getElementsByName(), etc.
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page:
+
+getElementById: This method retrieves an element by its unique id attribute.
+getElementsByClassName: This method retrieves all elements with a given class name.
+getElementsByTagName: This method retrieves all elements with a given tag name (e.g. div, span, etc.).
+querySelector: This method retrieves the first element that matches a given CSS selector.
+querySelectorAll: This method retrieves all elements that match a given CSS selector.
+getElementsByName: This method retrieves all elements with a given name attribute.
+These selectors are part of the Document Object Model (DOM) API, which allows developers to access and manipulate the elements of an HTML or XML document. These selectors are commonly used in JavaScript to locate and manipulate specific elements on a webpage.
 
 ---
 
@@ -76,13 +84,13 @@ getElementById(), getElementsByClassName(), getElementsByName(), etc.
 Function
 {: .label }
 
-Customize the look and feel of the banner component by returning your custom HTML string from this function. This function get the list of banners as the parameter.
+The "template" function refers to the ability to change the appearance of the banner feature on the e-commerce website. It allows developers to control the appearance of the banners by providing custom HTML and CSS. The function receives the list of banners to be displayed, and the banner configurations as parameters and it needs to return a string of HTML that will be used to render the banners on the webpage.
 
-This function accepts two params:
-`banners` - lorem ipsum lorem ipsum
-`bannerOpts` - lorem ipsum lorem ipsum
+This function passes two params:
+1. `banners` - the list of banners to be displayed
+2. `bannerOpts` - the banner configurations
 
-Expected return value: HTML string
+**Expected return value**: a string of HTML that will be used to render the banners on the webpage
 
 
 ### Default Value
