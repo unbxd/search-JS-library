@@ -50,7 +50,7 @@ Turn this flag on for enabling variants
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -67,7 +67,7 @@ Indicates the number of variants to be shown
 {: .no_toc }
 5	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -84,7 +84,7 @@ Variants will be grouped based on this field value. The name of the field has to
 {: .no_toc }
 “v_colour”		
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -102,7 +102,7 @@ List of fields you need for each variant
 ["title", "v_imageUrl"]			
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -121,7 +121,7 @@ Field mapping of the catalog attributes to the variant attributes. This is neede
 {"image_url": "v_imageUrl"}	
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---

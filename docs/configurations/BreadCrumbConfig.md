@@ -48,7 +48,7 @@ Turn this flag on if you want to show breadcrumbs (if it is available) on your p
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -66,7 +66,7 @@ Element in which to render the breadcrumbs
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -104,7 +104,7 @@ function(breadcrumbs, breadcrumb){
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -120,7 +120,7 @@ Additional CSS class name for each breadcrumb item
 {: .no_toc }
 “bread-crumb”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -137,7 +137,7 @@ html element for the breadcrumb wrapper. by default it is div.
 {: .no_toc }
 “DIV”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 
@@ -157,7 +157,7 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {class:”UNX-breadcrumbs-block”}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -174,7 +174,7 @@ by default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 {}	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 

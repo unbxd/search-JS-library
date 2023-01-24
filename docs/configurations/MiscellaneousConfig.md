@@ -30,7 +30,7 @@ Turn this flag on if you want Unbxd to fire analytics events. Note that you have
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -46,7 +46,7 @@ Turn this flag on if you want the URL update to happen on hash instead of using 
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -62,7 +62,7 @@ If you do not want the URLs to be updated on any search param change, set this c
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -78,7 +78,7 @@ CSS class name to add to any elements on which you want to trigger click event.
 {: .no_toc }
 “UNX-action-item”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -94,7 +94,7 @@ CSS class name to be added to any custom input elements on which you want to tri
 {: .no_toc }
 “UNX-action-change”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -112,7 +112,7 @@ Callback function called on a click or change on your custom element. This funct
 function(event, context) {}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -130,7 +130,7 @@ Callback that gets called after the supported events. This function gets 2 param
 function(context, type) {}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -148,7 +148,7 @@ Any additional parameters you want to send in the search API call.
 { "version":"V2" }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -164,7 +164,7 @@ The field name which denotes the unique identifier for each product.
 {: .no_toc }
 “uniqueId”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -180,7 +180,7 @@ Default filters to apply to all search API requests.
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -196,7 +196,7 @@ If you want to send the search query in a different query param key set this con
 {: .no_toc }
 “q”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -212,7 +212,7 @@ Domain name of the search API endpoint.
 {: .no_toc }
 “https://search.unbxd.io”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -227,7 +227,7 @@ Any additional path string to be added to the URL. This is useful incase you hav
 ### Default Value
 {: .no_toc }
 ””
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -243,7 +243,7 @@ By default Category ID will be taken from unbxdPageConf object, but if you wish 
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -259,7 +259,7 @@ This method helps to navigate through the breadcrumbs, you can customize the log
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -275,7 +275,7 @@ Customise your logic here to handle the redirect configured in api.
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -291,6 +291,6 @@ This will be the default query param for the browse and category.
 {: .no_toc }
 “p”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 

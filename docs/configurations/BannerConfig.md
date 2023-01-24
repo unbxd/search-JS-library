@@ -40,7 +40,7 @@ Turn this flag on for enabling Banner
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -61,7 +61,7 @@ Element in which to render the Banner component
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 getElementById(), getElementsByClassName(), getElementsByName(), etc.
 
@@ -111,7 +111,7 @@ function (banners, bannerOpts) => {
     return `${bannerUI}`
 }
 ```
-### Usecases
+### Scenarios
 {: .no_toc }
 This function can be overwritten to customize the banner.
 
@@ -129,7 +129,7 @@ Indicates the number of banners to be shown
 {: .no_toc }
 1
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -147,7 +147,7 @@ By default landing page url load in same tab, if you want to load in another tab
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -165,7 +165,7 @@ This is the html element for the banner wrapper. by default it is div.
 {: .no_toc }
 'div'
 
-### Usecases
+### Scenarios
 {: .no_toc }
 Any valid html tag in which you like the banner code to be wrapped in.
 
@@ -185,7 +185,7 @@ By default it contains classes for the wrapper. you can add more classes or any 
 {class:"UNX-banner-block"}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 Any valid html attribute can be passed as `key: value` pairs inside an object.
 
@@ -205,7 +205,7 @@ By default it will be empty. You can add further javascript events by keys and f
 {}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 You can add further javascript events by keys and function as values. context will be the current object.
 

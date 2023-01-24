@@ -38,7 +38,7 @@ Used to indicate if the page is search or category. Possible values: search (or)
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 
