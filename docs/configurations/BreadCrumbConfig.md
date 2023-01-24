@@ -157,7 +157,7 @@ Additional CSS class name for each breadcrumb item
 ### Scenarios
 {: .no_toc }
 ```js
-selectorClass: "custom-bread-crumbClass",
+selectorClass: "custom-bread-crumbClass"
 ```
 ---
 
@@ -167,7 +167,7 @@ selectorClass: "custom-bread-crumbClass",
 String
 {: .label }
 
-html element for the breadcrumb wrapper. by default it is div.
+Html element for the N wrapper.
 
 ### Default Value
 {: .no_toc }
@@ -175,7 +175,9 @@ html element for the breadcrumb wrapper. by default it is div.
 
 ### Scenarios
 {: .no_toc }
-
+```js
+tagName: "span"
+```
 
 ---
 
@@ -185,7 +187,7 @@ html element for the breadcrumb wrapper. by default it is div.
 Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes
+You can add different html attributes here which needed to be added a
 
 ### Default Value
 {: .no_toc }
@@ -193,7 +195,7 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {class:”UNX-breadcrumbs-block”}
 ```
 
-### Scenarios
+### Usecases
 {: .no_toc }
 
 ---
