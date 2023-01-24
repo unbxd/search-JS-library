@@ -157,9 +157,6 @@ html element for the spellcheck wrapper. by default it is div.
 {: .no_toc }
 “DIV”
 
-### Usecases
-{: .no_toc }
-
 ---
 ## htmlAttributes
 {: .d-inline-block }
