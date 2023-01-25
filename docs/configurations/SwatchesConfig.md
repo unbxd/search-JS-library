@@ -126,7 +126,7 @@ This function takes three params:
 2. `swatches` -
 3. `product` - 
 
-**Expected return value**: a string of HTML that will be used to render the spellcheck component on the webpage
+**Expected return value**: a string of HTML that will be used to render the swatches component on the webpage
 
 ### Default Value
 {: .no_toc }
