@@ -50,7 +50,7 @@ Turn this flag on for enabling spell check
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -67,7 +67,7 @@ Element in which to render the spellcheck component
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -122,7 +122,7 @@ function(query,suggestion,pages) {
         `</div>`].join('');
 }
 ```
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -138,7 +138,7 @@ Additional CSS class name for the spell check component
 {: .no_toc }
 “UNX-suggestion”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -154,7 +154,7 @@ html element for the spellcheck wrapper. by default it is div.
 {: .no_toc }
 “DIV”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -170,7 +170,7 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {: .no_toc }
 {class:”UNX-spellcheck-wrapper”}
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -186,7 +186,7 @@ by default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 {}	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---

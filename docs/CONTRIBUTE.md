@@ -1,7 +1,7 @@
 ---
 layout: default
 title: How To Contribute
-nav_order: 8
+nav_order: 9
 ---
 
 # How To Contribute

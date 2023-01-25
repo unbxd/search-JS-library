@@ -51,7 +51,9 @@ Turn this flag on to show the breadcrumbs (only if available).If flag is turned 
 {: .no_toc }
 true
 
-### Available options
+
+### Scenarios
+
 {: .no_toc }
 1.true  
 2.false
@@ -72,17 +74,23 @@ Element in which to render the breadcrumbs.
 {: .no_toc }
 null
 
-### Other options
-These are some of the examples of how "el" can be used .
+
+### Scenarios
+
 #### Option 1
+
 {: .no_toc }
+
 ```js 
     el: document.getElementById('breadcrumpContainer')
 ```
 #### Option 2
+{: .no_toc }
+
 ```js
 	el: document.querySelector(".breadcrumbHeder"),
 ```
+
 ---
 
 ## template
@@ -118,7 +126,7 @@ function(breadcrumbs, breadcrumb){
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 ```js
 template: function (breadcrumbs, breadcrumb) {
@@ -153,7 +161,9 @@ This class name will be added in addition to the 'UNX-bread-crumb-item' class to
 {: .no_toc }
 "UNX-bread-crumb"	
 
-<!-- ### Usecases
+
+### Scenarios
+
 {: .no_toc }
 ```js
 selectorClass: "custom-bread-crumbClass"
@@ -174,7 +184,9 @@ Html element for the N wrapper.
 tagName: "div"
 ```
 
-### Other Options
+
+### Scenarios
+
 {: .no_toc }
 Any valid HTML tag can be used here to wrap the entire breadcrumb code
 
@@ -194,14 +206,17 @@ You can add different html attributes here which will get added
 {class:”UNX-breadcrumbs-block”}
 ```
 
-### Other Options
-{: .no_toc }
+
+### Scenarios
+
 Any valid HTML attributes like class, id, title, style etc... can be mentioned here
 
----
-# Examples
 
-## Default Example
+---
+
+
+
+# Default Example
 
 Sample code for the breadcrumbs widget
 
@@ -234,4 +249,8 @@ breadcrumb:{
   }
 }
 ```
----
+
+# Usecases
+## Usecase 1
+## Usecase 2
+## Usecase 3
