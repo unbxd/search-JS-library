@@ -31,6 +31,8 @@ It is important to note that using loaders should be balanced with the performan
 
 Configure page loader to be shown when fetching search API results by setting the “loader” config object. 
 
+
+
 # Configurations
 
 The following options are available under the object:  
@@ -41,14 +43,21 @@ The following options are available under the object:
 Element
 {: .label }
 
-Element in which to render the loader component.
+Required
+{: .label .label-red}
+
+"el" in loader is an HTML element that is designated to display loader component. This allows developers to control the placement of the loader on the webpage . The "el" can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
-null	
+
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
 ## template
@@ -56,9 +65,9 @@ null
 
 Function
 {: .label }
+The "template" function here refers to the ability to change the look and feel of the loader component .
 
-
-Customize the look and feel of the loader component by using this function.
+**Expected return value**: A string of HTML that will be used to render the loader component on the webpage.
 
 ### Default Value
 {: .no_toc }
