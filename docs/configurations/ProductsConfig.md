@@ -55,17 +55,23 @@ Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGOR
 {: .d-inline-block }
 
 Element
-{: .label }
+{: .label  }
 
-Element in which to render the search results.
+Required
+{: .label  .label-red}
+
+"el" in products is an HTML element that is designated to display products or advertisements. This allows developers to control the placement of the products on the webpage and to ensure that they are displayed in a prominent and visible location. The "el" can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
-null
+
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
-
+There are several HTML selectors that can be used to locate the product element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 ---
 ## template
 {: .d-inline-block }
@@ -73,12 +79,21 @@ null
 Function
 {: .label }
 
-Customize the look and feel of the product card by returning your custom HTML string from this function. This function gets 5 parameters: complete product object and index of the current product, swatches, selected view type, product config.
+The "template" function here refers to the ability to change the appearance of the product feature on the e-commerce website. It allows developers to control the appearance of the products by providing custom HTML. The function receives  5 parameters: complete product object and index of the current product, swatches, selected view type, product config.
+
+This function passes two params:
+1. `product` - 
+2. `idx` - 
+3. `swatchUI` -
+4. `productViewType` -
+5. `products` -
+**Expected return value**: a string of HTML that will be used to render the products on the webpage
+
 
 ### Default Value
 {: .no_toc }
 ``` js
-function(product,idx,swatchUI,productViewType,products ){
+template:function(product,idx,swatchUI,productViewType,products ){
     const {
         unxTitle,
         unxImageUrl,
@@ -147,7 +162,7 @@ This is an array of all required fields for generating the result template. This
 ### Default Value
 {: .no_toc }
 ```js
-["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
+productAttributes:["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
 ```
 
 ### Scenarios
@@ -165,7 +180,7 @@ Field mappings for the data to be displayed in the product card.
 ### Default Value
 {: .no_toc }
 ```js
-{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
+attributesMap:{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
 ```
 
 ### Scenarios
@@ -198,7 +213,9 @@ Additional class name to be added to each product card.
 
 ### Default Value
 {: .no_toc }
-“product-item”
+```js
+productItemClass:“product-item”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -231,7 +248,7 @@ If product doesnt contain image url, by default this image will be shown
 
 ### Default Value
 {: .no_toc }
-“https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”	
+defaultImage:“https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”	
 
 ### Scenarios
 {: .no_toc }
@@ -243,50 +260,39 @@ If product doesnt contain image url, by default this image will be shown
 String
 {: .label }
 
-html element for the product wrapper. by default it is div.
+"tagName" refers to the name of an HTML tag used to wrap or structure the content (product) on a webpage.
+
 ### Default Value
 {: .no_toc }
-“DIV”	
+
+```js
+tagName: 'div'
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the product code to be wrapped in.
 
 ---
 ## htmlAttributes
 {: .d-inline-block }
 
-Boolean
+Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
 ```js
-{class:”UNX-search-results-block UNX-result-wrapper”}
+htmlAttributes:{class:”UNX-search-results-block UNX-result-wrapper”}
 ```
 
 ### Scenarios
 {: .no_toc }
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-## events
-{: .d-inline-block }
-
-object
-{: .label }
-
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}
-
-### Scenarios
-{: .no_toc }
-
----
->>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 ## Default Example
