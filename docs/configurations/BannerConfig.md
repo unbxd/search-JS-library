@@ -96,7 +96,7 @@ This function passes two params:
 ### Default Value
 {: .no_toc }
 ```js
-function (banners, bannerOpts) => {
+template: function (banners, bannerOpts) => {
     const {
         openNewTab
     } = bannerOpts
