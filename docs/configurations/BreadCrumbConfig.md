@@ -35,7 +35,6 @@ To render the breadcrumb component, set the “breadcrumb” config object.
 
 # Configurations
 The following options are available under the breadcrumb:
-
 ## enabled
 {: .d-inline-block }
 
@@ -52,9 +51,7 @@ On the other hand, if the breadcrumb is disabled, it will not be visible to the 
 {: .no_toc }
 true
 
-
 ### Scenarios
-
 {: .no_toc }
 1.true - Breadcrumbs will be displayed on the website.  
 2.false - The breadcrumb feature will be disabled .
@@ -69,29 +66,19 @@ Element
 Required
 {: .label .label-red }
 
-Element in which to render the breadcrumbs.
+“el” is an HTML element that is designated to display breadcrumbs. This allows developers to control the placement of the breadcrumb on the webpage and to ensure that they are displayed in a prominent and visible location. The “el” can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
-null
-
+```js
+el: null
+```
 
 ### Scenarios
 
 #### Option 1
-
 {: .no_toc }
-
-```js 
-    el: document.getElementById('breadcrumpContainer')
-```
-#### Option 2
-{: .no_toc }
-
-```js
-	el: document.querySelector(".breadcrumbHeder"),
-```
-
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 ---
 
 ## template
@@ -100,7 +87,13 @@ null
 Function
 {: .label }
 
-Customize the look and feel of the breadcrumb component by defining this function that is expected to return a HTML string for the template. You will get the breadcrumbs list as parameter to this function
+The "template" function here refers to the ability to change the look and feel of the breadcrumb feature . The function receives the list of breadcrumbs to be displayed ,  and the breadcrumb configurations as parameters and return a string of HTML to render the breadcrumb on to the webpage .
+
+This function passes two params:
+1. `breadcrumbs` - the list of breadcrumbs to be displayed
+2. `breadcrumb` - the breadcrumb configurations
+
+**Expected return value**: a string of HTML that will be used to render the breadcrumbs on the webpage
 
 ### Default Value
 {: .no_toc }
@@ -127,26 +120,9 @@ function(breadcrumbs, breadcrumb){
 }
 ```
 
-### Scenarioss
+### Scenarios
 {: .no_toc }
-```js
-template: function (breadcrumbs, breadcrumb) {
-        let ui = ``;
-        const { selectorClass } = breadcrumb;
-        breadcrumbs.forEach((item, id) => {
-          const { level, filterField, value } = item;
-          const css = `${selectorClass} UNX-bread-crumb-item`;
-          if (id > 0) {
-            ui += `<span class="UNX-slash"> > </span>`;
-          }
-          ui += [
-            `<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
-            `${decodeURIComponent(value)}</button>`
-          ].join("");
-        });
-        return `<div class="bread-crumb-main">${ui}</div>`;
-}
-```
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 
