@@ -187,7 +187,7 @@ Any valid html attribute can be passed as key : value pairs inside an object.
 
 Sample code for the breadcrumbs widget
 
-[![](../assets/breadcrumbs.png)](../assets/breadcrumbs.png)
+[![](../assets/breadcrumb.png)](../assets/breadcrumb.png)
 
 ```js
 breadcrumb:{
