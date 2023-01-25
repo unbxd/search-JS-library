@@ -183,8 +183,8 @@ Function
 
 The "template" function here refers to the ability to change the look and feel of the sorting component . The function receives below two parameters :  
 
-**1. selectedSort** : the value of selected sort item in Ui is passed here .  
-**2. sortConfig** : the sortConfig receives all the configuration value for sort like sortClass, options etc. 
+1. `selectedSort` : the value of selected sort item in Ui is passed here .  
+2. `sortConfig` : the sortConfig receives all the configuration value for sort like sortClass, options etc. 
 
 **Expected return value**: a string of HTML that will be used to render the sorting component on the webpage.
 
