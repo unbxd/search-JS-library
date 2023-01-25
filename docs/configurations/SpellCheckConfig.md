@@ -26,7 +26,7 @@ This feature can help to improve the user experience by reducing the chances of 
 
 Additionally, by using machine learning models, the spell check feature can improve its performance over time, becoming better at recognizing and correcting spelling errors. This can help to increase the chances of users finding the products they are looking for, even if they make a spelling mistake.
 
-## Behavior
+# Behavior
 
 The spell check feature provides **spelling suggestions** or **spell-checks** for misspelled search queries.
 
@@ -182,6 +182,7 @@ tagName: 'div'
 ### Scenarios
 {: .no_toc }
 Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
+
 ---
 ## htmlAttributes
 {: .d-inline-block }
@@ -202,8 +203,6 @@ htmlAttributes: { class:"UNX-spellcheck-wrapper" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-# Examples
-
 # Default Example
 Sample “spellCheck” config
 

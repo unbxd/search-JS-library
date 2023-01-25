@@ -63,6 +63,8 @@ NA
 {: .no_toc }
 
 ---
+
+# Default Example
 ```js
 <div class="UNX-input-wrapper">
   <input id="unbxdInput" class="UNX-input" type="text"/>

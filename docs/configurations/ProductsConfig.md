@@ -45,8 +45,9 @@ Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGOR
 
 ### Default Value
 {: .no_toc }
-“SEARCH”
-
+``` js
+productType:“SEARCH”
+```
 ### Scenarios
 {: .no_toc }
 
@@ -213,6 +214,7 @@ Additional class name to be added to each product card.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 productItemClass:“product-item”
 ```
@@ -248,7 +250,10 @@ If product doesnt contain image url, by default this image will be shown
 
 ### Default Value
 {: .no_toc }
+
+``` js
 defaultImage:“https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -293,9 +298,7 @@ htmlAttributes:{class:”UNX-search-results-block UNX-result-wrapper”}
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-# Examples
-
-## Default Example
+# Default Example
 
 Sample “products” config:
 
