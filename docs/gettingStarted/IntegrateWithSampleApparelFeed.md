@@ -33,13 +33,13 @@ More information can be found [here](./../prerequisites)
     <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
     ```
 
-3. Customize the config, to see the data related to your sitekey. 
+3. Customize the search config used for invoking the sdk, to see the data related to your sitekey. 
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
     ```
-    2. Modify **attributesMap** inside **products** object.
+    2. Provide **attributesMap** inside **products** object.
         ```js
         attributesMap: {
         "unxTitle": "title",
@@ -85,7 +85,7 @@ More information can be found [here](./../prerequisites)
 
         ```js
         products: {
-            productType: productType,  //SEARCH/CATEGORY
+            productType: "<<SEARCH/CATEGORY>>"
         }
         ```
     7. If it is a staging sitekey, set the correct search end point
