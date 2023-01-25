@@ -45,7 +45,7 @@ Boolean
 Required
 {: .label .label-red }
 
-Turn this flag on if you want to show breadcrumbs (if it is available) on your page.
+Turn this flag on to show the breadcrumbs (only if available).If flag is turned off no breadcrumnbs wou
 
 ### Default Value
 {: .no_toc }
@@ -223,6 +223,9 @@ by default it will be empty. you can add further javascript events by keys and f
 ## Default Example
 
 Sample code for the breadcrumbs widget
+
+[![](../assets/breadcrumbs.png)](../assets/breadcrumbs.png)
+
 ```js
 breadcrumb:{
   enabled:true,
