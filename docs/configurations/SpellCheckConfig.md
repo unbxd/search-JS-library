@@ -169,7 +169,7 @@ Additional CSS class name for the spell check component
 String
 {: .label }
 
-html element for the spellcheck wrapper. by default it is div.
+html element for the spellcheck wrapper. by default it is div...
 
 ### Default Value
 {: .no_toc }
