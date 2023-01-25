@@ -10,8 +10,7 @@ nav_order: 10
 ---
 
 ## Contribute to this documentation
-If you come across any mistakes or wish to make a contribution to this document, please submit a pull request on GitHub. Additional instructions on how to contribute can be found [here](/docs/CONTRIBUTE.md).
-
+If you come across any mistakes or wish to make a contribution to this document, please submit a pull request on GitHub.
 
 ## Contribute to SDK code
 When contributing to this repository, please discuss the change you wish to make via issue,
