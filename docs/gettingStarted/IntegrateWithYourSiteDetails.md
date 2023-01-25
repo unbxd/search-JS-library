@@ -108,6 +108,9 @@ More information can be found [here](./../prerequisites)
         browseQueryParam: "p-id"
         ```
 
+        {: .important }
+        > For further help with category pages configuration, please contact the feed support team. 
+
         
     6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
