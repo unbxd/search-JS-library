@@ -73,6 +73,7 @@ el: null
 ### Scenarios
 {: .no_toc }
 There are several HTML selectors that can be used to locate the product element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
+
 ---
 ## template
 {: .d-inline-block }
