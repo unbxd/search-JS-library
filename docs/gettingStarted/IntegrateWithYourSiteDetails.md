@@ -5,17 +5,17 @@ nav_order: 3
 parent: Getting Started
 ---
 
-1. TOC
-{:toc}
-
 # Integrate with your site information
 {: .no_toc }
 
-## Prerequisite
+1. TOC
+{:toc}
+
+# Prerequisite
 Please complete the FTU flow along with the dimensions mapping for fields like title, imageUrl, price, and categoryPath for your actual feed. 
 More information can be found [here](./../prerequisites)
 
-## Integration Instructions
+# Integration Instructions
 
 1. Include the vanilla js search library via the link:
     ```js
@@ -124,12 +124,10 @@ More information can be found [here](./../prerequisites)
         ```
 
 
-## Sample configuration with the unbxd demo sitekey feed
+# Sample configuration with the unbxd demo sitekey feed
 
-{: .important }
-> Note: All Element selectors must change as per your website
-
-[Sample config from js demo playground](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js)
+{: .warning }
+> Note: All Element selectors must change as per your website. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes
 
 
 

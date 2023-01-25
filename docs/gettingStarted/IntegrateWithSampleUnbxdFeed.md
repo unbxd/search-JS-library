@@ -1,24 +1,24 @@
 ---
 layout: default
-title: Integrate with sample apparel feed 
+title: Integrate with sample unbxd feed 
 nav_order: 2
 parent: Getting Started
 ---
 
+# Integrate with sample feed
+{: .no_toc }
+
 1. TOC
 {:toc}
 
-# Integrate with apparel feed
-{: .no_toc }
-
-{: .important }
-> Note: The sample apparel feed is used from the self serve dashboard via the csv upload feature. 
-
-## Prerequisite
-Please complete the FTU flow along with the dimensions mapping for fields like title, imageUrl, price, and categoryPath. 
+# Prerequisite
+Please complete the self serve FTU flow along with the dimensions mapping for fields like title, imageUrl, price, and categoryPath. 
 More information can be found [here](./../prerequisites)
 
-## Integration Instructions
+{: .important }
+> Note: The config attributes mentioned below are from the **sample apparel feed** downloaded via the csv upload flow. These will change if another feed is used
+
+# Integration Instructions
 
 1. Include the vanilla js search library via the link:
     ```js
@@ -48,7 +48,7 @@ More information can be found [here](./../prerequisites)
         "unxDescription":"short_desc"
         };
         ```
-    3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned.
+    3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
         ```js
         productAttributes: ["title","imageURL","price","short_desc"]
         ```
@@ -94,12 +94,12 @@ More information can be found [here](./../prerequisites)
         ```
 
 
-## Sample configuration with the apparel feed
+# Sample configuration with the unbxd demo sitekey feed
 
-{: .important }
-> Note: All Element selectors will change as per your website
+{: .warning }
+> Note: All Element selectors must change as per your website. All attributes must change as per the sample feed data. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes
 
-```js
+<!-- ```js
 window.unbxdSearch = new UnbxdSearch({
 siteKey: "<<sitekey>>",
 apiKey: "<<apikey>>",
@@ -270,7 +270,7 @@ onEvent: function (instance, type, data) {
     console.log(type, data, "type,data");
 }
 });
-```
+``` -->
 
 
 

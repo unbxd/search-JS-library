@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Getting Started
-nav_order: 2
+nav_order: 3
 has_children: true
 permalink: docs/gettingStarted
 ---
@@ -32,9 +32,9 @@ It's important to note that the nomenclature and the elements present on the e-c
 
 Please checkout how you can [setup](/docs_new/gettingStarted/quickIntegration.md)
 This documentation has multiple ways of exploring/integrating with the Unbxd Search library.
-1. [Quick Setup with Unbxd Template](/docs_new/gettingStarted/quickIntegration.md)
-2. [Quick Setup on CodeSandbox](/docs_new/gettingStarted/quickSetupOnCodeSandbox.md)
-3. [Integration with your site](/docs_new/gettingStarted/DetailedIntegration.md)
+1. [Explore demo code](/docs/gettingStarted/exploredemocode.md)
+2. [Integrate with a sample unbxd feed](/docs/gettingStarted/integratewithsampleunbxdfeed.md)
+3. [Integrate with actual feed](/docs/gettingStarted/integratewithyoursitedetails.md)
 
 For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
 
