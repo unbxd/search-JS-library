@@ -75,17 +75,7 @@ el: null
 
 ### Scenarios
 {: .no_toc }
-There are several HTML selectors that can be used to locate the banner element in an e-commerce page:
-
-* getElementById: This method retrieves an element by its unique id attribute.
-* getElementsByClassName: This method retrieves all elements with a given class name
-* getElementsByTagName: This method retrieves all elements with a given tag name (e.g. div, span, etc.)
-* querySelector: This method retrieves the first element that matches a given CSS selector
-* querySelectorAll: This method retrieves all elements that match a given CSS selector
-* getElementsByName: This method retrieves all elements with a given name attribute.
-
-These selectors are part of the Document Object Model (DOM) API, which allows developers to access and manipulate the elements of an HTML or XML document. These selectors are commonly used in JavaScript to locate and manipulate specific elements on a webpage.
-
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc...
 ---
 
 ## template
@@ -94,7 +84,7 @@ These selectors are part of the Document Object Model (DOM) API, which allows de
 Function
 {: .label }
 
-The "template" function refers to the ability to change the appearance of the banner feature on the e-commerce website. It allows developers to control the appearance of the banners by providing custom HTML and CSS. The function receives the list of banners to be displayed, and the banner configurations as parameters and it needs to return a string of HTML that will be used to render the banners on the webpage.
+The "template" function here refers to the ability to change the appearance of the banner feature on the e-commerce website. It allows developers to control the appearance of the banners by providing custom HTML. The function receives the list of banners to be displayed, and the banner configurations as parameters and it needs to return a string of HTML that will be used to render the banners on the webpage.
 
 This function passes two params:
 1. `banners` - the list of banners to be displayed
@@ -134,7 +124,7 @@ function (banners, bannerOpts) => {
 ```
 ### Scenarios
 {: .no_toc }
-For additional information on custom scenarios, please refer to the [section](#usecases) on use cases located below.
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 
@@ -162,7 +152,7 @@ true, false
 Boolean
 {: .label }
 
-"Open in new tab" is a feature that allows the user to control whether a link or page should be opened in a new tab or the same tab when clicked. This feature provides the user with more control over their browsing experience and allows them to keep multiple pages open at once.
+"Open in new tab" is a feature that allows the user to control whether a link or page should be opened in a new tab or the same tab when the banner is clicked. This feature provides the user with more control over their browsing experience and allows them to keep multiple pages open at once.
 
 ### Default Value
 {: .no_toc }
@@ -206,7 +196,7 @@ Any valid html tag such as div, span, p, h1, h2, etc in which you like the banne
 Object
 {: .label }
 
-"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element.. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
@@ -216,7 +206,7 @@ htmlAttributes: { class:"UNX-banner-block" }
 
 ### Scenarios
 {: .no_toc }
-Any valid html attribute can be passed as `key: value` pairs inside an object.
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
 
