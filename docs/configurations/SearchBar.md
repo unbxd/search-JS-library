@@ -43,7 +43,7 @@ Configure the search input element on which to listen to search query changes.
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -59,7 +59,7 @@ Configure your search button here. Clicking on this will load the results based 
 {: .no_toc }
 NA
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---

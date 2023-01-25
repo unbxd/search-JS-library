@@ -61,7 +61,7 @@ This is the unique Site Key assigned by Unbxd to every site created in the conso
 {: .no_toc }
 NA	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -77,7 +77,7 @@ This is the unique API Key assigned to every site created in the console dashboa
 {: .no_toc }
 NA
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
   
