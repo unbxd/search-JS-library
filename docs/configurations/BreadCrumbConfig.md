@@ -42,15 +42,21 @@ The following options are available under the breadcrumb:
 Boolean
 {: .label }
 
-Turn this flag on if you want to show breadcrumbs (if it is available) on your page
+Required
+{: .label .label-red }
+
+Turn this flag on to show the breadcrumbs (only if available).If flag is turned off no breadcrumnbs wou
 
 ### Default Value
 {: .no_toc }
 true
 
+
 ### Scenarios
+
 {: .no_toc }
-true, false
+1.true  
+2.false
 
 ---
 
@@ -59,15 +65,31 @@ true, false
 
 Element
 {: .label }
+Required
+{: .label .label-red }
 
-Element in which to render the breadcrumbs
+Element in which to render the breadcrumbs.
 
 ### Default Value
 {: .no_toc }
 null
 
+
 ### Scenarios
+
+#### Option 1
+
 {: .no_toc }
+
+```js 
+    el: document.getElementById('breadcrumpContainer')
+```
+#### Option 2
+{: .no_toc }
+
+```js
+	el: document.querySelector(".breadcrumbHeder"),
+```
 
 ---
 
@@ -106,6 +128,24 @@ function(breadcrumbs, breadcrumb){
 
 ### Scenarios
 {: .no_toc }
+```js
+template: function (breadcrumbs, breadcrumb) {
+        let ui = ``;
+        const { selectorClass } = breadcrumb;
+        breadcrumbs.forEach((item, id) => {
+          const { level, filterField, value } = item;
+          const css = `${selectorClass} UNX-bread-crumb-item`;
+          if (id > 0) {
+            ui += `<span class="UNX-slash"> > </span>`;
+          }
+          ui += [
+            `<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
+            `${decodeURIComponent(value)}</button>`
+          ].join("");
+        });
+        return `<div class="bread-crumb-main">${ui}</div>`;
+}
+```
 
 ---
 
@@ -115,14 +155,19 @@ function(breadcrumbs, breadcrumb){
 String
 {: .label }
 
-Additional CSS class name for each breadcrumb item
+This class name will be added in addition to the 'UNX-bread-crumb-item' class to each breadcrumb item. You can choose to override the default class "UNX-bread-crumb", or add your own class name. 
+
 ### Default Value
 {: .no_toc }
-“bread-crumb”	
+"UNX-bread-crumb"	
+
 
 ### Scenarios
-{: .no_toc }
 
+{: .no_toc }
+```js
+selectorClass: "custom-bread-crumbClass"
+``` -->
 ---
 
 ## tagName
@@ -131,15 +176,19 @@ Additional CSS class name for each breadcrumb item
 String
 {: .label }
 
-html element for the breadcrumb wrapper. by default it is div.
+Html element for the N wrapper.
 
 ### Default Value
 {: .no_toc }
-“DIV”	
+```js
+tagName: "div"
+```
+
 
 ### Scenarios
-{: .no_toc }
 
+{: .no_toc }
+Any valid HTML tag can be used here to wrap the entire breadcrumb code
 
 ---
 
@@ -149,7 +198,7 @@ html element for the breadcrumb wrapper. by default it is div.
 Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes
+You can add different html attributes here which will get added
 
 ### Default Value
 {: .no_toc }
@@ -157,37 +206,26 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {class:”UNX-breadcrumbs-block”}
 ```
 
+
 ### Scenarios
-{: .no_toc }
+
+Any valid HTML attributes like class, id, title, style etc... can be mentioned here
+
 
 ---
 
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}	
-
-### Scenarios
-{: .no_toc }
 
 
----
-# Examples
-
-## Default Example
+# Default Example
 
 Sample code for the breadcrumbs widget
+
+[![](../assets/breadcrumbs.png)](../assets/breadcrumbs.png)
+
 ```js
 breadcrumb:{
   enabled:true,
-  el:null,
+  el: document.getElementById("breadcrumpContainer"),
   selectorClass:"UNX-bread-crumb",
   template:function(breadcrumbs, breadcrumb){
     let ui = ``;
@@ -202,7 +240,7 @@ breadcrumb:{
         } = item;
         const css = `${selectorClass} UNX-bread-crumb-item`;
         if(id > 0) {
-            ui += `<span class="UNX-slash"> / </span>`;
+            ui += `<span class="UNX-slash"> to </span>`;
         }
         ui += [`<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
         `${decodeURIComponent(value)}</button>`].join('')
@@ -211,3 +249,8 @@ breadcrumb:{
   }
 }
 ```
+
+# Usecases
+## Usecase 1
+## Usecase 2
+## Usecase 3
