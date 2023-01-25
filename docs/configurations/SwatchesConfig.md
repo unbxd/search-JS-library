@@ -58,16 +58,23 @@ The following options are available under the object:
 
 Boolean
 {: .label }
+Required
+{: .label .label-red }
 
-Turn this flag on for enabling swatches
+“Enabled” is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the  "Swatches feature” refers to the ability to display swatches on the website.
 
+When the “enabled” flag is turned on, the swatches feature will be active,This can be used to help result even when you write incorrect query. When the “enabled” flag is turned off, the swatches feature will be disabled.
 ### Default Value
 {: .no_toc }
-false
+```js
+enabled: false
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true  - Swatches feature will be enabled.
+2. false - Swatches feature will be disabled.
+
 
 ---
 ## attributesMap
@@ -81,7 +88,7 @@ Field mapping of the catalog attributes to the swatch attributes
 ### Default Value
 {: .no_toc }
 ```js
-{swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
+attributesMap:{swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
 ```
 
 ### Scenarios
@@ -98,7 +105,9 @@ Additional CSS class name for the swatches
 
 ### Default Value
 {: .no_toc }
-“UNX-swatch-btn”
+```js
+swatchClass:“UNX-swatch-btn”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -115,8 +124,7 @@ Customize the look and feel of the swatches component by returning your custom H
 ### Default Value
 {: .no_toc }
 ```js
-
-export default function(swatchData, swatches,product) {
+template:function(swatchData, swatches,product) {
     const {
         swatchImgs = []
     } = swatchData;
@@ -149,10 +157,11 @@ export default function(swatchData, swatches,product) {
         btnList:btnList,
         imgList:imgsUI,
     };
-};
+}
 ```
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 # Default Example
