@@ -95,7 +95,7 @@ Array
 The "options" in sorting refer to the different sorting criteria that the developer can use to sort the data. These options are typically defined as a list of sorting criteria, such as "ascending" or "descending" order, or sorting by different fields like "name" or "date".
 Array of sort options.
 
-This accepts a list of objects, where each object needs to have "value" and "text".
+This accepts a list of objects, where each object needs to have "value" and "text".  
 **1. value** : The value is the parameter which goes in payload.  
 **2. text**: The text which appears as option on UI.
 
@@ -181,9 +181,9 @@ Any valid class name can be passed as a selectedClass name.
 Function
 {: .label }
 
-The "template" function here refers to the ability to change the look and feel of the sorting component . The function receives below two parameters :
+The "template" function here refers to the ability to change the look and feel of the sorting component . The function receives below two parameters :  
 
-**1. selectedSort** : the value of selected sort item in Ui is passed here .
+**1. selectedSort** : the value of selected sort item in Ui is passed here .  
 **2. sortConfig** : the sortConfig receives all the configuration value for sort like sortClass, options etc. 
 
 **Expected return value**: a string of HTML that will be used to render the sorting component on the webpage.
@@ -237,7 +237,8 @@ String
 {: .label }
 Action on which the sorting will trigger . Below are two options to trigger sorting :
 
-**1. Click**: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation. 
+**1. Click**: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
+
 **2. Change**: Change refers to a sort operation that is initiated when a specific variable or data element is changed.=
 
 ### Default Value
