@@ -39,24 +39,45 @@ This feature will helps the users to navigate the products for any search/browse
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
 
-# Types of Pagination
-
+# Pros and Cons 
+The choice of pagination method depends on the specific needs of the website and its target audience. However, here are the advantages and disadvantages of different pagination methods.
 
 ## Fixed Pagination
 
-This traditional type of pagination displays the set number of products on one page along with the previous and next buttons to navigate between the pages.
+Advantages:
+1. Simple and easy to use
+2. Allows users to easily navigate through the pages of products
+3. Provides a clear indication of the current page and total number of pages
+4. Allows users to go directly to a specific page
+   
+Disadvantages:
+1. Users have to manually click through the pages, which can be time-consuming for large product sets
+2. May not be suitable for websites with a large number of products
+3. Can cause a high bounce rate if users have to navigate too many pages to find what they're looking for
 
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
+## Infinite Scroll Pagination
+Advantages:
+1. Allows users to quickly browse through a large number of products without having to manually click through pages
+2. Can improve the user experience by reducing the number of clicks needed to view all products
+3. Can be useful for websites with a large number of products
+
+Disadvantages:
+1. May not be suitable for users with slow internet connections
+2. Some users may find it difficult to track their position within the product set, may lead to lower engagement and higher bounce rate if not implemented well
+3. May be difficult for users to find a specific product
 
 
-## Click & Scroll
-If you wish to have a button to load next results, you can choose this option
+## Click & Scroll pagination 
+   
+Advantages:
+1. Allows users to control the amount of information they see at once
+2. Can be helpful for the website to limit the amount of data loaded at once to improve the performance
+3. Can be useful for websites with a large number of products
 
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
-
-
-## Infinite Scroll
-If you wish to load new results by scrolling down, you can configure this option
+Disadvantages:
+1. Users have to manually click through pages
+2. May not be suitable for users with slow internet connections
+3. May be difficult for users to find a specific product
 
 
 # Configurations
@@ -89,6 +110,7 @@ enabled: false
 
 
 ---
+
 ## type
 {: .d-inline-block }
 
@@ -116,6 +138,7 @@ type: “CLICK_N_SCROLL”
 The choice of pagination method depends on the specific needs of the website and its target audience. A fixed pagination with next and previous buttons and numbers is a suitable option for most e-commerce websites. Infinite scroll pagination can work well for mobile devices and for websites with a large number of products and a high volume of traffic. A click and scroll with load more button can be a good option for websites that want to limit the amount of data loaded at once. It’s also important to keep the user experience in mind, as pagination should be intuitive and easy to use for the user.
 
 ---
+
 ## el
 {: .d-inline-block }
 
@@ -233,7 +256,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 String
 {: .label }
 
-CSS classname for the pagination component.
+CSS class name for the pagination component.
 
 ### Default Value
 {: .no_toc }
@@ -244,6 +267,7 @@ pageClass: “UNX-page-items”
 {: .no_toc }
 
 ---
+
 ## selectedPageClass
 {: .d-inline-block }
 
@@ -364,6 +388,7 @@ heightDiffToTriggerNextPage: 100
 Any positive integer can be passed to `heightDiffToTriggerNextPage`
 
 ---
+
 ## action
 {: .d-inline-block }
 
@@ -449,6 +474,7 @@ pagination : {
 
 # UseCases
 ## Fixed Pagination
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 ```js
 pagination : {
   enabled:true,
@@ -525,6 +551,8 @@ pagination : {
 ```
 
 ## Click and Scroll
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
 
 ```js
 pagination: {
