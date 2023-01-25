@@ -163,6 +163,7 @@ This is an array of all required fields for generating the result template. This
 
 ### Default Value
 {: .no_toc }
+
 ```js
 productAttributes:["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
 ```
@@ -181,6 +182,7 @@ Field mappings for the data to be displayed in the product card.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 attributesMap:{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
 ```
@@ -233,8 +235,9 @@ Function
 Callback functions called on click of a product card. This function gets the product object & the event object as params.
 ### Default Value
 {: .no_toc }
+
 ```js
-function(product, event) {}	
+onProductClick:function(product, event) {}	
 ```
 
 ### Scenarios
@@ -290,6 +293,7 @@ Object
 
 ### Default Value
 {: .no_toc }
+
 ```js
 htmlAttributes:{class:”UNX-search-results-block UNX-result-wrapper”}
 ```
