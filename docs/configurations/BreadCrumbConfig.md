@@ -45,7 +45,8 @@ Boolean
 Required
 {: .label .label-red }
 
-Turn this flag on to show the breadcrumbs (only if available).If flag is turned off no breadcrumnbs wou
+An "enabled" option in breadcrumbs within an SDK refers to the ability to use the breadcrumb navigation feature. When the breadcrumb is enabled, it will be visible and they will be able to use it to navigate through the different components and features of the SDK.
+On the other hand, if the breadcrumb is disabled, it will not be visible to the developer and they will not be able to use it to navigate through the SDK.
 
 ### Default Value
 {: .no_toc }
@@ -55,8 +56,8 @@ true
 ### Scenarios
 
 {: .no_toc }
-1.true  
-2.false
+1.true - Breadcrumbs will be displayed on the website.  
+2.false - The breadcrumb feature will be disabled .
 
 ---
 
