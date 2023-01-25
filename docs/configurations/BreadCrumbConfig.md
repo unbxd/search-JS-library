@@ -131,20 +131,17 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 String
 {: .label }
-
-This class name will be added in addition to the 'UNX-bread-crumb-item' class to each breadcrumb item. You can choose to override the default class "UNX-bread-crumb", or add your own class name. 
+The "selectorClass" option in breadcrumbs is an additional css class that can be used to identify and style the breadcrumb navigation. User can choose to either use default value or override it with a new custom class name .
 
 ### Default Value
 {: .no_toc }
-"UNX-bread-crumb"	
-
+```js
+selectorClass: "UNX-bread-crumb"	
+```
 
 ### Scenarios
-
 {: .no_toc }
-```js
-selectorClass: "custom-bread-crumbClass"
-``` -->
+Any valid class name can be passed as a selector class name.
 ---
 
 ## tagName
@@ -152,8 +149,7 @@ selectorClass: "custom-bread-crumbClass"
 
 String
 {: .label }
-
-Html element for the N wrapper.
+“tagName” refers to the name of an HTML tag used to wrap or structure the content (spellcheck) on a webpage.
 
 ### Default Value
 {: .no_toc }
@@ -161,12 +157,10 @@ Html element for the N wrapper.
 tagName: "div"
 ```
 
-
 ### Scenarios
 
 {: .no_toc }
-Any valid HTML tag can be used here to wrap the entire breadcrumb code
-
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 ---
 
 ## htmlAttributes	
@@ -174,24 +168,20 @@ Any valid HTML tag can be used here to wrap the entire breadcrumb code
 
 Object
 {: .label }
-
-You can add different html attributes here which will get added
+“htmlAttributes” refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
 ```js
-{class:”UNX-breadcrumbs-block”}
+{
+    class: ”UNX-breadcrumbs-block”
+}
 ```
 
 
 ### Scenarios
-
-Any valid HTML attributes like class, id, title, style etc... can be mentioned here
-
-
+Any valid html attribute can be passed as key : value pairs inside an object.
 ---
-
-
 
 # Default Example
 
