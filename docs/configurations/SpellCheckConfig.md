@@ -51,7 +51,9 @@ Required
 When the “enabled” flag is turned on, the spellcheck feature will be active,This can be used to help result even when you write incorrect query. When the “enabled” flag is turned off, the spellcheck feature will be disabled.
 ### Default Value
 {: .no_toc }
-false
+```js
+enabled: false
+```
 
 ### Scenarios
 {: .no_toc }
@@ -72,20 +74,13 @@ Required
 Element in which to render the spellcheck component.
 ### Default Value
 {: .no_toc }
-null
+```js
+el: null
+```
 
 ### Usecases
 {: .no_toc }
-There are several HTML selectors that can be used to locate the banner element in an e-commerce page:
-
-getElementById: This method retrieves an element by its unique id attribute.
-getElementsByClassName: This method retrieves all elements with a given class name
-getElementsByTagName: This method retrieves all elements with a given tag name (e.g. div, span, etc.)
-querySelector: This method retrieves the first element that matches a given CSS selector
-querySelectorAll: This method retrieves all elements that match a given CSS selector
-getElementsByName: This method retrieves all elements with a given name attribute.
-
-These selectors are part of the Document Object Model (DOM) API, which allows developers to access and manipulate the elements of an HTML or XML document. These selectors are commonly used in JavaScript to locate and manipulate specific elements on a webpage.
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 
 
@@ -98,10 +93,17 @@ Function
 
 Customize the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets 3 parameters: the search query, the suggested query text and a config object with product count details ({start, productsLn, numberOfProducts})
 
+This function passes two params:
+1. `query` - the search query , which generally refers to a request made by a user to search for specific products or information within the app.
+2. `suggestion` - he suggested query text.
+3. `pages` - It is a config object with product count details ({start, productsLn, numberOfProducts}).
+
+**Expected return value**: a string of HTML that will be used to render the spellcheck component on the webpage
+
 ### Default Value
 {: .no_toc }
 ```js
-function(query,suggestion,pages) {
+template: function(query,suggestion,pages) {
     const {
         start,
         productsLn,
@@ -143,7 +145,7 @@ function(query,suggestion,pages) {
 ```
 ### Scenarios
 {: .no_toc }
-Via template we can customize spellcheck look and feel.
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 
@@ -155,29 +157,33 @@ String
 
 Additional CSS class name for the spell check component
 
+A selector class is typically a specific class or group of classes that are used to select spellcheck component.
+
 ### Default Value
 {: .no_toc }
-“UNX-suggestion”	
-
-### Scenarios
-{: .no_toc }
-
+```js
+selectorClass:“UNX-suggestion”
+```
 ---
+
 ## tagName
 {: .d-inline-block }
 
 String
 {: .label }
 
-html element for the spellcheck wrapper. by default it is div...
+"tagName" refers to the name of an HTML tag used to wrap or structure the content (spellcheck) on a webpage.
 
 ### Default Value
 {: .no_toc }
-“DIV”
+
+```js
+tagName: 'div'
+```
 
 ### Scenarios
 {: .no_toc }
-
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 ---
 ## htmlAttributes
 {: .d-inline-block }
@@ -185,30 +191,17 @@ html element for the spellcheck wrapper. by default it is div...
 Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
-{class:”UNX-spellcheck-wrapper”}
+```js
+htmlAttributes: { class:"UNX-spellcheck-wrapper" }
+```
 
 ### Scenarios
 {: .no_toc }
-
----
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}	
-
-### Scenarios
-{: .no_toc }
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 # Examples
