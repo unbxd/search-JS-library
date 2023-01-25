@@ -126,7 +126,7 @@ function(breadcrumbs, breadcrumb){
 }
 ```
 
-### Scenarios
+### Scenarioss
 {: .no_toc }
 ```js
 template: function (breadcrumbs, breadcrumb) {
