@@ -65,7 +65,7 @@ Turn this flag on for enabling swatches
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -84,7 +84,7 @@ Field mapping of the catalog attributes to the swatch attributes
 {swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -100,7 +100,7 @@ Additional CSS class name for the swatches
 {: .no_toc }
 “UNX-swatch-btn”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -151,7 +151,7 @@ export default function(swatchData, swatches,product) {
     };
 };
 ```
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---

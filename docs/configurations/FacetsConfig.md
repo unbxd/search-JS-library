@@ -57,7 +57,7 @@ Element in which to render the facets.
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -144,7 +144,7 @@ function(facetObj, children, isExpanded,facetSearchTxt, facet) {
     }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -192,7 +192,7 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -208,7 +208,7 @@ Turn this off if you want to disable the multiple selection of facets.
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -225,7 +225,7 @@ Additional CSS class name to add to the the facet items.
 {: .no_toc }
 “UNX-facets-block”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -241,7 +241,7 @@ Event based on which to trigger facet selection / deselection: “click” or �
 {: .no_toc }
 “click"
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -256,7 +256,7 @@ Additional CSS class name for the selected facet items.
 {: .no_toc }
 “UNX-selected-facet-btn"
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -272,7 +272,7 @@ Element in which to render the selected facets. If you don’t provide this elem
 {: .no_toc }
 null	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -305,7 +305,7 @@ function selectedFacetUI(selections, facet,selectedFacetsConfig) {
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -352,7 +352,7 @@ function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfi
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -370,7 +370,7 @@ object will be containing the configuration for the selected facet wrapper confi
     { tagName:”DIV”, htmlAttributes:{ class:”UNX-selected-facet-lb” }, events:{} }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -386,7 +386,7 @@ The text to show for the clear all button that clears all selected facets.
 {: .no_toc }
 “Clear All”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -444,7 +444,7 @@ function(range, selectedRange, facet) {
 };
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -460,7 +460,7 @@ Configure the default range slider. Refer to the [Range Widget Config](#Facet-Ra
 {: .no_toc }
 NA
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -476,7 +476,7 @@ Turn this on to send the multilevel parameter in the search API.
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -492,7 +492,7 @@ Set the multilevel field name using this config.
 {: .no_toc }
 “Category”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -508,7 +508,7 @@ Class name for each multi level facet item.
 {: .no_toc }
 “UNX-multilevel-facet”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -587,7 +587,7 @@ function(facet,selectedCategories,facetSearchTxt, facetConfig) {
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -603,7 +603,7 @@ Configure how many levels of category filter you want to have by setting this va
 {: .no_toc }
 4
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -619,7 +619,7 @@ Class name for the button to clear the selected facets.
 {: .no_toc }
 “UNX-clear-facet”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -635,7 +635,7 @@ Class name for the button to delete selected facets.
 {: .no_toc }
 “UNX-remove-facet”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -653,7 +653,7 @@ Callback function that gets called after each facet selection or deselection. Th
 function(facets) {}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -669,7 +669,7 @@ Turn this on if you want to apply multiple filters together.
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -685,7 +685,7 @@ The text to show for the apply button (when applyMultipleFilters is set as true)
 {: .no_toc }
 “Apply”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -701,7 +701,7 @@ The text to show for the clear button (when applyMultipleFilters is set as true)
 {: .no_toc }
 “clear”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
@@ -717,7 +717,7 @@ Turn this off if you do not want to have a collapsible accordian for each facet 
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -734,7 +734,7 @@ If “isCollapsible” is true, set this config to indicate the default open fac
 {: .no_toc }
 “ALL”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -750,7 +750,7 @@ Turn this on if you want to have search feature for each facet block.
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -767,7 +767,7 @@ Placeholder text for the facet search input.
 {: .no_toc }
 ””	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -783,7 +783,7 @@ Turn this on for enabling view more or less functionality for individual facets.
 {: .no_toc }
 false
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -802,7 +802,7 @@ The text to show for the view more / less button. Pass the 2 strings in array fo
 [“show all”, “show less”]
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -818,7 +818,7 @@ Will show view more only if the facet values are greater than this value.
 {: .no_toc }
 3	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -834,7 +834,7 @@ html element for the facet wrapper. by default it is div.
 {: .no_toc }
 “DIV”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -852,7 +852,7 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {class:”UNX-facets-results-block”}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -867,7 +867,7 @@ by default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 {}	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 --- 
