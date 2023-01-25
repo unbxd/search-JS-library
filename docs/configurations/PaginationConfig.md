@@ -44,24 +44,24 @@ The choice of pagination method depends on the specific needs of the website and
 
 ## Fixed Pagination
 
-Advantages:
+****Advantages:****
 1. Simple and easy to use
 2. Allows users to easily navigate through the pages of products
 3. Provides a clear indication of the current page and total number of pages
 4. Allows users to go directly to a specific page
    
-Disadvantages:
+**Disadvantages:**
 1. Users have to manually click through the pages, which can be time-consuming for large product sets
 2. May not be suitable for websites with a large number of products
 3. Can cause a high bounce rate if users have to navigate too many pages to find what they're looking for
 
 ## Infinite Scroll Pagination
-Advantages:
+**Advantages:**
 1. Allows users to quickly browse through a large number of products without having to manually click through pages
 2. Can improve the user experience by reducing the number of clicks needed to view all products
 3. Can be useful for websites with a large number of products
 
-Disadvantages:
+**Disadvantages:**
 1. May not be suitable for users with slow internet connections
 2. Some users may find it difficult to track their position within the product set, may lead to lower engagement and higher bounce rate if not implemented well
 3. May be difficult for users to find a specific product
@@ -69,12 +69,12 @@ Disadvantages:
 
 ## Click & Scroll pagination 
    
-Advantages:
+**Advantages:**
 1. Allows users to control the amount of information they see at once
 2. Can be helpful for the website to limit the amount of data loaded at once to improve the performance
 3. Can be useful for websites with a large number of products
 
-Disadvantages:
+**Disadvantages:**
 1. Users have to manually click through pages
 2. May not be suitable for users with slow internet connections
 3. May be difficult for users to find a specific product
