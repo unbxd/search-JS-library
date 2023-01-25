@@ -54,13 +54,5 @@ Please complete the Self Serve FTU flow for sign up, site creation, feed upload,
 If you need assistance or are looking for technical help, please search this documentation website to find relevant information. You can also contact Unbxd's support team for additional assistance. Feel free to write to [support@unbxd.com](support@unbxd.com) or buzz us on [+1.85555.UNBXD](+1.85555.UNBXD). We will be able to provide more guidance based on your specific implementation.
 
 
-# Contribute to this documentation
-If you come across any mistakes or wish to make a contribution to this document, please submit a pull request on GitHub. Additional instructions on how to contribute can be found [here](/docs/CONTRIBUTE.md).
-
-
-# Contribute to SDK code
-If you would like to contribute to the JS SDK, please submit a pull request with your fix. [here](https://github.com/unbxd/search-JS-library/issues).
-
-
 # Stay up to date
 Please refer to the [changelog](/docs/CHANGELOG.md) to stay informed about the most recent releases and bug fixes, and to track the history of changes.

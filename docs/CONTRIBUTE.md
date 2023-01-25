@@ -1,7 +1,7 @@
 ---
 layout: default
 title: How To Contribute
-nav_order: 9
+nav_order: 10
 ---
 
 # How To Contribute
@@ -9,9 +9,12 @@ nav_order: 9
 
 ---
 
-# Contributing
+## Contribute to this documentation
+If you come across any mistakes or wish to make a contribution to this document, please submit a pull request on GitHub. Additional instructions on how to contribute can be found [here](/docs/CONTRIBUTE.md).
 
-When contributing to this repository, please first discuss the change you wish to make via issue,
+
+## Contribute to SDK code
+When contributing to this repository, please discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change. 
 
 To contribute to the Unbxd JavaScript search library on GitHub, you can follow these steps:
