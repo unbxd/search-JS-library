@@ -155,9 +155,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 String
 {: .label }
 
-Additional CSS class name for the spell check component
-
-A selector class is typically a specific class or group of classes that are used to select spellcheck component.
+Additional CSS class name for the spell check component,a selector class is typically a specific class or group of classes that are used to select spellcheck component.
 
 ### Default Value
 {: .no_toc }
