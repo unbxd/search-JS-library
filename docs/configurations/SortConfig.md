@@ -291,7 +291,7 @@ Any valid html attribute can be passed as key : value pairs inside an object.
 ---
 
 ## Default Example
-Sample “sort” config
+Sample code for the Sort config:
 
 ```js
 sort: {
@@ -338,3 +338,7 @@ sort: {
     },
 },
 ```
+# Usecases
+## Usecase 1
+## Usecase 2
+## Usecase 3
