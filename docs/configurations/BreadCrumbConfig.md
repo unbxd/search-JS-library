@@ -53,8 +53,8 @@ true
 
 ### Scenarios
 {: .no_toc }
-**true**  
-**false**
+1.true  
+2.false
 
 ---
 
@@ -81,8 +81,6 @@ null
 ```js
 	el: document.querySelector(".breadcrumbHeder"),
 ```
-
-You can use other element selectors such as getElementsByClassName() ,getElementsByTagName(), querySelectorAll() . 
 ---
 
 ## template
@@ -139,7 +137,6 @@ template: function (breadcrumbs, breadcrumb) {
 }
 ```
 
-
 ---
 
 ## selectorClass
@@ -182,12 +179,6 @@ tagName: "div"
 ### Other Options
 {: .no_toc }
 Any valid HTML tag can be used here to wrap the entire breadcrumb code
-<!-- ```js
-tagName: "span", 
-tagName: "ul", 
-tagName: "li", 
-etc...
-``` -->
 
 ---
 
@@ -259,4 +250,4 @@ breadcrumb:{
   }
 }
 ```
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
+---
