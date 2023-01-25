@@ -30,20 +30,18 @@ Facets are the products filters provided on your webpage which allows customers
 
 # Types of Facets
 
-There are 3 types of Facets available.
+In e-commerce, facets are used to allow users to filter and narrow down a large dataset of products by specific criteria. There are several types of facets that can be used to achieve this, including:
 
-## Text facets
-This feature enables faceting on any searchable field.
+**Multilevel facets**: These are facets that allow users to filter products based on multiple levels of a category hierarchy. For example, a user could filter products first by category (e.g. clothing, electronics) and then by subcategory (e.g. men's clothing, women's clothing).
 
-## Range facets
-This feature is applicable for all numeric searchable fields.
+**Text facets**: These are facets that allow users to filter products based on text fields, such as product name or brand. For example, a user could search for all products that contain the word "Nike" in their name.
 
-## Multilevel facets
-Multilevel facets are a special kind of facets which is applicable only for the fields belonging to the path fieldType supporting the hierarchy returns the facet values in the hierarchial.
+**Range facets**: These are facets that allow users to filter products based on a range of values. For example, a user could filter products by price range, so they only see products that fall within a specific price range. This type of facet is commonly used to filter products based on numeric values such as price, weight, size, etc.
+
 
 # Configurations
 
-To render the facets on the search results page,  you can use the “facet” config object to configure the various options.
+To render the facets on the search results page, you can use the “facet” config object to configure the various options.
 
 ## facetsEl
 {: .d-inline-block }
@@ -53,12 +51,17 @@ Element
 
 Element in which to render the facets.
 
+"facetsEl" in facets is an HTML element that is designated to display facets. This allows developers to control the placement of the facets on the webpage and to ensure that they are displayed in a prominent and visible location. The "facetsEl" can be set by providing the id or class of the element in the code.
+
 ### Default Value
 {: .no_toc }
-null
+```js
+facetsEl: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 --- 
 
@@ -199,7 +202,7 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 ## facetMultiSelect
 {: .d-inline-block }
 
-Booelan
+Boolean
 {: .label }
 
 Turn this off if you want to disable the multiple selection of facets.
@@ -774,7 +777,7 @@ Placeholder text for the facet search input.
 ## enableViewMore
 {: .d-inline-block }
 
-Booelan
+Boolean
 {: .label }
 
 Turn this on for enabling view more or less functionality for individual facets.
