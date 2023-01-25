@@ -42,9 +42,6 @@ The following options are available under the breadcrumb:
 Boolean
 {: .label }
 
-Required
-{: .label .label-red }
-
 An "enabled" option in breadcrumbs within an SDK refers to the ability to use the breadcrumb navigation feature. When the breadcrumb is enabled, it will be visible and they will be able to use it to navigate through the different components and features of the SDK.
 On the other hand, if the breadcrumb is disabled, it will not be visible to the developer and they will not be able to use it to navigate through the SDK.
 

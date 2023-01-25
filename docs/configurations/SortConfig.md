@@ -19,11 +19,12 @@ nav_order: 8
 # Definition
 "Sort" functionality in an e-commerce page allows users to rearrange the products displayed on a search results or product listing page in a specific order. The sorting options provided by the e-commerce websites varies but the most common ones are:
 
-Sort by relevance: This is the default sorting option, it orders the products based on how well they match the search criteria or the filter settings.
-Sort by price: This allows users to sort products by price, in either ascending or descending order.
-Sort by popularity: This orders the products based on their popularity, like number of sales, views, or ratings.
-Sort by newness: This orders the products based on their recency, usually the newest products are listed first.
-Sort by Brand: This allow the users to sort products by brand name.
+**Sort by relevance**: This is the default sorting option. It orders the products based on how well they match the search criteria or the filter settings.  
+**Sort by price**: This allows users to sort products by price, in either ascending or descending order.  
+**Sort by popularity**: This orders the products based on their popularity, like number of sales, views, or ratings.  
+**Sort by newness**: This orders the products based on their recency, usually the newest products are listed first.  
+**Sort by Brand**: This allow the users to sort products by brand name.  
+
 This functionality can help users quickly find the products that are most relevant or interesting to them, based on their specific needs and preferences. It allows users to quickly identify products in a particular price range, or newly added items, making it more convenient for them to find what they are looking for.
 
 It is also common to find that e-commerce websites will have a default sort order when a user visits a category or search results, but also provides the user with a way to change and adjust the sort order as they wish.
@@ -43,16 +44,20 @@ The following are the various options available under the object:
 
 Boolean
 {: .label }
-
-Turn this off if you do not want the sort component.
+The "enabled" option for sort refers to the ability to enable or disable the sorting component.
+When sort is enabled, the developer can use the sorting functionality to sort the data based on a specific criteria, such as alphabetical order or numerical value. 
+When sort is disabled, the developer will not be able to use the sorting functionality.
 
 ### Default Value
 {: .no_toc }
-true
+```js
+enabled: true
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1.true - Allows to sort products.  
+2.false - The Sorting component would not be visible.
 
 ---
 ## el
@@ -61,32 +66,67 @@ true, false
 Element
 {: .label }
 
-Element in which to render the sort component.
+The "element" option for sorting refers to the HTML element that is used to create the sorting UI. This option allows the developer to specify what type of HTML element should be used for sorting, such as a "select" element , "button" element etc.
 
 ### Default Value
 {: .no_toc }
-null
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
+
 ## options
 {: .d-inline-block }
 
 Array
 {: .label }
-
+The "options" in sorting refer to the different sorting criteria that the developer can use to sort the data. These options are typically defined as a list of sorting criteria, such as "ascending" or "descending" order, or sorting by different fields like "name" or "date".
 Array of sort options.
+
+This accepts a list of objects, where each object needs to have "value" and "text".
+**1. value** : The value is the parameter which goes in payload . 
+**2. text**: The text which appears as option on UI.
 
 ### Default Value
 {: .no_toc }
 ```js
-[{value: "price desc",text: "Price High to Low"},{value: "price asc",text: " Price Low to High"},{value: "rating asc",text: " Rating Low to High"},{value: "rating desc",text: " Rating High to low"}]
+[
+    {
+        value: "price desc",
+        text: "Price High to Low"
+    },{
+        value: "price asc",
+        text: " Price Low to High"
+    },{
+        value: "rating asc",
+        text: " Rating Low to High"
+    },{
+        value: "rating desc",
+        text: " Rating High to low"
+    }
+]
 ```
 
 ### Scenarios
 {: .no_toc }
+The sorting can be done based on different criterias such as based on name , pricing , brand , what's new etc.
+
+```js
+[{
+    value: "Name asc",
+    text: "Name: A to Z",
+},
+{
+    value: "Name desc",
+    text: "Name: Z to A",
+}
+]
+```
 
 ---
 ## sortClass
