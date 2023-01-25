@@ -96,7 +96,7 @@ The "options" in sorting refer to the different sorting criteria that the develo
 Array of sort options.
 
 This accepts a list of objects, where each object needs to have "value" and "text".
-**1. value** : The value is the parameter which goes in payload . 
+**1. value** : The value is the parameter which goes in payload.  
 **2. text**: The text which appears as option on UI.
 
 ### Default Value
@@ -152,6 +152,7 @@ sortClass: “UNX-sort-item”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be passed as a sort class name.
 
 ---
 ## selectedSortClass
@@ -171,6 +172,7 @@ selectedSortClass: “UNX-selected-sort”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be passed as a selectedClass name.
 
 ---
 ## template
