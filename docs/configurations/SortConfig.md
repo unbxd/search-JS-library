@@ -145,6 +145,7 @@ This class works in case of default template .To use in case of custom template 
 
 ### Default Value
 {: .no_toc }
+
 ```js
 sortClass: “UNX-sort-item”
 ```
@@ -260,6 +261,7 @@ String
 
 ### Default Value
 {: .no_toc }
+
 ```js
 tagName: "div"
 ```
@@ -290,7 +292,7 @@ Any valid html attribute can be passed as "key : value" pairs inside an object.
 
 ---
 
-## Default Example
+# Default Example
 Sample code for the Sort config:
 
 ```js
