@@ -42,6 +42,9 @@ The following options are available under the breadcrumb:
 Boolean
 {: .label }
 
+Required
+{: .label .label-red }
+
 Turn this flag on if you want to show breadcrumbs (if it is available) on your page
 
 ### Default Value
