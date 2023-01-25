@@ -37,14 +37,18 @@ Function
 
 Customize the look and feel of the no results component by using this function. You will get the searched query as param to this function.
 
+This function takes single param:
+
+1. `query` - the searched query , which generally refers to a request made by a user to search for specific products or information within the app.
+
 ### Default Value
 {: .no_toc }
 ```js
-function(query){
+template: function(query){
     return '<div class="UNX-no-results"> No Results found '+ query + '</div>'
 }
 ```	
 ### Scenarios
 {: .no_toc }
-
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 

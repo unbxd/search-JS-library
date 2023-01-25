@@ -53,20 +53,28 @@ true
 true, false
 
 ---
+
 ## el
 {: .d-inline-block }
 
 Element
-{: .label }
+{: .label  }
 
-Element in which to render the product views component
+Required
+{: .label  .label-red}
+
+"el" in productview is an HTML element that is designated to display productview. This allows developers to control the placement of the productview on the webpage and to ensure that they are displayed in a prominent and visible location. The "el" can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
-null
+
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the productview element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
 ## template
