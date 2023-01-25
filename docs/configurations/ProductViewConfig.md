@@ -230,7 +230,6 @@ By default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 
 ---
->>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 ## Default Example
