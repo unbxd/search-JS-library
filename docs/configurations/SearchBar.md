@@ -41,8 +41,10 @@ Configure the search input element on which to listen to search query changes.
 
 ### Default Value
 {: .no_toc }
-null
 
+``` js
+searchBoxEl : null
+```
 ### Scenarios
 {: .no_toc }
 
@@ -56,7 +58,9 @@ Element
 Configure your search button here. Clicking on this will load the results based the input value provided in “searchBoxEl".
 ### Default Value
 {: .no_toc }
-NA
+``` js
+searchButtonEl :NA
+```
 
 ### Scenarios
 {: .no_toc }
