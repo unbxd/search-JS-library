@@ -78,7 +78,9 @@ breadcrumb: {
     enabled: true,  
 	el: document.getElementById('breadcrumpContainer')
 }
-
+```
+#### Usecase 2
+```js
 breadcrumb: {
     enabled: true,  
 	el: document.querySelector(".breadcrumbHeder"),
