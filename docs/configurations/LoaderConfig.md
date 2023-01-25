@@ -31,7 +31,7 @@ It is important to note that using loaders should be balanced with the performan
 
 Configure page loader to be shown when fetching search API results by setting the “loader” config object. 
 
-
+[![](../assets/loader.png)](../assets/loader.png)
 
 # Configurations
 
@@ -79,4 +79,21 @@ function(){
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
+# Default Example
+Sample code for the Loader config:
+
+```js
+    {
+        el: document.getElementById("loaderEl"),
+        template: function(){
+            return '<div class="UNX-loader">Loading....</div>'
+        }
+    }
+```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:
