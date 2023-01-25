@@ -35,6 +35,7 @@ To render the breadcrumb component, set the “breadcrumb” config object.
 
 # Configurations
 The following options are available under the breadcrumb:
+
 ## enabled
 {: .d-inline-block }
 
@@ -75,8 +76,6 @@ el: null
 ```
 
 ### Scenarios
-
-#### Option 1
 {: .no_toc }
 There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 ---
@@ -158,8 +157,8 @@ tagName: "div"
 ```
 
 ### Scenarios
-
 {: .no_toc }
+
 Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 ---
 
@@ -178,8 +177,9 @@ Object
 }
 ```
 
-
 ### Scenarios
+{: .no_toc }
+
 Any valid html attribute can be passed as key : value pairs inside an object.
 ---
 
