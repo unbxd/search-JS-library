@@ -36,7 +36,7 @@ Configure variants display by setting the “variants” config object.
 
 # Configurations
 
-The following options are available under the object:
+The following options are available under the variants object:
 
 ## enabled
 {: .d-inline-block }
@@ -44,17 +44,25 @@ The following options are available under the object:
 Boolean
 {: .label }
 
-Turn this flag on for enabling variants
+Required
+{: .label .label-red}
+
+"Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "variants" refers to the ability to display variant products on the website.
 
 ### Default Value
 {: .no_toc }
-false
+
+```js
+enabled: false
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true - variants will be displayed on the website 
+2. false - the variants feature will be disabled
 
 ---
+
 ## count
 {: .d-inline-block }
 
@@ -65,24 +73,32 @@ Indicates the number of variants to be shown
 
 ### Default Value
 {: .no_toc }
-5	
+```js
+count: 5
+```
+
 
 ### Scenarios
 {: .no_toc }
 
 ---
+
 ## groupBy
 {: .d-inline-block }
 
 String
 {: .label }
 
-Variants will be grouped based on this field value. The name of the field has to be the same one as in your catalog
+`groupBy` is a parameter that is used to group items in a dataset based on a specific field value. It's important to note that the field name used in the groupBy parameter should match the field name in the catalog, otherwise the grouping may not work correctly.
 
 
 ### Default Value
 {: .no_toc }
-“v_colour”		
+“v_colour”
+```js
+groupBy: “v_colour”
+```
+		
 
 ### Scenarios
 {: .no_toc }
@@ -99,7 +115,7 @@ List of fields you need for each variant
 ### Default Value
 {: .no_toc }
 ```js
-["title", "v_imageUrl"]			
+attributes: ["title", "v_imageUrl"]			
 ```
 
 ### Scenarios
@@ -118,16 +134,15 @@ Field mapping of the catalog attributes to the variant attributes. This is neede
 ### Default Value
 {: .no_toc }
 ``` js
-{"image_url": "v_imageUrl"}	
+mapping: {"image_url": "v_imageUrl"}	
 ```
 
 ### Scenarios
 {: .no_toc }
 
 ---
-# Examples
 
-## Default Example 
+# Default Example 
 
 Sample “variants” config
 
@@ -145,3 +160,9 @@ variants:{
         }
     },
 ```
+
+# UseCases
+
+## UseCase 1
+
+## UseCase 2
