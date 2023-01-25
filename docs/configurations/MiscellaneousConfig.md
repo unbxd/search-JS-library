@@ -24,14 +24,20 @@ nav_order: 17
 Boolean
 {: .label }
 
-Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events.
+Turn this flag on if you want Unbxd Search sdk to fire analytics events like track search click, track category page click, track product impressions, track facet click, track product click, etc. Note that you have to integrate the Unbxd Analytics SDK as well for tracking analytics events.
 
 ### Default Value
 {: .no_toc }
-false
+
+```js
+unbxdAnalytics: false
+```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - analytics events will be fired from the search sdk
+2. false - analytics events will not be fired from the search sdk
 
 ---
 ## hashMode
@@ -42,22 +48,29 @@ Boolean
 
 In Single Page Applications (SPAs), hash mode refers to the use of the "#" symbol in the URL to indicate the current state or location of the application. Instead of using traditional URLs that include a path and query parameters, SPAs use a single base URL and append a hash fragment to the end of the URL to represent different states or views within the application.
 
-For example, a traditional URL for an e-commerce website might be "www.example.com/products/category=shoes" while in Hash mode it could be "www.example.com/#/products/category=shoes"
+For example, a traditional URL for an e-commerce website might be "www.example.com/products/?category=shoes" while in Hash mode it could be "www.example.com/products/#category=shoes"
 
-The use of the "#" symbol in the URL, known as a hash fragment, tells the browser that everything after the "#" is not a part of the actual path of the website, but rather a reference to a specific state or view within the SPA. This allows the SPA to handle routing and navigation internally, without requiring a full page reload from the server.
+<!-- The use of the "#" symbol in the URL, known as a hash fragment, tells the browser that everything after the "#" is not a part of the actual path of the website, but rather a reference to a specific state or view within the SPA. This allows the SPA to handle routing and navigation internally, without requiring a full page reload from the server.
 
 Hash mode is also useful for SEO purposes as it does not refresh the page and search engines read the portion before "#" as the page URL and can index the page.
 
-In summary, Hash mode in Single Page Applications (SPAs) is a technique used to handle routing and navigation within the application using the "#" symbol in the URL to indicate the current state or location. This allows for a more seamless user experience and makes it easier for the SPA to handle routing internally, without requiring a full page reload from the server.
+In summary, Hash mode in Single Page Applications (SPAs) is a technique used to handle routing and navigation within the application using the "#" symbol in the URL to indicate the current state or location. This allows for a more seamless user experience and makes it easier for the SPA to handle routing internally, without requiring a full page reload from the server. -->
+The search sdk adds some information to the url as params, based on the user actions, and in case of page reload scenarios, the data is read from the url.
 
-Turn this flag on if you want the URL update to happen on hash instead of using query params.
+Turn this flag on if you want the URL update to happen as hash param instead of using query params.
 
 ### Default Value
 {: .no_toc }
-false
+
+```js
+hashMode: false
+```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - url params will be updated as hash params
+2. false - url params will be updated as query params
 
 ---
 ## updateUrls
@@ -68,12 +81,21 @@ Boolean
 
 If you prefer for the URLs to remain unchanged when any search parameters are altered, set this configuration option to false.
 
+{: .important }
+> Note: If this is set to false, the page reload will lose any user action data like selected facets, selected sort values, etc
+
 ### Default Value
 {: .no_toc }
-true
+
+```js
+updateUrls: true
+```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - user action information will be added to the url
+2. false - user action information will not be added to the url
 
 ---
 ## actionBtnClass
@@ -82,14 +104,19 @@ true
 String
 {: .label }
 
-CSS class name to add to any elements on which you want to trigger click event.
+CSS class name to add to any facet wrapper elements on which you want to trigger **click** event.
 
 ### Default Value
 {: .no_toc }
-“UNX-action-item”
+
+```js
+actionBtnClass:"UNX-action-item"
+```
 
 ### Scenarios
 {: .no_toc }
+
+It is used to bind 'click' event to a facet wrapper element
 
 ---
 ## actionChangeClass
@@ -98,50 +125,41 @@ CSS class name to add to any elements on which you want to trigger click event.
 String
 {: .label }
 
-CSS class name to be added to any custom input elements on which you want to trigger change event.
+CSS class name to be added to any facet wrapper elements on which you want to trigger **change**, or **keyup** event.
 
 ### Default Value
 {: .no_toc }
-“UNX-action-change”
 
-### Scenarios
-{: .no_toc }
-
----
-## onAction
-{: .d-inline-block }
-
-Function
-{: .label }
-
-Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the this context.
-
-### Default Value
-{: .no_toc }
 ```js
-function(event, context) {}
+actionChangeClass:"UNX-action-change"
 ```
 
 ### Scenarios
 {: .no_toc }
 
+It is used to bind 'change' or 'keyup' event to a facet wrapper element
+
 ---
-## onEvent
+## allowExternalUrlParams
 {: .d-inline-block }
 
-Function
+Boolean
 {: .label }
 
-Callback that gets called after the supported events. This function gets 2 parameters: the current instance or context and the event type which is one of BEFORE_API_CALL, AFTER_API_CALL, BEFORE_RENDER, BEFORE_NO_RESULTS_RENDER, AFTER_NO_RESULTS_RENDER, AFTER_RENDER, DELETE_FACET, FACETS_CLICK, DELETE_FACET_VALUE, DELETE_FACET, CLEAR_SORT, CHANGE_SORT, PAGE_NEXT, PAGE_PREV, CHANGE_INPUT, SET_CATEGORY_FILTER, DELETE_CATEGORY_FILTER.
+Turn this flag on if you want to retain the external url params that do not get added by the unbxd sdk.
 
 ### Default Value
 {: .no_toc }
+
 ```js
-function(context, type) {}
+allowExternalUrlParams: false
 ```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
+2. false - External params will be dropped from the browser url
 
 ---
 ## extraParams
