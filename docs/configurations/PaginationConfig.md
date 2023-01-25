@@ -450,9 +450,6 @@ htmlAttributes: { class:"UNX-banner-block" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
-
----
->>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 # Default Example
