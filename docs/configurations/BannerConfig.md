@@ -34,15 +34,24 @@ The following options are available under the object:
 Boolean
 {: .label }
 
-Turn this flag on for enabling Banner
+Required
+{: .label .label-red}
+
+"Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "banner feature" refers to the ability to display banners or advertisements on the website.
+
+When the "enabled" flag is turned ON, the banner feature will be active and banners or advertisements will be displayed on the website. This can be used to promote new products, sales, or other special offers. When the "enabled" flag is turned OFF, the banner feature will be disabled and no banners or advertisements will be displayed on the website.
 
 ### Default Value
 {: .no_toc }
-false
 
-### Usecases
+```js
+enabled: false
+```
+
+### Scenarios
 {: .no_toc }
-true, false
+1. true - banners or advertisements will be displayed on the website 
+2. false - the banner feature will be disabled
 
 ---
 
@@ -52,15 +61,21 @@ true, false
 Element
 {: .label  }
 
-Element in which to render the Banner component
+Required
+{: .label  .label-red}
+
+"el" in banners is an HTML element that is designated to display banners or advertisements. This allows developers to control the placement of the banners on the webpage and to ensure that they are displayed in a prominent and visible location. The "el" can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
-null
 
-### Usecases
+```js
+el: null
+```
+
+### Scenarios
 {: .no_toc }
-getElementById(), getElementsByClassName(), getElementsByName(), etc.
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
 
@@ -70,19 +85,19 @@ getElementById(), getElementsByClassName(), getElementsByName(), etc.
 Function
 {: .label }
 
-Customize the look and feel of the banner component by returning your custom HTML string from this function. This function get the list of banners as the parameter.
+The "template" function here refers to the ability to change the appearance of the banner feature on the e-commerce website. It allows developers to control the appearance of the banners by providing custom HTML. The function receives the list of banners to be displayed, and the banner configurations as parameters and it needs to return a string of HTML that will be used to render the banners on the webpage.
 
-This function accepts two params:
-`banners` - lorem ipsum lorem ipsum
-`bannerOpts` - lorem ipsum lorem ipsum
+This function passes two params:
+1. `banners` - the list of banners to be displayed
+2. `bannerOpts` - the banner configurations
 
-Expected return value: HTML string
+**Expected return value**: a string of HTML that will be used to render the banners on the webpage
 
 
 ### Default Value
 {: .no_toc }
 ```js
-function (banners, bannerOpts) => {
+template: function (banners, bannerOpts) => {
     const {
         openNewTab
     } = bannerOpts
@@ -108,13 +123,13 @@ function (banners, bannerOpts) => {
     return `${bannerUI}`
 }
 ```
-### Usecases
+### Scenarios
 {: .no_toc }
-This function can be overwritten to customize the banner.
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 
-## count
+<!-- ## count
 {: .d-inline-block }
 
 Number
@@ -126,11 +141,11 @@ Indicates the number of banners to be shown
 {: .no_toc }
 1
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
----
+--- -->
 
 ## openNewTab
 {: .d-inline-block }
@@ -138,15 +153,20 @@ true, false
 Boolean
 {: .label }
 
-By default landing page url load in same tab, if you want to load in another tab configured it to true
+"Open in new tab" is a feature that allows the user to control whether a link or page should be opened in a new tab or the same tab when the banner is clicked. This feature provides the user with more control over their browsing experience and allows them to keep multiple pages open at once.
 
 ### Default Value
 {: .no_toc }
-false
 
-### Usecases
+```js
+openNewTab: false
+```
+
+### Scenarios
 {: .no_toc }
-true, false
+1. true - opens in new tab
+2. false - opens in same tab
+
 
 --- 
 
@@ -156,15 +176,18 @@ true, false
 String
 {: .label }
 
-This is the html element for the banner wrapper. by default it is div.
+"tagName" refers to the name of an HTML tag used to wrap or structure the content (banner) on a webpage.
 
 ### Default Value
 {: .no_toc }
-'div'
 
-### Usecases
+```js
+tagName: 'div'
+```
+
+### Scenarios
 {: .no_toc }
-Any valid html tag in which you like the banner code to be wrapped in.
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 
 --- 
 
@@ -174,22 +197,22 @@ Any valid html tag in which you like the banner code to be wrapped in.
 Object
 {: .label }
 
-By default it contains classes for the wrapper. you can add more classes or any attributes.
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
 ```js
-{class:"UNX-banner-block"}
+htmlAttributes: { class:"UNX-banner-block" }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
-Any valid html attribute can be passed as `key: value` pairs inside an object.
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
-# Examples
 
-## Default Example
+
+# Default Example
 
 Sample banner configuration
 
@@ -209,3 +232,8 @@ banner: {
     count:1
 }
 ```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:

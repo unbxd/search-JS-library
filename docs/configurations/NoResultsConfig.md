@@ -44,7 +44,7 @@ function(query){
     return '<div class="UNX-no-results"> No Results found '+ query + '</div>'
 }
 ```	
-### Usecases
+### Scenarios
 {: .no_toc }
 
 

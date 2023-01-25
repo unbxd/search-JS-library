@@ -48,7 +48,7 @@ Turn this off if you do not want the product view component.
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -65,7 +65,7 @@ Element in which to render the product views component
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -111,7 +111,7 @@ function(selectedViewType, productViewType) {
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -127,7 +127,7 @@ Product view types to be displayed by default: “LIST” or ‘GRID”
 {: .no_toc }
 “GRID”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -143,7 +143,7 @@ Action on which product view change should be triggerd: “click” or “change
 {: .no_toc }
 “click”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -159,7 +159,7 @@ Additonal CSS class name to be added to the product view type elements
 {: .no_toc }
 “UNX-product-view”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -176,7 +176,7 @@ Additional CSS class name to be added to the selected view type element
 ``` js
 “UNX-selected-product-view”	
 ```
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -192,7 +192,7 @@ html element for the product view type wrapper. by default it is div.
 {: .no_toc }
 “DIV”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -210,10 +210,27 @@ By default it contains classes for the wrapper. you can add more classes or any 
 {class:”product-view-container”}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
+## events
+{: .d-inline-block }
+
+Object
+{: .label }
+
+By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+### Default Value
+{: .no_toc }
+{}
+
+### Scenarios
+{: .no_toc }
+
+---
+>>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 ## Default Example

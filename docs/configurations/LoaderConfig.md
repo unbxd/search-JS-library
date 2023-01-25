@@ -47,7 +47,7 @@ Element in which to render the loader component.
 {: .no_toc }
 null	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -68,6 +68,6 @@ function(){
 }
 ```	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 

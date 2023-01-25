@@ -47,7 +47,7 @@ Turn this off if you do not want the page size component.
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -64,7 +64,7 @@ Element in which to render the page size element
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -80,7 +80,7 @@ Number of results to be shown per page.
 {: .no_toc }
 12
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -96,7 +96,7 @@ Array of desired page sizes to be rendered. It is suggested that the value be a 
 {: .no_toc }
 [8, 12, 16, 20, 24]
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -112,7 +112,7 @@ Additional CSS class name to be added to the page size element.
 {: .no_toc }
 “UNX-pagesize”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -128,7 +128,7 @@ Additional CSS class name to be added to the selected page size option.
 {: .no_toc }
 “UNX-selected-pagesize”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -144,7 +144,7 @@ Action on which page size change should trigger: “click” or “change”.
 {: .no_toc }
 “change”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -178,7 +178,7 @@ function(selected, pagesize) {
 }
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -194,7 +194,7 @@ html element for the page size wrapper. by default it is div.
 {: .no_toc }
 “DIV”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -212,10 +212,27 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {class:”UNX-selected-pagesize”}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
+## events
+{: .d-inline-block }
+
+object
+{: .label }
+
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+### Default Value
+{: .no_toc }
+{}	
+
+### Scenarios
+{: .no_toc }
+
+---
+>>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 ## Default Example

@@ -74,7 +74,7 @@ Element in which to render the spellcheck component.
 {: .no_toc }
 null
 
-### Scenarios
+### Usecases
 {: .no_toc }
 There are several HTML selectors that can be used to locate the banner element in an e-commerce page:
 
@@ -141,7 +141,7 @@ function(query,suggestion,pages) {
         `</div>`].join('');
 }
 ```
-### Usecases
+### Scenarios
 {: .no_toc }
 Via template we can customize spellcheck look and feel.
 
@@ -159,6 +159,9 @@ Additional CSS class name for the spell check component
 {: .no_toc }
 “UNX-suggestion”	
 
+### Scenarios
+{: .no_toc }
+
 ---
 ## tagName
 {: .d-inline-block }
@@ -171,6 +174,9 @@ html element for the spellcheck wrapper. by default it is div.
 ### Default Value
 {: .no_toc }
 “DIV”
+
+### Scenarios
+{: .no_toc }
 
 ---
 ## htmlAttributes
@@ -185,11 +191,27 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {: .no_toc }
 {class:”UNX-spellcheck-wrapper”}
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
+## events
+{: .d-inline-block }
 
+Object
+{: .label }
+
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+### Default Value
+{: .no_toc }
+{}	
+
+### Scenarios
+{: .no_toc }
+
+---
+# Examples
 
 # Default Example
 Sample “spellCheck” config

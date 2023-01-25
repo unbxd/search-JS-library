@@ -75,7 +75,7 @@ Turn this off if you do not want the pagination widget.
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -92,7 +92,7 @@ Type of pagination: “FIXED_PAGINATION” or “INFINITE_SCROLL” or “CLICK_
 {: .no_toc }
 “CLICK_N_SCROLL”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -108,7 +108,7 @@ Element in which to render the pagination component.
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -188,7 +188,7 @@ function (paginationData, pagination) {
 
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -204,7 +204,7 @@ CSS classname for the pagination component.
 {: .no_toc }
 “UNX-page-items”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -220,7 +220,7 @@ CSS classname for selected page item.
 {: .no_toc }
 “UNX-selected-page-item”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -236,7 +236,7 @@ Callback function that gets called after a pagination action.
 {: .no_toc }
 NA
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -252,7 +252,7 @@ Number of pages to show upfront (when type is FIXED_PAGINATION).
 {: .no_toc }
 6
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -268,7 +268,7 @@ Element on which to detect infinite scroll page boundary (when type is set to IN
 {: .no_toc }
 window
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -284,7 +284,7 @@ Height of the page to consider to fetch the next page data (when type is set to 
 {: .no_toc }
 100
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -300,7 +300,7 @@ Action on which pagination should trigger: “click” or “change”.
 {: .no_toc }
 “click”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -316,7 +316,7 @@ html element for the pagination wrapper. by default it is div.
 {: .no_toc }
 “DIV”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -334,10 +334,27 @@ Tby default it contains classes for the wrapper. you can add more classes or any
 {class:”UNX-pagination-size-block”}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
+## events
+{: .d-inline-block }
+
+object
+{: .label }
+
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+### Default Value
+{: .no_toc }
+{}
+
+### Scenarios
+{: .no_toc }
+
+---
+>>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 ## Default Example

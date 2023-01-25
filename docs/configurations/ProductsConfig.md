@@ -47,7 +47,7 @@ Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGOR
 {: .no_toc }
 “SEARCH”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -63,7 +63,7 @@ Element in which to render the search results.
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -132,7 +132,7 @@ function(product,idx,swatchUI,productViewType,products ){
 };
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -150,7 +150,7 @@ This is an array of all required fields for generating the result template. This
 ["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -168,7 +168,7 @@ Field mappings for the data to be displayed in the product card.
 {"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -184,7 +184,7 @@ If you want to have grid type user interface, then you can configure how many co
 {: .no_toc }
 Adjusts as per screen size
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -200,7 +200,7 @@ Additional class name to be added to each product card.
 {: .no_toc }
 “product-item”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -217,7 +217,7 @@ Callback functions called on click of a product card. This function gets the pro
 function(product, event) {}	
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -233,7 +233,7 @@ If product doesnt contain image url, by default this image will be shown
 {: .no_toc }
 “https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -248,7 +248,7 @@ html element for the product wrapper. by default it is div.
 {: .no_toc }
 “DIV”	
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -266,10 +266,27 @@ by default it contains classes for the wrapper. you can add more classes or any 
 {class:”UNX-search-results-block UNX-result-wrapper”}
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
+## events
+{: .d-inline-block }
+
+object
+{: .label }
+
+by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+### Default Value
+{: .no_toc }
+{}
+
+### Scenarios
+{: .no_toc }
+
+---
+>>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 ## Default Example

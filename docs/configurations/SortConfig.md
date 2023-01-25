@@ -50,7 +50,7 @@ Turn this off if you do not want the sort component.
 {: .no_toc }
 true
 
-### Usecases
+### Scenarios
 {: .no_toc }
 true, false
 
@@ -67,7 +67,7 @@ Element in which to render the sort component.
 {: .no_toc }
 null
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -85,7 +85,7 @@ Array of sort options.
 [{value: "price desc",text: "Price High to Low"},{value: "price asc",text: " Price Low to High"},{value: "rating asc",text: " Rating Low to High"},{value: "rating desc",text: " Rating High to low"}]
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -101,7 +101,7 @@ CSS class name for the sort item, make sure you will be providing this informati
 {: .no_toc }
 “UNX-sort-item”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -117,7 +117,7 @@ CSS class name for the selected sort item.
 {: .no_toc }
 “UNX-selected-sort”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -165,7 +165,7 @@ function(selectedSort, sortConfig) {
 
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -181,7 +181,7 @@ Action on which sort should trigger: “click” or “change” .
 {: .no_toc }
 “change”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -197,7 +197,7 @@ html element for the sort wrapper. by default it is div.
 {: .no_toc }
 “DIV”
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
@@ -215,10 +215,27 @@ By default it contains classes for the wrapper. you can add more classes or any 
 {class:”UNX-sort-block-lb”}	
 ```
 
-### Usecases
+### Scenarios
 {: .no_toc }
 
 ---
+## events
+{: .d-inline-block }
+
+Object
+{: .label }
+
+By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+
+### Default Value
+{: .no_toc }
+{}
+
+### Scenarios
+{: .no_toc }
+
+---
+>>>>>>> 3dc2c4289062f64c119aaf1cbef6b340d88abe55
 # Examples
 
 ## Default Example
