@@ -54,7 +54,6 @@ Element
 {: .label }
 
 Configure your search button here. Clicking on this will load the results based the input value provided in “searchBoxEl".
-
 ### Default Value
 {: .no_toc }
 NA
@@ -82,3 +81,8 @@ window.unbxdSearch = new UnbxdSearch({
   searchButtonEl: document.getElementById("searchBtn"),
 });
 ```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:

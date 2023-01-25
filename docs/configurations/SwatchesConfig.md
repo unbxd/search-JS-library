@@ -121,6 +121,13 @@ Function
 
 Customize the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters
 
+This function takes three params:
+1. `swatchData` - 
+2. `swatches` -
+3. `product` - 
+
+**Expected return value**: a string of HTML that will be used to render the spellcheck component on the webpage
+
 ### Default Value
 {: .no_toc }
 ```js
