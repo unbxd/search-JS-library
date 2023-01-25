@@ -15,6 +15,7 @@ back_to_top_text: "Back to top"
 
 footer_content: "Copyright &copy; 2022 <a href=\"https://unbxd.com/\">Unbxd</a> Inc, All Rights Reserved."
 
+enable_copy_code_button: true
 
 # Aux links for the upper right navigation
 aux_links:
