@@ -46,16 +46,17 @@ Boolean
 Required
 {: .label .label-red }
 
-Turn this flag on for enabling spell check
+“Enabled” is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the “spellcheck feature” refers to the ability to display spellcheck on the website.
 
+When the “enabled” flag is turned on, the spellcheck feature will be active,This can be used to help result even when you write incorrect query. When the “enabled” flag is turned off, the spellcheck feature will be disabled.
 ### Default Value
 {: .no_toc }
 false
 
-### Available options
+### Scenarios
 {: .no_toc }
-1. true
-2. false
+1. true  - Spellcheck feature will be enabled.
+2. false - Spellcheck feature will be disabled.
 
 ---
 ## el	
@@ -66,15 +67,28 @@ Element
 Required
 {: .label .label-red }
 
+“el” is an HTML element in an e-commerce page that is designated to display spellcheck component. This allows developers to control the placement of the spellcheck component on the webpage and to ensure that they are displayed in a prominent and visible location. The “el element” can be set by providing the id or class of the element in the code.
+
 Element in which to render the spellcheck component.
 ### Default Value
 {: .no_toc }
 null
 
-### Other options
-```js 
-{el: document.getElementById("didYouMeanWrapper")}
-```
+### Scenarios
+{: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page:
+
+getElementById: This method retrieves an element by its unique id attribute.
+getElementsByClassName: This method retrieves all elements with a given class name
+getElementsByTagName: This method retrieves all elements with a given tag name (e.g. div, span, etc.)
+querySelector: This method retrieves the first element that matches a given CSS selector
+querySelectorAll: This method retrieves all elements that match a given CSS selector
+getElementsByName: This method retrieves all elements with a given name attribute.
+
+These selectors are part of the Document Object Model (DOM) API, which allows developers to access and manipulate the elements of an HTML or XML document. These selectors are commonly used in JavaScript to locate and manipulate specific elements on a webpage.
+
+
+
 ---
 ## template	
 {: .d-inline-block }
