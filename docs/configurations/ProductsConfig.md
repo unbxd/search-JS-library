@@ -88,6 +88,7 @@ This function passes two params:
 3. `swatchUI` -
 4. `productViewType` -
 5. `products` -
+
 **Expected return value**: a string of HTML that will be used to render the products on the webpage
 
 
@@ -388,3 +389,8 @@ products:{
 
 }
 ```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:

@@ -198,3 +198,7 @@ swatches:{
    }
 ```
 
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:
