@@ -181,7 +181,7 @@ tagName: 'div'
 
 ### Scenarios
 {: .no_toc }
-Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the spellcheck code to be wrapped in.
 
 ---
 ## htmlAttributes
@@ -253,3 +253,5 @@ spellCheck:{
 # Custom Usecases
 
 ## Usecase 1: 
+## Usecase 2: 
+## Usecase 3: 
