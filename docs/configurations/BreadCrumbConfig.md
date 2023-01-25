@@ -64,6 +64,7 @@ true
 
 Element
 {: .label }
+
 Required
 {: .label .label-red }
 
@@ -71,13 +72,16 @@ Required
 
 ### Default Value
 {: .no_toc }
+
 ```js
 el: null
 ```
 
 ### Scenarios
 {: .no_toc }
+
 There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
+
 ---
 
 ## template
@@ -96,6 +100,7 @@ This function passes two params:
 
 ### Default Value
 {: .no_toc }
+
 ```js 
 function(breadcrumbs, breadcrumb){
     let ui = ``;
@@ -130,6 +135,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 String
 {: .label }
+
 The "selectorClass" option in breadcrumbs is an additional css class that can be used to identify and style the breadcrumb navigation. User can choose to either use default value or override it with a new custom class name .
 
 ### Default Value
@@ -141,6 +147,7 @@ selectorClass: "UNX-bread-crumb"
 ### Scenarios
 {: .no_toc }
 Any valid class name can be passed as a selector class name.
+
 ---
 
 ## tagName
@@ -160,6 +167,7 @@ tagName: "div"
 {: .no_toc }
 
 Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
+
 ---
 
 ## htmlAttributes	
@@ -181,6 +189,7 @@ Object
 {: .no_toc }
 
 Any valid html attribute can be passed as key : value pairs inside an object.
+
 ---
 
 # Default Example
