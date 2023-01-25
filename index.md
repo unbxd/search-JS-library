@@ -31,14 +31,12 @@ The SDK can be used to configure the search engine, set the API and Site key, in
 This SDK does not have any dependencies on any other JavaScript frameworks or libraries, which makes it lightweight and easy to integrate into an e-commerce website. It can be easily added to the website by including a script tag on the page where it is needed, and it can be customized and extended using JavaScript methods and callbacks.
 
 Additionally, SDK provides several functionalities like, but not limited to:
-1. Autocomplete suggestions
-2. Instant search results
-3. Tracking search queries and clicks
-4. Search analytics
-5. Search-as-you-type
-6. Spelling suggestions
-7. Faceted search
-8. Customizable search result templates.
+1. Instant search results
+2. Search analytics
+3. Search-as-you-type (Autosuggest SDK)
+4. Spelling suggestions
+5. Faceted search
+6. Customizable search result templates.
 
 These functionalities are designed to improve the user experience on the e-commerce website by providing a powerful search experience, increasing the relevance of search results and providing a more personalized shopping experience for users.
 
