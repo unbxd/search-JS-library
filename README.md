@@ -214,7 +214,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | facetsEl | Element |  null | Element in which to render the facets |
 | facetTemplate | Function | [default](src/modules/facets/ui.js) | Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. `isCollapsible` is set to true) and the search text entered for this facet block (if `isSearchable` is set to true) |
 | facetItemTemplate | Function | [default](src/modules/facets/ui.js) | Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block. |
-| facetMultiSelect | Booelan | true | Turn this off if you want to disable the multiple selection of facets |
+| facetMultiSelect | Boolean | true | Turn this off if you want to disable the multiple selection of facets |
 | facetClass | String | "UNX-facets-block" | Additional CSS class name to add to the the facet items |
 | facetAction | String | "click | Event based on which to trigger facet selection / deselection: "click" or "change" |
 | selectedFacetClass | String | "UNX-selected-facet-btn" | Additional CSS class name for the selected facet items |
@@ -240,7 +240,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | defaultOpen | String | "ALL" | If "isCollapsible" is true, set this config to indicate the default open facet. Available options are "ALL" , "FIRST" , "NONE" |
 | isSearchable | Boolean | true | Turn this on if you want to have search feature for each facet block |
 | searchPlaceHolder | String | "" | Placeholder text for the facet search input |
-| enableViewMore | Booelan | false | Turn this on for enabling view more or less functionality for individual facets  |
+| enableViewMore | Boolean | false | Turn this on for enabling view more or less functionality for individual facets  |
 | viewMoreText | Array | ["show all", "show less"] | The text to show for the view more / less button. Pass the 2 strings in array format `[<viewMoreText>`, `viewLessText`]. Ex:  ["View more", "View less"] |
 | viewMoreLimit | Number | 3 | Will show view more only if the facet values are greater than this value |
 | tagName | String | "DIV" | html element for the facet wrapper. by default it is div.  |

@@ -51,12 +51,17 @@ Element
 
 Element in which to render the facets.
 
+"facetsEl" in facets is an HTML element that is designated to display facets. This allows developers to control the placement of the facets on the webpage and to ensure that they are displayed in a prominent and visible location. The "facetsEl" can be set by providing the id or class of the element in the code.
+
 ### Default Value
 {: .no_toc }
-null
+```js
+facetsEl: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 --- 
 
@@ -197,7 +202,7 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 ## facetMultiSelect
 {: .d-inline-block }
 
-Booelan
+Boolean
 {: .label }
 
 Turn this off if you want to disable the multiple selection of facets.
@@ -772,7 +777,7 @@ Placeholder text for the facet search input.
 ## enableViewMore
 {: .d-inline-block }
 
-Booelan
+Boolean
 {: .label }
 
 Turn this on for enabling view more or less functionality for individual facets.
