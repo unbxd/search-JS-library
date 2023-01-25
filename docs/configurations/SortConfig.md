@@ -192,7 +192,7 @@ The "template" function here refers to the ability to change the look and feel o
 {: .no_toc }
 
 ``` js
-function(selectedSort, sortConfig) {
+template: function(selectedSort, sortConfig) {
     let optionsUI = "";
     const {
         options,

@@ -72,7 +72,7 @@ The "template" function here refers to the ability to change the look and feel o
 ### Default Value
 {: .no_toc }
 ```js
-function(){
+template: function(){
     return '<div class="UNX-loader">Loading search results....</div>'
 }
 ```	

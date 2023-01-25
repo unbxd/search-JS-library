@@ -99,7 +99,7 @@ This function passes two params:
 {: .no_toc }
 
 ```js 
-function(breadcrumbs, breadcrumb){
+template: function(breadcrumbs, breadcrumb){
     let ui = ``;
     const {
         selectorClass
