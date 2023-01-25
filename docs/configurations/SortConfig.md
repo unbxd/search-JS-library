@@ -93,7 +93,6 @@ There are several HTML selectors that can be used to locate the banner element i
 Array
 {: .label }
 The "options" in sorting refer to the different sorting criteria that the developer can use to sort the data. These options are typically defined as a list of sorting criteria, such as "ascending" or "descending" order, or sorting by different fields like "name" or "date".
-Array of sort options.
 
 This accepts a list of objects, where each object needs to have "value" and "text".  
 **1. value** : The value is the parameter which goes in payload.  
