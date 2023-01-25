@@ -45,7 +45,7 @@ Boolean
 Required
 {: .label .label-red }
 
-Turn this flag on if you want to show breadcrumbs (if it is available) on your page.
+Turn this flag on to show the breadcrumbs (only if available).If flag is turned off no breadcrumnbs wou
 
 ### Default Value
 {: .no_toc }
@@ -204,6 +204,9 @@ Any valid HTML attributes like class, id, title, style etc... can be mentioned h
 ## Default Example
 
 Sample code for the breadcrumbs widget
+
+[![](../assets/breadcrumbs.png)](../assets/breadcrumbs.png)
+
 ```js
 breadcrumb:{
   enabled:true,
