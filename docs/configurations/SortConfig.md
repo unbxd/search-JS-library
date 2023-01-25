@@ -20,9 +20,13 @@ nav_order: 8
 "Sort" functionality in an e-commerce page allows users to rearrange the products displayed on a search results or product listing page in a specific order. The sorting options provided by the e-commerce websites varies but the most common ones are:
 
 **Sort by relevance**: This is the default sorting option. It orders the products based on how well they match the search criteria or the filter settings.  
+
 **Sort by price**: This allows users to sort products by price, in either ascending or descending order.  
+
 **Sort by popularity**: This orders the products based on their popularity, like number of sales, views, or ratings.  
+
 **Sort by newness**: This orders the products based on their recency, usually the newest products are listed first.  
+
 **Sort by Brand**: This allow the users to sort products by brand name.  
 
 This functionality can help users quickly find the products that are most relevant or interesting to them, based on their specific needs and preferences. It allows users to quickly identify products in a particular price range, or newly added items, making it more convenient for them to find what they are looking for.
@@ -65,6 +69,9 @@ enabled: true
 
 Element
 {: .label }
+
+Required
+{: .label .label-red }
 
 The "element" option for sorting refers to the HTML element that is used to create the sorting UI. This option allows the developer to specify what type of HTML element should be used for sorting, such as a "select" element , "button" element etc.
 
@@ -134,12 +141,14 @@ The sorting can be done based on different criterias such as based on name , pri
 
 String
 {: .label }
-
-CSS class name for the sort item, make sure you will be providing this information in template.
+CSS class name for the sort item.
+This class works in case of default template .To use in case of custom template , do not forget to add "sortClass" in custom template code .
 
 ### Default Value
 {: .no_toc }
-“UNX-sort-item”
+```js
+sortClass: “UNX-sort-item”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -152,10 +161,13 @@ String
 {: .label }
 
 CSS class name for the selected sort item.
+This class works in case of default template .To use in case of custom template , do not forget to add "sortClass" in custom template code .
 
 ### Default Value
 {: .no_toc }
-“UNX-selected-sort”
+```js
+selectedSortClass: “UNX-selected-sort”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -167,10 +179,16 @@ CSS class name for the selected sort item.
 Function
 {: .label }
 
-Customize the look and feel of the sort component by using this function. This function gets 2 parameters: the selected sort value and the sort config (i.e. this complete object).
+The "template" function here refers to the ability to change the look and feel of the sorting component . The function receives below two parameters :
+
+**1. selectedSort** : the value of selected sort item in Ui is passed here .
+**2. sortConfig** : the sortConfig receives all the configuration value for sort like sortClass, options etc. 
+
+**Expected return value**: a string of HTML that will be used to render the sorting component on the webpage.
 
 ### Default Value
 {: .no_toc }
+
 ``` js
 function(selectedSort, sortConfig) {
     let optionsUI = "";
@@ -207,6 +225,7 @@ function(selectedSort, sortConfig) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 ## action
@@ -214,15 +233,20 @@ function(selectedSort, sortConfig) {
 
 String
 {: .label }
+Action on which the sorting will trigger . Below are two options to trigger sorting :
 
-Action on which sort should trigger: “click” or “change” .
+**1. Click**: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation. 
+**2. Change**: Change refers to a sort operation that is initiated when a specific variable or data element is changed.=
 
 ### Default Value
 {: .no_toc }
-“change”
+```js
+action: "change"
+```
 
 ### Scenarios
 {: .no_toc }
+//Need to ask
 
 ---
 ## tagName
@@ -230,15 +254,17 @@ Action on which sort should trigger: “click” or “change” .
 
 String
 {: .label }
-
-html element for the sort wrapper. by default it is div.
+“tagName” refers to the name of an HTML tag used to wrap or structure the content (spellcheck) on a webpage.
 
 ### Default Value
 {: .no_toc }
-“DIV”
+```js
+tagName: "div"
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 
 ---
 ## htmlAttributes	
@@ -246,36 +272,21 @@ html element for the sort wrapper. by default it is div.
 
 Object
 {: .label }
-
-By default it contains classes for the wrapper. you can add more classes or any attributes.
+“htmlAttributes” refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
 ``` js
-{class:”UNX-sort-block-lb”}	
+{
+    class: ”UNX-sort-block-lb”
+}	
 ```
 
 ### Scenarios
 {: .no_toc }
+Any valid html attribute can be passed as key : value pairs inside an object.
 
 ---
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}
-
-### Scenarios
-{: .no_toc }
-
----
-# Examples
 
 ## Default Example
 Sample “sort” config
