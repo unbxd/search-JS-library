@@ -39,7 +39,7 @@ Required
 
 "Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "banner feature" refers to the ability to display banners or advertisements on the website.
 
-When the "enabled" flag is turned on, the banner feature will be active and banners or advertisements will be displayed on the website. This can be used to promote new products, sales, or other special offers. When the "enabled" flag is turned off, the banner feature will be disabled and no banners or advertisements will be displayed on the website.
+When the "enabled" flag is turned ON, the banner feature will be active and banners or advertisements will be displayed on the website. This can be used to promote new products, sales, or other special offers. When the "enabled" flag is turned OFF, the banner feature will be disabled and no banners or advertisements will be displayed on the website.
 
 ### Default Value
 {: .no_toc }
@@ -64,7 +64,7 @@ Element
 Required
 {: .label  .label-red}
 
-"el" is an HTML element in an e-commerce page that is designated to display banners or advertisements. This allows developers to control the placement of the banners on the webpage and to ensure that they are displayed in a prominent and visible location. The "el element" can be set by providing the id or class of the element in the code.
+"el" in banners is an HTML element that is designated to display banners or advertisements. This allows developers to control the placement of the banners on the webpage and to ensure that they are displayed in a prominent and visible location. The "el" can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
@@ -181,7 +181,7 @@ String
 {: .no_toc }
 
 ```js
-tagName: div
+tagName: 'div'
 ```
 
 ### Scenarios
