@@ -92,7 +92,14 @@ There are several HTML selectors that can be used to locate the productview elem
 Function
 {: .label }
 
-Customize the look and feel of the product views component by using this function. This function gets 2 parameters: the selected view type and the product views config (i.e. this complete object)
+he "template" function here refers to the ability to change the appearance of the banner feature on the e-commerce website. It allows developers to control the appearance of the banners by providing custom HTML. The function receives the list of banners to be displayed, and the banner configurations as parameters and it needs to return a string of HTML that will be used to render the banners on the webpage.
+
+This function passes two params:
+1. `selectedViewType` - 
+2. `productViewType` - 
+
+**Expected return value**: a string of HTML that will be used to render the productview; on the webpage
+
 
 ### Default Value
 {: .no_toc }
@@ -182,7 +189,6 @@ Additonal CSS class name to be added to the product view type elements
 {: .no_toc }
 ``` js
 viewTypeClass:“UNX-product-view”
-
 ```
 
 ### Scenarios
