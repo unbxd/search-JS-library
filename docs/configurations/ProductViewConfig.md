@@ -92,7 +92,7 @@ There are several HTML selectors that can be used to locate the productview elem
 Function
 {: .label }
 
-he "template" function here refers to the ability to change the appearance of the banner feature on the e-commerce website. It allows developers to control the appearance of the banners by providing custom HTML. The function receives the list of banners to be displayed, and the banner configurations as parameters and it needs to return a string of HTML that will be used to render the banners on the webpage.
+he "template" function here refers to the ability to change the appearance of the productview feature on the e-commerce website. It allows developers to control the appearance of the productview by providing custom HTML. The function receives the list of productview to be displayed, and the productview configurations as parameters and it needs to return a string of HTML that will be used to render the productview on the webpage.
 
 This function passes two params:
 1. `selectedViewType` - 
@@ -229,7 +229,7 @@ tagName: 'div'
 
 ### Scenarios
 {: .no_toc }
-Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the code to be wrapped in.
 
 ---
 ## htmlAttributes
