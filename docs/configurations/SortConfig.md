@@ -245,9 +245,9 @@ action: "change"
 
 ### Scenarios
 {: .no_toc }
-**1. Click**: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
+1. `Click`: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
 
-**2. Change**: Change refers to a sort operation that is initiated when a specific variable or data element is changed.
+2. `Change`: Change refers to a sort operation that is initiated when a specific variable or data element is changed.
 
 ---
 ## tagName
@@ -305,8 +305,6 @@ By default it will be empty. you can add further javascript events by keys and f
 {: .no_toc }
 
 ---
-# Examples
-
 # Default Example
 Sample code for the Sort config:
 
