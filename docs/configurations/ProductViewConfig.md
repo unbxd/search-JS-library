@@ -175,6 +175,8 @@ action:“click”
 
 ### Scenarios
 {: .no_toc }
+1. `Click`: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a productview operation.
+2. `Change`: Change refers to a productview operation that is initiated when a specific variable or data element is changed
 
 ---
 ## viewTypeClass
