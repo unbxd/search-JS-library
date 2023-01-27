@@ -246,7 +246,7 @@ htmlAttributes : {
 Sample “pageSize” config
 ```js
 pageSize: {
-  enabled:true,
+    enabled:true,
        pageSize:12,
        options:[8,12,16,20,24],
        pageSizeClass:"UNX-pagesize",
