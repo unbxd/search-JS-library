@@ -90,11 +90,11 @@ onEvent: function(instance, "AFTER_RENDER", null) {
     /** Custom code here */
 }
 ```
-
 ---
+
 ## DELETE_FACET
 Fired on deleting a facet. (**deleteFacet** sdk action is used)
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "DELETE_FACET", { facetName }) {
@@ -162,7 +162,7 @@ onEvent: function(instance, "PAGE_NEXT", {
     /** Custom code here */
 }
 ```
-## Arguments
+### Arguments
 {: .no_toc }
 next: Page number
 
@@ -178,7 +178,7 @@ onEvent: function(instance, "PAGE_PREV", {
     /** Custom code here */
 }
 ```
-## Arguments
+### Arguments
 {: .no_toc }
 prev: Page number
 
@@ -196,14 +196,14 @@ onEvent: function(instance, "CHANGE_INPUT", null) {
 ---
 ## SET_CATEGORY_FILTER
 Fired if in the search page, a category facet is clicked (**setCategoryFilter** sdk action is used)
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "SET_CATEGORY_FILTER", dataSet) {
     /** Custom code here */
 }
 ```
-## Arguments
+### Arguments
 {: .no_toc }
 dataSet: Facet element data set
 
@@ -217,7 +217,7 @@ onEvent: function(instance, "DELETE_CATEGORY_FILTER", dataSet) {
     /** Custom code here */
 }
 ```
-## Arguments
+### Arguments
 {: .no_toc }
 dataSet: Facet element data set
 
@@ -233,6 +233,6 @@ onEvent: function(instance, "PAGESIZE_CHANGE", {
     /** Custom code here */
 }
 ```
-## Arguments
+### Arguments
 {: .no_toc }
 val: New page size
