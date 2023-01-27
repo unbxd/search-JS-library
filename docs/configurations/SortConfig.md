@@ -235,11 +235,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 String
 {: .label }
-Action on which the sorting will trigger . Below are two options to trigger sorting :
-
-**1. Click**: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
-
-**2. Change**: Change refers to a sort operation that is initiated when a specific variable or data element is changed.=
+Action on which the sorting will trigger .
 
 ### Default Value
 {: .no_toc }
@@ -249,7 +245,9 @@ action: "change"
 
 ### Scenarios
 {: .no_toc }
-//Need to ask
+**1. Click**: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
+
+**2. Change**: Change refers to a sort operation that is initiated when a specific variable or data element is changed.
 
 ---
 ## tagName
