@@ -249,6 +249,7 @@ htmlAttributes:{class:”product-view-container”}
 ### Scenarios
 {: .no_toc }
 
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 ---
 
 # Default Example
