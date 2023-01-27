@@ -210,7 +210,7 @@ null
 
 ### Scenarios
 {: .no_toc }
-In cases where the search/category api results are required to be filtered based on a constant filter condition.
+In cases where the search/category api results are required to be filtered based on a constant filter condition, apart from the user selected filters
 
 ---
 <!-- ## searchQueryParam
@@ -246,19 +246,14 @@ searchEndPoint:“https://search.unbxd.io”
 
 ### Scenarios
 {: .no_toc }
+
 1. In case of a staging sitekey, it will be:
 ```js
 searchEndPoint:"https://wingman-argocd.unbxd.io/"	
 ```
-2. In case of a production sitekey, for a different location, it could be:
-```js
-searchEndPoint:"https://search-uk.unbxd.io"	
-```
-{: .important } 
-> Note: Please contact unbxd support for the search url domain
 
 ---
-<!-- This feature is not used, and not adopeted. There is no clarity.
+<!-- This feature is not used, and not adopted. There is no clarity.
 
 ## searchPath
 {: .d-inline-block }
@@ -275,65 +270,13 @@ Any additional path string to be added to the URL. This is useful incase you hav
 {: .no_toc } -->
 
 ---
-## getCategoryId
-{: .d-inline-block }
-
-Function
-{: .label }
-
-By default Category ID will be taken from unbxdPageConf object, but if you wish to customize use this function to return the category ID.
-
-### Default Value
-{: .no_toc }
-null
-
-### Scenarios
-{: .no_toc }
-
----
-## setCategoryId
-{: .d-inline-block }
-
-Function
-{: .label }
-
-This method helps to navigate through the breadcrumbs, you can customize the logic here.
-
-### Default Value
-{: .no_toc }
-null
-
-### Scenarios
-{: .no_toc }
-
----
-## onQueryRedirect
-{: .d-inline-block }
-
-Function
-{: .label }
-
-"On query redirect" is a feature that allows developers to customize the logic for handling redirects that are configured in the API. A redirect is a way to automatically redirect a user from one URL to another.
-
-When a search query is made, the API may return a redirect URL along with the search results. The `onQueryRedirect` option allows developers to define how the application should handle this redirect. For example, the developer could choose to redirect the user to the URL immediately, or they could choose to display a message asking the user if they would like to be redirected, or they could choose to ignore the redirect altogether.
-
-Customizing the logic for handling redirects gives the developer more control over the user experience. They can also use this customization to log the redirect and track user behavior.
-
-### Default Value
-{: .no_toc }
-null
-
-### Scenarios
-{: .no_toc }
-
----
 ## browseQueryParam
 {: .d-inline-block }
 
 String
 {: .label }
 
-This will be the default query param for the browse and category.
+This will be the default query param for the search api to provide category information like category path or category id. For more information on category pages, check [here]()
 
 ### Default Value
 {: .no_toc }
@@ -341,4 +284,7 @@ This will be the default query param for the browse and category.
 
 ### Scenarios
 {: .no_toc }
+
+1. p-id: If we are providing the **category path id** to the search api.
+2. p: If we are providing the **category path** to the search api.
 
