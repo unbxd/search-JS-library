@@ -49,6 +49,9 @@ To render the facets on the search results page, you can use the “facet” con
 Element
 {: .label }
 
+Required
+{: .label .label-red}
+
 Element in which to render the facets.
 
 "facetsEl" in facets is an HTML element that is designated to display facets. This allows developers to control the placement of the facets on the webpage and to ensure that they are displayed in a prominent and visible location. The "facetsEl" can be set by providing the id or class of the element in the code.
@@ -76,7 +79,7 @@ Customize the look and feel of the facets block by returning your custom HTML st
 ### Default Value
 {: .no_toc }
 ``` js
-template: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
+facetTemplate: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
         const {
             displayName,
             facetName,
@@ -149,6 +152,7 @@ template: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
 ## facetItemTemplate
@@ -157,12 +161,16 @@ template: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
 Function
 {: .label }
 
-Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block.
+Customize each individual facet value by returning your custom HTML string from this function.  
+This function expects 3 parameters: 
+1.  `facet`: the complete facet block.
+2.  `value`: the current facet value.
+3.  `facetSearchTxt`: the search text entered for this facet block.
 
 ### Default Value
 {: .no_toc }
 ```js
-facetItemTemplate: function facetItemUiElem (facet , value,facetSearchTxt) {
+facetItemTemplate: function facetItemUiElem (facet , value, facetSearchTxt) {
     const {
         facetName,
         isSelected
@@ -197,6 +205,7 @@ facetItemTemplate: function facetItemUiElem (facet , value,facetSearchTxt) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
 ## facetMultiSelect
@@ -235,6 +244,7 @@ facetClass: “UNX-facets-block”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be added here as facetClass.
 
 --- 
 ## facetAction
@@ -243,7 +253,7 @@ facetClass: “UNX-facets-block”
 String
 {: .label }
 
-Event based on which to trigger facet selection / deselection: “click” or “change”.
+Event based on which to trigger facet selection / deselection.
 
 ### Default Value
 {: .no_toc }
@@ -253,6 +263,8 @@ facetAction: “click"
 
 ### Scenarios
 {: .no_toc }
+1.  `Click`:
+2.  `Change`:
 
 --- 
 ## selectedFacetClass
@@ -262,6 +274,7 @@ String
 {: .label }
 
 Additional CSS class name for the selected facet items.
+
 ### Default Value
 {: .no_toc }
 ```js
@@ -270,7 +283,7 @@ selectedFacetClass: “UNX-selected-facet-btn"
 
 ### Scenarios
 {: .no_toc }
-
+Any valid class name can be added as selectedFacetClass.
 --- 
 ## selectedFacetsEl
 {: .d-inline-block }
@@ -296,7 +309,9 @@ selectedFacetsEl: null
 Function
 {: .label }
 
-Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
+Customize the look & feel of the selected facets block by returning your custom HTML string from this function.  
+This function receives 2 parameters:   
+the selected facet complete block and the selected facet value.
 
 ### Default Value
 {: .no_toc }
@@ -321,6 +336,7 @@ selectedFacetTemplate: function selectedFacetUI(selections, facet,selectedFacets
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
 ## selectedFacetItemTemplate
@@ -368,6 +384,7 @@ selectedFacetItemTemplate: function selectedFacetItemTemplateUI (selectedFacet,s
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
 ## selectedFacetConfig
