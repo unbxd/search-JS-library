@@ -146,7 +146,7 @@ It is used to bind 'change' or 'keyup' event to a facet wrapper element
 Boolean
 {: .label }
 
-Turn this flag on if you want to retain the external url params that do not get added by the unbxd sdk.
+Turn this flag on if you want to retain the external url params in the **browser**, that do not get added by the unbxd sdk.
 
 ### Default Value
 {: .no_toc }
@@ -159,7 +159,7 @@ allowExternalUrlParams: false
 {: .no_toc }
 
 1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
-2. false - External params will be dropped from the browser url
+2. false - External params will be dropped from the browser url by the unbxd search sdk
 
 ---
 ## extraParams
@@ -168,10 +168,11 @@ allowExternalUrlParams: false
 Object
 {: .label }
 
-Any additional parameters you want to send in the search API call.
+Any additional parameters you want to send in the search API call. 
 
 ### Default Value
 {: .no_toc }
+
 ```js
 { "version":"V2" }
 ```
@@ -179,31 +180,29 @@ Any additional parameters you want to send in the search API call.
 ### Scenarios
 {: .no_toc }
 
----
-## productId
-{: .d-inline-block }
+1. 
+In case of dynamic values, a global function must be written to return the value on client end, and the same can be used as part of extraParams. 
 
-String
-{: .label }
+```js
+window.isSale = function() {
+    /** Custom logic based on dynamic conditions **/
+    return true;
+}
+{ "version":"V2", "uc_param": window.isSale() }
+```
 
-The field name which denotes the unique identifier for each product.
-
-### Default Value
-{: .no_toc }
-“uniqueId”
-
-### Scenarios
-{: .no_toc }
+{: .warning } 
+> Note: Please make sure that **version V2** is not overwritten in the custom implementation of externalParams.
 
 ---
+
 ## defaultFilters
 {: .d-inline-block }
 
 Object
 {: .label }
 
-This section refers to a set of predefined filtering options that are applied to all search requests made through the API. These filters are usually used to narrow down the search results by applying certain criteria such as product category, price range, brand, etc. By applying these default filters, the search results returned by the API will be more relevant to the user. These filters can be set by the developer and can be overridden by the user on the frontend. These filters can also be used to apply business rules on the search results.
-
+This is used to set a default filter condition for all search queries and category pages.
 
 ### Default Value
 {: .no_toc }
@@ -211,9 +210,10 @@ null
 
 ### Scenarios
 {: .no_toc }
+In cases where the search/category api results are required to be filtered based on a constant filter condition.
 
 ---
-## searchQueryParam
+<!-- ## searchQueryParam
 {: .d-inline-block }
 
 String
@@ -227,8 +227,8 @@ If you want to send the search query in a different query param key set this con
 
 ### Scenarios
 {: .no_toc }
+ -->
 
----
 ## searchEndPoint
 {: .d-inline-block }
 
@@ -239,12 +239,27 @@ Domain name of the search API endpoint.
 
 ### Default Value
 {: .no_toc }
-“https://search.unbxd.io”	
+
+```js
+searchEndPoint:“https://search.unbxd.io”	
+```
 
 ### Scenarios
 {: .no_toc }
+1. In case of a staging sitekey, it will be:
+```js
+searchEndPoint:"https://wingman-argocd.unbxd.io/"	
+```
+2. In case of a production sitekey, for a different location, it could be:
+```js
+searchEndPoint:"https://search-uk.unbxd.io"	
+```
+{: .important } 
+> Note: Please contact unbxd support for the search url domain
 
 ---
+<!-- This feature is not used, and not adopeted. There is no clarity.
+
 ## searchPath
 {: .d-inline-block }
 
@@ -257,7 +272,7 @@ Any additional path string to be added to the URL. This is useful incase you hav
 {: .no_toc }
 ””
 ### Scenarios
-{: .no_toc }
+{: .no_toc } -->
 
 ---
 ## getCategoryId
