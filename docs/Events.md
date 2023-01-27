@@ -24,7 +24,8 @@ This section documents the different events fired by the Unbxd Library that you 
 > All events are async, and can be caught in the config callback function `onEvent`.
 
 ## BEFORE_API_CALL
-Fired right before the search api is called
+"BEFORE_API_CALL" event typically refers to an event that is triggered immediately before a search API call.
+
 ### Example usage
 {: .no_toc }
 ```js
@@ -103,7 +104,7 @@ onEvent: function(instance, "DELETE_FACET", { facetName }) {
 ```
 ### Arguments
 {: .no_toc }
-facetName: facet name
+1. `facetName`: facet name
 
 ---
 ## FACETS_CLICK
@@ -120,8 +121,8 @@ onEvent: function(instance, "FACETS_CLICK", {
 ```
 ### Arguments
 {: .no_toc }
-facetName: facet name <br/>
-facetData: selected facets data from the search object response
+1.  `facetName`: facet name <br/>
+2.  `facetData`: selected facets data from the search object response
 
 ---
 ## CLEAR_SORT
@@ -148,7 +149,7 @@ onEvent: function(instance, "CHANGE_SORT", {
 ```
 ### Arguments
 {: .no_toc }
-sortVal: sort value
+1.  `sortVal`: sort value
 
 ---
 ## PAGE_NEXT
@@ -164,7 +165,7 @@ onEvent: function(instance, "PAGE_NEXT", {
 ```
 ### Arguments
 {: .no_toc }
-next: Page number
+1.  `next`: Page number
 
 ---
 ## PAGE_PREV
@@ -180,7 +181,7 @@ onEvent: function(instance, "PAGE_PREV", {
 ```
 ### Arguments
 {: .no_toc }
-prev: Page number
+1.  `prev`: Page number
 
 ---
 ## CHANGE_INPUT
@@ -205,7 +206,7 @@ onEvent: function(instance, "SET_CATEGORY_FILTER", dataSet) {
 ```
 ### Arguments
 {: .no_toc }
-dataSet: Facet element data set
+1.  `dataSet`: Facet element data set
 
 ---
 ## DELETE_CATEGORY_FILTER
@@ -219,7 +220,7 @@ onEvent: function(instance, "DELETE_CATEGORY_FILTER", dataSet) {
 ```
 ### Arguments
 {: .no_toc }
-dataSet: Facet element data set
+1.  `dataSet`: Facet element data set
 
 ---
 ## PAGESIZE_CHANGE
@@ -235,4 +236,4 @@ onEvent: function(instance, "PAGESIZE_CHANGE", {
 ```
 ### Arguments
 {: .no_toc }
-val: New page size
+1.  `val`: New page size
