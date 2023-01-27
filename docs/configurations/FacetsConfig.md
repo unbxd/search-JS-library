@@ -778,7 +778,8 @@ isCollapsible: true
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. `true`:
+2. `false`:
 
 --- 
 ## defaultOpen
@@ -787,7 +788,7 @@ true, false
 String
 {: .label }
 
-If “isCollapsible” is true, set this config to indicate the default open facet. Available options are “ALL” , “FIRST” , “NONE”.
+If “isCollapsible” is true, set this config to indicate the default open facet.
 
 ### Default Value
 {: .no_toc }
@@ -797,6 +798,10 @@ defaultOpen: “ALL”
 
 ### Scenarios
 {: .no_toc }
+1.  `ALL`:
+2.  `FIRST`:
+3.  `NONE`:
+
 
 ---
 ## isSearchable
@@ -815,7 +820,8 @@ isSearchable: true
 
 ### Scenarios
 {: .no_toc }
-true, false
+1.  `true`:
+2.  `false`:
 
 ---
 ## searchPlaceHolder
@@ -834,6 +840,7 @@ searchPlaceHolder: ””
 
 ### Scenarios
 {: .no_toc }
+Any valid placeholder text can be added here.
 
 ---
 ## enableViewMore

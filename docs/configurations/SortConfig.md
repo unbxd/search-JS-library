@@ -255,7 +255,7 @@ action: "change"
 
 String
 {: .label }
-“tagName” refers to the name of an HTML tag used to wrap or structure the content (spellcheck) on a webpage.
+“tagName” refers to the name of an HTML tag used to wrap or structure the content on a webpage.
 
 ### Default Value
 {: .no_toc }
