@@ -719,7 +719,9 @@ The text to show for the apply button (when applyMultipleFilters is set as true)
 
 ### Default Value
 {: .no_toc }
-“Apply”
+```js
+applyButtonText:“Apply”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -735,7 +737,9 @@ The text to show for the clear button (when applyMultipleFilters is set as true)
 
 ### Default Value
 {: .no_toc }
-“clear”
+```js
+clearButtonText: “clear”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -751,7 +755,9 @@ Turn this off if you do not want to have a collapsible accordian for each facet 
 
 ### Default Value
 {: .no_toc }
-true
+```js
+isCollapsible: true
+```
 
 ### Scenarios
 {: .no_toc }
@@ -768,7 +774,9 @@ If “isCollapsible” is true, set this config to indicate the default open fac
 
 ### Default Value
 {: .no_toc }
-“ALL”	
+```js
+defaultOpen: “ALL”
+```	
 
 ### Scenarios
 {: .no_toc }
@@ -784,7 +792,9 @@ Turn this on if you want to have search feature for each facet block.
 
 ### Default Value
 {: .no_toc }
-true
+```js
+isSearchable: true
+```
 
 ### Scenarios
 {: .no_toc }
@@ -801,7 +811,9 @@ Placeholder text for the facet search input.
 
 ### Default Value
 {: .no_toc }
-””	
+```js
+searchPlaceHolder: ””	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -817,11 +829,14 @@ Turn this on for enabling view more or less functionality for individual facets.
 
 ### Default Value
 {: .no_toc }
-false
+```js
+enableViewMore: false
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. `true`:
+2. `false`:
 
 --- 
 ## viewMoreText
@@ -835,7 +850,7 @@ The text to show for the view more / less button. Pass the 2 strings in array fo
 ### Default Value
 {: .no_toc }
 ``` js
-[“show all”, “show less”]
+viewMoreText: [“show all”, “show less”]
 ```
 
 ### Scenarios
@@ -852,7 +867,9 @@ Will show view more only if the facet values are greater than this value.
 
 ### Default Value
 {: .no_toc }
-3	
+```js
+viewMoreLimit: 3	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -868,7 +885,9 @@ html element for the facet wrapper. by default it is div.
 
 ### Default Value
 {: .no_toc }
-“DIV”
+```js
+tagName: “DIV”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -885,7 +904,7 @@ by default it contains classes for the wrapper. you can add more classes or any 
 ### Default Value
 {: .no_toc }
 ```js
-{class:”UNX-facets-results-block”}
+htmlAttributes: {class:”UNX-facets-results-block”}
 ```
 
 ### Scenarios
