@@ -41,15 +41,22 @@ The following are the various options available under the object:
 Boolean
 {: .label }
 
+"Enabled" is a flag or switch that allows developers to turn on or off a page size dropdown in an e-commerce website. In this context, the "page size" refers to the ability to display a dropdown with different page sizes on the website.
+
+When the "enabled" flag is turned ON, the page size will be active and different pagesizes will be displayed on the website. This can be used to have different number of products on a page. When the "enabled" flag is turned OFF, the banner feature will be disabled and no banners or advertisements will be displayed on the website.
+
 Turn this off if you do not want the page size component.
 
 ### Default Value
 {: .no_toc }
-true
+```js
+enabled: true
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. `true`:
+1. `false`:
 
 ---
 ## el
@@ -57,15 +64,19 @@ true, false
 
 Element	
 {: .label }
+The "element" option for sorting refers to the HTML element that is used to create the sorting UI. This option allows the developer to specify what type of HTML element should be used for sorting, such as a "select" element , "button" element etc.
 
 Element in which to render the page size element
 
 ### Default Value
 {: .no_toc }
-null
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
 ## pageSize
@@ -78,7 +89,9 @@ Number of results to be shown per page.
 
 ### Default Value
 {: .no_toc }
-12
+```js
+pageSize: 12
+```
 
 ### Scenarios
 {: .no_toc }
@@ -94,7 +107,9 @@ Array of desired page sizes to be rendered. It is suggested that the value be a 
 
 ### Default Value
 {: .no_toc }
-[8, 12, 16, 20, 24]
+```js
+options: [8, 12, 16, 20, 24]
+```
 
 ### Scenarios
 {: .no_toc }
@@ -110,7 +125,9 @@ Additional CSS class name to be added to the page size element.
 
 ### Default Value
 {: .no_toc }
-“UNX-pagesize”
+```js
+pageSizeClass: “UNX-pagesize”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -126,7 +143,9 @@ Additional CSS class name to be added to the selected page size option.
 
 ### Default Value
 {: .no_toc }
-“UNX-selected-pagesize”
+```js
+selectedPageSizeClass: “UNX-selected-pagesize”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -142,7 +161,9 @@ Action on which page size change should trigger: “click” or “change”.
 
 ### Default Value
 {: .no_toc }
-“change”
+```js
+action: “change”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -159,7 +180,7 @@ Customize the look and feel of the page size component by defining this function
 ### Default Value
 {: .no_toc }
 ```js
-function(selected, pagesize) {
+template: function(selected, pagesize) {
     const {
         UNX_pagesize
     } = this.testIds;
@@ -192,7 +213,9 @@ html element for the page size wrapper. by default it is div.
 
 ### Default Value
 {: .no_toc }
-“DIV”	
+```js
+tagName: “div”
+```	
 
 ### Scenarios
 {: .no_toc }
@@ -209,30 +232,15 @@ by default it contains classes for the wrapper. you can add more classes or any 
 ### Default Value
 {: .no_toc }
 ```js
-{class:”UNX-selected-pagesize”}
+htmlAttributes : {
+                class:”UNX-selected-pagesize”
+                }
 ```
 
 ### Scenarios
 {: .no_toc }
 
 ---
-## events
-{: .d-inline-block }
-
-object
-{: .label }
-
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}	
-
-### Scenarios
-{: .no_toc }
-
----
-# Examples
 
 ## Default Example
 Sample “pageSize” config
@@ -264,3 +272,8 @@ pageSize: {
     },
    }
 ```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:
