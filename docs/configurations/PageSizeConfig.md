@@ -41,7 +41,7 @@ The following are the various options available under the object:
 Boolean
 {: .label }
 
-"Enabled" is a flag or switch that allows developers to turn on or off a page size dropdown in an e-commerce website. In this context, the "page size" refers to the ability to display a dropdown with different page sizes on the website.
+"Enabled" is a flag or switch that allows developers to turn on or off a page size component in an e-commerce website. In this context, the "page size" refers to the ability to display a dropdown with different page sizes on the website.
 
 When the "enabled" flag is turned ON, the page size will be active and different pagesizes will be displayed on the website. This can be used to have different number of products on a page. When the "enabled" flag is turned OFF, the banner feature will be disabled and no banners or advertisements will be displayed on the website.
 
