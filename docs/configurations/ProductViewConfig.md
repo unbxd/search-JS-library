@@ -42,15 +42,24 @@ Update the options under the “productView” config object to configure the pr
 Boolean
 {: .label }
 
-Turn this off if you do not want the product view component.
+Required
+{: .label .label-red}
+
+"Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "Product view feature" refers to the ability to display  Product view.
+
+When the "enabled" flag is turned ON, the productview feature will be active and productview will be displayed on the website. This can be used to promote new products, sales, or other special offers. When the "enabled" flag is turned OFF, the productview feature will be disabled and no productview will display.
 
 ### Default Value
 {: .no_toc }
-true
+
+```js
+enabled: true
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true -  productview will be displayed on the website 
+2. false - the productview feature will be disabled
 
 ---
 
@@ -87,8 +96,9 @@ Customize the look and feel of the product views component by using this functio
 
 ### Default Value
 {: .no_toc }
+
 ```js
-function(selectedViewType, productViewType) {
+template:function(selectedViewType, productViewType) {
     const isDisabled = (this.getSearchResults())?false:true;
     const {
         selectedViewTypeClass,
@@ -133,7 +143,9 @@ Product view types to be displayed by default: “LIST” or ‘GRID”
 
 ### Default Value
 {: .no_toc }
-“GRID”
+```js
+    defaultViewType:“GRID”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -149,7 +161,10 @@ Action on which product view change should be triggerd: “click” or “change
 
 ### Default Value
 {: .no_toc }
-“click”	
+
+``` js
+action:“click”	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -165,7 +180,10 @@ Additonal CSS class name to be added to the product view type elements
 
 ### Default Value
 {: .no_toc }
-“UNX-product-view”
+``` js
+viewTypeClass:“UNX-product-view”
+
+```
 
 ### Scenarios
 {: .no_toc }
@@ -182,7 +200,7 @@ Additional CSS class name to be added to the selected view type element
 ### Default Value
 {: .no_toc }
 ``` js
-“UNX-selected-product-view”	
+selectedViewTypeClass:“UNX-selected-product-view”	
 ```
 ### Scenarios
 {: .no_toc }
@@ -194,14 +212,18 @@ Additional CSS class name to be added to the selected view type element
 String
 {: .label }
 
-html element for the product view type wrapper. by default it is div.
+"tagName" refers to the name of an HTML tag used to wrap or structure the content on a webpage.
 
 ### Default Value
 {: .no_toc }
-“DIV”
+
+```js
+tagName: 'div'
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 
 ---
 ## htmlAttributes
@@ -210,37 +232,20 @@ html element for the product view type wrapper. by default it is div.
 Object
 {: .label }
 
-By default it contains classes for the wrapper. you can add more classes or any attributes
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
 ```js
-{class:”product-view-container”}
+htmlAttributes:{class:”product-view-container”}
 ```
 
 ### Scenarios
 {: .no_toc }
 
 ---
-## events
-{: .d-inline-block }
 
-Object
-{: .label }
-
-By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}
-
-### Scenarios
-{: .no_toc }
-
----
-# Examples
-
-## Default Example
+# Default Example
 Sample “productView” config
 
 ```js
@@ -282,3 +287,8 @@ productView : {
     },
    }
 ```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:
