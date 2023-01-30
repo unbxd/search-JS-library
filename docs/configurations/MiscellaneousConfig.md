@@ -280,8 +280,11 @@ This will be the default query param for the search api to provide category info
 
 ### Default Value
 {: .no_toc }
-“p”	
 
+```js
+browseQueryParam: "p"
+```
+	
 ### Scenarios
 {: .no_toc }
 
