@@ -37,6 +37,7 @@ To render the Page Size widget, you need to configure the “pageSize” config 
 pagesize: {
     //Below configurations should be added here.
 }
+```
 
 The following are the various options available under the object: 
 

@@ -76,7 +76,7 @@ Number
 {: .label }
 
 Required
-{: .label-red}
+{: .label .label-red}
 
 Count refers to the number of variants that needs to be shown for a product.
 
@@ -103,7 +103,7 @@ String
 
 ### Default Value
 {: .no_toc }
-“v_colour”
+
 ```js
 groupBy: “v_colour”
 ```

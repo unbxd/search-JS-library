@@ -47,6 +47,7 @@ The Configurations for Sorting needs to be added in the below block :
 sort: {
     //Below configurations should be added here.
 }
+```
 
 The following are the various options available under the object:
 
