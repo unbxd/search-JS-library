@@ -1309,6 +1309,8 @@ facet: {
 {: .no_toc}
 
 ### User Requirement
+{: .no_toc}
+
 If you wish to have a range slider, this is an example with the integration with noUISlider.
 
 Range facets will be rendered automatically along with other facets if it is configured on the console dashboard.
@@ -1317,6 +1319,7 @@ Range facets will be rendered automatically along with other facets if it is con
 
 
 ### More Information
+{: .no_toc}
 
 The right way of fetching the min and max values for the UI slider is from the 'stats' key within the search API. To get this stats key in the API response, you will have to pass `{stats: 'price'}` in the `extraParams` config. This approach will also avoid showing empty results on a site if there is any error with the slider.
 
@@ -1339,6 +1342,8 @@ Steps to get a range slider:
 5. The code for `onFacetLoad` has to be as shown in the below config
 
 ### Code Snippet
+{: .no_toc}
+
 ```js
 facet: {
     facetsEl: document.getElementById("facetsWrapper"),
