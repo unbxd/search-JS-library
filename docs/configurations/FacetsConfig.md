@@ -1305,7 +1305,8 @@ facet: {
 # UseCases
 ## Usecase 1:
 
-## Range Sliders
+### Range Sliders
+{: .no_toc}
 
 ### User Requirement
 If you wish to have a range slider, this is an example with the integration with noUISlider.
