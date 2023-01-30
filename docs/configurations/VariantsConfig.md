@@ -32,9 +32,15 @@ Configure variants display by setting the “variants” config object.
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/variants-SDK.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/variants-SDK.png)
 
 
-
-
 # Configurations
+
+To render the variants, you need to configure the variants config object.
+
+```js
+variants: {
+    //Below configurations should be added here.
+}
+```
 
 The following options are available under the variants object:
 
@@ -47,7 +53,7 @@ Boolean
 Required
 {: .label .label-red}
 
-"Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "variants" refers to the ability to display variant products on the website.
+An "enabled" option in variants within an SDK refers to the ability to display variant products on the website. When enabled is true, the variants for the products would be made available and vice-versa.
 
 ### Default Value
 {: .no_toc }
@@ -58,8 +64,8 @@ enabled: false
 
 ### Scenarios
 {: .no_toc }
-1. true - variants will be displayed on the website 
-2. false - the variants feature will be disabled
+1.  `true` : variants will be displayed on the website
+2.  `false` : variants feature will be disabled
 
 ---
 
@@ -69,7 +75,10 @@ enabled: false
 Number
 {: .label }
 
-Indicates the number of variants to be shown
+Required
+{: .label-red}
+
+Count refers to the number of variants that needs to be shown for a product.
 
 ### Default Value
 {: .no_toc }
@@ -77,9 +86,9 @@ Indicates the number of variants to be shown
 count: 5
 ```
 
-
 ### Scenarios
 {: .no_toc }
+Add any positive integer count here .
 
 ---
 
@@ -98,10 +107,10 @@ String
 ```js
 groupBy: “v_colour”
 ```
-		
 
 ### Scenarios
 {: .no_toc }
+Add any fieldname here which can be used to group the items for a product for example: v_colour ,   etc.
 
 ---
 ## attributes

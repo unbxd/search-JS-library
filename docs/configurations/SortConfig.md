@@ -41,6 +41,13 @@ Sorting allows you to rearrange the search results based on certain fields in a 
 
 # Configurations
 
+The Configurations for Sorting needs to be added in the below block :
+
+```js
+sort: {
+    //Below configurations should be added here.
+}
+
 The following are the various options available under the object:
 
 ## enabled

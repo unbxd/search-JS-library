@@ -34,6 +34,13 @@ Configure page loader to be shown when fetching search API results by setting th
 [![](../assets/loader.png)](../assets/loader.png)
 
 # Configurations
+To render the loader , you need to configure the "loader" config object :
+
+```js
+loader: {
+    //Below configurations should be added here.
+}
+```
 
 The following options are available under the object:  
 

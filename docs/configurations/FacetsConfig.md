@@ -43,6 +43,13 @@ In e-commerce, facets are used to allow users to filter and narrow down a large 
 
 To render the facets on the search results page, you can use the “facet” config object to configure the various options.
 
+```js
+facets: {
+    //Below configurations should be added here.
+}
+```
+The following options are available under the object:  
+
 ## facetsEl
 {: .d-inline-block }
 

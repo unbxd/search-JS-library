@@ -34,6 +34,13 @@ To render the breadcrumb component, set the “breadcrumb” config object.
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
 
 # Configurations
+To render the breadcrumbs on the search results page, you can use the `breadcrumbs` config object to configure the various options.
+
+```js
+breadcrumbs: {
+    //Below configurations should be added here.
+}
+```
 The following options are available under the breadcrumb:
 
 ## enabled

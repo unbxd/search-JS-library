@@ -115,7 +115,7 @@ Fired on changing a facet value (**changeFacet** sdk action is used)
 1.  `facetName`: facet name <br/>
 2.  `facetData`: selected facets data from the search object response
 
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "FACETS_CLICK", {
@@ -145,7 +145,7 @@ Fired when sort data is changed with new values (**changeSort** sdk action is us
 {: .no_toc }
 1.  `sortVal`: sort value
 
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "CHANGE_SORT", {
@@ -163,7 +163,7 @@ Fired on click of a next page (**next** sdk action is used)
 {: .no_toc }
 1.  `next`: Page number
 
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "PAGE_NEXT", {
@@ -181,7 +181,7 @@ Fired on click of a previous page (**prev** sdk action is used)
 {: .no_toc }
 1.  `prev`: Page number
 
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "PAGE_PREV", {
@@ -226,7 +226,7 @@ Fired if in the search page, a category facet is cleared (**clearCategoryFilter*
 {: .no_toc }
 1.  `dataSet`: Facet element data set
 
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "DELETE_CATEGORY_FILTER", dataSet) {
@@ -242,7 +242,7 @@ Fired on click of any of the page size options
 {: .no_toc }
 1.  `val`: New page size
 
-## Example usage
+### Example usage
 {: .no_toc }
 ```js
 onEvent: function(instance, "PAGESIZE_CHANGE", {
