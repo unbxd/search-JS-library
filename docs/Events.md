@@ -20,7 +20,7 @@ nav_order: 6
 
 This section documents the different events fired by the Unbxd Library that you can use to perform **custom actions**. The **onEvent** config function is used to catch these events
 
-{: .important }
+{: .warning }
 > All events are async, and can be caught in the config callback function `onEvent`.
 
 ## BEFORE_API_CALL

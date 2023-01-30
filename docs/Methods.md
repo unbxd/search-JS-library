@@ -178,7 +178,7 @@ unbxdSearch.setPageStart(0)
 ```
 ---
 ## setRangeSlider
-Call this method to update the range filter value.More about range slider in this [page](./configurations/FacetsConfig.html#range-sliders) .
+Call this method to update the range filter value. More about range slider in this [page](./configurations/FacetsConfig.html#range-sliders) .
 
 ### Default invocation
 {: .no_toc }

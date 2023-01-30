@@ -1260,7 +1260,8 @@ facet: {
 }
 ```
 
-
+# UseCases
+## Usecase 1:
 
 ## Range Sliders
 
@@ -1293,7 +1294,6 @@ Steps to get a range slider:
 3. Add this to your config `extraParams: {stats: 'price'}`
 4. Verify if you are getting the `stats` key (with min, max, etc) in the search API response 
 5. The code for `onFacetLoad` has to be as shown in the below config
-
 
 ### Code Snippet
 ```js
@@ -1432,7 +1432,6 @@ facet: {
     }
 }
 ```
-# UseCases
-## Usecase 1:
+
 ## Usecase 2:
 ## Usecase 3:
