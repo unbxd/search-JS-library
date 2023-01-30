@@ -687,6 +687,7 @@ multiLevelFacetTemplate: function(facet,selectedCategories,facetSearchTxt, facet
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
 ## facetDepth
@@ -695,7 +696,7 @@ multiLevelFacetTemplate: function(facet,selectedCategories,facetSearchTxt, facet
 Number
 {: .label }
 
-Configure how many levels of category filter you want to have by setting this value.
+The "facetDepth" configures how many levels of category filter you want to have by setting this value.
 
 ### Default Value
 {: .no_toc }
@@ -705,6 +706,7 @@ facetDepth: 4
 
 ### Scenarios
 {: .no_toc }
+Any positive integer can be given here.
 
 --- 
 ## clearFacetsSelectorClass
