@@ -23,7 +23,7 @@ This section documents the different methods exposed by the sdk/sdk config that 
 ---
 ## reRender
 Call this function if you want to render the page again.
-### Default Invocation
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.reRender()
@@ -35,7 +35,7 @@ Call this function for updating the config options in run time.
 {: .no_toc }
 1. `config`: Object with new config information (Only the updated keys need to be present)
 
-### Default Invocation
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.updateConfig({
@@ -53,7 +53,7 @@ This config function holds the redirect logic for a query to which the response 
 1. `redirect`: Redirect response from search api.  
 2. `urlBeforeRedirect`: Url before the browser redirected.   
 
-### Default Value
+### Default value
 {: .no_toc }
 
 ```js
@@ -88,7 +88,7 @@ This config function holds the logic to manipulate history when we come back to 
 {: .no_toc }
 1. `hashMode`: If sdk config has hashMode set to true.  
 
-### Default Value
+### Default value
 {: .no_toc }
 
 ```js
@@ -112,7 +112,7 @@ Custom implementation on clicking browser back & forward .
 4. `isUnbxdKey`: True if any key required by sdk is present in the url  
 5. `replace`: Whether to replace history state or push to new state.  
 
-### Default Value
+### Default value
 {: .no_toc }
 
 ```js
@@ -139,7 +139,7 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
 ---
 ## getCategoryPage
 Call this function to render the category page.
-### Default Invocation
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.getCategoryPage()
@@ -147,7 +147,7 @@ unbxdSearch.getCategoryPage()
 ---
 ## getResults
 Call this function to refetch the search results.
-### Default Invocation
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.getResults("dress")
@@ -155,7 +155,7 @@ unbxdSearch.getResults("dress")
 ---
 ## resetFacets
 Call this method to reset the facets.
-### Default Invocation
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.resetFacets()
@@ -163,7 +163,7 @@ unbxdSearch.resetFacets()
 ---
 ## resetAll
 Call this method to reset all the page elements like selected facets, selected sort option, pagination etc.
-### Default Invocation
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.resetAll()
@@ -171,15 +171,16 @@ unbxdSearch.resetAll()
 ---
 ## setPageStart
 Call this method to set the the page number.
-### Default Invocation
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.setPageStart(0)
 ```
 ---
 ## setRangeSlider
-Call this method to update the range filter value.
-### Default Invocation
+Call this method to update the range filter value.More about range slider in this [page](./configurations/FacetsConfig.html/#range-sliders) .
+
+### Default invocation
 {: .no_toc }
 ```js
 unbxdSearch.setRangeSlider({
@@ -192,7 +193,7 @@ unbxdSearch.setRangeSlider({
 ---
 ## getCategoryId
 Use this config function to return category id for a particular category page
-### Default Value
+### Default value
 {: .no_toc }
 ```js
 unbxdSearch.setRangeSlider({
@@ -210,7 +211,7 @@ In case of category facets in category page, this function is used to set the wi
 1. `level`: Category depth level.  
 2. `name`: Category path name.  
 
-### Default Value
+### Default value
 {: .no_toc }
 
 ```js
@@ -248,13 +249,13 @@ setCategoryId: function(param, self) {
 
 ---
 ## onEvent
-Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [section](./Events.html) .
+Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [page](./Events.html) .
 ### arguments
 {: .no_toc }
 1. `type`: Name of the event, state: Event state metadata  
-2. `instance`: 
+2. `instance`: js instance
 
-### Default Value
+### Default value
 {: .no_toc }
 
 ```js
@@ -268,10 +269,10 @@ onEvent: function(type,instance){
 Use this config function for facet element handlers like **change**, **keyup**, **click** .
 ### arguments
 {: .no_toc }
-1. `element`: html element on which the action is triggered  
-2. `context`: context object i.e. unbxdSearch  
+1. `e`: html element on which the action is triggered  
+2. `ctx`: context object i.e. unbxdSearch  
 
-### Default Value
+### Default value
 {: .no_toc }
 
 ```js
@@ -283,7 +284,7 @@ onAction: function(e, ctx) {
 ---
 ## onNoUnbxdKeyRouting
 Routing action when the url does not have any unbxd key.
-### Default Value
+### Default value
 {: .no_toc}
 ```js
 onNoUnbxdKeyRouting:() => {
