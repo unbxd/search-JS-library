@@ -348,6 +348,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 # Default Example
 
 Sample “products” config:
+[![](../assets/products.png)](../assets/products.png)
 
 ```js
 products:{
