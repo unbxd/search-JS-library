@@ -209,6 +209,16 @@ Object
 {: .label }
 
 Field mappings for the data to be displayed in the product card.
+The "attributesMap" you provided is a mapping of attribute names used in a specific e-commerce platform to standardized attribute names. The mapping is used to ensure consistent and standardized data across different systems and services.
+
+1. "unxTitle" maps to "title".
+2. "unxImageUrl" maps to "imageUrl".
+3. "unxPrice" maps to "salePrice".
+4. "unxStrikePrice" maps to "displayPrice".
+5. "unxId" maps to "uniqueId".
+6. "unxDescription" maps to "productDescription".
+
+This mapping can be used in data processing, data analysis, or integration with other systems to ensure consistent and standardized data handling and processing
 
 ### Default Value
 {: .no_toc }
@@ -216,9 +226,6 @@ Field mappings for the data to be displayed in the product card.
 ```js
 attributesMap:{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
 ```
-
-### Scenarios
-{: .no_toc }
 
 ---
 ## gridCount
