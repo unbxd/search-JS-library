@@ -4,7 +4,7 @@ title: Methods
 nav_order: 5
 ---
 
-# Methods and Events
+# Methods  
 {: .no_toc }
 
 # Table of contents
@@ -15,7 +15,7 @@ nav_order: 5
 
 ---
 
-# Methods
+## Methods
 {: .no_toc }
 
 This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
@@ -34,6 +34,7 @@ Call this function for updating the config options in run time.
 ### arguments
 {: .no_toc }
 1. `config`: Object with new config information (Only the updated keys need to be present)
+
 ### Default Invocation
 {: .no_toc }
 ```js
@@ -43,6 +44,7 @@ unbxdSearch.updateConfig({
     }
 })
 ```
+
 ---
 ## onQueryRedirect
 This config function holds the redirect logic for a query to which the response contains redirect information. Sample Search api response: `{redirect:{type:”url”,value:”https://www.unbxd.com”}` Parameter **redirected=true** is added in the browser url when replace state param is true in history. It is **not** recommended to open redirect in a new tab. In such a case, the custom client logic for above mentioned search input handlers should take care to not push state when switching to search from category.
