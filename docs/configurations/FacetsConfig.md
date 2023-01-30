@@ -808,8 +808,8 @@ String
 
 The text to show for the clear button.
 
-{: .note }
-applyMultipleFilters needs to be set to true for this to work.
+{: .important }
+`applyMultipleFilters` needs to be set to true for this to work.
 
 ### Default Value
 {: .no_toc }
