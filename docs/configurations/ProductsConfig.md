@@ -99,7 +99,7 @@ This function passes two params:
 1. `product` - it is object which contains data related to product like : unxTitle,unxImageUrl,uniqueId,unxStrikePrice,unxPrice,unxDescription etc.
 2. `idx` - 
 3. `swatchUI` - it is swatchUI object which has info related swatchui like: btnList and btnList.
-4. `productViewType` - Its value might either be "GRID" or "LIST.
+4. `productViewType` - Its value might either be "GRID" or "LIST".
 5. `products` - its contains common info related to products like :productItemClass,defaultImage.
 
 **Expected return value**: a string of HTML that will be used to render the products on the webpage
@@ -165,6 +165,8 @@ template:function(product,idx,swatchUI,productViewType,products ){
 ### Scenarios
 {: .no_toc }
 
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
+
 ---
 ## productAttributes
 {: .d-inline-block }
@@ -214,10 +216,7 @@ If you want to have grid type user interface, then you can configure how many co
 
 ### Default Value
 {: .no_toc }
-Adjusts as per screen size
-
-### Scenarios
-{: .no_toc }
+Adjusts as per screen size.
 
 ---
 ## productItemClass
@@ -284,7 +283,8 @@ defaultImage:“https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”
 ```
 
 ### Scenarios
-{: .no_toc }
+
+Any valid image url you can add here in defaultImage.
 
 ---
 ## tagName
