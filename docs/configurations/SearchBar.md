@@ -59,7 +59,7 @@ Configure your search button here. Clicking on this will load the results based 
 ### Default Value
 {: .no_toc }
 ``` js
-searchButtonEl :NA
+searchButtonEl : NA
 ```
 
 ### Scenarios

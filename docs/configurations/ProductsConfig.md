@@ -47,7 +47,9 @@ products: {
 String
 {: .label }
 
-Type of products page to render. Accepted values are SEARCH or BROWSE or CATEGORY.
+Used to indicate if the page is search or category. Possible values: search (or) category. “search” -> the search term in the url is used by library. “category”-> the getCategoryID function will be invoked to identify the category which needs to be displayed for the given url.
+
+
 
 ### Default Value
 {: .no_toc }
@@ -56,6 +58,10 @@ productType:“SEARCH”
 ```
 ### Scenarios
 {: .no_toc }
+
+Unbxd has two product offerings:
+1. SEARCH: Powers search results pages.
+2. BROWSE or CATEGORY: Powers category listing pages.
 
 ---
 ## el
@@ -90,11 +96,11 @@ Function
 The "template" function here refers to the ability to change the appearance of the product feature on the e-commerce website. It allows developers to control the appearance of the products by providing custom HTML. The function receives  5 parameters: complete product object and index of the current product, swatches, selected view type, product config.
 
 This function passes two params:
-1. `product` - 
+1. `product` - it is object which contains data related to product like : unxTitle,unxImageUrl,uniqueId,unxStrikePrice,unxPrice,unxDescription etc.
 2. `idx` - 
-3. `swatchUI` -
-4. `productViewType` -
-5. `products` -
+3. `swatchUI` - it is swatchUI object which has info related swatchui like: btnList and btnList.
+4. `productViewType` - Its value might either be "GRID" or "LIST.
+5. `products` - its contains common info related to products like :productItemClass,defaultImage.
 
 **Expected return value**: a string of HTML that will be used to render the products on the webpage
 
