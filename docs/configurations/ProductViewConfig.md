@@ -156,6 +156,9 @@ defaultViewType:"GRID"
 ### Scenarios
 {: .no_toc }
 
+1. "GRID" : Product view will be like grid.
+2. "LIST" : Product view will be  like list.
+
 ---
 ## action
 {: .d-inline-block }
@@ -195,6 +198,8 @@ viewTypeClass:"UNX-product-view"
 ### Scenarios
 {: .no_toc }
 
+Any valid class name can passed here.
+
 ---
 ## selectedViewTypeClass
 {: .d-inline-block }
@@ -211,6 +216,8 @@ selectedViewTypeClass:"UNX-selected-product-view"
 ```
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 ## tagName
