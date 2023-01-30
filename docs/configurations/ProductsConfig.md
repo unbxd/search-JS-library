@@ -54,7 +54,7 @@ Used to indicate if the page is search or category. Possible values: search (or)
 ### Default Value
 {: .no_toc }
 ``` js
-productType:“SEARCH”
+productType:"SEARCH"
 ```
 ### Scenarios
 {: .no_toc }
@@ -248,6 +248,14 @@ Function
 {: .label }
 
 Callback functions called on click of a product card. This function gets the product object & the event object as params.
+Note: The `data-id` field has to be set in the template to receive this product information (as shown in the default template here), else it will return `null` by default
+
+This function passes two params:
+
+1. `product` : this will contain the product data like uniqueId etc. Note: The `data-id` field has to be set in the template to receive this product information (as shown in the default template here), else it will return `null` by default
+
+2. `event` : 
+
 ### Default Value
 {: .no_toc }
 
@@ -257,6 +265,8 @@ onProductClick:function(product, event) {}
 
 ### Scenarios
 {: .no_toc }
+This function passes two params:
+
 
 ---
 ## defaultImage
