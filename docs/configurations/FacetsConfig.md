@@ -787,7 +787,7 @@ String
 The text to show for the apply button .
 
 {: .note }
-applyMultipleFilters needs to be set to true for this to work.
+`applyMultipleFilters`  needs to be set to true for this to work.
 
 ### Default Value
 {: .no_toc }
@@ -808,8 +808,8 @@ String
 
 The text to show for the clear button.
 
-{: .important }
-`applyMultipleFilters` needs to be set to true for this to work.
+{: .note }
+`applyMultipleFilters`  needs to be set to true for this to work.
 
 ### Default Value
 {: .no_toc }
