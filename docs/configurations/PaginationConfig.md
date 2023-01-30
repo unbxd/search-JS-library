@@ -461,6 +461,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 Sample “pagination” config
 
+[![](../assets/pagination.png)](../assets/pagination.png)
+
 ```js
 pagination : {
        enabled:true,
