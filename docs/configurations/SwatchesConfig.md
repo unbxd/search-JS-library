@@ -31,7 +31,7 @@ Configure swatches display by using the configs in this section.
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
 
 {: .warning } 
-NOTE: If you wants swatches, variants count should be higher, and “groupBy” field should be present in mapped fields config as shown below:
+NOTE: If you have want to include swatches, please ensure the `count` field inside the `variants` config to be more than 1, and `groupBy` field should have a corresponding mapping in the `mapping` key as shown in the below variants config example:
 
 ```js
 variants:{
@@ -51,7 +51,13 @@ variants:{
 
 # Configurations
 
-The following options are available under the object:
+The following options are available under the swatches object:
+
+``` js
+swatches:{
+    // the below swatches configurations goes here.
+}
+```
 
 ## enabled
 {: .d-inline-block }

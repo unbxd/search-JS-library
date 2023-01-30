@@ -38,6 +38,12 @@ In such cases, the context-aware algorithm of Unbxd understands your visitor’s
 
 You can configure the spellcheck feature by updating the required configs under the “spellCheck” config object.
 
+``` js
+spellCheck: {
+      // the below spellcheck configurations goes here.
+}
+```
+
 ## enabled
 {: .d-inline-block }
 

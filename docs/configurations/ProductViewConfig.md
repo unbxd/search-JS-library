@@ -34,7 +34,13 @@ You can configure the way in which the products have to be displayed (List or Gr
 
 # Configurations
 
-Update the options under the “productView” config object to configure the product view feature.  
+Update the options under the “productView” config object to configure the product view feature.
+
+``` js
+productView:{
+      // the below productView configurations goes here.
+}
+```
 
 ## enabled
 {: .d-inline-block }
