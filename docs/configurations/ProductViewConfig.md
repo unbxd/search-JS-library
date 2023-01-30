@@ -169,7 +169,7 @@ Action on which product view change should be triggerd: “click” or “change
 {: .no_toc }
 
 ``` js
-action:“click”	
+action:"click"
 ```
 
 ### Scenarios
