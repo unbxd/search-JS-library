@@ -25,6 +25,7 @@ This section documents the different events fired by the Unbxd Library that you 
 
 ## BEFORE_API_CALL
 "BEFORE_API_CALL" event typically refers to an event that is triggered immediately before a search API call.
+All data related to payload or browser url is already calculated **before** firing this event.
 
 ### Example usage
 {: .no_toc }
@@ -33,9 +34,6 @@ onEvent: function(instance, "BEFORE_API_CALL", null) {
     /** Custom code here */
 }
 ```
-
-{: .important }
-> All data related to payload or browser url is already calculated **before** firing this event.
 
 ---
 ## AFTER_API_CALL
@@ -55,6 +53,17 @@ Fired as the first step of execution of the **reRender** function
 {: .no_toc }
 ```js
 onEvent: function(instance, "BEFORE_RENDER", null) {
+    /** Custom code here */
+}
+```
+
+---
+## AFTER_RENDER
+Fired as the last step of execution of the **reRender** function
+### Example usage
+{: .no_toc }
+```js
+onEvent: function(instance, "AFTER_RENDER", null) {
     /** Custom code here */
 }
 ```
@@ -82,19 +91,13 @@ onEvent: function(instance, "AFTER_NO_RESULTS_RENDER", null) {
 ```
 
 ---
-## AFTER_RENDER
-Fired as the last step of execution of the **reRender** function
-### Example usage
-{: .no_toc }
-```js
-onEvent: function(instance, "AFTER_RENDER", null) {
-    /** Custom code here */
-}
-```
----
-
 ## DELETE_FACET
 Fired on deleting a facet. (**deleteFacet** sdk action is used)
+
+### Arguments
+{: .no_toc }
+1. `facetName`: facet name
+
 ### Example usage
 {: .no_toc }
 ```js
@@ -102,13 +105,16 @@ onEvent: function(instance, "DELETE_FACET", { facetName }) {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1. `facetName`: facet name
 
 ---
 ## FACETS_CLICK
 Fired on changing a facet value (**changeFacet** sdk action is used)
+
+### Arguments
+{: .no_toc }
+1.  `facetName`: facet name <br/>
+2.  `facetData`: selected facets data from the search object response
+
 ## Example usage
 {: .no_toc }
 ```js
@@ -119,10 +125,6 @@ onEvent: function(instance, "FACETS_CLICK", {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1.  `facetName`: facet name <br/>
-2.  `facetData`: selected facets data from the search object response
 
 ---
 ## CLEAR_SORT
@@ -138,6 +140,11 @@ onEvent: function(instance, "CLEAR_SORT", null) {
 ---
 ## CHANGE_SORT
 Fired when sort data is changed with new values (**changeSort** sdk action is used)
+
+### Arguments
+{: .no_toc }
+1.  `sortVal`: sort value
+
 ## Example usage
 {: .no_toc }
 ```js
@@ -147,13 +154,15 @@ onEvent: function(instance, "CHANGE_SORT", {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1.  `sortVal`: sort value
 
 ---
 ## PAGE_NEXT
 Fired on click of a next page (**next** sdk action is used)
+
+### Arguments
+{: .no_toc }
+1.  `next`: Page number
+
 ## Example usage
 {: .no_toc }
 ```js
@@ -163,13 +172,15 @@ onEvent: function(instance, "PAGE_NEXT", {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1.  `next`: Page number
 
 ---
 ## PAGE_PREV
 Fired on click of a previous page (**prev** sdk action is used)
+
+### Arguments
+{: .no_toc }
+1.  `prev`: Page number
+
 ## Example usage
 {: .no_toc }
 ```js
@@ -179,9 +190,6 @@ onEvent: function(instance, "PAGE_PREV", {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1.  `prev`: Page number
 
 ---
 ## CHANGE_INPUT
@@ -197,6 +205,11 @@ onEvent: function(instance, "CHANGE_INPUT", null) {
 ---
 ## SET_CATEGORY_FILTER
 Fired if in the search page, a category facet is clicked (**setCategoryFilter** sdk action is used)
+
+### Arguments
+{: .no_toc }
+1.  `dataSet`: Facet element data set
+
 ### Example usage
 {: .no_toc }
 ```js
@@ -204,13 +217,15 @@ onEvent: function(instance, "SET_CATEGORY_FILTER", dataSet) {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1.  `dataSet`: Facet element data set
 
 ---
 ## DELETE_CATEGORY_FILTER
 Fired if in the search page, a category facet is cleared (**clearCategoryFilter** sdk action is used)
+
+### Arguments
+{: .no_toc }
+1.  `dataSet`: Facet element data set
+
 ## Example usage
 {: .no_toc }
 ```js
@@ -218,13 +233,15 @@ onEvent: function(instance, "DELETE_CATEGORY_FILTER", dataSet) {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1.  `dataSet`: Facet element data set
 
 ---
 ## PAGESIZE_CHANGE
 Fired on click of any of the page size options
+
+### Arguments
+{: .no_toc }
+1.  `val`: New page size
+
 ## Example usage
 {: .no_toc }
 ```js
@@ -234,6 +251,3 @@ onEvent: function(instance, "PAGESIZE_CHANGE", {
     /** Custom code here */
 }
 ```
-### Arguments
-{: .no_toc }
-1.  `val`: New page size
