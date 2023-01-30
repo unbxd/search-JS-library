@@ -58,6 +58,7 @@ Element in which to render the facets.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 facetsEl: null
 ```
@@ -80,6 +81,7 @@ Customize the look and feel of the facets block by returning your custom HTML st
 
 ### Default Value
 {: .no_toc }
+
 ``` js
 facetTemplate: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
         const {
@@ -157,6 +159,7 @@ facetTemplate: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
+
 ## facetItemTemplate
 {: .d-inline-block }
 
@@ -173,8 +176,9 @@ This function expects 3 parameters:
 
 ### Default Value
 {: .no_toc }
+
 ```js
-facetItemTemplate: function facetItemUiElem (facet , value, facetSearchTxt) {
+facetItemTemplate: function facetItemUiElem (facet , value,facetSearchTxt) {
     const {
         facetName,
         isSelected
@@ -212,6 +216,7 @@ facetItemTemplate: function facetItemUiElem (facet , value, facetSearchTxt) {
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
+
 ## facetMultiSelect
 {: .d-inline-block }
 
@@ -222,16 +227,18 @@ Turn this off if you want to disable the multiple selection of facets.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 facetMultiSelect: true
 ```
 
 ### Scenarios
 {: .no_toc }
-1. `true`:
-2. `false`:
+1. true - enable the multiple selection of facets
+2. false - disable the multiple selection of facets
 
 --- 
+
 ## facetClass
 {: .d-inline-block }
 
@@ -242,6 +249,7 @@ Additional CSS class name to add to the the facet items.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 facetClass: “UNX-facets-block”
 ```
@@ -251,6 +259,7 @@ facetClass: “UNX-facets-block”
 Any valid class name can be added here as facetClass.
 
 --- 
+
 ## facetAction
 {: .d-inline-block }
 
@@ -261,8 +270,9 @@ Event based on which to trigger facet selection / deselection.
 
 ### Default Value
 {: .no_toc }
+
 ```js
-facetAction: “click"
+facetAction: 'click'
 ```
 
 ### Scenarios
@@ -281,6 +291,7 @@ Additional CSS class name for the selected facet items.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 selectedFacetClass: “UNX-selected-facet-btn"
 ```
@@ -290,6 +301,7 @@ selectedFacetClass: “UNX-selected-facet-btn"
 Any valid class name can be added as selectedFacetClass.
 
 --- 
+
 ## selectedFacetsEl
 {: .d-inline-block }
 
@@ -301,8 +313,8 @@ Element in which to render the selected facets. If you don’t provide this elem
 ### Default Value
 {: .no_toc }
 ```js
-selectedFacetsEl: null
-```	
+selectedFacetsEl: null	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -356,8 +368,9 @@ Customize the look & feel of the selected facet by returning your custom HTML st
 
 ### Default Value
 {: .no_toc }
+
 ```js
-selectedFacetItemTemplate: function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,      selectedFacetsConfig){
+selectedFacetItemTemplate: function selectedFacetItemTemplateUI (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig){
     const {
         facetName,
         facetType
@@ -394,6 +407,7 @@ selectedFacetItemTemplate: function selectedFacetItemTemplateUI (selectedFacet,s
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
+
 ## selectedFacetConfig
 {: .d-inline-block }
 
@@ -418,6 +432,7 @@ selectedFacetConfig:{
 {: .no_toc }
 
 --- 
+
 ## clearAllText
 {: .d-inline-block }
 
@@ -436,6 +451,7 @@ clearAllText: “Clear All”
 {: .no_toc }
 
 --- 
+
 ## rangeTemplate
 {: .d-inline-block }
 
@@ -494,6 +510,7 @@ rangeTemplate: function(range, selectedRange, facet) {
 {: .no_toc }
 
 ---
+
 ## rangeWidgetConfig
 {: .d-inline-block }
 
@@ -504,7 +521,10 @@ Configure the default range slider. Refer to the [Range Widget Config](#Facet-Ra
 
 ### Default Value
 {: .no_toc }
-NA
+
+```js
+rangeWidgetConfig: null
+```
 
 ### Scenarios
 {: .no_toc }
@@ -520,6 +540,7 @@ Turn this on to send the multilevel parameter in the search API.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 facetMultilevel: true
 ```
@@ -528,6 +549,7 @@ facetMultilevel: true
 {: .no_toc }
 
 --- 
+
 ## facetMultilevelName
 {: .d-inline-block }
 
@@ -564,6 +586,7 @@ multiLevelFacetSelectorClass: “UNX-multilevel-facet”
 {: .no_toc }
 
 --- 
+
 ## multiLevelFacetTemplate
 {: .d-inline-block }
 
@@ -781,6 +804,7 @@ Turn this off if you do not want to have a collapsible accordian for each facet 
 
 ### Default Value
 {: .no_toc }
+
 ```js
 isCollapsible: true
 ```
@@ -802,8 +826,8 @@ If “isCollapsible” is true, set this config to indicate the default open fac
 ### Default Value
 {: .no_toc }
 ```js
-defaultOpen: “ALL”
-```	
+defaultOpen: “ALL”	
+```
 
 ### Scenarios
 {: .no_toc }

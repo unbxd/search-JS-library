@@ -24,14 +24,20 @@ nav_order: 17
 Boolean
 {: .label }
 
-Turn this flag on if you want Unbxd to fire analytics events. Note that you have to include the Unbxd Analytics SDK for firing analytics events.
+Turn this flag on if you want Unbxd Search sdk to fire analytics events like track search click, track category page click, track product impressions, track facet click, track product click, etc. Note that you have to integrate the Unbxd Analytics SDK as well for tracking analytics events.
 
 ### Default Value
 {: .no_toc }
-false
+
+```js
+unbxdAnalytics: false
+```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - analytics events will be fired from the search sdk
+2. false - analytics events will not be fired from the search sdk
 
 ---
 ## hashMode
@@ -42,22 +48,29 @@ Boolean
 
 In Single Page Applications (SPAs), hash mode refers to the use of the "#" symbol in the URL to indicate the current state or location of the application. Instead of using traditional URLs that include a path and query parameters, SPAs use a single base URL and append a hash fragment to the end of the URL to represent different states or views within the application.
 
-For example, a traditional URL for an e-commerce website might be "www.example.com/products/category=shoes" while in Hash mode it could be "www.example.com/#/products/category=shoes"
+For example, a traditional URL for an e-commerce website might be "www.example.com/products/?category=shoes" while in Hash mode it could be "www.example.com/products/#category=shoes"
 
-The use of the "#" symbol in the URL, known as a hash fragment, tells the browser that everything after the "#" is not a part of the actual path of the website, but rather a reference to a specific state or view within the SPA. This allows the SPA to handle routing and navigation internally, without requiring a full page reload from the server.
+<!-- The use of the "#" symbol in the URL, known as a hash fragment, tells the browser that everything after the "#" is not a part of the actual path of the website, but rather a reference to a specific state or view within the SPA. This allows the SPA to handle routing and navigation internally, without requiring a full page reload from the server.
 
 Hash mode is also useful for SEO purposes as it does not refresh the page and search engines read the portion before "#" as the page URL and can index the page.
 
-In summary, Hash mode in Single Page Applications (SPAs) is a technique used to handle routing and navigation within the application using the "#" symbol in the URL to indicate the current state or location. This allows for a more seamless user experience and makes it easier for the SPA to handle routing internally, without requiring a full page reload from the server.
+In summary, Hash mode in Single Page Applications (SPAs) is a technique used to handle routing and navigation within the application using the "#" symbol in the URL to indicate the current state or location. This allows for a more seamless user experience and makes it easier for the SPA to handle routing internally, without requiring a full page reload from the server. -->
+The search sdk adds some information to the url as params, based on the user actions, and in case of page reload scenarios, the data is read from the url.
 
-Turn this flag on if you want the URL update to happen on hash instead of using query params.
+Turn this flag on if you want the URL update to happen as hash param instead of using query params.
 
 ### Default Value
 {: .no_toc }
-false
+
+```js
+hashMode: false
+```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - url params will be updated as hash params
+2. false - url params will be updated as query params
 
 ---
 ## updateUrls
@@ -68,12 +81,21 @@ Boolean
 
 If you prefer for the URLs to remain unchanged when any search parameters are altered, set this configuration option to false.
 
+{: .important }
+> Note: If this is set to false, the page reload will lose any user action data like selected facets, selected sort values, etc
+
 ### Default Value
 {: .no_toc }
-true
+
+```js
+updateUrls: true
+```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - user action information will be added to the url
+2. false - user action information will not be added to the url
 
 ---
 ## actionBtnClass
@@ -82,14 +104,19 @@ true
 String
 {: .label }
 
-CSS class name to add to any elements on which you want to trigger click event.
+CSS class name to add to any facet wrapper elements on which you want to trigger **click** event.
 
 ### Default Value
 {: .no_toc }
-“UNX-action-item”
+
+```js
+actionBtnClass:"UNX-action-item"
+```
 
 ### Scenarios
 {: .no_toc }
+
+It is used to bind 'click' event to a facet wrapper element
 
 ---
 ## actionChangeClass
@@ -98,50 +125,41 @@ CSS class name to add to any elements on which you want to trigger click event.
 String
 {: .label }
 
-CSS class name to be added to any custom input elements on which you want to trigger change event.
+CSS class name to be added to any facet wrapper elements on which you want to trigger **change**, or **keyup** event.
 
 ### Default Value
 {: .no_toc }
-“UNX-action-change”
 
-### Scenarios
-{: .no_toc }
-
----
-## onAction
-{: .d-inline-block }
-
-Function
-{: .label }
-
-Callback function called on a click or change on your custom element. This function will get 2 parameters: the event object & the this context.
-
-### Default Value
-{: .no_toc }
 ```js
-function(event, context) {}
+actionChangeClass:"UNX-action-change"
 ```
 
 ### Scenarios
 {: .no_toc }
 
+It is used to bind 'change' or 'keyup' event to a facet wrapper element
+
 ---
-## onEvent
+## allowExternalUrlParams
 {: .d-inline-block }
 
-Function
+Boolean
 {: .label }
 
-Callback that gets called after the supported events. This function gets 2 parameters: the current instance or context and the event type which is one of BEFORE_API_CALL, AFTER_API_CALL, BEFORE_RENDER, BEFORE_NO_RESULTS_RENDER, AFTER_NO_RESULTS_RENDER, AFTER_RENDER, DELETE_FACET, FACETS_CLICK, DELETE_FACET_VALUE, DELETE_FACET, CLEAR_SORT, CHANGE_SORT, PAGE_NEXT, PAGE_PREV, CHANGE_INPUT, SET_CATEGORY_FILTER, DELETE_CATEGORY_FILTER.
+Turn this flag on if you want to retain the external url params in the **browser**, that do not get added by the unbxd sdk.
 
 ### Default Value
 {: .no_toc }
+
 ```js
-function(context, type) {}
+allowExternalUrlParams: false
 ```
 
 ### Scenarios
 {: .no_toc }
+
+1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
+2. false - External params will be dropped from the browser url by the unbxd search sdk
 
 ---
 ## extraParams
@@ -150,10 +168,11 @@ function(context, type) {}
 Object
 {: .label }
 
-Any additional parameters you want to send in the search API call.
+Any additional parameters you want to send in the search API call. 
 
 ### Default Value
 {: .no_toc }
+
 ```js
 { "version":"V2" }
 ```
@@ -161,31 +180,29 @@ Any additional parameters you want to send in the search API call.
 ### Scenarios
 {: .no_toc }
 
----
-## productId
-{: .d-inline-block }
+1. 
+In case of dynamic values, a global function must be written to return the value on client end, and the same can be used as part of extraParams. 
 
-String
-{: .label }
+```js
+window.isSale = function() {
+    /** Custom logic based on dynamic conditions **/
+    return true;
+}
+{ "version":"V2", "uc_param": window.isSale() }
+```
 
-The field name which denotes the unique identifier for each product.
-
-### Default Value
-{: .no_toc }
-“uniqueId”
-
-### Scenarios
-{: .no_toc }
+{: .warning } 
+> Note: Please make sure that **version V2** is not overwritten in the custom implementation of externalParams.
 
 ---
+
 ## defaultFilters
 {: .d-inline-block }
 
 Object
 {: .label }
 
-This section refers to a set of predefined filtering options that are applied to all search requests made through the API. These filters are usually used to narrow down the search results by applying certain criteria such as product category, price range, brand, etc. By applying these default filters, the search results returned by the API will be more relevant to the user. These filters can be set by the developer and can be overridden by the user on the frontend. These filters can also be used to apply business rules on the search results.
-
+This is used to set a default filter condition for all search queries and category pages.
 
 ### Default Value
 {: .no_toc }
@@ -193,9 +210,10 @@ null
 
 ### Scenarios
 {: .no_toc }
+In cases where the search/category api results are required to be filtered based on a constant filter condition, apart from the user selected filters
 
 ---
-## searchQueryParam
+<!-- ## searchQueryParam
 {: .d-inline-block }
 
 String
@@ -209,8 +227,8 @@ If you want to send the search query in a different query param key set this con
 
 ### Scenarios
 {: .no_toc }
+ -->
 
----
 ## searchEndPoint
 {: .d-inline-block }
 
@@ -221,12 +239,22 @@ Domain name of the search API endpoint.
 
 ### Default Value
 {: .no_toc }
-“https://search.unbxd.io”	
+
+```js
+searchEndPoint:“https://search.unbxd.io”	
+```
 
 ### Scenarios
 {: .no_toc }
 
+1. In case of a staging sitekey, it will be:
+```js
+searchEndPoint:"https://wingman-argocd.unbxd.io/"	
+```
+
 ---
+<!-- This feature is not used, and not adopted. There is no clarity.
+
 ## searchPath
 {: .d-inline-block }
 
@@ -239,59 +267,7 @@ Any additional path string to be added to the URL. This is useful incase you hav
 {: .no_toc }
 ””
 ### Scenarios
-{: .no_toc }
-
----
-## getCategoryId
-{: .d-inline-block }
-
-Function
-{: .label }
-
-By default Category ID will be taken from unbxdPageConf object, but if you wish to customize use this function to return the category ID.
-
-### Default Value
-{: .no_toc }
-null
-
-### Scenarios
-{: .no_toc }
-
----
-## setCategoryId
-{: .d-inline-block }
-
-Function
-{: .label }
-
-This method helps to navigate through the breadcrumbs, you can customize the logic here.
-
-### Default Value
-{: .no_toc }
-null
-
-### Scenarios
-{: .no_toc }
-
----
-## onQueryRedirect
-{: .d-inline-block }
-
-Function
-{: .label }
-
-"On query redirect" is a feature that allows developers to customize the logic for handling redirects that are configured in the API. A redirect is a way to automatically redirect a user from one URL to another.
-
-When a search query is made, the API may return a redirect URL along with the search results. The `onQueryRedirect` option allows developers to define how the application should handle this redirect. For example, the developer could choose to redirect the user to the URL immediately, or they could choose to display a message asking the user if they would like to be redirected, or they could choose to ignore the redirect altogether.
-
-Customizing the logic for handling redirects gives the developer more control over the user experience. They can also use this customization to log the redirect and track user behavior.
-
-### Default Value
-{: .no_toc }
-null
-
-### Scenarios
-{: .no_toc }
+{: .no_toc } -->
 
 ---
 ## browseQueryParam
@@ -300,12 +276,18 @@ null
 String
 {: .label }
 
-This will be the default query param for the browse and category.
+This will be the default query param for the search api to provide category information like category path or category id. 
 
 ### Default Value
 {: .no_toc }
-“p”	
 
+```js
+browseQueryParam: "p"
+```
+	
 ### Scenarios
 {: .no_toc }
+
+1. p-id: If we are providing the **category path id** to the search api.
+2. p: If we are providing the **category path** to the search api.
 

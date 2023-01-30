@@ -63,7 +63,7 @@ Required
 
 “Enabled” is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the  "Swatches feature” refers to the ability to display swatches on the website.
 
-When the “enabled” flag is turned on, the swatches feature will be active,This can be used to help result even when you write incorrect query. When the “enabled” flag is turned off, the swatches feature will be disabled.
+When the “enabled” flag is turned on, the swatches feature will be active. When the “enabled” flag is turned off, the swatches feature will be disabled.
 ### Default Value
 {: .no_toc }
 ```js
@@ -122,8 +122,8 @@ Function
 Customize the look and feel of the swatches component by returning your custom HTML string from this function. This function gets the current swatch data and complete swatches list as parameters
 
 This function takes three params:
-1. `swatchData` - 
-2. `swatches` -
+1. `swatchData` - swatchData contains data related to swatches, like images.
+2. `swatches` - Swatches object contains swatchClass, which use to design swatch component.
 3. `product` - 
 
 **Expected return value**: a string of HTML that will be used to render the swatches component on the webpage
