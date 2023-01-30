@@ -27,7 +27,13 @@ Configure the display to be rendered when there are no results by setting the â€
 
 # Configurations
 
-The following options are available under the object:  
+The following options are available under the noResults object:  
+
+``` js
+noResults:{
+// the below noResults configurations goes here.
+}
+```
 
 ## template
 {: .d-inline-block }
@@ -52,3 +58,7 @@ template: function(query){
 {: .no_toc }
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:
