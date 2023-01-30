@@ -42,9 +42,6 @@ Update the options under the “productView” config object to configure the pr
 Boolean
 {: .label }
 
-Required
-{: .label .label-red}
-
 "Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the "Product view feature" refers to the ability to display  Product view.
 
 When the "enabled" flag is turned ON, the productview feature will be active and productview will be displayed on the website. This can be used to promote new products, sales, or other special offers. When the "enabled" flag is turned OFF, the productview feature will be disabled and no productview will display.
@@ -92,7 +89,7 @@ There are several HTML selectors that can be used to locate the productview elem
 Function
 {: .label }
 
-he "template" function here refers to the ability to change the appearance of the productview feature on the e-commerce website. It allows developers to control the appearance of the productview by providing custom HTML. The function receives the list of productview to be displayed, and the productview configurations as parameters and it needs to return a string of HTML that will be used to render the productview on the webpage.
+The "template" function here refers to the ability to change the appearance of the productview feature on the e-commerce website. It allows developers to control the appearance of the productview by providing custom HTML. The function receives the list of productview to be displayed, and the productview configurations as parameters and it needs to return a string of HTML that will be used to render the productview on the webpage.
 
 This function passes two params:
 1. `selectedViewType` - 
@@ -138,6 +135,8 @@ template:function(selectedViewType, productViewType) {
 
 ### Scenarios
 {: .no_toc }
+
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 ## defaultViewType
