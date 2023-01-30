@@ -68,6 +68,8 @@ searchButtonEl : NA
 ---
 
 # Default Example
+
+[![](../assets/searchbox.png)](../assets/searchbox.png)
 ```js
 <div class="UNX-input-wrapper">
   <input id="unbxdInput" class="UNX-input" type="text"/>

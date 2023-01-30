@@ -216,6 +216,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 # Default Example
 Sample “spellCheck” config
 
+[![](../assets/spellcheck.png)](../assets/spellcheck.png)
+
 ```js
 spellCheck:{
     enabled:true,
