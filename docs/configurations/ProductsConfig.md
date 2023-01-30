@@ -35,6 +35,12 @@ This is the place where products from the search results will be rendered. The t
 
 The following are the various options available under the “products” config object:
 
+```js
+products: {
+    // the below product configurations goes here
+}
+```
+
 ## productType
 {: .d-inline-block }
 
