@@ -276,7 +276,7 @@ Any additional path string to be added to the URL. This is useful incase you hav
 String
 {: .label }
 
-This will be the default query param for the search api to provide category information like category path or category id. For more information on category pages, check [here]()
+This will be the default query param for the search api to provide category information like category path or category id. 
 
 ### Default Value
 {: .no_toc }
