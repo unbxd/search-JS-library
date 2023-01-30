@@ -160,9 +160,15 @@ Additional CSS class name for the spell check component,a selector class is typi
 ### Default Value
 {: .no_toc }
 ```js
-selectorClass:“UNX-suggestion”
+selectorClass:"UNX-suggestion"
 ```
+### Scenarios
+
+Any valid class name can we passed here.
+
 ---
+
+
 
 ## tagName
 {: .d-inline-block }
