@@ -176,6 +176,23 @@ Array
 
 This is an array of all required fields for generating the result template. This is helpful to load the results faster.
 
+These are some specific product attributes commonly used in e-commerce:
+
+1. `title`: the name or description of the product.
+2. `uniqueId`: a unique identifier for the product, different from the SKU.
+3. `price`: the original price of the product.
+4. `sku`: a unique identifier for the product.
+5. `imageUrl`: the URL of the image representing the product.
+6. `displayPrice`: the price of the product that is displayed to the customer.
+7. `salePrice`: the reduced price of the product during a sale.
+8. `sortPrice`: the price used for sorting products, which may be different from the display price.
+9. `productDescription`: a detailed explanation of the product and its features.
+10. `unbxd_color_mapping`: a mapping of the product color to a standardized color.
+11. `colorName`: the name of the product color.
+12. `color`: the color of the product.
+
+These attributes are used to provide customers with detailed information about the product and to help them make informed purchasing decisions. The information provided by these attributes is usually displayed on the product page and used in search and filtering functions.
+
 ### Default Value
 {: .no_toc }
 
@@ -183,8 +200,6 @@ This is an array of all required fields for generating the result template. This
 productAttributes:["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
 ```
 
-### Scenarios
-{: .no_toc }
 
 ---
 ## attributesMap
