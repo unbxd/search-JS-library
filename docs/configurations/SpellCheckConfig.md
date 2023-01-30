@@ -69,7 +69,7 @@ Element
 Required
 {: .label .label-red }
 
-“el” is an HTML element in an e-commerce page that is designated to display spellcheck component. This allows developers to control the placement of the spellcheck component on the webpage and to ensure that they are displayed in a prominent and visible location. The “el element” can be set by providing the id or class of the element in the code.
+“el” is an HTML element in an e-commerce page that is designated to display spellcheck component. This allows developers to control the placement of the spellcheck component on the webpage and to ensure that they are displayed in a prominent and visible location. The “el” can be set by providing the id or class of the element in the code.
 
 Element in which to render the spellcheck component.
 ### Default Value
