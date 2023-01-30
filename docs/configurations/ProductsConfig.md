@@ -265,7 +265,6 @@ onProductClick:function(product, event) {}
 
 ### Scenarios
 {: .no_toc }
-This function passes two params:
 
 
 ---
