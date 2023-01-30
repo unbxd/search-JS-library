@@ -411,6 +411,9 @@ action: 'click'
 ### Scenarios
 {: .no_toc }
 
+1. `Click`: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a pagination.
+2. `Change`: Change refers to a pagination operation that is initiated when a specific variable or data element is changed
+
 ---
 
 
@@ -454,8 +457,6 @@ htmlAttributes: { class:"UNX-banner-block" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
-# Examples
-
 # Default Example
 
 Sample “pagination” config
