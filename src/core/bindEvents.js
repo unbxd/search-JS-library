@@ -107,16 +107,17 @@ function bindEvents(){
         `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );
-    
     if(!this.viewState.initialised) {
-        if(this.options.hashMode) {
-            window.onhashchange= this.onLocationChange.bind(this);
-        } else {
-            window.addEventListener('popstate',this.onLocationChange.bind(this),false);
-        }
+        window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+        // if(this.options.hashMode) {
+        //     // window.addEventListener('hashchange',this.onLocationChange.bind(this),false);
+        //     window.onhashchange= this.onLocationChange.bind(this);
+        // } else {
+        //     window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+        // }
         const urlParams = this.getQueryParams();
         const ln = Object.keys(urlParams).length;
-        if(ln > 0){
+        if(ln > 0) {
             this.renderFromUrl();
         }
         this.viewState.initialised = true;

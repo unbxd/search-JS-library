@@ -48,7 +48,8 @@ const options = {
             "productDescription",
             "unbxd_color_mapping",
             "colorName",
-            "color"
+            "color",
+            "productUrl"
         ],
         attributesMap:{
             'unxTitle':'title',
@@ -72,7 +73,8 @@ const options = {
     noResults: {
         template:function(query){return `<div class="UNX-no-results"> No Results found ${query} </div>`}
     },
-    onEvent: (state,type) =>{
+    onEvent: (state,type) => {
+       
     },
     startPageNo:0,
     productView : {
@@ -275,18 +277,54 @@ const options = {
     actionChangeClass:"UNX-action-change",
     onAction: function(e,ctx) {
     },
-    onQueryRedirect:(self, redirect)=>{
+    onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
         if(redirect) {
             const {
                 value,
                 type
             } = redirect;
             if(type === "url") {
+                /** If opening in same tab */
+                if(history.state && history.state.replace) {
+                    history.replaceState(null,"",urlBeforeRedirect);
+                }
+                
                 location.href =  value;  
-                /** To open redirect in new tab (rare scenario) */ 
-                // window.open(value, "_blank");                                                        
+
+                /** If opening redirect in new tab (rare scenario), 
+                 * then browser back + history push on search should be handled by client 
+                 * (especially switching betsween category to search page scenarios)
+                 * Note: This is not recommended */                                                       
             }
             return false;
+        }
+    },
+    onBackFromRedirect: (hashMode) => {
+        let urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
+        let backFromRedirect = urlSearchParam.get("redirected");
+        if(backFromRedirect) {
+            history.go(-1);
+        }
+    },
+    onNoUnbxdKeyRouting:() => {
+        history.go();
+    },
+    setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
+        if (locationParam === newUrl) {
+            return;
+        } else if (productType === "CATEGORY") {
+            /** Do not navigate to base category page  */
+            if (!isUnbxdKey) {
+                history.replaceState(null, "", newUrl);
+            } else {
+                history.pushState(null, "", newUrl);
+            }
+        } else {
+            if ((history.state && history.state.replace) || replace) {
+                history.replaceState(null, "", newUrl);
+            } else {
+                history.pushState(null, "", newUrl);
+            }
         }
     }
    // searchQueryParam:null
