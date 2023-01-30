@@ -284,6 +284,7 @@ selectedFacetClass: “UNX-selected-facet-btn"
 ### Scenarios
 {: .no_toc }
 Any valid class name can be added as selectedFacetClass.
+
 --- 
 ## selectedFacetsEl
 {: .d-inline-block }
@@ -936,10 +937,6 @@ htmlAttributes: {class:”UNX-facets-results-block”}
 
 ---
 
-### Scenarios
-{: .no_toc }
-
---- 
 ## Default Example
 
 Sample “facet” config
