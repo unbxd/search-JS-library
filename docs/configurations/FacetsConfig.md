@@ -527,6 +527,7 @@ rangeTemplate: function(range, selectedRange, facet) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 
@@ -603,6 +604,7 @@ multiLevelFacetSelectorClass: “UNX-multilevel-facet”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can given here.
 
 --- 
 
@@ -721,6 +723,7 @@ clearFacetsSelectorClass: “UNX-clear-facet”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be given here.
 
 --- 
 ## removeFacetsSelectorClass
@@ -739,6 +742,7 @@ removeFacetsSelectorClass: “UNX-remove-facet”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be given here.
 
 --- 
 ## onFacetLoad
@@ -747,7 +751,9 @@ removeFacetsSelectorClass: “UNX-remove-facet”
 Function
 {: .label }
 
-Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter.
+"onFacetLoad" is a Callback function that gets called after each facet selection or deselection.
+This function accepts following as a parameter: 
+1.  `onFacetLoad`: receives all the facets .
 
 ### Default Value
 {: .no_toc }
