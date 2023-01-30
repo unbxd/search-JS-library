@@ -320,8 +320,8 @@ Any valid class name can be added as selectedFacetClass.
 {: .d-inline-block }
 
 Element
-
 {: .label }
+
 "selectedFacetsEl" is a config that specifies the HTML element where selected facets will be displayed. The selectedFacetsEl property is used to specify a container element, such as a div, that will be used to display the selected facets.
 If you don’t provide this element selected facets will be rendered along with the facet blocks.
 
