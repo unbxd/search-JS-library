@@ -44,7 +44,7 @@ The choice of pagination method depends on the specific needs of the website and
 
 ## Fixed Pagination
 
-****Advantages:****
+**Advantages:**
 1. Simple and easy to use
 2. Allows users to easily navigate through the pages of products
 3. Provides a clear indication of the current page and total number of pages
