@@ -37,7 +37,7 @@ NOTE: If you have want to include swatches, please ensure the `count` field insi
 variants:{
        enabled:false,
        count:5,
-       groupBy:'v_colour',
+       groupBy:'v_imageUrl',
        attributes:[
            "title",
            "v_imageUrl"
@@ -55,7 +55,7 @@ The following options are available under the swatches object:
 
 ``` js
 swatches:{
-    // the below swatches configurations goes here.
+// the below swatches configurations goes here.
 }
 ```
 

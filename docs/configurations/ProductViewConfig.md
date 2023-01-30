@@ -38,7 +38,7 @@ Update the options under the “productView” config object to configure the pr
 
 ``` js
 productView:{
-      // the below productView configurations goes here.
+// the below productView configurations goes here.
 }
 ```
 
