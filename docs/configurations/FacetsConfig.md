@@ -82,9 +82,16 @@ There are several HTML selectors that can be used to locate the banner element i
 Function
 {: .label }
 
-Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
+Customize the look and feel of the facets block by returning your custom HTML string from this function. This function accepts following parameters: 
+1.  `facetObj`:
+2.  `children`:
+3.  `isExpanded`:
+4.  `facetSearchTxt`:
+5.  `facet`:
 
-**Expected Return Value** : 
+the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
+
+**Expected Return Value** : A string of HTML that will be used to render the facet block on the webpage.
 
 ### Default Value
 {: .no_toc }
@@ -179,7 +186,7 @@ This function expects 3 parameters:
 2.  `value`: the current facet value.
 3.  `facetSearchTxt`: the search text entered for this facet block.
 
-**Expected Return Value** : 
+**Expected Return Value** : A string of HTML that will be used to render the facet block on the webpage.
 
 ### Default Value
 {: .no_toc }
@@ -230,6 +237,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 Boolean
 {: .label }
 
+"facetMultiSelect" allows a user to select multiple values within a single facet . When turned on , the user can select multiple values and the search results will be filtered to only show items that match all of the selected facets. 
 Turn this off if you want to disable the multiple selection of facets.
 
 ### Default Value
@@ -284,8 +292,8 @@ facetAction: 'click'
 
 ### Scenarios
 {: .no_toc }
-1.  `Click`:
-2.  `Change`:
+1.  `Click`: selection / deselection happens when the user clicks on a specific button or any other element .
+2.  `Change`: 
 
 --- 
 ## selectedFacetClass
@@ -293,7 +301,6 @@ facetAction: 'click'
 
 String
 {: .label }
-
 Additional CSS class name for the selected facet items.
 
 ### Default Value
@@ -313,9 +320,10 @@ Any valid class name can be added as selectedFacetClass.
 {: .d-inline-block }
 
 Element
-{: .label }
 
-Element in which to render the selected facets. If you don’t provide this element selected facets will be rendered along with the facet blocks.
+{: .label }
+"selectedFacetsEl" is a config that specifies the HTML element where selected facets will be displayed. The selectedFacetsEl property is used to specify a container element, such as a div, that will be used to display the selected facets.
+If you don’t provide this element selected facets will be rendered along with the facet blocks.
 
 ### Default Value
 {: .no_toc }
@@ -325,6 +333,7 @@ selectedFacetsEl: null
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 --- 
 ## selectedFacetTemplate
@@ -334,7 +343,10 @@ Function
 {: .label }
 
 Customize the look & feel of the selected facets block by returning your custom HTML string from this function.  
-This function receives 2 parameters:   
+This function receives following parameters:   
+1.  `selections`:
+2.  `facet`:
+3.  `selectedFacetsConfig`:
 the selected facet complete block and the selected facet value.
 
 **Expected Return Value** : 
@@ -421,15 +433,15 @@ For additional information on custom scenarios, please refer to the [use cases s
 Object
 {: .label }
 
-object will be containing the configuration for the selected facet wrapper config.
+Object will be containing the configuration for the selected facet wrapper config.
 
 ### Default Value
 {: .no_toc }
 ``` js
 selectedFacetConfig:{ 
-    tagName:”DIV”, 
+    tagName: ”DIV”, 
     htmlAttributes:{
-        class:”UNX-selected-facet-lb”
+        class: ”UNX-selected-facet-lb”
         },
         events:{} 
 }
@@ -752,8 +764,7 @@ onFacetLoad: function(facets) {}
 
 Boolean
 {: .label }
-
-Turn this on if you want to apply multiple filters together.
+"applyMultipleFilters" enables a user to apply multiple filters together.
 
 ### Default Value
 {: .no_toc }
@@ -763,6 +774,8 @@ applyMultipleFilters: false
 
 ### Scenarios
 {: .no_toc }
+1.  `true`: When turned on , multiple filter can be applied together.
+2.  `false`: When turned off , multiple filters cannot be applied at once.
 
 --- 
 ## applyButtonText
@@ -771,7 +784,10 @@ applyMultipleFilters: false
 String
 {: .label }
 
-The text to show for the apply button (when applyMultipleFilters is set as true).
+The text to show for the apply button .
+
+{: .note }
+applyMultipleFilters needs to be set to true for this to work.
 
 ### Default Value
 {: .no_toc }
@@ -781,6 +797,7 @@ applyButtonText:“Apply”
 
 ### Scenarios
 {: .no_toc }
+Any valid text for a button name can be added here.
 
 ---
 ## clearButtonText
@@ -789,7 +806,10 @@ applyButtonText:“Apply”
 String
 {: .label }
 
-The text to show for the clear button (when applyMultipleFilters is set as true).
+The text to show for the clear button.
+
+{: .note }
+applyMultipleFilters needs to be set to true for this to work.
 
 ### Default Value
 {: .no_toc }
@@ -799,6 +819,7 @@ clearButtonText: “clear”
 
 ### Scenarios
 {: .no_toc }
+Any valid text for a button name can be added here.
 
 --- 
 ## isCollapsible
@@ -839,7 +860,7 @@ defaultOpen: “ALL”
 {: .no_toc }
 1.  `ALL`: All of the facets block will be open by default.
 2.  `FIRST`: Only the first facet block will be open by default.
-3.  `NONE`: None of the first block will be open by default.
+3.  `NONE`: None of the facet block will be open by default.
 
 ---
 ## isSearchable
@@ -953,6 +974,7 @@ String
 
 ### Default Value
 {: .no_toc }
+
 ```js
 tagName: “DIV”
 ```
@@ -971,7 +993,8 @@ Object
 “htmlAttributes” refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
-{: .no_toc }s
+{: .no_toc }
+
 ```js
 htmlAttributes: { class:”UNX-facets-results-block” }
 ```
