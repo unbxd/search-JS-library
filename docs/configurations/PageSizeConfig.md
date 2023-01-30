@@ -247,7 +247,7 @@ htmlAttributes : {
 
 ### Scenarios
 {: .no_toc }
-Any valid html attribute can be passed as "key : value" pairs inside an object.
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
