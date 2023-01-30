@@ -118,6 +118,8 @@ swatchClass:“UNX-swatch-btn”
 ### Scenarios
 {: .no_toc }
 
+Any valid class name can passed here.
+
 ---
 ## template
 {: .d-inline-block }
@@ -130,7 +132,7 @@ Customize the look and feel of the swatches component by returning your custom H
 This function takes three params:
 1. `swatchData` - swatchData contains data related to swatches, like images.
 2. `swatches` - Swatches object contains swatchClass, which use to design swatch component.
-3. `product` - 
+3. `product` - it is an object which conatans info related to product like unxTitle.
 
 **Expected return value**: a string of HTML that will be used to render the swatches component on the webpage
 
