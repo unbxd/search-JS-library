@@ -289,22 +289,7 @@ Object
 Any valid html attribute can be passed as "key : value" pairs inside an object.
 
 ---
-## events
-{: .d-inline-block }
 
-Object
-{: .label }
-
-By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}
-
-### Scenarios
-{: .no_toc }
-
----
 # Default Example
 Sample code for the Sort config:
 
