@@ -63,7 +63,7 @@ Required
 
 “Enabled” is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the  "Swatches feature” refers to the ability to display swatches on the website.
 
-When the “enabled” flag is turned on, the swatches feature will be active,This can be used to help result even when you write incorrect query. When the “enabled” flag is turned off, the swatches feature will be disabled.
+When the “enabled” flag is turned on, the swatches feature will be active. When the “enabled” flag is turned off, the swatches feature will be disabled.
 ### Default Value
 {: .no_toc }
 ```js
