@@ -52,8 +52,10 @@ This config function holds the redirect logic for a query to which the response 
 {: .no_toc }
 1. `redirect`: Redirect response from search api.  
 2. `urlBeforeRedirect`: Url before the browser redirected.   
+
 ### Default Value
 {: .no_toc }
+
 ```js
 onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
     if(redirect) {
@@ -78,14 +80,17 @@ onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
     }
 }
 ```
+
 ---
 ## onBackFromRedirect
 This config function holds the logic to manipulate history when we come back to the site from the redirected url. This is only called if history state replace was true. It looks for the redirected parameter to identify that page is back from redirected url.
 ### arguments
 {: .no_toc }
 1. `hashMode`: If sdk config has hashMode set to true.  
+
 ### Default Value
 {: .no_toc }
+
 ```js
 onBackFromRedirect: (hashMode) => {
     let urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
@@ -95,6 +100,7 @@ onBackFromRedirect: (hashMode) => {
     }
 }
 ```
+
 ---
 ## setRoutingStrategies
 Custom implementation on clicking browser back & forward .
@@ -105,8 +111,10 @@ Custom implementation on clicking browser back & forward .
 3. `productType`: SEARCH/CATEGORY  
 4. `isUnbxdKey`: True if any key required by sdk is present in the url  
 5. `replace`: Whether to replace history state or push to new state.  
+
 ### Default Value
 {: .no_toc }
+
 ```js
 setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
     if (locationParam === newUrl) {
@@ -127,6 +135,7 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
     }
 }
 ```
+
 ---
 ## getCategoryPage
 Call this function to render the category page.
@@ -200,8 +209,10 @@ In case of category facets in category page, this function is used to set the wi
 {: .no_toc }
 1. `level`: Category depth level.  
 2. `name`: Category path name.  
+
 ### Default Value
 {: .no_toc }
+
 ```js
 setCategoryId: function(param, self) {
     const {
@@ -234,6 +245,7 @@ setCategoryId: function(param, self) {
         }
 }
 ```
+
 ---
 ## onEvent
 Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [section](./Events.html) .
@@ -241,13 +253,16 @@ Use this config function for adding any custom code based on an **event type** s
 {: .no_toc }
 1. `type`: Name of the event, state: Event state metadata  
 2. `instance`: 
+
 ### Default Value
 {: .no_toc }
+
 ```js
 onEvent: function(type,instance){
     //Custom code here
 }
 ```
+
 ---
 ## onAction
 Use this config function for facet element handlers like **change**, **keyup**, **click** .
@@ -255,13 +270,16 @@ Use this config function for facet element handlers like **change**, **keyup**, 
 {: .no_toc }
 1. `element`: html element on which the action is triggered  
 2. `context`: context object i.e. unbxdSearch  
+
 ### Default Value
 {: .no_toc }
+
 ```js
 onAction: function(e, ctx) {
     console.log(e.target,ctx);
 }
 ```
+
 ---
 ## onNoUnbxdKeyRouting
 Routing action when the url does not have any unbxd key.
