@@ -279,7 +279,7 @@ If product doesnt contain image url, by default this image will be shown
 {: .no_toc }
 
 ``` js
-defaultImage:“https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg”	
+defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
 ```
 
 ### Scenarios
