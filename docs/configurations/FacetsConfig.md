@@ -76,6 +76,8 @@ Function
 
 Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
 
+**Expected Return Value** : 
+
 ### Default Value
 {: .no_toc }
 ``` js
@@ -166,6 +168,8 @@ This function expects 3 parameters:
 1.  `facet`: the complete facet block.
 2.  `value`: the current facet value.
 3.  `facetSearchTxt`: the search text entered for this facet block.
+
+**Expected Return Value** : 
 
 ### Default Value
 {: .no_toc }
@@ -313,6 +317,8 @@ Function
 Customize the look & feel of the selected facets block by returning your custom HTML string from this function.  
 This function receives 2 parameters:   
 the selected facet complete block and the selected facet value.
+
+**Expected Return Value** : 
 
 ### Default Value
 {: .no_toc }
@@ -565,6 +571,8 @@ Function
 {: .label }
 
 Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
+
+**Expected return value**: 
 
 ### Default Value
 {: .no_toc }
