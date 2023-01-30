@@ -122,18 +122,6 @@ This accepts a list of objects, where each object needs to have "value" and "tex
 {: .no_toc }
 The sorting can be done based on different criterias such as based on name , pricing , brand , what's new etc.
 
-```js
-[{
-    value: "Name asc",
-    text: "Name: A to Z",
-},
-{
-    value: "Name desc",
-    text: "Name: Z to A",
-}
-]
-```
-
 ---
 ## sortClass
 {: .d-inline-block }
@@ -340,5 +328,17 @@ sort: {
 ```
 # Usecases
 ## Usecase 1
+```js
+[{
+    value: "Name asc",
+    text: "Name: A to Z",
+},
+{
+    value: "Name desc",
+    text: "Name: Z to A",
+}
+]
+```
+
 ## Usecase 2
 ## Usecase 3

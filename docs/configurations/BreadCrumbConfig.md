@@ -47,12 +47,14 @@ On the other hand, if the breadcrumb is disabled, it will not be visible to the 
 
 ### Default Value
 {: .no_toc }
-true
+```js
+enabled: true
+```
 
 ### Scenarios
 {: .no_toc }
-1.true - Breadcrumbs will be displayed on the website.  
-2.false - The breadcrumb feature will be disabled .
+1.  `true` - Breadcrumbs will be displayed on the website.  
+2.  `false` - The breadcrumb feature will be disabled .
 
 ---
 

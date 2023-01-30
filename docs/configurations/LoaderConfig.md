@@ -85,12 +85,12 @@ For additional information on custom scenarios, please refer to the [use cases s
 Sample code for the Loader config:
 
 ```js
-    {
-        el: document.getElementById("loaderEl"),
-        template: function(){
-            return '<div class="UNX-loader">Loading....</div>'
-        }
+loader: {
+    el: document.getElementById("loaderEl"),
+    template: function(){
+        return '<div class="UNX-loader">Loading....</div>'
     }
+}
 ```
 
 # UseCases

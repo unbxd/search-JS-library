@@ -92,7 +92,7 @@ pageSize: 12
 
 ### Scenarios
 {: .no_toc }
-Any valid integer page size can be given .
+Any positive integer page size can be given .
 
 ---
 ## options
@@ -240,9 +240,7 @@ Object
 ### Default Value
 {: .no_toc }
 ```js
-htmlAttributes : {
-                class:”UNX-selected-pagesize”
-                }
+htmlAttributes : { class:”UNX-selected-pagesize” }
 ```
 
 ### Scenarios
