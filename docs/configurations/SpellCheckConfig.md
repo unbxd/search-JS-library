@@ -174,8 +174,6 @@ Any valid class name can passed here.
 
 ---
 
-
-
 ## tagName
 {: .d-inline-block }
 
@@ -262,7 +260,7 @@ spellCheck:{
 ```
 
 
-# Custom Usecases
+# Usecases
 
 ## Usecase 1: 
 ## Usecase 2: 

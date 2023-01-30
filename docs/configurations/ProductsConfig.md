@@ -97,7 +97,7 @@ The "template" function here refers to the ability to change the appearance of t
 
 This function passes two params:
 1. `product` - it is object which contains data related to product like : unxTitle,unxImageUrl,uniqueId,unxStrikePrice,unxPrice,unxDescription etc.
-2. `idx` - 
+2. `idx` - it is index of product.
 3. `swatchUI` - it is swatchUI object which has info related swatchui like: btnList and btnList.
 4. `productViewType` - Its value might either be "GRID" or "LIST".
 5. `products` - its contains common info related to products like :productItemClass,defaultImage.
@@ -209,7 +209,7 @@ Object
 {: .label }
 
 Field mappings for the data to be displayed in the product card.
-The "attributesMap" you provided is a mapping of attribute names used in a specific e-commerce platform to standardized attribute names. The mapping is used to ensure consistent and standardized data across different systems and services.
+The "attributesMap" you provided is a mapping of attribute names used to standardized attribute names. The mapping is used to ensure consistent and standardized data across different systems and services.
 
 1. "unxTitle" maps to "title".
 2. "unxImageUrl" maps to "imageUrl".
@@ -283,10 +283,6 @@ This function passes two params:
 ```js
 onProductClick:function(product, event) {}	
 ```
-
-### Scenarios
-{: .no_toc }
-
 
 ---
 ## defaultImage
