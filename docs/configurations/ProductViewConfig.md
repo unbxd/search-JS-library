@@ -150,7 +150,7 @@ Product view types to be displayed by default: “LIST” or ‘GRID”
 ### Default Value
 {: .no_toc }
 ```js
-    defaultViewType:“GRID”
+    defaultViewType:"GRID"
 ```
 
 ### Scenarios

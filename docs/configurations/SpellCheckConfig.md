@@ -95,7 +95,7 @@ The “template” function here refers to the ability to change the appearance 
 
 This function takes three params:
 1. `query` - the search query , which generally refers to a request made by a user to search for specific products or information within the app.
-2. `suggestion` - he suggested query text.
+2. `suggestion` - the suggested query text.
 3. `pages` - It is a config object with product count details ({start, productsLn, numberOfProducts}).
 
 **Expected return value**: a string of HTML that will be used to render the spellcheck component on the webpage
@@ -164,7 +164,7 @@ selectorClass:"UNX-suggestion"
 ```
 ### Scenarios
 
-Any valid class name can we passed here.
+Any valid class name can passed here.
 
 ---
 
