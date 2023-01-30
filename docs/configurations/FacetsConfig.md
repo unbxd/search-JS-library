@@ -44,7 +44,7 @@ In e-commerce, facets are used to allow users to filter and narrow down a large 
 To render the facets on the search results page, you can use the “facet” config object to configure the various options.
 
 ```js
-facets: {
+facet: {
     //Below configurations should be added here.
 }
 ```
@@ -806,8 +806,7 @@ clearButtonText: “clear”
 
 Boolean
 {: .label }
-
-Turn this off if you do not want to have a collapsible accordian for each facet block.
+"isCollapsible" is a flag which can make accordian in each facet block collapsible or non-collapsible.
 
 ### Default Value
 {: .no_toc }
@@ -818,8 +817,8 @@ isCollapsible: true
 
 ### Scenarios
 {: .no_toc }
-1. `true`:
-2. `false`:
+1. `true`:  The facets block accordion will be collapisible.
+2. `false`: The facets block accordion will not be collapisible.
 
 --- 
 ## defaultOpen
@@ -828,7 +827,7 @@ isCollapsible: true
 String
 {: .label }
 
-If “isCollapsible” is true, set this config to indicate the default open facet.
+When “isCollapsible” is true , "defaultOpen" option is used to specify which facets should be expanded or open by default when the search interface is first displayed to the user.
 
 ### Default Value
 {: .no_toc }
@@ -838,10 +837,9 @@ defaultOpen: “ALL”
 
 ### Scenarios
 {: .no_toc }
-1.  `ALL`:
-2.  `FIRST`:
-3.  `NONE`:
-
+1.  `ALL`: All of the facets block will be open by default.
+2.  `FIRST`: Only the first facet block will be open by default.
+3.  `NONE`: None of the first block will be open by default.
 
 ---
 ## isSearchable
@@ -860,8 +858,8 @@ isSearchable: true
 
 ### Scenarios
 {: .no_toc }
-1.  `true`:
-2.  `false`:
+1.  `true`: When turned to , for each of the facets search input will be availble.
+2.  `false`: When turned off the search input won't be availble in facets.
 
 ---
 ## searchPlaceHolder
@@ -870,7 +868,7 @@ isSearchable: true
 String
 {: .label }
 
-Placeholder text for the facet search input.
+"searchPlaceHolder" defines the placeholder text for the facet search input.
 
 ### Default Value
 {: .no_toc }
@@ -889,7 +887,7 @@ Any valid placeholder text can be added here.
 Boolean
 {: .label }
 
-Turn this on for enabling view more or less functionality for individual facets.
+The "enableViewMore" option is used to control whether or not the user can view more options within a particular facet. If this option is enabled, the user will be able to see a "View More" button or link that allows them to expand the facet and see additional options. If this option is disabled, the user will not see the option to expan the facets options.
 
 ### Default Value
 {: .no_toc }
@@ -899,8 +897,8 @@ enableViewMore: false
 
 ### Scenarios
 {: .no_toc }
-1. `true`:
-2. `false`:
+1. `true`:  If this option is enabled, the button or link to expand / minimize the facets will be available.
+2. `false`: If this option is disabled, the user will not be able to expand / minimize the facet options.
 
 --- 
 ## viewMoreText
@@ -909,7 +907,10 @@ enableViewMore: false
 Array
 {: .label }
 
-The text to show for the view more / less button. Pass the 2 strings in array format [<viewMoreText>, viewLessText]. Ex: [“View more”, “View less”].
+The text to show for the view more / less button. This accepts an array with two strings in following format : 
+```js
+[<viewMoreText>, <viewLessText>]
+```
 
 ### Default Value
 {: .no_toc }
@@ -919,6 +920,8 @@ viewMoreText: [“show all”, “show less”]
 
 ### Scenarios
 {: .no_toc }
+Arrays with any two valid strings for button text can be passed here .
+For eg : ["view more","view less"] etc.
 
 ---
 ## viewMoreLimit
@@ -927,7 +930,7 @@ viewMoreText: [“show all”, “show less”]
 Number
 {: .label }
 
-Will show view more only if the facet values are greater than this value.
+The "viewMoreLimit" option is used to specify the maximum number of options that should be displayed within a particular facet before the "View More" button or link is shown. If the number of options within the facet exceeds this limit, only the first "viewMoreLimit" options will be displayed, and the user will need to click the "View More" button to see the remaining options.
 
 ### Default Value
 {: .no_toc }
@@ -937,6 +940,7 @@ viewMoreLimit: 3
 
 ### Scenarios
 {: .no_toc }
+Any positive integer value can be given here.
 
 ---
 ## tagName
@@ -945,7 +949,7 @@ viewMoreLimit: 3
 String
 {: .label }
 
-html element for the facet wrapper. by default it is div.
+“tagName” refers to the name of an HTML tag used to wrap or structure the content on a webpage.
 
 ### Default Value
 {: .no_toc }
@@ -955,6 +959,7 @@ tagName: “DIV”
 
 ### Scenarios
 {: .no_toc }
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 
 ---
 ## htmlAttributes
@@ -963,16 +968,17 @@ tagName: “DIV”
 Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes.
+“htmlAttributes” refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
-{: .no_toc }
+{: .no_toc }s
 ```js
-htmlAttributes: {class:”UNX-facets-results-block”}
+htmlAttributes: { class:”UNX-facets-results-block” }
 ```
 
 ### Scenarios
 {: .no_toc }
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
