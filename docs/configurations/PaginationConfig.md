@@ -39,29 +39,51 @@ This feature will helps the users to navigate the products for any search/browse
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
 
-# Types of Pagination
-
+# Pros and Cons 
+The choice of pagination method depends on the specific needs of the website and its target audience. However, here are the advantages and disadvantages of different pagination methods.
 
 ## Fixed Pagination
 
-This traditional type of pagination displays the set number of products on one page along with the previous and next buttons to navigate between the pages.
+****Advantages:****
+1. Simple and easy to use
+2. Allows users to easily navigate through the pages of products
+3. Provides a clear indication of the current page and total number of pages
+4. Allows users to go directly to a specific page
+   
+**Disadvantages:**
+1. Users have to manually click through the pages, which can be time-consuming for large product sets
+2. May not be suitable for websites with a large number of products
+3. Can cause a high bounce rate if users have to navigate too many pages to find what they're looking for
 
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
+## Infinite Scroll Pagination
+**Advantages:**
+1. Allows users to quickly browse through a large number of products without having to manually click through pages
+2. Can improve the user experience by reducing the number of clicks needed to view all products
+3. Can be useful for websites with a large number of products
+
+**Disadvantages:**
+1. May not be suitable for users with slow internet connections
+2. Some users may find it difficult to track their position within the product set, may lead to lower engagement and higher bounce rate if not implemented well
+3. May be difficult for users to find a specific product
 
 
-## Click & Scroll
-If you wish to have a button to load next results, you can choose this option
+## Click & Scroll pagination 
+   
+**Advantages:**
+1. Allows users to control the amount of information they see at once
+2. Can be helpful for the website to limit the amount of data loaded at once to improve the performance
+3. Can be useful for websites with a large number of products
 
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
-
-
-## Infinite Scroll
-If you wish to load new results by scrolling down, you can configure this option
+**Disadvantages:**
+1. Users have to manually click through pages
+2. May not be suitable for users with slow internet connections
+3. May be difficult for users to find a specific product
 
 
 # Configurations
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
+
 
 ## enabled
 {: .d-inline-block }
@@ -69,33 +91,54 @@ You can configure the pagination feature by updating the required configs under 
 Boolean
 {: .label }
 
-Turn this off if you do not want the pagination widget.
+Required
+{: .label .label-red}
+
+"Enabled" is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this case, the pagination feature will be active and the preferred pagination type will be displayed on the website when the "enabled" flag is turned ON. And, the pagination feature will be disabled when the "enabled" flag is turned OFF.
 
 ### Default Value
 {: .no_toc }
-true
+
+```js
+enabled: false
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true - selected pagination will be displayed on the website 
+2. false - the pagination feature will be disabled
+
 
 ---
+
 ## type
 {: .d-inline-block }
 
 String
 {: .label }
 
-Type of pagination: “FIXED_PAGINATION” or “INFINITE_SCROLL” or “CLICK_N_SCROLL”.
+There are 3 types of pagination that can be used in e-commerce:
+
+Page Numbers: In this type of pagination, a set of numbered pages are provided at the bottom of the page, allowing the user to navigate to specific pages. This method is best for desktop devices as it allows for easy navigation through a large number of products. Pass `type: “FIXED_PAGINATION”` to use this tpe of pagination.
+
+Infinite Scrolling: In this type of pagination, new items are automatically loaded as the user scrolls to the bottom of the page, allowing the user to seamlessly scroll through all the products. This method is best for mobile devices as it allows for a continuous browsing experience. Pass `type: “INFINITE_SCROLL”` to use this tpe of pagination.
+
+Load More Button: In this type of pagination, a “Load More” button is provided at the bottom of the page, which when clicked, loads additional products. This method is easy to implement and can be used for both desktop and mobile devices. Pass `type: “CLICK_N_SCROLL”` to use this tpe of pagination.
+
 
 ### Default Value
 {: .no_toc }
-“CLICK_N_SCROLL”
+```js
+type: “CLICK_N_SCROLL”
+```
 
 ### Scenarios
 {: .no_toc }
 
+The choice of pagination method depends on the specific needs of the website and its target audience. A fixed pagination with next and previous buttons and numbers is a suitable option for most e-commerce websites. Infinite scroll pagination can work well for mobile devices and for websites with a large number of products and a high volume of traffic. A click and scroll with load more button can be a good option for websites that want to limit the amount of data loaded at once. It’s also important to keep the user experience in mind, as pagination should be intuitive and easy to use for the user.
+
 ---
+
 ## el
 {: .d-inline-block }
 
@@ -104,14 +147,21 @@ Element
 
 Element in which to render the pagination component.
 
+"el" in pagination is an HTML element that is designated to display pagination component. This allows developers to control the placement of the pagination on the webpage and to ensure that they are displayed in a prominent and visible location. The "el" can be set by providing the id or class of the element in the code.
+
 ### Default Value
 {: .no_toc }
-null
+
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
+
 ## template
 {: .d-inline-block }
 
@@ -120,10 +170,16 @@ Function
 
 Customize the look and feel of the pagination by returning your custom HTML string from this function. This function gets 1 parameter: an object that has the pagination information.
 
+This function receives two params:
+1. `paginationData` - the list of banners to be displayed
+2. `pagination` - the banner configurations
+
+**Expected return value**: a string of HTML that will be used to render the banners on the webpage
+
 ### Default Value
 {: .no_toc }
 ```js
-function (paginationData, pagination) {
+template: function (paginationData, pagination) {
     if(!paginationData) {
         return ``;
     }
@@ -190,104 +246,149 @@ function (paginationData, pagination) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
+
 ## pageClass
 {: .d-inline-block }
 
 String
 {: .label }
 
-CSS classname for the pagination component.
+CSS class name for the pagination component.
 
 ### Default Value
 {: .no_toc }
-“UNX-page-items”
-
+```js
+pageClass: “UNX-page-items”
+```
 ### Scenarios
 {: .no_toc }
 
 ---
+
 ## selectedPageClass
 {: .d-inline-block }
 
 String
 {: .label }
 
-CSS classname for selected page item.
+CSS class name for selected page item.
 
 ### Default Value
 {: .no_toc }
-“UNX-selected-page-item”
+```js
+selectedPageClass: “UNX-selected-page-item”
+```
 
 ### Scenarios
 {: .no_toc }
 
 ---
+
 ## onPaginate
 {: .d-inline-block }
 
 Function
 {: .label }
 
-Callback function that gets called after a pagination action.
+`onPaginate` is a callback function that is triggered when the user makes changes to the pagination of a webpage.
+
+This function receives below params:
+
+1. `numberOfProducts`: number of products
+2. `start` - the starting index of products, a number
+3. `productsLn` - number of products
+4. `rows` - the current page size, a number
+5. `noOfPages` - total number of pages
+6. `currentPage` - current page number
+7. `isNext` - does next page exist, a boolean
+8. `isPrev` - does previous page exist, a boolean
 
 ### Default Value
 {: .no_toc }
-NA
+```js
+onPaginate: function(numberOfProducts, start, productsLn, rows, noOfPages, currentPage, isNext, isPrev) {
+    // custom code here
+}
+```
 
 ### Scenarios
 {: .no_toc }
+It is typically used to notify the developer that the pagination has been updated and to take appropriate action, such as updating the displayed data or making an API call to retrieve new data for the current page.
 
 ---
+
 ## pageLimit
 {: .d-inline-block }
 
 Number
 {: .label }
 
-Number of pages to show upfront (when type is FIXED_PAGINATION).
+
+`pageLimit` is a parameter that is used when the `type` is set to `FIXED_PAGINATION`. It specifies the number of pages that are to be shown upfront.
 
 ### Default Value
 {: .no_toc }
-6
+
+```js
+pageLimit: 6
+```
 
 ### Scenarios
 {: .no_toc }
+Any positive integer can be passed here.
 
 ---
+
 ## infinteScrollTriggerEl
 {: .d-inline-block }
 
 Element
 {: .label }
 
-Element on which to detect infinite scroll page boundary (when type is set to INFINITE_SCROLL).
+An infinite scroll trigger element, or `infiniteScrollTriggerEl`, is an HTML element that is used to detect when a user has reached the boundary of a page when using infinite scrolling. This allows for a seamless browsing experience where new content is loaded automatically as the user scrolls, rather than requiring them to manually navigate to a new page. The `type` must be set to `INFINITE_SCROLL` for the trigger to work.
+
 
 ### Default Value
 {: .no_toc }
-window
+
+```js
+infinteScrollTriggerEl: window
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid HTML selector can be used to select the trigger
 
 ---
+
 ## heightDiffToTriggerNextPage
 {: .d-inline-block }
 
 Number
 {: .label }
 
-Height of the page to consider to fetch the next page data (when type is set to INFINITE_SCROLL).
+`heightDiffToTriggerNextPage` is a parameter that is used when the type is set to INFINITE_SCROLL. It specifies the distance from the bottom of the page (measured in pixels) that needs to be reached before the next page of content is loaded.
+
+For example, if `heightDiffToTriggerNextPage` is set to 100, this means that when the user scrolls to within 100 pixels of the bottom of the page, the next page of content will be loaded. This parameter allows for control over when the next page is loaded and can be adjusted depending on the desired user experience and the amount of content that is being loaded.
+
+
 
 ### Default Value
 {: .no_toc }
-100
+
+```js
+heightDiffToTriggerNextPage: 100
+```
 
 ### Scenarios
 {: .no_toc }
+Any positive integer can be passed to `heightDiffToTriggerNextPage`
 
 ---
+
 ## action
 {: .d-inline-block }
 
@@ -298,65 +399,60 @@ Action on which pagination should trigger: “click” or “change”.
 
 ### Default Value
 {: .no_toc }
-“click”	
 
-### Scenarios
-{: .no_toc }
-
----
-## tagName
-{: .d-inline-block }
-
-String
-{: .label }
-
-html element for the pagination wrapper. by default it is div.
-
-### Default Value
-{: .no_toc }
-“DIV”	
-
-### Scenarios
-{: .no_toc }
-
----
-## htmlAttributes
-{: .d-inline-block }
-
-Object
-{: .label }
-
-Tby default it contains classes for the wrapper. you can add more classes or any attributes.
-
-### Default Value
-{: .no_toc }
 ```js
-{class:”UNX-pagination-size-block”}
+action: 'click'	
 ```
 
 ### Scenarios
 {: .no_toc }
 
 ---
-## events
+
+
+## tagName
 {: .d-inline-block }
 
-object
+String
 {: .label }
 
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
+"tagName" refers to the name of an HTML tag used to wrap or structure the content (pagination) on a webpage.
 
 ### Default Value
 {: .no_toc }
-{}
+
+```js
+tagName: 'div'
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 
 ---
+
+## htmlAttributes
+{: .d-inline-block }
+
+Object
+{: .label }
+
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
+
+### Default Value
+{: .no_toc }
+```js
+htmlAttributes: { class:"UNX-banner-block" }
+```
+
+### Scenarios
+{: .no_toc }
+Any valid html attribute can be passed as `key : value` pairs inside an object.
+
+--- 
 # Examples
 
-## Default Example
+# Default Example
 
 Sample “pagination” config
 
@@ -376,8 +472,9 @@ pagination : {
    }
 ```
 
-
+# UseCases
 ## Fixed Pagination
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 ```js
 pagination : {
   enabled:true,
@@ -454,6 +551,8 @@ pagination : {
 ```
 
 ## Click and Scroll
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
 
 ```js
 pagination: {

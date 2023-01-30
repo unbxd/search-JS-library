@@ -41,8 +41,10 @@ Configure the search input element on which to listen to search query changes.
 
 ### Default Value
 {: .no_toc }
-null
 
+``` js
+searchBoxEl : null
+```
 ### Scenarios
 {: .no_toc }
 
@@ -54,15 +56,18 @@ Element
 {: .label }
 
 Configure your search button here. Clicking on this will load the results based the input value provided in “searchBoxEl".
-
 ### Default Value
 {: .no_toc }
-NA
+``` js
+searchButtonEl :NA
+```
 
 ### Scenarios
 {: .no_toc }
 
 ---
+
+# Default Example
 ```js
 <div class="UNX-input-wrapper">
   <input id="unbxdInput" class="UNX-input" type="text"/>
@@ -80,3 +85,8 @@ window.unbxdSearch = new UnbxdSearch({
   searchButtonEl: document.getElementById("searchBtn"),
 });
 ```
+
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:

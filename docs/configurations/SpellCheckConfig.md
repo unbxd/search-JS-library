@@ -43,16 +43,22 @@ You can configure the spellcheck feature by updating the required configs under 
 
 Boolean
 {: .label }
+Required
+{: .label .label-red }
 
-Turn this flag on for enabling spell check
+“Enabled” is a flag or switch that allows developers to turn on or off a specific feature in an e-commerce website. In this context, the “spellcheck feature” refers to the ability to display spellcheck on the website.
 
+When the “enabled” flag is turned on, the spellcheck feature will be active,This can be used to help result even when you write incorrect query. When the “enabled” flag is turned off, the spellcheck feature will be disabled.
 ### Default Value
 {: .no_toc }
-false
+```js
+enabled: false
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true  - Spellcheck feature will be enabled.
+2. false - Spellcheck feature will be disabled.
 
 ---
 ## el	
@@ -60,15 +66,23 @@ true, false
 
 Element
 {: .label }
+Required
+{: .label .label-red }
 
-Element in which to render the spellcheck component
+“el” is an HTML element in an e-commerce page that is designated to display spellcheck component. This allows developers to control the placement of the spellcheck component on the webpage and to ensure that they are displayed in a prominent and visible location. The “el element” can be set by providing the id or class of the element in the code.
 
+Element in which to render the spellcheck component.
 ### Default Value
 {: .no_toc }
-null
+```js
+el: null
+```
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
+
+
 
 ---
 ## template	
@@ -77,12 +91,19 @@ null
 Function
 {: .label }
 
-Customize the look and feel of the spellcheck component by returning your custom HTML string from this function. This function gets 3 parameters: the search query, the suggested query text and a config object with product count details ({start, productsLn, numberOfProducts})
+The “template” function here refers to the ability to change the appearance of the spellcheck feature on the e-commerce website. It allows developers to control the appearance of the spellcheck component by providing custom HTML.This function receives 3 parameters: the search query, the suggested query text and a config object with product count details ({start, productsLn, numberOfProducts}).
+
+This function takes three params:
+1. `query` - the search query , which generally refers to a request made by a user to search for specific products or information within the app.
+2. `suggestion` - he suggested query text.
+3. `pages` - It is a config object with product count details ({start, productsLn, numberOfProducts}).
+
+**Expected return value**: a string of HTML that will be used to render the spellcheck component on the webpage
 
 ### Default Value
 {: .no_toc }
 ```js
-function(query,suggestion,pages) {
+template: function(query,suggestion,pages) {
     const {
         start,
         productsLn,
@@ -124,38 +145,43 @@ function(query,suggestion,pages) {
 ```
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
+
 ## selectorClass
 {: .d-inline-block }
 
 String
 {: .label }
 
-Additional CSS class name for the spell check component
+Additional CSS class name for the spell check component,a selector class is typically a specific class or group of classes that are used to select spellcheck component.
 
 ### Default Value
 {: .no_toc }
-“UNX-suggestion”	
-
-### Scenarios
-{: .no_toc }
-
+```js
+selectorClass:“UNX-suggestion”
+```
 ---
+
 ## tagName
 {: .d-inline-block }
 
 String
 {: .label }
 
-html element for the spellcheck wrapper. by default it is div.
+"tagName" refers to the name of an HTML tag used to wrap or structure the content (spellcheck) on a webpage.
 
 ### Default Value
 {: .no_toc }
-“DIV”
+
+```js
+tagName: 'div'
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the spellcheck code to be wrapped in.
 
 ---
 ## htmlAttributes
@@ -164,35 +190,20 @@ html element for the spellcheck wrapper. by default it is div.
 Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes
+"htmlAttributes" refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
-{class:”UNX-spellcheck-wrapper”}
+```js
+htmlAttributes: { class:"UNX-spellcheck-wrapper" }
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-by default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}	
-
-### Scenarios
-{: .no_toc }
-
----
-# Examples
-
-## Default Example
+# Default Example
 Sample “spellCheck” config
 
 ```js
@@ -237,3 +248,10 @@ spellCheck:{
     },
 }
 ```
+
+
+# Custom Usecases
+
+## Usecase 1: 
+## Usecase 2: 
+## Usecase 3: 
