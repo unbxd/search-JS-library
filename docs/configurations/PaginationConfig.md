@@ -129,7 +129,7 @@ Load More Button: In this type of pagination, a “Load More” button is provid
 ### Default Value
 {: .no_toc }
 ```js
-type: “CLICK_N_SCROLL”
+type: "CLICK_N_SCROLL"
 ```
 
 ### Scenarios
@@ -261,10 +261,12 @@ CSS class name for the pagination component.
 ### Default Value
 {: .no_toc }
 ```js
-pageClass: “UNX-page-items”
+pageClass: "UNX-page-items"
 ```
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 
@@ -279,11 +281,13 @@ CSS class name for selected page item.
 ### Default Value
 {: .no_toc }
 ```js
-selectedPageClass: “UNX-selected-page-item”
+selectedPageClass: "UNX-selected-page-item"
 ```
 
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 

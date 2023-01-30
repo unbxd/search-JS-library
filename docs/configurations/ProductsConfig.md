@@ -238,6 +238,8 @@ productItemClass:“product-item”
 ### Scenarios
 {: .no_toc }
 
+Any valid class name can passed here.
+
 ---
 ## onProductClick
 {: .d-inline-block }
@@ -308,7 +310,7 @@ Object
 {: .no_toc }
 
 ```js
-htmlAttributes:{class:”UNX-search-results-block UNX-result-wrapper”}
+htmlAttributes:{class:"UNX-search-results-block UNX-result-wrapper"}
 ```
 
 ### Scenarios
