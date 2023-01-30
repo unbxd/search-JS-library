@@ -49,12 +49,16 @@ To render the facets on the search results page, you can use the “facet” con
 Element
 {: .label }
 
+Required
+{: .label .label-red}
+
 Element in which to render the facets.
 
 "facetsEl" in facets is an HTML element that is designated to display facets. This allows developers to control the placement of the facets on the webpage and to ensure that they are displayed in a prominent and visible location. The "facetsEl" can be set by providing the id or class of the element in the code.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 facetsEl: null
 ```
@@ -73,10 +77,13 @@ Function
 
 Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
 
+**Expected Return Value** : 
+
 ### Default Value
 {: .no_toc }
+
 ``` js
-function(facetObj, children, isExpanded,facetSearchTxt, facet) {
+facetTemplate: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
         const {
             displayName,
             facetName,
@@ -149,20 +156,29 @@ function(facetObj, children, isExpanded,facetSearchTxt, facet) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
+
 ## facetItemTemplate
 {: .d-inline-block }
 
 Function
 {: .label }
 
-Customize each individual facet value by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, the current facet value and the search text entered for this facet block.
+Customize each individual facet value by returning your custom HTML string from this function.  
+This function expects 3 parameters: 
+1.  `facet`: the complete facet block.
+2.  `value`: the current facet value.
+3.  `facetSearchTxt`: the search text entered for this facet block.
+
+**Expected Return Value** : 
 
 ### Default Value
 {: .no_toc }
+
 ```js
-function facetItemUiElem (facet , value,facetSearchTxt) {
+facetItemTemplate: function facetItemUiElem (facet , value,facetSearchTxt) {
     const {
         facetName,
         isSelected
@@ -197,8 +213,10 @@ function facetItemUiElem (facet , value,facetSearchTxt) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
+
 ## facetMultiSelect
 {: .d-inline-block }
 
@@ -209,13 +227,18 @@ Turn this off if you want to disable the multiple selection of facets.
 
 ### Default Value
 {: .no_toc }
-true
+
+```js
+facetMultiSelect: true
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. true - enable the multiple selection of facets
+2. false - disable the multiple selection of facets
 
 --- 
+
 ## facetClass
 {: .d-inline-block }
 
@@ -226,26 +249,36 @@ Additional CSS class name to add to the the facet items.
 
 ### Default Value
 {: .no_toc }
-“UNX-facets-block”
+
+```js
+facetClass: “UNX-facets-block”
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be added here as facetClass.
 
 --- 
+
 ## facetAction
 {: .d-inline-block }
 
 String
 {: .label }
 
-Event based on which to trigger facet selection / deselection: “click” or “change”.
+Event based on which to trigger facet selection / deselection.
 
 ### Default Value
 {: .no_toc }
-“click"
+
+```js
+facetAction: 'click'
+```
 
 ### Scenarios
 {: .no_toc }
+1.  `Click`:
+2.  `Change`:
 
 --- 
 ## selectedFacetClass
@@ -255,14 +288,20 @@ String
 {: .label }
 
 Additional CSS class name for the selected facet items.
+
 ### Default Value
 {: .no_toc }
-“UNX-selected-facet-btn"
+
+```js
+selectedFacetClass: “UNX-selected-facet-btn"
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be added as selectedFacetClass.
 
 --- 
+
 ## selectedFacetsEl
 {: .d-inline-block }
 
@@ -273,7 +312,9 @@ Element in which to render the selected facets. If you don’t provide this elem
 
 ### Default Value
 {: .no_toc }
-null	
+```js
+selectedFacetsEl: null	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -285,12 +326,16 @@ null
 Function
 {: .label }
 
-Customize the look & feel of the selected facets block by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
+Customize the look & feel of the selected facets block by returning your custom HTML string from this function.  
+This function receives 2 parameters:   
+the selected facet complete block and the selected facet value.
+
+**Expected Return Value** : 
 
 ### Default Value
 {: .no_toc }
 ```js
-function selectedFacetUI(selections, facet,selectedFacetsConfig) {
+selectedFacetTemplate: function selectedFacetUI(selections, facet,selectedFacetsConfig) {
     const {
         clearAllText,
         clearFacetsSelectorClass
@@ -310,6 +355,7 @@ function selectedFacetUI(selections, facet,selectedFacetsConfig) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
 ## selectedFacetItemTemplate
@@ -322,8 +368,9 @@ Customize the look & feel of the selected facet by returning your custom HTML st
 
 ### Default Value
 {: .no_toc }
+
 ```js
-function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,      selectedFacetsConfig){
+selectedFacetItemTemplate: function selectedFacetItemTemplateUI (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig){
     const {
         facetName,
         facetType
@@ -357,8 +404,10 @@ function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfi
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
+
 ## selectedFacetConfig
 {: .d-inline-block }
 
@@ -370,13 +419,20 @@ object will be containing the configuration for the selected facet wrapper confi
 ### Default Value
 {: .no_toc }
 ``` js
-    { tagName:”DIV”, htmlAttributes:{ class:”UNX-selected-facet-lb” }, events:{} }
+selectedFacetConfig:{ 
+    tagName:”DIV”, 
+    htmlAttributes:{
+        class:”UNX-selected-facet-lb”
+        },
+        events:{} 
+}
 ```
 
 ### Scenarios
 {: .no_toc }
 
 --- 
+
 ## clearAllText
 {: .d-inline-block }
 
@@ -387,12 +443,15 @@ The text to show for the clear all button that clears all selected facets.
 
 ### Default Value
 {: .no_toc }
-“Clear All”
+```js
+clearAllText: “Clear All”
+```
 
 ### Scenarios
 {: .no_toc }
 
 --- 
+
 ## rangeTemplate
 {: .d-inline-block }
 
@@ -404,7 +463,7 @@ Customize the look and feel of the range facets by returning your custom HTML st
 ### Default Value
 {: .no_toc }
 ```js
-function(range, selectedRange, facet) {
+rangeTemplate: function(range, selectedRange, facet) {
     const {
         facetName,
         values,
@@ -451,6 +510,7 @@ function(range, selectedRange, facet) {
 {: .no_toc }
 
 ---
+
 ## rangeWidgetConfig
 {: .d-inline-block }
 
@@ -461,7 +521,10 @@ Configure the default range slider. Refer to the [Range Widget Config](#Facet-Ra
 
 ### Default Value
 {: .no_toc }
-NA
+
+```js
+rangeWidgetConfig: null
+```
 
 ### Scenarios
 {: .no_toc }
@@ -477,12 +540,16 @@ Turn this on to send the multilevel parameter in the search API.
 
 ### Default Value
 {: .no_toc }
-true
+
+```js
+facetMultilevel: true
+```
 
 ### Scenarios
 {: .no_toc }
 
 --- 
+
 ## facetMultilevelName
 {: .d-inline-block }
 
@@ -493,7 +560,9 @@ Set the multilevel field name using this config.
 
 ### Default Value
 {: .no_toc }
-“Category”
+```js
+facetMultilevelName: “Category”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -509,12 +578,15 @@ Class name for each multi level facet item.
 
 ### Default Value
 {: .no_toc }
-“UNX-multilevel-facet”
+```js
+multiLevelFacetSelectorClass: “UNX-multilevel-facet”
+```
 
 ### Scenarios
 {: .no_toc }
 
 --- 
+
 ## multiLevelFacetTemplate
 {: .d-inline-block }
 
@@ -523,10 +595,12 @@ Function
 
 Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
 
+**Expected return value**: 
+
 ### Default Value
 {: .no_toc }
 ```js
-function(facet,selectedCategories,facetSearchTxt, facetConfig) {
+multiLevelFacetTemplate: function(facet,selectedCategories,facetSearchTxt, facetConfig) {
     let ui = "";
     let {
         multiLevelFacetSelectorClass,
@@ -604,7 +678,9 @@ Configure how many levels of category filter you want to have by setting this va
 
 ### Default Value
 {: .no_toc }
-4
+```js
+facetDepth: 4
+```
 
 ### Scenarios
 {: .no_toc }
@@ -620,7 +696,9 @@ Class name for the button to clear the selected facets.
 
 ### Default Value
 {: .no_toc }
-“UNX-clear-facet”	
+```js
+clearFacetsSelectorClass: “UNX-clear-facet”	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -636,7 +714,9 @@ Class name for the button to delete selected facets.
 
 ### Default Value
 {: .no_toc }
-“UNX-remove-facet”
+```js
+removeFacetsSelectorClass: “UNX-remove-facet”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -653,7 +733,7 @@ Callback function that gets called after each facet selection or deselection. Th
 ### Default Value
 {: .no_toc }
 ```js
-function(facets) {}
+onFacetLoad: function(facets) {}
 ```
 
 ### Scenarios
@@ -670,7 +750,9 @@ Turn this on if you want to apply multiple filters together.
 
 ### Default Value
 {: .no_toc }
-false
+```js
+applyMultipleFilters: false
+```
 
 ### Scenarios
 {: .no_toc }
@@ -686,7 +768,9 @@ The text to show for the apply button (when applyMultipleFilters is set as true)
 
 ### Default Value
 {: .no_toc }
-“Apply”
+```js
+applyButtonText:“Apply”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -702,7 +786,9 @@ The text to show for the clear button (when applyMultipleFilters is set as true)
 
 ### Default Value
 {: .no_toc }
-“clear”
+```js
+clearButtonText: “clear”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -718,11 +804,15 @@ Turn this off if you do not want to have a collapsible accordian for each facet 
 
 ### Default Value
 {: .no_toc }
-true
+
+```js
+isCollapsible: true
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. `true`:
+2. `false`:
 
 --- 
 ## defaultOpen
@@ -731,14 +821,20 @@ true, false
 String
 {: .label }
 
-If “isCollapsible” is true, set this config to indicate the default open facet. Available options are “ALL” , “FIRST” , “NONE”.
+If “isCollapsible” is true, set this config to indicate the default open facet.
 
 ### Default Value
 {: .no_toc }
-“ALL”	
+```js
+defaultOpen: “ALL”	
+```
 
 ### Scenarios
 {: .no_toc }
+1.  `ALL`:
+2.  `FIRST`:
+3.  `NONE`:
+
 
 ---
 ## isSearchable
@@ -751,11 +847,14 @@ Turn this on if you want to have search feature for each facet block.
 
 ### Default Value
 {: .no_toc }
-true
+```js
+isSearchable: true
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1.  `true`:
+2.  `false`:
 
 ---
 ## searchPlaceHolder
@@ -768,10 +867,13 @@ Placeholder text for the facet search input.
 
 ### Default Value
 {: .no_toc }
-””	
+```js
+searchPlaceHolder: ””	
+```
 
 ### Scenarios
 {: .no_toc }
+Any valid placeholder text can be added here.
 
 ---
 ## enableViewMore
@@ -784,11 +886,14 @@ Turn this on for enabling view more or less functionality for individual facets.
 
 ### Default Value
 {: .no_toc }
-false
+```js
+enableViewMore: false
+```
 
 ### Scenarios
 {: .no_toc }
-true, false
+1. `true`:
+2. `false`:
 
 --- 
 ## viewMoreText
@@ -802,7 +907,7 @@ The text to show for the view more / less button. Pass the 2 strings in array fo
 ### Default Value
 {: .no_toc }
 ``` js
-[“show all”, “show less”]
+viewMoreText: [“show all”, “show less”]
 ```
 
 ### Scenarios
@@ -819,7 +924,9 @@ Will show view more only if the facet values are greater than this value.
 
 ### Default Value
 {: .no_toc }
-3	
+```js
+viewMoreLimit: 3	
+```
 
 ### Scenarios
 {: .no_toc }
@@ -835,7 +942,9 @@ html element for the facet wrapper. by default it is div.
 
 ### Default Value
 {: .no_toc }
-“DIV”
+```js
+tagName: “DIV”
+```
 
 ### Scenarios
 {: .no_toc }
@@ -852,14 +961,13 @@ by default it contains classes for the wrapper. you can add more classes or any 
 ### Default Value
 {: .no_toc }
 ```js
-{class:”UNX-facets-results-block”}
+htmlAttributes: {class:”UNX-facets-results-block”}
 ```
 
 ### Scenarios
 {: .no_toc }
 
 ---
-# Examples
 
 ## Default Example
 
@@ -1324,3 +1432,7 @@ facet: {
     }
 }
 ```
+# UseCases
+## Usecase 1:
+## Usecase 2:
+## Usecase 3:
