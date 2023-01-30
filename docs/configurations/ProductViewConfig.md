@@ -150,7 +150,7 @@ Product view types to be displayed by default: “LIST” or ‘GRID”
 ### Default Value
 {: .no_toc }
 ```js
-    defaultViewType:"GRID"
+defaultViewType:"GRID"
 ```
 
 ### Scenarios
@@ -189,7 +189,7 @@ Additonal CSS class name to be added to the product view type elements
 ### Default Value
 {: .no_toc }
 ``` js
-viewTypeClass:“UNX-product-view”
+viewTypeClass:"UNX-product-view"
 ```
 
 ### Scenarios
@@ -207,7 +207,7 @@ Additional CSS class name to be added to the selected view type element
 ### Default Value
 {: .no_toc }
 ``` js
-selectedViewTypeClass:“UNX-selected-product-view”	
+selectedViewTypeClass:"UNX-selected-product-view"
 ```
 ### Scenarios
 {: .no_toc }
@@ -244,7 +244,7 @@ Object
 ### Default Value
 {: .no_toc }
 ```js
-htmlAttributes:{class:”product-view-container”}
+htmlAttributes:{class:"product-view-container"}
 ```
 
 ### Scenarios
@@ -258,7 +258,7 @@ Sample “productView” config
 
 ```js
 productView : {
-  enabled:true,
+       enabled:true,
        el:null,
        action: “click”, // CLICK or CHANGE
        viewTypeClass: “UNX-product-view”,
