@@ -83,13 +83,11 @@ Function
 {: .label }
 
 Customize the look and feel of the facets block by returning your custom HTML string from this function. This function accepts following parameters: 
-1.  `facetObj`:
-2.  `children`:
-3.  `isExpanded`:
-4.  `facetSearchTxt`:
+1.  `facetObj`: the complete facet block
+2.  `children`: 
+3.  `isExpanded`: is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true)
+4.  `facetSearchTxt`: the search text entered for this facet block (if isSearchable is set to true)
 5.  `facet`:
-
-the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
 
 **Expected Return Value** : A string of HTML that will be used to render the facet block on the webpage.
 
@@ -344,12 +342,12 @@ Function
 
 Customize the look & feel of the selected facets block by returning your custom HTML string from this function.  
 This function receives following parameters:   
-1.  `selections`:
+1.  `selections`:   
 2.  `facet`:
 3.  `selectedFacetsConfig`:
 the selected facet complete block and the selected facet value.
 
-**Expected Return Value** : 
+**Expected Return Value** : A html string is returned .
 
 ### Default Value
 {: .no_toc }
@@ -383,7 +381,14 @@ For additional information on custom scenarios, please refer to the [use cases s
 Function
 {: .label }
 
-Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
+Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function expects following parameters: 
+1.  `selectedFacet`:
+2.  `selectedFacetItem`:
+3.  `facetConfig`:
+4.  `selectedFacetsConfig`:
+the selected facet complete block and the selected facet value.
+
+**Expected return value** :
 
 ### Default Value
 {: .no_toc }
@@ -468,6 +473,7 @@ clearAllText: “Clear All”
 
 ### Scenarios
 {: .no_toc }
+Any button name text can be given here.
 
 --- 
 
@@ -477,7 +483,11 @@ clearAllText: “Clear All”
 Function
 {: .label }
 
-Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available.
+Customize the look and feel of the range facets by returning your custom HTML string from this function. This function expects following parameters: 
+1.  `range` : 
+2.  `selectedRange`: 
+3.  `facet`:
+the list of range facets available.
 
 ### Default Value
 {: .no_toc }
@@ -614,7 +624,12 @@ Any valid class name can given here.
 Function
 {: .label }
 
-Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
+Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function expects following parameters: 
+1. `facet`:
+2. `selectedCategories`:
+3. `facetSearchTxt`:
+4. `facetConfig`:
+ the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
 
 **Expected return value**: 
 
