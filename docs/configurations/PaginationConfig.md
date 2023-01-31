@@ -84,6 +84,11 @@ The choice of pagination method depends on the specific needs of the website and
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
 
+```js
+pagination: {
+    // the below pagination configurations goes here
+}
+```
 
 ## enabled
 {: .d-inline-block }
