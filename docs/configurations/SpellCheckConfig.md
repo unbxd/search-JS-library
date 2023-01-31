@@ -97,7 +97,7 @@ There are several HTML selectors that can be used to locate the banner element i
 Function
 {: .label }
 
-The “template” function here refers to the ability to change the appearance of the spellcheck feature on the e-commerce website. It allows developers to control the appearance of the spellcheck component by providing custom HTML.This function receives 3 parameters: the search query, the suggested query text and a config object with product count details ({start, productsLn, numberOfProducts}).
+The “template” function here refers to the ability to change the appearance of the spellcheck feature on the e-commerce website. It allows developers to control the appearance of the spellcheck component by providing custom HTML.
 
 This function takes three params:
 1. `query` - the search query , which generally refers to a request made by a user to search for specific products or information within the app.
