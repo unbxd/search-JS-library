@@ -168,6 +168,7 @@ Additional CSS class name for the spell check component,a selector class is typi
 ```js
 selectorClass:"UNX-suggestion"
 ```
+
 ### Scenarios
 
 Any valid class name can passed here.
