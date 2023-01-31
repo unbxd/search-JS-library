@@ -63,8 +63,8 @@ enabled: false
 
 ### Scenarios
 {: .no_toc }
-1. true  - Spellcheck feature will be enabled.
-2. false - Spellcheck feature will be disabled.
+1. `true`  - Spellcheck feature will be enabled.
+2. `false` - Spellcheck feature will be disabled.
 
 ---
 ## el	
