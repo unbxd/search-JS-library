@@ -47,9 +47,7 @@ searchBoxEl : null
 ```
 ### Scenarios
 {: .no_toc }
-``` js
-searchBoxEl: document.getElementById("unbxdInput")
-```
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
 ## searchButtonEl
@@ -67,9 +65,8 @@ searchButtonEl : NA
 
 ### Scenarios
 {: .no_toc }
-``` js
-searchButtonEl: document.getElementById("searchBtn")
-```
+
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
 

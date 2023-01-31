@@ -301,7 +301,7 @@ defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
 ```
 
 ### Scenarios
-
+{: .no_toc }
 Any valid image url you can add here in defaultImage.
 
 ---
