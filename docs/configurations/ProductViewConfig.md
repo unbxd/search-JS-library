@@ -97,7 +97,7 @@ Function
 
 The "template" function here refers to the ability to change the appearance of the productview feature on the e-commerce website. It allows developers to control the appearance of the productview by providing custom HTML. The function receives the list of productview to be displayed, and the productview configurations as parameters and it needs to return a string of HTML that will be used to render the productview on the webpage.
 
-This function passes two params:
+This function accepts two params:
 1. `selectedViewType` - Its value might either be "GRID" or "LIST."
 2. `productViewType` - it is productview object that contains information like the selectedViewTypeClass and viewTypeClass.
 
