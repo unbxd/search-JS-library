@@ -25,6 +25,8 @@ This page usually contains a message indicating that no results were found and o
 
 Configure the display to be rendered when there are no results by setting the “noResults” config object.
 
+[![](../assets/noresults.png)](../assets/noresults.png)
+
 # Configurations
 
 The following options are available under the noResults object:  
