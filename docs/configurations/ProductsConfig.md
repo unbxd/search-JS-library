@@ -275,7 +275,7 @@ This function passes two params:
 
 1. `product` : this will contain the product data like uniqueId etc. Note: The `data-id` field has to be set in the template to receive this product information (as shown in the default template here), else it will return `null` by default
 
-2. `event` : 
+2. `event` : it take any javascript event as input.
 
 ### Default Value
 {: .no_toc }
