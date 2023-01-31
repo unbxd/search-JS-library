@@ -78,8 +78,8 @@ enabled: false
 
 ### Scenarios
 {: .no_toc }
-1. true  - Swatches feature will be enabled.
-2. false - Swatches feature will be disabled.
+1. `true`  - Swatches feature will be enabled.
+2. `false` - Swatches feature will be disabled.
 
 
 ---

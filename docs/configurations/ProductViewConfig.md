@@ -61,8 +61,8 @@ enabled: true
 
 ### Scenarios
 {: .no_toc }
-1. true -  productview will be displayed on the website 
-2. false - the productview feature will be disabled
+1. `true` -  productview will be displayed on the website 
+2. `false` - the productview feature will be disabled
 
 ---
 
