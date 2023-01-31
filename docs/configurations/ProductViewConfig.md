@@ -101,7 +101,7 @@ This function accepts two params:
 1. `selectedViewType` - Its value might either be "GRID" or "LIST."
 2. `productViewType` - it is productview object that contains information like the selectedViewTypeClass and viewTypeClass.
 
-**Expected return value**: a string of HTML that will be used to render the productview; on the webpage
+**Expected return value**: a string of HTML that will be used to render the productview on the webpage
 
 
 ### Default Value
