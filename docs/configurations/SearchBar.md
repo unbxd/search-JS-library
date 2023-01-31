@@ -47,6 +47,9 @@ searchBoxEl : null
 ```
 ### Scenarios
 {: .no_toc }
+``` js
+searchBoxEl: document.getElementById("unbxdInput")
+```
 
 ---
 ## searchButtonEl
@@ -64,6 +67,9 @@ searchButtonEl : NA
 
 ### Scenarios
 {: .no_toc }
+``` js
+searchButtonEl: document.getElementById("searchBtn")
+```
 
 ---
 
