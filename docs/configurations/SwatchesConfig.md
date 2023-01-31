@@ -179,6 +179,8 @@ For additional information on custom scenarios, please refer to the [use cases s
 # Default Example
 Sample “swatches” config
 
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
+
 ```js
 swatches:{
        enabled:true,
