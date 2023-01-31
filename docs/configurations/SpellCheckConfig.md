@@ -186,7 +186,7 @@ String
 {: .no_toc }
 
 ```js
-tagName: 'div'
+tagName: 'DIV'
 ```
 
 ### Scenarios
