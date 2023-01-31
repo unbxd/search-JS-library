@@ -83,11 +83,11 @@ Function
 {: .label }
 
 Customize the look and feel of the facets block by returning your custom HTML string from this function. This function accepts following parameters: 
-1.  `facetObj`: the complete facet block
+1.  `facetObj`: 
 2.  `children`: 
 3.  `isExpanded`: is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true)
 4.  `facetSearchTxt`: the search text entered for this facet block (if isSearchable is set to true)
-5.  `facet`:
+5.  `facet`: the complete configs for facets.
 
 **Expected Return Value** : A string of HTML that will be used to render the facet block on the webpage.
 
@@ -342,10 +342,9 @@ Function
 
 Customize the look & feel of the selected facets block by returning your custom HTML string from this function.  
 This function receives following parameters:   
-1.  `selections`:   
-2.  `facet`:
-3.  `selectedFacetsConfig`:
-the selected facet complete block and the selected facet value.
+1.  `selections`: the complete html for selected facets block.
+2.  `facet`: the facets configs.
+3.  `selectedFacetsConfig`: the selectedFacet configs  .
 
 **Expected Return Value** : A html string is returned .
 
@@ -382,11 +381,10 @@ Function
 {: .label }
 
 Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function expects following parameters: 
-1.  `selectedFacet`:
-2.  `selectedFacetItem`:
-3.  `facetConfig`:
-4.  `selectedFacetsConfig`:
-the selected facet complete block and the selected facet value.
+1.  `selectedFacet`: the selected facet block information like facetName , facetType etc.
+2.  `selectedFacetItem`: the value of selected facet for eg: name , dataId , count etc.
+3.  `facetConfig`: the complete block of facets configs.
+4.  `selectedFacetsConfig`: the configs for selected block of facets.
 
 **Expected return value** :
 
@@ -577,6 +575,8 @@ facetMultilevel: true
 
 ### Scenarios
 {: .no_toc }
+1.  `true`: 
+2.  `false`:
 
 --- 
 
@@ -596,6 +596,7 @@ facetMultilevelName: “Category”
 
 ### Scenarios
 {: .no_toc }
+
 
 --- 
 ## multiLevelFacetSelectorClass
@@ -627,11 +628,10 @@ Function
 Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function expects following parameters: 
 1. `facet`:
 2. `selectedCategories`:
-3. `facetSearchTxt`:
+3. `facetSearchTxt`: the search text entered for this facet block (if isSearchable is set to true).
 4. `facetConfig`:
- the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
 
-**Expected return value**: 
+**Expected return value**: A html string is returned.
 
 ### Default Value
 {: .no_toc }
