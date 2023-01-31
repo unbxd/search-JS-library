@@ -269,6 +269,9 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 # Default Example
 Sample “productView” config
 
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
+
+
 ```js
 productView : {
        enabled:true,
