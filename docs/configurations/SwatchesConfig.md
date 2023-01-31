@@ -109,7 +109,7 @@ Additional CSS class name for the swatches
 ### Default Value
 {: .no_toc }
 ```js
-swatchClass:“UNX-swatch-btn”
+swatchClass:"UNX-swatch-btn"
 ```
 
 ### Scenarios

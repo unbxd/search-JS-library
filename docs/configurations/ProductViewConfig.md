@@ -151,7 +151,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 String
 {: .label }
 
-Product view types to be displayed by default: “LIST” or ‘GRID”
+Product view types to be displayed by default.
 
 ### Default Value
 {: .no_toc }
