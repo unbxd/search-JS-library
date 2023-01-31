@@ -97,9 +97,6 @@ Field mapping of the catalog attributes to the swatch attributes
 attributesMap:{swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
 ```
 
-### Scenarios
-{: .no_toc }
-
 ---
 ## swatchClass
 {: .d-inline-block }
