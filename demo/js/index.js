@@ -395,14 +395,11 @@ window.unbxdSearch.updateConfig({
             ].join('')
         }
     },
-<<<<<<< HEAD
     pagination: {
         type: 'CLICK_N_SCROLL',
         el: document.querySelector("#clickScrollContainer"),
         onPaginate: function(data) {console.log(data,"data")}
     },
-=======
->>>>>>> e5f4c2793f8d2a1a644b1d8070fa2a59e723b0aa
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
     },

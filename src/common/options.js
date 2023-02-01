@@ -73,12 +73,8 @@ const options = {
     noResults: {
         template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },
-<<<<<<< HEAD
-    onEvent: (state, type) => {
-=======
     onEvent: (state,type) => {
        
->>>>>>> e5f4c2793f8d2a1a644b1d8070fa2a59e723b0aa
     },
     startPageNo: 0,
     productView: {
@@ -319,23 +315,12 @@ const options = {
     actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
     },
-<<<<<<< HEAD
-    onQueryRedirect: (self, redirect) => {
-        if (redirect) {
-=======
     onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
         if(redirect) {
->>>>>>> e5f4c2793f8d2a1a644b1d8070fa2a59e723b0aa
             const {
                 value,
                 type
             } = redirect;
-<<<<<<< HEAD
-            if (type === "url") {
-                location.href = value;
-                /** To open redirect in new tab (rare scenario) */
-                // window.open(value, "_blank");                                                        
-=======
             if(type === "url") {
                 /** If opening in same tab */
                 if(history.state && history.state.replace) {
@@ -348,7 +333,6 @@ const options = {
                  * then browser back + history push on search should be handled by client 
                  * (especially switching betsween category to search page scenarios)
                  * Note: This is not recommended */                                                       
->>>>>>> e5f4c2793f8d2a1a644b1d8070fa2a59e723b0aa
             }
             return false;
         }
