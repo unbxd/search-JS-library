@@ -188,8 +188,12 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | searchPath | String | "" | Any additional path string to be added to the URL. This is useful incase you have an SPA and the search page is hosted on a subpath of your site |
 | getCategoryId | Function | null | By default Category ID will be taken from unbxdPageConf object, but if you wish to customize use this function to return the category ID  |
 | setCategoryId | Function | null | This method helps to navigate through the breadcrumbs, you can customize the logic here   |
+| onBackFromRedirect | Function | null | customise your logic here to handle the history when we are back from a redirected url |
 | onQueryRedirect | Function | null | customise your logic here to handle the redirect configured in api |
 | browseQueryParam | String | "p" | this will be the default query param for the browse and category|
+| setRoutingStrategies | Function | null | customise your logic here to handle the browser back scenarios. Params: locationParam(search/hash based on hashMode), newUrl(param string), productType, isUnbxdKey(whether unbxd params exist in url), replace(whether history should replace) |
+| onNoUnbxdKeyRouting | Function | null | history action when there is no unbxd key in the url during browser back |
+
 ## Products Config
 
 | OPTIONS | DATATYPE | DEFAULT VALUE | DESCRIPTION |
