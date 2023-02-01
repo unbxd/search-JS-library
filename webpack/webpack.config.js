@@ -17,7 +17,8 @@ module.exports = {
   output: {
     path: Path.join(__dirname, '../public'),
     filename: 'js/[name].js',
-    sourceMapFilename: '[file].map'
+    sourceMapFilename: '[file].map',
+    publicPath: "/"
   },
   optimization: {
     splitChunks: {
@@ -53,7 +54,8 @@ module.exports = {
   devServer: {
     contentBase: Path.join(__dirname, '../src'),
     port: 9000,
-    watchContentBase: true
+    watchContentBase: true,
+    historyApiFallback: true
   },
   module: {
     rules: [
