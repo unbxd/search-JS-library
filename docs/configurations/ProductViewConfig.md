@@ -316,6 +316,8 @@ productView : {
 ## Usecase 1: 
 1. GRID: when viewTypes is equal to GRID.
 
+[![](../assets/GRID.png)](../assets/GRID.png)
+
 configuration:
 ```js
 productView:{
@@ -326,6 +328,7 @@ productView:{
 ## Usecase 2:
 1. LIST: when viewTypes is equal to LIST.
 
+[![](../assets/LIST.png)](../assets/LIST.png)
 
 configuration:
 ```js
