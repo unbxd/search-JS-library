@@ -60,8 +60,8 @@ enabled: true
 
 ### Scenarios
 {: .no_toc }
-1.true - Allows to sort products.  
-2.false - The Sorting component would not be visible.
+1.  `true` - Allows to sort products.  
+2.  `false` - The Sorting component would not be visible.
 
 ---
 ## el
@@ -95,8 +95,8 @@ Array
 The "options" in sorting refer to the different sorting criteria that the developer can use to sort the data. These options are typically defined as a list of sorting criteria, such as "ascending" or "descending" order, or sorting by different fields like "name" or "date".
 
 This accepts a list of objects, where each object needs to have "value" and "text".  
-**1. value** : The value is the parameter which goes in payload.  
-**2. text**: The text which appears as option on UI.
+1.  `value`: The value is the parameter which goes in payload.  
+2.  `text`: The text which appears as option on UI.
 
 ### Default Value
 {: .no_toc }
@@ -235,11 +235,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 String
 {: .label }
-Action on which the sorting will trigger . Below are two options to trigger sorting :
-
-**1. Click**: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
-
-**2. Change**: Change refers to a sort operation that is initiated when a specific variable or data element is changed.=
+Action on which the sorting will trigger .
 
 ### Default Value
 {: .no_toc }
@@ -249,7 +245,9 @@ action: "change"
 
 ### Scenarios
 {: .no_toc }
-//Need to ask
+1. `Click`: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
+
+2. `Change`: Change refers to a sort operation that is initiated when a specific variable or data element is changed.
 
 ---
 ## tagName
@@ -257,7 +255,7 @@ action: "change"
 
 String
 {: .label }
-“tagName” refers to the name of an HTML tag used to wrap or structure the content (spellcheck) on a webpage.
+“tagName” refers to the name of an HTML tag used to wrap or structure the content on a webpage.
 
 ### Default Value
 {: .no_toc }
@@ -288,26 +286,9 @@ Object
 
 ### Scenarios
 {: .no_toc }
-Any valid html attribute can be passed as "key : value" pairs inside an object.
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-## events
-{: .d-inline-block }
-
-Object
-{: .label }
-
-By default it will be empty. you can add further javascript events by keys and function as values. context will be the current object.
-
-### Default Value
-{: .no_toc }
-{}
-
-### Scenarios
-{: .no_toc }
-
----
-# Examples
 
 # Default Example
 Sample code for the Sort config:
