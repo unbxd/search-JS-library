@@ -214,7 +214,10 @@ htmlAttributes: { class:"UNX-spellcheck-wrapper" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-# Default Example
+# Usecases
+
+## Usecase 1: 
+### Default Example
 Sample “spellCheck” config
 
 [![](../assets/spellcheck.png)](../assets/spellcheck.png)
@@ -261,10 +264,5 @@ spellCheck:{
     },
 }
 ```
-
-
-# Usecases
-
-## Usecase 1: 
 ## Usecase 2: 
 ## Usecase 3: 
