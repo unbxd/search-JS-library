@@ -33,6 +33,12 @@ Page Size widget allows you to configure the number of products shown on each pa
 # Configurations
 To render the Page Size widget, you need to configure the “pageSize” config object.
 
+```js
+pagesize: {
+    //Below configurations should be added here.
+}
+```
+
 The following are the various options available under the object: 
 
 ## enabled
@@ -92,7 +98,7 @@ pageSize: 12
 
 ### Scenarios
 {: .no_toc }
-Any valid integer page size can be given .
+Any positive integer page size can be given .
 
 ---
 ## options
@@ -240,9 +246,7 @@ Object
 ### Default Value
 {: .no_toc }
 ```js
-htmlAttributes : {
-                class:”UNX-selected-pagesize”
-                }
+htmlAttributes : { class:”UNX-selected-pagesize” }
 ```
 
 ### Scenarios
