@@ -1734,3 +1734,15 @@ facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearc
             "<div class=\"UNX-facets-all\">",  "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), "</div>", "</div>"].join('');
         },
 ```
+---
+
+## Usecase 8: Custom Selected items with circular border
+
+### User Requirement
+{: .no_toc}
+
+<img src="../assets/selectedFacets.png" width="500px">
+
+```js
+
+```
