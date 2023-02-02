@@ -1578,7 +1578,7 @@ If user requires the facet item in Color facet to be a color button as shown bel
 
 [![](../assets/colorfcetbutton.png)](../assets/colorfcetbutton.png)
 
-<img src="../assets/colorfcetbutton.png=250x250" width="250px">
+<img src="../assets/colorfcetbutton.png" width="250px">
 
 ```js
 facet: {
