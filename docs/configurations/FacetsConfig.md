@@ -1569,7 +1569,7 @@ facet: {
 }
 ```
 
-## Usecase 6: Color Facet Item as a color swatch
+## Usecase 6: Color Facet Item as a color button
 
 ### User Requirement
 {: .no_toc}
@@ -1578,6 +1578,7 @@ If user requires the facet item in Color facet to be a color button as shown bel
 
 [![](../assets/colorfcetbutton.png=250x250)](../assets/colorfcetbutton.png=250x250)
 
+<img src="../assets/colorfcetbutton.png=250x250" width="250px">
 
 ```js
 facet: {
