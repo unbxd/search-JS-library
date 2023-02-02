@@ -68,7 +68,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 If a user needs a custom 
 
-<img src="../assets/noResultsUsecase.png" width="250px">
+<img src="../assets/noResultsUsecase.png" width="500px">
 
 ```js
 noResults:{
