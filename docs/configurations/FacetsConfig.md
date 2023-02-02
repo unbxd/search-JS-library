@@ -1578,6 +1578,145 @@ If you require a colored button for color facets or just a plane button for each
 
 ```js
 facet: {
+    facet: {
+    facetsEl: document.querySelector(".UNX-mob-filters"),
+    selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+    defaultOpen: "",
+    enableViewMore: true,
+    clearFacetsSelectorClass: "UNX-clear-facet",
+    viewMoreLimit: 10,
+    viewMoreText: ["+ Show More", "- Show less"],
+    onFacetLoad:function(facets){
+    jQuery(".UNX-change-facet").click(function() {
+        jQuery("html, body").animate({ scrollTop: 0 }, "slow");
+        return true;
+    });	
+        const self = this;
+        const { facet } = this.options;
+        const { rangeWidgetConfig } = facet;
+        facets.forEach((facetItem) => {
+        const { facetType, facetName, gap } = facetItem;
+        const { prefix } = rangeWidgetConfig;
+        if (facetType === "range") {
+            const rangeId = `${facetName}_slider`;
+            const sliderElem = document.getElementById(rangeId);
+            let { end, gap, max, min, start } = facetItem;
+            const selectedValues = sliderElem.dataset;
+            if (selectedValues) {
+            (start = Number(selectedValues.x)),
+                (end = Number(selectedValues.y));
+            }
+            this[rangeId] = noUiSlider.create(sliderElem, {
+            start: [start, end],
+            tooltips: [
+                {
+                to: function (value) {
+                    return `${prefix} ${Math.round(value).toFixed(2)}`;
+                }
+                },
+                {
+                to: function (value) {
+                    return `${prefix} ${Math.round(value).toFixed(2)}`;
+                }
+                }
+            ],
+            connect: true,
+            range: {
+                min: 0,
+                max: max
+            },
+            format: {
+                to: function (value) {
+                return Math.round(value);
+                },
+                from: function (value) {
+                return Math.round(value);
+                }
+            },
+            padding: 0,
+            margin: 0
+            });
+        function mergeTooltips(slider, threshold, separator) {
+                    var textIsRtl = getComputedStyle(slider).direction === 'rtl';
+                    var isRtl = slider.noUiSlider.options.direction === 'rtl';
+                    var isVertical = slider.noUiSlider.options.orientation === 'vertical';
+                    var tooltips = slider.noUiSlider.getTooltips();
+                    var origins = slider.noUiSlider.getOrigins();
+                    // Move tooltips into the origin element. The default stylesheet handles this.
+                    tooltips.forEach(function (tooltip, index) {
+                        if (tooltip) {
+                            origins[index].appendChild(tooltip);
+                        }
+                    });
+                    slider.noUiSlider.on('update', function (values, handle, unencoded, tap, positions) {
+                        console.log(values)
+                        var pools = [[]];
+                        var poolPositions = [[]];
+                        var poolValues = [[]];
+                        var atPool = 0;
+                        // Assign the first tooltip to the first pool, if the tooltip is configured
+                        if (tooltips[0]) {
+                            pools[0][0] = 0;
+                            poolPositions[0][0] = positions[0];
+                            poolValues[0][0] = values[0].toFixed(2);
+                        }
+                        for (var i = 1; i < positions.length; i++) {
+                            if (!tooltips[i] || (positions[i] - positions[i - 1]) > threshold) {
+                                atPool++;
+                                pools[atPool] = [];
+                                poolValues[atPool] = [];
+                                poolPositions[atPool] = [];
+                            }
+                            if (tooltips[i]) {
+                                pools[atPool].push(i);
+                                poolValues[atPool].push(values[i].toFixed(2));
+                                poolPositions[atPool].push(positions[i]);
+                            }
+                        }
+                        pools.forEach(function (pool, poolIndex) {
+                            var handlesInPool = pool.length;
+                            for (var j = 0; j < handlesInPool; j++) {
+                                var handleNumber =  pool[j];
+                                console.log(handleNumber)
+                                if (j === handlesInPool - 1) {
+                                    var offset = 0;
+                                    poolPositions[poolIndex].forEach(function (value) {
+                                        offset += 1000 - value;
+                                    });
+                                    var direction = isVertical ? 'bottom' : 'right';
+                                    var last = isRtl ? 0 : handlesInPool - 1;
+                                    var lastOffset = 1000 - poolPositions[poolIndex][last];
+                                    offset = (textIsRtl && !isVertical ? 100 : 0) + (offset / handlesInPool) - lastOffset;
+                                    // Center this tooltip over the affected handles
+                                    // console.log(poolValues[poolIndex].toFixed(2))
+                                    console.log(offset)
+                                    offset != 0 ? offset += 86 : offset += 0 ;
+                                    tooltips[handleNumber].innerHTML = '$'+poolValues[poolIndex].join(separator);
+                                    tooltips[handleNumber].style.display = 'block';
+                                    tooltips[handleNumber].style[direction] = offset + '%';
+                                    tooltips[handleNumber].style.left = '-340% !important';
+                                    console.log(tooltips[handleNumber])
+                                } else {
+                                    // Hide this tooltip
+                                    tooltips[handleNumber].style.display = 'none';
+                                }
+                            }
+                        });
+                    });
+                }
+                mergeTooltips(sliderElem, 33, ' - $');
+                this[rangeId].on("set", function (data) {
+                    let newData = {
+                        start: data[0],
+                        end: data[1],
+                        facetName: facetName,
+                        gap: gap
+                    };
+                    self.setRangeSlider(newData);
+                });
+        }
+        });
+    },
     facetItemTemplate: function facetItemTemplate(facet, value, facetSearchTxt) {
         const {
                 facetName,
@@ -1620,6 +1759,173 @@ facet: {
                     `</button>`].join('');
     
     }
+},
+    facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
+    var displayName = facetObj.displayName,
+        facetName = facetObj.facetName,
+        multiLevelField = facetObj.multiLevelField,
+        facetType = facetObj.facetType,
+        values = facetObj.values;
+        const {
+            facetClass,
+            applyMultipleFilters,
+            isCollapsible,
+            isSearchable,
+            searchPlaceHolder,
+            textFacetWrapper,
+            enableViewMore,
+            viewMoreText,
+            viewMoreLimit,
+            applyButtonText,
+            clearButtonText,
+        } = facet;
+        const {
+            actionBtnClass,
+            actionChangeClass
+        } = this.options;
+        const {
+            openBtn,
+            closeBtn
+        } = this.cssList;
+        let viewMoreUi = ``;
+        let viewMoreCss=``;
+        const selected = this.getSelectedFacets()[facetName];
+        const isFtr = (selected && selected.length >0)?true:false;
+        if (enableViewMore && facetType === "text" && values.length > viewMoreLimit) {
+        viewMoreCss = "UNX-view-more";
+        viewMoreUi = "<div class=\"UNX-view-more-row \"><button class=\"".concat(actionBtnClass, "\" data-facet-name=\"").concat(facetName, "\" data-action=\"viewMore\" data-id=\"").concat(viewMoreText[0], "\">").concat(viewMoreText[0], "</button></div>");
+        }
+        let clearUI = ``;
+        let applyBtn = ``;
+        if(isFtr){
+            clearUI = `<button class="UNX-facet-clear ${facetClass} "data-facet-action="deleteFacet" data-facet-name="${facetName}"></button>`;
+        }
+        if(applyMultipleFilters && isFtr) {
+            applyBtn = `<button class="UNX-facet-primary ${facetClass} "data-facet-action="applyFacets" >${applyButtonText}</button>`
+        }
+        let collapsibleUI = ``;
+        let searchInput = ``;
+        if(isCollapsible){
+            if(isExpanded) {
+                collapsibleUI = `<div class="UNX-facet-header ${actionBtnClass} UNX-facet-open" data-facet-name="${facetName}" data-facet-action="facetClose"> <h3 id="UNX-facet-head">${displayName}</h3></div>`;
+            } else {
+                collapsibleUI = `<div class="UNX-facet-header ${actionBtnClass} UNX-facet-close" data-facet-name="${facetName}" data-facet-action="facetOpen"> <h3 id="UNX-facet-head">${displayName}</h3></div>`;
+            }
+        }
+        if(isSearchable && facetSearchTxt !== null) {
+            searchInput =`<div class="UNX-searchable-facets"><label class="UNX-hidden" for="${facetName}_searchBox">${searchPlaceHolder}</label><input  id="${facetName}_searchBox" name="${facetName}_searchBox" data-test-id="${this.testIds.UNX_searchFacets}" class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
+        }
+        return [`<div class="UNX-text-facet-wrap">`,
+                    collapsibleUI,   
+                    `<div class="UNX-facets-all">`,
+                        `<div class="UNX-facets ${textFacetWrapper} ${viewMoreCss}">${children}</div>`,
+                        `<div class="UNX-facet-footer">${applyBtn}</div>`,
+                        viewMoreUi,
+                    `</div>`,
+                `</div>`].join('');
+        },
+    selectedFacetItemTemplate:function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
+        var facetName = selectedFacet.facetName,
+            facetType = selectedFacet.facetType;
+        var name = selectedFacetItem.name,
+            count = selectedFacetItem.count,
+            dataId = selectedFacetItem.dataId;
+        var _this$options$facet = this.options.facet,
+            facetClass = _this$options$facet.facetClass,
+            selectedFacetClass = _this$options$facet.selectedFacetClass,
+            removeFacetsSelectorClass = _this$options$facet.removeFacetsSelectorClass;
+        var UNX_uFilter = this.testIds.UNX_uFilter;
+        var action = "deleteSelectedFacetValue";
+        if (facetType === "range") {
+            action = "deleteSelectedRange";
+        }
+        var css = " ".concat(facetClass, " ").concat(selectedFacetClass, " ");
+        if(facetName === "v_Variant_Price"){
+        return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('PRICE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        } 
+        if(facetName === "v_color_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('COLOR : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+        if(facetName === "v_size_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('SIZE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+        if(facetName === "categoryPath1_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('PRODUCT TYPE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+    
+    },
+    selectedFacetTemplate: function(selections, facet, selectedFacetsConfig) {
+        const {
+            clearAllText,
+            clearFacetsSelectorClass
+        } = facet;
+        const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
+        if (selections.length > 0) {
+        document.querySelector('.clear-all-buttons').style.display = "block"
+        document.querySelector('.clear-all-buttons').classList.add('enabledClearAll')
+        document.querySelector('.UNX-selected-actions').style.display = "block"
+            return ["<div class=\"UNX-facets-selections\">", 
+            "<div class=\"UNX-selected-facets-inner\">".concat(selections, "</div>"), 
+            `<button class="${clearFacetsSelectorClass} ${selectedFClass}" data-facet-action="clearAllFacets">${clearAllText}</button>`,
+            "</div>"].join('');
+        } else {
+        document.querySelector('.UNX-selected-actions').style.display = "none"
+            document.querySelectorAll('.clear-all-buttons.enabledClearAll').length > 0 ? document.querySelector('.clear-all-buttons.enabledClearAll').classList.remove('enabledClearAll'):'';
+            return "";
+        }
+    },
+    rangeTemplate: function (range, selectedRange, facet) {
+        const { facetName, start, end } = range;
+        let min = start;
+        let max = end;
+        if (selectedRange.length > 0) {
+        const sel = selectedRange[0].replace(/[^\w\s]/gi, "").split(" TO ");
+        min = sel[0];
+        max = sel[1];
+        }
+        const rangId = `${facetName}_slider`;
+        return [
+        `<div id="${facetName}"  data-id="${facetName}" class=" UNX-range-slider-wrap">`,
+        `<div class="UNX-value-container UNX-range-value-block" ></div>`,
+        `<div id="${rangId}" data-x="${min}" data-y="${max}" class="UNX-range-slider-wrapper"></div>`,
+        `</div>`,
+        `<div>`,
+        `</div>`
+        ].join("");
+    }
+    },
+    breadcrumb: {
+    el: document.getElementById("breadcrumpContainer")
+},
+    pagesize: {
+    enabled: true,
+    pageSize: 24,
+    },
+    sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [ {
+        value: "min_price asc",
+        text: "Price, Low to High"
+    },{
+        value: "max_price desc",
+        text: "Price, High to Low"
+    }]
 }
 }
 ```
