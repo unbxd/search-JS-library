@@ -264,8 +264,10 @@ window.unbxdSearch = new UnbxdSearch({
     },
     unbxdAnalytics: true,
     pagination: {
-        type: 'FIXED_PAGINATION',
-        el: document.querySelector("#clickScrollContainer"),
+        type: 'INFINITE_SCROLL',
+        el: null,
+        template: null,
+        // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function (data) { console.log(data, "data") }
     },
     allowExternalUrlParams: true
@@ -396,8 +398,9 @@ window.unbxdSearch.updateConfig({
         }
     },
     pagination: {
-        type: 'CLICK_N_SCROLL',
-        el: document.querySelector("#clickScrollContainer"),
+        type: 'INFINITE_SCROLL',
+        heightDiffToTriggerNextPage: 100,
+        // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function(data) {console.log(data,"data")}
     },
     breadcrumb: {

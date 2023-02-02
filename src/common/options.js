@@ -234,9 +234,9 @@ const options = {
         events: {},
 
         // el: document.querySelectorAll(".unxPagination"),
-        type: "CLICK_N_SCROLL",
+        // type: "CLICK_N_SCROLL",
         // pageClass: "UNX_loadMore",
-        action: "click",
+        // action: "click",
         // template: function (paginationData, event, pagination) {
 
         //     if (!paginationData) {
