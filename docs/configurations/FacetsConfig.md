@@ -1686,7 +1686,7 @@ If a Customer needs to customize the block of facets (where all the facets are l
 `facetTemplate` by default has some code (by default behaviour) as defined in this section which can be overriden . 
 One such customization is shown in below integration (refer the code snippet)
 
-<img src="../assets/menu.png">
+<img src="../assets/selectedFacets.png" width="300px">
 
 ```js
 facet{
