@@ -180,7 +180,10 @@ template:function(swatchData, swatches,product) {
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
-# Default Example
+
+
+# UseCases
+## Usecase 1: Default Example
 Sample “swatches” config
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
@@ -208,8 +211,155 @@ swatches:{
        }
    }
 ```
+## Usecase 2: 
 
-# UseCases
-## Usecase 1:
-## Usecase 2:
+<img src="../assets/swatcheUsecase.png" width="500px">
+
+```js
+//other configs goes here ...
+products: {
+        // other products config here ...
+        productAttributes: [
+            //other product attributes here
+            'swatches'
+        ],
+        attributesMap: {
+            //other attribute maps goes here
+            "unxSwatches": "swatches"
+        },
+        template:function(product, idx, swatchUI, productViewType, products ){
+            var unxTitle = product.unxTitle;
+            var unxBadge = product.unxBadge;              
+            var uniqueId = product.uniqueId;
+            var unxVariants = product.unxVariants;
+            var unxMinPrice = product.unxMinPrice;
+            var unxMaxPrice = product.unxMaxPrice;
+            var unxhover = product.unxhover;
+            var unxSwatches = product.unxSwatches;
+            var unxImageUrl = product.unxImageUrl;
+            var unxImageUrls = product.unxImageUrls;
+            var unxProductUrl = product.unxProductUrl;
+            var unxMinRegPrice = product.unxMinRegPrice;
+            var unxMaxRegPrice = product.unxMaxRegPrice;
+            var unxDescription = product.unxDescription;
+            var productItemClass  = products.productItemClass;
+            var unxRelevantDocument = product.unxRelevantDocument;
+            var variantProducts = Array.isArray(unxVariants) ? unxVariants[0] : '';
+            var v_ImgSrc1 = variantProducts.v_Variant_Image;
+            var imgSrc1 = Array.isArray(unxImageUrl) ? unxImageUrl[0] : '';  
+            var imgSrc2 = Array.isArray(unxImageUrls) ? unxImageUrls[0] : '';  
+            if(unxRelevantDocument == 'variant'){                  
+                var imagesUI =(
+                    `<div id="UNX-img-wrapper">
+                        <img id="UNX-img-block" class="image_on" data-srcset=`+v_ImgSrc1+`&amp;         width=165 165w srcset="`+v_ImgSrc1+`&amp;width=165 165w, `+v_ImgSrc1+`&amp;width=360 360w, `+v_ImgSrc1+`&amp;width=533 533w, `+v_ImgSrc1+`&amp;width=720 720w, `+v_ImgSrc1+`&amp;width=940 940w, `+v_ImgSrc1+`&amp;width=1066 1066w, `+v_ImgSrc1+` 1740w" src=`+ v_ImgSrc1 +`&amp;width=533 alt=`+unxTitle+` sizes="(min-width: 1400px) 317px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)" class="motion-reduce" width="1740" height="2000"/>
+                        
+                        <img id="UNX-img-block" loading="lazy" class="lazyload image_off" data-srcset=`+unxhover+`&amp;width=360 360w, `+unxhover+`&amp;width=533 533w, `+unxhover+`&amp;width=720 720w, `+unxhover+`&amp;width=940 940w, `+unxhover+`&amp;width=1066 1066w, `+unxhover+`&amp;width=1740 1740w" src="`+ imgSrc2 +`&amp;width=533" alt=`+unxTitle+` sizes="(min-width: 1400px) 317px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)" class="motion-reduce" width="1740" height="2000"/>
+                    </div>`
+                );
+            } 
+            if(unxRelevantDocument == 'parent'){                     
+                var imagesUI =(
+                    `<div id="UNX-img-wrapper">
+                        <img id="UNX-img-block" class="image_on" data-srcset=`+unxImageUrl+`&amp;width=165 165w srcset="`+unxImageUrl+`&amp;width=165 165w, `+unxImageUrl+`&amp;width=360 360w, `+unxImageUrl+`&amp;width=533 533w, `+unxImageUrl+`&amp;width=720 720w, `+unxImageUrl+`&amp;width=940 940w, `+unxImageUrl+`&amp;width=1066 1066w, `+unxImageUrl+` 1740w" src=`+ imgSrc1 +`&amp;width=533 alt=`+unxTitle+` sizes="(min-width: 1400px) 317px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)" class="motion-reduce" width="1740" height="2000"/>
+                        
+                        <img id="UNX-img-block" loading="lazy" class="lazyload image_off" data-srcset=`+unxhover+`&amp;width=360 360w, `+unxhover+`&amp;width=533 533w, `+unxhover+`&amp;width=720 720w, `+unxhover+`&amp;width=940 940w, `+unxhover+`&amp;width=1066 1066w, `+unxhover+`&amp;width=1740 1740w" src=`+ unxhover +`&amp;width=533 alt=`+unxhover+` sizes="(min-width: 1400px) 317px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)" class="motion-reduce" width="1740" height="2000"/>
+                    </div>`);
+            }
+            var priceUI = '';
+            if ( unxMinPrice == unxMaxPrice && unxMinRegPrice == unxMaxRegPrice && unxMinPrice != null && unxMinPrice != undefined && unxMinRegPrice != null && unxMinRegPrice != undefined ) {
+                priceUI += '<span class="UNX-min-price">$ '+ unxMinPrice + '.00</span><span class="UNX-min-reg-price" style="color:gray !important"> $ '+ unxMinRegPrice + '.00</span>'
+            } else if(unxMinPrice < unxMaxPrice && unxMaxRegPrice < unxMinRegPrice){
+                priceUI = '<span class="UNX-min-price">$ '+ unxMinPrice + '.00</span><span class="UNX-max-price"> - $ '+ unxMaxPrice + '.00</span> <span class="UNX-min-reg-price"> $ '+ unxMinRegPrice +'.00</span><span class="UNX-max-reg-price"> - $ '+ unxMaxRegPrice +'.00</span>'
+            } else if (unxMinPrice == unxMaxPrice) {
+                priceUI += '<span class="UNX-min-price" style="color:gray !important">$ '+ unxMinPrice + '.00</span>'
+            } else if (unxMinPrice === unxMaxPrice && unxMinRegPrice != null && unxMinRegPrice != undefined) {
+                priceUI = '<span class="UNX-min-price" style="color:gray !important">$ '+ unxMinPrice + '.00</span><span class="UNX-max-price" style="color:gray !important"> - $ '+ unxMaxPrice + '.00</span>'
+            } else if(unxMinPrice !== null && unxMinPrice !== undefined && unxMaxPrice !== null &&  unxMaxPrice !== undefined && unxMinRegPrice !== null && unxMinRegPrice !== undefined && unxMaxRegPrice !== undefined && unxMaxRegPrice !== null){
+                priceUI = '<span class="UNX-min-price">$ '+ unxMinPrice + '.00</span><span class="UNX-max-price"> - $ '+ unxMaxPrice + '.00</span> <span class="UNX-min-reg-price"> $ '+ unxMinRegPrice +'.00</span><span class="UNX-max-reg-price"> - $ '+ unxMaxRegPrice +'.00</span>'
+            } else if(unxMinPrice !== null && unxMinPrice !== undefined || unxMinRegPrice !== null && unxMinRegPrice !== undefined || unxMaxRegPrice !== undefined && unxMaxRegPrice !== null){
+                priceUI = '<span class="UNX-min-price" style="color:gray !important">$ '+ unxMinPrice + '.00</span><span class="UNX-max-price" style="color:gray !important"> - $ '+ unxMaxPrice + '.00</span>'
+            } else if(unxMinPrice !== null && unxMinPrice !== undefined || unxMinRegPrice !== null && unxMinRegPrice !== undefined && unxMaxRegPrice !== undefined && unxMaxRegPrice !== null){
+                priceUI = '<span class="UNX-min-price">$ '+ unxMinPrice + '.00</span><span class="UNX-max-price"> - $ '+ unxMaxPrice + '.00</span> <span class="UNX-min-reg-price"> $ '+ unxMinRegPrice +'.00</span><span class="UNX-max-reg-price"> - $ '+ unxMaxRegPrice +'.00</span>'
+            } else if(unxMinPrice !== null && unxMinPrice !== undefined && unxMinPrice == unxMaxPrice && unxMinRegPrice !== undefined && unxMaxRegPrice !== undefined && unxMinRegPrice == unxMaxRegPrice){
+                priceUI = '<span class="UNX-min-price">$ '+ unxMinPrice + '.00</span><span class="UNX-min-reg-price">$ '+ unxMinRegPrice + '.00</span>'
+            } else if(unxMinPrice < unxMaxPrice || unxMaxRegPrice < unxMinRegPrice){
+                priceUI = '<span class="UNX-min-price">$ '+ unxMinPrice + '.00</span><span class="UNX-max-price"> - $ '+ unxMaxPrice + '.00</span> <span class="UNX-min-reg-price"> $ '+ unxMinRegPrice +'.00</span><span class="UNX-max-reg-price"> - $ '+ unxMaxRegPrice +'.00</span>'
+            }
+            var cardType = "";
+            var descUI = "";
+            if(productViewType === "GRID") {
+                cardType = "UNX-grid-card"
+            } else {
+                cardType = "UNX-list-card";
+                descUI = '<p class="UNX-description">'+unxDescription+'</p>';
+            }
+            var swatchHtml =``;
+            var unxSwatchImg = unxImageUrls;
+            var unxSwatch = unxSwatches;
+            if(unxSwatch && unxSwatchImg){
+                for(var i=0; i < unxSwatchImg.length; i++){
+                    if(i == 0 ){
+                    swatchHtml += `<span data-color="${unxSwatchImg[i].split(':')[0]}" role='button' data-varimg="${unxSwatchImg[i].split(':')[1]}:${unxSwatchImg[i].split(':')[2]}&amp;width=165 165w" class="swatch-element selected color ${unxSwatchImg[i].split(':')[0]}">
+                                    <div class="faux-label color-swatches color-swatch--${unxSwatchImg[i].split(':')[0].toLowerCase().replace(" ", "-")}" style="background-color:${unxSwatchImg[i].split(':')[0].toLowerCase().replace(" ", "-")}">
+                                    <div class="visually-hidden">${unxSwatchImg[i].split(':')[0]}</div>
+                                    </div>
+                                    </span>`
+                    } else if(i <=6 ){
+                    swatchHtml += `<span data-color="${unxSwatchImg[i].split(':')[0]}" role='button' data-varimg="${unxSwatchImg[i].split(':')[1]}:${unxSwatchImg[i].split(':')[2]}&amp;width=165 165w" class="swatch-element color ${unxSwatchImg[i].split(':')[0]}">
+                                    <div class="faux-label color-swatches color-swatch--${unxSwatchImg[i].split(':')[0].toLowerCase().replace(" ", "-")}" style="background-color:${unxSwatchImg[i].split(':')[0].toLowerCase().replace(" ", "-")}">
+                                    <div class="visually-hidden">${unxSwatchImg[i].split(':')[0]}</div>
+                                    </div>
+                                    </span>`
+                    }
+                    else if(i == 7){
+                        swatchHtml += `<span class="underline">
+                                            <span class="small--hide">More...</span>
+                                            <span class="medium-up--hide">+</span>
+                                        </span>`
+                        }
+                    }
+                }
+            var unxBadges = '';
+            if(unxBadge == "Online Exclusive" || unxBadge == "New Colors" || unxBadge == "Best Seller" || unxBadge == "Top Rated"){ 
+                unxBadges='<span class="UNX-badges badge">'+ unxBadge +'</span>' 
+            }
+            return ['<li id="UNX-products" unbxdattr="product" unbxdparam_sku="'+uniqueId+'" unbxdparam_prank="'+idx+'" class="UNX-product-col '+cardType+' '+productItemClass+'" unbxdparam_requestId='+window.unbxdSearch.state.requestId+'>',
+                        '<div class="UNX-view-item" >',
+                        '<div class="UNX-badge">'+unxBadges+'</div>',
+                        '<a class="UNX-product-tile" href="'+unxProductUrl+'">', 
+                                imagesUI,
+                                '<div class="UNX-product-content">',
+                                '<div class="UNX-product-title">'+unxTitle+'</div>',                            
+                                '<span class="UNX-price-row">'+priceUI+'</span>',
+                                '<div class="UNX-swatch swatch card-grid-colors">'+swatchHtml+'</div>',
+                                '<style>url();</style>',
+                                '<style>url();</style>',
+                                '<style>url();</style>',
+                                '</div>',
+                        '</a>',
+                        '</div>',
+                    '</li>'].join('');
+        },
+        onEvent: function (context, type) {
+            if(type == 'AFTER_RENDER'){
+            var swatchItem = document.getElementsByClassName('swatch-element');
+            for (var i = 0; i < swatchItem.length; i++) {
+                swatchItem[i].onclick = function (e) {
+                    e.preventDefault();
+                var parentDOM = this.parentElement;
+                var existing = parentDOM.getElementsByClassName('selected');
+                existing[0].className = existing[0].className.replace('selected','');
+                this.className += " selected";
+                var closeEle =this.closest('.UNX-product-col');
+                var swatchImg = closeEle.getElementsByClassName('selected')[0].getAttribute("data-varimg")
+                closeEle.getElementsByClassName('image_on')[0].setAttribute("src",swatchImg);
+                closeEle.getElementsByClassName('image_on')[0].setAttribute("srcset",swatchImg);
+                closeEle.getElementsByClassName('image_on')[0].setAttribute("data-srcset",swatchImg);
+                }
+            }
+}
+            }
+    }
+```
+
 ## Usecase 3:
