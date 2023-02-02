@@ -290,7 +290,10 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
-# Default Example
+
+# Usecases
+## Usecase 1
+### Default Example
 Sample code for the Sort config:
 
 ```js
@@ -338,7 +341,42 @@ sort: {
     },
 },
 ```
-# Usecases
-## Usecase 1
 ## Usecase 2
+###  Dropdown
+[![](../assets/dropdownsort.png)](../assets/dropdownsort.png)
+
+``` js
+ sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [
+      {
+        value: "sortPrice desc",
+        text: "Price High to Low"
+      },
+      {
+        value: "sortPrice asc",
+        text: " Price Low to High"
+      }
+    ]
+  }
+
+```
 ## Usecase 3
+### Buttons
+[![](../assets/button-sort.png)](../assets/button-sort.png)
+
+``` js
+ sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [
+      {
+        value: "sortPrice desc",
+        text: "Price High to Low"
+      },
+      {
+        value: "sortPrice asc",
+        text: " Price Low to High"
+      }
+    ]
+  }
+```
