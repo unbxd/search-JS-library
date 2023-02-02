@@ -1028,9 +1028,12 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
-## Default Example
+# UseCases
+
+## Usecase 1 : Default Example
 
 Sample “facet” config
+
 ```js
 facet: {
     facetsEl:null,
@@ -1319,8 +1322,7 @@ facet: {
 }
 ```
 
-# UseCases
-## Usecase 1: Range Sliders
+## Usecase 2: Range Sliders
 
 ### User Requirement
 {: .no_toc}
@@ -1366,10 +1368,6 @@ facet: {
     defaultOpen: "FIRST",
     onFacetLoad: function (facets) {
             document.getElementById("unbxdInput").value = "";
-            // let priceSliderEle = document.getElementsByClassName('UNX-product-item grid__item grid-product');
-            // if(priceSliderEle.length < 4 && priceSliderEle.length != 0){
-            //     document.querySelector('.price').style.display = 'none'
-            // }
             let _this = this;
             let self = this;
             let facet = this.options.facet;
@@ -1388,19 +1386,6 @@ facet: {
                         min = facetItem.min,
                         start = facetItem.start;
                     let selectedValues = sliderElem.dataset;
-
-
-                    // first time
-                        // store the current q as prev q and current stats as prev stateblock_state
-                    // second timers 
-                        // if prev query is same as current query then
-                            // use prev stats or min and max values
-                            
-                        // if prev query is not same as new query then
-                            // use current stats for min and max
-                            // update prevQuery = current query
-                            // update currnet stats = prev stats for current
-
 
                     if(!window.prevQuery) {
                         window.prevQuery = window.unbxdSearch.getSearchQuery()
@@ -1495,12 +1480,34 @@ facet: {
 }
 ```
 
-## Usecase 2: Text Facet
+## Usecase 3: Text Facet - (Collapsible , Searchable, View more ...)
+
+### User Requirement
+{: .no_toc}
+
+The code snippet below represents a block of facets which are collapsible , the facets are searchable , the button text for view more / view less is changed to "+ Show More", "- Show less" etc . refer to the code snippet below.
+
+
+[![](../assets/textFacet.png)](../assets/textFacet.png)
+
+
+### Code Snippet
+{: .no_toc}
+```js
+facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    isCollapsible: true,
+    defaultOpen: "FIRST",
+    isSearchable: true,
+    enableViewMore: true,
+    viewMoreText: ["+ Show More", "- Show less"],
+    viewMoreLimit: 3
+}
+```
 
 
 
-
-## Usecase 3: Checkable Range Facets
+## Usecase 4: Checkable Range Facets
 
 ### User Requirement
 {: .no_toc}
@@ -1511,6 +1518,7 @@ Checkable Range facet will be rendered automatically along with other facets if 
 [![](../assets/checkableRangeFacet.png)](../assets/checkableRangeFacet.png)
 
 ### Code snippet
+{: .no_toc}
 ```js
 facet: {
     // ..Other facet configurations goes here
@@ -1558,13 +1566,10 @@ facet: {
             `</div>`
         ].join("");
     };
-    isCollapsible: false,
-    isSearchable: false,
-    facetMultiSelect: true
 }
 ```
 
-## Usecase 4 : Text facet items with button
+## Usecase 5: Text facet items with button
 
 ### User Requirement
 {: .no_toc}
@@ -1604,20 +1609,10 @@ facet: {
                 facetClass += ` ${selectedFacetClass}`
                 action = "deleteFacetValue";
             }
-    if(facetName === 'v_color_uFilter'){
-        var cName = name.toLowerCase();
-        var fName = cName.replace(" ", "-");
-        return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">
-                <span class="UNX-facet-txt">
-                    <div class="color-swatch color-swatch--${fName}" style="background-color:${fName};">
-                    <span class="UNX-facet-text" id="UNX-color-facet-text">${name}</span></div>
-                </span>
-                </button>`].join('');
-    } else {
-        return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
-        `<span class="UNX-facet-text">${name}</span>`,
-        `</button>`].join('');
-    }
+            
+            return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+                `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
+            `</button>`].join('')
 }
 }
 ```
