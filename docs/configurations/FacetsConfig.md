@@ -1684,7 +1684,7 @@ facet: {
 
 The facet block can be customized by customizing the "facetTemplate" template . Refer to below code to customixe your facets block.
 
-<img src="../assets/Menu.png" width="500px">
+<img src="../assets/Menu.png" width="300px">
 
 ```js
 facet{
