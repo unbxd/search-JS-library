@@ -151,8 +151,9 @@ mapping: {"image_url": "v_imageUrl"}
 
 ---
 
-# Default Example 
+# UseCases
 
+## UseCase 1 : Default Example 
 Sample “variants” config
 
 ```js
@@ -170,8 +171,10 @@ variants:{
     },
 ```
 
-# UseCases
-
-## UseCase 1
-
 ## UseCase 2
+
+<img src="../assets/variantsUsecase.png" width="250px">
+
+```js
+
+```
