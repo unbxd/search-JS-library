@@ -294,6 +294,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 # Usecases
 ## Usecase 1
 ### Default Example
+{: .no_toc }
 Sample code for the Sort config:
 
 ```js
@@ -343,6 +344,7 @@ sort: {
 ```
 ## Usecase 2
 ###  Dropdown
+{: .no_toc }
 [![](../assets/dropdownsort.png)](../assets/dropdownsort.png)
 
 ``` js
@@ -363,6 +365,7 @@ sort: {
 ```
 ## Usecase 3
 ### Buttons
+{: .no_toc }
 [![](../assets/button-sort.png)](../assets/button-sort.png)
 
 ``` js
