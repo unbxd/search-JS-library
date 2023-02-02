@@ -1032,7 +1032,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ## Usecase 1 : Default Example
 
-Sample “facet” config
+Below is the code 
 
 ```js
 facet: {
@@ -1322,6 +1322,9 @@ facet: {
 }
 ```
 
+---
+
+
 ## Usecase 2: Range Sliders
 
 ### User Requirement
@@ -1480,6 +1483,9 @@ facet: {
 }
 ```
 
+---
+
+
 ## Usecase 3: Text Facet - (Collapsible , Searchable, View more ...)
 
 ### User Requirement
@@ -1504,7 +1510,7 @@ facet: {
 }
 ```
 
-
+---
 
 ## Usecase 4: Checkable Range Facets
 
@@ -1513,7 +1519,6 @@ facet: {
 If the user wishes to have a range facet which is checkable, this is an example with the integration.
 
 Checkable Range facet will be rendered automatically along with other facets if it is configured on the console dashboard.
-
 
 <img src="../assets/checkableRangeFacet.png" width="500px">
 
@@ -1568,6 +1573,9 @@ facet: {
     };
 }
 ```
+
+---
+
 
 ## Usecase 5: Color Facet Item as a color button
 
@@ -1669,16 +1677,19 @@ facet: {
 
 ---
 
-## Usecase 7: Custom Menu
+## Usecase 7: Customized facet block
 
 ### User Requirement
 {: .no_toc}
-If the user wants menu to be like below , refer below code snippet.
+
+The facet block can be customized by customizing the "facetTemplate" template . Refer to below code to customixe your facets block.
 
 <img src="../assets/Menu.png" width="500px">
 
 ```js
-facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
+facet{
+    //Rest configs for facet
+    facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
             var displayName = facetObj.displayName,
                 facetName = facetObj.facetName,
                 multiLevelField = facetObj.multiLevelField,
@@ -1732,17 +1743,68 @@ facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearc
             return ["<div class=\"UNX-text-facet-wrap\" style=\"border-top: unset !important\"; \"border-top-color: unset !important\" >", 
             collapsibleUI, 
             "<div class=\"UNX-facets-all\">",  "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), "</div>", "</div>"].join('');
-        },
+        }
+}
 ```
 ---
 
-## Usecase 8: Custom Selected items with circular border
+## Usecase 8: Customized selected items tags
 
 ### User Requirement
 {: .no_toc}
 
-<img src="../assets/selectedFacets.png" width="30px">
+The selected items tags can be customized by adding the custom code in "selectedFacetItemTemplate" . Refer below code snippet for customizing your selected items tags.
+
+<img src="../assets/selectedFacets.png" width="300px">
 
 ```js
-
+facet:{
+    //Rest configs for facet
+    selectedFacetItemTemplate: function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
+        var facetName = selectedFacet.facetName,
+            facetType = selectedFacet.facetType;
+        var name = selectedFacetItem.name,
+            count = selectedFacetItem.count,
+            dataId = selectedFacetItem.dataId;
+        var _this$options$facet = this.options.facet,
+            facetClass = _this$options$facet.facetClass,
+            selectedFacetClass = _this$options$facet.selectedFacetClass,
+            removeFacetsSelectorClass = _this$options$facet.removeFacetsSelectorClass;
+        var UNX_uFilter = this.testIds.UNX_uFilter;
+        var action = "deleteSelectedFacetValue";
+        if (facetType === "range") {
+            action = "deleteSelectedRange";
+        }
+        var css = " ".concat(facetClass, " ").concat(selectedFacetClass, " ");
+        if(facetName === "v_Variant_Price"){
+        return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('PRICE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        } 
+        if(facetName === "v_color_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('COLOR : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+        if(facetName === "v_size_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('SIZE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+        if(facetName === "categoryPath1_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('PRODUCT TYPE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+    
+    }
+}
 ```

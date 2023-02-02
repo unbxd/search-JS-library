@@ -215,10 +215,11 @@ swatches:{
 
 ## Usecase 2:
 
-<img src="../assets/swatchUsecase3.png" width="250px"  style="margin-left: auto; margin-right: auto;">
+<img src="../assets/swatchUsecase3.png" width="250px" >
 
 ```js
 products:{
+    //Other products configs here..
     template: function (product, idx, swatchUI, productViewType, products) {
             const {
                 uniqueId,
