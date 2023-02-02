@@ -1741,7 +1741,7 @@ facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearc
 ### User Requirement
 {: .no_toc}
 
-<img src="../assets/selectedFacets.png" width="500px">
+<img src="../assets/selectedFacets.png" width="30px">
 
 ```js
 

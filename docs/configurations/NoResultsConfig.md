@@ -62,5 +62,40 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 # UseCases
 ## Usecase 1:
+
+### User Requirement
+{: .no_toc}
+
+If a user needs a custom 
+
+<img src="../assets/noResultsUsecase.png" width="250px">
+
+```js
+noResults:{
+        el: document.getElementById("noResultWrapper"),
+        template: function (query) {
+            document.getElementById("paginationContainer").style.display = "none";
+            document.getElementById("header_message").style.display = "none";
+            document.querySelector('.UNX-facet-wrapper').style.display = "none";
+            document.querySelector('.UNX-mob-filters-mobile').style.display = "none"; 
+            document.querySelector('.UNX-result-header').style.display = "none"; 
+            return (
+                `<div class="UNX-no-results">
+                    <h1 class="h2 search-performed">
+                        Search Results for:</h1>
+                    <h2 class = "queryDisplay">
+                    <span>
+                        “'+query+'”
+                    </span>
+                    </h2>
+                    <p role="status">
+                        No results found for “'+query+'”. Check the spelling or use a different word or phrase.
+                    </p>
+                <div>`
+                )
+        }
+}
+
+```
 ## Usecase 2:
 ## Usecase 3:
