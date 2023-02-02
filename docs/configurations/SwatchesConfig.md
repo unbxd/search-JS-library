@@ -31,13 +31,13 @@ Configure swatches display by using the configs in this section.
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
 
 {: .warning } 
-NOTE: If you wants swatches, variants count should be higher, and “groupBy” field should be present in mapped fields config as shown below:
+NOTE: If you have want to include swatches, please ensure the `count` field inside the `variants` config to be more than 1, and `groupBy` field should have a corresponding mapping in the `mapping` key as shown in the below variants config example:
 
 ```js
 variants:{
        enabled:false,
        count:5,
-       groupBy:'v_colour',
+       groupBy:'v_imageUrl',
        attributes:[
            "title",
            "v_imageUrl"
@@ -51,7 +51,13 @@ variants:{
 
 # Configurations
 
-The following options are available under the object:
+The following options are available under the swatches object:
+
+``` js
+swatches:{
+// the below swatches configurations goes here.
+}
+```
 
 ## enabled
 {: .d-inline-block }
@@ -72,8 +78,8 @@ enabled: false
 
 ### Scenarios
 {: .no_toc }
-1. true  - Swatches feature will be enabled.
-2. false - Swatches feature will be disabled.
+1. `true`  - Swatches feature will be enabled.
+2. `false` - Swatches feature will be disabled.
 
 
 ---
@@ -88,11 +94,12 @@ Field mapping of the catalog attributes to the swatch attributes
 ### Default Value
 {: .no_toc }
 ```js
-attributesMap:{swatchImgs: "unbxd_color_mapping","swatchColors": "color", "swatchList": "color"}
+attributesMap:{
+    "swatchImgs": "unbxd_color_mapping",
+    "swatchColors": "color", 
+    "swatchList": "color"
+}
 ```
-
-### Scenarios
-{: .no_toc }
 
 ---
 ## swatchClass
@@ -106,11 +113,13 @@ Additional CSS class name for the swatches
 ### Default Value
 {: .no_toc }
 ```js
-swatchClass:“UNX-swatch-btn”
+swatchClass:"UNX-swatch-btn"
 ```
 
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 ## template
@@ -124,7 +133,7 @@ Customize the look and feel of the swatches component by returning your custom H
 This function takes three params:
 1. `swatchData` - swatchData contains data related to swatches, like images.
 2. `swatches` - Swatches object contains swatchClass, which use to design swatch component.
-3. `product` - 
+3. `product` - it is an object which conatans info related to product like unxTitle.
 
 **Expected return value**: a string of HTML that will be used to render the swatches component on the webpage
 
@@ -173,6 +182,8 @@ For additional information on custom scenarios, please refer to the [use cases s
 ---
 # Default Example
 Sample “swatches” config
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
 
 ```js
 swatches:{

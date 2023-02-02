@@ -44,7 +44,7 @@ The choice of pagination method depends on the specific needs of the website and
 
 ## Fixed Pagination
 
-****Advantages:****
+**Advantages:**
 1. Simple and easy to use
 2. Allows users to easily navigate through the pages of products
 3. Provides a clear indication of the current page and total number of pages
@@ -84,6 +84,11 @@ The choice of pagination method depends on the specific needs of the website and
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
 
+```js
+pagination: {
+    // the below pagination configurations goes here
+}
+```
 
 ## enabled
 {: .d-inline-block }
@@ -129,7 +134,7 @@ Load More Button: In this type of pagination, a “Load More” button is provid
 ### Default Value
 {: .no_toc }
 ```js
-type: “CLICK_N_SCROLL”
+type: "CLICK_N_SCROLL"
 ```
 
 ### Scenarios
@@ -261,10 +266,12 @@ CSS class name for the pagination component.
 ### Default Value
 {: .no_toc }
 ```js
-pageClass: “UNX-page-items”
+pageClass: "UNX-page-items"
 ```
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 
@@ -279,11 +286,13 @@ CSS class name for selected page item.
 ### Default Value
 {: .no_toc }
 ```js
-selectedPageClass: “UNX-selected-page-item”
+selectedPageClass: "UNX-selected-page-item"
 ```
 
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 
@@ -407,6 +416,9 @@ action: 'click'
 ### Scenarios
 {: .no_toc }
 
+1. `Click`: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a pagination.
+2. `Change`: Change refers to a pagination operation that is initiated when a specific variable or data element is changed
+
 ---
 
 
@@ -450,11 +462,12 @@ htmlAttributes: { class:"UNX-banner-block" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
-# Examples
-
-# Default Example
+# UseCases
+## Default Example
 
 Sample “pagination” config
+
+[![](../assets/pagination.png)](../assets/pagination.png)
 
 ```js
 pagination : {
@@ -472,7 +485,6 @@ pagination : {
    }
 ```
 
-# UseCases
 ## Fixed Pagination
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 ```js
@@ -570,6 +582,7 @@ pagination: {
 
 ## Infinite Scroll
 
+[![](../assets/infinitescroll.png)](../assets/infinitescroll.png)
 ```js
 pagination: {
   type:'INFINITE_SCROLL',

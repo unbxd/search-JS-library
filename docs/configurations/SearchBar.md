@@ -47,6 +47,7 @@ searchBoxEl : null
 ```
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 ---
 ## searchButtonEl
@@ -59,15 +60,20 @@ Configure your search button here. Clicking on this will load the results based 
 ### Default Value
 {: .no_toc }
 ``` js
-searchButtonEl :NA
+searchButtonEl : NA
 ```
 
 ### Scenarios
 {: .no_toc }
 
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
+
 ---
 
 # Default Example
+
+[![](../assets/searchbox.png)](../assets/searchbox.png)
+
 ```js
 <div class="UNX-input-wrapper">
   <input id="unbxdInput" class="UNX-input" type="text"/>

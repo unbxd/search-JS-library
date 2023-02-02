@@ -38,6 +38,12 @@ In such cases, the context-aware algorithm of Unbxd understands your visitor’s
 
 You can configure the spellcheck feature by updating the required configs under the “spellCheck” config object.
 
+``` js
+spellCheck: {
+      // the below spellcheck configurations goes here.
+}
+```
+
 ## enabled
 {: .d-inline-block }
 
@@ -57,8 +63,8 @@ enabled: false
 
 ### Scenarios
 {: .no_toc }
-1. true  - Spellcheck feature will be enabled.
-2. false - Spellcheck feature will be disabled.
+1. `true`  - Spellcheck feature will be enabled.
+2. `false` - Spellcheck feature will be disabled.
 
 ---
 ## el	
@@ -91,7 +97,7 @@ There are several HTML selectors that can be used to locate the banner element i
 Function
 {: .label }
 
-The “template” function here refers to the ability to change the appearance of the spellcheck feature on the e-commerce website. It allows developers to control the appearance of the spellcheck component by providing custom HTML.This function receives 3 parameters: the search query, the suggested query text and a config object with product count details ({start, productsLn, numberOfProducts}).
+The “template” function here refers to the ability to change the appearance of the spellcheck feature on the e-commerce website. It allows developers to control the appearance of the spellcheck component by providing custom HTML.
 
 This function takes three params:
 1. `query` - the search query , which generally refers to a request made by a user to search for specific products or information within the app.
@@ -162,13 +168,12 @@ Additional CSS class name for the spell check component,a selector class is typi
 ```js
 selectorClass:"UNX-suggestion"
 ```
+
 ### Scenarios
 
 Any valid class name can passed here.
 
 ---
-
-
 
 ## tagName
 {: .d-inline-block }
@@ -182,7 +187,7 @@ String
 {: .no_toc }
 
 ```js
-tagName: 'div'
+tagName: 'DIV'
 ```
 
 ### Scenarios
@@ -209,8 +214,12 @@ htmlAttributes: { class:"UNX-spellcheck-wrapper" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-# Default Example
+# Usecases
+
+## Usecase 1: 
 Sample “spellCheck” config
+
+[![](../assets/spellcheck.png)](../assets/spellcheck.png)
 
 ```js
 spellCheck:{
@@ -254,10 +263,3 @@ spellCheck:{
     },
 }
 ```
-
-
-# Custom Usecases
-
-## Usecase 1: 
-## Usecase 2: 
-## Usecase 3: 

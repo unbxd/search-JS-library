@@ -34,7 +34,13 @@ You can configure the way in which the products have to be displayed (List or Gr
 
 # Configurations
 
-Update the options under the “productView” config object to configure the product view feature.  
+Update the options under the “productView” config object to configure the product view feature.
+
+``` js
+productView:{
+// the below productView configurations goes here.
+}
+```
 
 ## enabled
 {: .d-inline-block }
@@ -55,8 +61,8 @@ enabled: true
 
 ### Scenarios
 {: .no_toc }
-1. true -  productview will be displayed on the website 
-2. false - the productview feature will be disabled
+1. `true` -  productview will be displayed on the website 
+2. `false` - the productview feature will be disabled
 
 ---
 
@@ -91,11 +97,11 @@ Function
 
 The "template" function here refers to the ability to change the appearance of the productview feature on the e-commerce website. It allows developers to control the appearance of the productview by providing custom HTML. The function receives the list of productview to be displayed, and the productview configurations as parameters and it needs to return a string of HTML that will be used to render the productview on the webpage.
 
-This function passes two params:
-1. `selectedViewType` - 
-2. `productViewType` - 
+This function accepts two params:
+1. `selectedViewType` - Its value might either be "GRID" or "LIST."
+2. `productViewType` - it is productview object that contains information like the selectedViewTypeClass and viewTypeClass.
 
-**Expected return value**: a string of HTML that will be used to render the productview; on the webpage
+**Expected return value**: a string of HTML that will be used to render the productview on the webpage
 
 
 ### Default Value
@@ -145,16 +151,19 @@ For additional information on custom scenarios, please refer to the [use cases s
 String
 {: .label }
 
-Product view types to be displayed by default: “LIST” or ‘GRID”
+Product view types to be displayed by default.
 
 ### Default Value
 {: .no_toc }
 ```js
-    defaultViewType:"GRID"
+defaultViewType:"GRID"
 ```
 
 ### Scenarios
 {: .no_toc }
+
+1. "GRID" : Product view will be like grid.
+2. "LIST" : Product view will be  like list.
 
 ---
 ## action
@@ -169,7 +178,7 @@ Action on which product view change should be triggerd: “click” or “change
 {: .no_toc }
 
 ``` js
-action:“click”	
+action:"click"
 ```
 
 ### Scenarios
@@ -189,11 +198,13 @@ Additonal CSS class name to be added to the product view type elements
 ### Default Value
 {: .no_toc }
 ``` js
-viewTypeClass:“UNX-product-view”
+viewTypeClass:"UNX-product-view"
 ```
 
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 ## selectedViewTypeClass
@@ -207,10 +218,12 @@ Additional CSS class name to be added to the selected view type element
 ### Default Value
 {: .no_toc }
 ``` js
-selectedViewTypeClass:“UNX-selected-product-view”	
+selectedViewTypeClass:"UNX-selected-product-view"
 ```
 ### Scenarios
 {: .no_toc }
+
+Any valid class name can passed here.
 
 ---
 ## tagName
@@ -244,7 +257,7 @@ Object
 ### Default Value
 {: .no_toc }
 ```js
-htmlAttributes:{class:”product-view-container”}
+htmlAttributes:{class:"product-view-container"}
 ```
 
 ### Scenarios
@@ -253,12 +266,20 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
+
+
+# UseCases
+## Usecase 1
 # Default Example
+{: .no_toc }
 Sample “productView” config
+
+[![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
+
 
 ```js
 productView : {
-  enabled:true,
+       enabled:true,
        el:null,
        action: “click”, // CLICK or CHANGE
        viewTypeClass: “UNX-product-view”,
@@ -295,8 +316,29 @@ productView : {
     },
    }
 ```
+## Usecase 2
+1. GRID: when viewTypes is equal to GRID.
 
-# UseCases
-## Usecase 1:
-## Usecase 2:
-## Usecase 3:
+[![](../assets/GRID.png)](../assets/GRID.png)
+
+configuration:
+```js
+productView:{
+    // ...other confiurations goes here
+     viewTypes: “GRID”,
+}
+```
+
+## Usecase 3
+1. LIST: when viewTypes is equal to LIST.
+
+[![](../assets/LIST.png)](../assets/LIST.png)
+
+configuration:
+```js
+
+productView:{
+    // ...other confiurations goes here
+     viewTypes: “LIST”,
+}
+```

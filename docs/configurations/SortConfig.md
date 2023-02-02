@@ -286,7 +286,10 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
-# Default Example
+
+# Usecases
+## Usecase 1: Default Example
+{: .no_toc }
 Sample code for the Sort config:
 
 ```js
@@ -334,19 +337,68 @@ sort: {
     },
 },
 ```
-# Usecases
-## Usecase 1
-```js
-[{
-    value: "Name asc",
-    text: "Name: A to Z",
-},
-{
-    value: "Name desc",
-    text: "Name: Z to A",
-}
-]
-```
 
-## Usecase 2
-## Usecase 3
+## Usecase 2: Sort as Dropdown
+{: .no_toc }
+[![](../assets/dropdownsort.png)](../assets/dropdownsort.png)
+
+``` js
+ sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [
+      {
+        value: "sortPrice desc",
+        text: "Price High to Low"
+      },
+      {
+        value: "sortPrice asc",
+        text: " Price Low to High"
+      }
+    ]
+  }
+
+```
+## Usecase 3: Sort as Buttons
+{: .no_toc }
+[![](../assets/button-sort.png)](../assets/button-sort.png)
+
+``` js
+ sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [
+      {
+        value: "sortPrice desc",
+        text: "Price High to Low"
+      },
+      {
+        value: "sortPrice asc",
+        text: " Price Low to High"
+      }
+    ],
+    action: "click",
+    template: function (selectedSort) {
+      var sortBtnsUI = "";
+      var self = this;
+      this.options.sort.options.forEach(function (item, index) {
+        var selectedCss = "";
+        if (item.value === selectedSort) {
+          selectedCss = self.options.sort.selectedSortClass;
+        }
+        sortBtnsUI += [
+          '<div class="btn UNX-sort-btn ' +
+            self.options.sort.sortClass +
+            " " +
+            selectedCss +
+            '"',
+          'data-value="' +
+            item.value +
+            '" data-action="changeSort"> ' +
+            item.text +
+            "</div>"
+        ].join("");
+      });
+      return sortBtnsUI;
+    }
+  }
+
+```
