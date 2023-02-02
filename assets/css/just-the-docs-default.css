@@ -2320,6 +2320,8 @@ figure.highlight {
   -webkit-overflow-scrolling: touch;
   position: relative;
   padding: 0;
+  max-height: 300px;
+  overflow: scroll;
 }
 div.highlighter-rouge > button,
 div.listingblock > div.content > button,
