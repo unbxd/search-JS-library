@@ -1486,13 +1486,12 @@ facet: {
 ---
 
 
-## Usecase 3: Text Facet - (Collapsible , Searchable, View more ...)
+## Usecase 3: Facets - (collapsible , searchable, view more , default open etc)
 
 ### User Requirement
 {: .no_toc}
 
-The code snippet below represents a block of facets which are collapsible , the facets are searchable , the button text for view more / view less is changed to "+ Show More", "- Show less" etc . refer to the code snippet below.
-
+If the customer needs facets block to be collapsible (each facet can be expanded/contracted) , the facets are searchable (eact facet item will have a search input) , want a customized (viewmore,viewless) options etc.., refer the below code snippet . 
 
 <img src="../assets/textFacet.png" width="250px">
 
@@ -1516,9 +1515,10 @@ facet: {
 
 ### User Requirement
 {: .no_toc}
-If the user wishes to have a range facet which is checkable, this is an example with the integration.
 
-Checkable Range facet will be rendered automatically along with other facets if it is configured on the console dashboard.
+The usual range facet can be customized by adding customized template to `rangeTemplate`. 
+If the customer's requirement is to have a range facet but not with the slider but instead with a checkable box , refer the below code snippet .
+`rangeTemplate` by default has some code (by default behaviour) as defined in this section which can be overriden . 
 
 <img src="../assets/checkableRangeFacet.png" width="500px">
 
