@@ -1576,13 +1576,14 @@ facet: {
 
 ---
 
-
-## Usecase 5: Color Facet Item as a color button
+## Usecase 5: Customized facet item (color swatch as facet)
 
 ### User Requirement
 {: .no_toc}
 
-If user requires the facet item in Color facet to be a color button as shown below then he can refer to the following code snippet.
+The usual facet item be customized by adding customized template to `facetItemTemplate`. 
+If the customer's requirement is to have a facet item as a swatch , below code snippet can be referred.  
+`facetItemTemplate` by default has some behaviour which can be overriden .  
 
 <img src="../assets/colorfcetbutton.png" width="250px">
 
