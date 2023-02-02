@@ -462,7 +462,8 @@ htmlAttributes: { class:"UNX-banner-block" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
-# Default Example
+# UseCases
+## Default Example
 
 Sample “pagination” config
 
@@ -484,7 +485,6 @@ pagination : {
    }
 ```
 
-# UseCases
 ## Fixed Pagination
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 ```js
