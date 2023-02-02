@@ -1502,6 +1502,8 @@ facet: {
 
 ## Usecase 3: Checkable Range Facets
 
+[![](../assets/checkableRangeFacet.png)](../assets/checkableRangeFacet.png)
+
 ```js
 facet: {
 rangeTemplate: function (ranges, selectedRanges) {
