@@ -1682,7 +1682,9 @@ facet: {
 ### User Requirement
 {: .no_toc}
 
-The facet block can be customized by customizing the "facetTemplate" template . Refer to below code to customixe your facets block.
+If a Customer needs to customize the block of facets (where all the facets are listed) , they need to add the custom code in `facetTemplate` . 
+`facetTemplate` by default has some code (by default behaviour) as defined in this section which can be overriden . 
+One such customization is shown in below integration (refer the code snippet)
 
 <img src="../assets/menu.png">
 
