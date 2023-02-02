@@ -533,5 +533,3 @@ products:{
 
 }
 ```
-
-## Usecase 3:

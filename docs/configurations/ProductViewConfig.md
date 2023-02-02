@@ -313,6 +313,23 @@ productView : {
 ```
 
 # UseCases
-## Usecase 1:
+## Usecase 1: 
+1. GRID: when viewTypes is equal to GRID.
+
+configuration:
+```js
+productView:{
+     viewTypes: “GRID”,
+}
+```
+
 ## Usecase 2:
-## Usecase 3:
+1. LIST: when viewTypes is equal to LIST.
+
+
+configuration:
+```js
+productView:{
+     viewTypes: “LIST”,
+}
+```
