@@ -215,7 +215,7 @@ swatches:{
 
 ## Usecase 2:
 
-<img src="../assets/swatchUsecase3.png" width="250px">
+<img src="../assets/swatchUsecase3.png" width="250px"  style="margin-left: auto; margin-right: auto;">
 
 ```js
 products:{
