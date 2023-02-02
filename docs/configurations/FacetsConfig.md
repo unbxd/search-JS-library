@@ -1557,7 +1557,7 @@ return [
 
 [![](../assets/textFacetwithButton1.png)](../assets/textFacetwithButton1.png)
 
-[![](../assets/textFacetWithButton2.png)](../assets/textFacetWithButton2.png)
+[![](../assets/textFacetwithButton2.png)](../assets/textFacetwithButton2.png)
 
 ```js
 facet: {
