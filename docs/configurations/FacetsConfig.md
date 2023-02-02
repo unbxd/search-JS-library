@@ -1515,7 +1515,7 @@ If the user wishes to have a range facet which is checkable, this is an example 
 Checkable Range facet will be rendered automatically along with other facets if it is configured on the console dashboard.
 
 
-<img src="../assets/checkableRangeFacet.png" width="250px">
+<img src="../assets/checkableRangeFacet.png" width="500px">
 
 ### Code snippet
 {: .no_toc}
@@ -1569,7 +1569,7 @@ facet: {
 }
 ```
 
-## Usecase 6: Color Facet Item as a color button
+## Usecase 5: Color Facet Item as a color button
 
 ### User Requirement
 {: .no_toc}
@@ -1620,16 +1620,14 @@ facet: {
 ```
 ---
 
-## Usecase 5: Text facet items with button
+## Usecase 6: Text facet items with button
 
 ### User Requirement
 {: .no_toc}
 
 If you require a colored button for color facets or just a plane button for each text facet item , then refer to the below code snippet .
 
-[![](../assets/textFacetWithButton.png)](../assets/textFacetWithButton.png)
-
-<img src="../assets/textFacetWithButton.png" width="250px">
+<img src="../assets/textFacetWithButton.png" width="500px">
 
 ```js
 facet: {
