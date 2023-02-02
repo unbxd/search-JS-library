@@ -1502,54 +1502,67 @@ facet: {
 
 ## Usecase 3: Checkable Range Facets
 
+### User Requirement
+{: .no_toc}
+If the user wishes to have a range facet which is checkable, this is an example with the integration.
+
+Checkable Range facet will be rendered automatically along with other facets if it is configured on the console dashboard.
+
 [![](../assets/checkableRangeFacet.png)](../assets/checkableRangeFacet.png)
 
+### Code snippet
 ```js
 facet: {
-rangeTemplate: function (ranges, selectedRanges) {
-let ui = ``;
-const {
-    selectedFacetClass,
-    facetClass,
-    applyMultipleFilters
-} = this.options.facet;
-let selected = false;
-ranges.forEach((range) => {
-const { displayName, facetName, values } = range;
-let valueUI = ``;
-selected = selectedRanges[facetName] ? true : false;
-values.forEach((item) => {
-    const { from, to } = item;
-    const isSelected = this.isSelectedRange(facetName, item);
-    const btnCss = isSelected
-    ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}`
-    : `${facetClass}`;
-    valueUI += [
-        `<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >`,
-        `<span class="UNX-facet-text">${from.name}  -  ${to.name}</span>`,
-        `<span class="UNX-facet-count">(${from.count})</span>`,
-        `</button>`
-      ].join("");
-    });
-    ui += [
-      `<div class="UNX-facets-inner-wrapper">`,
-      `<h3 class="UNX-facet-header">${displayName}</h3>`,
-      `<div class="UNX-facets">${valueUI}</div>`,
-      `</div>`
-    ].join("");
-});
-let clearBtn = ``;
-let applyBtn = ``;
-return [
-    `<div class="UNX-range-wrapper">`,
-    ui,
-    `<div class="UNX-price-action-row">`,
-    applyBtn,
-    clearBtn,
-    `<div>`,
-    `</div>`
-  ].join("");
-};
+    facetsEl: document.getElementById("facetsWrapper"),
+    selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+    selectedFacetClass: "UNX-selected-facet-btn",
+    rangeTemplate: function (ranges, selectedRanges) {
+        let ui = ``;
+        const {
+            selectedFacetClass,
+            facetClass,
+            applyMultipleFilters
+        } = this.options.facet;
+        let selected = false;
+        ranges.forEach((range) => {
+        const { displayName, facetName, values } = range;
+        let valueUI = ``;
+        selected = selectedRanges[facetName] ? true : false;
+        values.forEach((item) => {
+            const { from, to } = item;
+            const isSelected = this.isSelectedRange(facetName, item);
+            const btnCss = isSelected
+            ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}`
+            : `${facetClass}`;
+            valueUI += [
+                `<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >`,
+                `<span class="UNX-facet-text">${from.name}  -  ${to.name}</span>`,
+                `<span class="UNX-facet-count">(${from.count})</span>`,
+                `</button>`
+            ].join("");
+            });
+            ui += [
+            `<div class="UNX-facets-inner-wrapper">`,
+            `<h3 class="UNX-facet-header">${displayName}</h3>`,
+            `<div class="UNX-facets">${valueUI}</div>`,
+            `</div>`
+            ].join("");
+        });
+        let clearBtn = ``;
+        let applyBtn = ``;
+        return [
+            `<div class="UNX-range-wrapper">`,
+            ui,
+            `<div class="UNX-price-action-row">`,
+            applyBtn,
+            clearBtn,
+            `<div>`,
+            `</div>`
+        ].join("");
+    };
+    isCollapsible: false,
+    isSearchable: false,
+    facetMultiSelect: true
 }
 ```
 
