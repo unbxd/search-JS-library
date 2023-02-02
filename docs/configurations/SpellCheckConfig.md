@@ -264,5 +264,3 @@ spellCheck:{
     },
 }
 ```
-## Usecase 2: 
-## Usecase 3: 
