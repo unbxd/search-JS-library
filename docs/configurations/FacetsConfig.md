@@ -1513,9 +1513,7 @@ Checkable Range facet will be rendered automatically along with other facets if 
 ### Code snippet
 ```js
 facet: {
-    facetsEl: document.getElementById("facetsWrapper"),
-    selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-    selectedFacetClass: "UNX-selected-facet-btn",
+    // ..Other facet configurations goes here
     rangeTemplate: function (ranges, selectedRanges) {
         let ui = ``;
         const {
@@ -1578,6 +1576,7 @@ If you require a colored button for color facets or just a plane button for each
 
 ```js
 facet: {
+    // ..Other facet configurations goes here
     facetItemTemplate: function facetItemTemplate(facet, value, facetSearchTxt) {
         const {
                 facetName,
@@ -1616,9 +1615,8 @@ facet: {
                 </button>`].join('');
     } else {
         return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
-                        `<span class="UNX-facet-text">${name}</span>`,
-                    `</button>`].join('');
-    
+        `<span class="UNX-facet-text">${name}</span>`,
+        `</button>`].join('');
     }
 }
 }
