@@ -1569,6 +1569,58 @@ facet: {
 }
 ```
 
+## Usecase 6: Color Facet Item as a color swatch
+
+### User Requirement
+{: .no_toc}
+
+If user requires the facet item in Color facet to be a color button as shown below then he can refer to the following code snippet.
+
+[![](../assets/colorfcetbutton.png)](../assets/colorfcetbutton.png)
+
+
+```js
+facet: {
+    // ..Other facet configurations goes here
+    facetItemTemplate: function facetItemTemplate(facet, value,facetSearchTxt) {
+        var facetName = facet.facetName,
+        isSelected = facet.isSelected;
+        var name = value.name,
+            count = value.count,
+            dataId = value.dataId;
+        var _this$options$facet = this.options.facet,
+            facetClass = _this$options$facet.facetClass,
+            selectedFacetClass = _this$options$facet.selectedFacetClass;
+        var UNX_uFilter = this.testIds.UNX_uFilter;
+            if(facetSearchTxt && facetSearchTxt.length > 0) {
+                if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
+                    facetClass +=' UNX-search-hidden'
+                }
+            }
+            let action =  "changeFacet";
+            if(isSelected) {
+                facetClass += ` ${selectedFacetClass}`
+                action = "deleteFacetValue";
+            }
+            if(facetName === 'colorTags_uFilter') {
+                var cName = name.toLowerCase();
+                var fName = cName.replace(" ", "-");
+                var facetNames = "https://cdn.shopify.com/s/files/1/0727/7773/t/57/assets/".concat(fName+"_50x.png");
+                return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet UNX-color-facet ${facetClass}" data-id="${dataId}">`,
+                `<span class="UNX-color-swatch">${name}</span><span class="UNX-facet-text color-swatch color-swatch--filter color-swatch" style="background-image: url(`+`${facetNames}`+`); background-color: ${fName};"></span></button>`].join('');
+            } else if (facetName === 'brand_uFilter') {
+                return [`<div title="${dataId ? dataId : 'None'}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass} " data-id="${dataId}">`,
+                `<span class="UNX-brand ${facetClass}" type="checkbox"></span><div class="UNX-facet-text">${name}</div><span class="UNX-facet-count">(${count})</span></div>`].join('');
+            } else {
+                return [`<button title="${dataId ? dataId : 'None'}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass} " data-id="${dataId}">`,
+                `<span class="UNX-facet-text">${name}</span></button>`].join('');
+            }
+        },
+
+}
+```
+---
+
 ## Usecase 5: Text facet items with button
 
 ### User Requirement
@@ -1616,3 +1668,4 @@ facet: {
 }
 }
 ```
+
