@@ -213,7 +213,7 @@ swatches:{
 ```
 ---
 
-## Usecase 2:
+## Usecase 2: Customized swatched - (squared colored swatches)
 
 <img src="../assets/swatchUsecase3.png" width="250px" >
 
@@ -329,7 +329,7 @@ products:{
 }
 ```
 ---
-## Usecase 3: 
+## Usecase 3: Customized swatched - (circular colored swatches)
 
 <img src="../assets/swatchUsecase2.png" width="350px">
 
