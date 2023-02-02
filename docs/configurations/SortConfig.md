@@ -380,6 +380,31 @@ sort: {
         value: "sortPrice asc",
         text: " Price Low to High"
       }
-    ]
+    ],
+    action: "click",
+    template: function (selectedSort) {
+      var sortBtnsUI = "";
+      var self = this;
+      this.options.sort.options.forEach(function (item, index) {
+        var selectedCss = "";
+        if (item.value === selectedSort) {
+          selectedCss = self.options.sort.selectedSortClass;
+        }
+        sortBtnsUI += [
+          '<div class="btn UNX-sort-btn ' +
+            self.options.sort.sortClass +
+            " " +
+            selectedCss +
+            '"',
+          'data-value="' +
+            item.value +
+            '" data-action="changeSort"> ' +
+            item.text +
+            "</div>"
+        ].join("");
+      });
+      return sortBtnsUI;
+    }
   }
+
 ```
