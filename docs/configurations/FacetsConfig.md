@@ -1552,3 +1552,57 @@ return [
 };
 }
 ```
+
+## Usecase 4 : Text facet with button
+
+[![](../assets/textFacetwithButton1.png)](../assets/textFacetwithButton1.png)
+
+[![](../assets/textFacetWithButton2.pngg)](../assets/textFacetWithButton2.png)
+
+```js
+facet: {
+    facetItemTemplate: function facetItemTemplate(facet, value, facetSearchTxt) {
+        const {
+                facetName,
+                isSelected
+            } = facet;
+            const  {
+                name,
+                count,
+                dataId
+            } = value;
+            let {
+                facetClass,
+                selectedFacetClass
+            } = this.options.facet;
+            const {
+                UNX_uFilter
+            } = this.testIds;
+            if(facetSearchTxt && facetSearchTxt.length > 0) {
+                if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
+                    facetClass +=' UNX-search-hidden'
+                }
+            } 
+            let action =  "changeFacet";
+            if(isSelected) {
+                facetClass += ` ${selectedFacetClass}`
+                action = "deleteFacetValue";
+            }
+    if(facetName === 'v_color_uFilter'){
+        var cName = name.toLowerCase();
+        var fName = cName.replace(" ", "-");
+        return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">
+                <span class="UNX-facet-txt">
+                    <div class="color-swatch color-swatch--${fName}" style="background-color:${fName};">
+                    <span class="UNX-facet-text" id="UNX-color-facet-text">${name}</span></div>
+                </span>
+                </button>`].join('');
+    } else {
+        return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+                        `<span class="UNX-facet-text">${name}</span>`,
+                    `</button>`].join('');
+    
+    }
+}
+}
+```
