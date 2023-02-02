@@ -5,7 +5,7 @@ theme: just-the-docs
 url: https://unbxd.github.io
 
 logo: "https://mma.prnewswire.com/media/1000849/unbxdlogo_black_Logo.jpg"
-favicon_ico: "/docs/assets/favicon.png"
+# favicon_ico: "/docs/assets/favicon.png"
 
 aux_links:
   Template Repository: https://github.com/unbxd/search-JS-library/
