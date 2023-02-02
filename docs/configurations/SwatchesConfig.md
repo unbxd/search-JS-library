@@ -213,7 +213,7 @@ swatches:{
 ```
 ## Usecase 2: 
 
-<img src="../assets/swatcheUsecase.png" width="500px">
+<img src="../assets/swatchUsecase2.png" width="350px">
 
 ```js
 //other configs goes here ...
