@@ -345,7 +345,11 @@ htmlAttributes:{class:"UNX-search-results-block UNX-result-wrapper"}
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
-# Default Example
+
+
+# UseCases
+## Usecase 1:
+### Default Example
 
 Sample “products” config:
 [![](../assets/products.png)](../assets/products.png)
@@ -437,7 +441,97 @@ products:{
 }
 ```
 
-# UseCases
-## Usecase 1:
 ## Usecase 2:
+product configuration when an image's url is mismapped or when an image is missing.
+By mistake, you included "image" when the correct image property is "imageUrl."
+
+
+[![](../assets/default-image-product.png)](../assets/default-image-product.png)
+```js
+products:{
+    el:null,
+    template:function() {
+        const searchResults = this.getSearchResults();
+        if(!searchResults) {
+            return ``;
+        }
+        const {
+            products
+        } = searchResults;
+        const self = this;
+        const {
+            swatches
+        } = this.options;
+        const {
+            gridCount
+        } = this.options.products;
+        const {
+            productViewType
+        } = this.viewState;
+        let productsUI = ``;
+        const idx = Number(this.state.startPageNo);
+        let swatchUI = ``;
+        if(productViewType === "GRID" && gridCount && gridCount > 1) {
+            products.forEach((product, index) => {
+                const row = index % gridCount;
+                if(row === 0) {
+                    productsUI += `<div class="UNX-row">`;
+                }
+                const pRank  = index+idx+1;
+                const mappedProduct = this.mapProductAttrs(product);
+                if(swatches.enabled) {
+                    swatchUI = this.renderSwatchBtns(product);
+                }
+                productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+                if(row === gridCount -  1) {
+                    productsUI += `</div>`;
+                }
+
+            })
+
+        } else {
+            productsUI = products.map((product,index) => {
+                const pRank  = index+idx+1;
+                const mappedProduct = this.mapProductAttrs(product);
+                if(swatches.enabled) {
+                    swatchUI = this.renderSwatchBtns(product);
+                }
+                return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
+            }).join('');
+        }
+
+
+        return  productsUI;
+    },
+    productItemClass:"product-item", // to find out product
+    productType:"SEARCH",
+    gridCount:1,
+    onProductClick: function(product,e) {
+    },
+    productAttributes: [
+        "title",
+        "uniqueId",
+        "price",
+        "sku",
+        "imageUrl",
+        "displayPrice",
+        "salePrice",
+        "sortPrice",
+        "productDescription",
+        "unbxd_color_mapping",
+        "colorName",
+        "color"
+    ],
+    attributesMap:{
+        'unxTitle':'title',
+        'unxImageUrl':'image',
+        'unxPrice':'salePrice',
+        'unxStrikePrice':'displayPrice',
+        'unxId':'uniqueId',
+        'unxDescription':'productDescription'
+    }
+
+}
+```
+
 ## Usecase 3:
