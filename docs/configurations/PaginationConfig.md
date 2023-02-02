@@ -582,6 +582,7 @@ pagination: {
 
 ## Infinite Scroll
 
+[![](../assets/infinitescroll.png)](../assets/infinitescroll.png)
 ```js
 pagination: {
   type:'INFINITE_SCROLL',
