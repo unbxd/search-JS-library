@@ -1629,12 +1629,13 @@ facet: {
 ```
 ---
 
-## Usecase 6: Text facet items with button
+## Usecase 6: Customized text facet item - (button/swatch with facet item name)
 
 ### User Requirement
 {: .no_toc}
 
-If you require a colored button for color facets or just a plane button for each text facet item , then refer to the below code snippet .
+If the customer needs to customize facet items such that the facet item name should have a colored/plane swatch/button next to it. Below customization shows adding code in `facetItemTemplate` to have colored swatch button with facet name for color facet and for rest facet item a plane circular button.
+
 
 <img src="../assets/textFacetWithButton.png" width="500px">
 
@@ -1751,12 +1752,12 @@ facet{
 ```
 ---
 
-## Usecase 8: Customized selected items tags
+## Usecase 8: Customized selected facets
 
 ### User Requirement
 {: .no_toc}
 
-The selected items tags can be customized by adding the custom code in "selectedFacetItemTemplate" . Refer below code snippet for customizing your selected items tags.
+The Usual behaviour of selected facet tags can be customized by adding the code in `selectedFacetItemTemplate`.
 
 <img src="../assets/selectedFacets.png" width="300px">
 

@@ -61,12 +61,13 @@ template: function(query){
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 # UseCases
-## Usecase 1:
+## Usecase 1
 
 ### User Requirement
 {: .no_toc}
 
-If a user needs a custom 
+If the customer needs customized "no results" , the customized code can be added in `template` block of `noResults`.  
+By default the noResults has default behaviour which can be overriden by adding you code here. One such integration is shown in below code snippet.
 
 <img src="../assets/noResultsUsecase.png" width="800px">
 
@@ -97,5 +98,3 @@ noResults: {
 }
 
 ```
-## Usecase 2:
-## Usecase 3:
