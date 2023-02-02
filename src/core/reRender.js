@@ -112,11 +112,11 @@ const reRender = function () {
                 productItemClass
             } = this.options.products;
             const scrollBy = document.querySelector(`.${productItemClass}`).offsetHeight;
-            window.scrollBy({
-                top: scrollBy,
-                left: 0,
-                behavior: "smooth"
-            })
+            // window.scrollBy({
+            //     top: scrollBy,
+            //     left: 0,
+            //     behavior: "smooth"
+            // })
         }
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
 
