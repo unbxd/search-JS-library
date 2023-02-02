@@ -1667,3 +1667,70 @@ facet: {
 }
 ```
 
+---
+
+## Usecase 7: Custom Menu
+
+### User Requirement
+{: .no_toc}
+If the user wants menu to be like below , refer below code snippet.
+
+<img src="../assets/Menu.png" width="500px">
+
+```js
+facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
+            var displayName = facetObj.displayName,
+                facetName = facetObj.facetName,
+                multiLevelField = facetObj.multiLevelField,
+                facetType = facetObj.facetType,
+                values = facetObj.values;
+            var facetClass = facet.facetClass,
+                applyMultipleFilters = facet.applyMultipleFilters,
+                isCollapsible = facet.isCollapsible,
+                isSearchable = facet.isSearchable,
+                searchPlaceHolder = facet.searchPlaceHolder,
+                textFacetWrapper = facet.textFacetWrapper,
+                enableViewMore = facet.enableViewMore,
+                viewMoreText = facet.viewMoreText,
+                viewMoreLimit = facet.viewMoreLimit,
+                applyButtonText = facet.applyButtonText,
+                clearButtonText = facet.clearButtonText;
+            var _this$options = this.options,
+                actionBtnClass = _this$options.actionBtnClass,
+                actionChangeClass = _this$options.actionChangeClass;
+            var _this$cssList = this.cssList,
+                openBtn = _this$cssList.openBtn,
+                closeBtn = _this$cssList.closeBtn;
+            var viewMoreUi = "";
+            var viewMoreCss = "";
+            var selected = this.getSelectedFacets()[facetName];
+            var isFtr = selected && selected.length > 0 ? true : false;
+            if (enableViewMore && facetType === "text" && values.length > viewMoreLimit) {
+                viewMoreCss = "UNX-view-more";
+                viewMoreUi = "<div class=\"UNX-view-more-row \"><button class=\"".concat(actionBtnClass, "\" data-facet-name=\"").concat(facetName, "\" data-action=\"viewMore\" data-id=\"").concat(viewMoreText[0], "\">").concat(viewMoreText[0], "</button></div>");
+            }
+            var clearUI = "";
+            var applyBtn = "";
+            if (isFtr) {
+                clearUI = "<button class=\"UNX-facet-clear ".concat(facetClass, " \"data-facet-action=\"deleteFacet\" data-facet-name=\"").concat(facetName, "\">").concat(clearButtonText, "</button>");
+            }
+            if (applyMultipleFilters && isFtr) {
+                applyBtn = "<button class=\"UNX-facet-primary ".concat(facetClass, " \"data-facet-action=\"applyFacets\" >").concat(applyButtonText, "</button>");
+            }
+            var collapsibleUI = "";
+            var searchInput = "";
+            if (isCollapsible) {
+                if (isExpanded) {
+                    collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-open\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetClose\"> <h3>").concat(displayName, "</h3></div>");
+                } else {
+                    collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-close\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetOpen\"> <h3>").concat(displayName, "</h3></div>");
+                }
+            }
+            if (isSearchable && facetSearchTxt !== null) {
+            searchInput = "<div class=\"UNX-searchable-facets\"><input data-test-id=\"".concat(this.testIds.UNX_searchFacets, "\" class=\"UNX-facet-search ").concat(actionChangeClass, "\" value=\"").concat(facetSearchTxt, "\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"searchFacets\" type=\"text\" placeholder=\"").concat(searchPlaceHolder, "\"/></div>");
+            }
+            return ["<div class=\"UNX-text-facet-wrap\" style=\"border-top: unset !important\"; \"border-top-color: unset !important\" >", 
+            collapsibleUI, 
+            "<div class=\"UNX-facets-all\">",  "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), "</div>", "</div>"].join('');
+        },
+```
