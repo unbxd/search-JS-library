@@ -324,6 +324,7 @@ productView : {
 configuration:
 ```js
 productView:{
+    // ...other confiurations goes here
      viewTypes: “GRID”,
 }
 ```
@@ -335,7 +336,9 @@ productView:{
 
 configuration:
 ```js
+
 productView:{
+    // ...other confiurations goes here
      viewTypes: “LIST”,
 }
 ```
