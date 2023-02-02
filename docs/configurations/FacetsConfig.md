@@ -1566,11 +1566,15 @@ facet: {
 }
 ```
 
-## Usecase 4 : Text facet with button
+## Usecase 4 : Text facet items with button
 
-[![](../assets/textFacetwithButton1.png)](../assets/textFacetwithButton1.png)
+### User Requirement
+{: .no_toc}
 
-[![](../assets/textFacetwithButton2.png)](../assets/textFacetwithButton2.png)
+If you require a colored button for color facets or just a plane button for each text facet item , then refer to the below code snippet .
+
+[![](../assets/textFacetWithButton.png)](../assets/textFacetWithButton.png)
+
 
 ```js
 facet: {
