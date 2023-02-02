@@ -43,6 +43,13 @@ In e-commerce, facets are used to allow users to filter and narrow down a large 
 
 To render the facets on the search results page, you can use the “facet” config object to configure the various options.
 
+```js
+facet: {
+    //Below configurations should be added here.
+}
+```
+The following options are available under the object:  
+
 ## facetsEl
 {: .d-inline-block }
 
@@ -75,9 +82,14 @@ There are several HTML selectors that can be used to locate the banner element i
 Function
 {: .label }
 
-Customize the look and feel of the facets block by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, facet values, is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true) and the search text entered for this facet block (if isSearchable is set to true).
+Customize the look and feel of the facets block by returning your custom HTML string from this function. This function accepts following parameters: 
+1.  `facetObj`: 
+2.  `children`: 
+3.  `isExpanded`: is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true)
+4.  `facetSearchTxt`: the search text entered for this facet block (if isSearchable is set to true)
+5.  `facet`: the complete configs for facets.
 
-**Expected Return Value** : 
+**Expected Return Value** : A string of HTML that will be used to render the facet block on the webpage.
 
 ### Default Value
 {: .no_toc }
@@ -172,7 +184,7 @@ This function expects 3 parameters:
 2.  `value`: the current facet value.
 3.  `facetSearchTxt`: the search text entered for this facet block.
 
-**Expected Return Value** : 
+**Expected Return Value** : A string of HTML that will be used to render the facet block on the webpage.
 
 ### Default Value
 {: .no_toc }
@@ -223,6 +235,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 Boolean
 {: .label }
 
+"facetMultiSelect" allows a user to select multiple values within a single facet . When turned on , the user can select multiple values and the search results will be filtered to only show items that match all of the selected facets. 
 Turn this off if you want to disable the multiple selection of facets.
 
 ### Default Value
@@ -277,8 +290,8 @@ facetAction: 'click'
 
 ### Scenarios
 {: .no_toc }
-1.  `Click`:
-2.  `Change`:
+1.  `Click`: selection / deselection happens when the user clicks on a specific button or any other element .
+2.  `Change`: 
 
 --- 
 ## selectedFacetClass
@@ -286,7 +299,6 @@ facetAction: 'click'
 
 String
 {: .label }
-
 Additional CSS class name for the selected facet items.
 
 ### Default Value
@@ -308,7 +320,8 @@ Any valid class name can be added as selectedFacetClass.
 Element
 {: .label }
 
-Element in which to render the selected facets. If you don’t provide this element selected facets will be rendered along with the facet blocks.
+"selectedFacetsEl" is a config that specifies the HTML element where selected facets will be displayed. The selectedFacetsEl property is used to specify a container element, such as a div, that will be used to display the selected facets.
+If you don’t provide this element selected facets will be rendered along with the facet blocks.
 
 ### Default Value
 {: .no_toc }
@@ -318,6 +331,7 @@ selectedFacetsEl: null
 
 ### Scenarios
 {: .no_toc }
+There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
 
 --- 
 ## selectedFacetTemplate
@@ -327,10 +341,12 @@ Function
 {: .label }
 
 Customize the look & feel of the selected facets block by returning your custom HTML string from this function.  
-This function receives 2 parameters:   
-the selected facet complete block and the selected facet value.
+This function receives following parameters:   
+1.  `selections`: the complete html for selected facets block.
+2.  `facet`: the facets configs.
+3.  `selectedFacetsConfig`: the selectedFacet configs  .
 
-**Expected Return Value** : 
+**Expected Return Value** : A html string is returned .
 
 ### Default Value
 {: .no_toc }
@@ -364,7 +380,13 @@ For additional information on custom scenarios, please refer to the [use cases s
 Function
 {: .label }
 
-Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function gets 2 parameters: the selected facet complete block and the selected facet value.
+Customize the look & feel of the selected facet by returning your custom HTML string from this function. This function expects following parameters: 
+1.  `selectedFacet`: the selected facet block information like facetName , facetType etc.
+2.  `selectedFacetItem`: the value of selected facet for eg: name , dataId , count etc.
+3.  `facetConfig`: the complete block of facets configs.
+4.  `selectedFacetsConfig`: the configs for selected block of facets.
+
+**Expected return value** :
 
 ### Default Value
 {: .no_toc }
@@ -414,15 +436,15 @@ For additional information on custom scenarios, please refer to the [use cases s
 Object
 {: .label }
 
-object will be containing the configuration for the selected facet wrapper config.
+Object will be containing the configuration for the selected facet wrapper config.
 
 ### Default Value
 {: .no_toc }
 ``` js
 selectedFacetConfig:{ 
-    tagName:”DIV”, 
+    tagName: ”DIV”, 
     htmlAttributes:{
-        class:”UNX-selected-facet-lb”
+        class: ”UNX-selected-facet-lb”
         },
         events:{} 
 }
@@ -449,6 +471,7 @@ clearAllText: “Clear All”
 
 ### Scenarios
 {: .no_toc }
+Any button name text can be given here.
 
 --- 
 
@@ -458,7 +481,11 @@ clearAllText: “Clear All”
 Function
 {: .label }
 
-Customize the look and feel of the range facets by returning your custom HTML string from this function. This function gets 1 parameter: the list of range facets available.
+Customize the look and feel of the range facets by returning your custom HTML string from this function. This function expects following parameters: 
+1.  `range` : 
+2.  `selectedRange`: 
+3.  `facet`:
+the list of range facets available.
 
 ### Default Value
 {: .no_toc }
@@ -508,6 +535,7 @@ rangeTemplate: function(range, selectedRange, facet) {
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 ---
 
@@ -547,6 +575,8 @@ facetMultilevel: true
 
 ### Scenarios
 {: .no_toc }
+1.  `true`: 
+2.  `false`:
 
 --- 
 
@@ -567,6 +597,7 @@ facetMultilevelName: “Category”
 ### Scenarios
 {: .no_toc }
 
+
 --- 
 ## multiLevelFacetSelectorClass
 {: .d-inline-block }
@@ -584,6 +615,7 @@ multiLevelFacetSelectorClass: “UNX-multilevel-facet”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can given here.
 
 --- 
 
@@ -593,9 +625,13 @@ multiLevelFacetSelectorClass: “UNX-multilevel-facet”
 Function
 {: .label }
 
-Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function gets 3 parameters: the complete facet block, selected values and the search text entered for this facet block (if isSearchable is set to true).
+Customize the look and feel of multi level facets by returning your custom HTML string from this function. This function expects following parameters: 
+1. `facet`:
+2. `selectedCategories`:
+3. `facetSearchTxt`: the search text entered for this facet block (if isSearchable is set to true).
+4. `facetConfig`:
 
-**Expected return value**: 
+**Expected return value**: A html string is returned.
 
 ### Default Value
 {: .no_toc }
@@ -666,6 +702,7 @@ multiLevelFacetTemplate: function(facet,selectedCategories,facetSearchTxt, facet
 
 ### Scenarios
 {: .no_toc }
+For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 --- 
 ## facetDepth
@@ -674,7 +711,7 @@ multiLevelFacetTemplate: function(facet,selectedCategories,facetSearchTxt, facet
 Number
 {: .label }
 
-Configure how many levels of category filter you want to have by setting this value.
+The "facetDepth" configures how many levels of category filter you want to have by setting this value.
 
 ### Default Value
 {: .no_toc }
@@ -684,6 +721,7 @@ facetDepth: 4
 
 ### Scenarios
 {: .no_toc }
+Any positive integer can be given here.
 
 --- 
 ## clearFacetsSelectorClass
@@ -702,6 +740,7 @@ clearFacetsSelectorClass: “UNX-clear-facet”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be given here.
 
 --- 
 ## removeFacetsSelectorClass
@@ -720,6 +759,7 @@ removeFacetsSelectorClass: “UNX-remove-facet”
 
 ### Scenarios
 {: .no_toc }
+Any valid class name can be given here.
 
 --- 
 ## onFacetLoad
@@ -728,7 +768,9 @@ removeFacetsSelectorClass: “UNX-remove-facet”
 Function
 {: .label }
 
-Callback function that gets called after each facet selection or deselection. This function gets all the facets as a parameter.
+"onFacetLoad" is a Callback function that gets called after each facet selection or deselection.
+This function accepts following as a parameter: 
+1.  `onFacetLoad`: receives all the facets .
 
 ### Default Value
 {: .no_toc }
@@ -745,8 +787,7 @@ onFacetLoad: function(facets) {}
 
 Boolean
 {: .label }
-
-Turn this on if you want to apply multiple filters together.
+"applyMultipleFilters" enables a user to apply multiple filters together.
 
 ### Default Value
 {: .no_toc }
@@ -756,6 +797,8 @@ applyMultipleFilters: false
 
 ### Scenarios
 {: .no_toc }
+1.  `true`: When turned on , multiple filter can be applied together.
+2.  `false`: When turned off , multiple filters cannot be applied at once.
 
 --- 
 ## applyButtonText
@@ -764,7 +807,10 @@ applyMultipleFilters: false
 String
 {: .label }
 
-The text to show for the apply button (when applyMultipleFilters is set as true).
+The text to show for the apply button .
+
+{: .note }
+`applyMultipleFilters`  needs to be set to true for this to work.
 
 ### Default Value
 {: .no_toc }
@@ -774,6 +820,7 @@ applyButtonText:“Apply”
 
 ### Scenarios
 {: .no_toc }
+Any valid text for a button name can be added here.
 
 ---
 ## clearButtonText
@@ -782,7 +829,10 @@ applyButtonText:“Apply”
 String
 {: .label }
 
-The text to show for the clear button (when applyMultipleFilters is set as true).
+The text to show for the clear button.
+
+{: .note }
+`applyMultipleFilters`  needs to be set to true for this to work.
 
 ### Default Value
 {: .no_toc }
@@ -792,6 +842,7 @@ clearButtonText: “clear”
 
 ### Scenarios
 {: .no_toc }
+Any valid text for a button name can be added here.
 
 --- 
 ## isCollapsible
@@ -799,8 +850,7 @@ clearButtonText: “clear”
 
 Boolean
 {: .label }
-
-Turn this off if you do not want to have a collapsible accordian for each facet block.
+"isCollapsible" is a flag which can make accordian in each facet block collapsible or non-collapsible.
 
 ### Default Value
 {: .no_toc }
@@ -811,8 +861,8 @@ isCollapsible: true
 
 ### Scenarios
 {: .no_toc }
-1. `true`:
-2. `false`:
+1. `true`:  The facets block accordion will be collapisible.
+2. `false`: The facets block accordion will not be collapisible.
 
 --- 
 ## defaultOpen
@@ -821,7 +871,7 @@ isCollapsible: true
 String
 {: .label }
 
-If “isCollapsible” is true, set this config to indicate the default open facet.
+When “isCollapsible” is true , "defaultOpen" option is used to specify which facets should be expanded or open by default when the search interface is first displayed to the user.
 
 ### Default Value
 {: .no_toc }
@@ -831,10 +881,9 @@ defaultOpen: “ALL”
 
 ### Scenarios
 {: .no_toc }
-1.  `ALL`:
-2.  `FIRST`:
-3.  `NONE`:
-
+1.  `ALL`: All of the facets block will be open by default.
+2.  `FIRST`: Only the first facet block will be open by default.
+3.  `NONE`: None of the facet block will be open by default.
 
 ---
 ## isSearchable
@@ -853,8 +902,8 @@ isSearchable: true
 
 ### Scenarios
 {: .no_toc }
-1.  `true`:
-2.  `false`:
+1.  `true`: When turned to , for each of the facets search input will be availble.
+2.  `false`: When turned off the search input won't be availble in facets.
 
 ---
 ## searchPlaceHolder
@@ -863,7 +912,7 @@ isSearchable: true
 String
 {: .label }
 
-Placeholder text for the facet search input.
+"searchPlaceHolder" defines the placeholder text for the facet search input.
 
 ### Default Value
 {: .no_toc }
@@ -882,7 +931,7 @@ Any valid placeholder text can be added here.
 Boolean
 {: .label }
 
-Turn this on for enabling view more or less functionality for individual facets.
+The "enableViewMore" option is used to control whether or not the user can view more options within a particular facet. If this option is enabled, the user will be able to see a "View More" button or link that allows them to expand the facet and see additional options. If this option is disabled, the user will not see the option to expan the facets options.
 
 ### Default Value
 {: .no_toc }
@@ -892,8 +941,8 @@ enableViewMore: false
 
 ### Scenarios
 {: .no_toc }
-1. `true`:
-2. `false`:
+1. `true`:  If this option is enabled, the button or link to expand / minimize the facets will be available.
+2. `false`: If this option is disabled, the user will not be able to expand / minimize the facet options.
 
 --- 
 ## viewMoreText
@@ -902,7 +951,10 @@ enableViewMore: false
 Array
 {: .label }
 
-The text to show for the view more / less button. Pass the 2 strings in array format [<viewMoreText>, viewLessText]. Ex: [“View more”, “View less”].
+The text to show for the view more / less button. This accepts an array with two strings in following format : 
+```js
+[<viewMoreText>, <viewLessText>]
+```
 
 ### Default Value
 {: .no_toc }
@@ -912,6 +964,8 @@ viewMoreText: [“show all”, “show less”]
 
 ### Scenarios
 {: .no_toc }
+Arrays with any two valid strings for button text can be passed here .
+For eg : ["view more","view less"] etc.
 
 ---
 ## viewMoreLimit
@@ -920,7 +974,7 @@ viewMoreText: [“show all”, “show less”]
 Number
 {: .label }
 
-Will show view more only if the facet values are greater than this value.
+The "viewMoreLimit" option is used to specify the maximum number of options that should be displayed within a particular facet before the "View More" button or link is shown. If the number of options within the facet exceeds this limit, only the first "viewMoreLimit" options will be displayed, and the user will need to click the "View More" button to see the remaining options.
 
 ### Default Value
 {: .no_toc }
@@ -930,6 +984,7 @@ viewMoreLimit: 3
 
 ### Scenarios
 {: .no_toc }
+Any positive integer value can be given here.
 
 ---
 ## tagName
@@ -938,16 +993,18 @@ viewMoreLimit: 3
 String
 {: .label }
 
-html element for the facet wrapper. by default it is div.
+“tagName” refers to the name of an HTML tag used to wrap or structure the content on a webpage.
 
 ### Default Value
 {: .no_toc }
+
 ```js
 tagName: “DIV”
 ```
 
 ### Scenarios
 {: .no_toc }
+Any valid html tag such as div, span, p, h1, h2, etc in which you like the banner code to be wrapped in.
 
 ---
 ## htmlAttributes
@@ -956,22 +1013,27 @@ tagName: “DIV”
 Object
 {: .label }
 
-by default it contains classes for the wrapper. you can add more classes or any attributes.
+“htmlAttributes” refers to a set of key-value pairs that provide additional information or properties for an HTML element. By default it contains classes for the wrapper. You can add more classes or any valid attributes.
 
 ### Default Value
 {: .no_toc }
+
 ```js
-htmlAttributes: {class:”UNX-facets-results-block”}
+htmlAttributes: { class:”UNX-facets-results-block” }
 ```
 
 ### Scenarios
 {: .no_toc }
+Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
-## Default Example
+# UseCases
+
+## Usecase 1 : Default Example
 
 Sample “facet” config
+
 ```js
 facet: {
     facetsEl:null,
@@ -1260,11 +1322,11 @@ facet: {
 }
 ```
 
-
-
-## Range Sliders
+## Usecase 2: Range Sliders
 
 ### User Requirement
+{: .no_toc}
+
 If you wish to have a range slider, this is an example with the integration with noUISlider.
 
 Range facets will be rendered automatically along with other facets if it is configured on the console dashboard.
@@ -1273,6 +1335,7 @@ Range facets will be rendered automatically along with other facets if it is con
 
 
 ### More Information
+{: .no_toc}
 
 The right way of fetching the min and max values for the UI slider is from the 'stats' key within the search API. To get this stats key in the API response, you will have to pass `{stats: 'price'}` in the `extraParams` config. This approach will also avoid showing empty results on a site if there is any error with the slider.
 
@@ -1294,8 +1357,9 @@ Steps to get a range slider:
 4. Verify if you are getting the `stats` key (with min, max, etc) in the search API response 
 5. The code for `onFacetLoad` has to be as shown in the below config
 
-
 ### Code Snippet
+{: .no_toc}
+
 ```js
 facet: {
     facetsEl: document.getElementById("facetsWrapper"),
@@ -1304,10 +1368,6 @@ facet: {
     defaultOpen: "FIRST",
     onFacetLoad: function (facets) {
             document.getElementById("unbxdInput").value = "";
-            // let priceSliderEle = document.getElementsByClassName('UNX-product-item grid__item grid-product');
-            // if(priceSliderEle.length < 4 && priceSliderEle.length != 0){
-            //     document.querySelector('.price').style.display = 'none'
-            // }
             let _this = this;
             let self = this;
             let facet = this.options.facet;
@@ -1326,19 +1386,6 @@ facet: {
                         min = facetItem.min,
                         start = facetItem.start;
                     let selectedValues = sliderElem.dataset;
-
-
-                    // first time
-                        // store the current q as prev q and current stats as prev stateblock_state
-                    // second timers 
-                        // if prev query is same as current query then
-                            // use prev stats or min and max values
-                            
-                        // if prev query is not same as new query then
-                            // use current stats for min and max
-                            // update prevQuery = current query
-                            // update currnet stats = prev stats for current
-
 
                     if(!window.prevQuery) {
                         window.prevQuery = window.unbxdSearch.getSearchQuery()
@@ -1432,7 +1479,270 @@ facet: {
     }
 }
 ```
-# UseCases
-## Usecase 1:
-## Usecase 2:
-## Usecase 3:
+
+## Usecase 3: Text Facet - (Collapsible , Searchable, View more ...)
+
+### User Requirement
+{: .no_toc}
+
+The code snippet below represents a block of facets which are collapsible , the facets are searchable , the button text for view more / view less is changed to "+ Show More", "- Show less" etc . refer to the code snippet below.
+
+
+<img src="../assets/textFacet.png" width="250px">
+
+### Code Snippet
+{: .no_toc}
+```js
+facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    isCollapsible: true,
+    defaultOpen: "FIRST",
+    isSearchable: true,
+    enableViewMore: true,
+    viewMoreText: ["+ Show More", "- Show less"],
+    viewMoreLimit: 3
+}
+```
+
+
+
+## Usecase 4: Checkable Range Facets
+
+### User Requirement
+{: .no_toc}
+If the user wishes to have a range facet which is checkable, this is an example with the integration.
+
+Checkable Range facet will be rendered automatically along with other facets if it is configured on the console dashboard.
+
+
+<img src="../assets/checkableRangeFacet.png" width="500px">
+
+### Code snippet
+{: .no_toc}
+```js
+facet: {
+    // ..Other facet configurations goes here
+    rangeTemplate: function (ranges, selectedRanges) {
+        let ui = ``;
+        const {
+            selectedFacetClass,
+            facetClass,
+            applyMultipleFilters
+        } = this.options.facet;
+        let selected = false;
+        ranges.forEach((range) => {
+        const { displayName, facetName, values } = range;
+        let valueUI = ``;
+        selected = selectedRanges[facetName] ? true : false;
+        values.forEach((item) => {
+            const { from, to } = item;
+            const isSelected = this.isSelectedRange(facetName, item);
+            const btnCss = isSelected
+            ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}`
+            : `${facetClass}`;
+            valueUI += [
+                `<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${to.dataId}" >`,
+                `<span class="UNX-facet-text">${from.name}  -  ${to.name}</span>`,
+                `<span class="UNX-facet-count">(${from.count})</span>`,
+                `</button>`
+            ].join("");
+            });
+            ui += [
+            `<div class="UNX-facets-inner-wrapper">`,
+            `<h3 class="UNX-facet-header">${displayName}</h3>`,
+            `<div class="UNX-facets">${valueUI}</div>`,
+            `</div>`
+            ].join("");
+        });
+        let clearBtn = ``;
+        let applyBtn = ``;
+        return [
+            `<div class="UNX-range-wrapper">`,
+            ui,
+            `<div class="UNX-price-action-row">`,
+            applyBtn,
+            clearBtn,
+            `<div>`,
+            `</div>`
+        ].join("");
+    };
+}
+```
+
+## Usecase 5: Color Facet Item as a color button
+
+### User Requirement
+{: .no_toc}
+
+If user requires the facet item in Color facet to be a color button as shown below then he can refer to the following code snippet.
+
+<img src="../assets/colorfcetbutton.png" width="250px">
+
+```js
+facet: {
+    // ..Other facet configurations goes here
+    facetItemTemplate: function facetItemTemplate(facet, value,facetSearchTxt) {
+        var facetName = facet.facetName,
+        isSelected = facet.isSelected;
+        var name = value.name,
+            count = value.count,
+            dataId = value.dataId;
+        var _this$options$facet = this.options.facet,
+            facetClass = _this$options$facet.facetClass,
+            selectedFacetClass = _this$options$facet.selectedFacetClass;
+        var UNX_uFilter = this.testIds.UNX_uFilter;
+            if(facetSearchTxt && facetSearchTxt.length > 0) {
+                if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
+                    facetClass +=' UNX-search-hidden'
+                }
+            }
+            let action =  "changeFacet";
+            if(isSelected) {
+                facetClass += ` ${selectedFacetClass}`
+                action = "deleteFacetValue";
+            }
+            if(facetName === 'colorTags_uFilter') {
+                var cName = name.toLowerCase();
+                var fName = cName.replace(" ", "-");
+                var facetNames = "https://cdn.shopify.com/s/files/1/0727/7773/t/57/assets/".concat(fName+"_50x.png");
+                return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet UNX-color-facet ${facetClass}" data-id="${dataId}">`,
+                `<span class="UNX-color-swatch">${name}</span><span class="UNX-facet-text color-swatch color-swatch--filter color-swatch" style="background-image: url(`+`${facetNames}`+`); background-color: ${fName};"></span></button>`].join('');
+            } else if (facetName === 'brand_uFilter') {
+                return [`<div title="${dataId ? dataId : 'None'}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass} " data-id="${dataId}">`,
+                `<span class="UNX-brand ${facetClass}" type="checkbox"></span><div class="UNX-facet-text">${name}</div><span class="UNX-facet-count">(${count})</span></div>`].join('');
+            } else {
+                return [`<button title="${dataId ? dataId : 'None'}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass} " data-id="${dataId}">`,
+                `<span class="UNX-facet-text">${name}</span></button>`].join('');
+            }
+        },
+
+}
+```
+---
+
+## Usecase 6: Text facet items with button
+
+### User Requirement
+{: .no_toc}
+
+If you require a colored button for color facets or just a plane button for each text facet item , then refer to the below code snippet .
+
+<img src="../assets/textFacetWithButton.png" width="500px">
+
+```js
+facet: {
+    // ..Other facet configurations goes here
+    facetItemTemplate: function facetItemTemplate(facet, value, facetSearchTxt) {
+        const {
+                facetName,
+                isSelected
+            } = facet;
+            const  {
+                name,
+                count,
+                dataId
+            } = value;
+            let {
+                facetClass,
+                selectedFacetClass
+            } = this.options.facet;
+            const {
+                UNX_uFilter
+            } = this.testIds;
+            if(facetSearchTxt && facetSearchTxt.length > 0) {
+                if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
+                    facetClass +=' UNX-search-hidden'
+                }
+            } 
+            let action =  "changeFacet";
+            if(isSelected) {
+                facetClass += ` ${selectedFacetClass}`
+                action = "deleteFacetValue";
+            }
+            
+            return [`<button data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-facet-action="${action}" class="UNX-change-facet ${facetClass}" data-id="${dataId}">`,
+                `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
+            `</button>`].join('')
+}
+}
+```
+
+---
+
+## Usecase 7: Custom Menu
+
+### User Requirement
+{: .no_toc}
+If the user wants menu to be like below , refer below code snippet.
+
+<img src="../assets/Menu.png" width="500px">
+
+```js
+facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
+            var displayName = facetObj.displayName,
+                facetName = facetObj.facetName,
+                multiLevelField = facetObj.multiLevelField,
+                facetType = facetObj.facetType,
+                values = facetObj.values;
+            var facetClass = facet.facetClass,
+                applyMultipleFilters = facet.applyMultipleFilters,
+                isCollapsible = facet.isCollapsible,
+                isSearchable = facet.isSearchable,
+                searchPlaceHolder = facet.searchPlaceHolder,
+                textFacetWrapper = facet.textFacetWrapper,
+                enableViewMore = facet.enableViewMore,
+                viewMoreText = facet.viewMoreText,
+                viewMoreLimit = facet.viewMoreLimit,
+                applyButtonText = facet.applyButtonText,
+                clearButtonText = facet.clearButtonText;
+            var _this$options = this.options,
+                actionBtnClass = _this$options.actionBtnClass,
+                actionChangeClass = _this$options.actionChangeClass;
+            var _this$cssList = this.cssList,
+                openBtn = _this$cssList.openBtn,
+                closeBtn = _this$cssList.closeBtn;
+            var viewMoreUi = "";
+            var viewMoreCss = "";
+            var selected = this.getSelectedFacets()[facetName];
+            var isFtr = selected && selected.length > 0 ? true : false;
+            if (enableViewMore && facetType === "text" && values.length > viewMoreLimit) {
+                viewMoreCss = "UNX-view-more";
+                viewMoreUi = "<div class=\"UNX-view-more-row \"><button class=\"".concat(actionBtnClass, "\" data-facet-name=\"").concat(facetName, "\" data-action=\"viewMore\" data-id=\"").concat(viewMoreText[0], "\">").concat(viewMoreText[0], "</button></div>");
+            }
+            var clearUI = "";
+            var applyBtn = "";
+            if (isFtr) {
+                clearUI = "<button class=\"UNX-facet-clear ".concat(facetClass, " \"data-facet-action=\"deleteFacet\" data-facet-name=\"").concat(facetName, "\">").concat(clearButtonText, "</button>");
+            }
+            if (applyMultipleFilters && isFtr) {
+                applyBtn = "<button class=\"UNX-facet-primary ".concat(facetClass, " \"data-facet-action=\"applyFacets\" >").concat(applyButtonText, "</button>");
+            }
+            var collapsibleUI = "";
+            var searchInput = "";
+            if (isCollapsible) {
+                if (isExpanded) {
+                    collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-open\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetClose\"> <h3>").concat(displayName, "</h3></div>");
+                } else {
+                    collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-close\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetOpen\"> <h3>").concat(displayName, "</h3></div>");
+                }
+            }
+            if (isSearchable && facetSearchTxt !== null) {
+            searchInput = "<div class=\"UNX-searchable-facets\"><input data-test-id=\"".concat(this.testIds.UNX_searchFacets, "\" class=\"UNX-facet-search ").concat(actionChangeClass, "\" value=\"").concat(facetSearchTxt, "\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"searchFacets\" type=\"text\" placeholder=\"").concat(searchPlaceHolder, "\"/></div>");
+            }
+            return ["<div class=\"UNX-text-facet-wrap\" style=\"border-top: unset !important\"; \"border-top-color: unset !important\" >", 
+            collapsibleUI, 
+            "<div class=\"UNX-facets-all\">",  "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), "</div>", "</div>"].join('');
+        },
+```
+---
+
+## Usecase 8: Custom Selected items with circular border
+
+### User Requirement
+{: .no_toc}
+
+<img src="../assets/selectedFacets.png" width="500px">
+
+```js
+
+```
