@@ -198,9 +198,10 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
-# Default Example
+# Usecases
+## Usecase 1 : Default Example
 
-Sample code for the breadcrumbs widget
+### User requirement
 
 [![](../assets/breadcrumb.png)](../assets/breadcrumb.png)
 
@@ -230,9 +231,7 @@ breadcrumb:{
     return `<div class="bread-crumb-main">${ui}</div>`
   }
 }
-```
+``` 
 
-# Usecases
-## Usecase 1
 ## Usecase 2
 ## Usecase 3

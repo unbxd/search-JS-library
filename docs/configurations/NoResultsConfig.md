@@ -71,7 +71,7 @@ If a user needs a custom
 <img src="../assets/noResultsUsecase.png" width="800px">
 
 ```js
-noResults:{
+noResults: {
         el: document.getElementById("noResultWrapper"),
         template: function (query) {
             document.getElementById("paginationContainer").style.display = "none";
