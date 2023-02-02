@@ -1488,8 +1488,7 @@ facet: {
 The code snippet below represents a block of facets which are collapsible , the facets are searchable , the button text for view more / view less is changed to "+ Show More", "- Show less" etc . refer to the code snippet below.
 
 
-[![](../assets/textFacet.png)](../assets/textFacet.png)
-
+<img src="../assets/textFacet.png" width="250px">
 
 ### Code Snippet
 {: .no_toc}
@@ -1515,7 +1514,8 @@ If the user wishes to have a range facet which is checkable, this is an example 
 
 Checkable Range facet will be rendered automatically along with other facets if it is configured on the console dashboard.
 
-[![](../assets/checkableRangeFacet.png)](../assets/checkableRangeFacet.png)
+
+<img src="../assets/checkableRangeFacet.png" width="250px">
 
 ### Code snippet
 {: .no_toc}
@@ -1576,8 +1576,6 @@ facet: {
 
 If user requires the facet item in Color facet to be a color button as shown below then he can refer to the following code snippet.
 
-[![](../assets/colorfcetbutton.png)](../assets/colorfcetbutton.png)
-
 <img src="../assets/colorfcetbutton.png" width="250px">
 
 ```js
@@ -1631,6 +1629,7 @@ If you require a colored button for color facets or just a plane button for each
 
 [![](../assets/textFacetWithButton.png)](../assets/textFacetWithButton.png)
 
+<img src="../assets/textFacetWithButton.png" width="250px">
 
 ```js
 facet: {
