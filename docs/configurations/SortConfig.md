@@ -41,6 +41,14 @@ Sorting allows you to rearrange the search results based on certain fields in a 
 
 # Configurations
 
+The Configurations for Sorting needs to be added in the below block :
+
+```js
+sort: {
+    //Below configurations should be added here.
+}
+```
+
 The following are the various options available under the object:
 
 ## enabled
@@ -121,18 +129,6 @@ This accepts a list of objects, where each object needs to have "value" and "tex
 ### Scenarios
 {: .no_toc }
 The sorting can be done based on different criterias such as based on name , pricing , brand , what's new etc.
-
-```js
-[{
-    value: "Name asc",
-    text: "Name: A to Z",
-},
-{
-    value: "Name desc",
-    text: "Name: Z to A",
-}
-]
-```
 
 ---
 ## sortClass
@@ -245,9 +241,9 @@ action: "change"
 
 ### Scenarios
 {: .no_toc }
-1. `Click`: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
+1. `click`: Click refers to a user interaction where a user clicks on a specific button or interface element to initiate a sort operation.   
 
-2. `Change`: Change refers to a sort operation that is initiated when a specific variable or data element is changed.
+2. `change`: Change refers to a sort operation that is initiated when a specific variable or data element is changed.
 
 ---
 ## tagName
@@ -292,8 +288,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 
 # Usecases
-## Usecase 1
-### Default Example
+## Usecase 1: Default Example
 {: .no_toc }
 Sample code for the Sort config:
 
@@ -342,8 +337,8 @@ sort: {
     },
 },
 ```
-## Usecase 2
-###  Dropdown
+
+## Usecase 2: Sort as Dropdown
 {: .no_toc }
 [![](../assets/dropdownsort.png)](../assets/dropdownsort.png)
 
@@ -363,8 +358,7 @@ sort: {
   }
 
 ```
-## Usecase 3
-### Buttons
+## Usecase 3: Sort as Buttons
 {: .no_toc }
 [![](../assets/button-sort.png)](../assets/button-sort.png)
 

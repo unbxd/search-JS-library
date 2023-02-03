@@ -20,11 +20,36 @@ function renderNewResults(action) {
         isNext,
         isPrev
     } = pageInfo;
-    if(pagination.type === "CLICK_N_SCROLL" || pagination.type === "INFINITE_SCROLL") {
+    if(pagination.type === "CLICK_N_SCROLL" ) {
         const next = start+rows;
         if(isNext){
             this.viewState.isInfiniteStarted = true;
             triggerNextPage(this,next);
+        }
+    } else if(pagination.type === "INFINITE_SCROLL") {
+        // const next = start+rows;
+        // if(isNext){
+        //     this.viewState.isInfiniteStarted = true;
+        //     triggerNextPage(this,next);
+        // }
+        if(action === this.actions.next){
+            const next = start+rows;
+            
+            if(isNext){
+                this.viewState.isInfiniteStarted = true;
+                triggerNextPage(this,next);
+            }
+        }
+        if(action === this.actions.prev){
+            const prev = start-rows;
+            if(isPrev){
+                this.viewState.isInfiniteStarted = true;
+                // this.viewState.lastAction = "pagination";
+                triggerNextPage(this,prev);
+                onEvent(this,this.events.pagePrev, {
+                    value:prev
+                });
+            }
         }
     } else {
         if(action === this.actions.next){
