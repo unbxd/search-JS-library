@@ -173,19 +173,124 @@ variants:{
 
 ## UseCase 2
 
+This example includes custom product template along with the variants configuration.
+
 <img src="../assets/variantsUsecase.png" width="250px">
 
 ```js
-variants:{
-        enabled:true,
-        count:5,
-        groupBy:'v_size',
-        attributes:[
-            "title",
-            "v_size"
-        ],
-        mapping:{
-            "image_url":"v_imageUrl"
-        }
+products: {
+    el: document.getElementById("searchResultsWrapper"),
+    productType: "SEARCH",
+    productClick: function (product, e) {
+      const { id, action, uniqueid } = e.target.dataset;
+      if (action === "swatchClick") {
+        const currentIds = document.querySelectorAll(
+          `#${uniqueid} .UNX-img-wrapper`
+        );
+        currentIds.forEach((elm) => {
+          elm.classList.remove("UNX-swatch-selected");
+          elm.classList.add("UNX-hidden");
+        });
+        var newImg = document.getElementById(id);
+        newImg.classList.add("UNX-swatch-selected");
+        newImg.classList.remove("UNX-hidden");
+      }
+      if (action === "addtocart") {
+        alert(product.title + " - Successfully added to cart");
+      }
     },
+    productAttributes: [
+      "title",
+      "uniqueId",
+      "price",
+      "sku",
+      "imageUrl",
+      "displayPrice",
+      "salePrice",
+      "sortPrice",
+      "productDescription",
+      "unbxd_color_mapping",
+      "colorName",
+      "color",
+      "size",
+      "listPrice",
+      "autosuggest"
+    ],
+    template: function (product, idx, swatchUI, productViewType) {
+      const {
+        unxTitle,
+        unxImageUrl,
+        uniqueId,
+        unxStrikePrice,
+        unxPrice,
+        unxDescription,
+        size,
+        unbxd_color_mapping,
+        listPrice,
+        autosuggest,
+        colorName,
+        displayPrice
+      } = product;
+      const { products } = this.options;
+      const { productItemClass } = products;
+      let imagesUI = ``;
+      let swatchBtnUi = ``;
+      let colorsHead = ``;
+      const imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0] : unxImageUrl;
+      imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" src="${imgUrl}"/></div>`;
+      if (unbxd_color_mapping.length > 1) {
+        imagesUI = ``;
+        colorsHead = `<h3 class="UNX-product-title UNX-row">Colors</h3>`;
+        unbxd_color_mapping.forEach((item, i) => {
+          const sArr = item.split("::");
+          const sImg = sArr[1];
+          const sBtn = sArr[0];
+          const uId = `s_${uniqueId}_${i}_sBtn_img`;
+          const swatchCss = i !== 0 ? "UNX-hidden" : "";
+          imagesUI += `<div id="${uId}" class="UNX-img-wrapper UNX-swatch-selected ${swatchCss}"><img class="UNX-img-block" src="${sImg}"/></div>`;
+          swatchBtnUi += `<button data-id="${uId}" data-uniqueId="p_${uniqueId}"  data-action="swatchClick" style="background-color:${sBtn}" class="UNX-swatch-btn"></button>`;
+        });
+      }
+
+      const priceUI = `<span class="UNX-sale-price">${displayPrice}</span>`;
+      let strikeUi = ``;
+      if (unxStrikePrice) {
+        strikeUi = `<span class="UNX-strike-price">${unxStrikePrice}<span>`;
+      }
+      let cardType = ``;
+      let descUI = ``;
+      if (productViewType === "GRID") {
+        cardType = "UNX-grid-card";
+      } else {
+        cardType = "UNX-list-card";
+        descUI = `<p class="UNX-description">${unxDescription}</p>`;
+      }
+      let sizeUI = ``;
+      if (Array.isArray(size)) {
+        sizeUI += `<h3 class="UNX-product-title UNX-row">Sizes</h3> <div class="UNX-size-row">`;
+        size.forEach((s) => {
+          sizeUI += `<span class="UNX-size-list UNX-title-info">${s}</span>`;
+        });
+        sizeUI += `</div>`;
+      }
+      return [
+        `<div id="p_${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,
+        `<div class="UNX-product-innerwrap">`,
+        `<div class="UNX-images-block">${imagesUI}</div>`,
+        `<div class="UNX-product-content">`,
+        `<div class="UNX-row UNX-price-head-row">`,
+        `<h3 class="UNX-product-title">${unxTitle}</h3>`,
+        `<div class="UNX-price-row">${displayPrice}</div>`,
+        `</div>`,
+        `<p class="UNX-title-info">${colorName}</p>`,
+        sizeUI,
+        colorsHead,
+        `<div class="UNX-swatch-wrapper">${swatchBtnUi}</div>`,
+        descUI,
+        `</div>`,
+        `<button data-action="addtocart" data-id="${uniqueId}" class="UNX-add-cart-btn">Add to cart</button>`,
+        `</div>`,
+        `</div>`
+      ].join("");
+    }
 ```

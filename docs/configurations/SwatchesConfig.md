@@ -184,7 +184,7 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 # UseCases
 ## Usecase 1: Default Example
-Sample “swatches” config
+
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
 
@@ -213,7 +213,8 @@ swatches:{
 ```
 ---
 
-## Usecase 2: Customized swatched - (squared colored swatches)
+## Usecase 2: Customized swatches - Type 1
+
 
 <img src="../assets/swatchUsecase3.png" width="250px" >
 
@@ -329,7 +330,7 @@ products:{
 }
 ```
 ---
-## Usecase 3: Customized swatched - (circular colored swatches)
+## Usecase 3: Customized swatches - Type 2
 
 <img src="../assets/swatchUsecase2.png" width="350px">
 

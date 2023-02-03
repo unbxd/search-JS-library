@@ -1036,7 +1036,7 @@ Below is the code
 
 ```js
 facet: {
-    facetsEl:null,
+    facetsEl: document.getElementById("facetsWrapper"),,
     facetTemplate:function(facetObj, children, isExpanded,facetSearchTxt, facet) {
         const {
             displayName,
@@ -1629,7 +1629,7 @@ facet: {
 ```
 ---
 
-## Usecase 6: Customized text facet item - (button/swatch with facet item name)
+## Usecase 6: Facet item with swatches
 
 ### User Requirement
 {: .no_toc}
