@@ -463,30 +463,9 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
 # UseCases
-## Default Example
-
-Sample “pagination” config
-
-[![](../assets/pagination.png)](../assets/pagination.png)
-
-```js
-pagination : {
-       enabled:true,
-       el: document.querySelector("#clickScrollContainer"),
-       template: function (paginationData, pagination) { return ``},
-       pageClass:"UNX-page-items",
-       selectedPageClass:"UNX-selected-page-item",
-       type:'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
-       infinteScrollTriggerEl:window, //if paginationType = INFINITE_SCROLL
-       heightDiffToTriggerNextPage:100, //if paginationType = INFINITE_SCROLL,   
-       onPaginate:function(paginationInfo){},
-       action:'click',
-       pageLimit:6
-   }
-```
-
-## Fixed Pagination
+## Usecase 1: Fixed Pagination
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
+
 ```js
 pagination : {
   enabled:true,
