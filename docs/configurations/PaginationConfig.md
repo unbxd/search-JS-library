@@ -541,7 +541,7 @@ pagination : {
 }
 ```
 
-## Click and Scroll
+## Usecase 2: Click and Scroll
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
 
@@ -559,7 +559,7 @@ pagination: {
 }
 ```
 
-## Infinite Scroll
+## Usecase 3: Infinite Scroll
 
 [![](../assets/infinitescroll.png)](../assets/infinitescroll.png)
 ```js
