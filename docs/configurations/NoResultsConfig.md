@@ -61,6 +61,40 @@ template: function(query){
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
 
 # UseCases
-## Usecase 1:
-## Usecase 2:
-## Usecase 3:
+## Usecase 1
+
+### User Requirement
+{: .no_toc}
+
+If the customer needs customized "no results" , the customized code can be added in `template` block of `noResults`.  
+By default the noResults has default behaviour which can be overriden by adding you code here. One such integration is shown in below code snippet.
+
+<img src="../assets/noResultsUsecase.png" width="800px">
+
+```js
+noResults: {
+        el: document.getElementById("noResultWrapper"),
+        template: function (query) {
+            document.getElementById("paginationContainer").style.display = "none";
+            document.getElementById("header_message").style.display = "none";
+            document.querySelector('.UNX-facet-wrapper').style.display = "none";
+            document.querySelector('.UNX-mob-filters-mobile').style.display = "none"; 
+            document.querySelector('.UNX-result-header').style.display = "none"; 
+            return (
+                `<div class="UNX-no-results">
+                    <h1 class="h2 search-performed">
+                        Search Results for:</h1>
+                    <h2 class = "queryDisplay">
+                    <span>
+                        “'+query+'”
+                    </span>
+                    </h2>
+                    <p role="status">
+                        No results found for “'+query+'”. Check the spelling or use a different word or phrase.
+                    </p>
+                <div>`
+                )
+        }
+}
+
+```
