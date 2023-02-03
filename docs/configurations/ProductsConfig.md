@@ -446,6 +446,7 @@ products: {
 ## Usecase 2: With Default Image
 
 ### User requirment
+{: .no_toc }
 When an image url is mismapped or when an image is missing.
 By mistake, so you can add any image as default image.
 
@@ -461,6 +462,7 @@ products:{
 ## Usercase 3: With swatches
 
 ## User requirment
+{: .no_toc }
 Swatches are commonly used to display the available colors of a product, such as clothing or home decor, allowing the users to see a visual representation of the options before they purchase
 
 [![](../assets/product-swatches.png)](../assets/product-swatches.png)
