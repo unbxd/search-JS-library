@@ -340,7 +340,7 @@ sort: {
 
 ## Usecase 2: Sort as Dropdown
 {: .no_toc }
-<img src="../assets/dropdownsort.png" width="100px">
+<img src="../assets/dropdownsort.png" width="500px">
 <!-- [![](../assets/dropdownsort.png)](../assets/dropdownsort.png) -->
 
 ``` js
