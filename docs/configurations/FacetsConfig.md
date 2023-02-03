@@ -1032,11 +1032,11 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ## Usecase 1 : Default Example
 
-Sample “facet” config
+
 
 ```js
 facet: {
-    facetsEl:null,
+    facetsEl: document.getElementById("facetsWrapper"),,
     facetTemplate:function(facetObj, children, isExpanded,facetSearchTxt, facet) {
         const {
             displayName,
@@ -1322,6 +1322,9 @@ facet: {
 }
 ```
 
+---
+
+
 ## Usecase 2: Range Sliders
 
 ### User Requirement
@@ -1480,40 +1483,18 @@ facet: {
 }
 ```
 
-## Usecase 3: Text Facet - (Collapsible , Searchable, View more ...)
+---
+
+
+
+## Usecase 3: Checkable Range Facets
 
 ### User Requirement
 {: .no_toc}
 
-The code snippet below represents a block of facets which are collapsible , the facets are searchable , the button text for view more / view less is changed to "+ Show More", "- Show less" etc . refer to the code snippet below.
-
-
-<img src="../assets/textFacet.png" width="250px">
-
-### Code Snippet
-{: .no_toc}
-```js
-facet: {
-    facetsEl: document.getElementById("facetsWrapper"),
-    isCollapsible: true,
-    defaultOpen: "FIRST",
-    isSearchable: true,
-    enableViewMore: true,
-    viewMoreText: ["+ Show More", "- Show less"],
-    viewMoreLimit: 3
-}
-```
-
-
-
-## Usecase 4: Checkable Range Facets
-
-### User Requirement
-{: .no_toc}
-If the user wishes to have a range facet which is checkable, this is an example with the integration.
-
-Checkable Range facet will be rendered automatically along with other facets if it is configured on the console dashboard.
-
+The usual range facet can be customized by adding customized template to `rangeTemplate`. 
+If the customer's requirement is to have a range facet but not with the slider but instead with a checkable box , refer the below code snippet .
+`rangeTemplate` by default has some code (by default behaviour) as defined in this section which can be overriden . 
 
 <img src="../assets/checkableRangeFacet.png" width="500px">
 
@@ -1569,12 +1550,42 @@ facet: {
 }
 ```
 
-## Usecase 5: Color Facet Item as a color button
+---
+
+## Usecase 4: Facets with collapsible, searchable, view more and default open
 
 ### User Requirement
 {: .no_toc}
 
-If user requires the facet item in Color facet to be a color button as shown below then he can refer to the following code snippet.
+If the customer needs facets block to be collapsible (each facet can be expanded/contracted) , the facets are searchable (eact facet item will have a search input) , want a customized (viewmore,viewless) options etc.., refer the below code snippet . 
+
+<img src="../assets/textFacet.png" width="250px">
+
+### Code Snippet
+{: .no_toc}
+```js
+facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    isCollapsible: true,
+    defaultOpen: "FIRST",
+    isSearchable: true,
+    enableViewMore: true,
+    viewMoreText: ["+ Show More", "- Show less"],
+    viewMoreLimit: 3
+}
+```
+
+---
+
+
+## Usecase 5: Custom facet template with color swatches
+
+### User Requirement
+{: .no_toc}
+
+The usual facet item be customized by adding customized template to `facetItemTemplate`. 
+If the customer's requirement is to have a facet item as a swatch , below code snippet can be referred.  
+`facetItemTemplate` by default has some behaviour which can be overriden .  
 
 <img src="../assets/colorfcetbutton.png" width="250px">
 
@@ -1620,12 +1631,13 @@ facet: {
 ```
 ---
 
-## Usecase 6: Text facet items with button
+## Usecase 6: Facet item with swatches in the name
 
 ### User Requirement
 {: .no_toc}
 
-If you require a colored button for color facets or just a plane button for each text facet item , then refer to the below code snippet .
+If the customer needs to customize facet items such that the facet item name should have a colored/plane swatch/button next to it. Below customization shows adding code in `facetItemTemplate` to have colored swatch button with facet name for color facet and for rest facet item a plane circular button.
+
 
 <img src="../assets/textFacetWithButton.png" width="500px">
 
@@ -1669,16 +1681,21 @@ facet: {
 
 ---
 
-## Usecase 7: Custom Menu
+## Usecase 7: Customized facet block
 
 ### User Requirement
 {: .no_toc}
-If the user wants menu to be like below , refer below code snippet.
 
-<img src="../assets/Menu.png" width="500px">
+If a Customer needs to customize the block of facets (where all the facets are listed) , they need to add the custom code in `facetTemplate` . 
+`facetTemplate` by default has some code (by default behaviour) as defined in this section which can be overriden . 
+One such customization is shown in below integration (refer the code snippet)
+
+<img src="../assets/menuUsecase.png" width="300px">
 
 ```js
-facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
+facet{
+    //Rest configs for facet
+    facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
             var displayName = facetObj.displayName,
                 facetName = facetObj.facetName,
                 multiLevelField = facetObj.multiLevelField,
@@ -1732,17 +1749,68 @@ facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearc
             return ["<div class=\"UNX-text-facet-wrap\" style=\"border-top: unset !important\"; \"border-top-color: unset !important\" >", 
             collapsibleUI, 
             "<div class=\"UNX-facets-all\">",  "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), "</div>", "</div>"].join('');
-        },
+        }
+}
 ```
 ---
 
-## Usecase 8: Custom Selected items with circular border
+## Usecase 8: Customized selected facets
 
 ### User Requirement
 {: .no_toc}
 
-<img src="../assets/selectedFacets.png" width="500px">
+The Usual behaviour of selected facet tags can be customized by adding the code in `selectedFacetItemTemplate`.
+
+<img src="../assets/selectedFacets.png" width="300px">
 
 ```js
-
+facet:{
+    //Rest configs for facet
+    selectedFacetItemTemplate: function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
+        var facetName = selectedFacet.facetName,
+            facetType = selectedFacet.facetType;
+        var name = selectedFacetItem.name,
+            count = selectedFacetItem.count,
+            dataId = selectedFacetItem.dataId;
+        var _this$options$facet = this.options.facet,
+            facetClass = _this$options$facet.facetClass,
+            selectedFacetClass = _this$options$facet.selectedFacetClass,
+            removeFacetsSelectorClass = _this$options$facet.removeFacetsSelectorClass;
+        var UNX_uFilter = this.testIds.UNX_uFilter;
+        var action = "deleteSelectedFacetValue";
+        if (facetType === "range") {
+            action = "deleteSelectedRange";
+        }
+        var css = " ".concat(facetClass, " ").concat(selectedFacetClass, " ");
+        if(facetName === "v_Variant_Price"){
+        return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('PRICE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        } 
+        if(facetName === "v_color_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('COLOR : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+        if(facetName === "v_size_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('SIZE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+        if(facetName === "categoryPath1_uFilter") {
+            return ["<li class=\"UNX-selected-facets-wrap\">",  
+        "<a data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-change-facet").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), 
+        "<span class=\"UNX-delete-facet-text \">".concat('PRODUCT TYPE : ', name,"</span></a>"),
+        "<a class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, "").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</a>"),"</li>"
+        ].join('');
+        }
+    
+    }
+}
 ```
