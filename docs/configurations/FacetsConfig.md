@@ -1032,7 +1032,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ## Usecase 1 : Default Example
 
-Below is the code 
+
 
 ```js
 facet: {
@@ -1486,32 +1486,8 @@ facet: {
 ---
 
 
-## Usecase 3: Facets - (collapsible , searchable, view more , default open etc)
 
-### User Requirement
-{: .no_toc}
-
-If the customer needs facets block to be collapsible (each facet can be expanded/contracted) , the facets are searchable (eact facet item will have a search input) , want a customized (viewmore,viewless) options etc.., refer the below code snippet . 
-
-<img src="../assets/textFacet.png" width="250px">
-
-### Code Snippet
-{: .no_toc}
-```js
-facet: {
-    facetsEl: document.getElementById("facetsWrapper"),
-    isCollapsible: true,
-    defaultOpen: "FIRST",
-    isSearchable: true,
-    enableViewMore: true,
-    viewMoreText: ["+ Show More", "- Show less"],
-    viewMoreLimit: 3
-}
-```
-
----
-
-## Usecase 4: Checkable Range Facets
+## Usecase 3: Checkable Range Facets
 
 ### User Requirement
 {: .no_toc}
@@ -1576,7 +1552,33 @@ facet: {
 
 ---
 
-## Usecase 5: Customized facet item (color swatch as facet)
+## Usecase 4: Facets with collapsible, searchable, view more and default open
+
+### User Requirement
+{: .no_toc}
+
+If the customer needs facets block to be collapsible (each facet can be expanded/contracted) , the facets are searchable (eact facet item will have a search input) , want a customized (viewmore,viewless) options etc.., refer the below code snippet . 
+
+<img src="../assets/textFacet.png" width="250px">
+
+### Code Snippet
+{: .no_toc}
+```js
+facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    isCollapsible: true,
+    defaultOpen: "FIRST",
+    isSearchable: true,
+    enableViewMore: true,
+    viewMoreText: ["+ Show More", "- Show less"],
+    viewMoreLimit: 3
+}
+```
+
+---
+
+
+## Usecase 5: Custom facet template with color swatches
 
 ### User Requirement
 {: .no_toc}
@@ -1629,7 +1631,7 @@ facet: {
 ```
 ---
 
-## Usecase 6: Facet item with swatches
+## Usecase 6: Facet item with swatches in the name
 
 ### User Requirement
 {: .no_toc}
