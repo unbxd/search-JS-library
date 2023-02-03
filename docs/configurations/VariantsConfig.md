@@ -176,5 +176,16 @@ variants:{
 <img src="../assets/variantsUsecase.png" width="250px">
 
 ```js
-
+variants:{
+        enabled:true,
+        count:5,
+        groupBy:'v_size',
+        attributes:[
+            "title",
+            "v_size"
+        ],
+        mapping:{
+            "image_url":"v_imageUrl"
+        }
+    },
 ```
