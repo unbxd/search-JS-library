@@ -466,3 +466,133 @@ products:{
 Swatches are commonly used to display the available colors of a product, such as clothing or home decor, allowing the users to see a visual representation of the options before they purchase
 
 [![](../assets/product-swatches.png)](../assets/product-swatches.png)
+
+``` js
+ products: {
+        el: document.querySelector(".ms-search-result-container__Products"),
+        tagName: "UL",
+        productItemClass: "ms-product-search-result__item",
+        attributesMap: {
+            unxPrice: "Price",
+            unxTitle: "title",
+            unxImageUrl: "imageUrl",
+            unxVariants: "variants",
+        },
+        productType: "SEARCH",
+        onProductClick: function (product, e) {
+            if(product){
+                localStorage.setItem('backToProductid',product.uniqueId);
+            }
+        },
+        productAttributes: [
+            "sku",
+            "Url",
+            "uniqueId",
+            "imageUrl",
+            "Name",
+            "Images",
+            "ProductName",
+            "BasePrice",
+            "Price",
+            "uniqueId",
+            "variants",
+            "productUrl",
+            "Description",
+            "AdjustedPrice",
+            "PrimaryImageUrl",
+            "Attr_5637150579",
+            "ColorHexMapping",
+            "ColorImageVariantMapping",
+            "Brand",
+            "score"
+        ],
+        template: function (product, idx, swatchUI, productViewType, products) {
+
+            const {
+                uniqueId,
+                imageUrl,
+                Images,
+                Name,
+                Price,
+                AdjustedPrice,
+                productUrl,
+                Attr_5637150579,
+                ColorHexMapping,
+                ColorImageVariantMapping,
+                Brand,
+                score
+            } = product;
+
+
+            const {
+                productItemClass
+            } = products;
+
+            let imageurl = Array.isArray(imageUrl) ? imageUrl[0] : imageUrl;
+
+            let displayPrice = ``;
+            var swatchBtnUI = ``;
+            var btnList;
+            var imgList;
+            if (swatchUI) {
+                btnList = swatchUI.btnList;
+                imgList = swatchUI.imgList
+            }
+            if (btnList) {
+                swatchBtnUI = '<div class="UNX-swatch-wrapper">' + btnList + '</div>';
+            }
+            if (imgList) {
+                imagesUI = imgList;
+            }
+
+            newimageUrl = imageUrl[0];
+            var custAdjustedPrice;
+            if (AdjustedPrice != Price) {
+                custAdjustedPrice += '<span class="msc-price__strikethrough" aria-hidden="true">$' + AdjustedPrice.toFixed(2) + '</span><span aria-hidden="true" class=""><span class="msc-price__actual" itemprop="price">$' + Price.toFixed(2) + '</span></span>'
+            } else {
+                custAdjustedPrice += '<span aria-hidden="true" class=""><span class="msc-price__actual" itemprop="price">$' + Price.toFixed(2) + '</span></span>'
+            }
+            var SwatchIm = newimageUrl.split('Products/')
+            var swatchHtml = '';
+            if (ColorHexMapping && ColorImageVariantMapping) {
+                var json = ColorHexMapping;
+                var swatches = JSON.parse(json);
+                var swatchImage = JSON.parse(ColorImageVariantMapping);
+                for (var i = 0; i < swatches.length; i++) {
+                    if (i == 0) {
+                        swatchHtml += "<li class='color-swatch selected' role='button' value='" + SwatchIm[0] + 'Products/' + swatchImage[i].Url + '&w=357&h=535&q=80&m=6&f=jpg' + "'><button style='background-color:" + swatches[i].Hex + "'></button></li>"
+                    }
+                    else {
+                        swatchHtml += "<li class='color-swatch' role='button' value='" + SwatchIm[0] + 'Products/' + swatchImage[i].Url + '&w=357&h=535&q=80&m=6&f=jpg' + "'><button style='background-color:" + swatches[i].Hex + "'></button></li>"
+                    }
+                }
+            }
+            return [`
+            <li class="ms-product-search-result__item" id="${uniqueId}" data-id="${uniqueId}" data-s="${uniqueId}" unbxd-title="${Name}" unbxd-price="${Price}" unbxdattr="product" unbxdparam_sku="${uniqueId}" unbxdparam_prank="${idx}" unbxdparam_requestId="${window.unbxdSearch.state.requestId}">
+                <div aria-label="" class="msc-product has-sale">
+                    <a href="/en${productUrl}">
+                        <div role="link" class="msc-product__image">
+                            <div class="msc-empty_image-placeholder">
+                                <picture>
+                                    <source class="sourceImage" data-srcset="${newimageUrl}&w=357&h=535&q=80&m=6&f=jpg"  media="(max-width:768px)" srcset="${newimageUrl}&w=357&h=535&q=80&m=6&f=jpg">
+                                    <img alt="${Name}" src="${newimageUrl}&w=357&h=535&q=80&m=6&f=jpg" class="unbxdImage msc-main_image msc_image lazyloaded">
+                                </picture>
+                            </div>
+                        </div>
+                    </a> 
+                    <ul class="custom-swatches">
+                        ${swatchHtml}
+                    </ul>
+                    <a href="/en${productUrl}">
+                        <div role="link" class="msc-product__details">
+                        <div class="UNX-brand">${Brand ? Brand : ''}</div>
+                            <h4 class="msc-product__title">${Name}</h4>
+                                <span class="msc-price">${custAdjustedPrice.replace('undefined', '')}</span>
+                                <p class="msc-product__text">${Attr_5637150579 == "In-store only" ? Attr_5637150579 : ''}</p>
+                        </div>
+                    </a>
+                </div>
+            </li>`].join('');
+        }
+    }
+```
