@@ -469,7 +469,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 ```js
 pagination : {
   enabled:true,
-  el:null,
+  el: document.getElementById("clickScrollContainer"),
   template:function (paginationData, pagination) {
     if(!paginationData) {
         return ``;
