@@ -212,7 +212,10 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 --- 
 
 
-# Default Example
+
+
+# UseCases
+## Usecase 1: Default Example
 
 Sample banner configuration
 
@@ -232,8 +235,5 @@ banner: {
     count:1
 }
 ```
-
-# UseCases
-## Usecase 1:
-## Usecase 2:
-## Usecase 3:
+## Usecase 2: Banners With HTML
+## Usecase 3: Banners With Images

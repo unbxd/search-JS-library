@@ -289,8 +289,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 # Usecases
 ## Usecase 1: Default Example
-{: .no_toc }
 Sample code for the Sort config:
+<img src="../assets/dropdownsort.png" width="500px">
 
 ```js
 sort: {
@@ -338,28 +338,7 @@ sort: {
 },
 ```
 
-## Usecase 2: Sort as Dropdown
-{: .no_toc }
-[![](../assets/dropdownsort.png)](../assets/dropdownsort.png)
-
-``` js
- sort: {
-    el: document.getElementById("sortWrapper"),
-    options: [
-      {
-        value: "sortPrice desc",
-        text: "Price High to Low"
-      },
-      {
-        value: "sortPrice asc",
-        text: " Price Low to High"
-      }
-    ]
-  }
-
-```
-## Usecase 3: Sort as Buttons
-{: .no_toc }
+## Usecase 2: Sort as Buttons
 [![](../assets/button-sort.png)](../assets/button-sort.png)
 
 ``` js
@@ -402,3 +381,4 @@ sort: {
   }
 
 ```
+## Usecase 3: Apply default sorting

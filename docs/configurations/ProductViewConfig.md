@@ -270,17 +270,15 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 # UseCases
 ## Usecase 1
-# Default Example
-{: .no_toc }
-Sample “productView” config
+1. GRID: when viewTypes is equal to GRID.
 
-[![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-view-new.png)
+[![](../assets/GRID.png)](../assets/GRID.png)
 
-
+configuration:
 ```js
 productView : {
        enabled:true,
-       el:null,
+       el: document.getElementById("productViewTypeContainer"),
        action: “click”, // CLICK or CHANGE
        viewTypeClass: “UNX-product-view”,
        selectedViewTypeClass: “UNX-selected-product-view”,
@@ -316,20 +314,8 @@ productView : {
     },
    }
 ```
+
 ## Usecase 2
-1. GRID: when viewTypes is equal to GRID.
-
-[![](../assets/GRID.png)](../assets/GRID.png)
-
-configuration:
-```js
-productView:{
-    // ...other confiurations goes here
-     viewTypes: “GRID”,
-}
-```
-
-## Usecase 3
 1. LIST: when viewTypes is equal to LIST.
 
 [![](../assets/LIST.png)](../assets/LIST.png)
