@@ -354,89 +354,92 @@ Sample “products” config:
 [![](../assets/products.png)](../assets/products.png)
 
 ```js
-products:{
-    el:null,
-    template:function() {
-        const searchResults = this.getSearchResults();
-        if(!searchResults) {
-            return ``;
-        }
-        const {
-            products
-        } = searchResults;
-        const self = this;
-        const {
-            swatches
-        } = this.options;
-        const {
-            gridCount
-        } = this.options.products;
-        const {
-            productViewType
-        } = this.viewState;
-        let productsUI = ``;
-        const idx = Number(this.state.startPageNo);
-        let swatchUI = ``;
-        if(productViewType === "GRID" && gridCount && gridCount > 1) {
-            products.forEach((product, index) => {
-                const row = index % gridCount;
-                if(row === 0) {
-                    productsUI += `<div class="UNX-row">`;
-                }
-                const pRank  = index+idx+1;
-                const mappedProduct = this.mapProductAttrs(product);
-                if(swatches.enabled) {
-                    swatchUI = this.renderSwatchBtns(product);
-                }
-                productsUI +=self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
-                if(row === gridCount -  1) {
-                    productsUI += `</div>`;
-                }
+products: {
+        el: document.getElementById("searchResultsWrapper"),
+        productAttributes: templateUtils.getMappedFields(),
+        onProductClick: templateUtils.onProductClick,
+        attributesMap: window.UNBXD_MAPPED_FIELDS,
+        template: function (product, idx, swatchUI, productViewType, products) {
+          let { uniqueId, imageUrl, title, price, sellingPrice } = product;
+          const { productItemClass } = products;
 
-            })
+          let imgUrl = Array.isArray(imageUrl) ? imageUrl[0] : imageUrl;
+          imgUrl = imgUrl ? imgUrl.trim() || DEFAULT_IMAGE : DEFAULT_IMAGE;
+          if (!window.UNBXD_MAPPED_FIELDS["imageUrl"]) {
+            imgUrl = DEFAULT_IMAGE;
+          }
 
-        } else {
-            productsUI = products.map((product,index) => {
-                const pRank  = index+idx+1;
-                const mappedProduct = this.mapProductAttrs(product);
-                if(swatches.enabled) {
-                    swatchUI = this.renderSwatchBtns(product);
-                }
-                return self.options.products.template.bind(self)(mappedProduct,pRank,swatchUI,productViewType,this.options.products);
-            }).join('');
-        }
+          let imagesUI = `<div class="UNX-img-wrapper  UNX-parent-image"><img class="UNX-img-block" src="${imgUrl}"/></div>`;
 
+          const variantData = templateUtils.getVariantsUi(
+            product,
+            imagesUI,
+            SWATCH_LIMIT,
+            DEFAULT_IMAGE
+          );
+          let vImages = variantData.vImages;
+          imagesUI = variantData.imagesUI;
+          const priceHtml = templateUtils.getDisplayPriceRow(
+            price,
+            sellingPrice
+          );
+          let priceUI = `<div class="UNX-price-row">${priceHtml}</div>`;
+          let cardType = ``;
+          if (productViewType === "GRID") {
+            cardType = "UNX-grid-card";
+          } else {
+            cardType = "UNX-list-card";
+          }
+          /** DELETE_STARTS */
+          let debuggerUI = window.UNBXD_USER
+            ? `<span class="UNX-preview-debugger" data-title="${title}" data-unique-id="${uniqueId}"></span>`
+            : "";
 
-        return  productsUI;
-    },
-    productItemClass:"product-item", // to find out product
-    productType:"SEARCH",
-    gridCount:1,
-    onProductClick: function(product,e) {
-    },
-    productAttributes: [
-        "title",
-        "uniqueId",
-        "price",
-        "sku",
-        "imageUrl",
-        "displayPrice",
-        "salePrice",
-        "sortPrice",
-        "productDescription",
-        "unbxd_color_mapping",
-        "colorName",
-        "color"
-    ],
-    attributesMap:{
-        'unxTitle':'title',
-        'unxImageUrl':'imageUrl',
-        'unxPrice':'salePrice',
-        'unxStrikePrice':'displayPrice',
-        'unxId':'uniqueId',
-        'unxDescription':'productDescription'
-    }
+          let { pins, slots = [] } =
+            window?.unbxdSearch?.state?.responseObj.debug?.metadata;
+          let slotarr = [];
 
+          for (let i = 0; i < slots.length; i++) {
+            for (let j = slots[i].start; j <= slots[i].end; j++) {
+              slotarr.push(j);
+            }
+          }
+
+          /** DELETE_ENDS */
+
+          return [
+            `<div id="pid_${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass} pd_pid_${uniqueId}">`,
+            `<div class="UNX-images-block">`,
+            // templateUtils.favouriteButton(uniqueId),
+            `${/* DELETE_STARTS */ ""}
+                                      ${debuggerUI}
+                                      ${/* DELETE_ENDS */ ""}`,
+            imagesUI,
+            vImages,
+            `<div class="index-badge">
+                ${idx}
+              </div>`,
+            `<div class=${pins && pins[uniqueId] && "pin-box"}>`,
+            `<div class=${pins && pins[uniqueId] && "pin-icon"}>`,
+            `</div>`,
+            `</div>`,
+            `<div class=${slotarr.includes(idx) && "slot-box"}>`,
+            `<div class=${slotarr.includes(idx) && "slot-icon"}>`,
+            `</div>`,
+            `</div>`,
+
+            `</div>`,
+            `<div class="UNX-product-content">`,
+            `<h3 class="UNX-product-title" title="${title}">${
+              title || uniqueId || ""
+            }</h3>`,
+            priceUI,
+
+            `</div>`,
+
+            `</div>`,
+          ].join("");
+        },
 }
 ```
 
@@ -451,6 +454,13 @@ By mistake, so you can add any image as default image.
 ```js
 products:{
    // ...other confiurations goes here
-   defaultImage: "",
+  defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
 }
 ```
+
+## Usercase 3: With swatches
+
+## User requirment
+Swatches are commonly used to display the available colors of a product, such as clothing or home decor, allowing the users to see a visual representation of the options before they purchase
+
+[![](../assets/product-swatches.png)](../assets/product-swatches.png)
