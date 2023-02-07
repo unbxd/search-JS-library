@@ -63,7 +63,7 @@ class UnbxdSearch extends UnbxdSearchCore {
             this.options.extraParams.viewType = viewType;
             this.viewState.lastAction = "";
         }
-        if(this.viewState.lastAction != "pagination") {
+        if(this.viewState.lastAction != "pagination" && this.viewState.lastAction != "prev_page_loaded" && this.viewState.lastAction != "next_page_loaded") {
             this.viewState.isInfiniteStarted = false;
         }
         if(!viewType) {

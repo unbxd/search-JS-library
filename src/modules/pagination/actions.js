@@ -1,7 +1,7 @@
-const triggerNextPage = (context,next) =>{
+const triggerNextPage = (context,next, action) =>{
     context.viewState.lastAction = "pagination";
     context.setPageStart(next);
-    context.getResults();
+    context.getResults("", true, action);
     context.options.onEvent(context,context.events.pageNext, {
         value:next
     });
@@ -37,7 +37,7 @@ function renderNewResults(action) {
             
             if(isNext){
                 this.viewState.isInfiniteStarted = true;
-                triggerNextPage(this,next);
+                triggerNextPage(this,next, action);
             }
         }
         if(action === this.actions.prev){
@@ -45,7 +45,7 @@ function renderNewResults(action) {
             if(isPrev){
                 this.viewState.isInfiniteStarted = true;
                 // this.viewState.lastAction = "pagination";
-                triggerNextPage(this,prev);
+                triggerNextPage(this,prev, action);
                 onEvent(this,this.events.pagePrev, {
                     value:prev
                 });

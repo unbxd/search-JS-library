@@ -98,8 +98,10 @@ function bindEvents(){
 
     if(this.options.pagination.type === 'INFINITE_SCROLL') {
         document.addEventListener("scroll",debounce(()=>{
-            this.onInfiniteScroll.bind(this)();
-        },1000));
+            if(!this.viewState.isInfiniteStarted && !this.state.loading){
+                this.onInfiniteScroll.bind(this)();
+            }
+        },100));
     }
     this.delegate(
         this.pageSizeWrapper,

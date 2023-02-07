@@ -278,7 +278,8 @@ window.unbxdSearch.updateConfig({
         el: document.getElementById("searchResultsWrapper"),
         productType: productType,
         onProductClick: function (product, e) {
-            history.pushState(null,null, `${product.variants[0].productUrl}`);
+            // history.pushState(null,null, `${product.variants[0].productUrl}`);
+            window.location.href ='https://www.google.com';
         }
     },
     spellCheck: {

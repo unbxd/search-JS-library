@@ -72,7 +72,11 @@ const reRender = function () {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
-                searchResultsWrapper.innerHTML += this.renderSearch();
+                if(lastAction === "prev_page_loaded"){
+                    searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
+                } else {
+                    searchResultsWrapper.innerHTML += this.renderSearch();
+                }
             }
         } else {
             searchResultsWrapper.innerHTML = "";
@@ -107,20 +111,57 @@ const reRender = function () {
     }
 
     if (lastAction === "pagination") {
-        if (pagination.type == "INFINITE_SCROLL") {
-            const {
-                productItemClass
-            } = this.options.products;
-            const scrollBy = document.querySelector(`.${productItemClass}`).offsetHeight;
-            // window.scrollBy({
-            //     top: scrollBy,
-            //     left: 0,
-            //     behavior: "smooth"
-            // })
-        }
+        // if (pagination.type == "INFINITE_SCROLL") {
+        //     const {
+        //         productItemClass
+        //     } = this.options.products;
+        //     // const scrollBy = document.querySelector(`.${productItemClass}`).offsetHeight;
+        //     // window.scrollBy({
+        //     //     top: scrollBy,
+        //     //     left: 0,
+        //     //     behavior: "smooth"
+        //     // })
+
+        // }
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
 
     }
+
+    if (pagination.type === 'INFINITE_SCROLL' && !this.productContainerHeight) {
+        const autoScrollParams = this.getAutoScrollParams();
+        const page = parseInt(autoScrollParams.get('page'));
+        const count = parseInt(autoScrollParams.get('count'));
+        const start = (page - 1) * count;
+        const device = this.getDeviceInfo();
+        const initialScroll = autoScrollParams.get('scroll') || 0
+        const mobileFlag = false;
+        this.infiniteScrollTimer = null;
+        this.productContainerHeight = document.getElementById('searchResultsWrapper').clientHeight;
+        // let page = (parseInt(autoScrollParams.get('start'))/parseInt(autoScrollParams.get('rows'))) + 1
+        if (autoScrollParams.get('page') != null) {
+            this.initialPage = parseInt(autoScrollParams.get('page'));
+            if (device == 'Desktop')
+                // jQuery('body, html').animate({ scrollTop: initialScroll }, '0.1s');
+                window.scrollTo(0, parseInt(initialScroll))
+        }
+        this.currentNumberOfProducts = window.unbxdSearch.state.responseObj.response.products.length;
+        this.totalNumberOfProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
+        if (start + count > this.totalNumberOfProducts) {
+            const currentProducts = this.totalNumberOfProducts - start;
+            if (device == 'Mobile') {
+                this.productContainerHeight = Math.round(this.productContainerHeight / Math.ceil(currentProducts / 2) * (count / 2) - 120);
+            } else if (device == 'Tablet') {
+                this.productContainerHeight = Math.round(this.productContainerHeight / Math.ceil(currentProducts / 3) * (count / 3) - 100);
+            } else {
+                this.productContainerHeight = Math.round(this.productContainerHeight / Math.ceil(currentProducts / 4) * (count / 4) - 100);
+            }
+        }
+        // if (autoScrollParams.get('page') != null && parseInt(autoScrollParams.get('page')) + 1 == this.getPage()) {
+        //     this.productContainerHeight = Math.round(this.productContainerHeight / 2);
+        // }
+    }
+
+
     onEvent(this, afterRender);
 };
 export default reRender;
