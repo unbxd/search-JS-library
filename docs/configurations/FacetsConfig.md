@@ -83,8 +83,8 @@ Function
 {: .label }
 
 Customize the look and feel of the facets block by returning your custom HTML string from this function. This function accepts following parameters: 
-1.  `facetObj`: 
-2.  `children`: 
+1.  `facetObj`: the facet obj is received here
+2.  `children`: the html string block
 3.  `isExpanded`: is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true)
 4.  `facetSearchTxt`: the search text entered for this facet block (if isSearchable is set to true)
 5.  `facet`: the complete configs for facets.
