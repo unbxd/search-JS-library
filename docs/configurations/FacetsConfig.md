@@ -481,8 +481,8 @@ Function
 
 Customize the look and feel of the range facets by returning your custom HTML string from this function. This function expects following parameters: 
 1.  `range` : the list of range facets available.
-2.  `selectedRange`: 
-3.  `facet`: 
+2.  `selectedRange`: the selected ranges
+3.  `facet`: the complete facet block
 
 
 ### Default Value
