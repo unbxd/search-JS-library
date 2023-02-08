@@ -215,7 +215,6 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 # Usecases
-
 ## Usecase 1: Default example
 Sample “spellCheck” config
 
