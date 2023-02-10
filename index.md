@@ -17,10 +17,6 @@ A JavaScript library for building performant and quick search experiences with U
 
 ---
 
-{: .note-title }
-> Important
->
-> This document is ONLY for customers integrated with the new version of SDK (V2 integrations). Please refer to [this documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/) for the versions of integrations. Since we are gradually migrating all our customers toward our new upgraded SDKs, we would slowly **deprecate** the older version.
 
 # Introduction
 
@@ -43,6 +39,12 @@ These functionalities are designed to improve the user experience on the e-comme
 It is important to note that in order to use the Unbxd Vanilla JS SDK, the e-commerce website needs to have an account with Unbxd, and must have the necessary Site and API keys to properly configure the SDK and connect it to the Unbxd platform.
 
 It's important to note that the nomenclature and the elements present on the e-commerce page may vary across different website, but the Unbxd Javascript Search SDK can be integrated in any e-commerce website.
+
+
+{: .note-title }
+> Important
+>
+> This document is ONLY for customers integrated with the new version of SDK (V2 integrations). Please refer to [this documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/) for the versions of integrations. Since we are gradually migrating all our customers toward our new upgraded SDKs, we would slowly **deprecate** the older version.
 
 
 # Prerequisite
