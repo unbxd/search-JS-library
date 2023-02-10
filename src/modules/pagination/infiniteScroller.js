@@ -307,6 +307,13 @@ function getDocHeight() {
 //     }
 // }
 
+const updatePageStart = function (context, page) {
+    const autoScrollParams = context.getAutoScrollParams();
+    context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
+    autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
+    history.pushState(null, null, '?' + autoScrollParams.toString());
+}
+
 
 const onInfiniteScroll = function () {
     const { infiniteScrollTriggerEl = window, type = "" } = this.options.pagination;
@@ -314,49 +321,52 @@ const onInfiniteScroll = function () {
     const autoScrollParams = this.getAutoScrollParams();
     const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
     const scroll = (scrollTop > this.productContainerHeight) ? scrollTop - this.productContainerHeight * (page - this.initialPage) : scrollTop;
-    const device = this.getDeviceInfo();
+    // const device = this.getDeviceInfo();
     const currentNumberOfProducts = window.unbxdSearch.state.responseObj.response.products.length;
-        const totalNumberOfProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
+    const totalNumberOfProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
 
     if (this.productContainerHeight != 0) {
         autoScrollParams.set('scroll', Math.ceil(scroll));
         history.pushState(null, null, '?' + autoScrollParams.toString());
 
-        
+
 
 
         if ((getDocHeight() - 20) <= (scrollTop + window.innerHeight) && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
             // alert('end reached');
+            updatePageStart(this, page)
             this.viewState.lastAction = "next_page_loaded";
-            this.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
-            autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
-            history.pushState(null, null, '?' + autoScrollParams.toString());
+            // this.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
+            // autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
+            // history.pushState(null, null, '?' + autoScrollParams.toString());
             this.renderNewResults('next');
         } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
             // alert('Top reached');
             // if (page < this.initialPage && !(page < 1) && !this.state.loading) {
-                // const currentPage = this.getPage();
-                // this.autoScrollPrepend = true;
-                // this.setPage(page).callResults(this.paintProductPage);
-                
-                // jQuery('body, html').animate({scrollTop: this.productContainerHeight - 300}, '0.1s')
-                // window.scrollTo(0, this.productContainerHeight - 100);
-                // this.setPage(currentPage);
-                // autoScrollParams.set('page', page);
-                this.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
-                autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
-                history.pushState(null, null, '?' + autoScrollParams.toString());
-                this.renderNewResults('prev');
-                this.viewState.lastAction = "prev_page_loaded";
-                this.initialPage = this.initialPage - 1;
+            // const currentPage = this.getPage();
+            // this.autoScrollPrepend = true;
+            // this.setPage(page).callResults(this.paintProductPage);
+
+            // jQuery('body, html').animate({scrollTop: this.productContainerHeight - 300}, '0.1s')
+            // window.scrollTo(0, this.productContainerHeight - 100);
+            // this.setPage(currentPage);
+            // autoScrollParams.set('page', page);
+            updatePageStart(this, page)
+            // this.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
+            // autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
+            // history.pushState(null, null, '?' + autoScrollParams.toString());
+            this.viewState.lastAction = "prev_page_loaded";
+            this.initialPage = this.initialPage - 1;
+            this.renderNewResults('prev');
             // }
-        } 
+        }
         else if ((parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows'))) + 1 != page && page != 0) {
-            this.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
-            autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
-            // autoScrollParams.set('start', (page-1) * self.params.extra.rows + 1);
-            // autoScrollParams.set('start', (page-1) * 12 + 1);
-            history.pushState(null, null, '?' + autoScrollParams.toString())
+            updatePageStart(this, page)
+            // this.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
+            // autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
+            // // autoScrollParams.set('start', (page-1) * self.params.extra.rows + 1);
+            // // autoScrollParams.set('start', (page-1) * 12 + 1);
+            // history.pushState(null, null, '?' + autoScrollParams.toString())
         }
     }
 

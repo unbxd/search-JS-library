@@ -168,11 +168,11 @@ const reRender = function () {
     if (pagination.type === 'INFINITE_SCROLL' && !this.productContainerHeight) {
         const autoScrollParams = this.getAutoScrollParams();
         // const page = parseInt(autoScrollParams.get('page'));
-        const start = parseInt(autoScrollParams.get('start'));
+        // const start = parseInt(autoScrollParams.get('start'));
         // const count = parseInt(autoScrollParams.get('count'));
-        const rows = parseInt(autoScrollParams.get('rows'));
+        // const rows = parseInt(autoScrollParams.get('rows'));
         // const start = (page - 1) * count;
-        const device = this.getDeviceInfo();
+        // const device = this.getDeviceInfo();
         this.initialScroll = Math.ceil(parseInt(autoScrollParams.get('scroll'))) || 0
         // this.mobileFlag = false;
         // this.infiniteScrollTimer = null;

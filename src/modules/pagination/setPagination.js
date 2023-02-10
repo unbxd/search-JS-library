@@ -6,33 +6,33 @@ import {
     paginationAction
 } from './actions';
 
-const setPage =  function (pageNo) {
-    this.params.extra.page = pageNo;
-    return this;
-}
-const getPage =  function () {
+// const setPage =  function (pageNo) {
+//     this.params.extra.page = pageNo;
+//     return this;
+// }
+// const getPage =  function () {
     
-    return Math.round(this.params.extra.page);
-}
-const setPageSize =  function (pageSize) {
-    this.params.extra.rows = pageSize;
-    return this;
-}
-const getPageSize =  function () {
-        return this.params.extra.rows;
-    }
+//     return Math.round(this.params.extra.page);
+// }
+// const setPageSize =  function (pageSize) {
+//     this.params.extra.rows = pageSize;
+//     return this;
+// }
+// const getPageSize =  function () {
+//         return this.params.extra.rows;
+//     }
 
-    const getDeviceInfo = function () {
-        var smallDeviceMaxWidth = 768,
-            mediumDeviceMaxWidth = 1024;
-        if (window.innerWidth < smallDeviceMaxWidth) {
-            return "Mobile";
-        } else if (window.innerWidth < mediumDeviceMaxWidth) {
-            return "Tablet";
-        } else {
-            return "Desktop";
-        }
-    }
+//     const getDeviceInfo = function () {
+//         var smallDeviceMaxWidth = 768,
+//             mediumDeviceMaxWidth = 1024;
+//         if (window.innerWidth < smallDeviceMaxWidth) {
+//             return "Mobile";
+//         } else if (window.innerWidth < mediumDeviceMaxWidth) {
+//             return "Tablet";
+//         } else {
+//             return "Desktop";
+//         }
+//     }
 
     const getAutoScrollParams = function  (){
         const autoScrollParams = new URLSearchParams(window.location.search)
@@ -56,11 +56,11 @@ const setPagination = (prototype) => {
         renderNewResults,
         paginationAction,
         onInfiniteScroll,
-        setPage,
-getPage,
-setPageSize,
-getPageSize,
-getDeviceInfo,
+//         setPage,
+// getPage,
+// setPageSize,
+// getPageSize,
+// getDeviceInfo,
 getAutoScrollParams
     })
 }
@@ -71,10 +71,10 @@ export {
     renderNewResults,
     paginationAction,
     onInfiniteScroll,
-    setPage,
-getPage,
-setPageSize,
-getPageSize,
-getDeviceInfo,
+//     setPage,
+// getPage,
+// setPageSize,
+// getPageSize,
+// getDeviceInfo,
 getAutoScrollParams
 };
