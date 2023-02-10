@@ -97,11 +97,23 @@ function bindEvents(){
     }
 
     if(this.options.pagination.type === 'INFINITE_SCROLL') {
-        document.addEventListener("scroll",debounce(()=>{
-            if(!this.viewState.isInfiniteStarted && !this.state.loading){
-                this.onInfiniteScroll.bind(this)();
-            }
-        },100));
+        // document.addEventListener("scroll",debounce(()=>{
+        //     if(!this.viewState.isInfiniteStarted && !this.state.loading){
+        //         this.onInfiniteScroll.bind(this)();
+        //     }
+        // },1000));
+
+        let infiniteScrollTimer;
+        const self = this
+        document.addEventListener("scroll",function(){
+            infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
+            infiniteScrollTimer = setTimeout(function(){
+                if(!self.viewState.isInfiniteStarted && !self.state.loading){
+                    self.onInfiniteScroll();
+                }
+            }, 100)
+            
+        });
     }
     this.delegate(
         this.pageSizeWrapper,

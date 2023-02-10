@@ -25,9 +25,9 @@ const getPageSize =  function () {
     const getDeviceInfo = function () {
         var smallDeviceMaxWidth = 768,
             mediumDeviceMaxWidth = 1024;
-        if (window.outerWidth < smallDeviceMaxWidth) {
+        if (window.innerWidth < smallDeviceMaxWidth) {
             return "Mobile";
-        } else if (window.outerWidth < mediumDeviceMaxWidth) {
+        } else if (window.innerWidth < mediumDeviceMaxWidth) {
             return "Tablet";
         } else {
             return "Desktop";

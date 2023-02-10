@@ -2,7 +2,7 @@
 layout: default
 title: Introduction
 nav_order: 1
-description: "Unbxd JS Library documentation"
+description: "Unbxd JS SDK documentation"
 permalink: /
 ---
 

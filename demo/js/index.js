@@ -253,8 +253,8 @@ window.unbxdSearch = new UnbxdSearch({
     // siteKey: "ss-unbxd-priyal-dev-2022812041656321154",
     // apiKey: "74346ae3ffdcc7cd664f6ce8a18e4c7d",
   // searchEndPoint: "https://wingman-argocd.unbxd.io/",
-    siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
-    apiKey: "e2082aeb3a7f0ac8955c879daf7673e8",
+    siteKey: "ss-unbxd-prod-bevilles-com-au13551623906010",
+    apiKey: "d59fddd93d4e871798731a7d2374ca13",
     updateUrls: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
@@ -265,8 +265,9 @@ window.unbxdSearch = new UnbxdSearch({
     unbxdAnalytics: true,
     pagination: {
         type: 'INFINITE_SCROLL',
-        el: null,
-        template: null,
+        // el: null,
+        // template: null,
+        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function (data) { console.log(data, "data") }
     },
@@ -400,7 +401,8 @@ window.unbxdSearch.updateConfig({
     },
     pagination: {
         type: 'INFINITE_SCROLL',
-        heightDiffToTriggerNextPage: 100,
+        // heightDiffToTriggerNextPage: 100,
+        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function(data) {console.log(data,"data")}
     },

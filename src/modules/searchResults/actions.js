@@ -32,6 +32,7 @@ const onProductItemClick = function(e) {
     dataset = elem.dataset;
     if(dataset.id) {
         product =  this.getProductByPropValue(attributesMap.unxId,dataset.id);
+        // localStorage.setItem('UnxLastProductClicked', dataset.id);
     }
     if(product && elem) {
         product.prank = elem.dataset.prank;

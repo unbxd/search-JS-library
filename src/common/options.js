@@ -222,7 +222,7 @@ const options = {
         pageClass: "UNX-page-items",
         selectedPageClass: "UNX-selected-page-item",
         type: 'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
-        infinteScrollTriggerEl: window, //if paginationType = INFINITE_SCROLL
+        infiniteScrollTriggerEl: window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage: 100, //if paginationType = INFINITE_SCROLL,    
         onPaginate: function (paginationInfo) { },
         action: 'click',

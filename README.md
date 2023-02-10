@@ -273,7 +273,7 @@ This provides you the power of entire Javascript to build your desired HTML stri
 | selectedPageClass | String | "UNX-selected-page-item" | CSS classname for selected page item |
 | onPaginate                	| `function(paginationInfo){}` 	| NA | Callback function that gets called after a pagination action |
 | pageLimit | Number | 6 | Number of pages to show upfront (when `type` is `FIXED_PAGINATION`) |
-| infinteScrollTriggerEl | Element | window | Element on which to detect infinite scroll page boundary (when `type` is set to `INFINITE_SCROLL`) |
+| infiniteScrollTriggerEl | Element | window | Element on which to detect infinite scroll page boundary (when `type` is set to `INFINITE_SCROLL`) |
 | heightDiffToTriggerNextPage | Number | 100 | Height of the page to consider to fetch the next page data (when `type` is set to `INFINITE_SCROLL`) |
 | action                    	| String   	| "click" | Action on which pagination should trigger: "click" or "change" |
 | tagName | String | "DIV" | html element for the pagination wrapper. by default it is div.  |

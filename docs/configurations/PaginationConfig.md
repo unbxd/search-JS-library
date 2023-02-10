@@ -351,7 +351,7 @@ Any positive integer can be passed here.
 
 ---
 
-## infinteScrollTriggerEl
+## infiniteScrollTriggerEl
 {: .d-inline-block }
 
 Element
@@ -364,7 +364,7 @@ An infinite scroll trigger element, or `infiniteScrollTriggerEl`, is an HTML ele
 {: .no_toc }
 
 ```js
-infinteScrollTriggerEl: window
+infiniteScrollTriggerEl: window
 ```
 
 ### Scenarios
