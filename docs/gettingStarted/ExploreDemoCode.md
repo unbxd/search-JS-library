@@ -5,9 +5,6 @@ nav_order: 1
 parent: Getting Started
 ---
 
-# Explore Demo Code
-{: .no_toc }
-
 1. TOC
 {:toc}
 
@@ -45,37 +42,13 @@ The demo data is of fashion vertical.
 3. Unzip the folder
 4. Run the following commands in terminal inside the unzipped folder:<br/>
 Install required version of node using nvm:<br/>
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}nvm install v14.15.0{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}<br/>
+```nvm install v14.15.0```<br/>
 Use that version of node:<br/>
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}nvm use v14.15.0{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}<br/>
+```nvm use v14.15.0```<br/>
 Install dependencies:<br/>
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}npm install{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}<br/>
+```npm install```<br/>
 Run the webpack server:<br/>
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}npm run start{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}<br/>
+```npm run start```<br/>
 
 {: .important }
 > Additional links for above tools:<br/>
