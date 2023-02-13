@@ -83,8 +83,8 @@ Function
 {: .label }
 
 Customize the look and feel of the facets block by returning your custom HTML string from this function. This function accepts following parameters: 
-1.  `facetObj`: 
-2.  `children`: 
+1.  `facetObj`: the facet obj is received here
+2.  `children`: the html string block
 3.  `isExpanded`: is expanded flag (in case you have chosen collapsible facets, i.e. isCollapsible is set to true)
 4.  `facetSearchTxt`: the search text entered for this facet block (if isSearchable is set to true)
 5.  `facet`: the complete configs for facets.
@@ -247,8 +247,8 @@ facetMultiSelect: true
 
 ### Scenarios
 {: .no_toc }
-1. true - enable the multiple selection of facets
-2. false - disable the multiple selection of facets
+1.  `true` - enable the multiple selection of facets
+2.  `false` - disable the multiple selection of facets
 
 --- 
 
@@ -291,7 +291,7 @@ facetAction: 'click'
 ### Scenarios
 {: .no_toc }
 1.  `Click`: selection / deselection happens when the user clicks on a specific button or any other element .
-2.  `Change`: 
+2.  `Change`: change refers to a operation that is initiated when a specific variable or data element is changed
 
 --- 
 ## selectedFacetClass
@@ -450,8 +450,6 @@ selectedFacetConfig:{
 }
 ```
 
-### Scenarios
-{: .no_toc }
 
 --- 
 
@@ -482,10 +480,10 @@ Function
 {: .label }
 
 Customize the look and feel of the range facets by returning your custom HTML string from this function. This function expects following parameters: 
-1.  `range` : 
-2.  `selectedRange`: 
-3.  `facet`:
-the list of range facets available.
+1.  `range` : the list of range facets available.
+2.  `selectedRange`: the selected ranges
+3.  `facet`: the complete facet block
+
 
 ### Default Value
 {: .no_toc }
@@ -554,8 +552,6 @@ Configure the default range slider. Refer to the [Range Widget Config](#Facet-Ra
 rangeWidgetConfig: null
 ```
 
-### Scenarios
-{: .no_toc }
 
 --- 
 ## facetMultilevel
@@ -575,8 +571,8 @@ facetMultilevel: true
 
 ### Scenarios
 {: .no_toc }
-1.  `true`: 
-2.  `false`:
+1.  `true`: When turned on , the multilevel parameter will be sent to API.
+2.  `false`: When turned off , the multilevel parameter will not be sent in the API.
 
 --- 
 
@@ -593,10 +589,6 @@ Set the multilevel field name using this config.
 ```js
 facetMultilevelName: “Category”
 ```
-
-### Scenarios
-{: .no_toc }
-
 
 --- 
 ## multiLevelFacetSelectorClass
