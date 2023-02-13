@@ -17,28 +17,36 @@ A JavaScript library for building performant and quick search experiences with U
 
 ---
 
-
 # Introduction
+
+Are you looking to add advanced search functionality to your e-commerce application? Look no further than the Unbxd search JavaScript SDK. This powerful software development kit provides an easy-to-use API for integrating search capabilities into your application.
+
+In this documentation site, you will find everything you need to know about the Unbxd Vanilla JS SDK, including a comprehensive guide to its features and functionality, sample code, various use cases and best practices for integration. Whether you're a seasoned developer or just getting started, this site will provide you with the tools and information you need to build a powerful, intuitive search experience for your users.
+
+So why wait? Start exploring the possibilities of this innovative technology.
+
+
+# About the SDK
 
 The 'Search-JS-library' is a software development kit (SDK) provided by Unbxd, that allows e-commerce websites to easily integrate Unbxd's search and product discovery functionality. The SDK is built on Vanilla JavaScript and provides an easy-to-use JavaScript API that can be used to configure, initiate and customize search requests.
 
-The SDK can be used to configure the search engine, set the API and Site key, initiate the search, retrieve the autocomplete suggestions, track various search and product events, and more.
-
 This SDK does not have any dependencies on any other JavaScript frameworks or libraries, which makes it lightweight and easy to integrate into an e-commerce website. It can be easily added to the website by including a script tag on the page where it is needed, and it can be customized and extended using JavaScript methods and callbacks.
 
-Additionally, SDK provides several functionalities like, but not limited to:
-1. Instant search results
-2. Search analytics
-3. Search-as-you-type (Autosuggest SDK)
-4. Spelling suggestions
-5. Faceted search
-6. Customizable search result templates.
+
+Here are a few ways the Unbxd SDK can help:
+
+* **Improved search functionality**: Unbxd's SDK can provide advanced search capabilities such as auto-suggest, spelling correction, and synonym handling, which can result in a better search experience for your customers.
+
+* **Enhanced product discovery**: The SDK can also provide features such as personalized product recommendations, category landing pages, and product lists that are tailored to each customer's unique preferences and behavior, leading to increased engagement and conversions.
+
+* **Increased site performance**: Unbxd's SDK is optimized for fast search and product discovery, and it integrates with your e-commerce site's backend to reduce latency and improve the overall performance of your site.
+
+* **Customization and flexibility**: Unbxd's SDK offers several customization options and integrations, making it easy to tailor the search and product discovery experience to your specific needs and requirements. The nomenclature and the elements present on the e-commerce page may vary across different website, but the Unbxd Javascript Search SDK can be integrated in any e-commerce website.
 
 These functionalities are designed to improve the user experience on the e-commerce website by providing a powerful search experience, increasing the relevance of search results and providing a more personalized shopping experience for users.
 
 It is important to note that in order to use the Unbxd Vanilla JS SDK, the e-commerce website needs to have an account with Unbxd, and must have the necessary Site and API keys to properly configure the SDK and connect it to the Unbxd platform.
 
-It's important to note that the nomenclature and the elements present on the e-commerce page may vary across different website, but the Unbxd Javascript Search SDK can be integrated in any e-commerce website.
 
 
 {: .note-title }
