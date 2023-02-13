@@ -864,7 +864,7 @@ template {
 
 ::selection {
   color: #fff;
-  background: #7253ed;
+  background: #567ede;
 }
 
 html {
@@ -921,7 +921,7 @@ p {
 }
 
 a {
-  color: #7253ed;
+  color: #567ede;
   text-decoration: none;
 }
 
@@ -1195,7 +1195,7 @@ body {
 .icon {
   width: 1.5rem;
   height: 1.5rem;
-  color: #7253ed;
+  color: #567ede;
 }
 
 .main-content {
@@ -1343,7 +1343,7 @@ body {
   display: inline-block;
   width: 100%;
   height: 100%;
-  color: #7253ed;
+  color: #567ede;
   visibility: hidden;
 }
 .main-content .anchor-heading:hover svg,
@@ -1491,7 +1491,7 @@ body {
   width: 3rem;
   height: 3rem;
   padding: 0.75rem;
-  color: #7253ed;
+  color: #567ede;
 }
 @media (min-width: 50rem) {
   .nav-list .nav-list-item .nav-list-expander {
@@ -1558,10 +1558,10 @@ body {
   padding: 0;
 }
 .nav-list.nav-category-list > .nav-list-item > .nav-list > .nav-list-item > .nav-list-link {
-  color: #7253ed;
+  color: #567ede;
 }
 .nav-list.nav-category-list > .nav-list-item > .nav-list > .nav-list-item > .nav-list-expander {
-  color: #7253ed;
+  color: #567ede;
 }
 
 .aux-nav {
@@ -1777,7 +1777,7 @@ h6,
   font-size: inherit;
   font-weight: 500;
   line-height: 1.5;
-  color: #7253ed;
+  color: #567ede;
   text-decoration: none;
   vertical-align: baseline;
   cursor: pointer;
@@ -1819,7 +1819,7 @@ h6,
 }
 
 .btn-outline {
-  color: #7253ed;
+  color: #567ede;
   background: transparent;
   box-shadow: inset 0 0 0 2px #e6e1e8;
 }
@@ -1840,17 +1840,17 @@ h6,
 
 .btn-primary {
   color: #fff;
-  background-color: #5739ce;
-  background-image: linear-gradient(#6f55d5, #5739ce);
+  background-color: #567ede;
+  background-image: linear-gradient(#6b8ee5, #567ede);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 .btn-primary:hover, .btn-primary.zeroclipboard-is-hover {
   color: #fff;
-  background-color: #5132cb;
-  background-image: linear-gradient(#6549d2, #5132cb);
+  background-color: #567ede;
+  background-image: linear-gradient(#6b8ee5, #567ede);
 }
 .btn-primary:active, .btn-primary.selected, .btn-primary.zeroclipboard-is-active {
-  background-color: #4f31c6;
+  background-color: #567ede;
   background-image: none;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
 }
@@ -1983,7 +1983,7 @@ h6,
   outline: 0;
 }
 .search-input:focus + .search-label .search-icon {
-  color: #7253ed;
+  color: #567ede;
 }
 
 .search-label {
@@ -2102,7 +2102,7 @@ h6,
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
-  color: #7253ed;
+  color: #567ede;
   flex-shrink: 0;
 }
 .search-result-doc .search-result-doc-title {
@@ -2522,7 +2522,7 @@ code.language-mermaid {
 }
 
 .text-purple-000 {
-  color: #7253ed !important;
+  color: #567ede !important;
 }
 
 .text-purple-100 {
@@ -2638,7 +2638,7 @@ code.language-mermaid {
 }
 
 .bg-purple-000 {
-  background-color: #7253ed !important;
+  background-color: #567ede !important;
 }
 
 .bg-purple-100 {
@@ -7525,7 +7525,7 @@ a.skip-to-main {
 
 a.skip-to-main:focus,
 a.skip-to-main:active {
-  color: #7253ed;
+  color: #567ede;
   background-color: #fff;
   left: auto;
   top: auto;
