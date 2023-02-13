@@ -1,4 +1,5 @@
 import UnbxdSearch from "../../src/index";
+// import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
 
 let routeTemplate = `
 <div class="UNX-header">
