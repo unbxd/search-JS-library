@@ -329,9 +329,6 @@ const onInfiniteScroll = function () {
         autoScrollParams.set('scroll', Math.ceil(scroll));
         history.pushState(null, null, '?' + autoScrollParams.toString());
 
-
-
-
         if ((getDocHeight() - 20) <= (scrollTop + window.innerHeight) && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
             // alert('end reached');
             updatePageStart(this, page)

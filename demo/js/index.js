@@ -142,6 +142,10 @@ const checkRangeTemplate = function (range, selectedRange, facet) {
 
 const unbxdCallbackEcma = function (instance, type, data) {
     console.log(type, data, 'type,data');
+    if(type === "AFTER_RENDER") {
+        
+        window.getElementById(localStorage.getItem('unx_product_clicked')).scrollIntoView({'behavior': 'smooth'})
+    }
 }
 
 let showFacet = false;
@@ -280,6 +284,7 @@ window.unbxdSearch.updateConfig({
         productType: productType,
         onProductClick: function (product, e) {
             // history.pushState(null,null, `${product.variants[0].productUrl}`);
+            localStorage.setItem('unx_product_clicked', product.uniqueId);
             window.location.href ='https://www.google.com';
         }
     },
