@@ -36,15 +36,11 @@ Configure page loader to be shown when fetching search API results by setting th
 # Configurations
 To render the loader , you need to configure the "loader" config object :
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 loader: {
     //Below configurations should be added here.
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 The following options are available under the object:  
 
@@ -62,13 +58,9 @@ Required
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 el: null
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -86,15 +78,11 @@ The "template" function here refers to the ability to change the look and feel o
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 template: function(){
     return '<div class="UNX-loader">Loading search results....</div>'
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}	
+```	
 
 ### Scenarios
 {: .no_toc }
@@ -103,18 +91,14 @@ For additional information on custom scenarios, please refer to the [use cases s
 # Default Example
 Sample code for the Loader config:
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 loader: {
     el: document.getElementById("loaderEl"),
     template: function(){
         return '<div class="UNX-loader">Loading....</div>'
     }
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 # UseCases
 ## Usecase 1:

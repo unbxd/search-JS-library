@@ -33,15 +33,11 @@ Page Size widget allows you to configure the number of products shown on each pa
 # Configurations
 To render the Page Size widget, you need to configure the “pageSize” config object.
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 pagesize: {
     //Below configurations should be added here.
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 The following are the various options available under the object: 
 
@@ -59,13 +55,9 @@ Turn this off if you do not want the page size component.
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 enabled: true
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -82,13 +74,9 @@ The "element" option for pageSize refers to the HTML element that is used to cre
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 el: null
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -104,13 +92,9 @@ This option would allows to set the number of items per page to be displayed.
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 pageSize: 12
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -127,13 +111,9 @@ Array of desired page sizes to be rendered. It is suggested that the value be a 
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 options: [8, 12, 16, 20, 24]
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -150,13 +130,9 @@ Additional CSS class name to be added to the page size element.
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 pageSizeClass: “UNX-pagesize”
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -173,13 +149,9 @@ Additional CSS class name to be added to the selected page size option.
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 selectedPageSizeClass: “UNX-selected-pagesize”
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -196,13 +168,9 @@ Action on which page size change should trigger.
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 action: “change”
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -224,8 +192,7 @@ This function expects 2 parameters:
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 template: function(selected, pagesize) {
     const {
         UNX_pagesize
@@ -243,10 +210,7 @@ template: function(selected, pagesize) {
     ui+= `</select>`
     return `<div class="UNX-pagesize-block">${ui}</div>`;
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -262,13 +226,9 @@ String
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 tagName: “div”
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}	
+```	
 
 ### Scenarios
 {: .no_toc }
@@ -285,13 +245,9 @@ Object
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 htmlAttributes : { class:”UNX-selected-pagesize” }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -302,8 +258,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 ## Default Example
 Sample code for “pageSize” config: 
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 pageSize: {
     enabled:true,
        pageSize:12,
@@ -330,10 +285,7 @@ pageSize: {
         return `<div class="UNX-pagesize-block">${ui}</div>`;
     },
    }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 # UseCases
 ## Usecase 1:

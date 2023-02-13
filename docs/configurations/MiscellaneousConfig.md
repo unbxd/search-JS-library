@@ -30,13 +30,9 @@ Turn this flag on if you want Unbxd Search sdk to fire analytics events like tra
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 unbxdAnalytics: false
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
@@ -67,13 +63,9 @@ Turn this flag on if you want the URL update to happen as hash param instead of 
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 hashMode: false
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
@@ -96,13 +88,9 @@ If you prefer for the URLs to remain unchanged when any search parameters are al
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 updateUrls: true
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
@@ -122,13 +110,9 @@ CSS class name to add to any facet wrapper elements on which you want to trigger
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 actionBtnClass:"UNX-action-item"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
@@ -147,13 +131,9 @@ CSS class name to be added to any facet wrapper elements on which you want to tr
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 actionChangeClass:"UNX-action-change"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
@@ -172,13 +152,9 @@ Turn this flag on if you want to retain the external url params in the **browser
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 allowExternalUrlParams: false
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
@@ -198,13 +174,9 @@ Any additional parameters you want to send in the search API call.
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 { "version":"V2" }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
@@ -212,17 +184,13 @@ Any additional parameters you want to send in the search API call.
 1. 
 In case of dynamic values, a global function must be written to return the value on client end, and the same can be used as part of extraParams. 
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 window.isSale = function() {
     /** Custom logic based on dynamic conditions **/
     return true;
 }
 { "version":"V2", "uc_param": window.isSale() }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 {: .warning } 
 > Note: Please make sure that **version V2** is not overwritten in the custom implementation of externalParams.
@@ -273,25 +241,17 @@ Domain name of the search API endpoint.
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 searchEndPoint:“https://search.unbxd.io”	
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Scenarios
 {: .no_toc }
 
 1. In case of a staging sitekey, it will be:
-{% capture code %}
-{% highlight js linenos %}
+```js
 searchEndPoint:"https://wingman-argocd.unbxd.io/"	
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ---
 <!-- This feature is not used, and not adopted. There is no clarity.
@@ -322,13 +282,9 @@ This will be the default query param for the search api to provide category info
 ## Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 browseQueryParam: "p"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 	
 ## Scenarios
 {: .no_toc }

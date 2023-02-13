@@ -59,22 +59,14 @@ This is the unique Site Key assigned by Unbxd to every site created in the conso
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 siteKey:NA	
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 ### Scenarios
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 siteKey:"ss-unbxd-gcp-Gardner-White-STG8241646781056"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ---
 ## apiKey	
@@ -87,23 +79,15 @@ This is the unique API Key assigned to every site created in the console dashboa
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 apiKey:NA
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 
 ### Scenarios
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 apiKey:"e2082aeb3a7f0ac8955c879daf7673e8"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
   

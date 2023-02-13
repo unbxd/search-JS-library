@@ -43,15 +43,11 @@ Sorting allows you to rearrange the search results based on certain fields in a 
 
 The Configurations for Sorting needs to be added in the below block :
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 sort: {
     //Below configurations should be added here.
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 The following are the various options available under the object:
 
@@ -66,13 +62,9 @@ When sort is disabled, the developer will not be able to use the sorting functio
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 enabled: true
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -93,13 +85,9 @@ The "element" option for sorting refers to the HTML element that is used to crea
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 el: null
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -120,8 +108,7 @@ This accepts a list of objects, where each object needs to have "value" and "tex
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 [
     {
         value: "price desc",
@@ -137,10 +124,7 @@ This accepts a list of objects, where each object needs to have "value" and "tex
         text: " Rating High to low"
     }
 ]
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -158,13 +142,9 @@ This class works in case of default template .To use in case of custom template 
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 sortClass: “UNX-sort-item”
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -182,13 +162,9 @@ This class works in case of default template .To use in case of custom template 
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 selectedSortClass: “UNX-selected-sort”
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -211,8 +187,7 @@ The "template" function here refers to the ability to change the look and feel o
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 template: function(selectedSort, sortConfig) {
     let optionsUI = "";
     const {
@@ -244,10 +219,7 @@ template: function(selectedSort, sortConfig) {
     `</div>`].join('')
 }
 
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -263,13 +235,9 @@ Action on which the sorting will trigger .
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 action: "change"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -288,13 +256,9 @@ String
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 tagName: "div"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -310,15 +274,11 @@ Object
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 {
     class: ”UNX-sort-block-lb”
 }	
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -332,8 +292,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 Sample code for the Sort config:
 <img src="../assets/dropdownsort.png" width="500px">
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 sort: {
    el: document.getElementById("sortWrapper"),
    selectedSortClass:'UNX-selected-sort',
@@ -377,16 +336,12 @@ sort: {
         `</div>`].join('')
     },
 },
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## Usecase 2: Sort as Buttons
 [![](../assets/button-sort.png)](../assets/button-sort.png)
 
-{% capture code %}
-{% highlight js linenos %}
+```js
  sort: {
     el: document.getElementById("sortWrapper"),
     options: [
@@ -425,8 +380,5 @@ sort: {
     }
   }
 
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 ## Usecase 3: Apply default sorting

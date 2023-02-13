@@ -44,13 +44,9 @@ When the "enabled" flag is turned ON, the banner feature will be active and bann
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 enabled: false
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -73,13 +69,9 @@ Required
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 el: null
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -104,8 +96,7 @@ This function passes two params:
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 template: function (banners, bannerOpts) => {
     const {
         openNewTab
@@ -131,10 +122,7 @@ template: function (banners, bannerOpts) => {
     }).join('');
     return `${bannerUI}`
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 ### Scenarios
 {: .no_toc }
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
@@ -170,13 +158,9 @@ Boolean
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 openNewTab: false
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -197,13 +181,9 @@ String
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 tagName: 'div'
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -221,13 +201,9 @@ Object
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 htmlAttributes: { class:"UNX-banner-block" }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -243,8 +219,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 Sample banner configuration
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 banner: {
     enabled:true,
     el:null,
@@ -259,9 +234,6 @@ banner: {
     },
     count:1
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 ## Usecase 2: Banners With HTML
 ## Usecase 3: Banners With Images

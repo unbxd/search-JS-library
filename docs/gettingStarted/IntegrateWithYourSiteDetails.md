@@ -18,57 +18,37 @@ More information can be found [here](./../prerequisites)
 # Integration Instructions
 
 1. Include the vanilla js search library via the link:
-    {% capture code %}
-{% highlight js linenos %}
+    ```js
     <script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
-    {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+    ```
     {: .important }
     > The **latest version** can be found via the npm repository:
     [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
 
 2.  To get the default theme, include the library css in the link tag:
-    {% capture code %}
-{% highlight js linenos %}
+    ```js
     <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
-    {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+    ```
 
 3. Customize the config, to see the data related to your sitekey. 
     1. Change **siteKey** and **apiKey**.
-    {% capture code %}
-{% highlight js linenos %}
+    ```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
-    {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+    ```
     2. Modify **attributesMap** inside **products** object.
-        {% capture code %}
-{% highlight js linenos %}
+        ```js
         attributesMap: {
         "unxTitle": "<<title attribute>>",
         "unxImageUrl": "<<image url attribute>>",
         "unxPrice": "<<price attribute>>",
         "unxDescription":"<<description attribute>>"
         };
-        {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+        ```
     3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned.
-        {% capture code %}
-{% highlight js linenos %}
+        ```js
         productAttributes: ["<<title attribute>>","<<image url attribute>>","<<price attribute>>","<<description attribute>>"]
-        {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+        ```
     4. Add the correct **query selectors** based on your website, in the config.
     5. Configure category data:<br/>
        Either category path, or category ids can be used.
@@ -78,8 +58,7 @@ More information can be found [here](./../prerequisites)
        **Example:**
        {: .no_toc }
 
-        {% capture code %}
-{% highlight js linenos %}
+        ```js
         if (location.pathname === "/categoryPage1") {
             window.UnbxdAnalyticsConf = {
                 page: "categoryPath:categoryPath1",
@@ -96,10 +75,7 @@ More information can be found [here](./../prerequisites)
             window.UnbxdAnalyticsConf = {};
             productType = "SEARCH";
         }
-        {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+        ```
         
         OR
 
@@ -109,8 +85,7 @@ More information can be found [here](./../prerequisites)
        **Example:**
         {: .no_toc }
 
-        {% capture code %}
-{% highlight js linenos %}
+        ```js
         if (location.pathname === "/<<categoryPage1>>") {
             window.UnbxdAnalyticsConf = {
                 page: "categoryPathId:categoryId1",
@@ -127,18 +102,11 @@ More information can be found [here](./../prerequisites)
             window.UnbxdAnalyticsConf = {};
             productType = "SEARCH";
         }
-        {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+        ```
 
-        {% capture code %}
-{% highlight js linenos %}
+        ```js
         browseQueryParam: "p-id"
-        {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+        ```
 
         {: .important }
         > For further help with category pages configuration, please contact the feed support team. 
@@ -149,15 +117,11 @@ More information can be found [here](./../prerequisites)
         **Example:**
         {: .no_toc }
 
-        {% capture code %}
-{% highlight js linenos %}
+        ```js
         products: {
             productType: "<<SEARCH/CATEGORY>>",  
         }
-        {% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+        ```
 
 
 # Sample configuration with the unbxd demo sitekey feed

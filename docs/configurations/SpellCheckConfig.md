@@ -38,15 +38,11 @@ In such cases, the context-aware algorithm of Unbxd understands your visitor’s
 
 You can configure the spellcheck feature by updating the required configs under the “spellCheck” config object.
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 spellCheck: {
       // the below spellcheck configurations goes here.
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## enabled
 {: .d-inline-block }
@@ -61,13 +57,9 @@ Required
 When the “enabled” flag is turned on, the spellcheck feature will be active,This can be used to help result even when you write incorrect query. When the “enabled” flag is turned off, the spellcheck feature will be disabled.
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 enabled: false
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -88,13 +80,9 @@ Required
 Element in which to render the spellcheck component.
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 el: null
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -120,8 +108,7 @@ This function takes three params:
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 template: function(query,suggestion,pages) {
     const {
         start,
@@ -161,10 +148,7 @@ template: function(query,suggestion,pages) {
             qUi,
         `</div>`].join('');
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 ### Scenarios
 {: .no_toc }
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
@@ -181,13 +165,9 @@ Additional CSS class name for the spell check component,a selector class is typi
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 selectorClass:"UNX-suggestion"
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 
@@ -206,13 +186,9 @@ String
 ### Default Value
 {: .no_toc }
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 tagName: 'DIV'
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -229,13 +205,9 @@ Object
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 htmlAttributes: { class:"UNX-spellcheck-wrapper" }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ### Scenarios
 {: .no_toc }
@@ -248,8 +220,7 @@ Sample “spellCheck” config
 
 [![](../assets/spellcheck.png)](../assets/spellcheck.png)
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 spellCheck:{
     enabled:true,
     el:document.getElementById("didYouMeanWrapper"),
@@ -290,7 +261,4 @@ spellCheck:{
         `</div>`].join('');
     },
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```

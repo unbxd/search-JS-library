@@ -31,15 +31,11 @@ Configure the display to be rendered when there are no results by setting the â€
 
 The following options are available under the noResults object:  
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 noResults:{
 // the below noResults configurations goes here.
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 ## template
 {: .d-inline-block }
@@ -55,15 +51,11 @@ This function takes single param:
 
 ### Default Value
 {: .no_toc }
-{% capture code %}
-{% highlight js linenos %}
+```js
 template: function(query){
     return '<div class="UNX-no-results"> No Results found '+ query + '</div>'
 }
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}	
+```	
 ### Scenarios
 {: .no_toc }
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
@@ -79,8 +71,7 @@ By default the noResults has default behaviour which can be overriden by adding 
 
 <img src="../assets/noResultsUsecase.png" width="800px">
 
-{% capture code %}
-{% highlight js linenos %}
+```js
 noResults: {
         el: document.getElementById("noResultWrapper"),
         template: function (query) {
@@ -106,7 +97,4 @@ noResults: {
         }
 }
 
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```

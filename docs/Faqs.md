@@ -55,22 +55,14 @@ To install the Unbxd JavaScript search SDK on your website, you can follow these
 
 1. Sign up for an Unbxd account and create an application to get your API key.
 2. Include the Unbxd JavaScript library on your website by adding the following code to the head of your HTML file:
-{% capture code %}
-{% highlight js linenos %}
+```js
 <script src="https://libraries.unbxdapi.com/search-sdk/v<latest_version_number>/vanillaSearch.min.js"></script>
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 
 3. Initialize the Unbxd object by adding the following code to your JavaScript file:
-{% capture code %}
-{% highlight js linenos %}
+```js
 var unbxd = new Unbxd.setSiteKey("YOUR_API_KEY").setSearchKey("YOUR_SEARCH_KEY");
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
+```
 Make sure to replace "YOUR_API_KEY" and "YOUR_SEARCH_KEY" with the actual keys from your Unbxd account.
 
 4. Configure the search parameters and display the results on your website. You can refer to the detailed documentation for more information on how to do this.
