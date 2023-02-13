@@ -17,8 +17,9 @@ nav_order: 17
 ---
 
 # Other Configurations
+{: .no_toc }
 
-## unbxdAnalytics
+# unbxdAnalytics
 {: .d-inline-block }
 
 Boolean
@@ -26,21 +27,21 @@ Boolean
 
 Turn this flag on if you want Unbxd Search sdk to fire analytics events like track search click, track category page click, track product impressions, track facet click, track product click, etc. Note that you have to integrate the Unbxd Analytics SDK as well for tracking analytics events.
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 unbxdAnalytics: false
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 1. true - analytics events will be fired from the search sdk
 2. false - analytics events will not be fired from the search sdk
 
 ---
-## hashMode
+# hashMode
 {: .d-inline-block }
 
 Boolean
@@ -59,21 +60,21 @@ The search sdk adds some information to the url as params, based on the user act
 
 Turn this flag on if you want the URL update to happen as hash param instead of using query params.
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 hashMode: false
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 1. true - url params will be updated as hash params
 2. false - url params will be updated as query params
 
 ---
-## updateUrls
+# updateUrls
 {: .d-inline-block }
 
 Boolean
@@ -84,21 +85,21 @@ If you prefer for the URLs to remain unchanged when any search parameters are al
 {: .important }
 > Note: If this is set to false, the page reload will lose any user action data like selected facets, selected sort values, etc
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 updateUrls: true
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 1. true - user action information will be added to the url
 2. false - user action information will not be added to the url
 
 ---
-## actionBtnClass
+# actionBtnClass
 {: .d-inline-block }
 
 String
@@ -106,20 +107,20 @@ String
 
 CSS class name to add to any facet wrapper elements on which you want to trigger **click** event.
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 actionBtnClass:"UNX-action-item"
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 It is used to bind 'click' event to a facet wrapper element
 
 ---
-## actionChangeClass
+# actionChangeClass
 {: .d-inline-block }
 
 String
@@ -127,20 +128,20 @@ String
 
 CSS class name to be added to any facet wrapper elements on which you want to trigger **change**, or **keyup** event.
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 actionChangeClass:"UNX-action-change"
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 It is used to bind 'change' or 'keyup' event to a facet wrapper element
 
 ---
-## allowExternalUrlParams
+# allowExternalUrlParams
 {: .d-inline-block }
 
 Boolean
@@ -148,21 +149,21 @@ Boolean
 
 Turn this flag on if you want to retain the external url params in the **browser**, that do not get added by the unbxd sdk.
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 allowExternalUrlParams: false
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
 2. false - External params will be dropped from the browser url by the unbxd search sdk
 
 ---
-## extraParams
+# extraParams
 {: .d-inline-block }
 
 Object
@@ -170,14 +171,14 @@ Object
 
 Any additional parameters you want to send in the search API call. 
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 { "version":"V2" }
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 1. 
@@ -196,7 +197,7 @@ window.isSale = function() {
 
 ---
 
-## defaultFilters
+# defaultFilters
 {: .d-inline-block }
 
 Object
@@ -204,16 +205,16 @@ Object
 
 This is used to set a default filter condition for all search queries and category pages.
 
-### Default Value
+## Default Value
 {: .no_toc }
 null
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 In cases where the search/category api results are required to be filtered based on a constant filter condition, apart from the user selected filters
 
 ---
-<!-- ## searchQueryParam
+<!-- # searchQueryParam
 {: .d-inline-block }
 
 String
@@ -221,15 +222,15 @@ String
 
 If you want to send the search query in a different query param key set this config. Example, if you want to send the query in a param called “query” like “query=dress”, then set this config value to “query”.
 
-### Default Value
+## Default Value
 {: .no_toc }
 “q”
 
-### Scenarios
+## Scenarios
 {: .no_toc }
  -->
 
-## searchEndPoint
+# searchEndPoint
 {: .d-inline-block }
 
 String
@@ -237,14 +238,14 @@ String
 
 Domain name of the search API endpoint.
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 searchEndPoint:“https://search.unbxd.io”	
 ```
 
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 1. In case of a staging sitekey, it will be:
@@ -255,7 +256,7 @@ searchEndPoint:"https://wingman-argocd.unbxd.io/"
 ---
 <!-- This feature is not used, and not adopted. There is no clarity.
 
-## searchPath
+# searchPath
 {: .d-inline-block }
 
 String
@@ -263,14 +264,14 @@ String
 
 Any additional path string to be added to the URL. This is useful incase you have an SPA and the search page is hosted on a subpath of your site.
 
-### Default Value
+## Default Value
 {: .no_toc }
 ””
-### Scenarios
+## Scenarios
 {: .no_toc } -->
 
 ---
-## browseQueryParam
+# browseQueryParam
 {: .d-inline-block }
 
 String
@@ -278,14 +279,14 @@ String
 
 This will be the default query param for the search api to provide category information like category path or category id. 
 
-### Default Value
+## Default Value
 {: .no_toc }
 
 ```js
 browseQueryParam: "p"
 ```
 	
-### Scenarios
+## Scenarios
 {: .no_toc }
 
 1. p-id: If we are providing the **category path id** to the search api.
