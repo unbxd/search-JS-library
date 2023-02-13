@@ -316,16 +316,16 @@ const updatePageStart = function (context, page) {
 
 
 const onInfiniteScroll = function () {
-    const { infiniteScrollTriggerEl = window, type = "" } = this.options.pagination;
-    const scrollTop = getScrollXY()[ 1 ];
-    const autoScrollParams = this.getAutoScrollParams();
-    const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
-    const scroll = (scrollTop > this.productContainerHeight) ? scrollTop - this.productContainerHeight * (page - this.initialPage) : scrollTop;
-    // const device = this.getDeviceInfo();
-    const currentNumberOfProducts = window.unbxdSearch.state.responseObj.response.products.length;
-    const totalNumberOfProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
-
     if (this.productContainerHeight != 0) {
+        const { infiniteScrollTriggerEl = window, type = "" } = this.options.pagination;
+        const scrollTop = getScrollXY()[ 1 ];
+        const autoScrollParams = this.getAutoScrollParams();
+        const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
+        const scroll = (scrollTop > this.productContainerHeight) ? scrollTop - this.productContainerHeight * (page - this.initialPage) : scrollTop;
+        // const device = this.getDeviceInfo();
+        const currentNumberOfProducts = window.unbxdSearch.state.responseObj.response.products.length;
+        const totalNumberOfProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
+
         autoScrollParams.set('scroll', Math.ceil(scroll));
         history.pushState(null, null, '?' + autoScrollParams.toString());
 
