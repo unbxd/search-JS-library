@@ -317,7 +317,7 @@ const updatePageStart = function (context, page) {
 
 const onInfiniteScroll = function () {
     if (this.productContainerHeight != 0) {
-        const { infiniteScrollTriggerEl = window, type = "" } = this.options.pagination;
+        // const { infiniteScrollTriggerEl = window, type = "" } = this.options.pagination;
         const scrollTop = getScrollXY()[ 1 ];
         const autoScrollParams = this.getAutoScrollParams();
         const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
