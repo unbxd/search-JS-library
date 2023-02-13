@@ -19,7 +19,11 @@ A JavaScript library for building performant and quick search experiences with U
 
 # Introduction
 
+<<<<<<< HEAD
 Are you looking to add advanced search functionality to your e-commerce application? Look no further than the Unbxd search JavaScript SDK. This powerful software development kit provides an easy-to-use API for integrating search capabilities into your application.
+=======
+Are you looking to add advanced search functionality to your e-commerce application? Look no further than the Unbxd Search JavaScript SDK. This powerful software development kit provides an easy-to-use API for integrating search capabilities into your application.
+>>>>>>> dc60f6e3812e78553f610f21f42eab1f51972716
 
 In this documentation site, you will find everything you need to know about the Unbxd Vanilla JS SDK, including a comprehensive guide to its features and functionality, sample code, various use cases and best practices for integration. Whether you're a seasoned developer or just getting started, this site will provide you with the tools and information you need to build a powerful, intuitive search experience for your users.
 
