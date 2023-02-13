@@ -36,11 +36,15 @@ Configure variants display by setting the “variants” config object.
 
 To render the variants, you need to configure the variants config object.
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 variants: {
     //Below configurations should be added here.
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 The following options are available under the variants object:
 
@@ -58,9 +62,13 @@ An "enabled" option in variants within an SDK refers to the ability to display v
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 enabled: false
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -82,9 +90,13 @@ Count refers to the number of variants that needs to be shown for a product.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 count: 5
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -104,9 +116,13 @@ String
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 groupBy: “v_colour”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -123,9 +139,13 @@ List of fields you need for each variant
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 attributes: ["title", "v_imageUrl"]			
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -142,9 +162,13 @@ Field mapping of the catalog attributes to the variant attributes. This is neede
 
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 mapping: {"image_url": "v_imageUrl"}	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -156,7 +180,8 @@ mapping: {"image_url": "v_imageUrl"}
 ## UseCase 1 : Default Example 
 Sample “variants” config
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 variants:{
         enabled:false,
         count:5,
@@ -169,7 +194,10 @@ variants:{
             "image_url":"v_imageUrl"
         }
     },
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## UseCase 2
 
@@ -177,7 +205,8 @@ This example includes custom product template along with the variants configurat
 
 <img src="../assets/variantsUsecase.png" width="250px">
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 products: {
     el: document.getElementById("searchResultsWrapper"),
     productType: "SEARCH",
@@ -293,4 +322,7 @@ products: {
         `</div>`
       ].join("");
     }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}

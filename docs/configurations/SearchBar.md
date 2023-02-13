@@ -42,9 +42,13 @@ Configure the search input element on which to listen to search query changes.
 ### Default Value
 {: .no_toc }
 
-``` js
+{% capture code %}
+{% highlight js linenos %}
 searchBoxEl : null
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ### Scenarios
 {: .no_toc }
 There are several HTML selectors that can be used to locate the banner element in an e-commerce page. For ex: getElementById, getElementsByClassName, getElementsByTagName, querySelector, querySelectorAll, getElementsByName, etc.
@@ -59,9 +63,13 @@ Element
 Configure your search button here. Clicking on this will load the results based the input value provided in “searchBoxEl".
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 searchButtonEl : NA
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -74,23 +82,31 @@ There are several HTML selectors that can be used to locate the banner element i
 
 [![](../assets/searchbox.png)](../assets/searchbox.png)
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 <div class="UNX-input-wrapper">
   <input id="unbxdInput" class="UNX-input" type="text"/>
   <button id="searchBtn" class="fa fa-search"></button>
 </div>
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 At the end of this step, you should have configured the “input” & “search button” as shown below:
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 window.unbxdSearch = new UnbxdSearch({
   siteKey: "<your site key>",
   apiKey: "<your API key>",
   searchBoxEl: document.getElementById("unbxdInput"),
   searchButtonEl: document.getElementById("searchBtn"),
 });
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 # UseCases
 ## Usecase 1:

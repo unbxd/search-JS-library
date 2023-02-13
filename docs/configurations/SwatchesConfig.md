@@ -33,7 +33,8 @@ Configure swatches display by using the configs in this section.
 {: .warning } 
 NOTE: If you have want to include swatches, please ensure the `count` field inside the `variants` config to be more than 1, and `groupBy` field should have a corresponding mapping in the `mapping` key as shown in the below variants config example:
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 variants:{
        enabled:false,
        count:5,
@@ -46,18 +47,25 @@ variants:{
            "image_url":"v_imageUrl"
        }
    }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 
 # Configurations
 
 The following options are available under the swatches object:
 
-``` js
+{% capture code %}
+{% highlight js linenos %}
 swatches:{
 // the below swatches configurations goes here.
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## enabled
 {: .d-inline-block }
@@ -72,9 +80,13 @@ Required
 When the “enabled” flag is turned on, the swatches feature will be active. When the “enabled” flag is turned off, the swatches feature will be disabled.
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 enabled: false
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -93,13 +105,17 @@ Field mapping of the catalog attributes to the swatch attributes
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 attributesMap:{
     "swatchImgs": "unbxd_color_mapping",
     "swatchColors": "color", 
     "swatchList": "color"
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## swatchClass
@@ -112,9 +128,13 @@ Additional CSS class name for the swatches
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 swatchClass:"UNX-swatch-btn"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -139,7 +159,8 @@ This function takes three params:
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 template:function(swatchData, swatches,product) {
     const {
         swatchImgs = []
@@ -174,7 +195,10 @@ template:function(swatchData, swatches,product) {
         imgList:imgsUI,
     };
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ### Scenarios
 {: .no_toc }
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.
@@ -188,7 +212,8 @@ For additional information on custom scenarios, please refer to the [use cases s
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/swatches-sdk.png)
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 swatches:{
        enabled:true,
        attributesMap:{},
@@ -210,7 +235,10 @@ swatches:{
            return `<div class="UNX-swatch-color-list">${btnUI}</div>`;
        }
    }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 
 ## Usecase 2: Customized swatches - Type 1
@@ -218,7 +246,8 @@ swatches:{
 
 <img src="../assets/swatchUsecase3.png" width="250px" >
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 products:{
     //Other products configs here..
     template: function (product, idx, swatchUI, productViewType, products) {
@@ -328,13 +357,17 @@ products:{
         }
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## Usecase 3: Customized swatches - Type 2
 
 <img src="../assets/swatchUsecase2.png" width="350px">
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 //other configs goes here ...
 products: {
         // other products config here ...
@@ -479,4 +512,7 @@ products: {
 }
             }
     }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}

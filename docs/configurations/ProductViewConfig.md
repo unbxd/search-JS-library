@@ -36,11 +36,15 @@ You can configure the way in which the products have to be displayed (List or Gr
 
 Update the options under the “productView” config object to configure the product view feature.
 
-``` js
+{% capture code %}
+{% highlight js linenos %}
 productView:{
 // the below productView configurations goes here.
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## enabled
 {: .d-inline-block }
@@ -55,9 +59,13 @@ When the "enabled" flag is turned ON, the productview feature will be active and
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 enabled: true
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -80,9 +88,13 @@ Required
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 el: null
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -107,7 +119,8 @@ This function accepts two params:
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 template:function(selectedViewType, productViewType) {
     const isDisabled = (this.getSearchResults())?false:true;
     const {
@@ -137,7 +150,10 @@ template:function(selectedViewType, productViewType) {
     return `${listBtn} ${gridBtn}`
 
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -155,9 +171,13 @@ Product view types to be displayed by default.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 defaultViewType:"GRID"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -177,9 +197,13 @@ Action on which product view change should be triggerd: “click” or “change
 ### Default Value
 {: .no_toc }
 
-``` js
+{% capture code %}
+{% highlight js linenos %}
 action:"click"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -197,9 +221,13 @@ Additonal CSS class name to be added to the product view type elements
 
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 viewTypeClass:"UNX-product-view"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -217,9 +245,13 @@ Additional CSS class name to be added to the selected view type element
 
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 selectedViewTypeClass:"UNX-selected-product-view"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ### Scenarios
 {: .no_toc }
 
@@ -237,9 +269,13 @@ String
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 tagName: 'div'
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -256,9 +292,13 @@ Object
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 htmlAttributes:{class:"product-view-container"}
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -275,7 +315,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 [![](../assets/GRID.png)](../assets/GRID.png)
 
 configuration:
-```js
+{% capture code %}
+{% highlight js linenos %}
 productView : {
        enabled:true,
        el: document.getElementById("productViewTypeContainer"),
@@ -313,7 +354,10 @@ productView : {
 
     },
    }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## Usecase 2
 1. LIST: when viewTypes is equal to LIST.
@@ -321,10 +365,14 @@ productView : {
 [![](../assets/LIST.png)](../assets/LIST.png)
 
 configuration:
-```js
+{% capture code %}
+{% highlight js linenos %}
 
 productView:{
     // ...other confiurations goes here
      viewTypes: “LIST”,
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}

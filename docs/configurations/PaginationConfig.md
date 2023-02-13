@@ -84,11 +84,15 @@ The choice of pagination method depends on the specific needs of the website and
 
 You can configure the pagination feature by updating the required configs under the “pagination” config object. The following are the various options available under the “pagination” config object:
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 pagination: {
     // the below pagination configurations goes here
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## enabled
 {: .d-inline-block }
@@ -104,9 +108,13 @@ Required
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 enabled: false
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -133,9 +141,13 @@ Load More Button: In this type of pagination, a “Load More” button is provid
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 type: "CLICK_N_SCROLL"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -157,9 +169,13 @@ Element in which to render the pagination component.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 el: null
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -183,7 +199,8 @@ This function receives two params:
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 template: function (paginationData, pagination) {
     if(!paginationData) {
         return ``;
@@ -247,7 +264,10 @@ template: function (paginationData, pagination) {
     `</div>`].join('');
 };
 
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -265,9 +285,13 @@ CSS class name for the pagination component.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 pageClass: "UNX-page-items"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ### Scenarios
 {: .no_toc }
 
@@ -285,9 +309,13 @@ CSS class name for selected page item.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 selectedPageClass: "UNX-selected-page-item"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -317,11 +345,15 @@ This function receives below params:
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onPaginate: function(numberOfProducts, start, productsLn, rows, noOfPages, currentPage, isNext, isPrev) {
     // custom code here
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -341,9 +373,13 @@ Number
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 pageLimit: 6
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -363,9 +399,13 @@ An infinite scroll trigger element, or `infiniteScrollTriggerEl`, is an HTML ele
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 infiniteScrollTriggerEl: window
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -388,9 +428,13 @@ For example, if `heightDiffToTriggerNextPage` is set to 100, this means that whe
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 heightDiffToTriggerNextPage: 100
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -409,9 +453,13 @@ Action on which pagination should trigger: “click” or “change”.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 action: 'click'	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -433,9 +481,13 @@ String
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 tagName: 'div'
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -453,9 +505,13 @@ Object
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 htmlAttributes: { class:"UNX-banner-block" }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -466,7 +522,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 ## Usecase 1: Fixed Pagination
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 pagination : {
   enabled:true,
   el: document.getElementById("clickScrollContainer"),
@@ -539,13 +596,17 @@ pagination : {
   action:'click',
   pageLimit:6
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## Usecase 2: Click and Scroll
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/click-and-scroll.png)
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 pagination: {
   el: document.getElementById("clickScrollContainer"),
   type:'CLICK_N_SCROLL',
@@ -557,16 +618,23 @@ pagination: {
     return `<div class="UNX-click-scroll"><button data-test-id="${this.testIds.UNX_loadMore}" class="UNX-click-n-scroll ${pageClass}">Load More</button></div>`
   }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## Usecase 3: Infinite Scroll
 
 [![](../assets/infinitescroll.png)](../assets/infinitescroll.png)
-```js
+{% capture code %}
+{% highlight js linenos %}
 pagination: {
   type:'INFINITE_SCROLL',
   infiniteScrollTriggerEl: window, 
   heightDiffToTriggerNextPage: 100, 
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 

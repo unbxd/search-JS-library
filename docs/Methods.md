@@ -25,9 +25,13 @@ This section documents the different methods exposed by the sdk/sdk config that 
 Call this function if you want to render the page again.
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.reRender()
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## updateConfig
 Call this function for updating the config options in run time.
@@ -37,13 +41,17 @@ Call this function for updating the config options in run time.
 
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.updateConfig({
     facet:{
         applyMultipleFilters:true
     }
 })
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## onQueryRedirect
@@ -56,7 +64,8 @@ This config function holds the redirect logic for a query to which the response 
 ### Default value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
     if(redirect) {
         const {
@@ -79,7 +88,10 @@ onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
         return false;
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## onBackFromRedirect
@@ -91,7 +103,8 @@ This config function holds the logic to manipulate history when we come back to 
 ### Default value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 onBackFromRedirect: (hashMode) => {
     let urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
     let backFromRedirect = urlSearchParam.get("redirected");
@@ -99,7 +112,10 @@ onBackFromRedirect: (hashMode) => {
         history.go(-1);
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## setRoutingStrategies
@@ -115,7 +131,8 @@ Custom implementation on clicking browser back & forward .
 ### Default value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
     if (locationParam === newUrl) {
         return;
@@ -134,75 +151,106 @@ setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) =
         }
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## getCategoryPage
 Call this function to render the category page.
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.getCategoryPage()
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## getResults
 Call this function to refetch the search results.
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.getResults("dress")
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## resetFacets
 Call this method to reset the facets.
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.resetFacets()
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## resetAll
 Call this method to reset all the page elements like selected facets, selected sort option, pagination etc.
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.resetAll()
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## setPageStart
 Call this method to set the the page number.
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.setPageStart(0)
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## setRangeSlider
 Call this method to update the range filter value. More about range slider in this [page](./configurations/FacetsConfig.html#range-sliders) .
 
 ### Default invocation
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.setRangeSlider({
     "start":0,
     "end":573,
     "facetName":"price",
     "gap": 200
     })
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## getCategoryId
 Use this config function to return category id for a particular category page
 ### Default value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 unbxdSearch.setRangeSlider({
     "start":0,
     "end":573,
     "facetName":"price",
     "gap": 200
     })
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 ## setCategoryId
 In case of category facets in category page, this function is used to set the window UnbxdAnalyticsConf variable, and in turn populate the category path variable for the search api payload.
@@ -214,7 +262,8 @@ In case of category facets in category page, this function is used to set the wi
 ### Default value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 setCategoryId: function(param, self) {
     const {
         level,
@@ -245,7 +294,10 @@ setCategoryId: function(param, self) {
             window.UnbxdAnalyticsConf.page = "categoryPath:\""+page+"\"";
         }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## onEvent
@@ -258,11 +310,15 @@ Use this config function for adding any custom code based on an **event type** s
 ### Default value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(type,instance){
     //Custom code here
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## onAction
@@ -275,19 +331,27 @@ Use this config function for facet element handlers like **change**, **keyup**, 
 ### Default value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 onAction: function(e, ctx) {
     console.log(e.target,ctx);
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## onNoUnbxdKeyRouting
 Routing action when the url does not have any unbxd key.
 ### Default value
 {: .no_toc}
-```js
+{% capture code %}
+{% highlight js linenos %}
 onNoUnbxdKeyRouting:() => {
     history.go();
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}

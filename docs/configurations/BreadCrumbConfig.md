@@ -36,11 +36,15 @@ To render the breadcrumb component, set the “breadcrumb” config object.
 # Configurations
 To render the breadcrumbs on the search results page, you can use the `breadcrumbs` config object to configure the various options.
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 breadcrumbs: {
     //Below configurations should be added here.
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 The following options are available under the breadcrumb:
 
 ## enabled
@@ -54,9 +58,13 @@ On the other hand, if the breadcrumb is disabled, it will not be visible to the 
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 enabled: true
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -79,9 +87,13 @@ Required
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 el: null
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -107,7 +119,8 @@ This function passes two params:
 ### Default Value
 {: .no_toc }
 
-```js 
+{% capture code %}
+{% highlight js linenos %} 
 template: function(breadcrumbs, breadcrumb){
     let ui = ``;
     const {
@@ -128,7 +141,10 @@ template: function(breadcrumbs, breadcrumb){
     })
     return `<div class="bread-crumb-main">${ui}</div>`
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -146,9 +162,13 @@ The "selectorClass" option in breadcrumbs is an additional css class that can be
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 selectorClass: "UNX-bread-crumb"	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -165,9 +185,13 @@ String
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 tagName: "div"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -185,11 +209,15 @@ Object
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 {
     class: ”UNX-breadcrumbs-block”
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -205,7 +233,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 [![](../assets/breadcrumb.png)](../assets/breadcrumb.png)
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 breadcrumb:{
   enabled:true,
   el: document.getElementById("breadcrumpContainer"),
@@ -231,7 +260,10 @@ breadcrumb:{
     return `<div class="bread-crumb-main">${ui}</div>`
   }
 }
-``` 
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %} 
 
 ## Usecase 2
 ## Usecase 3

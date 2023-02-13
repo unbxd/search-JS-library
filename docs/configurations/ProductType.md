@@ -52,7 +52,8 @@ null
 # Sample Example
 At the end of this step, you should choose a “productType” of the page that you want to render and pass it in the config as shown below:
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 const  unbxdSearch = new UnbxdSearch({
    siteKey: "-your site key-",
    apiKey: "-your API key-",
@@ -60,4 +61,7 @@ const  unbxdSearch = new UnbxdSearch({
       productType:"SEARCH"
    }
 });
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}

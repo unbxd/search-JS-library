@@ -45,13 +45,37 @@ The demo data is of fashion vertical.
 3. Unzip the folder
 4. Run the following commands in terminal inside the unzipped folder:<br/>
 Install required version of node using nvm:<br/>
-```nvm install v14.15.0```<br/>
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}nvm install v14.15.0{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}<br/>
 Use that version of node:<br/>
-```nvm use v14.15.0```<br/>
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}nvm use v14.15.0{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}<br/>
 Install dependencies:<br/>
-```npm install```<br/>
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}npm install{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}<br/>
 Run the webpack server:<br/>
-```npm run start```<br/>
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}npm run start{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}<br/>
 
 {: .important }
 > Additional links for above tools:<br/>

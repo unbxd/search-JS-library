@@ -29,66 +29,90 @@ All data related to payload or browser url is already calculated **before** firi
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "BEFORE_API_CALL", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## AFTER_API_CALL
 Fired if the search api call is successful
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "AFTER_API_CALL", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## BEFORE_RENDER
 Fired as the first step of execution of the **reRender** function
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "BEFORE_RENDER", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## AFTER_RENDER
 Fired as the last step of execution of the **reRender** function
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "AFTER_RENDER", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## BEFORE_NO_RESULTS_RENDER
 Fired before rendering the zero results UI, if the number of results in the search api are `0`, as part of the **reRender** function
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "BEFORE_NO_RESULTS_RENDER", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## AFTER_NO_RESULTS_RENDER
 Fired after rendering the zero results UI i.e. if the number of results in the search api are `0`, as part of the **reRender** function
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "AFTER_NO_RESULTS_RENDER", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## DELETE_FACET
@@ -100,11 +124,15 @@ Fired on deleting a facet. (**deleteFacet** sdk action is used)
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "DELETE_FACET", { facetName }) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## FACETS_CLICK
@@ -117,25 +145,33 @@ Fired on changing a facet value (**changeFacet** sdk action is used)
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "FACETS_CLICK", {
     facetName,
     facetData
 }) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## CLEAR_SORT
 Fired when current sort data is cleared (**clearSort** sdk action is used)
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "CLEAR_SORT", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## CHANGE_SORT
@@ -147,13 +183,17 @@ Fired when sort data is changed with new values (**changeSort** sdk action is us
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "CHANGE_SORT", {
     sort:sortVal
 }) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## PAGE_NEXT
@@ -165,13 +205,17 @@ Fired on click of a next page (**next** sdk action is used)
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "PAGE_NEXT", {
     value:next
 }) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## PAGE_PREV
@@ -183,24 +227,32 @@ Fired on click of a previous page (**prev** sdk action is used)
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "PAGE_PREV", {
      value:prev
 }) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## CHANGE_INPUT
 Fired on keywdown of searchbox element
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "CHANGE_INPUT", null) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## SET_CATEGORY_FILTER
@@ -212,11 +264,15 @@ Fired if in the search page, a category facet is clicked (**setCategoryFilter** 
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "SET_CATEGORY_FILTER", dataSet) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## DELETE_CATEGORY_FILTER
@@ -228,11 +284,15 @@ Fired if in the search page, a category facet is cleared (**clearCategoryFilter*
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "DELETE_CATEGORY_FILTER", dataSet) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## PAGESIZE_CHANGE
@@ -244,10 +304,14 @@ Fired on click of any of the page size options
 
 ### Example usage
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onEvent: function(instance, "PAGESIZE_CHANGE", {
     count:val
 }) {
     /** Custom code here */
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}

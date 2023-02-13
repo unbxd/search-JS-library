@@ -21,37 +21,57 @@ More information can be found [here](./../prerequisites)
 # Integration Instructions
 
 1. Include the vanilla js search library via the link:
-    ```js
+    {% capture code %}
+{% highlight js linenos %}
     <script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
-    ```
+    {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
     {: .important }
     > The **latest version** can be found via the npm repository:
     [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
 
 2.  To get the default theme, include the library css in the link tag:
-    ```js
+    {% capture code %}
+{% highlight js linenos %}
     <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
-    ```
+    {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 3. Customize the search config used for invoking the sdk, to see the data related to your sitekey. 
     1. Change **siteKey** and **apiKey**.
-    ```js
+    {% capture code %}
+{% highlight js linenos %}
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
-    ```
+    {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
     2. Provide **attributesMap** inside **products** object.
-        ```js
+        {% capture code %}
+{% highlight js linenos %}
         attributesMap: {
         "unxTitle": "title",
         "unxImageUrl": "imageURL",
         "unxPrice": "price",
         "unxDescription":"short_desc"
         };
-        ```
+        {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
     3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
-        ```js
+        {% capture code %}
+{% highlight js linenos %}
         productAttributes: ["title","imageURL","price","short_desc"]
-        ```
+        {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
     4. Add the correct **query selectors** based on your website, in the config.
     5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well <br/>
     /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed from backend **/
@@ -59,7 +79,8 @@ More information can be found [here](./../prerequisites)
         **Example:**
         {: .no_toc }
 
-        ```js
+        {% capture code %}
+{% highlight js linenos %}
         if (location.pathname === "/<<categoryPage1>>") {
             window.UnbxdAnalyticsConf = {
                 page: "categoryPath:categoryPath1",
@@ -76,22 +97,33 @@ More information can be found [here](./../prerequisites)
             window.UnbxdAnalyticsConf = {};
             productType = "SEARCH";
         }
-        ```
+        {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
     6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
         **Example:**
         {: .no_toc }
 
-        ```js
+        {% capture code %}
+{% highlight js linenos %}
         products: {
             productType: "<<SEARCH/CATEGORY>>"
         }
-        ```
+        {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
     7. If it is a staging sitekey, set the correct search end point
-        ```js
+        {% capture code %}
+{% highlight js linenos %}
         searchEndPoint: "https://wingman-argocd.unbxd.io/"
-        ```
+        {% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 
 # Sample configuration with the unbxd demo sitekey feed
@@ -99,7 +131,8 @@ More information can be found [here](./../prerequisites)
 {: .warning }
 > Note: All Element selectors must change as per your website. All attributes must change as per the sample feed data. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes
 
-<!-- ```js
+<!-- {% capture code %}
+{% highlight js linenos %}
 window.unbxdSearch = new UnbxdSearch({
 siteKey: "<<sitekey>>",
 apiKey: "<<apikey>>",
@@ -270,7 +303,10 @@ onEvent: function (instance, type, data) {
     console.log(type, data, "type,data");
 }
 });
-``` -->
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %} -->
 
 
 

@@ -17,47 +17,6 @@ A JavaScript library for building performant and quick search experiences with U
 
 ---
 
-
-
-✅ Using code fences + workaround (will only show line numbers if enabled globally in `_config.yml`):
-
-{% capture code_fence %}
-```js
-// Javascript code with syntax highlighting in fences
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
-{% endcapture %}
-{% assign code_fence = code_fence | markdownify %}
-{% include fix_linenos.html code=code_fence %}
-
-✅ Using liquid highlighting + workaround:
-
-{% capture code %}
-{% highlight ruby linenos %}
-# Ruby code with syntax highlighting and fixed line numbers using Liquid
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
-
-Narrow code stays close to the line numbers:
-
-{% capture code %}
-{% highlight ruby linenos %}
-def foo
-  puts 'foo'
-end
-{% endhighlight %}
-{% endcapture %}
-{% include fix_linenos.html code=code %}
-{% assign code = nil %}
-
 # Introduction
 
 Are you looking to add advanced search functionality to your e-commerce application? Look no further than the Unbxd Search JavaScript SDK. This powerful software development kit provides an easy-to-use API for integrating search capabilities into your application.

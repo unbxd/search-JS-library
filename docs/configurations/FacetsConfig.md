@@ -43,11 +43,15 @@ In e-commerce, facets are used to allow users to filter and narrow down a large 
 
 To render the facets on the search results page, you can use the “facet” config object to configure the various options.
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet: {
     //Below configurations should be added here.
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 The following options are available under the object:  
 
 ## facetsEl
@@ -66,9 +70,13 @@ Element in which to render the facets.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetsEl: null
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -94,7 +102,8 @@ Customize the look and feel of the facets block by returning your custom HTML st
 ### Default Value
 {: .no_toc }
 
-``` js
+{% capture code %}
+{% highlight js linenos %}
 facetTemplate: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
         const {
             displayName,
@@ -164,7 +173,10 @@ facetTemplate: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
                     `</div>`,
                `</div>`].join('');
     }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -189,7 +201,8 @@ This function expects 3 parameters:
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetItemTemplate: function facetItemUiElem (facet , value,facetSearchTxt) {
     const {
         facetName,
@@ -221,7 +234,10 @@ facetItemTemplate: function facetItemUiElem (facet , value,facetSearchTxt) {
                 `<span class="UNX-facet-text">${name}</span> <span class="UNX-facet-count">(${count})</span>`,
             `</button>`].join('');
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -241,9 +257,13 @@ Turn this off if you want to disable the multiple selection of facets.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetMultiSelect: true
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -263,9 +283,13 @@ Additional CSS class name to add to the the facet items.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetClass: “UNX-facets-block”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -284,9 +308,13 @@ Event based on which to trigger facet selection / deselection.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetAction: 'click'
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -304,9 +332,13 @@ Additional CSS class name for the selected facet items.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 selectedFacetClass: “UNX-selected-facet-btn"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -325,9 +357,13 @@ If you don’t provide this element selected facets will be rendered along with 
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 selectedFacetsEl: null	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -350,7 +386,8 @@ This function receives following parameters:
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 selectedFacetTemplate: function selectedFacetUI(selections, facet,selectedFacetsConfig) {
     const {
         clearAllText,
@@ -367,7 +404,10 @@ selectedFacetTemplate: function selectedFacetUI(selections, facet,selectedFacets
         return ``;
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -391,7 +431,8 @@ Customize the look & feel of the selected facet by returning your custom HTML st
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 selectedFacetItemTemplate: function selectedFacetItemTemplateUI (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig){
     const {
         facetName,
@@ -422,7 +463,10 @@ selectedFacetItemTemplate: function selectedFacetItemTemplateUI (selectedFacet, 
                 `<button class="UNX-delete-facet ${removeFacetsSelectorClass} ${css}" data-id="${dataId}" data-facet-action="${action}" data-facet-name="${facetName}">x</button></div>`
             ].join('');
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -440,7 +484,8 @@ Object will be containing the configuration for the selected facet wrapper confi
 
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 selectedFacetConfig:{ 
     tagName: ”DIV”, 
     htmlAttributes:{
@@ -448,7 +493,10 @@ selectedFacetConfig:{
         },
         events:{} 
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 
 --- 
@@ -463,9 +511,13 @@ The text to show for the clear all button that clears all selected facets.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 clearAllText: “Clear All”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -487,7 +539,8 @@ Customize the look and feel of the range facets by returning your custom HTML st
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 rangeTemplate: function(range, selectedRange, facet) {
     const {
         facetName,
@@ -529,7 +582,10 @@ rangeTemplate: function(range, selectedRange, facet) {
         `<div>`,
       `</div>`].join('')
 };
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -548,9 +604,13 @@ Configure the default range slider. Refer to the [Range Widget Config](#Facet-Ra
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 rangeWidgetConfig: null
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 
 --- 
@@ -565,9 +625,13 @@ Turn this on to send the multilevel parameter in the search API.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetMultilevel: true
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -586,9 +650,13 @@ Set the multilevel field name using this config.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetMultilevelName: “Category”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 --- 
 ## multiLevelFacetSelectorClass
@@ -601,9 +669,13 @@ Class name for each multi level facet item.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 multiLevelFacetSelectorClass: “UNX-multilevel-facet”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -627,7 +699,8 @@ Customize the look and feel of multi level facets by returning your custom HTML 
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 multiLevelFacetTemplate: function(facet,selectedCategories,facetSearchTxt, facetConfig) {
     let ui = "";
     let {
@@ -690,7 +763,10 @@ multiLevelFacetTemplate: function(facet,selectedCategories,facetSearchTxt, facet
         return "";
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -707,9 +783,13 @@ The "facetDepth" configures how many levels of category filter you want to have 
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 facetDepth: 4
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -726,9 +806,13 @@ Class name for the button to clear the selected facets.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 clearFacetsSelectorClass: “UNX-clear-facet”	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -745,9 +829,13 @@ Class name for the button to delete selected facets.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 removeFacetsSelectorClass: “UNX-remove-facet”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -766,9 +854,13 @@ This function accepts following as a parameter:
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 onFacetLoad: function(facets) {}
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -783,9 +875,13 @@ Boolean
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 applyMultipleFilters: false
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -806,9 +902,13 @@ The text to show for the apply button .
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 applyButtonText:“Apply”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -828,9 +928,13 @@ The text to show for the clear button.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 clearButtonText: “clear”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -847,9 +951,13 @@ Boolean
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 isCollapsible: true
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -867,9 +975,13 @@ When “isCollapsible” is true , "defaultOpen" option is used to specify which
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 defaultOpen: “ALL”	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -888,9 +1000,13 @@ Turn this on if you want to have search feature for each facet block.
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 isSearchable: true
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -908,9 +1024,13 @@ String
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 searchPlaceHolder: ””	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -927,9 +1047,13 @@ The "enableViewMore" option is used to control whether or not the user can view 
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 enableViewMore: false
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -944,15 +1068,23 @@ Array
 {: .label }
 
 The text to show for the view more / less button. This accepts an array with two strings in following format : 
-```js
+{% capture code %}
+{% highlight js linenos %}
 [<viewMoreText>, <viewLessText>]
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 viewMoreText: [“show all”, “show less”]
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -970,9 +1102,13 @@ The "viewMoreLimit" option is used to specify the maximum number of options that
 
 ### Default Value
 {: .no_toc }
-```js
+{% capture code %}
+{% highlight js linenos %}
 viewMoreLimit: 3	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -990,9 +1126,13 @@ String
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 tagName: “DIV”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -1010,9 +1150,13 @@ Object
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 htmlAttributes: { class:”UNX-facets-results-block” }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -1026,7 +1170,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet: {
     facetsEl: document.getElementById("facetsWrapper"),,
     facetTemplate:function(facetObj, children, isExpanded,facetSearchTxt, facet) {
@@ -1312,7 +1457,10 @@ facet: {
     viewMoreText:["show all", "show less"],
     viewMoreLimit:3,
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 
@@ -1355,7 +1503,8 @@ Steps to get a range slider:
 ### Code Snippet
 {: .no_toc}
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet: {
     facetsEl: document.getElementById("facetsWrapper"),
     selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
@@ -1473,7 +1622,10 @@ facet: {
         ].join('')
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 
@@ -1492,7 +1644,8 @@ If the customer's requirement is to have a range facet but not with the slider b
 
 ### Code snippet
 {: .no_toc}
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet: {
     // ..Other facet configurations goes here
     rangeTemplate: function (ranges, selectedRanges) {
@@ -1540,7 +1693,10 @@ facet: {
         ].join("");
     };
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 
@@ -1555,7 +1711,8 @@ If the customer needs facets block to be collapsible (each facet can be expanded
 
 ### Code Snippet
 {: .no_toc}
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet: {
     facetsEl: document.getElementById("facetsWrapper"),
     isCollapsible: true,
@@ -1565,7 +1722,10 @@ facet: {
     viewMoreText: ["+ Show More", "- Show less"],
     viewMoreLimit: 3
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 
@@ -1581,7 +1741,8 @@ If the customer's requirement is to have a facet item as a swatch , below code s
 
 <img src="../assets/colorfcetbutton.png" width="250px">
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet: {
     // ..Other facet configurations goes here
     facetItemTemplate: function facetItemTemplate(facet, value,facetSearchTxt) {
@@ -1620,7 +1781,10 @@ facet: {
         },
 
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 
 ## Usecase 6: Facet item with swatches in the name
@@ -1633,7 +1797,8 @@ If the customer needs to customize facet items such that the facet item name sho
 
 <img src="../assets/textFacetWithButton.png" width="500px">
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet: {
     // ..Other facet configurations goes here
     facetItemTemplate: function facetItemTemplate(facet, value, facetSearchTxt) {
@@ -1669,7 +1834,10 @@ facet: {
             `</button>`].join('')
 }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 
@@ -1684,7 +1852,8 @@ One such customization is shown in below integration (refer the code snippet)
 
 <img src="../assets/menuUsecase.png" width="300px">
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet{
     //Rest configs for facet
     facetTemplate: function facetTemplate(facetObj, children, isExpanded, facetSearchTxt, facet) {
@@ -1743,7 +1912,10 @@ facet{
             "<div class=\"UNX-facets-all\">",  "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), "</div>", "</div>"].join('');
         }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ---
 
 ## Usecase 8: Customized selected facets
@@ -1755,7 +1927,8 @@ The Usual behaviour of selected facet tags can be customized by adding the code 
 
 <img src="../assets/selectedFacets.png" width="300px">
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 facet:{
     //Rest configs for facet
     selectedFacetItemTemplate: function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
@@ -1805,4 +1978,7 @@ facet:{
     
     }
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}

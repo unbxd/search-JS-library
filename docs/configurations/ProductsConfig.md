@@ -35,11 +35,15 @@ This is the place where products from the search results will be rendered. The t
 
 The following are the various options available under the “products” config object:
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 products: {
     // the below product configurations goes here
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## productType
 {: .d-inline-block }
@@ -53,9 +57,13 @@ Used to indicate if the page is search or category. Possible values: search (or)
 
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 productType:"SEARCH"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 ### Scenarios
 {: .no_toc }
 
@@ -78,9 +86,13 @@ Required
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 el: null
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -107,7 +119,8 @@ This function passes two params:
 
 ### Default Value
 {: .no_toc }
-``` js
+{% capture code %}
+{% highlight js linenos %}
 template:function(product,idx,swatchUI,productViewType,products ){
     const {
         unxTitle,
@@ -160,7 +173,10 @@ template:function(product,idx,swatchUI,productViewType,products ){
                 `</div>`,
             `</div>`].join('')
 };
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -196,9 +212,13 @@ These attributes are used to provide customers with detailed information about t
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 productAttributes:["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color"]
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 
 ---
@@ -223,9 +243,13 @@ This mapping can be used in data processing, data analysis, or integration with 
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 attributesMap:{"unxTitle": "title","unxImageUrl": "imageUrl","unxPrice": "salePrice","unxStrikePrice": "displayPrice","unxId": "uniqueId","unxDescription": "productDescription"}
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## gridCount
@@ -252,9 +276,13 @@ Additional class name to be added to each product card.
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 productItemClass:“product-item”
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -280,9 +308,13 @@ This function passes two params:
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 onProductClick:function(product, event) {}	
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ---
 ## defaultImage
@@ -296,9 +328,13 @@ If product doesnt contain image url, by default this image will be shown
 ### Default Value
 {: .no_toc }
 
-``` js
+{% capture code %}
+{% highlight js linenos %}
 defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -316,9 +352,13 @@ String
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 tagName: 'div'
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -336,9 +376,13 @@ Object
 ### Default Value
 {: .no_toc }
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 htmlAttributes:{class:"UNX-search-results-block UNX-result-wrapper"}
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ### Scenarios
 {: .no_toc }
@@ -353,7 +397,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 Sample “products” config:
 [![](../assets/products.png)](../assets/products.png)
 
-```js
+{% capture code %}
+{% highlight js linenos %}
 products: {
         el: document.getElementById("searchResultsWrapper"),
         productAttributes: templateUtils.getMappedFields(),
@@ -441,7 +486,10 @@ products: {
           ].join("");
         },
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## Usecase 2: With Default Image
 
@@ -452,12 +500,16 @@ By mistake, so you can add any image as default image.
 
 
 [![](../assets/default-image-product.png)](../assets/default-image-product.png)
-```js
+{% capture code %}
+{% highlight js linenos %}
 products:{
    // ...other confiurations goes here
   defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
 }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
 
 ## Usercase 3: With swatches
 
@@ -467,7 +519,8 @@ Swatches are commonly used to display the available colors of a product, such as
 
 [![](../assets/product-swatches.png)](../assets/product-swatches.png)
 
-``` js
+{% capture code %}
+{% highlight js linenos %}
  products: {
         el: document.querySelector(".ms-search-result-container__Products"),
         tagName: "UL",
@@ -595,4 +648,7 @@ Swatches are commonly used to display the available colors of a product, such as
             </li>`].join('');
         }
     }
-```
+{% endhighlight %}
+{% endcapture %}
+{% include fix_linenos.html code=code %}
+{% assign code = nil %}
