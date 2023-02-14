@@ -3,7 +3,7 @@ layout: default
 title: Configurations
 nav_order: 4
 has_children: true
-permalink: docs_new/configurations
+permalink: docs/configurations
 ---
 
 # Configurations
