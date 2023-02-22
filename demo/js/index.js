@@ -256,6 +256,7 @@ window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-gcp-Gardner-White-STG8241646781056",
     apiKey: "e2082aeb3a7f0ac8955c879daf7673e8",
     updateUrls: true,
+    hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
