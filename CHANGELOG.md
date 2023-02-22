@@ -1,4 +1,109 @@
-## Changelog
+---
+layout: default
+title: Release Notes
+nav_order: 6
+---
+
+# Changelog
+{: .fs-9 }
+
+---
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+## v0.3.3
+
+### 🚀 Features
+
+- Add custom header and footer include files @CodeSandwich (#334)
+
+### 🐛 Bug Fixes
+
+- Limit the effect of `nav_exclude` to the main navigation @pdmosses (#443)
+- Update normalize.scss @pdmosses (#444)
+- Update code.scss @pdmosses (#445)
+- Fix list alignment @pdmosses (#446)
+
+### 🧰 Maintenance
+
+- Bump stylelint-config-primer from 9.0.0 to 9.2.1 @dependabot-preview (#451)
+- Bump stylelint from 13.6.1 to 13.7.2 @dependabot-preview (#440)
+- Bump @primer/css from 15.1.0 to 15.2.0 @dependabot-preview (#436)
+- Bump prettier from 2.1.1 to 2.1.2 @dependabot-preview (#429)
+
+## v0.3.2
+
+### Changes
+
+- Safe page sorting @pdmosses (#411)
+- v0.3.2 @pmarsceill (#388)
+
+### 🚀 Features
+
+- make font-sizes sass variables so they can be changed @pdebruic (#361)
+- run the site locally inside docker container @fogfish (#398)
+- Feature/doc collections @SgtSilvio (#379)
+- Adjust dl layout @pdmosses (#401)
+
+### 🐛 Bug Fixes
+
+- Add site.gh_edit_source to "Edit this page on GitHub" link @mrfleap (#418)
+- Inhibit text-transform for code in h4 @pdmosses (#404)
+- Fix native font stack precedence issue on Windows systems. @hvianna (#331)
+- Support for the linenos option on highlighted code @pdmosses (#375)
+- Update anchor_headings.html @pdmosses (#399)
+- Fix https @marksie1988 (#359)
+
+### 🧰 Maintenance
+
+- Bump prettier from 2.0.5 to 2.1.1 @dependabot-preview (#427)
+- Bump prettier from 2.0.5 to 2.1.1 @dependabot-preview (#419)
+- [Security] Bump lodash from 4.17.15 to 4.17.19 @dependabot-preview (#389)
+- Bump @primer/css from 14.4.0 to 15.1.0 @dependabot-preview (#402)
+- Bump lodash from 4.17.15 to 4.17.19 @dependabot (#384)
+- Bump @primer/css from 14.4.0 to 15.0.0 @dependabot-preview (#371)
+
+
+## v0.3.1
+
+### Changes
+
+### 🐛 Bug Fixes
+
+- Improve accessibility by adding label to Anchor links. @mscoutermarsh (#376)
+
+### 🧰 Maintenance
+
+- Remove collapsible TOC on nav doc @pmarsceill (#368)
+- Pdmosses collapsible toc @pmarsceill (#367)
+
+
+## v0.3.0
+
+### Changes
+
+- v0.2.9 @pmarsceill (#306)
+
+### 🚀 Features
+
+- Add print styles @pmarsceill (#362)
+- Navigation improvements and search sections @SgtSilvio (#352)
+
+### 🐛 Bug Fixes
+
+- Remove constraint with jekyll 4.1.0 @PierrickMartos (#348)
+
+### 🧰 Maintenance
+
+- Bump version numbers @pmarsceill (#360)
+- Bump stylelint from 13.3.3 to 13.6.1 @dependabot-preview (#343)
+- Bump stylelint-config-prettier from 8.0.1 to 8.0.2 @dependabot-preview (#349)
+
+
 ## [2.0.5] - 2022-08-29
 Update core js version for keeping customer params, and fix reload url issues
 
