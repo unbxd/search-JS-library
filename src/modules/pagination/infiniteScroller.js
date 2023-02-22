@@ -311,7 +311,7 @@ const updatePageStart = function (context, page) {
     const autoScrollParams = context.getAutoScrollParams();
     context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
     autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
-    history.pushState(null, null, '?' + autoScrollParams.toString());
+    history.replaceState(null, null, '?' + autoScrollParams.toString());
 }
 
 
@@ -327,7 +327,7 @@ const onInfiniteScroll = function () {
         const totalNumberOfProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
 
         autoScrollParams.set('scroll', Math.ceil(scroll));
-        history.pushState(null, null, '?' + autoScrollParams.toString());
+        history.replaceState(null, null, '?' + autoScrollParams.toString());
 
         if ((getDocHeight() - 20) <= (scrollTop + window.innerHeight) && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
             // alert('end reached');

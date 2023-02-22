@@ -127,7 +127,7 @@ const reRender = function () {
 
     }
 
-    onEvent(this, afterRender);
+   
 
     // if (pagination.type === 'INFINITE_SCROLL' && !this.productContainerHeight) {
     //     const autoScrollParams = this.getAutoScrollParams();
@@ -202,6 +202,8 @@ const reRender = function () {
         //     this.productContainerHeight = Math.round(this.productContainerHeight / 2);
         // }
     }
+
+    onEvent(this, afterRender);
 
     
 };

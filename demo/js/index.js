@@ -8,8 +8,10 @@ let routeTemplate = `
                 UNBXD
             </div>
             <div class="UNX-input-wrapper">
+            <form action="javascript:void(0);">
                 <input id="unbxdInput" class="UNX-input" />
                 <button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
+                </form>
             </div>
         </div>
         <nav id="categoryLinks" class="UNX-naviagtion-wrap">
