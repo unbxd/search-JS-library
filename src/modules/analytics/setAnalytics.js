@@ -67,8 +67,12 @@ const trackFacetClick = function(state,type){
         facetArr[facet] = arr;
     });
     rangeFacetsArr.forEach((facet) =>{
-        const val =rangeFacetsArr[facet];
-        facetArr[facet] = val;
+        // const val =rangeFacetsArr[facet];
+        const val = rangeFacets[facet][0];
+        if(val) {
+            const modifiedVal = val.replace(/\[|\]/g,'').split(',');
+            facetArr[facet] = modifiedVal;
+        }
     });
     categoryArr.forEach(category => {
         const val =categoryField[category];
