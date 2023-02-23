@@ -1,4 +1,3 @@
-import debounce from "../modules/utils/debounce";
 function bindEvents(){
     const {
         searchButtonEl,
@@ -108,10 +107,17 @@ function bindEvents(){
         document.addEventListener("scroll",function(){
             infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
             infiniteScrollTimer = setTimeout(function(){
+                // console.log('----------------------------------------------------------------')
+                // console.log('is in view port', elementInViewport2(document.getElementById('searchResultsWrapper')));
+                // console.log('self.viewState.isInfiniteStarted', self.viewState.isInfiniteStarted)
+                // console.log('self.state.loading', self.state.loading);
+                // console.log('----------------------------------------------------------------')
                 if(!self.viewState.isInfiniteStarted && !self.state.loading){
-                    self.onInfiniteScroll();
+                    // debounce(()=>{
+                        self.onInfiniteScroll();
+                    // }, 500)
                 }
-            }, 100)
+            }, 10)
             
         });
     }
