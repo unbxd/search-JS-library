@@ -708,6 +708,7 @@ window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-prod-bevilles-com-au13551623906010",
     apiKey: "d59fddd93d4e871798731a7d2374ca13",
     updateUrls: true,
+    hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
