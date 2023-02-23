@@ -72,7 +72,7 @@ const reRender = function () {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
-                if(lastAction === "prev_page_loaded"){
+                if (lastAction === "prev_page_loaded") {
                     searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
                 } else {
                     searchResultsWrapper.innerHTML += this.renderSearch();
@@ -114,18 +114,40 @@ const reRender = function () {
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
     }
 
-    if (pagination.type === 'INFINITE_SCROLL' && !this.productContainerHeight) {
-        const autoScrollParams = this.getAutoScrollParams();
-        this.initialScroll = Math.ceil(parseInt(autoScrollParams.get('scroll'))) || 0
-        this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
-        if (autoScrollParams.get('start') != null) {
-            this.initialPage = (parseInt(autoScrollParams.get('start'))/parseInt(autoScrollParams.get('rows')) + 1);
-                window.scrollTo(0, parseInt(this.initialScroll), {behavior: 'smooth'})
+    // const autoScrollParams = this.getAutoScrollParams();
+    // if (pagination.type === 'INFINITE_SCROLL' && !this.productContainerHeight) {
+    //     this.initialScroll = Math.ceil(parseInt(autoScrollParams.get('scroll'))) || 0
+    //     this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
+    //     if (autoScrollParams.get('start') != null) {
+    //         this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
+    //         // window.scrollTo(0, parseInt(this.initialScroll), { behavior: 'smooth' })
+    //     }
+    // }
+
+    const autoScrollParams = this.getAutoScrollParams();
+    if (pagination.type === 'INFINITE_SCROLL' ) {
+        // this.initialScroll = Math.ceil(parseInt(autoScrollParams.get('scroll'))) || 0
+        if(!this.productContainerHeight){
+            this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
+            if (autoScrollParams.get('start') != null) {
+                this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
+                // window.scrollTo(0, parseInt(this.initialScroll), { behavior: 'smooth' })
+            }
+        }
+       
+        const prank = autoScrollParams.get('prank') || null
+        if (prank) {
+            const product = this.state.products.find(p => p.prank === prank) || {}
+            if(product) {
+                document.getElementById(product.id).scrollIntoView()
+            }
         }
     }
 
+    // window.scrollTo(0, Math.ceil(parseInt(autoScrollParams.get('scroll'))) || 0, { behavior: 'smooth' })
+
     onEvent(this, afterRender);
 
-    
+
 };
 export default reRender;

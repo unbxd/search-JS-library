@@ -33,6 +33,7 @@ const updatePageStart = function (context, page) {
     const autoScrollParams = context.getAutoScrollParams();
     context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
     autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
+    
     history.replaceState(null, null, '?' + autoScrollParams.toString());
 }
 
@@ -61,12 +62,12 @@ const updatePageStart = function (context, page) {
 //         // scrollTop + window.innerHeight >= document.getElementById('searchResultsWrapper').clientHeight - 100;
 
 
-//         // if ((getDocHeight() - 20) <= (scrollTop + window.innerHeight) && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
-//         // if (scroll <= this.productContainerHeight && scroll > this.productContainerHeight - 20 && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
-//         // if () {
-//             if (scrollTop + window.innerHeight >= document.getElementById('searchResultsWrapper').clientHeight - 100 &&
-//                 currentProducts < totalProducts &&
-//                 !this.state.loading) {
+//         if ((getDocHeight() - 20) <= (scrollTop + window.innerHeight) && currentProducts < totalProducts && !this.state.loading) {
+//         // // if (scroll <= this.productContainerHeight && scroll > this.productContainerHeight - 20 && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
+//         // // if () {
+//         //     if (scrollTop + window.innerHeight >= document.getElementById('searchResultsWrapper').clientHeight - 100 &&
+//                 // currentProducts < totalProducts &&
+//                 // !this.state.loading) {
 //                 updatePageStart(this, page)
 //                 this.viewState.lastAction = "next_page_loaded";
 //                 this.renderNewResults('next');
@@ -85,6 +86,64 @@ const updatePageStart = function (context, page) {
 
 // }
 
+// 5th version with bottom 100px version----------------------------------------------------------------
+// =================================================================
+// const onInfiniteScroll = function () {
+//     const scrollTop = getScrollXY()[ 1 ];
+//     const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
+//      if (rect.bottom < 0 || rect.top > window.innerHeight) {
+//             console.log('outttttttt', 'background: #222; color: #bada55')
+//         } else if (this.productContainerHeight != 0) {
+//             const autoScrollParams = this.getAutoScrollParams();
+//             const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
+//             const scroll = (scrollTop > this.productContainerHeight) ? scrollTop - this.productContainerHeight * (page - this.initialPage) : scrollTop;
+//             const currentProducts = window.unbxdSearch.state.responseObj.response.products.length;
+//             const totalProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
+    
+//             // debounce(() => {
+//                 autoScrollParams.set('scroll', Math.ceil(scroll));
+//                 history.replaceState(null, null, '?' + autoScrollParams.toString());
+//             // }, 100)
+    
+//             // const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
+//             // console.log('rect rect rect', rect);
+//             // console.log('this.productContainerHeight', this.productContainerHeight)
+    
+//             // if (rect.bottom < 0 || rect.top > window.innerHeight) {
+//             //     console.log('outttttttt', 'background: #222; color: #bada55')
+//             // }
+    
+//             // scrollTop + window.innerHeight >= document.getElementById('searchResultsWrapper').clientHeight - 100;
+    
+    
+//             // if ((getDocHeight() - 20) <= (scrollTop + window.innerHeight) && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
+//             // if (scroll <= this.productContainerHeight && scroll > this.productContainerHeight - 20 && currentNumberOfProducts < totalNumberOfProducts && !this.state.loading) {
+//             // if () {
+//                 if (scrollTop + window.innerHeight >= document.getElementById('searchResultsWrapper').clientHeight - this.options.pagination.heightDiffToTriggerNextPage &&
+//                 scrollTop + window.innerHeight < document.getElementById('searchResultsWrapper').clientHeight    &&
+//                 currentProducts < totalProducts &&
+//                     !this.state.loading) {
+//                     updatePageStart(this, page)
+//                     this.viewState.lastAction = "next_page_loaded";
+//                     this.renderNewResults('next');
+//                 } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
+//                     updatePageStart(this, page)
+//                     this.viewState.lastAction = "prev_page_loaded";
+//                     this.initialPage = this.initialPage - 1;
+//                     this.renderNewResults('prev');
+//                 }
+//                 else if ((parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows'))) + 1 != page && page != 0) {
+//                     updatePageStart(this, page)
+//                 }
+//             // }
+//         }
+//     // if (this.productContainerHeight != 0 && scrollTop + window.innerHeight < document.getElementById('searchResultsWrapper').clientHeight) {
+    
+
+
+// }
+
+
 const onInfiniteScroll = function () {
     const scrollTop = getScrollXY()[ 1 ];
     const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
@@ -93,13 +152,15 @@ const onInfiniteScroll = function () {
         } else if (this.productContainerHeight != 0) {
             const autoScrollParams = this.getAutoScrollParams();
             const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
-            const scroll = (scrollTop > this.productContainerHeight) ? scrollTop - this.productContainerHeight * (page - this.initialPage) : scrollTop;
+            // const scroll = (scrollTop > this.productContainerHeight) ? scrollTop - this.productContainerHeight * (page - this.initialPage) : scrollTop;
             const currentProducts = window.unbxdSearch.state.responseObj.response.products.length;
             const totalProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
     
+            autoScrollParams.delete('prank');
+            
             // debounce(() => {
-                autoScrollParams.set('scroll', Math.ceil(scroll));
-                history.replaceState(null, null, '?' + autoScrollParams.toString());
+                // autoScrollParams.set('scroll', Math.ceil(scroll));
+                // history.replaceState(null, null, '?' + autoScrollParams.toString());
             // }, 100)
     
             // const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
