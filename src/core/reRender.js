@@ -132,16 +132,21 @@ const reRender = function () {
             if (autoScrollParams.get('start') != null) {
                 this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
                 // window.scrollTo(0, parseInt(this.initialScroll), { behavior: 'smooth' })
+                // window.scrollTo(0, 0)
             }
-        }
-       
-        const prank = autoScrollParams.get('prank') || null
+
+            const prank = autoScrollParams.get('prank') || null
         if (prank) {
             const product = this.state.products.find(p => p.prank === prank) || {}
             if(product) {
                 document.getElementById(product.id).scrollIntoView()
+            } else {
+                window.scrollTo(0, 0)
             }
         }
+        }
+       
+        
     }
 
     // window.scrollTo(0, Math.ceil(parseInt(autoScrollParams.get('scroll'))) || 0, { behavior: 'smooth' })
