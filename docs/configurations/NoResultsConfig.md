@@ -31,7 +31,7 @@ Configure the display to be rendered when there are no results by setting the â€
 
 The following options are available under the noResults object:  
 
-``` js
+```js
 noResults:{
 // the below noResults configurations goes here.
 }

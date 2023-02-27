@@ -35,6 +35,9 @@ const onProductItemClick = function(e) {
     }
     if(product && elem) {
         product.prank = elem.dataset.prank;
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('start', parseInt(product.prank) - parseInt(product.prank) % parseInt(urlParams.get('rows')))
+        history.replaceState(null, null, '?' + urlParams.toString());
     }
     this.options.products.onProductClick(product,e);
     this.getCallbackActions(product,"click");

@@ -53,7 +53,7 @@ Used to indicate if the page is search or category. Possible values: search (or)
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 productType:"SEARCH"
 ```
 ### Scenarios
@@ -107,7 +107,7 @@ This function passes two params:
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 template:function(product,idx,swatchUI,productViewType,products ){
     const {
         unxTitle,
@@ -296,7 +296,7 @@ If product doesnt contain image url, by default this image will be shown
 ### Default Value
 {: .no_toc }
 
-``` js
+```js
 defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg"
 ```
 
@@ -467,7 +467,7 @@ Swatches are commonly used to display the available colors of a product, such as
 
 [![](../assets/product-swatches.png)](../assets/product-swatches.png)
 
-``` js
+```js
  products: {
         el: document.querySelector(".ms-search-result-container__Products"),
         tagName: "UL",

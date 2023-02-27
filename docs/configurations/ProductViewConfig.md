@@ -36,7 +36,7 @@ You can configure the way in which the products have to be displayed (List or Gr
 
 Update the options under the “productView” config object to configure the product view feature.
 
-``` js
+```js
 productView:{
 // the below productView configurations goes here.
 }
@@ -177,7 +177,7 @@ Action on which product view change should be triggerd: “click” or “change
 ### Default Value
 {: .no_toc }
 
-``` js
+```js
 action:"click"
 ```
 
@@ -197,7 +197,7 @@ Additonal CSS class name to be added to the product view type elements
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 viewTypeClass:"UNX-product-view"
 ```
 
@@ -217,7 +217,7 @@ Additional CSS class name to be added to the selected view type element
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 selectedViewTypeClass:"UNX-selected-product-view"
 ```
 ### Scenarios

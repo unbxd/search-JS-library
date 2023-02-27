@@ -53,7 +53,7 @@ variants:{
 
 The following options are available under the swatches object:
 
-``` js
+```js
 swatches:{
 // the below swatches configurations goes here.
 }

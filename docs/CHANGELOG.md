@@ -183,7 +183,7 @@ Update core js version for keeping customer params, and fix reload url issues
 - changed sdkHostName to searchEndPoint
 - changed productClick to onProductClick
 - viewTypes to defaultView 
-- inifinteScrollTriggerEl to infinteScrollTriggerEl
+- inifinteScrollTriggerEl to infiniteScrollTriggerEl
 - moved rangeWidget under facet Object
 - actionCallback to onAction
 - Removed range slider from the sdk, by default checkboxes will be rendered

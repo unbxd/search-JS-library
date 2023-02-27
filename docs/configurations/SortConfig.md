@@ -187,7 +187,7 @@ The "template" function here refers to the ability to change the look and feel o
 ### Default Value
 {: .no_toc }
 
-``` js
+```js
 template: function(selectedSort, sortConfig) {
     let optionsUI = "";
     const {
@@ -274,7 +274,7 @@ Object
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 {
     class: ”UNX-sort-block-lb”
 }	
@@ -341,7 +341,7 @@ sort: {
 ## Usecase 2: Sort as Buttons
 [![](../assets/button-sort.png)](../assets/button-sort.png)
 
-``` js
+```js
  sort: {
     el: document.getElementById("sortWrapper"),
     options: [

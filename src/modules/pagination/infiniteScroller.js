@@ -17,31 +17,41 @@ function getScrollXY() {
     return [ scrOfX, scrOfY ];
 }
 
-function getDocHeight() {
-    const D = document;
-    return Math.max(
-        D.body.scrollHeight, D.documentElement.scrollHeight,
-        D.body.offsetHeight, D.documentElement.offsetHeight,
-        D.body.clientHeight, D.documentElement.clientHeight
-    );
+const updatePageStart = function (context, page) {
+    const autoScrollParams = context.getAutoScrollParams();
+    context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
+    autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
+    history.replaceState(null, null, '?' + autoScrollParams.toString());
 }
 
 const onInfiniteScroll = function () {
-    const {
-        heightDiffToTriggerNextPage
-    } = this.options.pagination;
-    if ((getDocHeight() - 20) <= (getScrollXY()[ 1 ] + window.innerHeight + heightDiffToTriggerNextPage)) {
-        if (!this.viewState.isInfiniteStarted && !this.state.loading) {
-        // if ( !this.state.loading) {
-            this.viewState.lastAction = "pagination";
+    const scrollTop = getScrollXY()[ 1 ];
+    const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
+    if (rect.bottom < 0 || rect.top > window.innerHeight) {
+        console.log('outttttttt', 'background: #222; color: #bada55')
+    } else if (this.productContainerHeight != 0) {
+        const autoScrollParams = this.getAutoScrollParams();
+        const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
+        const currentProducts = window.unbxdSearch.state.responseObj.response.products.length;
+        const totalProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
+
+        if (scrollTop + window.innerHeight >= document.getElementById('searchResultsWrapper').clientHeight - this.options.pagination.heightDiffToTriggerNextPage &&
+            scrollTop + window.innerHeight < document.getElementById('searchResultsWrapper').clientHeight &&
+            currentProducts < totalProducts &&
+            !this.state.loading) {
+            updatePageStart(this, page + 1);
+            this.viewState.lastAction = "next_page_loaded";
             this.renderNewResults('next');
-        }
-    } else {
-        if (!this.viewState.isInfiniteStarted && !this.state.loading) {
-        // if ( !this.state.loading) {
-            this.viewState.lastAction = "pagination";
+        } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
+            updatePageStart(this, page)
+            this.viewState.lastAction = "prev_page_loaded";
+            this.initialPage = this.initialPage - 1;
             this.renderNewResults('prev');
         }
+        if ((parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows'))) + 1 != page && page != 0) {
+            updatePageStart(this, page);
+        }
     }
-};
+
+}
 export default onInfiniteScroll;

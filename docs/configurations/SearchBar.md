@@ -42,7 +42,7 @@ Configure the search input element on which to listen to search query changes.
 ### Default Value
 {: .no_toc }
 
-``` js
+```js
 searchBoxEl : null
 ```
 ### Scenarios
@@ -59,7 +59,7 @@ Element
 Configure your search button here. Clicking on this will load the results based the input value provided in “searchBoxEl".
 ### Default Value
 {: .no_toc }
-``` js
+```js
 searchButtonEl : NA
 ```
 

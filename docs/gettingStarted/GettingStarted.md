@@ -30,7 +30,7 @@ To use Unbxd Javascript Search SDK it would typically be integrated on the e-com
 
 It's important to note that the nomenclature and the elements present on the e-commerce page may vary across different website, but the Unbxd Javascript Search SDK can be integrated in any e-commerce website.
 
-Please checkout how you can [setup](/docs_new/gettingStarted/quickIntegration.md)
+Please checkout how you can [setup](/docs/gettingStarted/quickIntegration.md)
 This documentation has multiple ways of exploring/integrating with the Unbxd Search library.
 1. [Explore demo code](/docs/gettingStarted/exploredemocode.md)
 2. [Integrate with a sample unbxd feed](/docs/gettingStarted/integratewithsampleunbxdfeed.md)

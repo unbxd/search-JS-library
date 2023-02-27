@@ -142,7 +142,7 @@ Field mapping of the catalog attributes to the variant attributes. This is neede
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 mapping: {"image_url": "v_imageUrl"}	
 ```
 

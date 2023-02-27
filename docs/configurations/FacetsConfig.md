@@ -94,7 +94,7 @@ Customize the look and feel of the facets block by returning your custom HTML st
 ### Default Value
 {: .no_toc }
 
-``` js
+```js
 facetTemplate: function(facetObj, children, isExpanded,facetSearchTxt, facet) {
         const {
             displayName,
@@ -440,7 +440,7 @@ Object will be containing the configuration for the selected facet wrapper confi
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 selectedFacetConfig:{ 
     tagName: ”DIV”, 
     htmlAttributes:{
@@ -950,7 +950,7 @@ The text to show for the view more / less button. This accepts an array with two
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 viewMoreText: [“show all”, “show less”]
 ```
 

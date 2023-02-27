@@ -72,7 +72,11 @@ const reRender = function () {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
-                searchResultsWrapper.innerHTML += this.renderSearch();
+                if (lastAction === "prev_page_loaded") {
+                    searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
+                } else {
+                    searchResultsWrapper.innerHTML += this.renderSearch();
+                }
             }
         } else {
             searchResultsWrapper.innerHTML = "";
@@ -107,20 +111,23 @@ const reRender = function () {
     }
 
     if (lastAction === "pagination") {
-        if (pagination.type == "INFINITE_SCROLL") {
-            const {
-                productItemClass
-            } = this.options.products;
-            const scrollBy = document.querySelector(`.${productItemClass}`).offsetHeight;
-            // window.scrollBy({
-            //     top: scrollBy,
-            //     left: 0,
-            //     behavior: "smooth"
-            // })
-        }
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
+    }
+
+    const autoScrollParams = this.getAutoScrollParams();
+    if (pagination.type === 'INFINITE_SCROLL') {
+        if (!this.productContainerHeight) {
+            this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
+            if (autoScrollParams.get('start') != null) {
+                this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
+            }
+        }
+
 
     }
+
     onEvent(this, afterRender);
+
+
 };
 export default reRender;

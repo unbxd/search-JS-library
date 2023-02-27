@@ -59,12 +59,12 @@ This is the unique Site Key assigned by Unbxd to every site created in the conso
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 siteKey:NA	
 ```
 ### Scenarios
 {: .no_toc }
-``` js
+```js
 siteKey:"ss-unbxd-gcp-Gardner-White-STG8241646781056"
 ```
 
@@ -79,14 +79,14 @@ This is the unique API Key assigned to every site created in the console dashboa
 
 ### Default Value
 {: .no_toc }
-``` js
+```js
 apiKey:NA
 ```
 
 
 ### Scenarios
 {: .no_toc }
-``` js
+```js
 apiKey:"e2082aeb3a7f0ac8955c879daf7673e8"
 ```
 
