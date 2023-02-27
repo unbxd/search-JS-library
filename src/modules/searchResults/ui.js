@@ -41,7 +41,8 @@ export default function(product,idx,swatchUI,productViewType,products ){
         imagesUI = imgList; 
     }
     return [`<div id="${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,,
-                `<div class="UNX-images-block">${imagesUI}</div>`,
+    `<h3 class="UNX-product-title">${idx}</h3>`,            
+    `<div class="UNX-images-block">${imagesUI}</div>`,
                 `<div class="UNX-product-content">`,
                     `<h3 class="UNX-product-title">${unxTitle}</h3>`,
                     swatchBtnUI,

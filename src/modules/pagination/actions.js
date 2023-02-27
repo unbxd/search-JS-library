@@ -29,14 +29,8 @@ function renderNewResults(action) {
             triggerNextPage(this,next);
         }
     } else if(pagination.type === "INFINITE_SCROLL") {
-        // const next = start+rows;
-        // if(isNext){
-        //     this.viewState.isInfiniteStarted = true;
-        //     triggerNextPage(this,next);
-        // }
         if(action === this.actions.next){
             const next = start+rows;
-            
             if(isNext){
                 this.viewState.isInfiniteStarted = true;
                 triggerNextPage(this,next, action);
@@ -46,11 +40,7 @@ function renderNewResults(action) {
             const prev = start-rows;
             if(isPrev){
                 this.viewState.isInfiniteStarted = true;
-                // this.viewState.lastAction = "pagination";
                 triggerNextPage(this,prev, action);
-                // onEvent(this,this.events.pagePrev, {
-                //     value:prev
-                // });
             }
         }
     } else {

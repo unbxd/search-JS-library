@@ -32,12 +32,11 @@ const onProductItemClick = function(e) {
     dataset = elem.dataset;
     if(dataset.id) {
         product =  this.getProductByPropValue(attributesMap.unxId,dataset.id);
-        // localStorage.setItem('UnxLastProductClicked', dataset.id);
     }
     if(product && elem) {
         product.prank = elem.dataset.prank;
-        const urlParams = new URLSearchParams(window.location.search)
-        urlParams.set('prank', product.prank)
+        const urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('start', parseInt(product.prank) - parseInt(product.prank) % parseInt(urlParams.get('rows')))
         history.replaceState(null, null, '?' + urlParams.toString());
     }
     this.options.products.onProductClick(product,e);

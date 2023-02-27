@@ -591,8 +591,12 @@ const checkRangeTemplate = function (range, selectedRange, facet) {
 const unbxdCallbackEcma = function (instance, type, data) {
     console.log(type, data, 'type,data');
     if(type === "AFTER_RENDER") {
-        
-        window.getElementById(localStorage.getItem('unx_product_clicked')).scrollIntoView({'behavior': 'smooth'})
+        if(localStorage.getItem('unx_product_clicked') && document.getElementById(localStorage.getItem('unx_product_clicked'))){
+            document.getElementById(localStorage.getItem('unx_product_clicked')).scrollIntoView()
+            localStorage.removeItem('unx_product_clicked');
+        } else {
+            document.getElementById('searchResultsWrapper').scrollIntoView()
+        }
     }
 }
 
@@ -718,8 +722,6 @@ window.unbxdSearch = new UnbxdSearch({
     unbxdAnalytics: true,
     pagination: {
         type: 'INFINITE_SCROLL',
-        // el: null,
-        // template: null,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function (data) { console.log(data, "data") }
@@ -732,7 +734,6 @@ window.unbxdSearch.updateConfig({
         el: document.getElementById("searchResultsWrapper"),
         productType: productType,
         onProductClick: function (product, e) {
-            // history.pushState(null,null, `${product.variants[0].productUrl}`);
             localStorage.setItem('unx_product_clicked', product.uniqueId);
             window.location.href ='https://www.google.com';
         }
@@ -855,9 +856,8 @@ window.unbxdSearch.updateConfig({
     },
     pagination: {
         type: 'INFINITE_SCROLL',
-        // heightDiffToTriggerNextPage: 100,
+        heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
-        // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function(data) {console.log(data,"data")}
     },
     breadcrumb: {

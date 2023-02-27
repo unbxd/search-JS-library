@@ -1,4 +1,4 @@
-function bindEvents(){
+function bindEvents() {
     const {
         searchButtonEl,
         searchTrigger,
@@ -15,18 +15,18 @@ function bindEvents(){
         breadcrumb,
         selectedFacets
     } = this.options;
-    if(searchBoxEl) {
+    if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;
             if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-                if(val !== ""){
+                if (val !== "") {
                     this.setInputValue.bind(this)();
                 }
             }
         });
     }
-    if(pagination.enabled) {
-        this.paginationWrappers.forEach((wrapper)=>{
+    if (pagination.enabled) {
+        this.paginationWrappers.forEach((wrapper) => {
             this.delegate(
                 wrapper,
                 pagination.action,
@@ -36,20 +36,20 @@ function bindEvents(){
         });
     }
     if (facet.facetsEl) {
-         this.facetWrappers.forEach(wrapper => {
+        this.facetWrappers.forEach(wrapper => {
             this.delegate(wrapper, facet.facetAction, `.${facet.facetClass}`, this.findChangedFacet.bind(this));
             this.delegate(wrapper, 'change', '.' + actionChangeClass, this.extraActionsChange.bind(this));
-			this.delegate(wrapper, 'keyup', '.' + actionChangeClass, this.extraActionsChange.bind(this));
-			this.delegate(wrapper, 'click', '.' + actionBtnClass, this.extraActions.bind(this));
+            this.delegate(wrapper, 'keyup', '.' + actionChangeClass, this.extraActionsChange.bind(this));
+            this.delegate(wrapper, 'click', '.' + actionBtnClass, this.extraActions.bind(this));
         });
-	}
+    }
     if (searchButtonEl) {
         searchButtonEl.addEventListener(searchTrigger, this.setInputValue.bind(this));
     }
     if (spellCheck.el) {
         this.spellCheckWrappers.forEach(wrapper => {
-			this.delegate(wrapper, 'click', `.${spellCheck.selectorClass}`, this.setSuggestion.bind(this));
-		});
+            this.delegate(wrapper, 'click', `.${spellCheck.selectorClass}`, this.setSuggestion.bind(this));
+        });
     }
     //productItemSelector
     this.delegate(
@@ -59,66 +59,53 @@ function bindEvents(){
         this.onProductItemClick.bind(this)
     );
     if (sort.el) {
-		this.sortWrappers.forEach(wrapper => {
-			this.delegate(wrapper, sort.action, `.${sort.sortClass}`, this.sortAction.bind(this));
-		});
-	}
-    
-    if(facet.selectedFacetsEl) {
+        this.sortWrappers.forEach(wrapper => {
+            this.delegate(wrapper, sort.action, `.${sort.sortClass}`, this.sortAction.bind(this));
+        });
+    }
+
+    if (facet.selectedFacetsEl) {
         this.selectedFacetWrappers.forEach(wrapper => {
-			this.delegate(wrapper, facet.facetAction, `.${facet.selectedFacetClass}`, this.findChangedFacet.bind(this));
-		});
+            this.delegate(wrapper, facet.facetAction, `.${facet.selectedFacetClass}`, this.findChangedFacet.bind(this));
+        });
     } else {
         this.selectedFacetWrappers.forEach(wrapper => {
-			this.delegate(
-				wrapper,
-				selectedFacets.facetAction,
-				`.${selectedFacets.selectedFacetClass}`,
-				this.findChangedFacet.bind(this)
-			);
-		});
+            this.delegate(
+                wrapper,
+                selectedFacets.facetAction,
+                `.${selectedFacets.selectedFacetClass}`,
+                this.findChangedFacet.bind(this)
+            );
+        });
     }
-    if(this.breadcrumbWrapper) {
+    if (this.breadcrumbWrapper) {
         this.delegate(
-            this.breadcrumbWrapper, 
-            "click", 
-            "."+breadcrumb.selectorClass, 
+            this.breadcrumbWrapper,
+            "click",
+            "." + breadcrumb.selectorClass,
             this.findChangedFacet.bind(this)
         )
     }
-    if(this.productViewTypeWrapper){
+    if (this.productViewTypeWrapper) {
         this.delegate(
             this.productViewTypeWrapper,
             productView.action,
-            "."+productView.viewTypeClass,
+            "." + productView.viewTypeClass,
             this.onPageViewTypeClick.bind(this)
         )
     }
 
-    if(this.options.pagination.type === 'INFINITE_SCROLL') {
-        // document.addEventListener("scroll",debounce(()=>{
-        //     if(!this.viewState.isInfiniteStarted && !this.state.loading){
-        //         this.onInfiniteScroll.bind(this)();
-        //     }
-        // },1000));
-
+    if (this.options.pagination.type === 'INFINITE_SCROLL') {
         let infiniteScrollTimer;
         const self = this
-        document.addEventListener("scroll",function(){
+        document.addEventListener("scroll", function () {
             infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
-            infiniteScrollTimer = setTimeout(function(){
-                // console.log('----------------------------------------------------------------')
-                // console.log('is in view port', elementInViewport2(document.getElementById('searchResultsWrapper')));
-                // console.log('self.viewState.isInfiniteStarted', self.viewState.isInfiniteStarted)
-                // console.log('self.state.loading', self.state.loading);
-                // console.log('----------------------------------------------------------------')
-                if(!self.viewState.isInfiniteStarted && !self.state.loading){
-                    // debounce(()=>{
-                        self.onInfiniteScroll();
-                    // }, 500)
+            infiniteScrollTimer = setTimeout(function () {
+                if (!self.viewState.isInfiniteStarted && !self.state.loading) {
+                    self.onInfiniteScroll();
                 }
             }, 10)
-            
+
         });
     }
     this.delegate(
@@ -127,8 +114,8 @@ function bindEvents(){
         `.${pagesize.pageSizeClass}`,
         this.onClickPageSize.bind(this)
     );
-    if(!this.viewState.initialised) {
-        window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+    if (!this.viewState.initialised) {
+        window.addEventListener('popstate', this.onLocationChange.bind(this), false);
         // if(this.options.hashMode) {
         //     // window.addEventListener('hashchange',this.onLocationChange.bind(this),false);
         //     window.onhashchange= this.onLocationChange.bind(this);
@@ -137,7 +124,7 @@ function bindEvents(){
         // }
         const urlParams = this.getQueryParams();
         const ln = Object.keys(urlParams).length;
-        if(ln > 0) {
+        if (ln > 0) {
             this.renderFromUrl();
         }
         this.viewState.initialised = true;
