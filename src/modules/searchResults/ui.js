@@ -15,7 +15,7 @@ export default function(product,idx,swatchUI,productViewType,products ){
     if(!imgUrl) {
         imgUrl = defaultImage;
     }
-    let imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" alt="${unxTitle}" src="${imgUrl}"/></div>`;
+    let imagesUI = `<div class="UNX-img-wrapper"><img class="UNX-img-block" width="100%" height="100%" alt="${unxTitle}" src="${imgUrl}"/></div>`;
     const priceUI = `<span class="UNX-sale-price">${unxPrice}</span>`;
     let strikeUi = ``;
     if(unxStrikePrice) {
@@ -41,7 +41,8 @@ export default function(product,idx,swatchUI,productViewType,products ){
         imagesUI = imgList; 
     }
     return [`<div id="${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,,
-                `<div class="UNX-images-block">${imagesUI}</div>`,
+    `<h3 class="UNX-product-title">${idx}</h3>`,            
+    `<div class="UNX-images-block">${imagesUI}</div>`,
                 `<div class="UNX-product-content">`,
                     `<h3 class="UNX-product-title">${unxTitle}</h3>`,
                     swatchBtnUI,

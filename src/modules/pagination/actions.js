@@ -1,7 +1,9 @@
-const triggerNextPage = (context,next) =>{
-    context.viewState.lastAction = "pagination";
-    context.setPageStart(next);
-    context.getResults();
+const triggerNextPage = (context,next, action) =>{
+    if(context.options.pagination.type !== "INFINITE_SCROLL") {
+        context.viewState.lastAction = "pagination";
+        context.setPageStart(next);
+    }
+    context.getResults("", true, action);
     context.options.onEvent(context,context.events.pageNext, {
         value:next
     });
@@ -20,11 +22,26 @@ function renderNewResults(action) {
         isNext,
         isPrev
     } = pageInfo;
-    if(pagination.type === "CLICK_N_SCROLL" || pagination.type === "INFINITE_SCROLL") {
+    if(pagination.type === "CLICK_N_SCROLL" ) {
         const next = start+rows;
         if(isNext){
             this.viewState.isInfiniteStarted = true;
             triggerNextPage(this,next);
+        }
+    } else if(pagination.type === "INFINITE_SCROLL") {
+        if(action === this.actions.next){
+            const next = start+rows;
+            if(isNext){
+                this.viewState.isInfiniteStarted = true;
+                triggerNextPage(this,next, action);
+            }
+        }
+        if(action === this.actions.prev){
+            const prev = start-rows;
+            if(isPrev){
+                this.viewState.isInfiniteStarted = true;
+                triggerNextPage(this,prev, action);
+            }
         }
     } else {
         if(action === this.actions.next){

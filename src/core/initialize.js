@@ -34,5 +34,8 @@ const initialize = function() {
         this.renderProductViewTypeUI();
     }
 
+
+    
+
 }
 export default initialize;

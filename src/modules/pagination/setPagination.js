@@ -5,12 +5,19 @@ import {
     renderNewResults,
     paginationAction
 } from './actions';
+
+const getAutoScrollParams = function () {
+    const autoScrollParams = new URLSearchParams(window.location.search)
+    return autoScrollParams;
+}
+
 const setPagination = (prototype) => {
-    prototype = Object.assign(prototype,{
+    prototype = Object.assign(prototype, {
         renderPagination,
         renderNewResults,
         paginationAction,
-        onInfiniteScroll
+        onInfiniteScroll,
+        getAutoScrollParams
     })
 }
 
@@ -19,5 +26,6 @@ export {
     renderPagination,
     renderNewResults,
     paginationAction,
-    onInfiniteScroll
+    onInfiniteScroll,
+    getAutoScrollParams
 };
