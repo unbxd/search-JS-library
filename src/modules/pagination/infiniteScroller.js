@@ -22,7 +22,7 @@ const updatePageStart = function (context, page) {
     const autoScrollParams = context.getAutoScrollParams();
     context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')));
     autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
-    history.replaceState(null, null, context.getUrlStr('?' + autoScrollParams.toString()));
+    history.replaceState(null, null, context.urlSearchParamsToStr(autoScrollParams));
 }
 
 // callback on page scroll 
