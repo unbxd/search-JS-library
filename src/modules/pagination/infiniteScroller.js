@@ -17,19 +17,20 @@ function getScrollXY() {
     return [ scrOfX, scrOfY ];
 }
 
+// update the start position in the URL
 const updatePageStart = function (context, page) {
     const autoScrollParams = context.getAutoScrollParams();
-    context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')))
+    context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')));
     autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
-    history.replaceState(null, null, '?' + autoScrollParams.toString());
+    history.replaceState(null, null, context.getUrlStr('?' + autoScrollParams.toString()));
 }
 
+// callback on page scroll 
 const onInfiniteScroll = function () {
     const scrollTop = getScrollXY()[ 1 ];
     const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > window.innerHeight) {
-        console.log('outttttttt', 'background: #222; color: #bada55')
-    } else if (this.productContainerHeight != 0) {
+    // check if the products container is visible in the viewport and height is initialized
+    if (this.productContainerHeight != 0 && (rect.bottom > 0 || rect.top < window.innerHeight)) {
         const autoScrollParams = this.getAutoScrollParams();
         const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
         const currentProducts = window.unbxdSearch.state.responseObj.response.products.length;
@@ -39,19 +40,21 @@ const onInfiniteScroll = function () {
             scrollTop + window.innerHeight < document.getElementById('searchResultsWrapper').clientHeight &&
             currentProducts < totalProducts &&
             !this.state.loading) {
+            // fetch next page when user scrolls to the bottom of threshold zone
             updatePageStart(this, page + 1);
             this.viewState.lastAction = "next_page_loaded";
             this.renderNewResults('next');
         } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
+            // fetch previous page
             updatePageStart(this, page)
             this.viewState.lastAction = "prev_page_loaded";
             this.initialPage = this.initialPage - 1;
             this.renderNewResults('prev');
         }
         if ((parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows'))) + 1 != page && page != 0) {
+            // update page number in the URL as user scrolls up and down
             updatePageStart(this, page);
         }
     }
-
 }
 export default onInfiniteScroll;

@@ -33,11 +33,13 @@ const onProductItemClick = function(e) {
     if(dataset.id) {
         product =  this.getProductByPropValue(attributesMap.unxId,dataset.id);
     }
-    if(product && elem) {
+    if(product && elem.dataset.prank) {
+        // check if pRank is available in the dataset 
+        // and update the corresponding start number of the product clicked it to the URL
         product.prank = elem.dataset.prank;
         const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('start', parseInt(product.prank) - parseInt(product.prank) % parseInt(urlParams.get('rows')))
-        history.replaceState(null, null, '?' + urlParams.toString());
+        urlParams.set('start', parseInt(parseInt(product.prank) - (parseInt(product.prank) % parseInt(urlParams.get('rows')))))
+        history.replaceState(null, null, this.getUrlStr('?' + urlParams.toString()));
     }
     this.options.products.onProductClick(product,e);
     this.getCallbackActions(product,"click");

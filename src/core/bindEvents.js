@@ -99,13 +99,15 @@ function bindEvents() {
         let infiniteScrollTimer;
         const self = this
         document.addEventListener("scroll", function () {
+            // this setTimeout and clearTimeout logic will ensure the callback is not called on every few seconds, 
+            // instead it is called only when the user stops interacting with the scroll position
+            // do not change this logic
             infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
             infiniteScrollTimer = setTimeout(function () {
                 if (!self.viewState.isInfiniteStarted && !self.state.loading) {
                     self.onInfiniteScroll();
                 }
             }, 10)
-
         });
     }
     this.delegate(
