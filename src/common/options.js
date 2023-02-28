@@ -232,45 +232,6 @@ const options = {
             class: "UNX-pagination-size-block"
         },
         events: {},
-
-        // el: document.querySelectorAll(".unxPagination"),
-        // type: "CLICK_N_SCROLL",
-        // pageClass: "UNX_loadMore",
-        // action: "click",
-        // template: function (paginationData, event, pagination) {
-
-        //     if (!paginationData) {
-        //         return ``;
-        //     }
-        //     const {
-        //         currentPage,
-        //         isNext,
-        //         isPrev,
-        //         noOfPages,
-        //         productsLn,
-        //         numberOfProducts,
-        //         rows
-        //     } = paginationData;
-        //     const {
-        //         pageClass,
-        //         selectedPageClass,
-        //         pageLimit
-        //     } = this.options.pagination;
-        //     const {
-        //         UNX_pageNumber
-        //     } = this.testIds;
-
-        //     if (numberOfProducts < productsLn) {
-        //         return ``;
-        //     }
-
-        //     if (numberOfProducts > $(".UNX-product-content").length) {
-        //         $("#paginationContainer").show();
-        //     } else {
-        //         $("#paginationContainer").hide();
-        //     }
-        //     return `<div class="UNX-click-scroll"><button data-test-id="${this.testIds.UNX_loadMore}" class="UNX-click-n-scroll ${pageClass}">View More</button></div>`
-        // },
     },
     pagesize: {
         enabled: true,

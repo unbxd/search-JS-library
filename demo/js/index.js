@@ -15,8 +15,8 @@ let routeTemplate = `
             </div>
         </div>
         <nav id="categoryLinks" class="UNX-naviagtion-wrap">
-            <button data-id="itemGroupIds:185" class="nav-links" data-path="/sectionals">Sectionals</a>
-            <button data-id="itemGroupIds:1800" class="nav-links" data-path="/beds">Beds</button>
+            <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
+            <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
         </nav>
     </div>
 
@@ -71,8 +71,8 @@ let routeTemplate = `
 
 const routes = {
     '/search': routeTemplate,
-    '/sectionals': routeTemplate,
-    '/beds': routeTemplate,
+    '/men': routeTemplate,
+    '/women': routeTemplate,
 };
 
 const rootDiv = document.getElementById('root');
@@ -194,14 +194,14 @@ btnEls.forEach(item => {
 });
 
 let performRouteActions = () => {
-    if (location.pathname === "/sectionals") {
+    if (location.pathname === "/men") {
         window.UnbxdAnalyticsConf = {
-            page: "itemGroupIds:185"
+            page: "categoryPath:cat700001"
         };
         unbxdSearch.options.productType = "CATEGORY";
-    } else if (location.pathname === "/beds") {
+    } else if (location.pathname === "/women") {
         window.UnbxdAnalyticsConf = {
-            page: "itemGroupIds:1800"
+            page: "categoryPath:cat120002"
         };
         unbxdSearch.options.productType = "CATEGORY";
     } else {
@@ -244,14 +244,14 @@ searchBoxEl.addEventListener("keydown", (e) => {
 
 let productType = "";
 
-if (location.pathname === "/sectionals") {
+if (location.pathname === "/men") {
     window.UnbxdAnalyticsConf = {
-        page: "itemGroupIds:185"
+        page: "categoryPath:cat700001"
     };
     productType = "CATEGORY";
-} else if (location.pathname === "/beds") {
+} else if (location.pathname === "/women") {
     window.UnbxdAnalyticsConf = {
-        page: "itemGroupIds:1800"
+        page: "categoryPath:cat120002"
     };
     productType = "CATEGORY";
 } else {
@@ -260,11 +260,8 @@ if (location.pathname === "/sectionals") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    // siteKey: "ss-unbxd-priyal-dev-2022812041656321154",
-    // apiKey: "74346ae3ffdcc7cd664f6ce8a18e4c7d",
-  // searchEndPoint: "https://wingman-argocd.unbxd.io/",
-    siteKey: "ss-unbxd-prod-bevilles-com-au13551623906010",
-    apiKey: "d59fddd93d4e871798731a7d2374ca13",
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
