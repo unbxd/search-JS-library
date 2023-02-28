@@ -260,8 +260,8 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "ss-unbxd-prod-bevilles-com-au13551623906010",
+    apiKey: "d59fddd93d4e871798731a7d2374ca13",
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
