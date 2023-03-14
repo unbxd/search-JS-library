@@ -24,6 +24,7 @@ import swatchTemplate from "../modules/swatches/ui";
 const options = {
     productId: "uniqueId",
     searchBoxEl: null,
+    searchButtonEl: null,
     siteKey: "demo-spanish-unbxd809051588861207",
     apiKey: "f19768e22b49909798bc2411fa3dd963",
     searchPath: "",
