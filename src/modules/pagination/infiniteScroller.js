@@ -20,8 +20,9 @@ function getScrollXY() {
 // update the start position in the URL
 const updatePageStart = function (context, page) {
     const autoScrollParams = context.getAutoScrollParams();
-    context.setPageStart((page - 1) * parseInt(autoScrollParams.get('rows')));
-    autoScrollParams.set('start', (page - 1) * parseInt(autoScrollParams.get('rows')));
+    const rows = parseInt(autoScrollParams.get('rows'));
+    context.setPageStart((page - 1) * rows);
+    autoScrollParams.set('start', (page - 1) * rows);
     history.replaceState(null, null, context.urlSearchParamsToStr(autoScrollParams));
 }
 
@@ -33,11 +34,19 @@ const onInfiniteScroll = function () {
     if (this.productContainerHeight != 0 && (rect.bottom > 0 || rect.top < window.innerHeight)) {
         const autoScrollParams = this.getAutoScrollParams();
         const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
-        const currentProducts = window.unbxdSearch.state.responseObj.response.products.length;
-        const totalProducts = window.unbxdSearch.state.responseObj.response.numberOfProducts;
+        const start = parseInt(autoScrollParams.get('start')) || 0;
+        const rows = parseInt(autoScrollParams.get('rows')) || 0;
+        const elHeight = document.getElementById('searchResultsWrapper').clientHeight || 0;
+        let currentProducts = 0;
+        let totalProducts = 0;
+        const productResponse = window.unbxdSearch.state.responseObj.response || {};
+        if(productResponse){
+            currentProducts = (productResponse.products) ? productResponse.products.length : 0;
+            totalProducts = productResponse.numberOfProducts || 0;
+        }
 
-        if (scrollTop + window.innerHeight >= document.getElementById('searchResultsWrapper').clientHeight - this.options.pagination.heightDiffToTriggerNextPage &&
-            scrollTop + window.innerHeight < document.getElementById('searchResultsWrapper').clientHeight &&
+        if (scrollTop + window.innerHeight >= elHeight - this.options.pagination.heightDiffToTriggerNextPage &&
+            scrollTop + window.innerHeight < elHeight &&
             currentProducts < totalProducts &&
             !this.state.loading) {
             // fetch next page when user scrolls to the bottom of threshold zone
@@ -51,7 +60,8 @@ const onInfiniteScroll = function () {
             this.initialPage = this.initialPage - 1;
             this.renderNewResults('prev');
         }
-        if ((parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows'))) + 1 != page && page != 0) {
+
+        if ((start / rows) + 1 != page && page != 0) {
             // update page number in the URL as user scrolls up and down
             updatePageStart(this, page);
         }

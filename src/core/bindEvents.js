@@ -107,7 +107,7 @@ function bindEvents() {
                 if (!self.viewState.isInfiniteStarted && !self.state.loading) {
                     self.onInfiniteScroll();
                 }
-            }, 10)
+            }, 100)
         });
     }
     this.delegate(
