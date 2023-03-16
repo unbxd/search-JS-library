@@ -11,7 +11,7 @@ const setConfig = function(options = {}, props = {}) {
 
     if(facet) {
         this.options.facetMultilevel = (facet.facetMultilevel) ? facet.facetMultilevel:options.facet.facetMultilevel;
-        this.options.facetMultiSelect = (typeof(facet.facetMultiSelect) === "boolean" ) ? facet.facetMultiSelect:options.facet.facetMultiSelect;
+        this.options.facetMultiSelect = (typeof(facet.facetMultiSelect) === "boolean" ) ? facet.facetMultiSelect : options.facet.facetMultiSelect;
         this.options.facetDepth = (facet.facetDepth) ? facet.facetDepth : options.facet.facetDepth;
         this.options.applyMultipleFilters = (typeof(facet.applyMultipleFilters) === "boolean") ? facet.applyMultipleFilters : options.facet.applyMultipleFilters;
     }
