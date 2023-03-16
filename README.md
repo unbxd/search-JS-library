@@ -12,7 +12,7 @@
 </a>
   
 
-# Search-JS-library
+# Unbxd Search JS SDK 
 
 A JavaScript library for building performant and quick search experiences with Unbxd.
 
