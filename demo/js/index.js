@@ -290,7 +290,7 @@ window.unbxdSearch = new UnbxdSearch({
         // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function (data) { console.log(data, "data") }
     },
-    allowExternalUrlParams: true
+    allowExternalUrlParams: false
 });
 
 window.unbxdSearch.updateConfig({
