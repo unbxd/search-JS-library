@@ -20,6 +20,10 @@ nav_order: 5
 
 This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
 
+{: .warning }
+> It is important to note that only these JS methods listed on this page are for user's consumption and no other internal methods from the SDK should be overwritten. If other SDK methods are overwritten, it could potentially impact the default behavior of the SDK, and we cannot be held responsible for any resulting issues.
+
+
 ---
 ## reRender
 Call this function if you want to render the page again.
