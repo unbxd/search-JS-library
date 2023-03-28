@@ -14,7 +14,6 @@ import {
 
 import setConfig from './core/setConfig';
 
-
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
