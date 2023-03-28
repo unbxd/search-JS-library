@@ -17,7 +17,7 @@ let routeTemplate = `
         <nav id="categoryLinks" class="UNX-naviagtion-wrap">
             <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
             <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
-            <button data-id='categoryPath:"Halo Engagement Rings."' class="nav-links" data-path="/halo">Halo</button>
+            <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing Machines</button>
         </nav>
     </div>
 
@@ -72,10 +72,11 @@ let routeTemplate = `
 
 
 const routes = {
+    '/': routeTemplate,
     '/search': routeTemplate,
     '/men': routeTemplate,
     '/women': routeTemplate,
-    '/halo': routeTemplate,
+    '/washingMachine': routeTemplate,
 };
 
 const rootDiv = document.getElementById('root');
@@ -207,9 +208,9 @@ let performRouteActions = () => {
             page: "categoryPath:cat120002"
         };
         unbxdSearch.options.productType = "CATEGORY";
-    } else if (location.pathname === "/halo") {
+    } else if (location.pathname === "/washingMachine") {
         window.UnbxdAnalyticsConf = {
-            page: 'categoryPath:"Halo Engagement Rings."'
+            page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
         };
         unbxdSearch.options.productType = "CATEGORY";
     } else {
@@ -262,9 +263,9 @@ if (location.pathname === "/men") {
         page: "categoryPath:cat120002"
     };
     productType = "CATEGORY";
-} else if (location.pathname === "/halo") {
+} else if (location.pathname === "/washingMachine") {
     window.UnbxdAnalyticsConf = {
-        page: 'categoryPath:"Halo Engagement Rings."'
+        page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
     };
     productType = "CATEGORY";
 } else {
@@ -273,8 +274,10 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    // siteKey: "demo-unbxd700181503576558",
+    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
+    apiKey: "b1b5f033416fbf18f301aee3dab41934",
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
@@ -290,7 +293,35 @@ window.unbxdSearch = new UnbxdSearch({
         // el: document.querySelector("#clickScrollContainer"),
         onPaginate: function (data) { console.log(data, "data") }
     },
-    allowExternalUrlParams: false
+    allowExternalUrlParams: false,
+    setCategoryId: function (param, self) {
+        const {
+            level,
+            parent,
+            name,
+            action
+        } = param;
+        let page = ``;
+        let pathArr = [];
+        const l = Number(level);
+        const breadCrumbs = self.getBreadCrumbsList("categoryPath");
+        breadCrumbs.forEach((element, i) => {
+            const {
+                level,
+                value
+            } = element;
+            if (l > Number(level) || Number(level) === 1) {
+                pathArr.push(value);
+            }
+        });
+        if (action !== "clearCategoryFilter") {
+            pathArr.push(decodeURIComponent(name));
+        }
+        page = pathArr.join(">");
+        if (window.UnbxdAnalyticsConf) {
+            window.UnbxdAnalyticsConf.page = "categoryPath:\"" + page + "\"";
+        }
+    }
 });
 
 window.unbxdSearch.updateConfig({
