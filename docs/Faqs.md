@@ -50,6 +50,15 @@ It's important to keep the keys safe, as they grant access to the Unbxd service 
 
 It's also worth mentioning that some plans or usage of the service may change the way you get access to the keys, as well as the number of allowed keys and keys rotation strategies, check the documentation or reach out to Unbxd's support for more information about the specific way to access and use the keys.
 
+## How to determine the version of the Unbxd JS SDK used in an e-commerce site?
+To determine the Unbxd JS SDK version used on an e-commerce site, follow these steps:
+1. Open the website in a browser and open the Developer Tools.
+2. Go to the Network tab and filter the requests by "JS" to see only JavaScript files.
+3. Look for the `vanillaSearch.min.js` file and click on it to view its details.
+4. The request URL will be something like `https://libraries.unbxdapi.com/search-sdk/vX.X.X/vanillaSearch.min.js`
+5. The version number should be located in this URL, typically in the form of `vX.X.X`.
+
+
 ## How do I configure the SDK on my website?
 To install the Unbxd JavaScript search SDK on your website, you can follow these steps:
 
