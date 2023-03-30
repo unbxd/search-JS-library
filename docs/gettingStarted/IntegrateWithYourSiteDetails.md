@@ -17,20 +17,8 @@ More information can be found [here](./../prerequisites)
 
 # Integration Instructions
 
-1. Include the vanilla js search library via the link:
-    ```js
-    <script  src="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.js"  type="text/javascript"></script>
-    ```
-    {: .important }
-    > The **latest version** can be found via the npm repository:
-    [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
 
-2.  To get the default theme, include the library css in the link tag:
-    ```js
-    <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
-    ```
-
-3. Customize the config, to see the data related to your sitekey. 
+Customize the config, to see the data related to your sitekey. 
     1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",

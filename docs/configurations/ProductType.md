@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: default
 title: Product Type
 parent: Configurations
@@ -60,4 +60,4 @@ const  unbxdSearch = new UnbxdSearch({
       productType:"SEARCH"
    }
 });
-```
+``` -->
