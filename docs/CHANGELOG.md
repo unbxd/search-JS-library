@@ -45,10 +45,6 @@ nav_order: 8
 - **Release Date**: 21st March, 2023
 - **Core SDK Version**: 0.4.28
 
-Breadcrumbs were not rendering in the Category pages
-Demo website was not loading up category pages
-
-
 ## 🐛 Bug Fixes
 {: .no_toc}
 - Fixed the issue with `AllowExternalUrlParams` was breaking with `hashMode: true`

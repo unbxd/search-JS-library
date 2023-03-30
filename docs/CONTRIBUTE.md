@@ -4,8 +4,17 @@ title: How To Contribute
 nav_order: 10
 ---
 
+
 # How To Contribute
 {: .fs-9 .no_toc}
+
+---
+
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
 
 ---
 
