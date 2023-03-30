@@ -68,7 +68,7 @@ productType: "SEARCH"
 
 Unbxd has two product offerings:
 1. `SEARCH`: Powers search results pages.
-2. `BROWSE or CATEGORY`: Powers category listing pages.
+2. `CATEGORY`: Powers category listing pages.
 
 ---
 ## el
