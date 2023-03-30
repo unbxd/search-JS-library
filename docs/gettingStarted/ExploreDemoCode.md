@@ -5,8 +5,12 @@ nav_order: 1
 parent: Getting Started
 ---
 
+# Explore Demo Code
+{: .no_toc }
+
 1. TOC
 {:toc}
+
 
 # JS Demo Playground
 {: .fs-9 }

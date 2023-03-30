@@ -22,13 +22,14 @@ More information can be found [here](./../prerequisites)
 
 
 
-Customize the search config used for invoking the sdk, to see the data related to your sitekey. 
-    1. Change **siteKey** and **apiKey**.
+Customize the search config used for invoking the sdk, to see the data related to your sitekey.
+
+1. Change **siteKey** and **apiKey**.
     ```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
     ```
-    2. Provide **attributesMap** inside **products** object.
+2. Provide **attributesMap** inside **products** object.
         ```js
         attributesMap: {
         "unxTitle": "title",
@@ -37,12 +38,12 @@ Customize the search config used for invoking the sdk, to see the data related t
         "unxDescription":"short_desc"
         };
         ```
-    3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
+3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
         ```js
         productAttributes: ["title","imageURL","price","short_desc"]
         ```
-    4. Add the correct **query selectors** based on your website, in the config.
-    5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well <br/>
+4. Add the correct **query selectors** based on your website, in the config.
+5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well <br/>
     /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed from backend **/
 
         **Example:**
@@ -67,7 +68,7 @@ Customize the search config used for invoking the sdk, to see the data related t
         }
         ```
 
-    6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
+6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
 
         **Example:**
         {: .no_toc }
@@ -77,7 +78,7 @@ Customize the search config used for invoking the sdk, to see the data related t
             productType: "<<SEARCH/CATEGORY>>"
         }
         ```
-    7. If it is a staging sitekey, set the correct search end point
+7. If it is a staging sitekey, set the correct search end point
         ```js
         searchEndPoint: "https://wingman-argocd.unbxd.io/"
         ```

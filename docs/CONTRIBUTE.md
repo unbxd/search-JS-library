@@ -9,10 +9,12 @@ nav_order: 10
 
 ---
 
-## Contribute to this documentation
+# Contribute to this documentation
 If you come across any mistakes or wish to make a contribution to this document, please submit a pull request on GitHub.
 
-## Contribute to SDK code
+The documentation uses markdown language. Please refer to this [basic writing and formatting syntax](https://docs.github.com/   en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before making any edits to the documentation.
+
+# Contribute to SDK code
 When contributing to this repository, please discuss the change you wish to make via issue,
 email, or any other method with the owners of this repository before making a change. 
 
