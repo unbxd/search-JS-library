@@ -5,7 +5,7 @@ nav_order: 8
 ---
 
 # Changelog
-{: .fs-9 }
+{: .fs-9 .no_toc}
 
 ---
 
@@ -15,10 +15,12 @@ nav_order: 8
 1. TOC
 {:toc}
 
+---
+
 # v2.0.30
 
-**Release Date**: 28th March, 2023
-**Core SDK Version**: 0.4.28
+- **Release Date**: 28th March, 2023
+- **Core SDK Version**: 0.4.28
 
 
 ## 🚀 Features
@@ -40,8 +42,8 @@ nav_order: 8
 
 # v2.0.29
 
-**Release Date**: 21st March, 2023
-**Core SDK Version**: 0.4.28
+- **Release Date**: 21st March, 2023
+- **Core SDK Version**: 0.4.28
 
 Breadcrumbs were not rendering in the Category pages
 Demo website was not loading up category pages
@@ -58,8 +60,8 @@ Demo website was not loading up category pages
 
 # v2.0.28
 
-**Release Date**: 16th March, 2023
-**Core SDK Version**: 0.4.27
+- **Release Date**: 16th March, 2023
+- **Core SDK Version**: 0.4.27
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -78,8 +80,8 @@ Demo website was not loading up category pages
 
 # v2.0.27
 
-**Release Date**: 28th February, 2023
-**Core SDK Version**: 0.4.25
+- **Release Date**: 28th February, 2023
+- **Core SDK Version**: 0.4.25
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -90,8 +92,8 @@ Demo website was not loading up category pages
 
 # v2.0.26
 
-**Release Date**: 28th February, 2023
-**Core SDK Version**: 0.4.24
+- **Release Date**: 28th February, 2023
+- **Core SDK Version**: 0.4.24
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -107,8 +109,8 @@ Demo website was not loading up category pages
 
 # v2.0.25
 
-**Release Date**: 23rd February, 2023
-**Core SDK Version**: 0.4.24
+- **Release Date**: 23rd February, 2023
+- **Core SDK Version**: 0.4.24
 
 ## 🚀 Features
 {: .no_toc}
