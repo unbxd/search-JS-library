@@ -7,17 +7,186 @@
     <meta name="theme-color" content="#000000">
     <title>Unxd Sdk playground</title>
     <!--required frame works should be loaded here-->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+        rel="stylesheet" />
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css" integrity="sha512-30YMvFlZRwPH3TcDlPWZofkzGwIwDAKshEue1qWet2yWEQ4Y/X+WnV1aTuNldE3Hbpcl5Zz4PxoXJKMMQvBHGQ==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css"
+        integrity="sha512-30YMvFlZRwPH3TcDlPWZofkzGwIwDAKshEue1qWet2yWEQ4Y/X+WnV1aTuNldE3Hbpcl5Zz4PxoXJKMMQvBHGQ=="
+        crossorigin="anonymous" />
+    <style>
+        .site-footer {
+            background-color: #26272b;
+            padding: 45px 0 20px;
+            font-size: 15px;
+            line-height: 24px;
+            color: #737373;
+        }
 
+        .site-footer hr {
+            border-top-color: #bbb;
+            opacity: 0.5
+        }
+
+        .site-footer hr.small {
+            margin: 20px 0
+        }
+
+        .site-footer h6 {
+            color: #fff;
+            font-size: 16px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            letter-spacing: 2px
+        }
+
+        .site-footer a {
+            color: #737373;
+        }
+
+        .site-footer a:hover {
+            color: #3366cc;
+            text-decoration: none;
+        }
+
+        .footer-links {
+            padding-left: 0;
+            list-style: none
+        }
+
+        .footer-links li {
+            display: block
+        }
+
+        .footer-links a {
+            color: #737373
+        }
+
+        .footer-links a:active,
+        .footer-links a:focus,
+        .footer-links a:hover {
+            color: #3366cc;
+            text-decoration: none;
+        }
+
+        .footer-links.inline li {
+            display: inline-block
+        }
+
+        .site-footer .social-icons {
+            text-align: right
+        }
+
+        .site-footer .social-icons a {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin-left: 6px;
+            margin-right: 0;
+            border-radius: 100%;
+            background-color: #33353d
+        }
+
+        .copyright-text {
+            margin: 0
+        }
+
+        @media (max-width:991px) {
+            .site-footer [class^=col-] {
+                margin-bottom: 30px
+            }
+        }
+
+        @media (max-width:767px) {
+            .site-footer {
+                padding-bottom: 0
+            }
+
+            .site-footer .copyright-text,
+            .site-footer .social-icons {
+                text-align: center
+            }
+        }
+
+        .social-icons {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none
+        }
+
+        .social-icons li {
+            display: inline-block;
+            margin-bottom: 4px
+        }
+
+        .social-icons li.title {
+            margin-right: 15px;
+            text-transform: uppercase;
+            color: #96a2b2;
+            font-weight: 700;
+            font-size: 13px
+        }
+
+        .social-icons a {
+            background-color: #eceeef;
+            color: #818a91;
+            font-size: 16px;
+            display: inline-block;
+            line-height: 44px;
+            width: 44px;
+            height: 44px;
+            text-align: center;
+            margin-right: 8px;
+            border-radius: 100%;
+            -webkit-transition: all .2s linear;
+            -o-transition: all .2s linear;
+            transition: all .2s linear
+        }
+
+        .social-icons a:active,
+        .social-icons a:focus,
+        .social-icons a:hover {
+            color: #fff;
+            background-color: #29aafe
+        }
+
+        .social-icons.size-sm a {
+            line-height: 34px;
+            height: 34px;
+            width: 34px;
+            font-size: 14px
+        }
+
+        .social-icons a.facebook:hover {
+            background-color: #3b5998
+        }
+
+        .social-icons a.twitter:hover {
+            background-color: #00aced
+        }
+
+        .social-icons a.linkedin:hover {
+            background-color: #007bb6
+        }
+
+        .social-icons a.dribbble:hover {
+            background-color: #ea4c89
+        }
+
+        @media (max-width:767px) {
+            .social-icons li.title {
+                display: block;
+                margin-right: 0;
+                font-weight: 600
+            }
+        }
+    </style>
 </head>
 
 
 <body>
     <div id="root">
-    <!-- <div class="UNX-header">
+        <!-- <div class="UNX-header">
         <div class="UNX-header-inner">
             <div class="UNX-logo">
                 UNBXD
@@ -34,7 +203,7 @@
         </nav>
     </div> -->
 
-    <!-- <div class="UNX-results-container">
+        <!-- <div class="UNX-results-container">
         <div class="UNX-head-wrapper">
             <div class="UNX-selected-actions">
                 <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
@@ -81,16 +250,18 @@
         </div>
     </div> -->
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js" integrity="sha512-hwgsSKm7cPjNHLACxyMGVRrd7cH+wveyYM1ZxWxxbCZd/pXdMukyuIrrCjt2I7iLsmYDk02B1ZUcarEv1A3RVQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.min.js"
+        integrity="sha512-hwgsSKm7cPjNHLACxyMGVRrd7cH+wveyYM1ZxWxxbCZd/pXdMukyuIrrCjt2I7iLsmYDk02B1ZUcarEv1A3RVQ=="
+        crossorigin="anonymous"></script>
     <script type="text/javascript">
         /* * * CONFIGURATION * * */
         var UnbxdSiteName = "demo-unbxd700181503576558";
-        (function() {
+        (function () {
             var ubx = document.createElement('script');
             ubx.type = 'text/javascript';
             ubx.async = true;
             ubx.src = '//d21gpk1vhmjuf5.cloudfront.net/unbxdAnalytics.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ubx);
+            (document.getElementsByTagName('head')[ 0 ] || document.getElementsByTagName('body')[ 0 ]).appendChild(ubx);
         })();
     </script>
 </body>

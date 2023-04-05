@@ -20,9 +20,14 @@ function getScrollXY() {
 // update the start position in the URL
 const updatePageStart = function (context, page) {
     const autoScrollParams = context.getAutoScrollParams();
-    const rows = parseInt(autoScrollParams.get('rows'));
+    const rows = context.options.pagination.usePageAndCount? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
     context.setPageStart((page - 1) * rows);
-    autoScrollParams.set('start', (page - 1) * rows);
+    if(context.options.pagination.usePageAndCount){
+        autoScrollParams.set('page', page);
+    } else {
+        autoScrollParams.set('start', (page - 1) * rows);
+    }
+    
     history.replaceState(null, null, context.urlSearchParamsToStr(autoScrollParams));
 }
 
@@ -34,8 +39,18 @@ const onInfiniteScroll = function () {
     if (this.productContainerHeight != 0 && (rect.bottom > 0 || rect.top < window.innerHeight)) {
         const autoScrollParams = this.getAutoScrollParams();
         const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
-        const start = parseInt(autoScrollParams.get('start')) || 0;
-        const rows = parseInt(autoScrollParams.get('rows')) || 0;
+        let start = 0, rows = 0;
+
+        if(this.options.pagination.usePageAndCount){
+            start = (parseInt(autoScrollParams.get('page')) - 1) * parseInt(autoScrollParams.get('count'));
+            rows = parseInt(autoScrollParams.get('count'));
+        }else {
+            start = parseInt(autoScrollParams.get('start'));
+            rows = parseInt(autoScrollParams.get('rows'));
+        }
+        // const start = parseInt(autoScrollParams.get('start')) || 0;
+        // // const rows = parseInt(autoScrollParams.get('rows')) || 0;
+        // const rows = this.options.pagination.usePageAndCount? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
         const elHeight = document.getElementById('searchResultsWrapper').clientHeight || 0;
         let currentProducts = 0;
         let totalProducts = 0;
