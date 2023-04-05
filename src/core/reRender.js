@@ -73,9 +73,14 @@ const reRender = function () {
                 searchResultsWrapper.innerHTML = this.renderSearch();
             } else {
                 if (lastAction === "prev_page_loaded") {
-                    searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
+                    // searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
+                    const scrollTop = window.pageYOffset
+                    searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
+                    // const newHeight = container.scrollHeight;
+                    searchResultsWrapper.scrollTop = scrollTop;
                 } else {
-                    searchResultsWrapper.innerHTML += this.renderSearch();
+                    // searchResultsWrapper.innerHTML += this.renderSearch();
+                    searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
                 }
             }
         } else {
@@ -100,7 +105,10 @@ const reRender = function () {
             paginationWrappers.forEach((pagination) => {
                 pagination.innerHTML = ``;
             });
+            
         }
+        this.infiniteScrollV3()
+        // this.renderInfiniteScrollPagination();
     }
     if (breadcrumb.enabled) {
         breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
@@ -115,16 +123,35 @@ const reRender = function () {
     }
 
     const autoScrollParams = this.getAutoScrollParams();
-    if (pagination.type === 'INFINITE_SCROLL') {
-        if (!this.productContainerHeight) {
-            this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
-            if (autoScrollParams.get('start') != null) {
-                this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
-            }
-        }
+    // if (pagination.type === 'INFINITE_SCROLL') {
+    //     if (!this.productContainerHeight) {
+    //         this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
+    //         // if (autoScrollParams.get('start') != null) {
+    //         //     if(this.options.pagination.usePageAndCount){
+    //         //         this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('count')) + 1);
+    //         //     } else {
+    //         //         this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
+    //         //     }
+                
+    //         // }
 
+    //         if(this.options.pagination.usePageAndCount){
+    //             if (autoScrollParams.get('page') != null) {
+    //                 this.initialPage = parseInt(autoScrollParams.get('page'));
+    //             }
+    //         } else {
+    //             if (autoScrollParams.get('start') != null) {
+    //                 this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
+    //             }
+    //         }
+    //     }
+    // }
 
-    }
+    // if(pagination.type === "INFINITE_SCROLL") {
+    //     if(window.intersectionObserver){
+    //         window.intersectionObserver.observe(this.options.pagination.infiniteScrollTriggerEl.lastElementChild)
+    //     }
+    // }
 
     onEvent(this, afterRender);
 

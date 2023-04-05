@@ -120,7 +120,17 @@ const createLayout = function() {
 
     if(products.el){
         products.el.innerHTML=``;
+
+        const preLoader = document.createElement('div');
+        preLoader.classList.add('UNX-pre-loader');
+        products.el.appendChild(preLoader);
+
         products.el.appendChild(this.searchResultsWrapper);
+
+        const postLoader = document.createElement('div');
+        postLoader.classList.add('UNX-post-loader');
+        products.el.appendChild(postLoader);
+
     }
     if(pagesize.el && pagesize.enabled){
         pagesize.el.innerHTML = ``;
