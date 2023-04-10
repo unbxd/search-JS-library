@@ -1,8 +1,10 @@
-const bannerTemplateUI = (banners, bannerOpts) => {
+const bannerTemplateUI = (banners = [], bannerOpts={}) => {
     const {
         openNewTab
     } = bannerOpts
-    const bannerUI = banners.map((item) => {
+
+    let bannerUI = ""
+    bannerUI = banners.map((item) => {
         const {
             imageUrl,
             landingUrl,
