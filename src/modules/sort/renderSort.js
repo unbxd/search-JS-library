@@ -1,10 +1,10 @@
 function renderSort(){
     const results = this.getSearchResults();
     const{
-        sort
+        sort = {}
     } = this.options;
     const {
-        sortWrappers
+        sortWrappers = []
     } = this;
     sortWrappers.forEach(wrapper => {
 		let ui = ``;
