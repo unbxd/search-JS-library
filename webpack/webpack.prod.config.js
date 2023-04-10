@@ -23,6 +23,7 @@ module.exports = {
   optimization: {
     minimizer: [ new TerserPlugin({}) ],
     usedExports: true,
+    minimize: false
   },
   plugins: [
     new MiniCssExtractPlugin({
