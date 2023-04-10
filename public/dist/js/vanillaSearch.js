@@ -1,1 +1,3053 @@
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.UnbxdSearch=e():t.UnbxdSearch=e()}(window,(function(){return function(t){var e={};function a(r){if(e[r])return e[r].exports;var n=e[r]={i:r,l:!1,exports:{}};return t[r].call(n.exports,n,n.exports,a),n.l=!0,n.exports}return a.m=t,a.c=e,a.d=function(t,e,r){a.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},a.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},a.t=function(t,e){if(1&e&&(t=a(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(a.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)a.d(r,n,function(e){return t[e]}.bind(null,n));return r},a.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return a.d(e,"a",e),e},a.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},a.p="",a(a.s=39)}({16:function(t,e,a){},39:function(t,e,a){"use strict";a.r(e);var r={siteKey:"api key",apiKey:"site key",isFlag:!0,searchEndPoint:"https://search.unbxd.io/",productType:"SEARCH",searchQueryParam:"q",browseQueryParam:"p",searchPath:"",productAttributes:["title"],defaultFilters:null,spellCheck:{enabled:!1},pageSize:5,startPageNo:0,facetMultiSelect:!0,updateUrls:!0,variants:void 0,extraParams:{},facetMultilevel:!0,facetDepth:6,showSwatches:!0,allowExternalUrlParams:!1,swatchMap:{},onEvent:function(){},getCategoryId:function(){return encodeURIComponent(window.UnbxdAnalyticsConf.page)||decodeURIComponent(location.pathname.split("category-path")[1].split("/").pop())},setCategoryId:function(t,e){var a,r=t.level,n=(t.parent,t.name),i=(t.action,[]),s=Number(r),o=e.getBreadCrumbsList();o.forEach((function(t,e){var a=t.filterField,r=t.value;a,s>e&&i.push(r)})),s>o.length&&i.push(n),a=i.join(">"),window.UnbxdAnalyticsConf&&(window.UnbxdAnalyticsConf.page=a)},applyMultipleFilters:!1,hashMode:!1,pagination:{type:"INFINITE_SCROLL"},onQueryRedirect:function(t,e,a){if(e){var r=e.value;return"url"===e.type&&(history.state&&history.state.replace&&history.replaceState(null,"",a),location.href=r),!1}},onBackFromRedirect:function(t){new URLSearchParams(t?location.hash.substring(1):location.search).get("redirected")&&history.go(-1)},onNoUnbxdKeyRouting:function(){history.go()},setRoutingStrategies:function(t,e,a,r,n){t!==e&&("CATEGORY"===a?r?history.pushState(null,"",e):history.replaceState(null,"",e):history.state&&history.state.replace||n?history.replaceState(null,"",e):history.pushState(null,"",e))}},n={encodeQueryParam:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return"string"!=typeof t?t:(t=(t=t.trim()).replace(/\%26/gim,"&"),t=(t=(t=encodeURIComponent(t)).replace(/\%20/gim,"+")).replace(/\++/gim,"+"))},decodeQueryParam:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return"string"!=typeof t?t:(t=(t=t.replace(/\+/gim," ")).replace(/\s{2,}/gim," "),(t=decodeURIComponent(t)).trim())},getDeviceInfo:function(){return window.outerWidth<768?"Mobile":window.outerWidth<992?"Tablet":"Desktop"},decodeAndParse:function(t){return 0===t.indexOf('"')&&(t=t.slice(1,-1).replace(/\\"/g,'"').replace(/\\\\/g,"\\")),this.decodeCookie(t)},decodeCookie:function(t){return decodeURIComponent(t.replace(/\+/g," "))},cookie:function(t){for(var e,a=document.cookie.split("; "),r=0,n=a.length;r<n;r++){var i=a[r].split("="),s=this.decodeCookie(i.shift()),o=i.join("=");if(t&&t===s)try{e=this.decodeAndParse(o);break}catch(t){this.log(t)}}return e},readCookie:function(t){try{return this.cookie("unbxd."+t)}catch(t){this.log(t)}},getUserId:function(){return this.readCookie("userId")},getDefaultRequestHeaders:function(t){var e=this.getUserId(),a={"unbxd-device-type":this.getDeviceInfo()};return e&&(a["unbxd-user-id"]=e),a}},i=n;function s(t){return s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},s(t)}function o(t){return o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o(t)}var c={extraParamUrlString:function(){try{var t=this.options.extraParams,e="";return Object.keys(t).forEach((function(a){e+="&"+a+"="+t[a]})),e}catch(t){this.onError("extraParamsFromUrlToString.js",t)}},renderFromUrl:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;try{var e=!1,a=this.getQueryParams(t),r=this.options,n=(r.pagination,r.searchQueryParam),o=r.browseQueryParam,c=r.productType,l=n;if("SEARCH"!==c&&(a[l=o]=this.getCategoryId()),"object"===s(a)&&a[l]){var u=a.q,d=a.filter,p=a.sort,h=a.start,f=a.page,g=a.count,y=a.rows;e=!0,this.state.userInput!==u&&(this.state.userInput=i.decodeQueryParam(u));var v=this.getFilterFromParams(d);this.state.rangeFacet=v.rangeFacet,this.state.selectedFacets=v.selectedFilters,this.state.selectedSort=p?decodeURIComponent(p):"",this.options.pagination.usePageAndCount?this.state.startPageNo=f?(f-1)*g:0:this.state.startPageNo=h||0,this.state.isBack=!1,this.options.pagination.usePageAndCount?this.state.pageSize=g?Number(g):this.options.pagesize.pageSize:this.state.pageSize=y?Number(y):this.options.pagesize.pageSize,this.state.categoryFilter=this.getCategoryFilterFromParams(a),e&&this.getResults()}}catch(t){this.onError("setStateFromUrl.js",t)}},getQueryParams:function(t){try{var e=this.options,a=(e.searchQueryParam,e.hashMode,(this.options.hashMode?location.hash:location.search).substr(1));t&&(a=t);var r=a.split("&"),n=[];r.forEach((function(t,e){t.indexOf("=")>0?n.push(t):n[e-1]=n[e-1]+"&"+t}));for(var i={},s=0;s<n.length;s++){var o=n[s].split("=");void 0===i[o[0]]?i[o[0]]=o[1]:"string"==typeof i[o[0]]?(i[o[0]]=[i[o[0]]],i[o[0]].push(o[1])):i[o[0]].push(o[1])}return i}catch(t){this.onError("getQueryParams.js",t)}},urlFlattenFacets:function(){try{var t="",e=this.state.selectedFacets,a=this.options.defaultFilters||{},r=Object.keys(e);return r.forEach((function(r,n){var i=e[r];i.length&&(t+="&filter="),i.forEach((function(e,n){var i=e.name,s=e.dataId;void 0!==a[r]&&a[r]===i||(i="".concat("%22").concat(s).concat("%22"),t+=0===n?"".concat(r,":").concat(i):" OR ".concat(r,":").concat(i))}))})),t}catch(t){this.onError("facetsToUrlString.js",t)}},getDefaultFiltersStr:function(){try{var t="",e=this.options.defaultFilters;if(null!==e)Object.keys(e).forEach((function(a){t+="&filter="+a+":"+JSON.stringify(e[a])}));return t}catch(t){this.onError("getDefaultFiltersString.js",t)}},getShowVariantsStr:function(){try{var t=this.options.variants;return t&&"boolean"==typeof t.enabled?"&variants=".concat(t.enabled):""}catch(t){this.onError("getShowVariantsUrlString.js",t)}},getVariantAttributesStr:function(){try{var t=this.options.variants;if(t){var e=t.enabled,a=t.attributes;return a&&e?"&variants.fields=".concat(a.join(",")):""}return""}catch(t){this.onError("getVariantAttributesUrlString.js",t)}},getVariantsCountStr:function(){try{var t=this.options.variants;if(t){var e=t.enabled,a=t.count;return a&&e?"&variants.count=".concat(a):""}return""}catch(t){this.onError("getVariantsCountUrlString.js",t)}},getVariantsGroupByStr:function(){try{var t=this.options.variants;if(t){var e=t.enabled,a=t.groupBy;return a&&e?"&variants.groupBy=".concat(a):""}return""}catch(t){this.onError("getVariantsGroupByUrlString.js",t)}},getProductAttributesStr:function(){try{return this.options.productAttributes?"&fields="+this.options.productAttributes.join(","):""}catch(t){this.onError("getProductAttributesUrlString.js",t)}},getPageSizeStr:function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];try{return!t&&this.options.pagination.usePageAndCount?"&count=".concat(this.state.pageSize):"&rows=".concat(this.state.pageSize)}catch(t){this.onError("getPageSizeUrlString.js",t)}},getPageStartStr:function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];try{return!t&&this.options.pagination.usePageAndCount?"&page="+(Math.floor(this.state.startPageNo/this.state.pageSize)+1):"&start="+this.state.startPageNo}catch(t){this.onError("getPaginationStartUrlString.js",t)}},getNewUrlState:function(t){try{var e=this.options,a=e.productType,r=e.searchQueryParam,n=e.browseQueryParam,s=this.state.userInput,o="",c=r;if("BROWSE"===a){o="",s=this.getCategoryId();c=n,this.url=this.getBaseUrl()+"/category?"+c+"=".concat(s)}if("CATEGORY"===a){o="&pagetype=boolean",s=this.getCategoryId();c=n,this.url=this.getBaseUrl()+"/category?"+c+"=".concat(s)}if("SEARCH"===a){this.url=this.getBaseUrl()+"/search?"+c+"="+i.encodeQueryParam(s)}var l=this.urlFlattenFacets(),u=this.getShowVariantsStr(),d=this.getVariantAttributesStr(),p=this.getVariantsCountStr(),h=this.getVariantsGroupByStr(),f=this.getProductAttributesStr()+this.getDefaultFiltersStr(),g=this.getSortUrlString(),y=this.getSpellCheckUrlString(),v=this.getRangeFilterStr(),b=this.categoryFilterUrlStr(),m=this.getUcParamUrlString(),S=this.options.facetMultiSelect?"&facet.multiselect=true":"&facet.multiselect=false",F=this.url+b+S+l+u+d+p+h+f+g+y+v+o+this.getPageSizeStr(!0)+this.getPageStartStr(!0)+this.extraParamUrlString()+"&facet.version=V2"+(m||""),C=this.url+b+l+g+v+this.getPageSizeStr()+this.getPageStartStr()+this.getViewTypeForUrl();return this.state.currentApiUrl=F,this.state.currentWebUrl=C,t?F:C}catch(t){this.onError("getNewUrlState.js",t)}},getRangeFilterStr:function(){try{var t=this.state.rangeFacet,e=Object.keys(t),a="";return e.forEach((function(e){var r=t[e];Array.isArray(r)?r.length>0&&(a+="&filter=".concat(e,":").concat(r.join(" OR ".concat(e,":")))):a+="&filter=".concat(e,":").concat(r)})),a}catch(t){this.onError("getRangeFilterString.js",t)}},categoryFilterUrlStr:function(){var t=this;try{var e=this.state.categoryFilter,a="",r=Object.keys(e),n="%22";return r.forEach((function(r,i){var s=t.getAFacetByName(r)[0],o=t.getBreadCrumbsList(r),c=null;if(s){var l=s.filterField,u=s.values;l&&s;var d=e[r].map((function(e,a){if(c=u.find((function(a){return t.cleanFacetValue(encodeURIComponent(a.name))===t.cleanFacetValue(e)})),o){var r=o.find((function(t){return t.value===e}));r&&(c={name:r.value})}return c&&t.encodeCategoryFacetValue(c.name).split(n).join(""),a>0?">".concat(t.encodeCategoryFacetValue(e).split(n).join("")):t.encodeCategoryFacetValue(e).split(n).join("")}));a+="categoryPath"===l?"&category-filter=".concat(d.join("")):"&filter=".concat(l,':"').concat(d.join(""),'"')}else if(e&&e.categoryPath){var p="";e.categoryPath.forEach((function(e,a){e.split(">").forEach((function(e,a){var r=t.encodeCategoryFacetValue(e).split("%22").join("");""!==p?p+=">".concat(r):p=r}))})),a+="&category-filter=".concat(p)}})),a}catch(t){this.onError("categoryFilterUrlString.js",t)}},getSortUrlString:function(){try{var t=this.getSelectedSort();return t?"&sort="+encodeURI(t):""}catch(t){this.onError("getSortUrlString.js",t)}},getSpellCheckUrlString:function(){try{return this.options.spellCheck.enabled?"&spellcheck="+!0:""}catch(t){this.onError("getSpellCheckUrlString.js",t)}},getBaseUrl:function(){try{var t=this.options,e=t.searchEndPoint,a=t.siteKey;return e+t.apiKey+"/"+a}catch(t){this.onError("getBaseUrl.js",t)}},getStateFromUrl:function(){try{var t=this.getQueryParams(),e={},a=this.options.pagesize.pageSize;if("object"===o(t)){var r=t.q,n=t.filter,i=t.sort,s=t.start,c=t.page,l=t.count,u=t.rows,d=void 0===u?a:u;this.state.userInput!==r&&(e.userInput=r);var p=this.getFilterFromParams(n);e.rangeFacet=p.rangeFacet,e.selectedFacets=p.selectedFilters,e.selectedSort=i||"",this.options.pagination.usePageAndCount?e.startPageNo=c?(c-1)*l:0:e.startPageNo=s||0,e.pageSize=Number(d),e.categoryFilter=this.getCategoryFilterFromParams(t)}return e}catch(t){this.onError("getStateFromUrl.js",t)}},getUcParamUrlString:function(){try{var t=this.getQueryParams();if(t.uc_param)return"&uc_param="+t.uc_param}catch(t){this.onError("getUcParamUrlString.js",t)}},getViewTypeForUrl:function(){try{return"&viewType=".concat(this.state.productViewType)}catch(t){this.onError("getViewTypeForUrl.js",t)}}},l=function(t){try{this.state.startPageNo=t}catch(t){this.onError("setPageStart.js",t)}},u=function(){try{var t=this.getSearchResults();if(!t)return null;var e=t.numberOfProducts,a=t.start,r=t.products,n=this.state.pageSize,i=0;e>0&&(i=e%n==0?e/n:Math.floor(e/n)+1);var s=Math.floor(a/n)+1,o=!(a+n>=e||a>=e),c=!(a-n<0||a<=0);return{numberOfProducts:e,start:a,productsLn:r.length,rows:n,noOfPages:i,currentPage:s||0,isNext:o,isPrev:c}}catch(t){this.onError("getPaginationInfo.js",t)}},d=function(t){try{"number"==typeof t&&t===parseInt(t)&&(this.state.pageSize=t,this.state.startPageNo=0)}catch(t){this.onError("setPageSize.js",t)}},p=function(t){try{Array.isArray(t)?this.options.productAttributes=t:this.options.productAttributes="*"}catch(t){this.onError("setProductAttributes.js",t)}},h=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;"boolean"==typeof t&&(a.enabled=t),this.options.variants=a}catch(t){this.onError("setShowVariants.js",t)}},f=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;"number"==typeof t&&(a.count=t),this.options.variants=a}catch(t){this.onError("setVariantsCount.js",t)}},g=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;Array.isArray(t)&&(a.attributes=t),this.options.variants=a}catch(t){this.onError("setVariantsAttributes.js",t)}},y=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;"string"==typeof t&&t.length>0&&(a.groupBy=t),this.options.variants=a}catch(t){this.onError("setVariantsGroupBy.js",t)}},v=function(){try{return this.state.responseObj&&this.state.responseObj.searchMetaData||null}catch(t){this.onError("getSearchMetaDetails.js",t)}},b=function(){try{var t=this.getResponseObj();return t&&t.response||null}catch(t){this.onError("getSearchResults.js",t)}},m=function(){try{var t=this.getSearchMeta();return t&&t.queryParams||null}catch(t){this.onError("getSearchQueryParams.js",t)}},S=function(){try{if(this.state.responseObj){var t=this.state.responseObj.searchMetaData.queryParams;return t.q||t.p}return""}catch(t){this.onError("getSearchQuery.js",t)}},F={changeInput:"CHANGE_INPUT",fetchError:"FETCH_ERROR",afterApiCall:"AFTER_API_CALL",beforeApiCall:"BEFORE_API_CALL"};function C(t){return C="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},C(t)}function w(t){return function(t){if(Array.isArray(t))return N(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return N(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return N(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function N(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}function E(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function P(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?E(Object(a),!0).forEach((function(e){U(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):E(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function U(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==C(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==C(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===C(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var A=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"";try{var r=this.state,n=r.userInput,s=r.isHistory,o=r.isBack,c=""===e?n:e;if(this.state.userInput=c,this.state.currentApiUrl=this.getNewUrlState(!0),this.state.isLoading)return!1;this.state.isLoading=!0;var l=this,u=this.options,d=u.productType,p=u.hashMode,h=u.updateUrls,f=u.variants;if(!p&&h&&!s&&!o){this.state.isBack=!1;var g=this.state.currentWebUrl.split("".concat(d.toLocaleLowerCase(),"?"))[1];if(decodeURIComponent(location.search)!=="?".concat(i.decodeQueryParam(g)))return this.setUrl(!0),!1}this.options.spellCheck;this.callBack(this,F.beforeApiCall);var y=new Headers,v=i.getDefaultRequestHeaders(this);for(var b in v)y.append(b,v[b]);var m=fetch(this.state.currentApiUrl,{headers:y,method:"GET"}),S=function(e){t.state.isLoading=!1,t.state.userInput=c,e&&t.callBack(l,e)};m.then((function(e){return t.state.requestId=e&&e.headers?e.headers.get("X-Request-Id"):"",e.json()})).then((function(e){if(t.state.isLoading=!1,t.state.userInput=c,e&&!e.error){f&&f.enabled&&(e=t.processVariantMap(e)),t.state.responseObj=e;var r=t.getDidYouMeanFromResponse();r&&(t.state.didYouMean=r,t.state.noResultQuery=t.state.userInput);var n=e,i=n.facets,u=n.response,d=void 0===u?{}:u;if(i){var p=t.getFacets(),g=t.modifyFacetsList(p);e.facets=P(P({},i),{},{text:{list:g}})}if(d){var y=d.products,v=void 0===y?[]:y,b=t.options.pagination,m=void 0===b?{}:b;"INFINITE_SCROLL"===m.type||"CLICK_N_SCROLL"===m.type?t.state.products="prev"===a?[].concat(w(v),w(t.state.products)):[].concat(w(t.state.products),w(v)):"FIXED_PAGINATION"===m.type&&(t.state.products=v)}t.state.responseObj=e,t.setSort(),h&&s&&!o&&(t.state.isBack=!1,t.setUrl(!1),t.updateSelectedFacetsCount()),t.callBack(l,F.afterApiCall)}else S(F.fetchError)})).catch((function(t){S(F.fetchError)}))}catch(t){this.onError("getResultsFromApi.js",t)}},j=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var e=this,a=e.options.variants.mapping,r=void 0===a?{}:a,n=r,i=Object.keys(n);if(t.response&&t.response.products){var s=t.response.products.map((function(t){var e=t,a=e.variants,r=void 0===a?[]:a,s=e.relevantDocument,o=t;"variant"===s&&r.length>0&&(t=r[0],i.forEach((function(e){var a=n[e];o[e]=t[a]})));var c=[];return r.forEach((function(t,e){var a=t;i.forEach((function(e){var r=n[e];r&&(a[e]=t[r])})),c.push(a)})),o.variants=c,o}));t.response.products=s}return t}catch(t){this.onError("processVariantsMap.js",t)}},I=function(t,e){try{return this.state.products.find((function(a){return a[t]===e}))}catch(t){this.onError("getProductByPropValue.js",t)}},O=function(){var t=this;try{var e=this.getSearchQueryParams(),a=e.q,r=e.filter;this.state.userInput=a;var n=[],i="__",s=":";if(r){if(Array.isArray(r))r.forEach((function(t,e){var a=t.replaceAll(s,i);a=encodeURIComponent(a).replaceAll(i,s),n.push(a)}));else{var o=r.replaceAll(s,i);o=encodeURIComponent(o).replaceAll(i,s),n=[o]}e.filter=n}var c=this.getFilterFromParams(n);this.state.rangeFacet=c.rangeFacet;var l=c.selectedFilters,u=null;if(l)Object.keys(l).forEach((function(e){if(t.isCategoryFacet(e)){u=e;var a=l[e][0].dataId;t.state.categoryFilter[u]=a.split(">"),t.state.selectedFacets[u]&&delete t.state.selectedFacets[u]}else t.state.selectedFacets[e]=l[e]}));else this.state.selectedFacets={};0===Object.keys(this.state.categoryFilter).length&&(this.state.categoryFilter=this.getCategoryFilterFromParams(e)),this.state.breadcrumbs=this.getBreadCrumbs(u)}catch(t){this.onError("setStateFromData.js",t)}};var T=function(t){try{var e=t.siteName,a=t.siteKey,r=t.searchEndPoint,n=t.searchQueryParam,i=t.browseQueryParam,s=t.defaultFilters,o=t.spellCheck,c=t.pageSize,l=t.startPageNo,u=t.facetDepth,d=t.facetMultilevel,p=t.facetMultiSelect,h=t.updateUrls,f=t.extraParams,g=t.onEvent,y=t.getCategoryId,v=t.applyMultipleFilters,b=t.hashMode;this.state.pageSize=c||this.state.pageSize,this.state.startPageNo=l||this.state.startPageNo,this.options.siteName=e||this.options.siteName,this.options.siteKey=a||this.options.siteKey,this.options.searchEndPoint=r||this.options.searchEndPoint,this.options.searchQueryParam=n||this.options.searchQueryParam,this.options.browseQueryParam=i||this.options.browseQueryParam,this.options.defaultFilters=s||this.options.defaultFilters,this.options.spellCheck=o||this.options.spellCheck,this.options.startPageNo=l||this.options.startPageNo,this.options.applyMultipleFilters=v||this.options.applyMultipleFilters,this.options.facetDepth=u||this.options.facetDepth,this.options.facetMultilevel=d||this.options.facetMultilevel,this.options.facetMultiSelect=p||this.options.facetMultiSelect,this.options.updateUrls=h||this.options.updateUrls,this.options.extraParams=f||this.options.extraParams,this.options.onEvent=g||this.options.onEvent,this.options.getCategoryId=y||this.options.getCategoryId,this.options.hashMode=b||this.options.hashMode}catch(t){this.onError("setSearchConfigurations.js",t)}},R=function(t){try{var e=this.state,a=e.urlState,r=e.isHistory,n=(e.unbxdKeys,this.options.hashMode),i=this.checkIfUnbxdKey();if(n)if(decodeURIComponent(location.hash)!=="#".concat(decodeURIComponent(a))){(history.state||{}).path;if(this.state.isBack=!0,!i)return void this.options.onNoUnbxdKeyRouting();this.renderFromUrl(t.state)}else this.callBack(this,"lastBack");else if(r){(history.state||{}).path;if(this.state.isBack=!0,!i)return void this.options.onNoUnbxdKeyRouting();this.renderFromUrl(t.state)}else this.callBack(this,"lastBack")}catch(t){this.onError("onLocationChange",t)}},k=function(){return this.state.requestId},L=function(t,e){try{var a={};return Object.keys(e).forEach((function(r){var n=e[r];a[r]=t[n]})),a}catch(t){this.onError("getSwatches.js",t)}},x=function(){try{var t=this.getResponseObj();if(t&&t.facets&&t.facets.multilevel){var e=t.facets.multilevel.bucket||t.facets.multilevel.list||[];return this.modifyFacetsList(e)}return[]}catch(t){this.onError("getBucketedFacets.js",t)}},M=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[];try{var e=this,a={},r={};return"string"==typeof t&&(t=Array(t)),t.forEach((function(t,n){t.split("%20OR%20").forEach((function(t,n){var i=t.split(/%3A(.+)/);if(3===i.length){var s=decodeURIComponent(i[1]);if(s=s.replace(/(^")|("$)/g,"").replace(/\"{2,}/g,'"').replace(/\\\"/g,'"').replace(/(^\[)|(\]$)/g,""),i[1].indexOf("TO")>0){var o=s.split(" TO "),c=i[0],l="[".concat(Number(o[0])," TO ").concat(Number(o[1]),"]");r[c]?r[c].push(l):r[c]=[l]}else{var u=i[0],d=i[1],p=e.cleanEncodedFacetValue(d),h=e.decodeFacetValue(p),f=e.getFacetByValue(u,h);if(f.actualFound){var g=f.facetName,y=f.selectedvalue;a[g]?a[g].push(y):a[g]=Array(y)}else{var v=f.facetName,b={name:f.selectedvalue.name,dataId:p,count:0};a[v]?a[v].push(b):a[v]=Array(b)}}}}))})),{selectedFilters:a,rangeFacet:r}}catch(t){this.onError("gitFilterFromParams.js",t)}},X=function(t){var e=this;try{var a=t.filter,r=[];if(t["category-filter"]&&(r=(a=t["category-filter"]).split(">")),!a)return{};Array.isArray(a)||(a=[a]),a=this.getFilterFromParams(a).selectedFilters;var n={};if(Object.keys(a).forEach((function(t){if(e.isCategoryFacet(t)){var r=a[t][0].dataId;n[t]=r.split(">")}})),r.length>0&&r){var i=[];r.forEach((function(t){decodeURIComponent(t).split(">").forEach((function(t){i.push(decodeURIComponent(t))}))})),n.categoryPath=i}return n}catch(t){this.onError("getCategoryFilterFromParams.js",t)}},V=function(){try{var t=this.getResponseObj();if(t){var e=t.facets;return e&&e.range&&e.range.list?e.range.list:[]}return[]}catch(t){this.onError("getRangeFacets.js",t)}},_=function(){try{var t=this.getResponseObj();if(t){var e=t.facets;return e&&e.text&&e.text.list?e.text.list:[]}return[]}catch(t){this.onError("getFacets.js",t)}},B=function(){try{return this.state.selectedFacets}catch(t){this.onError("getSelectedFacets.js",t)}},D=function(t){try{return this.getFacets().find((function(e){return e.facetName===t?e:null}))}catch(t){this.onError("getSelectedFacet.js",t)}},z=function(t){try{var e=this.state.selectedFacets,a=t.selectedFacetName,r="",n="",i=0,s=this.getSelectedFacetValue(t);if(s){var o=s.name,c=s.dataId,l=s.count;r=o,n=c,i=l}if(this.isFacetAlreadyAdded(a,n))return!1;e[a]?e[a].push({name:r,dataId:n,count:i}):e[a]=[{name:r,dataId:n,count:i}],this.callBack(self,"added_facet"),this.options.applyMultipleFilters||(this.setPageStart(0),this.getResults.bind(this)())}catch(t){this.onError("updateFacets.js",t)}},q=function(t){try{var e=this.state.selectedFacets;this.clearFacets(!1),Object.keys(t).map((function(a){e[a]?delete e[a]:e[a]=t[a]})),this.setPageStart(0),this.getResults.bind(this)()}catch(t){this.onError("applyFacets.js",t)}},W=function(){var t=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];try{var e=this.state.selectedFacets;Object.keys(e).map((function(t){return delete e[t]})),t&&(this.setPageStart(0),this.getResults.bind(this)())}catch(t){this.onError("clearFacets.js",t)}};function H(t){return function(t){if(Array.isArray(t))return Q(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return Q(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return Q(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function Q(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}var G=function(t){try{var e=this.state.selectedFacets;Object.keys(t).map((function(a){var r=e[a]||[];e[a]=[].concat(H(r),H(t[a]))}))}catch(t){this.onError("addFacets.js",t)}},Y=function(t){try{return this.state.selectedFacets[t]}catch(t){this.onError("findSelectedFacet.js",t)}},K=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var a=e.parent,r=void 0===a?null:a,n=e.level,i=void 0===n?null:n;e.name;if(i)if(this.state.categoryFilter[r])0===(i=Number(i)-1)?delete this.state.categoryFilter[r]:this.state.categoryFilter[r].splice(i,6);else{var s=this.getBreadCrumbsList(r);if(i>1){this.state.categoryFilter[r]=[],s.forEach((function(e,a){if(a<i-1){var n=e.value;t.state.categoryFilter[r].push(n)}}))}}}catch(t){this.onError("deleteCategoryFilter.js",t)}},$=function(t,e){try{var a=this.getSelectedFacets();if(e){var r=a[t];this.state.selectedFacets[t]=r.filter((function(t){return t.dataId!=e}))}else delete this.state.selectedFacets[t];return this.state.selectedFacets}catch(t){this.onError("deleteFacet.js",t)}};function J(t){return J="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},J(t)}function Z(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function tt(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?Z(Object(a),!0).forEach((function(e){et(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):Z(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function et(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==J(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==J(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===J(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var at=function(t,e){try{var a=this.getSelectedFacet(t)||{facetName:t},r=!1,n=a.values,i=void 0===n?[]:n,s={name:e};if(i.length>0)for(var o=0;o<i.length;o++){var c=i[o];if(c.name===e){r=!0,s=c;break}}return r?tt(tt({},a),{},{selectedvalue:s,actualFound:r}):{facetName:t,actualFound:r,selectedvalue:{name:e,dataId:e,count:0}}}catch(t){this.onError("getFacetByValue.js",t)}},rt=function(t){try{var e=t.selectedFacetId;return t.facetData.values.find((function(t){return t.dataId===e}))}catch(t){this.onError("getSelectedFacetValue.js",t)}},nt=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var e=t.parent,a=void 0===e?null:e,r=t.level,n=void 0===r?null:r,i=t.name,s=void 0===i?null:i,o=this.getCategoryFacetByValue(s),c=this.getBreadCrumbsList(a);if((n=Number(n))&&o)if(this.state.categoryFilter[a]&&n<=c.length)this.state.categoryFilter[a][n-1]=o,this.callBack(this,"deletedcategoryFilter");else{var l=[];(l=c.map((function(t){return t.value}))).push(o),this.state.categoryFilter[a]=l,this.callBack(this,"setCategoryFilter")}}catch(t){this.onError("setCategoryFilter.js",t)}},it=function(t){try{if(t.length){var e=this.options.extraParams["facet.multilevel"];this.state.categoryFilter[e]=[t]}}catch(t){this.onError("setDefaultCategoryFilter.js",t)}},st=function(t){try{var e=t.start,a=t.end,r=t.facetName,n=t.applyMultiple,i="[".concat(e," TO ").concat(a,"]");if(n)if(this.state.rangeFacet[r]){var s=this.state.rangeFacet[r].indexOf(i);s<0?this.state.rangeFacet[r].push(i):this.state.rangeFacet[r].splice(s,1)}else this.state.rangeFacet[r]=[i];else this.state.rangeFacet[r]=[i];this.callBack(self,"added_facet")}catch(t){this.onError("setRangeFacet",t)}},ot=function(t){try{var e=this.state.rangeFacet;e[t]&&delete e[t],this.state.rangeFacet=e}catch(t){this.onError("clearARangeFacet.js",t)}},ct=function(t,e){try{this.deleteFacet(t,e),this.callBack(this,"deleted_facet"),this.options.applyMultipleFilters||(this.setPageStart(0),this.getResults.bind(this)())}catch(t){this.onError("deleteAFacet.js",t)}},lt=function(t,e){try{var a=this.getSelectedFacets()[t],r=!1;return a&&a.forEach((function(t){if(t.dataId===e)return r=!0,!1})),r}catch(t){this.onError("isFacetAlreadyAdded.js",t)}},ut=function(t){try{var e=this.state.rangeFacet;return t?e[t]:e}catch(t){this.onError("getSelectedRanges.js",t)}};function dt(t){return dt="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},dt(t)}var pt=void 0;function ht(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function ft(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?ht(Object(a),!0).forEach((function(e){gt(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):ht(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function gt(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==dt(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==dt(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===dt(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var yt=function(t){try{var e=[];return(t||[]).forEach((function(t){for(var a=t.values,r=a.counts,n=a.gap,i=[],s=[],o=0;o<r.length;o+=2){var c=Number(r[o]),l={name:c,count:r[o+1],dataId:c};if(s.push(l),s.length>=2){var u=s[0],d=s[1];i.push({from:u,end:d}),s.shift()}}if(1===s.length){var p=s[0],h=p.dataId+n,f={name:h,count:0,dataId:h};i.push({from:p,end:f})}var g=i[0].from.dataId,y=i[i.length-1].end.dataId;t.start=g,t.end=y,t.max=y,t.gap=n||1,t.min=g,t.values=i,e.push(ft(ft({},t),{},{values:i}))})),e}catch(t){pt.onError("processRangeFacets.js",t)}},vt=function(){try{var t=this.getRangeFacets();return yt(t)}catch(t){this.onError("getRanges.js",t)}},bt=function(t){try{var e=this.getAFacetByName(t)[0];return!!e&&"category"===e.facetType}catch(t){this.onError("isCategoryFacet.js",t)}};function mt(t){return function(t){if(Array.isArray(t))return St(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return St(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return St(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function St(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}var Ft=function(){try{var t=this.getAllTextFacets(),e=this.getAllRangeFacets(),a=this.getAllCategory();return[].concat(mt(a),mt(t),mt(e)).sort(this.sortFacets)}catch(t){this.onError("getAllFacets.js",t)}},Ct=function(t){try{var e=this.getAllFacets(),a=[];return t&&(a=e.filter((function(e){return e.facetName===t}))),a}catch(t){this.onError("getAFacetByName.js",t)}},wt=function(){try{var t=this.state.categoryFilter;return t?Object.keys(t):null}catch(t){this.onError("getSelectedMultilevelFacet.js",t)}},Nt=function(){try{var t=this.getSelectedBucketedFacet(),e=this.getSelectedRanges(),a=this.getSelectedFacets();return Object.assign({},t,e,a)}catch(t){this.onError("getAllSelectedFacets.js",t)}},Et=function(){try{var t=this.getAllSelectedFacets()||{};return Object.keys(t).length}catch(t){this.onError("getSelectedFacetsCount.js",t)}},Pt=function(){try{var t=this.getAllSelectedFacets()||{},e=Object.keys(t),a=0;return e.forEach((function(e){var r=t[e];Array.isArray(r)&&(a+=r.length)})),a}catch(t){this.onError("getSelectedFacetValueCount.js",t)}},Ut=function(t){try{var e=this.getBucketedFacets(),a=null;if(e)for(var r=0;r<e.length;r++)for(var n=e[r].values,i=0;i<n.length;i++){var s=n[i],o=s.dataId,c=s.name;if(o===t){a=c;break}}return a}catch(t){this.onError("getCategoryFacetByValue.js",t)}};function At(t){return At="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},At(t)}function jt(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function It(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?jt(Object(a),!0).forEach((function(e){Ot(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):jt(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function Ot(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==At(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==At(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===At(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var Tt=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[];try{var a=[];return e.forEach((function(r,n){var i=r;if(r.name)a.push(It(It({},i),{},{dataId:t.encodeFacetValue(r.name)}));else{var s="";n%2==1&&(s=e[n-1],a.push({name:s,count:i,dataId:t.encodeFacetValue(s)}))}})),a}catch(t){this.onError("modifyValues",t)}},Rt=function(t){var e=this;try{var a=[];return(t||[]).forEach((function(t,r){var n=t.values,i=t.displayName,s=t.facetName,o=t.filterField;s||(i&&(t.facetName=i),o&&(t.facetName=o)),t.values=e.modifyValues(n),a.push(t)})),a}catch(t){this.onError("modifyFacetsList",t)}};function kt(t){try{var e="0"+t.charCodeAt(0).toString(16);return"\\x"+e.substr(e.length-2)}catch(t){this.onError("hex",t)}}var Lt=function(t){try{return t=t.replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\v/g,"\\v").replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/[\x00-\x1F\x80-\x9F]/g,kt),encodeURIComponent(t)}catch(t){this.onError("encodeFacetValue",t)}},xt=function(t){try{return t=t.replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\v/g,"\\v").replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/[\x00-\x1F\x80-\x9F]/g,kt),encodeURIComponent(t)}catch(t){this.onError("encodeCategoryFacetValue",t)}},Mt=function(t){try{return decodeURIComponent(new String("".concat(t)))}catch(t){this.onError("decodeFacetValue",t)}},Xt=function(t){try{return t.replace(/[^\w\d]/g,"")}catch(t){this.onError("cleanFacetValue",t)}},Vt=function(t){try{var e=t.split("%22");return 1===e.length?e[1]:(e=e.slice(1,-1)).join("%22")}catch(t){this.onError("cleanEncodedFacetValue",t)}},_t=function(){try{return this.state.categoryFilter}catch(t){this.onError("getSelectedBucketedFacet",t)}},Bt=function(){try{this.setPageStart(0),this.getResults.bind(this)()}catch(t){this.onError("applyRangeFacet",t)}},Dt=function(t,e){try{return t.position>e.position?1:-1}catch(t){this.onError("sortFacets",t)}},zt=function(){try{return this.getFacets().map((function(t){return t.facetType="text",t}))}catch(t){this.onError("getAllTextFacets",t)}},qt=function(){try{return this.getRanges().map((function(t){return t.facetType="range",t}))}catch(t){this.onError("getAllRangeFacets",t)}},Wt=function(){try{return this.getBucketedFacets().map((function(t){return t.facetType="category",t}))}catch(t){this.onError("getAllCategory",t)}},Ht=function(t){try{var e=this.getBreadCrumbs(t),a=[],r=e;if(e)for(var n=function(){if(r.level){var t=r,e=t.level,n=t.values,i=t.filterField;n.forEach((function(t){a.push({level:e,filterField:i,value:t.value||t.name})}))}if(!r.child)return"break";r=r.child},i=0;i<this.options.facetDepth;i++){if("break"===n())break}return a}catch(t){this.onError("getBreadCrumbsList.js",t)}},Qt=function(t){try{var e=this.getResponseObj(),a=[];if(e&&e.facets&&e.facets.multilevel&&t){var r=e.facets.multilevel.list;if(r)r.forEach((function(e){var r=e.filterField,n=e.breadcrumb;r===t&&(a=n)}));else{var n=e.facets.multilevel.breadcrumb;a=n||null}}return a}catch(t){this.onError("getBreadCrumbs.js",t)}},Gt=function(t){try{this.setSort(t),this.setPageStart(0),this.getResults.bind(this)()}catch(t){this.onError("applySort.js",t)}},Yt=function(t){try{if(void 0!==t)this.state.selectedSort=t;else{var e=this.getSearchQueryParams();this.state.selectedSort=e.sort?e.sort:""}}catch(t){this.onError("setSort.js",t)}},Kt=function(){return this.state.selectedSort},$t=function(){try{var t=this.getResponseObj()||{};return t&&t.didYouMean?t.didYouMean:[]}catch(t){this.onError("getDidYouMeanFromResponse.js",t)}},Jt=function(){try{return(this.state.didYouMean||[]).map((function(t){return t.suggestion}))}catch(t){this.onError("getSpellCheckSuggested.js",t)}},Zt=function(t){this.options.spellCheck.enabled=!!t},te=function(){try{var t=this.getResponseObj()||{};return t&&t.banner&&t.banner.banners&&t.banner.banners||[]}catch(t){this.onError("getbanners.js",t)}},ee=function(t,e){this.state.userInput=t,this.callBack(t,e)},ae=function(){this.state.selectedFacets={},this.state.rangeFacet={},this.state.categoryFilter={},this.state.breadcrumbs={}},re=function(){this.resetFacets(),this.state.didYouMean=null,this.state.startPageNo=0,this.state.selectedSort="",this.state.responseObj=null,this.state.userInput="",this.state.pageSize=this.state.pageSize||this.options.pagesize.pageSize},ne=function(t){var e=t.prototype;e.changeInput=ee,e.resetFacets=ae,e.resetAll=re,function(t){t=Object.assign(t,c)}(e),function(t){Object.assign(t,{setPageStart:l,getPaginationInfo:u,setPageSize:d})}(e),function(t){t=Object.assign(t,{setProductAttributes:p,setShowVariants:h,setVariantsCount:f,setVariantAttributes:g,setVariantsGroupBy:y,getSearchResults:b,getSearchMeta:v,getSearchQueryParams:m,getSearchQuery:S,getResults:A,processVariantMap:j,getProductByPropValue:I,setStateFromData:O,setSearchConfigurations:T,onLocationChange:R,getRequestId:k})}(e),function(t){Object.assign(t,{getSwatches:L})}(e),function(t){t=Object.assign(t,{getBucketedFacets:x,getSelectedBucketedFacet:_t,getFilterFromParams:M,getCategoryFilterFromParams:X,getRangeFacets:V,getFacets:_,getSelectedFacets:B,getSelectedFacet:D,updateFacets:z,applyFacets:q,clearFacets:W,addFacets:G,findSelectedFacet:Y,deleteCategoryFilter:K,deleteFacet:$,getFacetByValue:at,getSelectedFacetValue:rt,setCategoryFilter:nt,setDefaultCategoryFilter:it,setRangeFacet:st,clearARangeFacet:ot,deleteAFacet:ct,applyRangeFacet:Bt,isFacetAlreadyAdded:lt,getSelectedRanges:ut,getRanges:vt,sortFacets:Dt,isCategoryFacet:bt,getAllFacets:Ft,getAFacetByName:Ct,getSelectedMultilevelFacet:wt,getAllTextFacets:zt,getAllRangeFacets:qt,getAllCategory:Wt,getAllSelectedFacets:Nt,getSelectedFacetsCount:Et,getSelectedFacetValueCount:Pt,encodeFacetValue:Lt,modifyFacetsList:Rt,modifyValues:Tt,decodeFacetValue:Mt,cleanFacetValue:Xt,getCategoryFacetByValue:Ut,encodeCategoryFacetValue:xt,cleanEncodedFacetValue:Vt})}(e),function(t){t=Object.assign(t,{getBreadCrumbsList:Ht,getBreadCrumbs:Qt})}(e),function(t){t=Object.assign(t,{applySort:Gt,getSelectedSort:Kt,setSort:Yt})}(e),function(t){t=Object.assign(t,{getDidYouMeanFromResponse:$t,getSpellCheckSuggested:Jt,setSpellCheck:Zt})}(e),function(t){t=Object.assign(t,{getBanners:te})}(e)};function ie(t){return ie="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},ie(t)}var se=function t(e){if(!e)return e;var a,r=Array.isArray(e)?[]:{};for(var n in e)a=e[n],r[n]="object"===ie(a)?t(a):a;return r};function oe(t){return oe="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},oe(t)}function ce(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){var a=null==t?null:"undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(null!=a){var r,n,i,s,o=[],c=!0,l=!1;try{if(i=(a=a.call(t)).next,0===e){if(Object(a)!==a)return;c=!1}else for(;!(c=(r=i.call(a)).done)&&(o.push(r.value),o.length!==e);c=!0);}catch(t){l=!0,n=t}finally{try{if(!c&&null!=a.return&&(s=a.return(),Object(s)!==s))return}finally{if(l)throw n}}return o}}(t,e)||ue(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function le(t,e){var a="undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(!a){if(Array.isArray(t)||(a=ue(t))||e&&t&&"number"==typeof t.length){a&&(t=a);var r=0,n=function(){};return{s:n,n:function(){return r>=t.length?{done:!0}:{done:!1,value:t[r++]}},e:function(t){throw t},f:n}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,s=!0,o=!1;return{s:function(){a=a.call(t)},n:function(){var t=a.next();return s=t.done,t},e:function(t){o=!0,i=t},f:function(){try{s||null==a.return||a.return()}finally{if(o)throw i}}}}function ue(t,e){if(t){if("string"==typeof t)return de(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);return"Object"===a&&t.constructor&&(a=t.constructor.name),"Map"===a||"Set"===a?Array.from(t):"Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a)?de(t,e):void 0}}function de(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}function pe(t,e){for(var a=0;a<e.length;a++){var r=e[a];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,(n=r.key,i=void 0,i=function(t,e){if("object"!==oe(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==oe(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(n,"string"),"symbol"===oe(i)?i:String(i)),r)}var n,i}var he=function(){function t(e){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.options=Object.assign({},r,e),this.state={queryRef:{},userInput:"",responseObj:null,selectedFacets:{},currentWebUrl:"",currentApiUrl:"",didYouMean:null,startPageNo:this.options.startPageNo||0,isLoading:!1,selectedSort:"",isUrlUpdated:!1,rangeSliderList:[],rangeFacet:{},categoryFilter:{},breadcrumbs:{},urlState:"",noResultQuery:"",pageSize:this.options.pagesize&&this.options.pagesize.pageSize?this.options.pagesize.pageSize:12,urlLoad:!1,isHistory:window.history,isBack:!1,products:[],requestId:null,unbxdKeys:["filter","category-filter","rows","start","page","count","sort",this.options.browseQueryParam,this.options.searchQueryParam,"uc_param"]};var a=this.options,n=a.searchQueryParam,i=a.browseQueryParam,s=a.productType,o=a.getCategoryId,c=a.setCategoryId,l="/search?",u=n;"CATEGORY"===s&&(l="/category?",u=i),this.getCategoryId=o,this.setCategoryId=c,this.url=this.getBaseUrl()+l+u+"="}var e,a,n;return e=t,a=[{key:"getResponseObj",value:function(){var t=this.state.responseObj;return t?se(t):null}},{key:"getUrlParamString",value:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",a=arguments.length>1?arguments[1]:void 0,r=Object.keys(a);return r.forEach((function(n,i){var s=a[n];s.forEach((function(a,r){e="".concat(e).concat(n,"=").concat(n===t.options.searchQueryParam?a:encodeURIComponent(a)),r!==s.length-1&&(e="".concat(e,"&"))})),i!==r.length-1&&(e="".concat(e,"&"))})),e}},{key:"getUrlStr",value:function(t){var e=new URLSearchParams(this.options.hashMode?location.hash.slice(1):location.search),a=new URLSearchParams(t),r={};t.split("".concat(this.options.searchQueryParam,"="))[1]&&(r[this.options.searchQueryParam]=[t.split("".concat(this.options.searchQueryParam,"="))[1].split(/\&\w+\-?\w+?=/gi)[0]]);var n,i=le(a);try{for(i.s();!(n=i.n()).done;){var s=ce(n.value,2),o=s[0],c=s[1];o!==this.options.searchQueryParam&&""!==c&&(r[o]=a.getAll(o))}}catch(t){i.e(t)}finally{i.f()}if(this.options.allowExternalUrlParams){var l,u=le(e);try{for(u.s();!(l=u.n()).done;){var d=ce(l.value,2),p=d[0],h=d[1];this.state.unbxdKeys.indexOf(p)<0&&e.getAll(p).length&&""!==h&&(r[p]=e.getAll(p))}}catch(t){u.e(t)}finally{u.f()}}return this.getUrlParamString(this.options.hashMode?"":"?",r)}},{key:"urlSearchParamsToStr",value:function(t){var e,a={},r=le(t);try{for(r.s();!(e=r.n()).done;){var n=ce(e.value,2),s=n[0],o=n[1];s!==this.options.searchQueryParam&&t.getAll(s).length&&""!==o&&(a[s]=t.getAll(s)),s===this.options.searchQueryParam&&(a[this.options.searchQueryParam]=[i.encodeQueryParam(t.get(s))])}}catch(t){r.e(t)}finally{r.f()}return this.getUrlParamString(this.options.hashMode?"#":"?",a)}},{key:"checkIfUnbxdKey",value:function(){var t,e=!1,a=le(new URLSearchParams(this.options.hashMode?location.hash.substring(1):location.search));try{for(a.s();!(t=a.n()).done;){var r=ce(t.value,2),n=r[0];r[1],this.state.unbxdKeys.indexOf(n)>-1&&(e=!0)}}catch(t){a.e(t)}finally{a.f()}return e}},{key:"convertToHashString",value:function(t){var e=this.getUrlStr(t);return"?"===e.charAt(0)&&(e=e.substring(1)),e}},{key:"setUrl",value:function(t){var e=this.options,a=e.productType,r=e.hashMode,n=e.searchPath,i=e.onQueryRedirect,s=(e.allowExternalUrlParams,this.state),o=s.urlLoad,c=s.isHistory,l=s.responseObj,u=void 0===l?{}:l,d=(s.unbxdKeys,u.redirect),p=u.didYouMean,h=void 0===p?[]:p;if("function"==typeof i&&d&&d.value){this.state.userInput="";var f=this.getUrlStr("redirected=true");return r&&(f="#".concat(this.convertToHashString(f))),void i(this,d,f)}var g=this.getNewUrlState(!1).split("".concat(a.toLocaleLowerCase(),"?"))[1];this.state.urlState=g;var y=location.pathname.includes(n),v=this.checkIfUnbxdKey(),b=null;if(h.length&&h[0].suggestion?this.state.queryRef={replaceNext:!0}:this.state.queryRef.replaceNext&&(b=!0,this.state.queryRef={}),r){var m="#".concat(g);if(y&&m!==location.hash){var S=this.convertToHashString(g);this.options.setRoutingStrategies(location.hash,"#".concat(S),a,v,b)}}else{if(c&&!o&&y){var F="?".concat(g),C=this.getUrlStr(F);decodeURI(C)!==decodeURI(location.search)&&this.options.setRoutingStrategies(location.search,"".concat(C),a,v,b),this.state.urlLoad=!1}t&&y&&(location.search=newQ)}}},{key:"updateSelectedFacetsCount",value:function(){var t=this.getQueryParams(),e=this.options,a=e.searchQueryParam,r=e.browseQueryParam,n=a;if("SEARCH"!==e.productType&&(t[n=r]=this.getCategoryId()),"object"===oe(t)&&t[n]){var i=t.filter,s=this.getFilterFromParams(i);this.state.selectedFacets=s.selectedFilters}}},{key:"callBack",value:function(t,e){(0,this.options.onEvent)(this,e)}},{key:"onError",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";this.options.onError&&this.options.onError(e),console.error("Something went wrong in ".concat(t,": ").concat(e))}}],a&&pe(e.prototype,a),n&&pe(e,n),Object.defineProperty(e,"prototype",{writable:!1}),t}();ne(he);var fe=he;a(16);var ge=function(t,e,a,r){try{t.addEventListener(e,(function(t){for(var e=t.target;e&&e!==this;)e.matches(a)&&r.call(e,t),e=e.parentNode}))}catch(t){this.onError("delegate.js",t)}},ye=function(t,e){var a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},r=a||{},n=r.start,i=r.productsLn,s=r.numberOfProducts,o=this.options.spellCheck,c=o.selectorClass,l=void 0===c?"":c,u=o.enabled,d=this.options.productType,p=t;if("SEARCH"!==d){var h=this.getCategoryId()||"",f=decodeURIComponent(h).split(">");p=f[f.length-1]||f[0]}var g=this.testIds.UNX_spellCheck,y=void 0===g?"":g,v=e?'<p class="UNX-no-result"> Your search "<strong>'.concat(e,'</strong>" did not match any products. Did you mean <button data-test-id="').concat(y,'" data-action="getSuggestion" class="').concat(l,'">').concat(t,"</button>? </p>"):"",b="",m="";return s>0&&(m='<span class="UNX-result-info">  -  '.concat(n+1," to ").concat(i+n," of ").concat(s," products</span>")),a&&Object.keys(a).length>0&&p&&(u||(p=e||t),b='<p class="UNX-suggestion-p">Showing results for <strong>'.concat(p,"</strong> ").concat(m,"</p>")),['<div class="UNX-spellcheck-block">',v,b,"</div>"].join("")};function ve(t,e,a,r){var n=t.facetName,i=t.facetType,s=e.name,o=e.count,c=e.dataId,l=this.options.facet,u=l.facetClass,d=l.selectedFacetClass,p=l.removeFacetsSelectorClass,h=this.testIds.UNX_uFilter,f="deleteSelectedFacetValue";"range"===i&&(f="deleteSelectedRange");var g=" ".concat(u," ").concat(d," ");return['<div class="UNX-selected-facets-wrap">','<button data-test-id="'.concat(h,'" class="UNX-selected-facet-btn UNX-change-facet ').concat(g,'" data-facet-name="').concat(n,'" data-facet-action="').concat(f,'" data-id="').concat(c,'">'),'<span class="UNX-facet-text">'.concat(s,'</span> <span class="UNX-facet-count">(').concat(o,")</span>"),"</button>",'<button class="UNX-delete-facet '.concat(p," ").concat(g,'" data-id="').concat(c,'" data-facet-action="').concat(f,'" data-facet-name="').concat(n,'">x</button></div>')].join("")}function be(t,e,a){var r=e.clearAllText,n=e.clearFacetsSelectorClass,i=this.selectedFacetClass?this.selectedFacetClass:a.selectedFacetClass;return t.length>0?['<div class="UNX-facets-selections">','<h5 class="UNX-selected-facet-header">Selected Filters</h5>','<div class="UNX-selected-facets-inner">'.concat(t,"</div>"),'<button class="'.concat(n," ").concat(i,'" data-facet-action="clearAllFacets">').concat(r,"</button>"),"</div>"].join(""):""}var me=function(t,e){if(!t)return"";var a=t||{},r=a.currentPage,n=a.isNext,i=a.isPrev,s=a.noOfPages,o=a.productsLn,c=a.numberOfProducts,l=a.rows,u=e||{},d=u.pageClass,p=u.selectedPageClass,h=u.pageLimit,f=this.testIds.UNX_pageNumber,g=void 0===f?"":f;if(c<=o)return"";var y='<button class="UNX-next-btn UNX-page-next '.concat(d,'" data-page-action="next">></button>'),v='<button class="UNX-prev-btn UNX-page-prev '.concat(d,'" data-page-action="prev"><</button>'),b="",m=s<h?s:h,S=1,F=Math.ceil(h/2),C=r-F;C>0&&(S=C,m=r+F);var w=r+F;w>=s&&((S-=w-s)<=0&&(S=1),m=s);for(var N=S;N<=m;N++){var E="".concat(g).concat(N),P=N===r?p:"";b+='<button data-test-id="'.concat(E,'" data-page-action="paginate" data-page-no="').concat((N-1)*l,'" class="UNX-page-button ').concat(d," ").concat(P,'">').concat(N,"</button>")}return n||(y='<button disabled class="UNX-next-btn UNX-page-next">></button>'),i||(v='<button disabled class="UNX-prev-btn UNX-page-prev"><</button>'),['<div class="UNX-pagination-block">',v,'<div class="UNX-page-no-block">'.concat(b,"</div>"),y,"</div>"].join("")},Se=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=e.pageClass,r=void 0===a?"":a;return'<div class="UNX-click-scroll"><button data-test-id="'.concat(this.testIds.UNX_loadMore,'" data-page-action="next" class="UNX-click-n-scroll ').concat(r,'">Load More</button></div>')},Fe=function(t,e,a,r){var n="",i=r.multiLevelFacetSelectorClass,s=r.facetClass,o=this.testIds.UNX_facetLevel;e&&e.forEach((function(t){var e=t.level,a=t.filterField,r=t.value,c='data-test-id="'.concat(o).concat(e,'"'),l="".concat(i,"  UNX-category-level-").concat(e);n+=["<button ".concat(c,' data-parent="').concat(a,'" data-level="').concat(e,'" data-name="').concat(r,'"'),'class=" '.concat(l," UNX-selected-crumb ").concat(s,'" data-action = "clearCategoryFilter">'),'<span class="UNX-category-icon"></span><label class="UNX-facet-text">'.concat(decodeURIComponent(r),"</label>"),"</button>"].join("")}));var c=t.level,l=(t.displayName,t.values),u=t.filterField,d=t.multiLevelField;d||(d=u);var p='data-test-id="'.concat(o).concat(c,'"'),h="UNX-category-level-".concat(c),f=l.map((function(t){var e=t.name,r=t.count,n=t.dataId;return a&&a.length>0&&e.toUpperCase().indexOf(a.toUpperCase())<0&&(s+=" UNX-search-hidden"),["<button ".concat(p,' data-parent="').concat(d,'" data-level="').concat(c,'"'),'class="'.concat(i," ").concat(h," ").concat(s,'" data-name="').concat(n,'" data-action = "setCategoryFilter">'),'<label class="UNX-facet-text">'.concat(e,'</label><label class="UNX-facet-count">(').concat(r,")</label></button>")].join("")}));return""!==(n+='<div class="UNX-category-values">'.concat(f.join(""),"</div>"))?['<div class="UNX-multi-facet-wrap">',"".concat(n,"</div>")].join(""):""},Ce=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a="",r=e||{},n=r.selectorClass,i=void 0===n?"":n;return t&&t.forEach((function(t,e){var r=t.level,n=t.filterField,s=t.value,o="".concat(i," UNX-bread-crumb-item");e>0&&(a+='<span class="UNX-slash"> / </span>'),a+=['<button data-parent="'.concat(n,'" data-level="').concat(r,'" class="').concat(o,'" data-name="').concat(s,'" data-action = "clearCategoryFilter">'),"".concat(decodeURIComponent(s),"</button>")].join("")})),'<div class="bread-crumb-main">'.concat(a,"</div>")},we=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};try{var a=!this.getSearchResults(),r=e.selectedViewTypeClass,n=void 0===r?"":r,i=e.viewTypeClass,s=void 0===i?"":i,o=this.testIds,c=o.UNX_gridBtn,l=void 0===c?"":c,u=o.UNX_listBtn,d=void 0===u?"":u,p="UNX-list-btn ".concat(s),h="UNX-grid-btn ".concat(s),f="data-test-id=".concat(l),g="data-test-id=".concat(d);"LIST"===t&&(p+=" ".concat(n)),"GRID"===t&&(h+=" ".concat(n));var y='<button id="listBtn" class="'.concat(p,'" ').concat(g,' data-view-action="LIST" >List</button>'),v="<button ".concat(f,' id="gridBtn" class="').concat(h,'" data-view-action="GRID" >Grid</button>');return a&&(y="<button ".concat(g,' id="listBtn" disabled class="').concat(p,' disabled-btn" data-view-action="LIST" >List</button>'),v="<button ".concat(f,' id="gridBtn" disabled class="').concat(h,'  disabled-btn"data-view-action="GRID" >Grid</button>')),"".concat(y," ").concat(v)}catch(t){this.onError("productViewtype > renderProductViewType",t)}},Ne=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=e||{},r=a.openNewTab,n="";return n=t?t.map((function(t){var e=t.imageUrl,a=t.landingUrl,n=t.bannerHtml;if(n)return n;var i="";return a&&(i+="href=".concat(a)),r&&(i+='  target="_blank"'),'<a class="UNX-banner-wrap" '.concat(i,' ><img style="max-width:100%" src="').concat(e,'"/></a>')})).join(""):"","".concat(n)},Ee=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=e||{},r=a.options,n=void 0===r?[]:r,i=a.pageSizeClass,s=void 0===i?"":i,o=a.selectedPageSizeClass,c=void 0===o?"":o,l=this.testIds.UNX_pagesize,u=void 0===l?"":l,d='<label class="UNX-hidden" for="unxPageSize">Sort By</label><select id="unxPageSize" name="unxPageSize" class="UNX-select-pagesize '.concat(s,'">');return n&&n.forEach((function(e,a){var r='data-test-id="'.concat(u).concat(a+1,'"');d+=t==e?"<option selected ".concat(r,' class="').concat(c,'" id="').concat(e,'">').concat(e,"</option>"):"<option ".concat(r,' id="').concat(e,'">').concat(e,"</option>")})),'<div class="UNX-pagesize-block">'.concat(d+="</select>","</div>")},Pe={productId:"uniqueId",searchBoxEl:null,searchButtonEl:null,siteKey:"demo-spanish-unbxd809051588861207",apiKey:"f19768e22b49909798bc2411fa3dd963",searchPath:"",searchEndPoint:"https://search.unbxd.io/",products:{el:null,template:function(t,e,a,r,n){var i=t.unxTitle,s=t.unxImageUrl,o=t.uniqueId,c=t.unxStrikePrice,l=t.unxPrice,u=t.unxDescription,d=n.productItemClass,p=n.defaultImage,h=Array.isArray(s)?s[0]:s;h||(h=p);var f='<div class="UNX-img-wrapper"><img class="UNX-img-block" width="100%" height="100%" alt="'.concat(i,'" src="').concat(h,'"/></div>'),g='<span class="UNX-sale-price">'.concat(l,"</span>"),y="";c&&(y='<span class="UNX-strike-price">'.concat(c,"<span>"));var v="",b="";"GRID"===r?v="UNX-grid-card":(v="UNX-list-card",b='<p class="UNX-description">'.concat(u,"</p>"));var m="",S=a||{},F=S.btnList,C=S.imgList;return F&&(m='<div class="UNX-swatch-wrapper">'.concat(F,"</div>")),C&&(f=C),['<div id="'.concat(o,'" data-id="').concat(o,'" data-prank="').concat(e,'" data-item="product" class="UNX-product-col ').concat(v," ").concat(d,'">'),,'<h3 class="UNX-product-number">'.concat(Math.floor(e),"</h3>"),'<div class="UNX-images-block">'.concat(f,"</div>"),'<div class="UNX-product-content">','<h3 class="UNX-product-title">'.concat(i,"</h3>"),m,b,'<div class="UNX-price-row">'.concat(g," ").concat(y,"</div>"),"</div>","</div>"].join("")},productItemClass:"product-item",productType:"SEARCH",gridCount:1,onProductClick:function(t,e){},productAttributes:["title","uniqueId","price","sku","imageUrl","displayPrice","salePrice","sortPrice","productDescription","unbxd_color_mapping","colorName","color","productUrl"],attributesMap:{unxTitle:"title",unxImageUrl:"imageUrl",unxPrice:"salePrice",unxStrikePrice:"displayPrice",unxId:"uniqueId",unxDescription:"productDescription"},defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",tagName:"DIV",htmlAttributes:{class:"UNX-search-results-block UNX-result-wrapper"},events:{}},searchQueryParam:"q",browseQueryParam:"p",defaultFilters:{},allowExternalUrlParams:!1,noResults:{template:function(t){return'<div class="UNX-no-results"> No Results found '.concat(t," </div>")}},onEvent:function(t,e){},startPageNo:0,productView:{enabled:!0,el:null,template:we,action:"click",viewTypeClass:"UNX-product-view",selectedViewTypeClass:"UNX-selected-product-view",defaultViewType:"GRID",tagName:"DIV",htmlAttributes:{class:"product-view-container"},events:{}},loader:{template:function(){return'<div class="UNX-loader">Loading search results....</div>'},el:null},variants:void 0,extraParams:{version:"V2"},spellCheck:{enabled:!0,el:null,template:ye,selectorClass:"UNX-suggestion",tagName:"DIV",htmlAttributes:{class:"UNX-spellcheck-wrapper"},events:{}},breadcrumb:{enabled:!0,el:null,selectorClass:"UNX-bread-crumb",template:Ce,tagName:"DIV",htmlAttributes:{class:"UNX-breadcrumbs-block"},events:{}},sort:{enabled:!0,el:null,selectedSortClass:"UNX-selected-sort",sortClass:"UNX-sort-item",template:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a="",r=e||{},n=r.options,i=void 0===n?[]:n,s=r.sortClass,o=void 0===s?"":s,c=r.selectedSortClass,l=void 0===c?"":c,u=this.testIds.UNX_unbxdSorter,d=void 0===u?"":u;return i&&i.forEach((function(e){var r=e.value,n=void 0===r?"":r,i=e.text,s=void 0===i?"":i;a+=n==t?'<option value="'.concat(n,'" class="').concat(l,'" selected>').concat(s,"</option>"):'<option value="'.concat(n,'">').concat(s,"</option>")})),['<div class="UNX-sort-block">','<span class="UNX-sort-header">Sort By</span>','<label class="UNX-hidden" for="unxSortSelect">Sort By</label>','<select data-test-id="'.concat(d,'" name="unxSortSelect" data-action="changeSort" id="unxSortSelect" class="').concat(o,'">'),'<option value="">Relevancy</option>',a,"</select>","</div>"].join("")},options:[{value:"price desc",text:"Price High to Low"},{value:"price asc",text:" Price Low to High"}],action:"change",tagName:"DIV",htmlAttributes:{class:"UNX-sort-block-lb"},events:{}},selectedFacets:{enabled:!0,selectedFacetClass:"UNX-selected-facet-btn",el:null,template:be,itemTemplate:ve,clearAllText:"Clear All",tagName:"DIV",htmlAttributes:{class:"UNX-selected-facet-lb"},events:{},facetAction:"click",clearFacetsSelectorClass:"UNX-clear-facet",removeFacetsSelectorClass:"UNX-remove-facet"},facet:{facetsEl:null,facetTemplate:function(t,e,a,r,n){var i=t.displayName,s=t.facetName,o=(t.multiLevelField,t.facetType),c=t.values,l=n.facetClass,u=n.applyMultipleFilters,d=n.isCollapsible,p=n.isSearchable,h=n.searchPlaceHolder,f=n.textFacetWrapper,g=n.enableViewMore,y=n.viewMoreText,v=n.viewMoreLimit,b=n.applyButtonText,m=n.clearButtonText,S=this.options,F=S.actionBtnClass,C=S.actionChangeClass,w=this.cssList,N=(w.openBtn,w.closeBtn,""),E="",P=this.getSelectedFacets()[s],U=!!(P&&P.length>0);g&&"text"===o&&c.length>v&&(E="UNX-view-more",N='<div class="UNX-view-more-row "><button class="'.concat(F,'" data-facet-name="').concat(s,'" data-action="viewMore" data-id="').concat(y[0],'">').concat(y[0],"</button></div>"));var A="",j="";U&&(A='<button class="UNX-facet-clear '.concat(l,' "data-facet-action="deleteFacet" data-facet-name="').concat(s,'">').concat(m,"</button>")),u&&U&&(j='<button class="UNX-facet-primary '.concat(l,' "data-facet-action="applyFacets" >').concat(b,"</button>"));var I="",O="";return d&&(I=a?'<div class="UNX-facet-header '.concat(F,' UNX-facet-open"  data-facet-name="').concat(s,'" data-facet-action="facetClose"> <h3>').concat(i,"</h3> </div>"):'<div class="UNX-facet-header '.concat(F,' UNX-facet-close"  data-facet-name="').concat(s,'" data-facet-action="facetOpen"> <h3>').concat(i,"</h3></div>")),p&&null!==r&&(O='<div class="UNX-searchable-facets"><label class="UNX-hidden" for="'.concat(s,'_searchBox">').concat(h,'</label><input  id="').concat(s,'_searchBox" name="').concat(s,'_searchBox" data-test-id="').concat(this.testIds.UNX_searchFacets,'" class="UNX-facet-search ').concat(C,'" value="').concat(r,'"  data-facet-name="').concat(s,'" data-facet-action="searchFacets" type="text" placeholder="').concat(h,'"/></div>')),['<div class="UNX-text-facet-wrap">',I,'<div class="UNX-facets-all">',O,'<div class="UNX-facets '.concat(f," ").concat(E,'">').concat(e,"</div>"),N,'<div class="UNX-facet-footer">'.concat(j," ").concat(A,"</div>"),"</div>","</div>"].join("")},facetItemTemplate:function(t,e,a){var r=t.facetName,n=t.isSelected,i=e.name,s=e.count,o=e.dataId,c=this.options.facet,l=c.facetClass,u=c.selectedFacetClass,d=this.testIds.UNX_uFilter;a&&a.length>0&&i.toUpperCase().indexOf(a.toUpperCase())<0&&(l+=" UNX-search-hidden");var p="changeFacet";return n&&(l+=" ".concat(u),p="deleteFacetValue"),['<button data-test-id="'.concat(d,'" data-facet-name="').concat(r,'" data-facet-action="').concat(p,'" class="UNX-change-facet ').concat(l,'" data-id="').concat(o,'">'),'<span class="UNX-facet-text">'.concat(i,'</span> <span class="UNX-facet-count">(').concat(s,")</span>"),"</button>"].join("")},facetMultiSelect:!0,facetClass:"UNX-facets-block",facetAction:"click",selectedFacetClass:"UNX-selected-facet-btn",selectedFacetsEl:null,selectedFacetTemplate:be,selectedFacetItemTemplate:ve,selectedFacetConfig:{},clearAllText:"Clear All",rangeTemplate:function(t,e){var a=this,r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};try{var n=t.facetName,i=t.values,s=void 0===i?[]:i,o="",c=r.facetClass,l=r.selectedFacetClass,u=r.applyMultipleFilters,d=r.applyButtonText,p=r.clearButtonText,h=e.length>0;s.forEach((function(t){var e=t.from,r=t.end,i=a.isSelectedRange(n,t)?"UNX-selected-facet-btn ".concat(c," ").concat(l):"".concat(c);o+=['<button class="'.concat(i,' UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="').concat(n,'" data-start="').concat(e.dataId,'" data-end="').concat(r.dataId,'" >'),'<span class="UNX-facet-text">'.concat(e.name,"  -  ").concat(r.name,"</span>"),'<span class="UNX-facet-count">('.concat(e.count,")</span>"),"</button>"].join("")}));var f="",g="";return h&&(u&&(g='<button class="UNX-default-btn '.concat(c,' UNX-facet-primary" data-action="applyRange"> ').concat(d,"</button>")),f='<button class="UNX-default-btn UNX-facet-clear  '.concat(c,'" data-action="clearRangeFacets">').concat(p,"</button>")),['<div class="UNX-range-wrapper">',o,'<div class="UNX-price-action-row">',g,f,"<div>","</div>"].join("")}catch(t){this.onError("facets > renderRangeFacets.js",t)}},rangeWidgetConfig:{minLabel:"",maxLabel:"",prefix:"$"},facetMultilevel:!0,facetMultilevelName:"Category",multiLevelFacetSelectorClass:"UNX-multilevel-facet",multiLevelFacetTemplate:Fe,facetDepth:4,clearFacetsSelectorClass:"UNX-clear-facet",removeFacetsSelectorClass:"UNX-remove-facet",onFacetLoad:function(t){},applyMultipleFilters:!1,applyButtonText:"Apply",clearButtonText:"clear",isCollapsible:!0,isSearchable:!0,searchPlaceHolder:"Search Filter",textFacetWrapper:"UNX-facets-item",defaultOpen:"ALL",enableViewMore:!1,viewMoreText:["show all","show less"],viewMoreLimit:3,tagName:"DIV",htmlAttributes:{class:"UNX-facets-results-block"},events:{}},pagination:{enabled:!0,el:null,template:function(t){var e=this.options.pagination,a=void 0===e?{}:e,r=a.type;return"CLICK_N_SCROLL"===r?Se.bind(this)(t,a):"FIXED_PAGINATION"===r?me.bind(this)(t,a):""},pageClass:"UNX-page-items",selectedPageClass:"UNX-selected-page-item",type:"CLICK_N_SCROLL",infiniteScrollTriggerEl:window,heightDiffToTriggerNextPage:100,onPaginate:function(t){},action:"click",pageLimit:6,tagName:"DIV",htmlAttributes:{class:"UNX-pagination-size-block"},events:{}},pagesize:{enabled:!0,pageSize:12,options:[8,12,16,20,24],pageSizeClass:"UNX-pagesize",selectedPageSizeClass:"UNX-selected-pagesize",action:"change",template:Ee,el:null,tagName:"DIV",htmlAttributes:{class:"UNX-page-size-block"},events:{}},banner:{enabled:!0,el:null,template:Ne,count:1,openNewTab:!1,tagName:"DIV",htmlAttributes:{class:"UNX-banner-block"},events:{}},swatches:{enabled:!1,attributesMap:{},swatchClass:"UNX-swatch-btn",template:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=e||{},i=n.swatchImgs,s=void 0===i?[]:i,o="",c="",l="",u=a||{},d=u.swatchClass,p=void 0===d?"":d,h=this.testIds.UNX_swatchClrBtn,f=void 0===h?"":h,g=r||{},y=g.unxTitle,v=void 0===y?"":y;return s.length>1&&(s.forEach((function(e,a){var r=t.generateRid("unx_swatch_"),n=0===a?"":" UNX-swatch-hidden",i=0===a?" UNX-selected-swatch":"",s=e.split("::");s&&(o+=['<button value="swatch color '.concat(s[0],'" data-test-id="').concat(f).concat(a,'" data-swatch-id="').concat(r,'" data-action="changeSwatch" class="').concat(p," ").concat(r," ").concat(i,'" style="background-color:').concat(s[0],'"> swatch color ').concat(s[0]," </button>")].join(""),l+='<div id="'.concat(r,'" class="UNX-img-wrapper ').concat(n,'"><img alt="').concat(v," for the ").concat(s[0],'" class="UNX-img-block" src="').concat(s[1],'"/></div>'))})),c='<div class="UNX-swatch-color-list">'.concat(o,"</div>")),{btnList:c,imgList:l}}},unbxdAnalytics:!1,hashMode:!1,updateUrls:!0,actionBtnClass:"UNX-action-item",actionChangeClass:"UNX-action-change",onAction:function(t,e){},onQueryRedirect:function(t,e,a){if(e){var r=e.value;return"url"===e.type&&(history.state&&history.state.replace&&history.replaceState(null,"",a),location.href=r),!1}},onBackFromRedirect:function(t){new URLSearchParams(t?location.hash.substring(1):location.search).get("redirected")&&history.go(-1)},onNoUnbxdKeyRouting:function(){history.go()},setRoutingStrategies:function(t,e,a,r,n){t!==e&&("CATEGORY"===a?r?history.pushState(null,"",e):history.replaceState(null,"",e):history.state&&history.state.replace||n?history.replaceState(null,"",e):history.pushState(null,"",e))}},Ue=Pe;var Ae=function(){try{var t=this.getBanners()||[],e=this.options.banner,a=void 0===e?{}:e;this.bannerWrapper.innerHTML=this.options.banner.template(t,a)}catch(t){this.onError("Banners > renderBannerUI",t)}},je=function(t){var e=t.target;this.viewState.lastDidYouMean="";var a=("click"===this.options.facet.facetAction?e:e.options[e.selectedIndex]).dataset,r=a.facetName,n=a.facetAction,i=a.id,s=a.action,o=a.end,c=a.start,l=this.getStateFromUrl(),u=this.getSelectedFacets(),d=u?Object.keys(u).length:0,p=Object.keys(l.selectedFacets).length,h=this.options,f=h.productType,g=h.facet.applyMultipleFilters,y=this.events,v=this.actions,b=this.state.rangeFacet[r],m=Object.keys(l.rangeFacet);if(n===v.changeFacet){var S=this.getSelectedFacet(r),F={selectedFacetName:r,selectedFacetId:i,facetData:S};this.viewState.lastAction="addedAFacet",this.options.onEvent(this,y.facetClick,{facetName:r,facetData:S}),this.updateFacets(F),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick")}if("deleteSelectedFacetValue"===n&&this.findSelectedFacet(r)&&(this.viewState.lastAction="deletedAfacet",this.deleteAFacet.bind(this)(r,i),this.options.onEvent(this,y.deleteFacetValue,{facetName:r}),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick"),this.setPageStart(0),this.getResults()),n===v.deleteFacetValue&&this.findSelectedFacet(r)){this.viewState.lastAction="deletedAfacet",this.deleteAFacet.bind(this)(r,i),this.options.onEvent(this,y.deleteFacetValue,{facetName:r}),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick");var C=u[r].length;p>0&&1===d&&0===C&&g&&(this.setPageStart(0),this.getResults())}n===v.deleteFacet&&(this.findSelectedFacet(r)&&(this.viewState.lastAction="deletedAfacet",this.deleteAFacet.bind(this)(r),this.options.onEvent(this,y.deleteFacet,{facetName:r}),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick"),l.selectedFacets[r]&&(this.viewState.lastAction="clearAFacet",this.setPageStart(0),this.getResults())));if("applyFacets"===n&&(this.viewState.lastAction="applyFacets",this.setPageStart(0),this.getResults()),"clearAllFacets"===n&&(this.viewState.lastAction="clearAllFacets",this.state.selectedFacets=[],this.state.rangeFacet=[],this.setPageStart(0),this.getResults()),"deleteSelectedRange"===n){var w=a.facetName,N=a.id,E=N.replace(/[^\w\s]/gi,"").split(" TO ");this.setRangeFacet({start:E[0],end:E[1],facetName:w,applyMultiple:!0}),this.getCallbackActions({facetName:w,facetAction:n,id:N},"facetClick"),this.setPageStart(0),this.getResults()}if(s===v.setCategoryFilter&&("SEARCH"===f?(this.setCategoryFilter(a),this.options.onEvent(this,y.setCategoryFilter,a)):this.setCategoryId(a,this),this.setPageStart(0),this.getResults(),this.getCallbackActions(a,"facetClick")),s===v.clearCategoryFilter&&("SEARCH"===f?(this.deleteCategoryFilter(a),this.options.onEvent(this,y.deleteCategoryFilter,a)):this.setCategoryId(a,this),this.setPageStart(0),this.getResults(),this.getCallbackActions(a,"facetClick")),"setRange"===s){var P=!1;b&&1===b.length&&m.length>0&&(P=this.isSelectedRange(r,{from:{name:c},end:{name:o}})),P||this.setRangeFacet({start:c,end:o,facetName:r,applyMultiple:!0}),P&&(this.state.rangeFacet=[],this.applyRangeFacet()),g||(this.setPageStart(0),this.applyRangeFacet()),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick")}"clearRangeFacets"===s&&(this.state.rangeFacet=[],this.renderFacets(),m.length>0&&this.applyRangeFacet()),s===v.applyRange&&(this.applyRangeFacet(),this.options.onEvent(this,s,{facetName:r}),this.getCallbackActions({facetName:r},"facetClick")),s===v.clearPriceRange&&r&&(this.clearARangeFacet(r),this.getResults.bind(this)(),this.options.onEvent(this,s,{facetName:r}),this.getCallbackActions({facetName:r},"facetClick")),this.viewState.lastAction=s},Ie=function(){var t=this;try{var e=this.options.facet,a=void 0===e?{}:e,r=a.defaultOpen,n=a.applyMultipleFilters,i=(a.isCollapsible,this.viewState),s=i.expandedFacets;if("updatedRangeSlider"===i.lastAction&&n)return!1;var o=this.getAllFacets()||[],c=this.facetWrappers,l=void 0===c?[]:c,u=this.getSelectedFacets()||{};l.forEach((function(e){e.innerHTML="",o.forEach((function(a,n){var i=a.facetType,o=a.facetName;void 0===s[o]&&"ALL"===r&&(s[o]=!0),"FIRST"===r&&0==n&&(s[o]=!0);var c=t.isExpandedFacet(o),l=t.getSearchFacetsText(o)||"",d=u[o];"text"===i&&(e.innerHTML+=t.renderTextFacet(a,d,c,l)),"range"===i&&(e.innerHTML+=t.renderRangeFacet(a,c,"")),"category"===i&&(e.innerHTML+=t.renderMultiLevelFacet(a,c,l)),t.viewState.facetElementMap[o]=o}))})),this.options.facet.onFacetLoad.bind(this)(o)}catch(t){this.onError("Facets > renderFacets.js",t)}},Oe=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[],a=arguments.length>2?arguments[2]:void 0,r=arguments.length>3?arguments[3]:void 0,n=arguments.length>4?arguments[4]:void 0;try{var i=[],s=t.facetName,o=t.values,c=void 0===o?[]:o,l=this.cssList,u=l.openFacet,d=l.closeFacet,p=this,h=this.options.facet,f=h.isCollapsible,g=!1;if(c.length>0&&(i=c.map((function(){var a=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},n=a.dataId;return t.isSelected=e.some((function(t){return t.dataId===n})),t.isSelected&&(g=t.isSelected),p.options.facet.facetItemTemplate.bind(p)(t,a,r)}))),n)return i.join("");t.isSelected=g;var y=this.options.facet.facetTemplate.bind(this)(t,i.join(""),a,r,h),v=a?u:d;return f||(v=""),'<div class="UNX-facet-item-d '.concat(s," ").concat(v,'">').concat(y,"</div>")}catch(t){this.onError("facets > renderTextFacet.js",t)}},Te=function(){var t=this;try{for(var e=this.getSelectedFacets()||{},a=this.getSelectedRanges()||{},r=Object.keys(e),n="",i=this.options,s=i.selectedFacets,o=void 0===s?{}:s,c=i.facet,l=void 0===c?{}:c,u=l.selectedFacetItemTemplate?l.selectedFacetItemTemplate.bind(this):o.itemTemplate.bind(this),d=function(){var a=r[p],i=t.isCategoryFacet(a),s=e[a]||[];i||s.forEach((function(t){var e=t.name,r=t.count,i=t.dataId;n+=u({facetName:a,facetType:"text"},{name:e,dataId:i||e,count:r||0},l,o)}))},p=0;p<r.length;p++)d();for(var h=Object.keys(a),f=function(){var t=h[g];a[t].forEach((function(e){n+=u({facetName:t,facetType:"range"},{name:e.replace(/[^\w\s]/gi,""),dataId:e},l,o)}))},g=0;g<h.length;g++)f();var y=l.selectedFacetTemplate?l.selectedFacetTemplate.bind(this):o.template.bind(this);this.selectedFacetWrappers.forEach((function(t){t.innerHTML=y(n,l,o)}))}catch(t){this.onError("facets > renderSelectedFacets.js",t)}},Re=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1?arguments[1]:void 0;try{var a="",r=this,n=this.cssList,i=n.openFacet,s=void 0===i?"":i,o=n.closeFacet,c=void 0===o?"":o,l=t.facetName,u=this.options.facet,d=void 0===u?{}:u,p=d.isCollapsible,h=this.getBreadCrumbsList(l)||[],f=r.options.facet.multiLevelFacetTemplate.bind(this)(t,h,"",d);a+=r.options.facet.facetTemplate.bind(r)(t,f,e,null,d);var g=e?s:c;return p||(g=""),'<div class="'.concat(l," UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ").concat(g,'">').concat(a,"</div>")}catch(t){this.onError("facets > renderMultiLevelFacet.js",t)}},ke=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1?arguments[1]:void 0;try{var a=t.facetName,r=this.cssList,n=r.openFacet,i=void 0===n?"":n,s=r.closeFacet,o=void 0===s?"":s,c=this.options.facet,l=void 0===c?{}:c,u=l.isCollapsible,d=this.state.rangeFacet,p=d[a]||[];t.isSelected=p.length>0;var h=this.options.facet.rangeTemplate.bind(this)(t,p,l),f=this.options.facet.facetTemplate.bind(this)(t,h,e,null,l),g=e?i:o;return u||(g=""),'<div class="'.concat(a," UNX-facet-item-d range-facets-block ").concat(g,'">').concat(f,"</div>")}catch(t){this.onError("facets > renderRangeFacet.js",t)}},Le=function(t,e){var a=this.getSelectedRanges(t),r=e.from,n=e.end,i="[".concat(r.name," TO ").concat(n.name,"]");return!!(a&&a.indexOf(i)>=0)},xe=function(){this.state.selectedFacets={},this.state.rangeFacet=[],this.state.categoryFilter={}},Me=function(t){var e=this.viewState.expandedFacets,a=!1;return!0===(void 0===e?{}:e)[t]&&(a=!0),a},Xe=function(t,e){this.viewState.searchFacetsText[t]=e,this.reRenderTextFacet(t)},Ve=function(t){return this.viewState.searchFacetsText[t]||""},_e=function(t){var e=this.options.facet.facetClass,a=void 0===e?"":e,r=this.getSearchFacetsText(t)||"";(document.querySelectorAll(".".concat(t," .").concat(a))||[]).forEach((function(t){var e=(t.dataset||{}).id;e&&e.toUpperCase().indexOf(r.toUpperCase())>=0?t.classList.remove("UNX-search-hidden"):t.classList.add("UNX-search-hidden")}))},Be=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.setRangeFacet(t);var e=t.facetName;t.start,t.end;this.getCallbackActions({facetName:e,facetAction:"changeFacet",id:e},"facetClick"),this.viewState.lastAction="updatedRangeSlider",this.setPageStart(0),this.applyRangeFacet()},De=function(){if(this.options.facet.applyMultipleFilters){var t=this.getStateFromUrl()||{},e=t.selectedFacets,a=void 0===e?{}:e,r=t.selectedRanges;this.state.selectedFacets=a,this.state.selectedRanges=r}};function ze(){try{var t=this.viewState.productViewType,e=this.searchResultsWrapper,a=this.viewState,r=a.noResultLoaded,n=a.isInfiniteStarted,i=a.lastAction,s="LIST"===t?"UNX-list-block":"UNX-grid-block";if(e.classList.remove("UNX-list-block"),e.classList.remove("UNX-grid-block"),e.classList.add(s),e.classList.remove("UNX-no-resultss-wrap"),e.style.minHeight="100vh",n)if(this.viewState.isInfiniteStarted=!1,r)this.viewState.noResultLoaded=!0,e.innerHTML=this.renderSearch(),window.scrollTo(0,0);else{var o=this.getCurrentUrlPage(),c=this.getProductsPerPage();"prev_page_loaded"===i?(e.insertAdjacentHTML("afterbegin",this.renderSearch()),document.querySelector('.product-item[data-prank="'.concat(o*c+1,'"]')).scrollIntoView(),this.options.pagination.usePageAndCount?this.replaceParamInUrl("page",o+1):this.replaceParamInUrl("start",o*c)):(e.insertAdjacentHTML("beforeend",this.renderSearch()),this.options.pagination.usePageAndCount?this.replaceParamInUrl("page",o-1):this.replaceParamInUrl("start",(o-2)*c))}else e.innerHTML="",e.innerHTML=this.renderSearch(),window.scrollTo(0,0)}catch(t){this.onError("renderProducts.js",t)}}var qe=function(){var t=this;try{var e=this.getSearchResults();if(!e)return"";var a=e.products,r=this,n=this.options.swatches,i=this.options.products.gridCount,s=this.viewState.productViewType,o="",c=Number(this.state.startPageNo),l="";return"GRID"===s&&i&&i>1?a.forEach((function(e,a){var u=a%i;0===u&&(o+='<div class="UNX-row">');var d=a+c+1,p=t.mapProductAttrs(e);n.enabled&&(l=t.renderSwatchBtns(e)),o+=r.options.products.template.bind(r)(p,d,l,s,t.options.products),u===i-1&&(o+="</div>")})):o=a.map((function(e,a){var i=a+c+1,o=t.mapProductAttrs(e);return n.enabled&&(l=t.renderSwatchBtns(e)),r.options.products.template.bind(r)(o,i,l,s,t.options.products)})).join(""),o}catch(t){this.options.onError("searchResults > renderSearch",t)}},We=function(t){var e=t.path||t.composedPath&&t.composedPath(),a=this.options.products,r=a.productItemClass,n=a.attributesMap,i=r.replace(".",""),s=t.target.dataset,o=e.find((function(t){return t.className.indexOf(i)>=0})),c=s||{},l=c.action,u=c.swatchId;if(l===this.actions.changeSwatch&&u)return o.querySelectorAll(".UNX-img-wrapper").forEach((function(t){var e=o.querySelector(".".concat(t.id));t.id===u?(t.classList.remove("UNX-swatch-hidden"),o.querySelector(".".concat(u)).classList.add("UNX-selected-swatch")):(t.classList.add("UNX-swatch-hidden"),e.classList.remove("UNX-selected-swatch"))})),this.options.onEvent(this,s.action),!1;var d=null;if((s=o.dataset).id&&(d=this.getProductByPropValue(n.unxId,s.id)),d&&o.dataset.prank){d.prank=o.dataset.prank;var p=Math.ceil(Number(d.prank)/Number(this.getProductsPerPage()));this.options.pagination.usePageAndCount?this.replaceParamInUrl("page",p):this.replaceParamInUrl("start",Number((p-1)*Number(this.getProductsPerPage())))}this.options.products.onProductClick(d,t),this.getCallbackActions(d,"click")};var He=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";try{return this.options.noResults.template(t)}catch(t){this.onError("searchresults > renderNoResults",t)}},Qe=function(t){var e=this.options.products.attributesMap;return Object.keys(e).forEach((function(a){var r=t[a],n=e[a];r||(t[a]=t[n])})),t};var Ge=function(){try{var t=this.options.productView,e=void 0===t?{}:t;if(e.el){var a=this.viewState.productViewType,r=this.getSearchResults();r&&0===r.numberOfProducts?this.productViewTypeWrapper.innerHTML="":this.productViewTypeWrapper.innerHTML=this.options.productView.template.bind(this)(a,e)}}catch(t){this.onError("ProductViewType > renderProductViewTypeUI",t)}},Ye=function t(){var e={},a=!0,r=0,n=arguments.length;"[object Boolean]"===Object.prototype.toString.call(arguments[0])&&(a=arguments[0],r++);for(var i=function(r){for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(a&&"[object Object]"===Object.prototype.toString.call(r[n])?e[n]=t(!0,e[n],r[n]):e[n]=r[n])};r<n;r++){var s=arguments[r];i(s)}return e};function Ke(t){var e=t.target,a=this.options.productView.action,r=this.viewState.productViewType,n=(("click"===a?e:e.options[e.selectedIndex]).dataset||{}).viewAction;if(this.checkFacets(),r!==n){this.viewState.productViewType=n;var i=this.options.extraParams,s=void 0===i?{}:i;this.options.extraParams=Ye(!0,{},s,{viewType:n}),this.state.productViewType=this.viewState.productViewType,this.state.isBack=!1,this.viewState.lastAction="viewType",this.setUrl(!1),this.renderProductViewTypeUI(),this.renderProducts()}}var $e=function(){try{var t=this.options.pagination,e=void 0===t?{}:t,a=(e||{}).type,r="";if("INFINITE_SCROLL"!==a){var n=this.getPaginationInfo();n&&(r=e.template.bind(this)(n))}return r}catch(t){this.onError("Pagination > renderPagination.js",t)}};function Je(t,e){var a="undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(!a){if(Array.isArray(t)||(a=function(t,e){if(!t)return;if("string"==typeof t)return Ze(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return Ze(t,e)}(t))||e&&t&&"number"==typeof t.length){a&&(t=a);var r=0,n=function(){};return{s:n,n:function(){return r>=t.length?{done:!0}:{done:!1,value:t[r++]}},e:function(t){throw t},f:n}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,s=!0,o=!1;return{s:function(){a=a.call(t)},n:function(){var t=a.next();return s=t.done,t},e:function(t){o=!0,i=t},f:function(){try{s||null==a.return||a.return()}finally{if(o)throw i}}}}function Ze(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}var ta=function(){var t=this;try{return new Promise((function(e,a){t.resetObservers=function(){t.observer.disconnect(),t.preLoaderObserver.disconnect(),t.preLoaderObserver.observe(i),"INFINITE_SCROLL"===t.options.pagination.type&&(t.postLoaderObserver.disconnect(),t.postLoaderObserver.observe(n)),t.observer.observe(r,{childList:!0,subtree:!0})};var r=window;"INFINITE_SCROLL"===t.options.pagination.type?r=t.options.pagination.infiniteScrollTriggerEl:"CLICK_N_SCROLL"===t.options.pagination.type&&(r=t.options.products.el);var n=document.querySelector(".UNX-post-loader"),i=document.querySelector(".UNX-pre-loader");t.individualProductObserver=new IntersectionObserver((function(e){var a=t;e.forEach((function(e){if(e.isIntersecting){var r=parseInt(e.target.dataset.prank),n=t.getCurrentUrlPage(),i=t.getProductsPerPage(),s=Math.ceil(r/i);s!==n&&(a.options.pagination.usePageAndCount?t.replaceParamInUrl("page",s):t.replaceParamInUrl("start",(s-1)*i))}}))}),{threshold:[1]}),t.preLoaderObserver=new IntersectionObserver((function(e){var a=t.getCurrentUrlPage();e.forEach((function(e){e.isIntersecting&&a>1&&!t.state.isLoading&&!t.viewState.isInfiniteStarted&&t.renderNewResults("prev")}))}),{threshold:0,rootMargin:"0px 0px 0px 0px"}),t.postLoaderObserver=new IntersectionObserver((function(e){!e[0].isIntersecting||t.state.isLoading||t.viewState.isInfiniteStarted||t.renderNewResults("next")}),{threshold:0,rootMargin:"0px 0px 0px 0px"}),t.observer=new MutationObserver((function(e,a){var r,n=Je(e);try{var i=function(){var e=r.value;if("childList"===e.type){var a=t;e.addedNodes.forEach((function(t){t.nodeType===Node.ELEMENT_NODE&&t.classList.contains("product-item")&&a.individualProductObserver.observe(t)})),t.resetObservers()}};for(n.s();!(r=n.n()).done;)i()}catch(t){n.e(t)}finally{n.f()}})),t.preLoaderObserver.observe(i),"INFINITE_SCROLL"===t.options.pagination.type&&t.postLoaderObserver.observe(n),t.observer.observe(r,{childList:!0,subtree:!0})}))}catch(t){this.onError("infiniteScroller.js",t)}},ea=function(t,e,a){"FIXED_PAGINATION"===t.options.pagination.type&&(t.viewState.lastAction="pagination",t.setPageStart(e)),t.getResults("",!0,a),t.options.onEvent(t,t.events.pageNext,{value:e})};function aa(t,e){try{var a=this.getPaginationInfo()||{},r=this.options,n=r.pagination,i=r.onEvent,s=a.start,o=(a.productsLn,a.numberOfProducts,a.rows),c=a.isNext,l=a.isPrev,u=this.getCurrentUrlPage(),d=this.getProductsPerPage();if("INFINITE_SCROLL"===n.type||"CLICK_N_SCROLL"===n.type)if(t===this.actions.next&&c&&(this.viewState.isInfiniteStarted=!0,u++,this.setPageStart((u-1)*d),this.viewState.lastAction="next_page_loaded",ea(this,null,t)),t===this.actions.prev){if(l&&(this.viewState.isInfiniteStarted=!0,u--,this.setPageStart((u-1)*d),this.viewState.lastAction="prev_page_loaded",ea(this,null,t)),t===this.actions.prev){var p=s-o;l&&(this.viewState.isInfiniteStarted=!0,ea(this,p,t))}}else{if(t===this.actions.next)c&&ea(this,s+o);if(t===this.actions.prev){var h=s-o;l&&(this.viewState.lastAction="pagination",ea(this,h),i(this,this.events.pagePrev,{value:h}))}}}catch(t){this.onError("Pagination > renderNewResults",t)}}function ra(t){var e=t.target.dataset,a=e.pageAction,r=e.pageNo;this.checkFacets(),this.viewState.lastDidYouMean="","paginate"===a?(this.viewState.lastAction="pagination",this.setPageStart(r),this.getResults()):this.renderNewResults(a)}var na=function(){var t=new URLSearchParams(this.options.hashMode?location.hash.slice(1):location.search);return this.options.pagination.usePageAndCount?Number(t.get("count")):Number(t.get("rows"))},ia=function(){var t=new URLSearchParams(this.options.hashMode?location.hash.slice(1):location.search);return this.options.pagination.usePageAndCount?Number(t.get("page"))||1:Number(t.get("start")/t.get("rows"))+1},sa=function(t,e){var a=new URLSearchParams(this.options.hashMode?location.hash.slice(1):location.search);a.set(t,e),history.replaceState(null,null,this.urlSearchParamsToStr(a))};function oa(t){var e=t.target;this.viewState.lastDidYouMean="";("click"===this.options.sort.action?e:e.options[e.selectedIndex]).dataset;var a=e.dataset,r=a.action,n=a.value,i=e.value||n||"",s=this.events.changeSort;this.checkFacets(),r===this.actions.clearSort&&(this.applySort(""),this.options.onEvent(this,r)),r===this.actions.changeSort&&(this.applySort(i),this.options.onEvent(this,s,{sort:i}))}var ca=function(){var t=this;try{var e=this.getSearchResults(),a=this.options.sort,r=void 0===a?{}:a,n=this.sortWrappers,i=void 0===n?[]:n;i&&i.forEach((function(a){var n="";e&&e.numberOfProducts>0&&(n=t.options.sort.template.bind(t)(t.getSelectedSort(),r)),a.innerHTML=n}))}catch(t){this.onError("Sort > renderSort",t)}},la=function(t){try{var e=this.options.searchBoxEl.value;if(!e.replace(/\s/g,"").length)return!1;this.options.productType="SEARCH",(e=0===e.indexOf("#")?e.replace("#",""):e)?(this.resetAll(),this.changeInput(e,this.events.changeInput),this.options.products.productType="SEARCH",this.viewState.loadedFromSuggestion=!1,this.state.selectedSort="",this.setPageStart(0),this.resetViewState(),this.getResults()):this.searchResultsWrapper.innerHTML=null}catch(t){this.onError("input > setInputValue.js",t)}},ua=function(t){try{var e=this.state.userInput,a=void 0===e?"":e,r=this.getPaginationInfo()||{},n=this.getDidYouMeanFromResponse()||[],i=this.options.pagination.type,s=this.options.spellCheck,o=(s.spellCheck,s.enabled),c=this.viewState,l=c.loadedFromSuggestion,u=c.lastDidYouMean;if("FIXED_PAGINATION"!==i&&r){var d=r.start,p=r.productsLn;r.productsLn=p+d,r.start=0}var h=n.length>0?n[0].suggestion:"",f="";h&&!l?(this.viewState.lastDidYouMean=a,this.viewState.loadedFromSuggestion=!0,o&&this.getResults(h)):this.viewState.lastDidYouMean="",f=this.options.spellCheck.template.bind(this)(a,u,r),!o&&h&&(f=this.options.spellCheck.template.bind(this)(h,a,r)),this.spellCheckWrappers.forEach((function(t){t.innerHTML=f}))}catch(t){this.onError("didYouMean > renderDidYouMean.js",t)}},da=function(t){var e=this.getSpellCheckSuggested()||[],a=e.length,r=(t.target||{}).dataset,n=this.state.userInput,i=void 0===n?"":n;r&&"getSuggestion"===r.action&&(this.resetAll(),this.setPageStart(0),this.getResults(a?e[0]:i),this.viewState.lastDidYouMean=null,this.viewState.loadedFromSuggestion=!1)};function pa(t){}function ha(){var t=this;try{var e,a,r=this.getSelectedMultilevelFacet()||[];"CATEGORY"===this.options.products.productType&&-1!==(null===(e=window.unbxdAnalyticsConf)||void 0===e||null===(a=e.page)||void 0===a?void 0:a.indexOf("categoryPath"))&&(r=["categoryPath"]);var n="";return r&&r.forEach((function(e){var a=t.getBreadCrumbsList(e)||[],r=t.options.breadcrumb,i=void 0===r?{}:r;n+=t.options.breadcrumb.template(a,i)})),n}catch(t){this.onError("Breadcrumbs > actions.js",t)}}var fa=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var e=this.getSwatches(t,this.options.swatches.attributesMap)||{},a=this.options.swatches,r=void 0===a?{}:a;return this.options.swatches.template.bind(this)(e,r,t)}catch(t){this.onError("Swatches > renderSwatchBtns",t)}},ga=function(t){var e=t.target;this.viewState.lastDidYouMean="";var a=("click"===this.options.pagesize.action?e:e.options[e.selectedIndex]).id,r=this.events.pageSizeChange;a&&(this.checkFacets(),this.setPageSize(Number(a)),this.getResults.bind(this)(),this.options.onEvent(this,r,{count:a}))},ya=function(){try{var t=this.options.pagesize,e=void 0===t?{}:t,a=e.pageSize;(this.getQueryParams()||{})&&(a=this.state.pageSize);var r=this.getSearchResults();r&&0===r.numberOfProducts?this.pageSizeWrapper.innerHTML="":this.pageSizeWrapper.innerHTML=this.options.pagesize.template.bind(this)(a,e)}catch(t){this.onError("Pagesize > renderPageSize",t)}},va=function(t){Unbxd.track("search",{query:t})},ba=function(t){var e=t.uniqueId,a=t.sku,r=t.prank;Unbxd.track("click",{pid:e||a,prank:r,requestId:null})},ma=function(){var t=this.getSearchResults(),e=this.getSearchQuery(),a=this.options.productType,r=t.products,n={pids_list:[]};if(r){var i=[];r.forEach((function(t){var e=t.sku,a=t.uniqueId||e;i.push(a)})),n.pids_list=i,"SEARCH"===a?(n.query=e,Unbxd.track("search_impression",n)):"CATEGORY"!==a&&"BROWSE"!==a||(window.UnbxdAnalyticsConf&&(n.page=window.UnbxdAnalyticsConf.page||"",n.page_type=window.UnbxdAnalyticsConf.page_type||""),Unbxd.track("browse_impression",n))}},Sa=function(t,e){var a=this.getSelectedFacets(),r=this.state.rangeFacet,n=this.state.categoryFilter,i=Object.keys(a),s=Object.keys(r),o=Object.keys(n),c={};i.forEach((function(t){var e=a[t],r=[];e.forEach((function(t){r.push(t.name)})),c[t]=r})),s.forEach((function(t){var e=r[t][0];if(e){var a=e.replace(/\[|\]/g,"").split(",");c[t]=a}})),o.forEach((function(t){var e=n[t].join(">");c[t]=e}));var l=this.getSearchQuery();Unbxd.track("facets",{query:l,facets:c})},Fa=function(t,e){window.UnbxdAnalyticsConf&&Unbxd.track("categoryPage",window.UnbxdAnalyticsConf)},Ca=function(t,e){var a=window.Unbxd||null,r=this.options.unbxdAnalytics;if(!a||!r||a&&!a.track)return!1;if(t)switch(e){case"CHANGE_INPUT":this.trackSearch(t);break;case"click":this.trackProductClick(t);break;case"AFTER_API_CALL":this.trackImpression();break;case"facetClick":this.trackFacetClick(t,e);case"categoryPage":this.trackCategoryPageLoad(t,e)}},wa={unxPageSize:"unxPageSize"},Na=function(){var t=this,e=this.options,a=e.onEvent,r=e.spellCheck,n=e.pagination,i=e.productType,s=e.searchBoxEl,o=e.loader,c=e.breadcrumb,l=e.productView,u=(e.facet,this.events),d=u.beforeRender,p=u.beforeNoResultRender,h=u.afterNoResultRender,f=u.afterRender;a(this,d),o.el&&(o.el.innerHTML="");var g=this.getSearchResults(),y=this.getQueryParams()||{},v=this.getSearchQuery(),b=this.viewState,m=b.lastAction;b.productViewType;"SEARCH"===i&&s&&(s.value=this.state.userInput),"SEARCH"!==i&&s&&(s.value="");var S=this.searchResultsWrapper,F=this.paginationWrappers,C=this.breadcrumbWrapper;if(g&&0===g.numberOfProducts){var w=this.state.responseObj.redirect||{};if(Object.keys(w).length)return;a(this,p),this.viewState.noResultLoaded=!0,S.classList.add("UNX-no-results-wrap"),S.innerHTML=this.renderNoResults(v),y.filter||this.renderFacets(),a(this,h)}else this.renderProducts();this.renderFacets(),this.renderSelectedFacets(),this.renderBannerUI(),l.enabled&&this.renderProductViewTypeUI(),this.renderPageSize(),this.renderSort(),c.enabled&&(C.innerHTML=this.renderBreadCrumbs());var N=this.getSpellCheckSuggested();r.el&&this.renderDidYouMean(N),"pagination"===m&&n.onPaginate.bind(this)(this.getPaginationInfo()),"INFINITE_SCROLL"!==n.type&&F.forEach((function(e){e.innerHTML=t.renderPagination()})),a(this,f)};var Ea=function(){var t=this,e=this.options,a=e.searchButtonEl,r=e.searchTrigger,n=e.products,i=e.facet,s=e.productView,o=e.pagination,c=e.sort,l=e.pagesize,u=e.spellCheck,d=e.searchBoxEl,p=e.actionChangeClass,h=e.actionBtnClass,f=e.breadcrumb,g=e.selectedFacets;if(d&&d.addEventListener("keydown",(function(e){var a=e.target.value;13===e.keyCode&&""!==a&&t.setInputValue.bind(t)()})),o.enabled&&this.paginationWrappers.forEach((function(e){t.delegate(e,o.action,".".concat(o.pageClass),t.paginationAction.bind(t))})),i.facetsEl&&this.facetWrappers.forEach((function(e){t.delegate(e,i.facetAction,".".concat(i.facetClass),t.findChangedFacet.bind(t)),t.delegate(e,"change","."+p,t.extraActionsChange.bind(t)),t.delegate(e,"keyup","."+p,t.extraActionsChange.bind(t)),t.delegate(e,"click","."+h,t.extraActions.bind(t))})),a&&a.addEventListener(r,this.setInputValue.bind(this)),u.el&&this.spellCheckWrappers.forEach((function(e){t.delegate(e,"click",".".concat(u.selectorClass),t.setSuggestion.bind(t))})),this.delegate(this.searchResultsWrapper,"click",".".concat(n.productItemClass),this.onProductItemClick.bind(this)),c.el&&this.sortWrappers.forEach((function(e){t.delegate(e,c.action,".".concat(c.sortClass),t.sortAction.bind(t))})),i.selectedFacetsEl?this.selectedFacetWrappers.forEach((function(e){t.delegate(e,i.facetAction,".".concat(i.selectedFacetClass),t.findChangedFacet.bind(t))})):this.selectedFacetWrappers.forEach((function(e){t.delegate(e,g.facetAction,".".concat(g.selectedFacetClass),t.findChangedFacet.bind(t))})),this.breadcrumbWrapper&&this.delegate(this.breadcrumbWrapper,"click","."+f.selectorClass,this.findChangedFacet.bind(this)),this.productViewTypeWrapper&&this.delegate(this.productViewTypeWrapper,s.action,"."+s.viewTypeClass,this.onPageViewTypeClick.bind(this)),"INFINITE_SCROLL"!==this.options.pagination.type&&"CLICK_N_SCROLL"!==this.options.pagination.type||this.setUpInfiniteScroll(),this.delegate(this.pageSizeWrapper,l.action,".".concat(l.pageSizeClass),this.onClickPageSize.bind(this)),!this.viewState.initialised){window.addEventListener("popstate",this.onLocationChange.bind(this),!1);var y=this.getQueryParams();Object.keys(y).length>0&&this.renderFromUrl(),this.viewState.initialised=!0}};function Pa(t){return Pa="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},Pa(t)}var Ua=function(t){return"object"===("undefined"==typeof Node?"undefined":Pa(Node))?t instanceof Node:t&&"object"===Pa(t)&&"number"==typeof t.nodeType&&"string"==typeof t.nodeName},Aa=function(t){return"object"===("undefined"==typeof HTMLElement?"undefined":Pa(HTMLElement))?t instanceof HTMLElement:t&&"object"===Pa(t)&&null!==t&&1===t.nodeType&&"string"==typeof t.nodeName},ja=function(t){return t instanceof NodeList},Ia={moduleName:"pagination",config:{enabled:{datatype:"boolean"},type:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["CLICK_N_SCROLL","FIXED_PAGINATION","INFINITE_SCROLL"]},el:{required:function(t){return t.enabled&&"INFINITE_SCROLL"!==t.type},datatype:"element"},template:{required:function(t){return t.enabled&&"INFINITE_SCROLL"!==t.type},datatype:"function"},pageClass:{datatype:"string"},selectedPageClass:{datatype:"string"},onPaginate:{datatype:"function"},pageLimit:{required:function(t){return t.enabled&&"FIXED_PAGINATION"===t.type},datatype:"number"},infiniteScrollTriggerEl:{required:function(t){return t.enabled&&"INFINITE_SCROLL"===t.type},datatype:"element"},heightDiffToTriggerNextPage:{required:function(t){return t.enabled&&"INFINITE_SCROLL"===t.type},datatype:"number"},action:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["click","change"]},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Oa={moduleName:"banner",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},openNewTab:{datatype:"boolean"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Ta={moduleName:"loader",config:{el:{required:!0,datatype:"element"},template:{required:function(t){return t.el},datatype:"function"}}},Ra={moduleName:"sorting",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},options:{required:function(t){return t.enabled},datatype:"array"},sortClass:{datatype:"string"},selectedSortClass:{datatype:"string"},template:{required:function(t){return t.enabled},datatype:"function"},action:{datatype:"string",allowedOptions:["click","change"]},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},ka={moduleName:"No results",config:{el:{required:!0,datatype:"element"},template:{required:function(t){return t.el},datatype:"function"}}},La={moduleName:"swatches",config:{enabled:{datatype:"boolean"},attributesMap:{required:function(t){return t.enabled},datatype:"object",customValidations:function(t){t.enabled&&0===Object.keys(t.attributesMap).length&&console.error("SDK Config error in swatches: attributesMap should not be an empty object")}},swatchClass:{datatype:"string"},template:{required:function(t){return t.enabled},datatype:"function"}}},xa={moduleName:"spellcheck",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},selectorClass:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Ma={moduleName:"products",el:{required:!0,datatype:"element"},productType:{required:!0,datatype:"string",allowedOptions:["SEARCH","CATEGORY"]},template:{required:!0,datatype:"function"},productAttributes:{required:!0,datatype:"array",customValidations:function(t){0===t.productAttributes.length&&console.error("SDK Config error in products: productAttributes should be an empty array")}},attributesMap:{required:!0,datatype:"object",customValidations:function(t){0===Object.keys(t.attributesMap).length&&console.error("SDK Config error in products: attributesMap should be an empty object")}},gridCount:{datatype:"number"},productItemClass:{datatype:"string"},onProductClick:{datatype:"function"},defaultImage:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}},Xa={moduleName:"page size",config:{enabled:{datatype:"boolean"},el:{required:!0,datatype:"element"},pageSize:{datatype:"number",customValidations:function(t){t.options.includes(t.pageSize)||console.error("SDK Config error in pagesize: pageSize should be among options")}},options:{required:function(t){return t.enabled},datatype:"array"},pageSizeClass:{datatype:"string"},selectedPageSizeClass:{datatype:"string"},action:{datatype:"string",allowedOptions:["click","change"]},template:{required:function(t){return t.enabled},datatype:"function"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Va={moduleName:"product view",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},defaultViewType:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["GRID","LIST"]},action:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["click","change"]},viewTypeClass:{datatype:"string"},selectedViewTypeClass:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},_a={moduleName:"breadcrumbs",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},selectorClass:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Ba={moduleName:"facets",config:{facetsEl:{required:!0,datatype:"element"},facetTemplate:{required:function(t){return t.facetsEl},datatype:"function"},facetItemTemplate:{required:function(t){return t.facetsEl},datatype:"function"},facetMultiSelect:{datatype:"boolean"},facetClass:{datatype:"string"},facetAction:{required:function(t){return t.facetsEl},datatype:"string",allowedOptions:["click","change"]},selectedFacetClass:{datatype:"string"},selectedFacetsEl:{datatype:"element"},selectedFacetTemplate:{datatype:"function"},selectedFacetItemTemplate:{datatype:"function"},selectedFacetConfig:{datatype:"object"},clearAllText:{datatype:"string"},rangeTemplate:{datatype:"function"},rangeWidgetConfig:{datatype:"object"},facetMultilevel:{datatype:"boolean"},facetMultilevelName:{required:function(t){return t.facetsEl&&t.facetMultilevel},datatype:"string"},multiLevelFacetSelectorClass:{datatype:"string"},multiLevelFacetTemplate:{required:function(t){return t.facetsEl&&t.facetMultilevel},datatype:"function"},facetDepth:{datatype:"number"},clearFacetsSelectorClass:{datatype:"string"},removeFacetsSelectorClass:{datatype:"string"},onFacetLoad:{datatype:"function"},applyMultipleFilters:{datatype:"boolean"},applyButtonText:{required:function(t){return t.facetsEl&&t.applyMultipleFilters},datatype:"string"},clearButtonText:{required:function(t){return t.facetsEl&&t.applyMultipleFilters},datatype:"string"},isCollapsible:{datatype:"boolean"},defaultOpen:{required:function(t){return t.facetsEl&&t.isCollapsible},datatype:"string",allowedOptions:["ALL","FIRST","NONE"]},isSearchable:{datatype:"boolean"},searchPlaceHolder:{required:function(t){return t.facetsEl&&t.isSearchable},datatype:"string"},enableViewMore:{datatype:"boolean"},viewMoreText:{required:function(t){return t.facetsEl&&t.enableViewMore},datatype:"array"},viewMoreLimit:{required:function(t){return t.facetsEl&&t.enableViewMore},datatype:"number"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Da={moduleName:"Others",config:{siteKey:{required:!0,datatype:"string"},apiKey:{required:!0,datatype:"string"},searchBoxEl:{required:!0,datatype:"element"},searchButtonEl:{datatype:"element"},unbxdAnalytics:{datatype:"boolean"},hashMode:{datatype:"boolean"},updateUrls:{datatype:"boolean"},actionBtnClass:{datatype:"string"},actionChangeClass:{datatype:"string"},allowExternalUrlParams:{datatype:"boolean"},extraParams:{datatype:"object"},defaultFilters:{datatype:"object"},searchEndPoint:{datatype:"string"},browseQueryParam:{datatype:"string"},searchQueryParam:{datatype:"string"}}};function za(t){return za="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},za(t)}var qa,Wa=function(){var t=this,e=this.options,a=e.banner,r=e.facet,n=e.breadcrumb,i=e.spellCheck,s=e.sort,o=e.pagination,c=e.loader,l=e.noResults,u=e.swatches,d=e.pagesize,p=e.products,h=e.productView,f=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=a.moduleName,n=void 0===r?"":r,i=a.config,s=void 0===i?{}:i;Object.keys(s).map((function(a){var r=s[a],i=r.datatype,o=r.required,c=void 0!==o&&o,l=r.allowedOptions,u=void 0===l?[]:l,d=r.customValidations,p=void 0===d?null:d;if("function"==typeof c&&(c=c(e)),za(e[a])!==i||"object"===i&&null===e[a])if("element"===i||"array"===i)if("element"===i){var h=!Ua(e[a])&&!Aa(e[a])&&!ja(e[a]);if(c&&(!e[a]||h)||!c&&e[a]&&h){if(e[a]===window)return null;t.onError(n,"'".concat(a,"' is not a valid DOM selector"))}}else"array"!==i||Array.isArray(e[a])||t.onError(n,"'".concat(a,"' should be of ").concat(i," datatype"));else t.onError(n,"'".concat(a,"' should be of ").concat(i," datatype"));c&&!e[a]&&"element"!==i&&t.onError(n,"'".concat(a,"' is required")),u.length&&!u.includes(e[a])&&t.onError(n,"Only ".concat(u.join(", ")," are allowed for '").concat(a,"'")),p&&p(e)}))};f(o,Ia),f(a,Oa),f(s,Ra),f(l,ka),f(u,La),f(i,xa),f(d,Xa),f(r,Ba),f(this.options,Da),f(c,Ta),f(l,ka),f(p,Ma),f(h,Va),f(n,_a)},Ha=function(){this.validateConfigs=Wa.bind(this),this.validateConfigs(),this.createLayout(),this.unxSelectors=wa,this.renderDidYouMean.bind(this),this.options.onEvent.bind(this),this.options.products.onProductClick.bind(this),this.reRender=Na.bind(this),this.bindEvents=Ea.bind(this),this.bindEvents();var t=this.getQueryParams(),e=Object.keys(t).length,a=this.options.productView,r=a.defaultViewType,n=a.enabled;if(e>0){var i=t.viewType;i&&(this.viewState.productViewType=i,this.options.extraParams.viewType=i,this.state.productViewType=i)}else this.options.extraParams.viewType=r;n&&this.renderProductViewTypeUI()},Qa=function(){var t=this;this.searchResultsWrapper=this.createtSearchWrapper(),this.bannerWrapper=this.createBannerWrapper(),this.breadcrumbWrapper=this.createBreadcrumbWrapper(),this.pageSizeWrapper=this.createPageSizeWrapper(),this.productViewTypeWrapper=this.createProductViewTypeWrapper(),this.paginationWrappers=[],this.facetWrappers=[],this.sortWrappers=[],this.selectedFacetWrappers=[],this.spellCheckWrappers=[];var e=function(){var e=t.createSelectedFacetWrapper();return t.selectedFacetWrappers.push(e),e},a=this.options,r=a.facet,n=a.breadcrumb,i=a.banner,s=a.sort,o=a.products,c=a.pagesize,l=a.pagination,u=a.productView,d=a.selectedFacets,p=r.facetsEl,h=this.options.spellCheck.el;if(h){var f=h;f.length||(f=[h]),f.forEach((function(e){var a;e.innerHTML="",e.appendChild((a=t.createSpellCheckWrapper(),t.spellCheckWrappers.push(a),a))}))}if(p){var g=p;p.length||(g=[p]),g.forEach((function(e){var a;e.innerHTML="",e.appendChild((a=t.createFacetWrapper(),t.facetWrappers.push(a),a))}))}var y=s.el;if(y){var v=y;y.length||(v=[y]),v.forEach((function(e){var a;e.innerHTML="",s.enabled&&e.appendChild((a=t.createSortWrapper(),t.sortWrappers.push(a),a))}))}if(r.selectedFacetsEl)console.log("selectedFacetsEl option is depricated from v2.0.2, please use selectedFacets option to configure selected facets elements and template"),r.selectedFacetsEl.innerHTML="",r.selectedFacetsEl.appendChild(e());else{var b=d.el;if(d.enabled&&b){var m=b;b.length||(m=[b]),m.forEach((function(t){t.innerHTML="",t.appendChild(e())}))}}if(n.el&&(n.el.innerHTML="",n.enabled&&n.el.appendChild(this.breadcrumbWrapper)),i.el&&(i.el.innerHTML="",i.enabled&&(i.template.bind(this),i.el.appendChild(this.bannerWrapper))),o.el){if(o.el.innerHTML="","INFINITE_SCROLL"===l.type||"CLICK_N_SCROLL"===l.type){var S=document.createElement("div");S.classList.add("UNX-pre-loader"),S.style.height=this.options.pagination.heightDiffToTriggerNextPage+"px",o.el.appendChild(S)}if(o.el.appendChild(this.searchResultsWrapper),"INFINITE_SCROLL"===l.type){var F=document.createElement("div");F.classList.add("UNX-post-loader"),F.style.height=this.options.pagination.heightDiffToTriggerNextPage+"px",o.el.appendChild(F)}}c.el&&(c.el.innerHTML="",c.enabled&&c.el.appendChild(this.pageSizeWrapper)),u.el&&(u.el.innerHTML="",u.el.appendChild(this.productViewTypeWrapper));var C=l.el;if(C){var w=C;C.length||(w=[C]),w.forEach((function(e){var a;e.innerHTML="",l.enabled&&e.appendChild((a=t.createPaginationWrapper(),t.paginationWrappers.push(a),a))}))}},Ga=function(){var t=this.options.products,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Ya=function(){var t=this.options.facet,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Ka=function(){var t=this.options.banner,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},$a=function(){var t=this.options.breadcrumb,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Ja=function(){var t=this.options.pagesize,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Za=function(){var t=this.options.sort,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},tr=function(){var t=this.options.selectedFacets,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},er=function(){var t=this.options.spellCheck,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},ar=function(){var t=this.options.pagination,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},rr=function(){var t=this.options.productView,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},nr=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},r=arguments.length>3&&void 0!==arguments[3]?arguments[3]:window,n=document.createElement(t),i=Object.keys(e);i.forEach((function(t){n.setAttribute(t,e[t])}));var s=Object.keys(a);return s.length>0&&s.forEach((function(t){n.addEventListener(t,a[t].bind(r))})),n},ir=function(t){var e=this.options.products,a=Object.assign({},e,t);this.options.products=a},sr=function(t){var e=this.options.facet,a=Object.assign({},e,t);this.options.facet=a},or=function(t){var e=this.options;this.setConfig(e,t),this.initialize()},cr=function(t){var e=this.options.onAction,a=t.target,r=a.dataset,n=this.cssList,i=n.openFacet,s=n.closeFacet,o=n.openBtn,c=n.closeBtn,l=n.viewMore,u=n.viewLess,d=this.options.facet,p=d.viewMoreText,h=d.textFacetWrapper;if(r){var f=r.facetAction,g=r.facetName,y=r.action,v=(r.id,this.viewState.facetElementMap),b=a.closest(".".concat(v[g]));if("facetOpen"===f&&(this.viewState.expandedFacets[g]=!0,a.classList.add(o),a.classList.remove(c),a.setAttribute("data-facet-action","facetClose"),b.classList.remove(s),b.classList.add(i)),"facetClose"===f&&(this.viewState.expandedFacets[g]=!1,a.classList.remove(o),a.classList.add(c),a.setAttribute("data-facet-action","facetOpen"),b.classList.remove(i),b.classList.add(s)),"viewMore"===y){a.setAttribute("data-action","viewLess"),a.innerHTML=p[1];var m=b.querySelector(".".concat(h));m.classList.remove(l),m.classList.add(u)}if("viewLess"===y){a.setAttribute("data-action","viewMore"),a.innerHTML=p[0];var S=b.querySelector(".".concat(h));S.classList.remove(u),S.classList.add(l)}}e(t,this)},lr=function(t){var e=this.options.onAction,a=t.target.dataset;if(a){var r=a.facetAction,n=a.facetName;"searchFacets"===r&&this.setSearchFacetsText(n,t.target.value)}e(t,this)},ur=function(){this.resetAll(),this.options.productType="CATEGORY",this.options.products.productType="CATEGORY",this.getCallbackActions(this,"categoryPage"),this.getResults()},dr=function(){this.resetAll(),this.options.productType="BROWSE",this.options.products.productType="BROWSE",this.getCallbackActions(this,"categoryPage"),this.getResults()},pr=function(){this.viewState.lastDidYouMean=null,this.viewState.searchFacetsText={},this.viewState.lastDidYouMean=null,this.viewState.expandedFacets={}},hr=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"unx_";return t+Math.random().toString(36).substr(2,9)},fr=function(){},gr=function(t){var e=t.prototype;e.renderBannerUI=Ae,e.setSearchWidget=ir,e.setFacetWidget=sr,e.updateConfig=or,e.createLayout=Qa,e.initialize=Ha,e.extraActions=cr,e.extraActionsChange=lr,e.getCategoryPage=ur,e.getBrowsePage=dr,e.resetViewState=pr,e.generateRid=hr,e.createElement=nr,e.createFacetsLayout=fr,function(t){t=Object.assign(t,{createtSearchWrapper:Ga,createFacetWrapper:Ya,createBannerWrapper:Ka,createBreadcrumbWrapper:$a,createPageSizeWrapper:Ja,createSortWrapper:Za,createSelectedFacetWrapper:tr,createSpellCheckWrapper:er,createPaginationWrapper:ar,createProductViewTypeWrapper:rr})}(e),function(t){t=Object.assign(t,{setInputValue:la})}(e),function(t){t=Object.assign(t,{onPageViewTypeClick:Ke,renderProductViewTypeUI:Ge})}(e),function(t){t=Object.assign(t,{findChangedFacet:je,isSelectedRange:Le,clearAllFacets:xe,isExpandedFacet:Me,setSearchFacetsText:Xe,getSearchFacetsText:Ve,reRenderTextFacet:_e,renderTextFacet:Oe,renderRangeFacet:ke,renderMultiLevelFacet:Re,renderFacets:Ie,renderSelectedFacets:Te,checkFacets:De,setRangeSlider:Be})}(e),function(t){t=Object.assign(t,{renderProducts:ze})}(e),function(t){t=Object.assign(t,{renderSearch:qe,onProductItemClick:We,renderNoResults:He,mapProductAttrs:Qe})}(e),function(t){t=Object.assign(t,{renderPagination:$e,renderNewResults:aa,paginationAction:ra,setUpInfiniteScroll:ta,getProductsPerPage:na,getCurrentUrlPage:ia,replaceParamInUrl:sa})}(e),function(t){t=Object.assign(t,{sortAction:oa,renderSort:ca})}(e),function(t){t=Object.assign(t,{renderDidYouMean:ua,setSuggestion:da})}(e),function(t){t=Object.assign(t,{onBreadCrumbClick:pa,renderBreadCrumbs:ha})}(e),function(t){t=Object.assign(t,{renderSwatchBtns:fa})}(e),function(t){t=Object.assign(t,{pageSizeUi:Ee,onClickPageSize:ga,renderPageSize:ya})}(e),function(t){t=Object.assign(t,{trackSearch:va,getCallbackActions:Ca,trackProductClick:ba,trackImpression:ma,trackFacetClick:Sa,trackCategoryPageLoad:Fa})}(e)};function yr(t){return yr="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},yr(t)}function vr(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==yr(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==yr(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===yr(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var br=(vr(qa={beforeApiCall:"BEFORE_API_CALL",afterApiCall:"AFTER_API_CALL",beforeRender:"BEFORE_RENDER",beforeNoResultRender:"BEFORE_NO_RESULTS_RENDER",afterNoResultRender:"AFTER_NO_RESULTS_RENDER",afterRender:"AFTER_RENDER",deleteFacet:"DELETE_FACET",facetClick:"FACETS_CLICK",deleteFacetValue:"DELETE_FACET_VALUE"},"deleteFacet","DELETE_FACET"),vr(qa,"clearSort","CLEAR_SORT"),vr(qa,"changeSort","CHANGE_SORT"),vr(qa,"pageNext","PAGE_NEXT"),vr(qa,"pagePrev","PAGE_PREV"),vr(qa,"changeInput","CHANGE_INPUT"),vr(qa,"setCategoryFilter","SET_CATEGORY_FILTER"),vr(qa,"deleteCategoryFilter","DELETE_CATEGORY_FILTER"),vr(qa,"pageSizeChange","PAGESIZE_CHANGE"),qa),mr={clearCategoryFilter:"clearCategoryFilter",setCategoryFilter:"setCategoryFilter",changeSwatch:"changeSwatch",clearPriceRange:"clearPriceRange",applyRange:"applyRange",prev:"prev",next:"next",clearSort:"clearSort",changeSort:"changeSort",deleteFacet:"deleteFacet",deleteFacetValue:"deleteFacetValue",changeFacet:"changeFacet"},Sr={openFacet:"UNX-accordian-open",closeFacet:"UNX-accordian-close",openBtn:"UNX-facet-open",closeBtn:"UNX-facet-close",viewMore:"UNX-view-more",viewLess:"UNX-view-less"},Fr={UNX_gridBtn:"UNX_gridBtn",UNX_listBtn:"UNX_listBtn",UNX_loadMore:"UNX_loadMore",UNX_variant:"UNX_variant",UNX_spellCheck:"UNX_spellCheck",UNX_pagesize:"UNX_pagesize",UNX_pageNumber:"UNX_pageNumber",UNX_unbxdSorter:"UNX_unbxdSorter",UNX_uFilter:"UNX_uFilter",UNX_rangeslider:"UNX_rangeslider",UNX_facetLevel:"UNX_facetLevel",UNX_searchFacets:"UNX_searchFacets",UNX_swatchClrBtn:"UNX_swatchClrBtn"},Cr=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};this.options=Ye(!0,{},t,e);var a=e.facet,r=(e.pagesize,e.swatches),n=e.products,i=e.productView;a&&(this.options.facetMultilevel=a.facetMultilevel?a.facetMultilevel:t.facet.facetMultilevel,this.options.facetMultiSelect="boolean"==typeof a.facetMultiSelect?a.facetMultiSelect:t.facet.facetMultiSelect,this.options.facetDepth=a.facetDepth?a.facetDepth:t.facet.facetDepth,this.options.applyMultipleFilters="boolean"==typeof a.applyMultipleFilters?a.applyMultipleFilters:t.facet.applyMultipleFilters),this.setPageSize(this.state.pageSize||this.options.pagesize.pageSize),n?(this.options.productAttributes=n.productAttributes?n.productAttributes:t.products.productAttributes,this.options.productType=n.productType?n.productType:t.products.productType):(this.options.productType=t.products.productType,this.options.productAttributes=t.products.productAttributes),r&&(this.options.showSwatches=r&&r.enabled?r.enabled:t.swatches.enabled),i&&(this.viewState.productViewType=i.defaultViewType?i.defaultViewType:t.productView.defaultViewType,this.options.productView.productViewType=this.viewState.productViewType,this.state.productViewType=this.options.productView.productViewType)};function wr(t){return wr="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},wr(t)}function Nr(t,e){for(var a=0;a<e.length;a++){var r=e[a];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,(n=r.key,i=void 0,i=function(t,e){if("object"!==wr(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==wr(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(n,"string"),"symbol"===wr(i)?i:String(i)),r)}var n,i}function Er(t,e){return Er=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(t,e){return t.__proto__=e,t},Er(t,e)}function Pr(t){var e=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(t){return!1}}();return function(){var a,r=jr(t);if(e){var n=jr(this).constructor;a=Reflect.construct(r,arguments,n)}else a=r.apply(this,arguments);return Ur(this,a)}}function Ur(t,e){if(e&&("object"===wr(e)||"function"==typeof e))return e;if(void 0!==e)throw new TypeError("Derived constructors may only return object or undefined");return Ar(t)}function Ar(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}function jr(t){return jr=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(t){return t.__proto__||Object.getPrototypeOf(t)},jr(t)}var Ir=function(t){!function(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),Object.defineProperty(t,"prototype",{writable:!1}),e&&Er(t,e)}(i,t);var e,a,r,n=Pr(i);function i(t){var e;return function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,i),(e=n.call(this,t)).viewState={productViewType:Ue.productView.defaultViewType,isInfiniteStarted:!1,lastAction:"",selectedRange:{},expandedFacets:{},searchFacetsText:{},noResultLoaded:!1,lastDidYouMean:null,loadedFromSuggestion:!1,setFromSuggest:!1,facetElementMap:{},initialised:!1},e.setConfig=Cr.bind(Ar(e)),e.setConfig(Ue,t),e.events=br,e.actions=mr,e.cssList=Sr,e.testIds=Fr,e.updateConfig(),e.options.onBackFromRedirect(e.options.hashMode),e.options.onEvent(Ar(e),"initialised"),e}return e=i,(a=[{key:"callBack",value:function(t,e){this.getCallbackActions(t,e);var a=this.options,r=a.onEvent,n=a.loader,i=a.facet,s=a.productView,o=this.events,c=o.beforeApiCall,l=o.afterApiCall,u=(this.getQueryParams()||{}).viewType;"viewType"===this.viewState.lastAction&&(u=this.viewState.productViewType,this.options.extraParams.viewType=u,this.viewState.lastAction=""),"pagination"!=this.viewState.lastAction&&"prev_page_loaded"!=this.viewState.lastAction&&"next_page_loaded"!=this.viewState.lastAction&&(this.viewState.isInfiniteStarted=!1),u||(u=this.viewState.productViewType||s.defaultViewType,this.viewState.productViewType=u,this.options.extraParams.viewType=u),this.viewState.productViewType!==u&&(this.viewState.productViewType=u,this.options.extraParams.viewType=u),e===c&&(r(this,c),n&&n.el&&(n.el.innerHTML=n.template(this))),e===l&&(r(this,l),this.state.products.length>0&&(this.viewState.noResultLoaded=!1),this.reRender()),"added_facet"!==e&&"deleted_facet"!==e||!i.applyMultipleFilters||(r(this,"added_facet"),this.renderFacets()),"FETCH_ERROR"===e&&n&&n.el&&(n.el.innerHTML="")}},{key:"delegate",value:function(t,e,a,r){return ge(t,e,a,r)}}])&&Nr(e.prototype,a),r&&Nr(e,r),Object.defineProperty(e,"prototype",{writable:!1}),i}(fe);gr(Ir);e.default=Ir}}).default}));
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["UnbxdSearch"] = factory();
+	else
+		root["UnbxdSearch"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 15:
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){if(true)module.exports=e();else { var a, r; }}("undefined"!=typeof self?self:this,(function(){return function(t){var e={};function r(a){if(e[a])return e[a].exports;var n=e[a]={i:a,l:!1,exports:{}};return t[a].call(n.exports,n,n.exports,r),n.l=!0,n.exports}return r.m=t,r.c=e,r.d=function(t,e,a){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:a})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var a=Object.create(null);if(r.r(a),Object.defineProperty(a,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)r.d(a,n,function(e){return t[e]}.bind(null,n));return a},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=0)}([function(t,e,r){"use strict";r.r(e);var a={siteKey:"api key",apiKey:"site key",isFlag:!0,searchEndPoint:"https://search.unbxd.io/",productType:"SEARCH",searchQueryParam:"q",browseQueryParam:"p",searchPath:"",productAttributes:["title"],defaultFilters:null,spellCheck:{enabled:!1},pageSize:5,startPageNo:0,facetMultiSelect:!0,updateUrls:!0,variants:void 0,extraParams:{},facetMultilevel:!0,facetDepth:6,showSwatches:!0,allowExternalUrlParams:!1,swatchMap:{},onEvent:function(){},getCategoryId:function(){return encodeURIComponent(window.UnbxdAnalyticsConf.page)||decodeURIComponent(location.pathname.split("category-path")[1].split("/").pop())},setCategoryId:function(t,e){var r,a=t.level,n=(t.parent,t.name),i=(t.action,[]),s=Number(a),o=e.getBreadCrumbsList();o.forEach((function(t,e){var r=t.filterField,a=t.value;r,s>e&&i.push(a)})),s>o.length&&i.push(n),r=i.join(">"),window.UnbxdAnalyticsConf&&(window.UnbxdAnalyticsConf.page=r)},applyMultipleFilters:!1,hashMode:!1,pagination:{type:"INFINITE_SCROLL"},onQueryRedirect:function(t,e,r){if(e){var a=e.value;return"url"===e.type&&(history.state&&history.state.replace&&history.replaceState(null,"",r),location.href=a),!1}},onBackFromRedirect:function(t){new URLSearchParams(t?location.hash.substring(1):location.search).get("redirected")&&history.go(-1)},onNoUnbxdKeyRouting:function(){history.go()},setRoutingStrategies:function(t,e,r,a,n){t!==e&&("CATEGORY"===r?a?history.pushState(null,"",e):history.replaceState(null,"",e):history.state&&history.state.replace||n?history.replaceState(null,"",e):history.pushState(null,"",e))}},n={encodeQueryParam:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return"string"!=typeof t?t:(t=(t=t.trim()).replace(/\%26/gim,"&"),t=(t=(t=encodeURIComponent(t)).replace(/\%20/gim,"+")).replace(/\++/gim,"+"))},decodeQueryParam:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return"string"!=typeof t?t:(t=(t=t.replace(/\+/gim," ")).replace(/\s{2,}/gim," "),(t=decodeURIComponent(t)).trim())}},i=n;function s(t){return s="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},s(t)}function o(t){return o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o(t)}var c={extraParamUrlString:function(){var t=this.options.extraParams,e="";return Object.keys(t).forEach((function(r){e+="&"+r+"="+t[r]})),e},renderFromUrl:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,e=!1,r=this.getQueryParams(t),a=this.options,n=a.pagination,o=a.searchQueryParam,c=a.browseQueryParam,u=a.productType,l=o;if("SEARCH"!==u&&(r[l=c]=this.getCategoryId()),"object"===s(r)&&r[l]){var f=r.q,h=r.filter,p=r.sort,g=r.start;e=!0,this.state.userInput!==f&&(this.state.userInput=i.decodeQueryParam(f));var d=this.getFilterFromParams(h);this.state.rangeFacet=d.rangeFacet,this.state.selectedFacets=d.selectedFilters,this.state.selectedSort=p?decodeURIComponent(p):"",this.state.startPageNo=g||0,this.state.isBack=!1,"CLICK_N_SCROLL"===n.type&&(this.state.startPageNo=0),this.state.pageSize=r.rows?Number(r.rows):this.options.pageSize,this.state.categoryFilter=this.getCategoryFilterFromParams(r),e&&this.getResults()}},getQueryParams:function(t){var e=this.options,r=(e.searchQueryParam,e.hashMode,(this.options.hashMode?location.hash:location.search).substr(1));t&&(r=t);var a=r.split("&"),n=[];a.forEach((function(t,e){t.indexOf("=")>0?n.push(t):n[e-1]=n[e-1]+"&"+t}));for(var i={},s=0;s<n.length;s++){var o=n[s].split("=");void 0===i[o[0]]?i[o[0]]=o[1]:"string"==typeof i[o[0]]?(i[o[0]]=[i[o[0]]],i[o[0]].push(o[1])):i[o[0]].push(o[1])}return i},urlFlattenFacets:function(){var t="",e=this.state.selectedFacets,r=this.options.defaultFilters||{},a=Object.keys(e);return a.forEach((function(a,n){var i=e[a];i.length&&(t+="&filter="),i.forEach((function(e,n){var i=e.name,s=e.dataId;void 0!==r[a]&&r[a]===i||(i="".concat("%22").concat(s).concat("%22"),t+=0===n?"".concat(a,":").concat(i):" OR ".concat(a,":").concat(i))}))})),t},getDefaultFiltersStr:function(){var t="",e=this.options.defaultFilters;null!==e&&Object.keys(e).forEach((function(r){t+="&filter="+r+":"+JSON.stringify(e[r])}));return t},getShowVariantsStr:function(){var t=this.options.variants;return t&&"boolean"==typeof t.enabled?"&variants=".concat(t.enabled):""},getVariantAttributesStr:function(){var t=this.options.variants;if(t){var e=t.enabled,r=t.attributes;return r&&e?"&variants.fields=".concat(r.join(",")):""}return""},getVariantsCountStr:function(){var t=this.options.variants;if(t){var e=t.enabled,r=t.count;return r&&e?"&variants.count=".concat(r):""}return""},getVariantsGroupByStr:function(){var t=this.options.variants;if(t){var e=t.enabled,r=t.groupBy;return r&&e?"&variants.groupBy=".concat(r):""}return""},getProductAttributesStr:function(){return this.options.productAttributes?"&fields="+this.options.productAttributes.join(","):""},getPageSizeStr:function(){return"&rows=".concat(this.state.pageSize)},getPageStartStr:function(){return"&start="+this.state.startPageNo},getNewUrlState:function(t){var e=this.options,r=e.productType,a=e.searchQueryParam,n=e.browseQueryParam,s=this.state.userInput,o="",c=a;if("BROWSE"===r){o="",s=this.getCategoryId();c=n,this.url=this.getBaseUrl()+"/category?"+c+"=".concat(s)}if("CATEGORY"===r){o="&pagetype=boolean",s=this.getCategoryId();c=n,this.url=this.getBaseUrl()+"/category?"+c+"=".concat(s)}if("SEARCH"===r){this.url=this.getBaseUrl()+"/search?"+c+"="+i.encodeQueryParam(s)}var u=this.urlFlattenFacets(),l=this.getShowVariantsStr(),f=this.getVariantAttributesStr(),h=this.getVariantsCountStr(),p=this.getVariantsGroupByStr(),g=this.getProductAttributesStr()+this.getDefaultFiltersStr(),d=this.getSortUrlString(),y=this.getSpellCheckUrlString(),v=this.getRangeFilterStr(),m=this.categoryFilterUrlStr(),b=this.getUcParamUrlString(),S=this.options.facetMultiSelect?"&facet.multiselect=true":"&facet.multiselect=false",F=this.url+m+S+u+l+f+h+p+g+d+y+v+o+this.getPageSizeStr()+this.getPageStartStr()+this.extraParamUrlString()+"&facet.version=V2"+(b||""),P=this.url+m+u+d+v+this.getPageSizeStr()+this.getPageStartStr();return this.state.currentApiUrl=F,this.state.currentWebUrl=P,t?F:P},getRangeFilterStr:function(){var t=this.state.rangeFacet,e=Object.keys(t),r="";return e.forEach((function(e){var a=t[e];Array.isArray(a)?a.length>0&&(r+="&filter=".concat(e,":").concat(a.join(" OR ".concat(e,":")))):r+="&filter=".concat(e,":").concat(a)})),r},categoryFilterUrlStr:function(){var t=this,e=this.state.categoryFilter,r="",a=Object.keys(e),n="%22";return a.forEach((function(a,i){var s=t.getAFacetByName(a)[0],o=t.getBreadCrumbsList(a),c=null;if(s){var u=s.filterField,l=s.values;u&&s;var f=e[a].map((function(e,r){if(c=l.find((function(r){return t.cleanFacetValue(encodeURIComponent(r.name))===t.cleanFacetValue(e)})),o){var a=o.find((function(t){return t.value===e}));a&&(c={name:a.value})}return c&&t.encodeCategoryFacetValue(c.name).split(n).join(""),r>0?">".concat(t.encodeCategoryFacetValue(e).split(n).join("")):t.encodeCategoryFacetValue(e).split(n).join("")}));r+="categoryPath"===u?"&category-filter=".concat(f.join("")):"&filter=".concat(u,':"').concat(f.join(""),'"')}else if(e&&e.categoryPath){var h="";e.categoryPath.forEach((function(e,r){e.split(">").forEach((function(e,r){var a=t.encodeCategoryFacetValue(e).split("%22").join("");""!==h?h+=">".concat(a):h=a}))})),r+="&category-filter=".concat(h)}})),r},getSortUrlString:function(){var t=this.getSelectedSort();return t?"&sort="+encodeURI(t):""},getSpellCheckUrlString:function(){return this.options.spellCheck.enabled?"&spellcheck="+!0:""},getBaseUrl:function(){var t=this.options,e=t.searchEndPoint,r=t.siteKey;return e+t.apiKey+"/"+r},getStateFromUrl:function(){var t=this.getQueryParams(),e={},r=this.options.pagesize.pageSize;if("object"===o(t)){var a=t.q,n=t.filter,i=t.sort,s=t.start,c=t.rows,u=void 0===c?r:c;this.state.userInput!==a&&(e.userInput=a);var l=this.getFilterFromParams(n);e.rangeFacet=l.rangeFacet,e.selectedFacets=l.selectedFilters,e.selectedSort=i||"",e.startPageNo=s||0,e.pageSize=Number(u),e.categoryFilter=this.getCategoryFilterFromParams(t)}return e},getUcParamUrlString:function(){var t=this.getQueryParams();if(t.uc_param)return"&uc_param="+t.uc_param}},u=function(t){this.state.startPageNo=t},l=function(){var t=this.getSearchResults();if(!t)return null;var e=t.numberOfProducts,r=t.start,a=t.products,n=this.state.pageSize,i=0;e>0&&(i=e%n==0?e/n:Math.floor(e/n)+1);var s=Math.floor(r/n)+1,o=!(r+n>=e||r>=e),c=!(r-n<0||r<=0);return{numberOfProducts:e,start:r,productsLn:a.length,rows:n,noOfPages:i,currentPage:s||0,isNext:o,isPrev:c}},f=function(t){"number"==typeof t&&t===parseInt(t)&&(this.state.pageSize=t,this.state.startPageNo=0)},h=function(t){Array.isArray(t)?this.options.productAttributes=t:this.options.productAttributes="*"},p=function(t){var e=this.options.variants,r=void 0===e?{}:e;"boolean"==typeof t&&(r.enabled=t),this.options.variants=r},g=function(t){var e=this.options.variants,r=void 0===e?{}:e;"number"==typeof t&&(r.count=t),this.options.variants=r},d=function(t){var e=this.options.variants,r=void 0===e?{}:e;Array.isArray(t)&&(r.attributes=t),this.options.variants=r},y=function(t){var e=this.options.variants,r=void 0===e?{}:e;"string"==typeof t&&t.length>0&&(r.groupBy=t),this.options.variants=r},v=function(){return this.state.responseObj&&this.state.responseObj.searchMetaData||null},m=function(){var t=this.getResponseObj();return t&&t.response||null},b=function(){var t=this.getSearchMeta();return t&&t.queryParams||null},S=function(){if(this.state.responseObj){var t=this.state.responseObj.searchMetaData.queryParams;return t.q||t.p}return""},F={changeInput:"CHANGE_INPUT",fetchError:"FETCH_ERROR",afterApiCall:"AFTER_API_CALL",beforeApiCall:"BEFORE_API_CALL"};function P(t){return function(t){if(Array.isArray(t))return O(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return O(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return O(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function O(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,a=new Array(e);r<e;r++)a[r]=t[r];return a}function j(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(t);e&&(a=a.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,a)}return r}function A(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?j(Object(r),!0).forEach((function(e){C(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):j(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function C(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}var I=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"",a=this.state,n=a.userInput,s=a.isHistory,o=a.isBack,c=""===e?n:e;if(this.state.userInput=c,this.state.currentApiUrl=this.getNewUrlState(!0),this.state.isLoading)return!1;this.state.isLoading=!0;var u=this,l=this.options,f=l.productType,h=l.hashMode,p=l.updateUrls,g=l.variants;if(!h&&p&&!s&&!o){this.state.isBack=!1;var d=this.state.currentWebUrl.split("".concat(f.toLocaleLowerCase(),"?"))[1];if(decodeURIComponent(location.search)!=="?".concat(i.decodeQueryParam(d)))return this.setUrl(!0),!1}this.options.spellCheck;this.callBack(this,F.beforeApiCall);var y=fetch(this.state.currentApiUrl),v=function(e){t.state.isLoading=!1,t.state.userInput=c,e&&t.callBack(u,e)};y.then((function(e){return t.state.requestId=e&&e.headers?e.headers.get("X-Request-Id"):"",e.json()})).then((function(e){if(t.state.isLoading=!1,t.state.userInput=c,e&&!e.error){g&&g.enabled&&(e=t.processVariantMap(e)),t.state.responseObj=e;var a=t.getDidYouMeanFromResponse();a&&(t.state.didYouMean=a,t.state.noResultQuery=t.state.userInput);var n=e,i=n.facets,l=n.response;if(i){var f=t.getFacets(),h=t.modifyFacetsList(f);e.facets=A(A({},i),{},{text:{list:h}})}if(l){var d=l.products,y=t.options.pagination,m=void 0===y?{}:y;"CLICK_N_SCROLL"===m.type?t.state.products=t.state.products.concat(d):"INFINITE_SCROLL"===m.type?t.state.products="prev"===r?[].concat(P(d),P(t.state.products)):[].concat(P(t.state.products),P(d)):"FIXED_SCROLL"===m.type&&(t.state.products=d)}t.state.responseObj=e,t.setSort(),p&&s&&!o&&(t.state.isBack=!1,t.setUrl(!1),t.updateSelectedFacetsCount()),t.callBack(u,F.afterApiCall)}else v(F.fetchError)})).catch((function(t){v(F.fetchError)}))},w=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=this,r=e.options.variants.mapping,a=void 0===r?{}:r,n=a,i=Object.keys(n);if(t.response&&t.response.products){var s=t.response.products.map((function(t){var e=t,r=e.variants,a=void 0===r?[]:r,s=e.relevantDocument,o=t;"variant"===s&&a.length>0&&(t=a[0],i.forEach((function(e){var r=n[e];o[e]=t[r]})));var c=[];return a.forEach((function(t,e){var r=t;i.forEach((function(e){var a=n[e];a&&(r[e]=t[a])})),c.push(r)})),o.variants=c,o}));t.response.products=s}return t},R=function(t,e){return this.state.products.find((function(r){return r[t]===e}))},U=function(){var t=this,e=this.getSearchQueryParams(),r=e.q,a=e.filter;this.state.userInput=r;var n=[],i="__",s=":";if(a){if(Array.isArray(a))a.forEach((function(t,e){var r=t.replaceAll(s,i);r=encodeURIComponent(r).replaceAll(i,s),n.push(r)}));else{var o=a.replaceAll(s,i);o=encodeURIComponent(o).replaceAll(i,s),n=[o]}e.filter=n}var c=this.getFilterFromParams(n);this.state.rangeFacet=c.rangeFacet;var u=c.selectedFilters,l=null;u?Object.keys(u).forEach((function(e){if(t.isCategoryFacet(e)){l=e;var r=u[e][0].dataId;t.state.categoryFilter[l]=r.split(">"),t.state.selectedFacets[l]&&delete t.state.selectedFacets[l]}else t.state.selectedFacets[e]=u[e]})):this.state.selectedFacets={};0===Object.keys(this.state.categoryFilter).length&&(this.state.categoryFilter=this.getCategoryFilterFromParams(e)),this.state.breadcrumbs=this.getBreadCrumbs(l)};var E=function(t){var e=t.siteName,r=t.siteKey,a=t.searchEndPoint,n=t.searchQueryParam,i=t.browseQueryParam,s=t.defaultFilters,o=t.spellCheck,c=t.pageSize,u=t.startPageNo,l=t.facetDepth,f=t.facetMultilevel,h=t.facetMultiSelect,p=t.updateUrls,g=t.extraParams,d=t.onEvent,y=t.getCategoryId,v=t.applyMultipleFilters,m=t.hashMode;this.state.pageSize=c||this.state.pageSize,this.state.startPageNo=u||this.state.startPageNo,this.options.siteName=e||this.options.siteName,this.options.siteKey=r||this.options.siteKey,this.options.searchEndPoint=a||this.options.searchEndPoint,this.options.searchQueryParam=n||this.options.searchQueryParam,this.options.browseQueryParam=i||this.options.browseQueryParam,this.options.defaultFilters=s||this.options.defaultFilters,this.options.spellCheck=o||this.options.spellCheck,this.options.pageSize=c||this.options.pageSize,this.options.startPageNo=u||this.options.startPageNo,this.options.applyMultipleFilters=v||this.options.applyMultipleFilters,this.options.facetDepth=l||this.options.facetDepth,this.options.facetMultilevel=f||this.options.facetMultilevel,this.options.facetMultiSelect=h||this.options.facetMultiSelect,this.options.updateUrls=p||this.options.updateUrls,this.options.extraParams=g||this.options.extraParams,this.options.onEvent=d||this.options.onEvent,this.options.getCategoryId=y||this.options.getCategoryId,this.options.hashMode=m||this.options.hashMode},k=function(t){var e=this.state,r=e.urlState,a=e.isHistory,n=(e.unbxdKeys,this.options.hashMode),i=this.checkIfUnbxdKey();if(n)if(decodeURIComponent(location.hash)!=="#".concat(decodeURIComponent(r))){(history.state||{}).path;if(this.state.isBack=!0,!i)return void this.options.onNoUnbxdKeyRouting();this.renderFromUrl(t.state)}else this.callBack(this,"lastBack");else if(a){(history.state||{}).path;if(this.state.isBack=!0,!i)return void this.options.onNoUnbxdKeyRouting();this.renderFromUrl(t.state)}else this.callBack(this,"lastBack")},x=function(){return this.state.requestId},N=function(t,e){var r={};return Object.keys(e).forEach((function(a){var n=e[a];r[a]=t[n]})),r},B=function(){var t=this.getResponseObj();if(t&&t.facets&&t.facets.multilevel){var e=t.facets.multilevel.bucket||t.facets.multilevel.list||[];return this.modifyFacetsList(e)}return[]},M=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],e=this,r={},a={};return"string"==typeof t&&(t=Array(t)),t.forEach((function(t,n){t.split("%20OR%20").forEach((function(t,n){var i=t.split(/%3A(.+)/);if(3===i.length){var s=decodeURIComponent(i[1]);if(s=s.replace(/(^")|("$)/g,"").replace(/\"{2,}/g,'"').replace(/\\\"/g,'"').replace(/(^\[)|(\]$)/g,""),i[1].indexOf("TO")>0){var o=s.split(" TO "),c=i[0],u="[".concat(Number(o[0])," TO ").concat(Number(o[1]),"]");a[c]?a[c].push(u):a[c]=[u]}else{var l=i[0],f=i[1],h=e.cleanEncodedFacetValue(f),p=e.decodeFacetValue(h),g=e.getFacetByValue(l,p);if(g.actualFound){var d=g.facetName,y=g.selectedvalue;r[d]?r[d].push(y):r[d]=Array(y)}else{var v=g.facetName,m={name:g.selectedvalue.name,dataId:h,count:0};r[v]?r[v].push(m):r[v]=Array(m)}}}}))})),{selectedFilters:r,rangeFacet:a}},Q=function(t){var e=this,r=t.filter,a=[];if(t["category-filter"]&&(a=(r=t["category-filter"]).split(">")),!r)return{};Array.isArray(r)||(r=[r]),r=this.getFilterFromParams(r).selectedFilters;var n={};if(Object.keys(r).forEach((function(t){if(e.isCategoryFacet(t)){var a=r[t][0].dataId;n[t]=a.split(">")}})),a.length>0&&a){var i=[];a.forEach((function(t){decodeURIComponent(t).split(">").forEach((function(t){i.push(decodeURIComponent(t))}))})),n.categoryPath=i}return n},L=function(){var t=this.getResponseObj();if(t){var e=t.facets;return e&&e.range&&e.range.list?e.range.list:[]}return[]},V=function(){var t=this.getResponseObj();if(t){var e=t.facets;return e&&e.text&&e.text.list?e.text.list:[]}return[]},T=function(){return this.state.selectedFacets},D=function(t){return this.getFacets().find((function(e){return e.facetName===t?e:null}))},_=function(t){var e=this.state.selectedFacets,r=t.selectedFacetName,a="",n="",i=0,s=this.getSelectedFacetValue(t);s&&(a=s.name,n=s.dataId,i=s.count);if(this.isFacetAlreadyAdded(r,n))return!1;e[r]?e[r].push({name:a,dataId:n,count:i}):e[r]=[{name:a,dataId:n,count:i}],this.callBack(self,"added_facet"),this.options.applyMultipleFilters||(this.setPageStart(0),this.getResults.bind(this)())},z=function(t){var e=this.state.selectedFacets;this.clearFacets(!1),Object.keys(t).map((function(r){e[r]?delete e[r]:e[r]=t[r]})),this.setPageStart(0),this.getResults.bind(this)()},K=function(){var t=!(arguments.length>0&&void 0!==arguments[0])||arguments[0],e=this.state.selectedFacets;Object.keys(e).map((function(t){return delete e[t]})),t&&(this.setPageStart(0),this.getResults.bind(this)())};function q(t){return function(t){if(Array.isArray(t))return H(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return H(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return H(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function H(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,a=new Array(e);r<e;r++)a[r]=t[r];return a}var Y=function(t){var e=this.state.selectedFacets;Object.keys(t).map((function(r){var a=e[r]||[];e[r]=[].concat(q(a),q(t[r]))}))},G=function(t){return this.state.selectedFacets[t]},$=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},r=e.parent,a=void 0===r?null:r,n=e.level,i=void 0===n?null:n;e.name;if(i)if(this.state.categoryFilter[a])0===(i=Number(i)-1)?delete this.state.categoryFilter[a]:this.state.categoryFilter[a].splice(i,6);else{var s=this.getBreadCrumbsList(a);if(i>1){this.state.categoryFilter[a]=[],s.forEach((function(e,r){if(r<i-1){var n=e.value;t.state.categoryFilter[a].push(n)}}))}}},W=function(t,e){var r=this.getSelectedFacets();if(e){var a=r[t];this.state.selectedFacets[t]=a.filter((function(t){return t.dataId!=e}))}else delete this.state.selectedFacets[t];return this.state.selectedFacets};function X(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(t);e&&(a=a.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,a)}return r}function J(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?X(Object(r),!0).forEach((function(e){Z(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):X(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function Z(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}var tt=function(t,e){var r=this.getSelectedFacet(t)||{facetName:t},a=!1,n=r.values,i=void 0===n?[]:n,s={name:e};if(i.length>0)for(var o=0;o<i.length;o++){var c=i[o];if(c.name===e){a=!0,s=c;break}}return a?J(J({},r),{},{selectedvalue:s,actualFound:a}):{facetName:t,actualFound:a,selectedvalue:{name:e,dataId:e,count:0}}},et=function(t){var e=t.selectedFacetId;return t.facetData.values.find((function(t){return t.dataId===e}))},rt=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=t.parent,r=void 0===e?null:e,a=t.level,n=void 0===a?null:a,i=t.name,s=void 0===i?null:i,o=this.getCategoryFacetByValue(s),c=this.getBreadCrumbsList(r);if((n=Number(n))&&o)if(this.state.categoryFilter[r]&&n<=c.length)this.state.categoryFilter[r][n-1]=o,this.callBack(this,"deletedcategoryFilter");else{var u=[];(u=c.map((function(t){return t.value}))).push(o),this.state.categoryFilter[r]=u,this.callBack(this,"setCategoryFilter")}},at=function(t){if(t.length){var e=this.options.extraParams["facet.multilevel"];this.state.categoryFilter[e]=[t]}},nt=function(t){var e=t.start,r=t.end,a=t.facetName,n=t.applyMultiple,i="[".concat(e," TO ").concat(r,"]");if(n)if(this.state.rangeFacet[a]){var s=this.state.rangeFacet[a].indexOf(i);s<0?this.state.rangeFacet[a].push(i):this.state.rangeFacet[a].splice(s,1)}else this.state.rangeFacet[a]=[i];else this.state.rangeFacet[a]=[i];this.callBack(self,"added_facet")},it=function(t){var e=this.state.rangeFacet;e[t]&&delete e[t],this.state.rangeFacet=e},st=function(t,e){this.deleteFacet(t,e),this.callBack(this,"deleted_facet"),this.options.applyMultipleFilters||(this.setPageStart(0),this.getResults.bind(this)())},ot=function(t,e){var r=this.getSelectedFacets()[t],a=!1;return r&&r.forEach((function(t){if(t.dataId===e)return a=!0,!1})),a},ct=function(t){var e=this.state.rangeFacet;return t?e[t]:e};function ut(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(t);e&&(a=a.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,a)}return r}function lt(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?ut(Object(r),!0).forEach((function(e){ft(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):ut(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function ft(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}var ht=function(t){var e=[];return(t||[]).forEach((function(t){for(var r=t.values,a=r.counts,n=r.gap,i=[],s=[],o=0;o<a.length;o+=2){var c=Number(a[o]),u={name:c,count:a[o+1],dataId:c};if(s.push(u),s.length>=2){var l=s[0],f=s[1];i.push({from:l,end:f}),s.shift()}}if(1===s.length){var h=s[0],p=h.dataId+n,g={name:p,count:0,dataId:p};i.push({from:h,end:g})}var d=i[0].from.dataId,y=i[i.length-1].end.dataId;t.start=d,t.end=y,t.max=y,t.gap=n||1,t.min=d,t.values=i,e.push(lt(lt({},t),{},{values:i}))})),e},pt=function(){var t=this.getRangeFacets();return ht(t)},gt=function(t){var e=this.getAFacetByName(t)[0];return!!e&&"category"===e.facetType};function dt(t){return function(t){if(Array.isArray(t))return yt(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return yt(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return yt(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function yt(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,a=new Array(e);r<e;r++)a[r]=t[r];return a}var vt=function(){var t=this.getAllTextFacets(),e=this.getAllRangeFacets(),r=this.getAllCategory();return[].concat(dt(r),dt(t),dt(e)).sort(this.sortFacets)},mt=function(t){var e=this.getAllFacets(),r=[];return t&&(r=e.filter((function(e){return e.facetName===t}))),r},bt=function(){var t=this.state.categoryFilter;return t?Object.keys(t):null},St=function(){var t=this.getSelectedBucketedFacet(),e=this.getSelectedRanges(),r=this.getSelectedFacets();return Object.assign({},t,e,r)},Ft=function(){var t=this.getAllSelectedFacets()||{};return Object.keys(t).length},Pt=function(){var t=this.getAllSelectedFacets()||{},e=Object.keys(t),r=0;return e.forEach((function(e){var a=t[e];Array.isArray(a)&&(r+=a.length)})),r},Ot=function(t){var e=this.getBucketedFacets(),r=null;if(e)for(var a=0;a<e.length;a++)for(var n=e[a].values,i=0;i<n.length;i++){var s=n[i],o=s.dataId,c=s.name;if(o===t){r=c;break}}return r};function jt(t,e){var r=Object.keys(t);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(t);e&&(a=a.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),r.push.apply(r,a)}return r}function At(t){for(var e=1;e<arguments.length;e++){var r=null!=arguments[e]?arguments[e]:{};e%2?jt(Object(r),!0).forEach((function(e){Ct(t,e,r[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):jt(Object(r)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))}))}return t}function Ct(t,e,r){return e in t?Object.defineProperty(t,e,{value:r,enumerable:!0,configurable:!0,writable:!0}):t[e]=r,t}var It=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],r=[];return e.forEach((function(a,n){var i=a;if(a.name)r.push(At(At({},i),{},{dataId:t.encodeFacetValue(a.name)}));else{var s="";n%2==1&&(s=e[n-1],r.push({name:s,count:i,dataId:t.encodeFacetValue(s)}))}})),r},wt=function(t){var e=this,r=[];return(t||[]).forEach((function(t,a){var n=t.values,i=t.displayName,s=t.facetName,o=t.filterField;s||(i&&(t.facetName=i),o&&(t.facetName=o)),t.values=e.modifyValues(n),r.push(t)})),r};function Rt(t){var e="0"+t.charCodeAt(0).toString(16);return"\\x"+e.substr(e.length-2)}var Ut=function(t){return t=t.replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\v/g,"\\v").replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/[\x00-\x1F\x80-\x9F]/g,Rt),encodeURIComponent(t)},Et=function(t){return t=t.replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\v/g,"\\v").replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/[\x00-\x1F\x80-\x9F]/g,Rt),encodeURIComponent(t)},kt=function(t){return decodeURIComponent(new String("".concat(t)))},xt=function(t){return t.replace(/[^\w\d]/g,"")},Nt=function(t){var e=t.split("%22");return 1===e.length?e[1]:(e=e.slice(1,-1)).join("%22")},Bt=function(){return this.state.categoryFilter},Mt=function(){this.setPageStart(0),this.getResults.bind(this)()},Qt=function(t,e){return t.position>e.position?1:-1},Lt=function(){return this.getFacets().map((function(t){return t.facetType="text",t}))},Vt=function(){return this.getRanges().map((function(t){return t.facetType="range",t}))},Tt=function(){return this.getBucketedFacets().map((function(t){return t.facetType="category",t}))},Dt=function(t){var e=this.getBreadCrumbs(t),r=[],a=e;if(e)for(var n=0;n<this.options.facetDepth&&(a.level&&function(){var t=a,e=t.level,n=t.values,i=t.filterField;n.forEach((function(t){r.push({level:e,filterField:i,value:t.value||t.name})}))}(),a.child);n++)a=a.child;return r},_t=function(t){var e=this.getResponseObj(),r=[];if(e&&e.facets&&e.facets.multilevel&&t){var a=e.facets.multilevel.list;if(a)a.forEach((function(e){var a=e.filterField,n=e.breadcrumb;a===t&&(r=n)}));else{var n=e.facets.multilevel.breadcrumb;r=n||null}}return r},zt=function(t){this.setSort(t),this.setPageStart(0),this.getResults.bind(this)()},Kt=function(t){if(void 0!==t)this.state.selectedSort=t;else{var e=this.getSearchQueryParams();this.state.selectedSort=e.sort?e.sort:""}},qt=function(){return this.state.selectedSort},Ht=function(){var t=this.getResponseObj()||{};return t&&t.didYouMean?t.didYouMean:[]},Yt=function(){return(this.state.didYouMean||[]).map((function(t){return t.suggestion}))},Gt=function(t){this.options.spellCheck.enabled=!!t},$t=function(){var t=this.getResponseObj()||{};return t&&t.banner&&t.banner.banners&&t.banner.banners||[]},Wt=function(t,e){this.state.userInput=t,this.callBack(t,e)},Xt=function(){this.state.selectedFacets={},this.state.rangeFacet={},this.state.categoryFilter={},this.state.breadcrumbs={}},Jt=function(){this.resetFacets(),this.state.didYouMean=null,this.state.startPageNo=0,this.state.selectedSort="",this.state.responseObj=null,this.state.userInput="",this.state.pageSize=this.options.pageSize},Zt=function(t){var e=t.prototype;e.changeInput=Wt,e.resetFacets=Xt,e.resetAll=Jt,function(t){t=Object.assign(t,c)}(e),function(t){Object.assign(t,{setPageStart:u,getPaginationInfo:l,setPageSize:f})}(e),function(t){t=Object.assign(t,{setProductAttributes:h,setShowVariants:p,setVariantsCount:g,setVariantAttributes:d,setVariantsGroupBy:y,getSearchResults:m,getSearchMeta:v,getSearchQueryParams:b,getSearchQuery:S,getResults:I,processVariantMap:w,getProductByPropValue:R,setStateFromData:U,setSearchConfigurations:E,onLocationChange:k,getRequestId:x})}(e),function(t){Object.assign(t,{getSwatches:N})}(e),function(t){t=Object.assign(t,{getBucketedFacets:B,getSelectedBucketedFacet:Bt,getFilterFromParams:M,getCategoryFilterFromParams:Q,getRangeFacets:L,getFacets:V,getSelectedFacets:T,getSelectedFacet:D,updateFacets:_,applyFacets:z,clearFacets:K,addFacets:Y,findSelectedFacet:G,deleteCategoryFilter:$,deleteFacet:W,getFacetByValue:tt,getSelectedFacetValue:et,setCategoryFilter:rt,setDefaultCategoryFilter:at,setRangeFacet:nt,clearARangeFacet:it,deleteAFacet:st,applyRangeFacet:Mt,isFacetAlreadyAdded:ot,getSelectedRanges:ct,getRanges:pt,sortFacets:Qt,isCategoryFacet:gt,getAllFacets:vt,getAFacetByName:mt,getSelectedMultilevelFacet:bt,getAllTextFacets:Lt,getAllRangeFacets:Vt,getAllCategory:Tt,getAllSelectedFacets:St,getSelectedFacetsCount:Ft,getSelectedFacetValueCount:Pt,encodeFacetValue:Ut,modifyFacetsList:wt,modifyValues:It,decodeFacetValue:kt,cleanFacetValue:xt,getCategoryFacetByValue:Ot,encodeCategoryFacetValue:Et,cleanEncodedFacetValue:Nt})}(e),function(t){t=Object.assign(t,{getBreadCrumbsList:Dt,getBreadCrumbs:_t})}(e),function(t){t=Object.assign(t,{applySort:zt,getSelectedSort:qt,setSort:Kt})}(e),function(t){t=Object.assign(t,{getDidYouMeanFromResponse:Ht,getSpellCheckSuggested:Yt,setSpellCheck:Gt})}(e),function(t){t=Object.assign(t,{getBanners:$t})}(e)};function te(t){return te="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},te(t)}var ee=function t(e){if(!e)return e;var r,a=Array.isArray(e)?[]:{};for(var n in e)r=e[n],a[n]="object"===te(r)?t(r):r;return a};function re(t){return re="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},re(t)}function ae(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){var r=null==t?null:"undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(null==r)return;var a,n,i=[],s=!0,o=!1;try{for(r=r.call(t);!(s=(a=r.next()).done)&&(i.push(a.value),!e||i.length!==e);s=!0);}catch(t){o=!0,n=t}finally{try{s||null==r.return||r.return()}finally{if(o)throw n}}return i}(t,e)||ie(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function ne(t,e){var r="undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(!r){if(Array.isArray(t)||(r=ie(t))||e&&t&&"number"==typeof t.length){r&&(t=r);var a=0,n=function(){};return{s:n,n:function(){return a>=t.length?{done:!0}:{done:!1,value:t[a++]}},e:function(t){throw t},f:n}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,s=!0,o=!1;return{s:function(){r=r.call(t)},n:function(){var t=r.next();return s=t.done,t},e:function(t){o=!0,i=t},f:function(){try{s||null==r.return||r.return()}finally{if(o)throw i}}}}function ie(t,e){if(t){if("string"==typeof t)return se(t,e);var r=Object.prototype.toString.call(t).slice(8,-1);return"Object"===r&&t.constructor&&(r=t.constructor.name),"Map"===r||"Set"===r?Array.from(t):"Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r)?se(t,e):void 0}}function se(t,e){(null==e||e>t.length)&&(e=t.length);for(var r=0,a=new Array(e);r<e;r++)a[r]=t[r];return a}function oe(t,e){for(var r=0;r<e.length;r++){var a=e[r];a.enumerable=a.enumerable||!1,a.configurable=!0,"value"in a&&(a.writable=!0),Object.defineProperty(t,a.key,a)}}var ce=function(){function t(e){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.options=Object.assign({},a,e),this.state={queryRef:{},userInput:"",responseObj:null,selectedFacets:{},currentWebUrl:"",currentApiUrl:"",didYouMean:null,startPageNo:this.options.startPageNo||0,isLoading:!1,selectedSort:"",isUrlUpdated:!1,rangeSliderList:[],rangeFacet:{},categoryFilter:{},breadcrumbs:{},urlState:"",noResultQuery:"",pageSize:this.options.pageSize||12,urlLoad:!1,isHistory:window.history,isBack:!1,products:[],requestId:null,unbxdKeys:["filter","category-filter","rows","start","sort",this.options.browseQueryParam,this.options.searchQueryParam]};var r=this.options,n=r.searchQueryParam,i=r.browseQueryParam,s=r.productType,o=r.getCategoryId,c=r.setCategoryId,u="/search?",l=n;"CATEGORY"===s&&(u="/category?",l=i),this.getCategoryId=o,this.setCategoryId=c,this.url=this.getBaseUrl()+u+l+"="}var e,r,n;return e=t,r=[{key:"getResponseObj",value:function(){var t=this.state.responseObj;return t?ee(t):null}},{key:"getUrlParamString",value:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",r=arguments.length>1?arguments[1]:void 0,a=Object.keys(r);return a.forEach((function(n,i){var s=r[n];s.forEach((function(r,a){e="".concat(e).concat(n,"=").concat(n===t.options.searchQueryParam?r:encodeURIComponent(r)),a!==s.length-1&&(e="".concat(e,"&"))})),i!==a.length-1&&(e="".concat(e,"&"))})),e}},{key:"getUrlStr",value:function(t){var e=new URLSearchParams(this.options.hashMode?location.hash.slice(1):location.search),r=new URLSearchParams(t),a={};(e.get(this.options.searchQueryParam)||t.split("".concat(this.options.searchQueryParam,"="))[1])&&(a[this.options.searchQueryParam]=[t.split("".concat(this.options.searchQueryParam,"="))[1].split(/\&\w+\-?\w+?=/gi)[0]]);var n,i=ne(r);try{for(i.s();!(n=i.n()).done;){var s=ae(n.value,2),o=s[0],c=s[1];o!==this.options.searchQueryParam&&""!==c&&(a[o]=r.getAll(o))}}catch(t){i.e(t)}finally{i.f()}if(this.options.allowExternalUrlParams){var u,l=ne(e);try{for(l.s();!(u=l.n()).done;){var f=ae(u.value,2),h=f[0],p=f[1];this.state.unbxdKeys.indexOf(h)<0&&e.getAll(h).length&&""!==p&&(a[h]=e.getAll(h))}}catch(t){l.e(t)}finally{l.f()}}return this.getUrlParamString("?",a)}},{key:"urlSearchParamsToStr",value:function(t){var e,r={},a=ne(t);try{for(a.s();!(e=a.n()).done;){var n=ae(e.value,2),s=n[0],o=n[1];s!==this.options.searchQueryParam&&t.getAll(s).length&&""!==o&&(r[s]=t.getAll(s)),s===this.options.searchQueryParam&&(r[this.options.searchQueryParam]=[i.encodeQueryParam(t.get(s))])}}catch(t){a.e(t)}finally{a.f()}return this.getUrlParamString("?",r)}},{key:"checkIfUnbxdKey",value:function(){var t,e=!1,r=ne(new URLSearchParams(this.options.hashMode?location.hash.substring(1):location.search));try{for(r.s();!(t=r.n()).done;){var a=ae(t.value,2),n=a[0];a[1],this.state.unbxdKeys.indexOf(n)>-1&&(e=!0)}}catch(t){r.e(t)}finally{r.f()}return e}},{key:"convertToHashString",value:function(t){var e=this.getUrlStr(t);return"?"===e.charAt(0)&&(e=e.substring(1)),e}},{key:"setUrl",value:function(t){var e=this.options,r=e.productType,a=e.hashMode,n=e.searchPath,i=e.onQueryRedirect,s=(e.allowExternalUrlParams,this.state),o=s.urlLoad,c=s.isHistory,u=s.responseObj,l=void 0===u?{}:u,f=(s.unbxdKeys,l.redirect),h=l.didYouMean,p=void 0===h?[]:h;if("function"==typeof i&&f&&f.value){this.state.userInput="";var g=this.getUrlStr("redirected=true");return a&&(g="#".concat(this.convertToHashString(g))),void i(this,f,g)}var d=this.getNewUrlState(!1).split("".concat(r.toLocaleLowerCase(),"?"))[1];this.state.urlState=d;var y=location.pathname.includes(n),v=this.checkIfUnbxdKey(),m=null;if(p.length&&p[0].suggestion?this.state.queryRef={replaceNext:!0}:this.state.queryRef.replaceNext&&(m=!0,this.state.queryRef={}),a){var b="#".concat(d);if(y&&b!==location.hash){var S=this.convertToHashString(d);this.options.setRoutingStrategies(location.hash,"#".concat(S),r,v,m)}}else{if(c&&!o&&y){var F="?".concat(d),P=this.getUrlStr(F);decodeURI(P)!==decodeURI(location.search)&&this.options.setRoutingStrategies(location.search,"".concat(P),r,v,m),this.state.urlLoad=!1}t&&y&&(location.search=newQ)}}},{key:"updateSelectedFacetsCount",value:function(){var t=this.getQueryParams(),e=this.options,r=e.searchQueryParam,a=e.browseQueryParam,n=r;if("SEARCH"!==e.productType&&(t[n=a]=this.getCategoryId()),"object"===re(t)&&t[n]){var i=t.filter,s=this.getFilterFromParams(i);this.state.selectedFacets=s.selectedFilters}}},{key:"callBack",value:function(t,e){(0,this.options.onEvent)(this,e)}}],r&&oe(e.prototype,r),n&&oe(e,n),Object.defineProperty(e,"prototype",{writable:!1}),t}();Zt(ce);var ue=ce;e.default=ue}]).default}));
+
+/***/ }),
+
+/***/ 17:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ 40:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: ./node_modules/@unbxd-ui/unbxd-search-core/public/js/unbxdSdk.js
+var unbxdSdk = __webpack_require__(15);
+var unbxdSdk_default = /*#__PURE__*/__webpack_require__.n(unbxdSdk);
+
+// EXTERNAL MODULE: ./styles/index.scss
+var styles = __webpack_require__(17);
+
+// CONCATENATED MODULE: ./src/modules/utils/delegate.js
+function delegate_delegate(el, evt, sel, handler) {
+  el.addEventListener(evt, function (event) {
+    var t = event.target;
+    while (t && t !== this) {
+      if (t.matches(sel)) {
+        handler.call(t, event);
+      }
+      t = t.parentNode;
+    }
+  });
+}
+/* harmony default export */ var utils_delegate = (delegate_delegate);
+// CONCATENATED MODULE: ./src/modules/didYouMean/spellCheckView.js
+//query - current search term
+//suggestion - suggest search term
+//pages - details search response
+/*
+    {
+    "numberOfProducts": 194,
+    "start": 0,
+    "productsLn": 12,
+    "rows": 12,
+    "noOfPages": 17,
+    "currentPage": 1,
+    "isNext": true,
+    "isPrev": false
+    }
+*/
+var didYouMeanUI = function didYouMeanUI(query, suggestion, pages) {
+  var start = pages.start,
+    productsLn = pages.productsLn,
+    numberOfProducts = pages.numberOfProducts;
+  var _this$options$spellCh = this.options.spellCheck,
+    selectorClass = _this$options$spellCh.selectorClass,
+    enabled = _this$options$spellCh.enabled;
+  var productType = this.options.productType;
+  var newQuery = query;
+  if (productType !== "SEARCH") {
+    var catId = this.getCategoryId() || "";
+    var cId = decodeURIComponent(catId).split(">");
+    newQuery = cId[cId.length - 1] || cId[0];
+  }
+  var UNX_spellCheck = this.testIds.UNX_spellCheck;
+  var noUi = suggestion ? "<p class=\"UNX-no-result\"> Your search \"<strong>".concat(suggestion, "</strong>\" did not match any products. Did you mean <button data-test-id=\"").concat(UNX_spellCheck, "\" data-action=\"getSuggestion\" class=\"").concat(selectorClass, "\">").concat(query, "</button>? </p>") : "";
+  var qUi = "";
+  var countUi = "";
+  if (numberOfProducts > 0) {
+    countUi = "<span class=\"UNX-result-info\">  -  ".concat(start + 1, " to ").concat(productsLn + start, " of ").concat(numberOfProducts, " products</span>");
+  }
+  if (pages && newQuery) {
+    if (!enabled) {
+      newQuery = suggestion || query;
+    }
+    qUi = "<p class=\"UNX-suggestion-p\">Showing results for <strong>".concat(newQuery, "</strong> ").concat(countUi, "</p>");
+  }
+  return ["<div class=\"UNX-spellcheck-block\">", noUi, qUi, "</div>"].join('');
+};
+/* harmony default export */ var spellCheckView = (didYouMeanUI);
+// CONCATENATED MODULE: ./src/modules/facets/ui.js
+function selectedFacetItemTemplateUI(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
+  var facetName = selectedFacet.facetName,
+    facetType = selectedFacet.facetType;
+  var name = selectedFacetItem.name,
+    count = selectedFacetItem.count,
+    dataId = selectedFacetItem.dataId;
+  var _this$options$facet = this.options.facet,
+    facetClass = _this$options$facet.facetClass,
+    selectedFacetClass = _this$options$facet.selectedFacetClass,
+    removeFacetsSelectorClass = _this$options$facet.removeFacetsSelectorClass;
+  var UNX_uFilter = this.testIds.UNX_uFilter;
+  var action = "deleteSelectedFacetValue";
+  if (facetType === "range") {
+    action = "deleteSelectedRange";
+  }
+  var css = " ".concat(facetClass, " ").concat(selectedFacetClass, " ");
+  return ["<div class=\"UNX-selected-facets-wrap\">", "<button data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-selected-facet-btn UNX-change-facet ").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), "<span class=\"UNX-facet-text\">".concat(name, "</span> <span class=\"UNX-facet-count\">(").concat(count, ")</span>"), "</button>", "<button class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, " ").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</button></div>")].join('');
+}
+function selectedFacetUI(selections, facet, selectedFacetsConfig) {
+  var clearAllText = facet.clearAllText,
+    clearFacetsSelectorClass = facet.clearFacetsSelectorClass;
+  var selectedFClass = this.selectedFacetClass ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
+  if (selections.length > 0) {
+    return ["<div class=\"UNX-facets-selections\">", "<h5 class=\"UNX-selected-facet-header\">Selected Filters</h5>", "<div class=\"UNX-selected-facets-inner\">".concat(selections, "</div>"), "<button class=\"".concat(clearFacetsSelectorClass, " ").concat(selectedFClass, "\" data-facet-action=\"clearAllFacets\">").concat(clearAllText, "</button>"), "</div>"].join('');
+  } else {
+    return "";
+  }
+}
+function facetItemUiElem(facet, value, facetSearchTxt) {
+  var facetName = facet.facetName,
+    isSelected = facet.isSelected;
+  var name = value.name,
+    count = value.count,
+    dataId = value.dataId;
+  var _this$options$facet2 = this.options.facet,
+    facetClass = _this$options$facet2.facetClass,
+    selectedFacetClass = _this$options$facet2.selectedFacetClass;
+  var UNX_uFilter = this.testIds.UNX_uFilter;
+  if (facetSearchTxt && facetSearchTxt.length > 0) {
+    if (name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0) {
+      facetClass += ' UNX-search-hidden';
+    }
+  }
+  var action = "changeFacet";
+  if (isSelected) {
+    facetClass += " ".concat(selectedFacetClass);
+    action = "deleteFacetValue";
+  }
+  return ["<button data-test-id=\"".concat(UNX_uFilter, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" class=\"UNX-change-facet ").concat(facetClass, "\" data-id=\"").concat(dataId, "\">"), "<span class=\"UNX-facet-text\">".concat(name, "</span> <span class=\"UNX-facet-count\">(").concat(count, ")</span>"), "</button>"].join('');
+}
+function facetUIElem(facetObj, children, isExpanded, facetSearchTxt, facet) {
+  var displayName = facetObj.displayName,
+    facetName = facetObj.facetName,
+    multiLevelField = facetObj.multiLevelField,
+    facetType = facetObj.facetType,
+    values = facetObj.values;
+  var facetClass = facet.facetClass,
+    applyMultipleFilters = facet.applyMultipleFilters,
+    isCollapsible = facet.isCollapsible,
+    isSearchable = facet.isSearchable,
+    searchPlaceHolder = facet.searchPlaceHolder,
+    textFacetWrapper = facet.textFacetWrapper,
+    enableViewMore = facet.enableViewMore,
+    viewMoreText = facet.viewMoreText,
+    viewMoreLimit = facet.viewMoreLimit,
+    applyButtonText = facet.applyButtonText,
+    clearButtonText = facet.clearButtonText;
+  var _this$options = this.options,
+    actionBtnClass = _this$options.actionBtnClass,
+    actionChangeClass = _this$options.actionChangeClass;
+  var _this$cssList = this.cssList,
+    openBtn = _this$cssList.openBtn,
+    closeBtn = _this$cssList.closeBtn;
+  var viewMoreUi = "";
+  var viewMoreCss = "";
+  var selected = this.getSelectedFacets()[facetName];
+  var isFtr = selected && selected.length > 0 ? true : false;
+  if (enableViewMore && facetType === "text" && values.length > viewMoreLimit) {
+    viewMoreCss = "UNX-view-more";
+    viewMoreUi = "<div class=\"UNX-view-more-row \"><button class=\"".concat(actionBtnClass, "\" data-facet-name=\"").concat(facetName, "\" data-action=\"viewMore\" data-id=\"").concat(viewMoreText[0], "\">").concat(viewMoreText[0], "</button></div>");
+  }
+  var clearUI = "";
+  var applyBtn = "";
+  if (isFtr) {
+    clearUI = "<button class=\"UNX-facet-clear ".concat(facetClass, " \"data-facet-action=\"deleteFacet\" data-facet-name=\"").concat(facetName, "\">").concat(clearButtonText, "</button>");
+  }
+  if (applyMultipleFilters && isFtr) {
+    applyBtn = "<button class=\"UNX-facet-primary ".concat(facetClass, " \"data-facet-action=\"applyFacets\" >").concat(applyButtonText, "</button>");
+  }
+  var collapsibleUI = "";
+  var searchInput = "";
+  if (isCollapsible) {
+    if (isExpanded) {
+      collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-open\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetClose\"> <h3>").concat(displayName, "</h3> </div>");
+    } else {
+      collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-close\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetOpen\"> <h3>").concat(displayName, "</h3></div>");
+    }
+  }
+  if (isSearchable && facetSearchTxt !== null) {
+    searchInput = "<div class=\"UNX-searchable-facets\"><label class=\"UNX-hidden\" for=\"".concat(facetName, "_searchBox\">").concat(searchPlaceHolder, "</label><input  id=\"").concat(facetName, "_searchBox\" name=\"").concat(facetName, "_searchBox\" data-test-id=\"").concat(this.testIds.UNX_searchFacets, "\" class=\"UNX-facet-search ").concat(actionChangeClass, "\" value=\"").concat(facetSearchTxt, "\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"searchFacets\" type=\"text\" placeholder=\"").concat(searchPlaceHolder, "\"/></div>");
+  }
+  return ["<div class=\"UNX-text-facet-wrap\">", collapsibleUI, "<div class=\"UNX-facets-all\">", searchInput, "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), viewMoreUi, "<div class=\"UNX-facet-footer\">".concat(applyBtn, " ").concat(clearUI, "</div>"), "</div>", "</div>"].join('');
+}
+
+// CONCATENATED MODULE: ./src/modules/searchResults/ui.js
+/* harmony default export */ var ui = (function (product, idx, swatchUI, productViewType, products) {
+  var unxTitle = product.unxTitle,
+    unxImageUrl = product.unxImageUrl,
+    uniqueId = product.uniqueId,
+    unxStrikePrice = product.unxStrikePrice,
+    unxPrice = product.unxPrice,
+    unxDescription = product.unxDescription;
+  var productItemClass = products.productItemClass,
+    defaultImage = products.defaultImage;
+  var imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0] : unxImageUrl;
+  if (!imgUrl) {
+    imgUrl = defaultImage;
+  }
+  var imagesUI = "<div class=\"UNX-img-wrapper\"><img class=\"UNX-img-block\" width=\"100%\" height=\"100%\" alt=\"".concat(unxTitle, "\" src=\"").concat(imgUrl, "\"/></div>");
+  var priceUI = "<span class=\"UNX-sale-price\">".concat(unxPrice, "</span>");
+  var strikeUi = "";
+  if (unxStrikePrice) {
+    strikeUi = "<span class=\"UNX-strike-price\">".concat(unxStrikePrice, "<span>");
+  }
+  var cardType = "";
+  var descUI = "";
+  if (productViewType === "GRID") {
+    cardType = "UNX-grid-card";
+  } else {
+    cardType = "UNX-list-card";
+    descUI = "<p class=\"UNX-description\">".concat(unxDescription, "</p>");
+  }
+  var swatchBtnUI = "";
+  var _ref = swatchUI || {},
+    btnList = _ref.btnList,
+    imgList = _ref.imgList;
+  if (btnList) {
+    swatchBtnUI = "<div class=\"UNX-swatch-wrapper\">".concat(btnList, "</div>");
+  }
+  if (imgList) {
+    imagesUI = imgList;
+  }
+  return ["<div id=\"".concat(uniqueId, "\" data-id=\"").concat(uniqueId, "\" data-prank=\"").concat(idx, "\" data-item=\"product\" class=\"UNX-product-col ").concat(cardType, " ").concat(productItemClass, "\">"),, "<h3 class=\"UNX-product-title\">".concat(idx, "</h3>"), "<div class=\"UNX-images-block\">".concat(imagesUI, "</div>"), "<div class=\"UNX-product-content\">", "<h3 class=\"UNX-product-title\">".concat(unxTitle, "</h3>"), swatchBtnUI, descUI, "<div class=\"UNX-price-row\">".concat(priceUI, " ").concat(strikeUi, "</div>"), "</div>", "</div>"].join('');
+});
+;
+// CONCATENATED MODULE: ./src/modules/pagination/fixedPaginationView.js
+var paginationUI = function paginationUI(paginationData, pagination) {
+  if (!paginationData) {
+    return "";
+  }
+  var currentPage = paginationData.currentPage,
+    isNext = paginationData.isNext,
+    isPrev = paginationData.isPrev,
+    noOfPages = paginationData.noOfPages,
+    productsLn = paginationData.productsLn,
+    numberOfProducts = paginationData.numberOfProducts,
+    rows = paginationData.rows;
+  var pageClass = pagination.pageClass,
+    selectedPageClass = pagination.selectedPageClass,
+    pageLimit = pagination.pageLimit;
+  var UNX_pageNumber = this.testIds.UNX_pageNumber;
+  if (numberOfProducts <= productsLn) {
+    return "";
+  }
+  var nextBtn = "<button class=\"UNX-next-btn UNX-page-next ".concat(pageClass, "\" data-page-action=\"next\">></button>");
+  var prevBtn = "<button class=\"UNX-prev-btn UNX-page-prev ".concat(pageClass, "\" data-page-action=\"prev\"><</button>");
+  var pageNumbers = "";
+  var pages = noOfPages < pageLimit ? noOfPages : pageLimit;
+  var startPoint = 1;
+  var r = Math.ceil(pageLimit / 2);
+  var point = currentPage - r;
+  if (point > 0) {
+    startPoint = point;
+    pages = currentPage + r;
+  }
+  var ls = currentPage + r;
+  if (ls >= noOfPages) {
+    var diff = ls - noOfPages;
+    startPoint = startPoint - diff;
+    if (startPoint <= 0) {
+      startPoint = 1;
+    }
+    pages = noOfPages;
+  }
+  for (var i = startPoint; i <= pages; i++) {
+    var tId = "".concat(UNX_pageNumber).concat(i);
+    var pageClassSelected = i === currentPage ? selectedPageClass : '';
+    pageNumbers += "<button data-test-id=\"".concat(tId, "\" data-page-action=\"paginate\" data-page-no=\"").concat((i - 1) * rows, "\" class=\"UNX-page-button ").concat(pageClass, " ").concat(pageClassSelected, "\">").concat(i, "</button>");
+  }
+  if (!isNext) {
+    nextBtn = "<button disabled class=\"UNX-next-btn UNX-page-next\">></button>";
+  }
+  if (!isPrev) {
+    prevBtn = "<button disabled class=\"UNX-prev-btn UNX-page-prev\"><</button>";
+  }
+  return ["<div class=\"UNX-pagination-block\">", prevBtn, "<div class=\"UNX-page-no-block\">".concat(pageNumbers, "</div>"), nextBtn, "</div>"].join('');
+};
+/* harmony default export */ var fixedPaginationView = (paginationUI);
+// CONCATENATED MODULE: ./src/modules/pagination/clickNScrollView.js
+/* harmony default export */ var clickNScrollView = (function (pageData, pagination) {
+  var pageClass = pagination.pageClass;
+  return "<div class=\"UNX-click-scroll\"><button data-test-id=\"".concat(this.testIds.UNX_loadMore, "\" class=\"UNX-click-n-scroll ").concat(pageClass, "\">Load More</button></div>");
+});
+;
+// CONCATENATED MODULE: ./src/modules/pagination/paginationView.js
+
+
+/* harmony default export */ var paginationView = (function (pageData) {
+  var pagination = this.options.pagination;
+  var type = pagination.type;
+  if (type === "CLICK_N_SCROLL") {
+    return clickNScrollView.bind(this)(pageData, pagination);
+  }
+  if (type === "FIXED_PAGINATION") {
+    return fixedPaginationView.bind(this)(pageData, pagination);
+  }
+  return "";
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderRangeFacets.js
+var renderRangeFacets = function renderRangeFacets(range, selectedRange, facet) {
+  var _this = this;
+  var facetName = range.facetName,
+    values = range.values;
+  var valueUI = "";
+  var facetClass = facet.facetClass,
+    selectedFacetClass = facet.selectedFacetClass,
+    applyMultipleFilters = facet.applyMultipleFilters,
+    applyButtonText = facet.applyButtonText,
+    clearButtonText = facet.clearButtonText;
+  var selected = selectedRange.length > 0 ? true : false;
+  values.forEach(function (item) {
+    var from = item.from,
+      end = item.end;
+    var isSelected = _this.isSelectedRange(facetName, item);
+    var btnCss = isSelected ? "UNX-selected-facet-btn ".concat(facetClass, " ").concat(selectedFacetClass) : "".concat(facetClass);
+    valueUI += ["<button class=\"".concat(btnCss, " UNX-range-facet UNX-change-facet\" data-action=\"setRange\" data-facet-name=\"").concat(facetName, "\" data-start=\"").concat(from.dataId, "\" data-end=\"").concat(end.dataId, "\" >"), "<span class=\"UNX-facet-text\">".concat(from.name, "  -  ").concat(end.name, "</span>"), "<span class=\"UNX-facet-count\">(".concat(from.count, ")</span>"), "</button>"].join('');
+  });
+  var clearBtn = "";
+  var applyBtn = "";
+  if (selected) {
+    if (applyMultipleFilters) {
+      applyBtn = "<button class=\"UNX-default-btn ".concat(facetClass, " UNX-facet-primary\" data-action=\"applyRange\"> ").concat(applyButtonText, "</button>");
+    }
+    clearBtn = "<button class=\"UNX-default-btn UNX-facet-clear  ".concat(facetClass, "\" data-action=\"clearRangeFacets\">").concat(clearButtonText, "</button>");
+  }
+  return ["<div class=\"UNX-range-wrapper\">", valueUI, "<div class=\"UNX-price-action-row\">", applyBtn, clearBtn, "<div>", "</div>"].join('');
+};
+
+// CONCATENATED MODULE: ./src/modules/facets/renderBucketedSearch.js
+var multiLevelFacetUI = function multiLevelFacetUI(facet, selectedCategories, facetSearchTxt, facetConfig) {
+  var ui = "";
+  var multiLevelFacetSelectorClass = facetConfig.multiLevelFacetSelectorClass,
+    facetClass = facetConfig.facetClass;
+  var UNX_facetLevel = this.testIds.UNX_facetLevel;
+  if (selectedCategories) {
+    selectedCategories.forEach(function (item) {
+      var level = item.level,
+        filterField = item.filterField,
+        value = item.value;
+      var lTid = "data-test-id=\"".concat(UNX_facetLevel).concat(level, "\"");
+      var levelCss = "".concat(multiLevelFacetSelectorClass, "  UNX-category-level-").concat(level);
+      ui += ["<button ".concat(lTid, " data-parent=\"").concat(filterField, "\" data-level=\"").concat(level, "\" data-name=\"").concat(value, "\""), "class=\" ".concat(levelCss, " UNX-selected-crumb ").concat(facetClass, "\" data-action = \"clearCategoryFilter\">"), "<span class=\"UNX-category-icon\"></span><label class=\"UNX-facet-text\">".concat(decodeURIComponent(value), "</label>"), "</button>"].join('');
+    });
+  }
+  var level = facet.level,
+    displayName = facet.displayName,
+    values = facet.values,
+    filterField = facet.filterField;
+  var multiLevelField = facet.multiLevelField;
+  if (!multiLevelField) {
+    multiLevelField = filterField;
+  }
+  var lTid = "data-test-id=\"".concat(UNX_facetLevel).concat(level, "\"");
+  var levelCss = "UNX-category-level-".concat(level);
+  var valueUI = values.map(function (item) {
+    var name = item.name,
+      count = item.count,
+      dataId = item.dataId;
+    if (facetSearchTxt && facetSearchTxt.length > 0) {
+      if (name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0) {
+        facetClass += ' UNX-search-hidden';
+      }
+    }
+    return ["<button ".concat(lTid, " data-parent=\"").concat(multiLevelField, "\" data-level=\"").concat(level, "\""), "class=\"".concat(multiLevelFacetSelectorClass, " ").concat(levelCss, " ").concat(facetClass, "\" data-name=\"").concat(dataId, "\" data-action = \"setCategoryFilter\">"), "<label class=\"UNX-facet-text\">".concat(name, "</label><label class=\"UNX-facet-count\">(").concat(count, ")</label></button>")].join('');
+  });
+  ui += "<div class=\"UNX-category-values\">".concat(valueUI.join(''), "</div>");
+  if (ui !== "") {
+    return ["<div class=\"UNX-multi-facet-wrap\">", "".concat(ui, "</div>")].join('');
+  } else {
+    return "";
+  }
+};
+/* harmony default export */ var renderBucketedSearch = (multiLevelFacetUI);
+// CONCATENATED MODULE: ./src/modules/breadcrumbs/breadcrumbsView.js
+var breadCrumbsUI = function breadCrumbsUI(breadcrumbs, breadcrumb) {
+  var ui = "";
+  var selectorClass = breadcrumb.selectorClass;
+  breadcrumbs.forEach(function (item, id) {
+    var level = item.level,
+      filterField = item.filterField,
+      value = item.value;
+    var css = "".concat(selectorClass, " UNX-bread-crumb-item");
+    if (id > 0) {
+      ui += "<span class=\"UNX-slash\"> / </span>";
+    }
+    ui += ["<button data-parent=\"".concat(filterField, "\" data-level=\"").concat(level, "\" class=\"").concat(css, "\" data-name=\"").concat(value, "\" data-action = \"clearCategoryFilter\">"), "".concat(decodeURIComponent(value), "</button>")].join('');
+  });
+  return "<div class=\"bread-crumb-main\">".concat(ui, "</div>");
+};
+/* harmony default export */ var breadcrumbsView = (breadCrumbsUI);
+// CONCATENATED MODULE: ./src/modules/sort/index.js
+var sortOptions = [{
+  value: "price desc",
+  text: "Price High to Low"
+}, {
+  value: "price asc",
+  text: " Price Low to High"
+}];
+var sortTemplate = function sortTemplate(selectedSort, sortConfig) {
+  var optionsUI = "";
+  var options = sortConfig.options,
+    sortClass = sortConfig.sortClass,
+    selectedSortClass = sortConfig.selectedSortClass;
+  var UNX_unbxdSorter = this.testIds.UNX_unbxdSorter;
+  options.forEach(function (item) {
+    var value = item.value,
+      text = item.text;
+    if (value == selectedSort) {
+      optionsUI += "<option value=\"".concat(value, "\" class=\"").concat(selectedSortClass, "\" selected>").concat(text, "</option>");
+    } else {
+      optionsUI += "<option value=\"".concat(value, "\">").concat(text, "</option>");
+    }
+  });
+  return ["<div class=\"UNX-sort-block\">", "<span class=\"UNX-sort-header\">Sort By</span>", "<label class=\"UNX-hidden\" for=\"unxSortSelect\">Sort By</label>", "<select data-test-id=\"".concat(UNX_unbxdSorter, "\" name=\"unxSortSelect\" data-action=\"changeSort\" id=\"unxSortSelect\" class=\"").concat(sortClass, "\">"), "<option value=\"\">Relevancy</option>", optionsUI, "</select>", "</div>"].join('');
+};
+
+// CONCATENATED MODULE: ./src/modules/productViewType/index.js
+var renderProductViewType = function renderProductViewType(selectedViewType, productViewType) {
+  var isDisabled = this.getSearchResults() ? false : true;
+  var selectedViewTypeClass = productViewType.selectedViewTypeClass,
+    viewTypeClass = productViewType.viewTypeClass;
+  var _this$testIds = this.testIds,
+    UNX_gridBtn = _this$testIds.UNX_gridBtn,
+    UNX_listBtn = _this$testIds.UNX_listBtn;
+  var listBtnCss = "UNX-list-btn ".concat(viewTypeClass);
+  var gridBtnCss = "UNX-grid-btn ".concat(viewTypeClass);
+  var gTAttr = "data-test-id=".concat(UNX_gridBtn);
+  var lTAttr = "data-test-id=".concat(UNX_listBtn);
+  if (selectedViewType === 'LIST') {
+    listBtnCss += " ".concat(selectedViewTypeClass);
+  }
+  if (selectedViewType === 'GRID') {
+    gridBtnCss += " ".concat(selectedViewTypeClass);
+  }
+  var listBtn = "<button id=\"listBtn\" class=\"".concat(listBtnCss, "\" ").concat(lTAttr, " data-view-action=\"LIST\" >List</button>");
+  var gridBtn = "<button ".concat(gTAttr, " id=\"gridBtn\" class=\"").concat(gridBtnCss, "\" data-view-action=\"GRID\" >Grid</button>");
+  if (isDisabled) {
+    listBtn = "<button ".concat(lTAttr, " id=\"listBtn\" disabled class=\"").concat(listBtnCss, " disabled-btn\" data-view-action=\"LIST\" >List</button>");
+    gridBtn = "<button ".concat(gTAttr, " id=\"gridBtn\" disabled class=\"").concat(gridBtnCss, "  disabled-btn\"data-view-action=\"GRID\" >Grid</button>");
+  }
+  return "".concat(listBtn, " ").concat(gridBtn);
+};
+/* harmony default export */ var modules_productViewType = (renderProductViewType);
+// CONCATENATED MODULE: ./src/modules/banners/index.js
+var bannerTemplateUI = function bannerTemplateUI(banners, bannerOpts) {
+  var openNewTab = bannerOpts.openNewTab;
+  var bannerUI = banners.map(function (item) {
+    var imageUrl = item.imageUrl,
+      landingUrl = item.landingUrl,
+      bannerHtml = item.bannerHtml;
+    if (bannerHtml) {
+      return bannerHtml;
+    }
+    var hrefStr = "";
+    if (landingUrl) {
+      hrefStr += "href=".concat(landingUrl);
+    }
+    if (openNewTab) {
+      hrefStr += "  target=\"_blank\"";
+    }
+    return "<a class=\"UNX-banner-wrap\" ".concat(hrefStr, " ><img style=\"max-width:100%\" src=\"").concat(imageUrl, "\"/></a>");
+  }).join('');
+  return "".concat(bannerUI);
+};
+/* harmony default export */ var banners = (bannerTemplateUI);
+// CONCATENATED MODULE: ./src/modules/pageSize/pageSizeView.js
+var pageSizeUi = function pageSizeUi(selected, pagesize) {
+  var UNX_pagesize = this.testIds.UNX_pagesize;
+  var ui = "<label class=\"UNX-hidden\" for=\"unxPageSize\">Sort By</label><select id=\"unxPageSize\" name=\"unxPageSize\" class=\"UNX-select-pagesize ".concat(pagesize.pageSizeClass, "\">");
+  pagesize.options.forEach(function (opt, i) {
+    var tId = "data-test-id=\"".concat(UNX_pagesize).concat(i + 1, "\"");
+    if (selected == opt) {
+      ui += "<option selected ".concat(tId, " class=\"").concat(pagesize.selectedPageSizeClass, "\" id=\"").concat(opt, "\">").concat(opt, "</option>");
+    } else {
+      ui += "<option ".concat(tId, " id=\"").concat(opt, "\">").concat(opt, "</option>");
+    }
+  });
+  ui += "</select>";
+  return "<div class=\"UNX-pagesize-block\">".concat(ui, "</div>");
+};
+/* harmony default export */ var pageSizeView = (pageSizeUi);
+// CONCATENATED MODULE: ./src/modules/swatches/ui.js
+/* harmony default export */ var swatches_ui = (function (swatchData, swatches, product) {
+  var _this = this;
+  var _swatchData$swatchImg = swatchData.swatchImgs,
+    swatchImgs = _swatchData$swatchImg === void 0 ? [] : _swatchData$swatchImg;
+  var btnUI = "";
+  var btnList = "";
+  var imgsUI = "";
+  var swatchClass = swatches.swatchClass;
+  var UNX_swatchClrBtn = this.testIds.UNX_swatchClrBtn;
+  var unxTitle = product.unxTitle;
+  if (swatchImgs.length > 1) {
+    swatchImgs.forEach(function (item, id) {
+      var sid = _this.generateRid("unx_swatch_");
+      var sCss = id === 0 ? '' : ' UNX-swatch-hidden';
+      var bCss = id === 0 ? ' UNX-selected-swatch' : '';
+      var data = item.split("::");
+      if (data) {
+        btnUI += ["<button value=\"swatch color ".concat(data[0], "\" data-test-id=\"").concat(UNX_swatchClrBtn).concat(id, "\" data-swatch-id=\"").concat(sid, "\" data-action=\"changeSwatch\" class=\"").concat(swatchClass, " ").concat(sid, " ").concat(bCss, "\" style=\"background-color:").concat(data[0], "\"> swatch color ").concat(data[0], " </button>")].join('');
+        imgsUI += "<div id=\"".concat(sid, "\" class=\"UNX-img-wrapper ").concat(sCss, "\"><img alt=\"").concat(unxTitle, " for the ").concat(data[0], "\" class=\"UNX-img-block\" src=\"").concat(data[1], "\"/></div>");
+      }
+    });
+    btnList = "<div class=\"UNX-swatch-color-list\">".concat(btnUI, "</div>");
+  }
+  return {
+    btnList: btnList,
+    imgList: imgsUI
+  };
+});
+;
+// CONCATENATED MODULE: ./src/common/options.js
+
+
+
+
+
+
+
+
+
+
+
+
+var options_options = {
+  productId: "uniqueId",
+  searchBoxEl: null,
+  searchButtonEl: null,
+  siteKey: "demo-spanish-unbxd809051588861207",
+  apiKey: "f19768e22b49909798bc2411fa3dd963",
+  searchPath: "",
+  searchEndPoint: "https://search.unbxd.io/",
+  products: {
+    el: null,
+    template: ui,
+    productItemClass: "product-item",
+    // to find out product
+    productType: "SEARCH",
+    gridCount: 1,
+    onProductClick: function onProductClick(product, e) {},
+    productAttributes: ["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color", "productUrl"],
+    attributesMap: {
+      'unxTitle': 'title',
+      'unxImageUrl': 'imageUrl',
+      'unxPrice': 'salePrice',
+      'unxStrikePrice': 'displayPrice',
+      'unxId': 'uniqueId',
+      'unxDescription': 'productDescription'
+    },
+    defaultImage: "https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-search-results-block UNX-result-wrapper"
+    },
+    events: {}
+  },
+  searchQueryParam: "q",
+  browseQueryParam: 'p',
+  defaultFilters: null,
+  //or object with keys
+  noResults: {
+    template: function template(query) {
+      return "<div class=\"UNX-no-results\"> No Results found ".concat(query, " </div>");
+    }
+  },
+  onEvent: function onEvent(state, type) {},
+  startPageNo: 0,
+  productView: {
+    enabled: true,
+    el: null,
+    template: modules_productViewType,
+    action: 'click',
+    // CLICK or CHANGE
+    viewTypeClass: 'UNX-product-view',
+    selectedViewTypeClass: 'UNX-selected-product-view',
+    defaultViewType: 'GRID',
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "product-view-container"
+    },
+    events: {}
+  },
+  loader: {
+    template: function template() {
+      return "<div class=\"UNX-loader\">Loading search results....</div>";
+    },
+    el: null
+  },
+  variants: undefined,
+  extraParams: {
+    "version": "V2"
+    /*"facet.multilevel":"categoryPath",
+    "f.categoryPath.displayName":"category",
+    "f.categoryPath.max.depth":"4",
+    "f.categoryPath.facet.limit":"100"*/
+  },
+
+  spellCheck: {
+    enabled: true,
+    el: null,
+    template: spellCheckView,
+    selectorClass: "UNX-suggestion",
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-spellcheck-wrapper"
+    },
+    events: {}
+  },
+  breadcrumb: {
+    enabled: true,
+    el: null,
+    selectorClass: "UNX-bread-crumb",
+    template: breadcrumbsView,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-breadcrumbs-block"
+    },
+    events: {}
+  },
+  sort: {
+    enabled: true,
+    el: null,
+    selectedSortClass: 'UNX-selected-sort',
+    sortClass: 'UNX-sort-item',
+    template: sortTemplate,
+    options: sortOptions,
+    action: 'change',
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-sort-block-lb"
+    },
+    events: {}
+  },
+  selectedFacets: {
+    enabled: true,
+    selectedFacetClass: "UNX-selected-facet-btn",
+    el: null,
+    template: selectedFacetUI,
+    itemTemplate: selectedFacetItemTemplateUI,
+    clearAllText: "Clear All",
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-selected-facet-lb"
+    },
+    events: {},
+    facetAction: "click",
+    clearFacetsSelectorClass: 'UNX-clear-facet',
+    removeFacetsSelectorClass: 'UNX-remove-facet'
+  },
+  facet: {
+    facetsEl: null,
+    facetTemplate: facetUIElem,
+    facetItemTemplate: facetItemUiElem,
+    facetMultiSelect: true,
+    facetClass: "UNX-facets-block",
+    facetAction: "click",
+    selectedFacetClass: "UNX-selected-facet-btn",
+    selectedFacetsEl: null,
+    selectedFacetTemplate: selectedFacetUI,
+    selectedFacetItemTemplate: selectedFacetItemTemplateUI,
+    clearAllText: "Clear All",
+    rangeTemplate: renderRangeFacets,
+    rangeWidgetConfig: {
+      "minLabel": "",
+      "maxLabel": "",
+      "prefix": '$'
+    },
+    facetMultilevel: true,
+    facetMultilevelName: 'Category',
+    multiLevelFacetSelectorClass: 'UNX-multilevel-facet',
+    multiLevelFacetTemplate: renderBucketedSearch,
+    facetDepth: 4,
+    clearFacetsSelectorClass: 'UNX-clear-facet',
+    removeFacetsSelectorClass: 'UNX-remove-facet',
+    onFacetLoad: function onFacetLoad(facets) {},
+    applyMultipleFilters: false,
+    applyButtonText: "Apply",
+    clearButtonText: "clear",
+    isCollapsible: true,
+    isSearchable: true,
+    searchPlaceHolder: "Search Filter",
+    textFacetWrapper: "UNX-facets-item",
+    defaultOpen: "ALL",
+    enableViewMore: false,
+    viewMoreText: ["show all", "show less"],
+    viewMoreLimit: 3,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-facets-results-block"
+    },
+    events: {}
+  },
+  pagination: {
+    enabled: true,
+    el: null,
+    template: paginationView,
+    pageClass: "UNX-page-items",
+    selectedPageClass: "UNX-selected-page-item",
+    type: 'CLICK_N_SCROLL',
+    // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+    infiniteScrollTriggerEl: window,
+    //if paginationType = INFINITE_SCROLL
+    heightDiffToTriggerNextPage: 100,
+    //if paginationType = INFINITE_SCROLL,    
+    onPaginate: function onPaginate(paginationInfo) {},
+    action: 'click',
+    pageLimit: 6,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-pagination-size-block"
+    },
+    events: {}
+  },
+  pagesize: {
+    enabled: true,
+    pageSize: 12,
+    options: [8, 12, 16, 20, 24],
+    pageSizeClass: "UNX-pagesize",
+    selectedPageSizeClass: "UNX-selected-pagesize",
+    action: 'change',
+    template: pageSizeView,
+    el: null,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-page-size-block"
+    },
+    events: {}
+  },
+  banner: {
+    enabled: true,
+    el: null,
+    template: banners,
+    count: 1,
+    openNewTab: false,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-banner-block"
+    },
+    events: {}
+  },
+  swatches: {
+    enabled: false,
+    attributesMap: {},
+    swatchClass: 'UNX-swatch-btn',
+    template: swatches_ui
+  },
+  unbxdAnalytics: false,
+  hashMode: false,
+  updateUrls: true,
+  actionBtnClass: "UNX-action-item",
+  actionChangeClass: "UNX-action-change",
+  onAction: function onAction(e, ctx) {},
+  onQueryRedirect: function onQueryRedirect(self, redirect, urlBeforeRedirect) {
+    if (redirect) {
+      var value = redirect.value,
+        type = redirect.type;
+      if (type === "url") {
+        /** If opening in same tab */
+        if (history.state && history.state.replace) {
+          history.replaceState(null, "", urlBeforeRedirect);
+        }
+        location.href = value;
+
+        /** If opening redirect in new tab (rare scenario), 
+         * then browser back + history push on search should be handled by client 
+         * (especially switching betsween category to search page scenarios)
+         * Note: This is not recommended */
+      }
+
+      return false;
+    }
+  },
+  onBackFromRedirect: function onBackFromRedirect(hashMode) {
+    var urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
+    var backFromRedirect = urlSearchParam.get("redirected");
+    if (backFromRedirect) {
+      history.go(-1);
+    }
+  },
+  onNoUnbxdKeyRouting: function onNoUnbxdKeyRouting() {
+    history.go();
+  },
+  setRoutingStrategies: function setRoutingStrategies(locationParam, newUrl, productType, isUnbxdKey, replace) {
+    if (locationParam === newUrl) {
+      return;
+    } else if (productType === "CATEGORY") {
+      /** Do not navigate to base category page  */
+      if (!isUnbxdKey) {
+        history.replaceState(null, "", newUrl);
+      } else {
+        history.pushState(null, "", newUrl);
+      }
+    } else {
+      if (history.state && history.state.replace || replace) {
+        history.replaceState(null, "", newUrl);
+      } else {
+        history.pushState(null, "", newUrl);
+      }
+    }
+  }
+  // searchQueryParam:null
+};
+
+/* harmony default export */ var common_options = (options_options);
+// CONCATENATED MODULE: ./src/modules/banners/setbannerMethods.js
+function renderBannerUI() {
+  var banners = this.getBanners();
+  var banner = this.options.banner;
+  this.bannerWrapper.innerHTML = this.options.banner.template(banners, banner);
+}
+/* harmony default export */ var setbannerMethods = (renderBannerUI);
+// CONCATENATED MODULE: ./src/modules/facets/actions.js
+var findChangedFacet = function findChangedFacet(e) {
+  var elem = e.target;
+  this.viewState.lastDidYouMean = "";
+  var selected = this.options.facet.facetAction === "click" ? elem : elem.options[elem.selectedIndex];
+  var dataSet = selected.dataset;
+  var facetName = dataSet.facetName,
+    facetAction = dataSet.facetAction,
+    id = dataSet.id,
+    action = dataSet.action,
+    end = dataSet.end,
+    start = dataSet.start;
+  var qState = this.getStateFromUrl();
+  var selectedfacets = this.getSelectedFacets();
+  var ln = selectedfacets ? Object.keys(selectedfacets).length : 0;
+  var ql = Object.keys(qState.selectedFacets).length;
+  var _this$options = this.options,
+    productType = _this$options.productType,
+    facet = _this$options.facet;
+  var applyMultipleFilters = facet.applyMultipleFilters;
+  var events = this.events,
+    actions = this.actions;
+  var ranges = this.state.rangeFacet[facetName];
+  var isSelections = Object.keys(qState.rangeFacet);
+  if (facetAction === actions.changeFacet) {
+    var selectedfacetInfo = this.getSelectedFacet(facetName);
+    var selectedOpt = {
+      selectedFacetName: facetName,
+      selectedFacetId: id,
+      facetData: selectedfacetInfo
+    };
+    this.viewState.lastAction = "addedAFacet";
+    this.options.onEvent(this, events.facetClick, {
+      facetName: facetName,
+      facetData: selectedfacetInfo
+    });
+    this.updateFacets(selectedOpt);
+    this.getCallbackActions({
+      facetName: facetName,
+      facetAction: facetAction,
+      id: id
+    }, 'facetClick');
+  }
+  if (facetAction === "deleteSelectedFacetValue") {
+    if (this.findSelectedFacet(facetName)) {
+      this.viewState.lastAction = "deletedAfacet";
+      this.deleteAFacet.bind(this)(facetName, id);
+      this.options.onEvent(this, events.deleteFacetValue, {
+        facetName: facetName
+      });
+      this.getCallbackActions({
+        facetName: facetName,
+        facetAction: facetAction,
+        id: id
+      }, 'facetClick');
+      this.setPageStart(0);
+      this.getResults();
+    }
+  }
+  if (facetAction === actions.deleteFacetValue) {
+    if (this.findSelectedFacet(facetName)) {
+      this.viewState.lastAction = "deletedAfacet";
+      this.deleteAFacet.bind(this)(facetName, id);
+      this.options.onEvent(this, events.deleteFacetValue, {
+        facetName: facetName
+      });
+      this.getCallbackActions({
+        facetName: facetName,
+        facetAction: facetAction,
+        id: id
+      }, 'facetClick');
+      var fl = selectedfacets[facetName].length;
+      if (ql > 0 && ln === 1 && fl === 0 && applyMultipleFilters) {
+        this.setPageStart(0);
+        this.getResults();
+      }
+    }
+  }
+  if (facetAction === actions.deleteFacet) {
+    if (this.findSelectedFacet(facetName)) {
+      this.viewState.lastAction = "deletedAfacet";
+      this.deleteAFacet.bind(this)(facetName);
+      this.options.onEvent(this, events.deleteFacet, {
+        facetName: facetName
+      });
+      this.getCallbackActions({
+        facetName: facetName,
+        facetAction: facetAction,
+        id: id
+      }, 'facetClick');
+      var isReload = qState.selectedFacets[facetName];
+      if (isReload) {
+        this.viewState.lastAction = "clearAFacet";
+        this.setPageStart(0);
+        this.getResults();
+      }
+    }
+  }
+  if (facetAction === "applyFacets") {
+    this.viewState.lastAction = "applyFacets";
+    this.setPageStart(0);
+    this.getResults();
+  }
+  if (facetAction === "clearAllFacets") {
+    this.viewState.lastAction = "clearAllFacets";
+    this.state.selectedFacets = [];
+    this.state.rangeFacet = [];
+    this.setPageStart(0);
+    this.getResults();
+  }
+  if (facetAction === "deleteSelectedRange") {
+    var _facetName = dataSet.facetName,
+      _id = dataSet.id;
+    var range = _id.replace(/[^\w\s]/gi, '').split(" TO ");
+    this.setRangeFacet({
+      start: range[0],
+      end: range[1],
+      facetName: _facetName,
+      applyMultiple: true
+    });
+    this.getCallbackActions({
+      facetName: _facetName,
+      facetAction: facetAction,
+      id: _id
+    }, 'facetClick');
+    this.setPageStart(0);
+    this.getResults();
+  }
+  if (action === actions.setCategoryFilter) {
+    if (productType === "SEARCH") {
+      this.setCategoryFilter(dataSet);
+      this.options.onEvent(this, events.setCategoryFilter, dataSet);
+    } else {
+      this.setCategoryId(dataSet, this);
+    }
+    this.setPageStart(0);
+    this.getResults();
+    this.getCallbackActions(dataSet, 'facetClick');
+  }
+  if (action === actions.clearCategoryFilter) {
+    if (productType === "SEARCH") {
+      this.deleteCategoryFilter(dataSet);
+      this.options.onEvent(this, events.deleteCategoryFilter, dataSet);
+    } else {
+      this.setCategoryId(dataSet, this);
+    }
+    this.setPageStart(0);
+    this.getResults();
+    this.getCallbackActions(dataSet, 'facetClick');
+  }
+  if (action === "setRange") {
+    var already = false;
+    if (ranges && ranges.length === 1 && isSelections.length > 0) {
+      already = this.isSelectedRange(facetName, {
+        from: {
+          name: start
+        },
+        end: {
+          name: end
+        }
+      });
+    }
+    ;
+    if (!already) {
+      this.setRangeFacet({
+        start: start,
+        end: end,
+        facetName: facetName,
+        applyMultiple: true
+      });
+    }
+    if (already) {
+      this.state.rangeFacet = [];
+      this.applyRangeFacet();
+    }
+    if (!applyMultipleFilters) {
+      this.setPageStart(0);
+      this.applyRangeFacet();
+    }
+    this.getCallbackActions({
+      facetName: facetName,
+      facetAction: facetAction,
+      id: id
+    }, 'facetClick');
+  }
+  if (action === "clearRangeFacets") {
+    this.state.rangeFacet = [];
+    this.renderFacets();
+    if (isSelections.length > 0) {
+      ;
+      this.applyRangeFacet();
+    }
+  }
+  if (action === actions.applyRange) {
+    this.applyRangeFacet();
+    this.options.onEvent(this, action, {
+      facetName: facetName
+    });
+    this.getCallbackActions({
+      facetName: facetName
+    }, 'facetClick');
+  }
+  if (action === actions.clearPriceRange && facetName) {
+    this.clearARangeFacet(facetName);
+    this.getResults.bind(this)();
+    this.options.onEvent(this, action, {
+      facetName: facetName
+    });
+    this.getCallbackActions({
+      facetName: facetName
+    }, 'facetClick');
+  }
+  this.viewState.lastAction = action;
+  //this.renderFacets();
+};
+
+
+// CONCATENATED MODULE: ./src/modules/facets/renderFacets.js
+/* harmony default export */ var renderFacets = (function () {
+  var _this = this;
+  var facet = this.options.facet;
+  var defaultOpen = facet.defaultOpen,
+    applyMultipleFilters = facet.applyMultipleFilters,
+    isCollapsible = facet.isCollapsible;
+  var _this$viewState = this.viewState,
+    expandedFacets = _this$viewState.expandedFacets,
+    lastAction = _this$viewState.lastAction;
+  if (lastAction === "updatedRangeSlider" && applyMultipleFilters) {
+    return false;
+  }
+  var self = this;
+  var allFacets = this.getAllFacets();
+  var facetWrappers = this.facetWrappers;
+  var selectedFacets = this.getSelectedFacets();
+  facetWrappers.forEach(function (facetsWrapper) {
+    facetsWrapper.innerHTML = "";
+    allFacets.forEach(function (facetItem, idx) {
+      var facetType = facetItem.facetType,
+        facetName = facetItem.facetName;
+      if (typeof expandedFacets[facetName] === 'undefined' && defaultOpen === 'ALL') {
+        expandedFacets[facetName] = true;
+      }
+      if (defaultOpen === 'FIRST' && idx == 0) {
+        expandedFacets[facetName] = true;
+      }
+      var isExpanded = _this.isExpandedFacet(facetName);
+      var facetSearchTxt = _this.getSearchFacetsText(facetName) || '';
+      var selectedFacet = selectedFacets[facetName];
+      if (facetType === 'text') {
+        facetsWrapper.innerHTML += _this.renderTextFacet(facetItem, selectedFacet, isExpanded, facetSearchTxt);
+      }
+      if (facetType === 'range') {
+        facetsWrapper.innerHTML += _this.renderRangeFacet(facetItem, isExpanded, '');
+      }
+      if (facetType === 'category') {
+        facetsWrapper.innerHTML += _this.renderMultiLevelFacet(facetItem, isExpanded, facetSearchTxt);
+      }
+      _this.viewState.facetElementMap[facetName] = facetName;
+    });
+  });
+  this.options.facet.onFacetLoad.bind(this)(allFacets);
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderTextFacet.js
+/* harmony default export */ var renderTextFacet = (function (facetItem, selectedFacet, isExpanded, facetSearchTxt, onlyValues) {
+  var valuesUI = [];
+  var facetName = facetItem.facetName,
+    _facetItem$values = facetItem.values,
+    values = _facetItem$values === void 0 ? [] : _facetItem$values;
+  var _this$cssList = this.cssList,
+    openFacet = _this$cssList.openFacet,
+    closeFacet = _this$cssList.closeFacet;
+  var self = this;
+  var facet = this.options.facet;
+  var isCollapsible = facet.isCollapsible;
+  if (values.length > 0) {
+    valuesUI = values.map(function (value, index) {
+      var dataId = value.dataId;
+      var selected = false;
+      if (selectedFacet) {
+        selected = selectedFacet.some(function (facet) {
+          return facet.dataId === dataId;
+        });
+      }
+      if (selected) {
+        facetItem.isSelected = true;
+        return self.options.facet.facetItemTemplate.bind(self)(facetItem, value, facetSearchTxt, facet);
+      } else {
+        facetItem.isSelected = false;
+        return self.options.facet.facetItemTemplate.bind(self)(facetItem, value, facetSearchTxt);
+      }
+    });
+  }
+  if (onlyValues) {
+    return valuesUI.join('');
+  }
+  var facetUI = this.options.facet.facetTemplate.bind(this)(facetItem, valuesUI.join(''), isExpanded, facetSearchTxt, facet);
+  var styles = isExpanded ? openFacet : closeFacet;
+  if (!isCollapsible) {
+    styles = "";
+  }
+  return "<div class=\"UNX-facet-item-d ".concat(facetName, " ").concat(styles, "\">").concat(facetUI, "</div>");
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderSelectedFacets.js
+/* harmony default export */ var renderSelectedFacets = (function () {
+  var _this = this;
+  var selectedFacetsInfo = this.getSelectedFacets();
+  var selectedRanges = this.getSelectedRanges();
+  var k = Object.keys(selectedFacetsInfo);
+  var selectedUi = "";
+  var _this$options = this.options,
+    selectedFacets = _this$options.selectedFacets,
+    facet = _this$options.facet;
+  var itemTemplate = facet.selectedFacetItemTemplate ? facet.selectedFacetItemTemplate.bind(this) : selectedFacets.itemTemplate.bind(this);
+  var _loop = function _loop() {
+    var j = k[i];
+    var isCategoryFacet = _this.isCategoryFacet(j);
+    var vals = selectedFacetsInfo[j];
+    if (!isCategoryFacet) {
+      vals.forEach(function (item) {
+        var name = item.name,
+          count = item.count,
+          dataId = item.dataId;
+        selectedUi += itemTemplate({
+          facetName: j,
+          facetType: "text"
+        }, {
+          name: name,
+          dataId: dataId ? dataId : name,
+          count: count ? count : 0
+        }, facet, selectedFacets);
+      });
+    }
+  };
+  for (var i = 0; i < k.length; i++) {
+    _loop();
+  }
+  var r = Object.keys(selectedRanges);
+  var _loop2 = function _loop2() {
+    var l = r[j];
+    var val = selectedRanges[l];
+    val.forEach(function (rEl) {
+      selectedUi += itemTemplate({
+        facetName: l,
+        facetType: "range"
+      }, {
+        name: rEl.replace(/[^\w\s]/gi, ''),
+        dataId: rEl
+      }, facet, selectedFacets);
+    });
+  };
+  for (var j = 0; j < r.length; j++) {
+    _loop2();
+  }
+  var selectedFacetTemp = facet.selectedFacetTemplate ? facet.selectedFacetTemplate.bind(this) : selectedFacets.template.bind(this);
+  this.selectedFacetWrappers.forEach(function (wrapper) {
+    wrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
+  });
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderMultiLevelFacet.js
+/* harmony default export */ var renderMultiLevelFacet = (function (bucketedFacet, isExpanded) {
+  var bucketedUi = "";
+  var self = this;
+  var _this$cssList = this.cssList,
+    openFacet = _this$cssList.openFacet,
+    closeFacet = _this$cssList.closeFacet;
+  var facetName = bucketedFacet.facetName;
+  var facet = this.options.facet;
+  var isCollapsible = facet.isCollapsible;
+  var breadCrumb = this.getBreadCrumbsList(facetName);
+  var valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet, breadCrumb, "", facet);
+  bucketedUi += self.options.facet.facetTemplate.bind(self)(bucketedFacet, valueUI, isExpanded, null, facet);
+  var styles = isExpanded ? openFacet : closeFacet;
+  if (!isCollapsible) {
+    styles = "";
+  }
+  return "<div class=\"".concat(facetName, " UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ").concat(styles, "\">").concat(bucketedUi, "</div>");
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderRangeFacet.js
+/* harmony default export */ var renderRangeFacet = (function (rangeFacet, isExpanded) {
+  var facetName = rangeFacet.facetName;
+  var _this$cssList = this.cssList,
+    openFacet = _this$cssList.openFacet,
+    closeFacet = _this$cssList.closeFacet;
+  var facet = this.options.facet;
+  var isCollapsible = facet.isCollapsible;
+  var selectedRanges = this.state.rangeFacet;
+  var selectedRange = selectedRanges[facetName] || [];
+  var facetUI = this.options.facet.rangeTemplate.bind(this)(rangeFacet, selectedRange, facet);
+  var rangeUi = this.options.facet.facetTemplate.bind(this)(rangeFacet, facetUI, isExpanded, null, facet);
+  var styles = isExpanded ? openFacet : closeFacet;
+  if (!isCollapsible) {
+    styles = "";
+  }
+  return "<div class=\"".concat(facetName, " UNX-facet-item-d range-facets-block ").concat(styles, "\">").concat(rangeUi, "</div>");
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/setFacetMethods.js
+
+
+
+
+
+
+var isSelectedRange = function isSelectedRange(facetName, range) {
+  var selections = this.getSelectedRanges(facetName);
+  var from = range.from,
+    end = range.end;
+  var aR = "[".concat(from.name, " TO ").concat(end.name, "]");
+  if (selections && selections.indexOf(aR) >= 0) {
+    return true;
+  }
+  return false;
+};
+var clearAllFacets = function clearAllFacets() {
+  this.state.selectedFacets = {};
+  this.state.rangeFacet = [];
+  this.state.categoryFilter = {};
+};
+var isExpandedFacet = function isExpandedFacet(facetName) {
+  var expandedFacets = this.viewState.expandedFacets;
+  var isFound = false;
+  if (expandedFacets[facetName] === true) {
+    isFound = true;
+  }
+  return isFound;
+};
+var setSearchFacetsText = function setSearchFacetsText(facet, value) {
+  this.viewState.searchFacetsText[facet] = value;
+  this.reRenderTextFacet(facet);
+};
+var getSearchFacetsText = function getSearchFacetsText(facet) {
+  return this.viewState.searchFacetsText[facet] || "";
+};
+var reRenderTextFacet = function reRenderTextFacet(facetName) {
+  var facetClass = this.options.facet.facetClass;
+  var facetSearchTxt = this.getSearchFacetsText(facetName) || "";
+  var items = document.querySelectorAll(".".concat(facetName, " .").concat(facetClass));
+  items.forEach(function (item) {
+    var _ref = item.dataset || {},
+      id = _ref.id;
+    if (id && id.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) >= 0) {
+      item.classList.remove("UNX-search-hidden");
+    } else {
+      item.classList.add("UNX-search-hidden");
+    }
+  });
+};
+var setRangeSlider = function setRangeSlider(value) {
+  this.setRangeFacet(value);
+  var facetName = value.facetName,
+    start = value.start,
+    end = value.end;
+  this.getCallbackActions({
+    facetName: facetName,
+    facetAction: 'changeFacet',
+    id: facetName
+  }, 'facetClick');
+  this.viewState.lastAction = "updatedRangeSlider";
+  this.setPageStart(0);
+  this.applyRangeFacet();
+};
+var checkFacets = function checkFacets() {
+  var applyMultipleFilters = this.options.facet.applyMultipleFilters;
+  if (applyMultipleFilters) {
+    var qS = this.getStateFromUrl();
+    var selectedFacets = qS.selectedFacets,
+      selectedRanges = qS.selectedRanges;
+    this.state.selectedFacets = selectedFacets;
+    this.state.selectedRanges = selectedRanges;
+  }
+};
+var setFacetMethods_setFacets = function setFacets(prototype) {
+  prototype = Object.assign(prototype, {
+    findChangedFacet: findChangedFacet,
+    isSelectedRange: isSelectedRange,
+    clearAllFacets: clearAllFacets,
+    isExpandedFacet: isExpandedFacet,
+    setSearchFacetsText: setSearchFacetsText,
+    getSearchFacetsText: getSearchFacetsText,
+    reRenderTextFacet: reRenderTextFacet,
+    renderTextFacet: renderTextFacet,
+    renderRangeFacet: renderRangeFacet,
+    renderMultiLevelFacet: renderMultiLevelFacet,
+    renderFacets: renderFacets,
+    renderSelectedFacets: renderSelectedFacets,
+    checkFacets: checkFacets,
+    setRangeSlider: setRangeSlider
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/searchResults/searchResultsView.js
+var renderSearch = function renderSearch() {
+  var _this = this;
+  var searchResults = this.getSearchResults();
+  if (!searchResults) {
+    return "";
+  }
+  var products = searchResults.products;
+  var self = this;
+  var swatches = this.options.swatches;
+  var gridCount = this.options.products.gridCount;
+  var productViewType = this.viewState.productViewType;
+  var productsUI = "";
+  var idx = Number(this.state.startPageNo);
+  var swatchUI = "";
+  if (productViewType === "GRID" && gridCount && gridCount > 1) {
+    products.forEach(function (product, index) {
+      var row = index % gridCount;
+      if (row === 0) {
+        productsUI += "<div class=\"UNX-row\">";
+      }
+      var pRank = index + idx + 1;
+      var mappedProduct = _this.mapProductAttrs(product);
+      if (swatches.enabled) {
+        swatchUI = _this.renderSwatchBtns(product);
+      }
+      productsUI += self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, _this.options.products);
+      if (row === gridCount - 1) {
+        productsUI += "</div>";
+      }
+    });
+  } else {
+    productsUI = products.map(function (product, index) {
+      var pRank = index + idx + 1;
+      var mappedProduct = _this.mapProductAttrs(product);
+      if (swatches.enabled) {
+        swatchUI = _this.renderSwatchBtns(product);
+      }
+      return self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, _this.options.products);
+    }).join('');
+  }
+  return productsUI;
+};
+/* harmony default export */ var searchResultsView = (renderSearch);
+// CONCATENATED MODULE: ./src/modules/searchResults/actions.js
+var onProductItemClick = function onProductItemClick(e) {
+  var path = e.path || e.composedPath && e.composedPath();
+  var _this$options$product = this.options.products,
+    productItemClass = _this$options$product.productItemClass,
+    attributesMap = _this$options$product.attributesMap;
+  var id = productItemClass.replace(".", "");
+  var dataset = e.target.dataset;
+  var elem = path.find(function (item) {
+    var itemCss = item.className;
+    return itemCss.indexOf(id) >= 0;
+  });
+  var _ref = dataset || {},
+    action = _ref.action,
+    swatchId = _ref.swatchId;
+  if (action === this.actions.changeSwatch && swatchId) {
+    elem.querySelectorAll(".UNX-img-wrapper").forEach(function (imgBlock) {
+      var btnE = elem.querySelector(".".concat(imgBlock.id));
+      if (imgBlock.id === swatchId) {
+        imgBlock.classList.remove("UNX-swatch-hidden");
+        elem.querySelector(".".concat(swatchId)).classList.add("UNX-selected-swatch");
+      } else {
+        imgBlock.classList.add("UNX-swatch-hidden");
+        btnE.classList.remove("UNX-selected-swatch");
+      }
+    });
+    this.options.onEvent(this, dataset.action);
+    return false;
+  }
+  var product = null;
+  dataset = elem.dataset;
+  if (dataset.id) {
+    product = this.getProductByPropValue(attributesMap.unxId, dataset.id);
+  }
+  if (product && elem.dataset.prank) {
+    // check if pRank is available in the dataset 
+    // and update the corresponding start number of the product clicked it to the URL
+    product.prank = elem.dataset.prank;
+    var urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('start', parseInt(parseInt(product.prank) - parseInt(product.prank) % parseInt(urlParams.get('rows'))));
+    history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+  }
+  this.options.products.onProductClick(product, e);
+  this.getCallbackActions(product, "click");
+};
+
+// CONCATENATED MODULE: ./src/modules/searchResults/noResultsView.js
+function renderNoResults(query) {
+  return this.options.noResults.template(query);
+}
+/* harmony default export */ var noResultsView = (renderNoResults);
+// CONCATENATED MODULE: ./src/modules/searchResults/setSearch.js
+
+
+
+var mapProductAttrs = function mapProductAttrs(product) {
+  var products = this.options.products;
+  var attributesMap = products.attributesMap;
+  var attrArray = Object.keys(attributesMap);
+  attrArray.forEach(function (item) {
+    var pI = product[item];
+    var mI = attributesMap[item];
+    if (!pI) {
+      product[item] = product[mI];
+    }
+  });
+  return product;
+};
+var setSearch_setSearch = function setSearch(prototype) {
+  prototype = Object.assign(prototype, {
+    renderSearch: searchResultsView,
+    onProductItemClick: onProductItemClick,
+    renderNoResults: noResultsView,
+    mapProductAttrs: mapProductAttrs
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/productViewType/renderProductViewTypeUI.js
+function renderProductViewTypeUI() {
+  var productView = this.options.productView;
+  if (productView.el) {
+    var productViewType = this.viewState.productViewType;
+    var results = this.getSearchResults();
+    if (results && results.numberOfProducts === 0) {
+      this.productViewTypeWrapper.innerHTML = "";
+    } else {
+      this.productViewTypeWrapper.innerHTML = this.options.productView.template.bind(this)(productViewType, productView);
+    }
+  }
+}
+;
+/* harmony default export */ var productViewType_renderProductViewTypeUI = (renderProductViewTypeUI);
+// CONCATENATED MODULE: ./src/modules/utils/extend.js
+var extend = function extend() {
+  // Variables
+  var extended = {};
+  var deep = true;
+  var i = 0;
+  var length = arguments.length;
+
+  // Check if a deep merge
+  if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
+    deep = arguments[0];
+    i++;
+  }
+
+  // Merge the object into the extended object
+  var merge = function merge(obj) {
+    for (var prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+          extended[prop] = extend(true, extended[prop], obj[prop]);
+        } else {
+          extended[prop] = obj[prop];
+        }
+      }
+    }
+  };
+
+  // Loop through each object and conduct a merge
+  for (; i < length; i++) {
+    var obj = arguments[i];
+    merge(obj);
+  }
+  return extended;
+};
+/* harmony default export */ var utils_extend = (extend);
+// CONCATENATED MODULE: ./src/modules/productViewType/actions.js
+
+function onPageViewTypeClick(e) {
+  var elem = e.target;
+  var action = this.options.productView.action;
+  var productViewType = this.viewState.productViewType;
+  var selected = action === "click" ? elem : elem.options[elem.selectedIndex];
+  var dataSet = selected.dataset;
+  var viewAction = dataSet.viewAction;
+  this.checkFacets();
+  if (productViewType !== viewAction) {
+    this.viewState.productViewType = viewAction;
+    var extraParams = this.options.extraParams;
+    this.options.extraParams = utils_extend(true, {}, extraParams, {
+      "viewType": viewAction
+    });
+    this.setPageStart(0);
+    this.state.isBack = false;
+    this.viewState.lastAction = "viewType";
+    this.getResults.bind(this)();
+  }
+}
+
+// CONCATENATED MODULE: ./src/modules/productViewType/setProductViewType.js
+
+
+var setProductViewType_setProductViewType = function setProductViewType(prototype) {
+  prototype = Object.assign(prototype, {
+    onPageViewTypeClick: onPageViewTypeClick,
+    renderProductViewTypeUI: productViewType_renderProductViewTypeUI
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/pagination/renderPagination.js
+var renderPagination = function renderPagination() {
+  var pagination = this.options.pagination;
+  var type = pagination.type;
+  var paginationUI = "";
+  if (type !== 'INFINITE_SCROLL') {
+    var pageInfo = this.getPaginationInfo();
+    if (pageInfo) {
+      paginationUI = pagination.template.bind(this)(pageInfo);
+    }
+  }
+  return paginationUI;
+};
+/* harmony default export */ var pagination_renderPagination = (renderPagination);
+// CONCATENATED MODULE: ./src/modules/pagination/infiniteScroller.js
+function getScrollXY() {
+  var scrOfX = 0;
+  var scrOfY = 0;
+  if (typeof window.pageYOffset == 'number') {
+    //Netscape compliant
+    scrOfY = window.pageYOffset;
+    scrOfX = window.pageXOffset;
+  } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+    //DOM compliant
+    scrOfY = document.body.scrollTop;
+    scrOfX = document.body.scrollLeft;
+  } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+    //IE6 standards compliant mode
+    scrOfY = document.documentElement.scrollTop;
+    scrOfX = document.documentElement.scrollLeft;
+  }
+  return [scrOfX, scrOfY];
+}
+
+// update the start position in the URL
+var updatePageStart = function updatePageStart(context, page) {
+  var autoScrollParams = context.getAutoScrollParams();
+  var rows = parseInt(autoScrollParams.get('rows'));
+  context.setPageStart((page - 1) * rows);
+  autoScrollParams.set('start', (page - 1) * rows);
+  history.replaceState(null, null, context.urlSearchParamsToStr(autoScrollParams));
+};
+
+// callback on page scroll 
+var onInfiniteScroll = function onInfiniteScroll() {
+  var scrollTop = getScrollXY()[1];
+  var rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
+  // check if the products container is visible in the viewport and height is initialized
+  if (this.productContainerHeight != 0 && (rect.bottom > 0 || rect.top < window.innerHeight)) {
+    var autoScrollParams = this.getAutoScrollParams();
+    var page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
+    var start = parseInt(autoScrollParams.get('start')) || 0;
+    var rows = parseInt(autoScrollParams.get('rows')) || 0;
+    var elHeight = document.getElementById('searchResultsWrapper').clientHeight || 0;
+    var currentProducts = 0;
+    var totalProducts = 0;
+    var productResponse = window.unbxdSearch.state.responseObj.response || {};
+    if (productResponse) {
+      currentProducts = productResponse.products ? productResponse.products.length : 0;
+      totalProducts = productResponse.numberOfProducts || 0;
+    }
+    if (scrollTop + window.innerHeight >= elHeight - this.options.pagination.heightDiffToTriggerNextPage && scrollTop + window.innerHeight < elHeight && currentProducts < totalProducts && !this.state.loading) {
+      // fetch next page when user scrolls to the bottom of threshold zone
+      updatePageStart(this, page + 1);
+      this.viewState.lastAction = "next_page_loaded";
+      this.renderNewResults('next');
+    } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
+      // fetch previous page
+      updatePageStart(this, page);
+      this.viewState.lastAction = "prev_page_loaded";
+      this.initialPage = this.initialPage - 1;
+      this.renderNewResults('prev');
+    }
+    if (start / rows + 1 != page && page != 0) {
+      // update page number in the URL as user scrolls up and down
+      updatePageStart(this, page);
+    }
+  }
+};
+/* harmony default export */ var infiniteScroller = (onInfiniteScroll);
+// CONCATENATED MODULE: ./src/modules/pagination/actions.js
+var triggerNextPage = function triggerNextPage(context, next, action) {
+  if (context.options.pagination.type !== "INFINITE_SCROLL") {
+    context.viewState.lastAction = "pagination";
+    context.setPageStart(next);
+  }
+  context.getResults("", true, action);
+  context.options.onEvent(context, context.events.pageNext, {
+    value: next
+  });
+};
+function renderNewResults(action) {
+  var pageInfo = this.getPaginationInfo();
+  var _this$options = this.options,
+    pagination = _this$options.pagination,
+    onEvent = _this$options.onEvent;
+  var start = pageInfo.start,
+    productsLn = pageInfo.productsLn,
+    numberOfProducts = pageInfo.numberOfProducts,
+    rows = pageInfo.rows,
+    isNext = pageInfo.isNext,
+    isPrev = pageInfo.isPrev;
+  if (pagination.type === "CLICK_N_SCROLL") {
+    var next = start + rows;
+    if (isNext) {
+      this.viewState.isInfiniteStarted = true;
+      triggerNextPage(this, next);
+    }
+  } else if (pagination.type === "INFINITE_SCROLL") {
+    if (action === this.actions.next) {
+      var _next = start + rows;
+      if (isNext) {
+        this.viewState.isInfiniteStarted = true;
+        triggerNextPage(this, _next, action);
+      }
+    }
+    if (action === this.actions.prev) {
+      var prev = start - rows;
+      if (isPrev) {
+        this.viewState.isInfiniteStarted = true;
+        triggerNextPage(this, prev, action);
+      }
+    }
+  } else {
+    if (action === this.actions.next) {
+      var _next2 = start + rows;
+      if (isNext) {
+        triggerNextPage(this, _next2);
+      }
+    }
+    if (action === this.actions.prev) {
+      var _prev = start - rows;
+      if (isPrev) {
+        this.viewState.lastAction = "pagination";
+        triggerNextPage(this, _prev);
+        onEvent(this, this.events.pagePrev, {
+          value: _prev
+        });
+      }
+    }
+  }
+}
+;
+function paginationAction(e) {
+  var _e$target$dataset = e.target.dataset,
+    pageAction = _e$target$dataset.pageAction,
+    pageNo = _e$target$dataset.pageNo;
+  this.checkFacets();
+  this.viewState.lastDidYouMean = "";
+  if (pageAction === 'paginate') {
+    this.viewState.lastAction = "pagination";
+    this.setPageStart(pageNo);
+    this.getResults();
+  } else {
+    this.renderNewResults(pageAction);
+  }
+}
+
+// CONCATENATED MODULE: ./src/modules/pagination/setPagination.js
+
+
+
+var getAutoScrollParams = function getAutoScrollParams() {
+  var autoScrollParams = new URLSearchParams(window.location.search);
+  return autoScrollParams;
+};
+var setPagination_setPagination = function setPagination(prototype) {
+  prototype = Object.assign(prototype, {
+    renderPagination: pagination_renderPagination,
+    renderNewResults: renderNewResults,
+    paginationAction: paginationAction,
+    onInfiniteScroll: infiniteScroller,
+    getAutoScrollParams: getAutoScrollParams
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/sort/actions.js
+function sortAction(e) {
+  var elem = e.target;
+  this.viewState.lastDidYouMean = "";
+  var selected = this.options.sort.action === "click" ? elem : elem.options[elem.selectedIndex];
+  var dataSet = selected.dataset;
+  var _elem$dataset = elem.dataset,
+    action = _elem$dataset.action,
+    value = _elem$dataset.value;
+  var sortVal = elem.value || value || "";
+  var changeSort = this.events.changeSort;
+  this.checkFacets();
+  if (action === this.actions.clearSort) {
+    this.applySort("");
+    this.options.onEvent(this, action);
+  }
+  if (action === this.actions.changeSort) {
+    this.applySort(sortVal);
+    this.options.onEvent(this, changeSort, {
+      sort: sortVal
+    });
+  }
+}
+;
+
+// CONCATENATED MODULE: ./src/modules/sort/renderSort.js
+function renderSort() {
+  var _this = this;
+  var results = this.getSearchResults();
+  var sort = this.options.sort;
+  var sortWrappers = this.sortWrappers;
+  sortWrappers.forEach(function (wrapper) {
+    var ui = "";
+    if (results && results.numberOfProducts > 0) {
+      ui = _this.options.sort.template.bind(_this)(_this.getSelectedSort(), sort);
+    }
+    wrapper.innerHTML = ui;
+  });
+}
+/* harmony default export */ var sort_renderSort = (renderSort);
+// CONCATENATED MODULE: ./src/modules/sort/setSort.js
+
+
+var setSort_setSort = function setSort(prototype) {
+  prototype = Object.assign(prototype, {
+    sortAction: sortAction,
+    renderSort: sort_renderSort
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/input/actions.js
+var setInputValue = function setInputValue(e) {
+  var val = this.options.searchBoxEl.value;
+  if (!val.replace(/\s/g, '').length) {
+    return false;
+  }
+  this.options.productType = "SEARCH";
+  val = val.indexOf("#") === 0 ? val.replace("#", "") : val;
+  if (val) {
+    this.resetAll();
+    this.changeInput(val, this.events.changeInput);
+    this.options.products.productType = "SEARCH";
+    this.viewState.loadedFromSuggestion = false;
+    this.state.selectedSort = "";
+    this.setPageStart(0);
+    this.resetViewState();
+    this.getResults();
+  } else {
+    this.searchResultsWrapper.innerHTML = null;
+  }
+};
+
+// CONCATENATED MODULE: ./src/modules/input/setInput.js
+
+var setInput_setInput = function setInput(prototype) {
+  prototype = Object.assign(prototype, {
+    setInputValue: setInputValue
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/didYouMean/renderSpellCheck.js
+var renderDidYouMean = function renderDidYouMean(suggestion) {
+  var userInput = this.state.userInput;
+  var pages = this.getPaginationInfo() || {};
+  var didYouMean = this.getDidYouMeanFromResponse();
+  var type = this.options.pagination.type;
+  var _this$options$spellCh = this.options.spellCheck,
+    spellCheck = _this$options$spellCh.spellCheck,
+    enabled = _this$options$spellCh.enabled;
+  var viewState = this.viewState;
+  var loadedFromSuggestion = viewState.loadedFromSuggestion,
+    lastDidYouMean = viewState.lastDidYouMean;
+  if (type !== "FIXED_PAGINATION" && pages) {
+    var start = pages.start,
+      productsLn = pages.productsLn;
+    pages.productsLn = productsLn + start;
+    pages.start = 0;
+  }
+  var sugString = didYouMean.length > 0 ? didYouMean[0].suggestion : "";
+  var ui = "";
+  if (sugString && !loadedFromSuggestion) {
+    this.viewState.lastDidYouMean = userInput;
+    this.viewState.loadedFromSuggestion = true;
+    if (enabled) {
+      this.getResults(sugString);
+    }
+  } else {
+    this.viewState.lastDidYouMean = "";
+  }
+  ui = this.options.spellCheck.template.bind(this)(userInput, lastDidYouMean, pages);
+  if (!enabled && sugString) {
+    ui = this.options.spellCheck.template.bind(this)(sugString, userInput, pages);
+  }
+  this.spellCheckWrappers.forEach(function (wrapper) {
+    wrapper.innerHTML = ui;
+  });
+};
+/* harmony default export */ var renderSpellCheck = (renderDidYouMean);
+// CONCATENATED MODULE: ./src/modules/didYouMean/setSpellCheck.js
+
+var setSuggestion = function setSuggestion(e) {
+  var txt = this.getSpellCheckSuggested();
+  var didLength = txt.length;
+  var target = e.target;
+  var _ref = target || {},
+    dataset = _ref.dataset;
+  var userInput = this.state.userInput;
+  if (dataset && dataset.action === "getSuggestion") {
+    this.resetAll();
+    this.setPageStart(0);
+    this.getResults(didLength ? txt[0] : userInput);
+    this.viewState.lastDidYouMean = null;
+    this.viewState.loadedFromSuggestion = false;
+  }
+};
+var setSpellCheck_setSpellCheck = function setSpellCheck(prototype) {
+  prototype = Object.assign(prototype, {
+    renderDidYouMean: renderSpellCheck,
+    setSuggestion: setSuggestion
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/breadcrumbs/actions.js
+function onBreadCrumbClick(e) {}
+;
+function renderBreadCrumbs() {
+  var _window$unbxdAnalytic,
+    _window$unbxdAnalytic2,
+    _this = this;
+  var selectedCategories = this.getSelectedMultilevelFacet();
+  if (this.options.products.productType === 'CATEGORY' && ((_window$unbxdAnalytic = window.unbxdAnalyticsConf) === null || _window$unbxdAnalytic === void 0 ? void 0 : (_window$unbxdAnalytic2 = _window$unbxdAnalytic.page) === null || _window$unbxdAnalytic2 === void 0 ? void 0 : _window$unbxdAnalytic2.indexOf("categoryPath")) !== -1) {
+    selectedCategories = ['categoryPath'];
+  }
+  var ui = "";
+  selectedCategories.forEach(function (item) {
+    var data = _this.getBreadCrumbsList(item);
+    var breadcrumb = _this.options.breadcrumb;
+    ui += _this.options.breadcrumb.template(data, breadcrumb);
+  });
+  return ui;
+}
+
+// CONCATENATED MODULE: ./src/modules/breadcrumbs/setBreadcrumbs.js
+
+var setBreadcrumbs_setBreadCrumbs = function setBreadCrumbs(prototype) {
+  prototype = Object.assign(prototype, {
+    onBreadCrumbClick: onBreadCrumbClick,
+    renderBreadCrumbs: renderBreadCrumbs
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/swatches/actions.js
+function renderSwatchBtns(product) {
+  var swatchData = this.getSwatches(product, this.options.swatches.attributesMap);
+  var swatches = this.options.swatches;
+  return this.options.swatches.template.bind(this)(swatchData, swatches, product);
+}
+;
+/* harmony default export */ var actions = (renderSwatchBtns);
+// CONCATENATED MODULE: ./src/modules/swatches/setSwatches.js
+
+var setSwatches_setSwatches = function setSwatches(prototype) {
+  prototype = Object.assign(prototype, {
+    renderSwatchBtns: actions
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/pageSize/actions.js
+var onClickPageSize = function onClickPageSize(e) {
+  var elem = e.target;
+  this.viewState.lastDidYouMean = "";
+  var selected = this.options.pagesize.action === "click" ? elem : elem.options[elem.selectedIndex];
+  var val = selected.id;
+  var pageSizeChange = this.events.pageSizeChange;
+  if (val) {
+    this.checkFacets();
+    this.setPageSize(Number(val));
+    this.getResults.bind(this)();
+    this.options.onEvent(this, pageSizeChange, {
+      count: val
+    });
+  }
+};
+
+// CONCATENATED MODULE: ./src/modules/pageSize/setPageSize.js
+
+
+var renderPageSize = function renderPageSize() {
+  var pagesize = this.options.pagesize;
+  var selected = pagesize.pageSize;
+  var qParams = this.getQueryParams();
+  if (qParams) {
+    selected = this.state.pageSize;
+  }
+  var results = this.getSearchResults();
+  if (results && results.numberOfProducts === 0) {
+    this.pageSizeWrapper.innerHTML = "";
+  } else {
+    this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(selected, pagesize);
+  }
+};
+var setPageSize_setPageSize = function setPageSize(prototype) {
+  prototype = Object.assign(prototype, {
+    pageSizeUi: pageSizeView,
+    onClickPageSize: onClickPageSize,
+    renderPageSize: renderPageSize
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/analytics/setAnalytics.js
+var trackSearch = function trackSearch(value) {
+  Unbxd.track("search", {
+    "query": value
+  });
+};
+var trackProductClick = function trackProductClick(value) {
+  var uniqueId = value.uniqueId,
+    sku = value.sku,
+    prank = value.prank;
+  Unbxd.track("click", {
+    "pid": uniqueId || sku,
+    "prank": prank,
+    "requestId": null
+  });
+};
+var trackImpression = function trackImpression() {
+  var results = this.getSearchResults();
+  var query = this.getSearchQuery();
+  var productType = this.options.productType;
+  var products = results.products;
+  var obj = {
+    'pids_list': []
+  };
+  if (productType === "SEARCH") {
+    obj['query'] = query;
+  }
+  if (products) {
+    var pids = [];
+    products.forEach(function (product) {
+      var sku = product.sku,
+        uniqueId = product.uniqueId;
+      var pid = uniqueId || sku;
+      pids.push(pid);
+    });
+    obj['pids_list'] = pids;
+    Unbxd.track('search_impression', obj);
+  }
+};
+var trackFacetClick = function trackFacetClick(state, type) {
+  var textFacets = this.getSelectedFacets();
+  var rangeFacets = this.state.rangeFacet;
+  var categoryField = this.state.categoryFilter;
+  var textFacetsArr = Object.keys(textFacets);
+  var rangeFacetsArr = Object.keys(rangeFacets);
+  var categoryArr = Object.keys(categoryField);
+  var facetArr = {};
+  textFacetsArr.forEach(function (facet) {
+    var valObj = textFacets[facet];
+    var arr = [];
+    valObj.forEach(function (val) {
+      arr.push(val.name);
+    });
+    facetArr[facet] = arr;
+  });
+  rangeFacetsArr.forEach(function (facet) {
+    // const val =rangeFacetsArr[facet];
+    var val = rangeFacets[facet][0];
+    if (val) {
+      var modifiedVal = val.replace(/\[|\]/g, '').split(',');
+      facetArr[facet] = modifiedVal;
+    }
+  });
+  categoryArr.forEach(function (category) {
+    var val = categoryField[category];
+    var original = val.join('>');
+    facetArr[category] = original;
+  });
+  var query = this.getSearchQuery();
+  Unbxd.track('facets', {
+    'query': query,
+    'facets': facetArr
+  });
+};
+var trackCategoryPageLoad = function trackCategoryPageLoad(instance, type) {
+  if (window.UnbxdAnalyticsConf) {
+    //window.UnbxdAnalyticsConf["page_type"] ="CATEGORY_PATH";
+    Unbxd.track("categoryPage", window.UnbxdAnalyticsConf);
+  }
+};
+var getCallbackActions = function getCallbackActions(state, type) {
+  var Unbxd = window.Unbxd || null;
+  var unbxdAnalytics = this.options.unbxdAnalytics;
+  if (!Unbxd || !unbxdAnalytics || Unbxd && !Unbxd.track) {
+    return false;
+  }
+  if (state) {
+    switch (type) {
+      case 'CHANGE_INPUT':
+        this.trackSearch(state);
+        break;
+      case 'click':
+        this.trackProductClick(state);
+        break;
+      case 'AFTER_API_CALL':
+        this.trackImpression();
+        break;
+      case 'facetClick':
+        this.trackFacetClick(state, type);
+      case 'categoryPage':
+        this.trackCategoryPageLoad(state, type);
+        break;
+    }
+  }
+};
+var setAnalytics = function setAnalytics(prototype) {
+  prototype = Object.assign(prototype, {
+    trackSearch: trackSearch,
+    getCallbackActions: getCallbackActions,
+    trackProductClick: trackProductClick,
+    trackImpression: trackImpression,
+    trackFacetClick: trackFacetClick,
+    trackCategoryPageLoad: trackCategoryPageLoad
+  });
+};
+
+// CONCATENATED MODULE: ./src/common/constants/selectors.js
+var unxSelectors = {
+  unxPageSize: 'unxPageSize'
+};
+/* harmony default export */ var selectors = (unxSelectors);
+// CONCATENATED MODULE: ./src/core/reRender.js
+var reRender = function reRender() {
+  var _this = this;
+  var _this$options = this.options,
+    onEvent = _this$options.onEvent,
+    spellCheck = _this$options.spellCheck,
+    pagination = _this$options.pagination,
+    productType = _this$options.productType,
+    searchBoxEl = _this$options.searchBoxEl,
+    loader = _this$options.loader,
+    breadcrumb = _this$options.breadcrumb,
+    productView = _this$options.productView,
+    facet = _this$options.facet;
+  var _this$events = this.events,
+    beforeRender = _this$events.beforeRender,
+    beforeNoResultRender = _this$events.beforeNoResultRender,
+    afterNoResultRender = _this$events.afterNoResultRender,
+    afterRender = _this$events.afterRender;
+  onEvent(this, beforeRender);
+  if (loader.el) {
+    loader.el.innerHTML = "";
+  }
+  var results = this.getSearchResults();
+  var qParams = this.getQueryParams() || {};
+  var query = this.getSearchQuery();
+  var noResultCss = "UNX-no-results-wrap";
+  var _this$viewState = this.viewState,
+    lastAction = _this$viewState.lastAction,
+    productViewType = _this$viewState.productViewType;
+  if (productType === "SEARCH" && searchBoxEl) {
+    searchBoxEl.value = this.state.userInput;
+  }
+  if (productType !== "SEARCH" && searchBoxEl) {
+    searchBoxEl.value = "";
+  }
+  var searchResultsWrapper = this.searchResultsWrapper,
+    paginationWrappers = this.paginationWrappers,
+    breadcrumbWrapper = this.breadcrumbWrapper;
+  var _this$viewState2 = this.viewState,
+    noResultLoaded = _this$viewState2.noResultLoaded,
+    isInfiniteStarted = _this$viewState2.isInfiniteStarted;
+  if (results && results.numberOfProducts === 0) {
+    var redirect = this.state.responseObj.redirect || {};
+    if (Object.keys(redirect).length) {
+      return;
+    }
+    onEvent(this, beforeNoResultRender);
+    this.viewState.noResultLoaded = true;
+    searchResultsWrapper.classList.add(noResultCss);
+    searchResultsWrapper.innerHTML = this.renderNoResults(query);
+    if (!qParams.filter) {
+      this.renderFacets();
+    }
+    onEvent(this, afterNoResultRender);
+  } else {
+    var viewCss = productViewType === "LIST" ? "UNX-list-block" : "UNX-grid-block";
+    searchResultsWrapper.classList.remove("UNX-list-block");
+    searchResultsWrapper.classList.remove("UNX-grid-block");
+    searchResultsWrapper.classList.add(viewCss);
+    searchResultsWrapper.classList.remove(noResultCss);
+    if (isInfiniteStarted) {
+      this.viewState.isInfiniteStarted = false;
+      if (noResultLoaded) {
+        this.viewState.noResultLoaded = true;
+        searchResultsWrapper.innerHTML = this.renderSearch();
+      } else {
+        if (lastAction === "prev_page_loaded") {
+          searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
+        } else {
+          searchResultsWrapper.innerHTML += this.renderSearch();
+        }
+      }
+    } else {
+      searchResultsWrapper.innerHTML = "";
+      searchResultsWrapper.innerHTML = this.renderSearch();
+    }
+  }
+  this.renderFacets();
+  this.renderSelectedFacets();
+  this.renderBannerUI();
+  if (productView.enabled) {
+    this.renderProductViewTypeUI();
+  }
+  this.renderPageSize();
+  this.renderSort();
+  if (pagination.type !== "INFINITE_SCROLL") {
+    paginationWrappers.forEach(function (pagination) {
+      pagination.innerHTML = _this.renderPagination();
+    });
+  } else {
+    if (paginationWrappers) {
+      paginationWrappers.forEach(function (pagination) {
+        pagination.innerHTML = "";
+      });
+    }
+  }
+  if (breadcrumb.enabled) {
+    breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
+  }
+  var suggestion = this.getSpellCheckSuggested();
+  if (spellCheck.el) {
+    this.renderDidYouMean(suggestion);
+  }
+  if (lastAction === "pagination") {
+    pagination.onPaginate.bind(this)(this.getPaginationInfo());
+  }
+  var autoScrollParams = this.getAutoScrollParams();
+  if (pagination.type === 'INFINITE_SCROLL') {
+    if (!this.productContainerHeight) {
+      this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
+      if (autoScrollParams.get('start') != null) {
+        this.initialPage = parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1;
+      }
+    }
+  }
+  onEvent(this, afterRender);
+};
+/* harmony default export */ var core_reRender = (reRender);
+// CONCATENATED MODULE: ./src/core/bindEvents.js
+function bindEvents() {
+  var _this = this;
+  var _this$options = this.options,
+    searchButtonEl = _this$options.searchButtonEl,
+    searchTrigger = _this$options.searchTrigger,
+    products = _this$options.products,
+    facet = _this$options.facet,
+    productView = _this$options.productView,
+    pagination = _this$options.pagination,
+    sort = _this$options.sort,
+    pagesize = _this$options.pagesize,
+    spellCheck = _this$options.spellCheck,
+    searchBoxEl = _this$options.searchBoxEl,
+    actionChangeClass = _this$options.actionChangeClass,
+    actionBtnClass = _this$options.actionBtnClass,
+    breadcrumb = _this$options.breadcrumb,
+    selectedFacets = _this$options.selectedFacets;
+  if (searchBoxEl) {
+    searchBoxEl.addEventListener("keydown", function (e) {
+      var val = e.target.value;
+      if (e.keyCode === 13) {
+        //checks whether the pressed key is "Enter"
+        if (val !== "") {
+          _this.setInputValue.bind(_this)();
+        }
+      }
+    });
+  }
+  if (pagination.enabled) {
+    this.paginationWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, pagination.action, ".".concat(pagination.pageClass), _this.paginationAction.bind(_this));
+    });
+  }
+  if (facet.facetsEl) {
+    this.facetWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, facet.facetAction, ".".concat(facet.facetClass), _this.findChangedFacet.bind(_this));
+      _this.delegate(wrapper, 'change', '.' + actionChangeClass, _this.extraActionsChange.bind(_this));
+      _this.delegate(wrapper, 'keyup', '.' + actionChangeClass, _this.extraActionsChange.bind(_this));
+      _this.delegate(wrapper, 'click', '.' + actionBtnClass, _this.extraActions.bind(_this));
+    });
+  }
+  if (searchButtonEl) {
+    searchButtonEl.addEventListener(searchTrigger, this.setInputValue.bind(this));
+  }
+  if (spellCheck.el) {
+    this.spellCheckWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, 'click', ".".concat(spellCheck.selectorClass), _this.setSuggestion.bind(_this));
+    });
+  }
+  //productItemSelector
+  this.delegate(this.searchResultsWrapper, "click", ".".concat(products.productItemClass), this.onProductItemClick.bind(this));
+  if (sort.el) {
+    this.sortWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, sort.action, ".".concat(sort.sortClass), _this.sortAction.bind(_this));
+    });
+  }
+  if (facet.selectedFacetsEl) {
+    this.selectedFacetWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, facet.facetAction, ".".concat(facet.selectedFacetClass), _this.findChangedFacet.bind(_this));
+    });
+  } else {
+    this.selectedFacetWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, selectedFacets.facetAction, ".".concat(selectedFacets.selectedFacetClass), _this.findChangedFacet.bind(_this));
+    });
+  }
+  if (this.breadcrumbWrapper) {
+    this.delegate(this.breadcrumbWrapper, "click", "." + breadcrumb.selectorClass, this.findChangedFacet.bind(this));
+  }
+  if (this.productViewTypeWrapper) {
+    this.delegate(this.productViewTypeWrapper, productView.action, "." + productView.viewTypeClass, this.onPageViewTypeClick.bind(this));
+  }
+  if (this.options.pagination.type === 'INFINITE_SCROLL') {
+    var infiniteScrollTimer;
+    var self = this;
+    document.addEventListener("scroll", function () {
+      // this setTimeout and clearTimeout logic will ensure the callback is not called on every few seconds, 
+      // instead it is called only when the user stops interacting with the scroll position
+      // do not change this logic
+      infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
+      infiniteScrollTimer = setTimeout(function () {
+        if (!self.viewState.isInfiniteStarted && !self.state.loading) {
+          self.onInfiniteScroll();
+        }
+      }, 100);
+    });
+  }
+  this.delegate(this.pageSizeWrapper, pagesize.action, ".".concat(pagesize.pageSizeClass), this.onClickPageSize.bind(this));
+  if (!this.viewState.initialised) {
+    window.addEventListener('popstate', this.onLocationChange.bind(this), false);
+    // if(this.options.hashMode) {
+    //     // window.addEventListener('hashchange',this.onLocationChange.bind(this),false);
+    //     window.onhashchange= this.onLocationChange.bind(this);
+    // } else {
+    //     window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+    // }
+    var urlParams = this.getQueryParams();
+    var ln = Object.keys(urlParams).length;
+    if (ln > 0) {
+      this.renderFromUrl();
+    }
+    this.viewState.initialised = true;
+  }
+}
+/* harmony default export */ var core_bindEvents = (bindEvents);
+// CONCATENATED MODULE: ./src/core/initialize.js
+
+
+
+var initialize_initialize = function initialize() {
+  this.createLayout();
+  this.unxSelectors = selectors;
+  this.renderDidYouMean.bind(this);
+  this.options.onEvent.bind(this);
+  this.options.products.onProductClick.bind(this);
+  this.reRender = core_reRender.bind(this);
+  this.bindEvents = core_bindEvents.bind(this);
+  this.bindEvents();
+  var urlParams = this.getQueryParams();
+  var ln = Object.keys(urlParams).length;
+  var _this$options$product = this.options.productView,
+    defaultViewType = _this$options$product.defaultViewType,
+    enabled = _this$options$product.enabled;
+  if (ln > 0) {
+    var viewType = urlParams.viewType;
+    if (viewType) {
+      this.viewState.productViewType = viewType;
+      this.options.extraParams.viewType = viewType;
+    }
+  } else {
+    this.options.extraParams.viewType = defaultViewType;
+  }
+  if (enabled) {
+    this.renderProductViewTypeUI();
+  }
+};
+/* harmony default export */ var core_initialize = (initialize_initialize);
+// CONCATENATED MODULE: ./src/core/createLayout.js
+var createLayout = function createLayout() {
+  var _this = this;
+  this.searchResultsWrapper = this.createtSearchWrapper();
+  this.bannerWrapper = this.createBannerWrapper();
+  this.breadcrumbWrapper = this.createBreadcrumbWrapper();
+  this.pageSizeWrapper = this.createPageSizeWrapper();
+  this.productViewTypeWrapper = this.createProductViewTypeWrapper();
+  this.paginationWrappers = [];
+  this.facetWrappers = [];
+  this.sortWrappers = [];
+  this.selectedFacetWrappers = [];
+  this.spellCheckWrappers = [];
+  var getPaginationWrapper = function getPaginationWrapper() {
+    var elem = _this.createPaginationWrapper();
+    _this.paginationWrappers.push(elem);
+    return elem;
+  };
+  var getfacetWrappers = function getfacetWrappers() {
+    var elem = _this.createFacetWrapper();
+    _this.facetWrappers.push(elem);
+    return elem;
+  };
+  var getSortElementWrappers = function getSortElementWrappers() {
+    var elem = _this.createSortWrapper();
+    _this.sortWrappers.push(elem);
+    return elem;
+  };
+  var getSelectedFacetsWrappers = function getSelectedFacetsWrappers() {
+    var elem = _this.createSelectedFacetWrapper();
+    _this.selectedFacetWrappers.push(elem);
+    return elem;
+  };
+  var getSpellCheckWrappers = function getSpellCheckWrappers() {
+    var elem = _this.createSpellCheckWrapper();
+    _this.spellCheckWrappers.push(elem);
+    return elem;
+  };
+  var _this$options = this.options,
+    facet = _this$options.facet,
+    breadcrumb = _this$options.breadcrumb,
+    banner = _this$options.banner,
+    sort = _this$options.sort,
+    products = _this$options.products,
+    pagesize = _this$options.pagesize,
+    pagination = _this$options.pagination,
+    productView = _this$options.productView,
+    selectedFacets = _this$options.selectedFacets;
+  var facetsEl = facet.facetsEl;
+  var spellCheck = this.options.spellCheck;
+  var spellCheckEl = spellCheck.el;
+  if (spellCheckEl) {
+    var els = spellCheckEl;
+    if (!els.length) {
+      els = [spellCheckEl];
+    }
+    els.forEach(function (el) {
+      el.innerHTML = "";
+      el.appendChild(getSpellCheckWrappers());
+    });
+  }
+  if (facetsEl) {
+    var _els = facetsEl;
+    if (!facetsEl.length) {
+      _els = [facetsEl];
+    }
+    _els.forEach(function (facetEl) {
+      facetEl.innerHTML = "";
+      facetEl.appendChild(getfacetWrappers());
+    });
+  }
+  var sortEls = sort.el;
+  if (sortEls && sort.enabled) {
+    var _els2 = sortEls;
+    if (!sortEls.length) {
+      _els2 = [sortEls];
+    }
+    _els2.forEach(function (sortEl) {
+      sortEl.innerHTML = "";
+      sortEl.appendChild(getSortElementWrappers());
+    });
+  }
+  if (facet.selectedFacetsEl) {
+    console.log("selectedFacetsEl option is depricated from v2.0.2, please use selectedFacets option to configure selected facets elements and template");
+    facet.selectedFacetsEl.innerHTML = "";
+    facet.selectedFacetsEl.appendChild(getSelectedFacetsWrappers());
+  } else {
+    var selectedFacetsElems = selectedFacets.el;
+    if (selectedFacets.enabled && selectedFacetsElems) {
+      var _els3 = selectedFacetsElems;
+      if (!selectedFacetsElems.length) {
+        _els3 = [selectedFacetsElems];
+      }
+      _els3.forEach(function (el) {
+        el.innerHTML = "";
+        el.appendChild(getSelectedFacetsWrappers());
+      });
+    }
+  }
+  if (breadcrumb.enabled) {
+    if (breadcrumb.el) {
+      breadcrumb.el.innerHTML = "";
+      breadcrumb.el.appendChild(this.breadcrumbWrapper);
+    }
+  }
+  if (banner.el && banner.enabled) {
+    banner.el.innerHTML = "";
+    banner.template.bind(this);
+    banner.el.appendChild(this.bannerWrapper);
+  }
+  if (products.el) {
+    products.el.innerHTML = "";
+    products.el.appendChild(this.searchResultsWrapper);
+  }
+  if (pagesize.el && pagesize.enabled) {
+    pagesize.el.innerHTML = "";
+    pagesize.el.appendChild(this.pageSizeWrapper);
+  }
+  if (productView.el) {
+    productView.el.innerHTML = "";
+    productView.el.appendChild(this.productViewTypeWrapper);
+  }
+  if (pagination.enabled) {
+    var el = pagination.el;
+    if (el) {
+      var _els4 = el;
+      if (!el.length) {
+        _els4 = [el];
+      }
+      _els4.forEach(function (element) {
+        element.innerHTML = "";
+        element.appendChild(getPaginationWrapper());
+      });
+    }
+  }
+};
+/* harmony default export */ var core_createLayout = (createLayout);
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSearchWrapper.js
+/* harmony default export */ var createSearchWrapper = (function () {
+  var _this$options$product = this.options.products,
+    tagName = _this$options$product.tagName,
+    _this$options$product2 = _this$options$product.htmlAttributes,
+    htmlAttributes = _this$options$product2 === void 0 ? {} : _this$options$product2,
+    events = _this$options$product.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createFacetWrapper.js
+/* harmony default export */ var createFacetWrapper = (function () {
+  var _this$options$facet = this.options.facet,
+    tagName = _this$options$facet.tagName,
+    _this$options$facet$h = _this$options$facet.htmlAttributes,
+    htmlAttributes = _this$options$facet$h === void 0 ? {} : _this$options$facet$h,
+    events = _this$options$facet.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createBannerWrapper.js
+/* harmony default export */ var createBannerWrapper = (function () {
+  var _this$options$banner = this.options.banner,
+    tagName = _this$options$banner.tagName,
+    _this$options$banner$ = _this$options$banner.htmlAttributes,
+    htmlAttributes = _this$options$banner$ === void 0 ? {} : _this$options$banner$,
+    events = _this$options$banner.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createBreadcrumbWrapper.js
+/* harmony default export */ var createBreadcrumbWrapper = (function () {
+  var _this$options$breadcr = this.options.breadcrumb,
+    tagName = _this$options$breadcr.tagName,
+    _this$options$breadcr2 = _this$options$breadcr.htmlAttributes,
+    htmlAttributes = _this$options$breadcr2 === void 0 ? {} : _this$options$breadcr2,
+    events = _this$options$breadcr.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createPageSizeWrapper.js
+/* harmony default export */ var createPageSizeWrapper = (function () {
+  var _this$options$pagesiz = this.options.pagesize,
+    tagName = _this$options$pagesiz.tagName,
+    _this$options$pagesiz2 = _this$options$pagesiz.htmlAttributes,
+    htmlAttributes = _this$options$pagesiz2 === void 0 ? {} : _this$options$pagesiz2,
+    events = _this$options$pagesiz.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSortWrapper.js
+/* harmony default export */ var createSortWrapper = (function () {
+  var _this$options$sort = this.options.sort,
+    tagName = _this$options$sort.tagName,
+    _this$options$sort$ht = _this$options$sort.htmlAttributes,
+    htmlAttributes = _this$options$sort$ht === void 0 ? {} : _this$options$sort$ht,
+    events = _this$options$sort.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSelectedFacetWrapper.js
+/* harmony default export */ var createSelectedFacetWrapper = (function () {
+  var _this$options$selecte = this.options.selectedFacets,
+    tagName = _this$options$selecte.tagName,
+    _this$options$selecte2 = _this$options$selecte.htmlAttributes,
+    htmlAttributes = _this$options$selecte2 === void 0 ? {} : _this$options$selecte2,
+    events = _this$options$selecte.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSpellCheckWrapper.js
+/* harmony default export */ var createSpellCheckWrapper = (function () {
+  var _this$options$spellCh = this.options.spellCheck,
+    tagName = _this$options$spellCh.tagName,
+    _this$options$spellCh2 = _this$options$spellCh.htmlAttributes,
+    htmlAttributes = _this$options$spellCh2 === void 0 ? {} : _this$options$spellCh2,
+    events = _this$options$spellCh.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createPaginationWrapper.js
+/* harmony default export */ var createPaginationWrapper = (function () {
+  var _this$options$paginat = this.options.pagination,
+    tagName = _this$options$paginat.tagName,
+    _this$options$paginat2 = _this$options$paginat.htmlAttributes,
+    htmlAttributes = _this$options$paginat2 === void 0 ? {} : _this$options$paginat2,
+    events = _this$options$paginat.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createProductViewTypeWrapper.js
+/* harmony default export */ var createProductViewTypeWrapper = (function () {
+  var _this$options$product = this.options.productView,
+    tagName = _this$options$product.tagName,
+    _this$options$product2 = _this$options$product.htmlAttributes,
+    htmlAttributes = _this$options$product2 === void 0 ? {} : _this$options$product2,
+    events = _this$options$product.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/index.js
+
+
+
+
+
+
+
+
+
+
+var componentWrappers_setComponentWrappers = function setComponentWrappers(prototype) {
+  prototype = Object.assign(prototype, {
+    createtSearchWrapper: createSearchWrapper,
+    createFacetWrapper: createFacetWrapper,
+    createBannerWrapper: createBannerWrapper,
+    createBreadcrumbWrapper: createBreadcrumbWrapper,
+    createPageSizeWrapper: createPageSizeWrapper,
+    createSortWrapper: createSortWrapper,
+    createSelectedFacetWrapper: createSelectedFacetWrapper,
+    createSpellCheckWrapper: createSpellCheckWrapper,
+    createPaginationWrapper: createPaginationWrapper,
+    createProductViewTypeWrapper: createProductViewTypeWrapper
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/utils/createElement.js
+var createElement = function createElement(type) {
+  var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var events = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var context = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : window;
+  var elem = document.createElement(type);
+  var attrArr = Object.keys(attr);
+  attrArr.forEach(function (item) {
+    elem.setAttribute(item, attr[item]);
+  });
+  var eventsArr = Object.keys(events);
+  if (eventsArr.length > 0) {
+    eventsArr.forEach(function (event) {
+      elem.addEventListener(event, events[event].bind(context));
+    });
+  }
+  return elem;
+};
+/* harmony default export */ var utils_createElement = (createElement);
+// CONCATENATED MODULE: ./src/core/setMethods.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var setSearchWidget = function setSearchWidget(config) {
+  var products = this.options.products;
+  var newOps = Object.assign({}, products, config);
+  this.options.products = newOps;
+};
+var setFacetWidget = function setFacetWidget(config) {
+  var facet = this.options.facet;
+  var newOps = Object.assign({}, facet, config);
+  this.options.facet = newOps;
+};
+var updateConfig = function updateConfig(config) {
+  var options = this.options;
+  this.setConfig(options, config);
+  this.initialize();
+};
+var extraActions = function extraActions(e) {
+  var onAction = this.options.onAction;
+  var target = e.target;
+  var dataset = target.dataset;
+  var _this$cssList = this.cssList,
+    openFacet = _this$cssList.openFacet,
+    closeFacet = _this$cssList.closeFacet,
+    openBtn = _this$cssList.openBtn,
+    closeBtn = _this$cssList.closeBtn,
+    viewMore = _this$cssList.viewMore,
+    viewLess = _this$cssList.viewLess;
+  var _this$options$facet = this.options.facet,
+    viewMoreText = _this$options$facet.viewMoreText,
+    textFacetWrapper = _this$options$facet.textFacetWrapper;
+  if (dataset) {
+    var facetAction = dataset.facetAction,
+      facetName = dataset.facetName,
+      action = dataset.action,
+      id = dataset.id;
+    var facetElementMap = this.viewState.facetElementMap;
+    var fI = target.closest(".".concat(facetElementMap[facetName]));
+    if (facetAction === "facetOpen") {
+      this.viewState.expandedFacets[facetName] = true;
+      target.classList.add(openBtn);
+      target.classList.remove(closeBtn);
+      target.setAttribute("data-facet-action", "facetClose");
+      fI.classList.remove(closeFacet);
+      fI.classList.add(openFacet);
+    }
+    if (facetAction === "facetClose") {
+      this.viewState.expandedFacets[facetName] = false;
+      target.classList.remove(openBtn);
+      target.classList.add(closeBtn);
+      target.setAttribute("data-facet-action", "facetOpen");
+      fI.classList.remove(openFacet);
+      fI.classList.add(closeFacet);
+    }
+    if (action === "viewMore") {
+      target.setAttribute("data-action", "viewLess");
+      target.innerHTML = viewMoreText[1];
+      var fcEl = fI.querySelector(".".concat(textFacetWrapper));
+      fcEl.classList.remove(viewMore);
+      fcEl.classList.add(viewLess);
+    }
+    if (action === "viewLess") {
+      target.setAttribute("data-action", "viewMore");
+      target.innerHTML = viewMoreText[0];
+      var _fcEl = fI.querySelector(".".concat(textFacetWrapper));
+      _fcEl.classList.remove(viewLess);
+      _fcEl.classList.add(viewMore);
+    }
+  }
+  onAction(e, this);
+};
+var extraActionsChange = function extraActionsChange(e) {
+  var onAction = this.options.onAction;
+  var dataset = e.target.dataset;
+  if (dataset) {
+    var facetAction = dataset.facetAction,
+      facetName = dataset.facetName;
+    if (facetAction === "searchFacets") {
+      this.setSearchFacetsText(facetName, e.target.value);
+    }
+  }
+  onAction(e, this);
+};
+var getCategoryPage = function getCategoryPage() {
+  this.resetAll();
+  this.options.productType = "CATEGORY";
+  this.options.products.productType = "CATEGORY";
+  this.getCallbackActions(this, 'categoryPage');
+  this.getResults();
+};
+var getBrowsePage = function getBrowsePage() {
+  this.resetAll();
+  this.options.productType = "BROWSE";
+  this.options.products.productType = "BROWSE";
+  this.getCallbackActions(this, 'categoryPage');
+  this.getResults();
+};
+var resetViewState = function resetViewState() {
+  this.viewState.lastDidYouMean = null;
+  this.viewState.searchFacetsText = {};
+  this.viewState.lastDidYouMean = null;
+  this.viewState.expandedFacets = {};
+};
+var generateRid = function generateRid() {
+  var custom = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "unx_";
+  return custom + Math.random().toString(36).substr(2, 9);
+};
+var createFacetsLayout = function createFacetsLayout() {};
+var setMethods_setMethods = function setMethods(UnbxdSearch) {
+  var prototype = UnbxdSearch.prototype;
+  prototype.renderBannerUI = setbannerMethods;
+  prototype.setSearchWidget = setSearchWidget;
+  prototype.setFacetWidget = setFacetWidget;
+  prototype.updateConfig = updateConfig;
+  prototype.createLayout = core_createLayout;
+  prototype.initialize = core_initialize;
+  prototype.extraActions = extraActions;
+  prototype.extraActionsChange = extraActionsChange;
+  prototype.getCategoryPage = getCategoryPage;
+  prototype.getBrowsePage = getBrowsePage;
+  prototype.resetViewState = resetViewState;
+  prototype.generateRid = generateRid;
+  prototype.createElement = utils_createElement;
+  prototype.createFacetsLayout = createFacetsLayout;
+  componentWrappers_setComponentWrappers(prototype);
+  setInput_setInput(prototype);
+  setProductViewType_setProductViewType(prototype);
+  setFacetMethods_setFacets(prototype);
+  setSearch_setSearch(prototype);
+  setPagination_setPagination(prototype);
+  setSort_setSort(prototype);
+  setSpellCheck_setSpellCheck(prototype);
+  setBreadcrumbs_setBreadCrumbs(prototype);
+  setSwatches_setSwatches(prototype);
+  setPageSize_setPageSize(prototype);
+  setAnalytics(prototype);
+};
+/* harmony default export */ var core_setMethods = (setMethods_setMethods);
+// CONCATENATED MODULE: ./src/common/constants/eventsLib.js
+var _events;
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var events = (_events = {
+  beforeApiCall: "BEFORE_API_CALL",
+  afterApiCall: "AFTER_API_CALL",
+  beforeRender: "BEFORE_RENDER",
+  beforeNoResultRender: "BEFORE_NO_RESULTS_RENDER",
+  afterNoResultRender: "AFTER_NO_RESULTS_RENDER",
+  afterRender: "AFTER_RENDER",
+  deleteFacet: "DELETE_FACET",
+  facetClick: "FACETS_CLICK",
+  deleteFacetValue: "DELETE_FACET_VALUE"
+}, _defineProperty(_events, "deleteFacet", "DELETE_FACET"), _defineProperty(_events, "clearSort", "CLEAR_SORT"), _defineProperty(_events, "changeSort", "CHANGE_SORT"), _defineProperty(_events, "pageNext", "PAGE_NEXT"), _defineProperty(_events, "pagePrev", "PAGE_PREV"), _defineProperty(_events, "changeInput", "CHANGE_INPUT"), _defineProperty(_events, "setCategoryFilter", "SET_CATEGORY_FILTER"), _defineProperty(_events, "deleteCategoryFilter", "DELETE_CATEGORY_FILTER"), _defineProperty(_events, "pageSizeChange", "PAGESIZE_CHANGE"), _events);
+/* harmony default export */ var eventsLib = (events);
+// CONCATENATED MODULE: ./src/common/constants/actions.js
+var actions_actions = {
+  clearCategoryFilter: "clearCategoryFilter",
+  setCategoryFilter: "setCategoryFilter",
+  changeSwatch: "changeSwatch",
+  clearPriceRange: "clearPriceRange",
+  applyRange: "applyRange",
+  prev: "prev",
+  next: "next",
+  clearSort: "clearSort",
+  changeSort: "changeSort",
+  deleteFacet: "deleteFacet",
+  deleteFacetValue: "deleteFacetValue",
+  changeFacet: "changeFacet"
+};
+/* harmony default export */ var constants_actions = (actions_actions);
+// CONCATENATED MODULE: ./src/common/constants/index.js
+
+
+var cssClasses = {
+  openFacet: "UNX-accordian-open",
+  closeFacet: "UNX-accordian-close",
+  openBtn: "UNX-facet-open",
+  closeBtn: "UNX-facet-close",
+  viewMore: "UNX-view-more",
+  viewLess: "UNX-view-less"
+};
+var testIds = {
+  UNX_gridBtn: "UNX_gridBtn",
+  UNX_listBtn: "UNX_listBtn",
+  UNX_loadMore: "UNX_loadMore",
+  UNX_variant: "UNX_variant",
+  UNX_spellCheck: "UNX_spellCheck",
+  UNX_pagesize: "UNX_pagesize",
+  UNX_pageNumber: "UNX_pageNumber",
+  UNX_unbxdSorter: "UNX_unbxdSorter",
+  UNX_uFilter: "UNX_uFilter",
+  UNX_rangeslider: "UNX_rangeslider",
+  UNX_facetLevel: "UNX_facetLevel",
+  UNX_searchFacets: "UNX_searchFacets",
+  UNX_swatchClrBtn: "UNX_swatchClrBtn"
+};
+
+// CONCATENATED MODULE: ./src/core/setConfig.js
+
+var setConfig_setConfig = function setConfig() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  this.options = utils_extend(true, {}, options, props);
+  var facet = props.facet,
+    pagesize = props.pagesize,
+    swatches = props.swatches,
+    products = props.products,
+    productView = props.productView;
+  if (facet) {
+    this.options.facetMultilevel = facet.facetMultilevel ? facet.facetMultilevel : options.facet.facetMultilevel;
+    this.options.facetMultiSelect = typeof facet.facetMultiSelect === "boolean" ? facet.facetMultiSelect : options.facet.facetMultiSelect;
+    this.options.facetDepth = facet.facetDepth ? facet.facetDepth : options.facet.facetDepth;
+    this.options.applyMultipleFilters = typeof facet.applyMultipleFilters === "boolean" ? facet.applyMultipleFilters : options.facet.applyMultipleFilters;
+  }
+  if (pagesize) {
+    this.options.pageSize = pagesize.pageSize || options.pagesize.pageSize;
+    this.state.pageSize = this.options.pageSize;
+  } else {
+    this.options.pageSize = options.pagesize.pageSize;
+    this.state.pageSize = this.options.pageSize;
+  }
+  if (products) {
+    this.options.productAttributes = products.productAttributes ? products.productAttributes : options.products.productAttributes;
+    this.options.productType = products.productType ? products.productType : options.products.productType;
+  } else {
+    this.options.productType = options.products.productType;
+    this.options.productAttributes = options.products.productAttributes;
+  }
+  if (swatches) {
+    this.options.showSwatches = swatches && swatches.enabled ? swatches.enabled : options.swatches.enabled;
+  }
+  if (productView) {
+    this.viewState.productViewType = productView.defaultViewType ? productView.defaultViewType : options.productView.defaultViewType;
+    this.options.productView.productViewType = this.viewState.productViewType;
+  }
+};
+/* harmony default export */ var core_setConfig = (setConfig_setConfig);
+// CONCATENATED MODULE: ./src/index.js
+function src_typeof(obj) { "@babel/helpers - typeof"; return src_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, src_typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, src_toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function src_toPropertyKey(arg) { var key = src_toPrimitive(arg, "string"); return src_typeof(key) === "symbol" ? key : String(key); }
+function src_toPrimitive(input, hint) { if (src_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (src_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (src_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+// import UnbxdSearchCore from "../../search-JS-core/src/index";
+
+
+
+
+
+
+
+
+
+var src_UnbxdSearch = /*#__PURE__*/function (_UnbxdSearchCore) {
+  _inherits(UnbxdSearch, _UnbxdSearchCore);
+  var _super = _createSuper(UnbxdSearch);
+  function UnbxdSearch(props) {
+    var _this;
+    _classCallCheck(this, UnbxdSearch);
+    _this = _super.call(this, props);
+    _this.viewState = {
+      productViewType: common_options.productView.defaultViewType,
+      isInfiniteStarted: false,
+      lastAction: '',
+      selectedRange: {},
+      expandedFacets: {},
+      searchFacetsText: {},
+      noResultLoaded: false,
+      lastDidYouMean: null,
+      loadedFromSuggestion: false,
+      setFromSuggest: false,
+      facetElementMap: {},
+      initialised: false
+    };
+    _this.setConfig = core_setConfig.bind(_assertThisInitialized(_this));
+    _this.setConfig(common_options, props);
+    _this.events = eventsLib;
+    _this.actions = constants_actions;
+    _this.cssList = cssClasses;
+    _this.testIds = testIds;
+    _this.updateConfig();
+    _this.options.onBackFromRedirect(_this.options.hashMode);
+    _this.options.onEvent(_assertThisInitialized(_this), 'initialised');
+    return _this;
+  }
+  _createClass(UnbxdSearch, [{
+    key: "callBack",
+    value: function callBack(state, type) {
+      this.getCallbackActions(state, type);
+      var _this$options = this.options,
+        onEvent = _this$options.onEvent,
+        loader = _this$options.loader,
+        facet = _this$options.facet,
+        productView = _this$options.productView;
+      var _this$events = this.events,
+        beforeApiCall = _this$events.beforeApiCall,
+        afterApiCall = _this$events.afterApiCall;
+      var urlParams = this.getQueryParams();
+      var _ref = urlParams || {},
+        viewType = _ref.viewType;
+      if (this.viewState.lastAction === "viewType") {
+        viewType = this.viewState.productViewType;
+        this.options.extraParams.viewType = viewType;
+        this.viewState.lastAction = "";
+      }
+      if (this.viewState.lastAction != "pagination" && this.viewState.lastAction != "prev_page_loaded" && this.viewState.lastAction != "next_page_loaded") {
+        this.viewState.isInfiniteStarted = false;
+      }
+      if (!viewType) {
+        viewType = this.viewState.productViewType || productView.defaultViewType;
+        this.viewState.productViewType = viewType;
+        this.options.extraParams.viewType = viewType;
+      }
+      if (this.viewState.productViewType !== viewType) {
+        this.viewState.productViewType = viewType;
+        this.options.extraParams.viewType = viewType;
+      }
+      if (type === beforeApiCall) {
+        onEvent(this, beforeApiCall);
+        if (loader && loader.el) {
+          loader.el.innerHTML = loader.template(this);
+        }
+      }
+      if (type === afterApiCall) {
+        onEvent(this, afterApiCall);
+        if (this.state.products.length > 0) {
+          this.viewState.noResultLoaded = false;
+        }
+        this.reRender();
+      }
+      if ((type === 'added_facet' || type === 'deleted_facet') && facet.applyMultipleFilters) {
+        onEvent(this, 'added_facet');
+        this.renderFacets();
+      }
+      if (type === "FETCH_ERROR") {
+        if (loader && loader.el) {
+          loader.el.innerHTML = "";
+        }
+      }
+    }
+  }, {
+    key: "delegate",
+    value: function delegate(delgationElem, evt, elem, fn) {
+      return utils_delegate(delgationElem, evt, elem, fn);
+    }
+  }]);
+  return UnbxdSearch;
+}(unbxdSdk_default.a);
+core_setMethods(src_UnbxdSearch);
+/* harmony default export */ var src = __webpack_exports__["default"] = (src_UnbxdSearch);
+
+/***/ })
+
+/******/ })["default"];
+});
