@@ -11,7 +11,7 @@ import {
     renderRangeFacets
 } from "../modules/facets/renderRangeFacets";
 import multiLevelFacetUI from "../modules/facets/renderBucketedSearch";
-import breadCrumbsUI from "../modules/breadcrumbs/breadcrumbsView";
+import breadCrumbsUI from "../modules/breadcrumbs/breadCrumbsUI";
 import {
     sortOptions,
     sortTemplate
