@@ -18,7 +18,7 @@ import {
 } from "../modules/sort";
 import renderProductViewType from '../modules/productViewType';
 import bannerTemplateUI from '../modules/banners/bannerTemplateUI';
-import pageSizeUi from '../modules/pageSize/pageSizeView';
+import pageSizeUi from '../modules/pageSize/pageSizeUi';
 import swatchTemplate from "../modules/swatches/ui";
 
 const options = {

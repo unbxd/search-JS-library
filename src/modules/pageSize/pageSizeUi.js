@@ -1,9 +1,10 @@
-const pageSizeUi = function(selected, pagesize) {
+const pageSizeUi = function(selected, pagesize={}) {
+    const {options = []} = pagesize;
     const {
-        UNX_pagesize
+        UNX_pagesize = ""
     } = this.testIds;
     let ui = `<label class="UNX-hidden" for="unxPageSize">Sort By</label><select id="unxPageSize" name="unxPageSize" class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
-    pagesize.options.forEach((opt,i)=>{
+    options.forEach((opt,i)=>{
         const tId = `data-test-id="${UNX_pagesize}${i+1}"`;
         if(selected == opt) {
             ui+=`<option selected ${tId} class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`;

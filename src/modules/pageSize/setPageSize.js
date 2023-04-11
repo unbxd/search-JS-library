@@ -1,17 +1,17 @@
 import {
     onClickPageSize
-} from './actions';
-import pageSizeUi from './pageSizeView';
+} from './onClickPageSize';
+import pageSizeUi from './pageSizeUi';
 const renderPageSize = function() {
     const {
-        pagesize
+        pagesize = {}
     } = this.options;
     let selected = pagesize.pageSize;
-    const qParams  = this.getQueryParams();
+    const qParams  = this.getQueryParams() || {};
     if(qParams) {
         selected = this.state.pageSize;
     }
-    const results = this.getSearchResults();
+    const results = this.getSearchResults() || {};
     if(results && results.numberOfProducts === 0) {
         this.pageSizeWrapper.innerHTML = ``;
     } else {
