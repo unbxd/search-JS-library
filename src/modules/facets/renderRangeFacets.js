@@ -1,7 +1,7 @@
-const renderRangeFacets = function(range, selectedRange, facet) {
+const renderRangeFacets = function(range, selectedRange, facet={}) {
     const {
         facetName,
-        values,
+        values = [],
       } = range;
       let valueUI = ``;
       const {

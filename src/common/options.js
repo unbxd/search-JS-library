@@ -10,7 +10,7 @@ import paginationUI from "../modules/pagination/paginationView";
 import {
     renderRangeFacets
 } from "../modules/facets/renderRangeFacets";
-import multiLevelFacetUI from "../modules/facets/renderBucketedSearch";
+import multiLevelFacetUI from "../modules/facets/multiLevelFacetUI";
 import breadCrumbsUI from "../modules/breadcrumbs/breadCrumbsUI";
 import {
     sortOptions,

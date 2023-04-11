@@ -1,20 +1,20 @@
-export default function(bucketedFacet, isExpanded) {
+export default function(bucketedFacet = {}, isExpanded) {
     let bucketedUi = ``;
     const self = this;
     const {
-        openFacet,
-        closeFacet
+        openFacet = "",
+        closeFacet = ""
     } = this.cssList;
     const {
         facetName,
     } = bucketedFacet;
     const {
-        facet
+        facet = {}
     } = this.options;
     const {
         isCollapsible
     } = facet;
-    const breadCrumb = this.getBreadCrumbsList(facetName);
+    const breadCrumb = this.getBreadCrumbsList(facetName) || [];
     const valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet, breadCrumb, "", facet);
     bucketedUi += self.options.facet.facetTemplate.bind(self)(bucketedFacet, valueUI, isExpanded, null, facet);
     let styles = (isExpanded) ? openFacet : closeFacet;
