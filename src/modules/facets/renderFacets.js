@@ -1,6 +1,6 @@
 export default function(){
     const {
-        facet
+        facet = {}
     } = this.options;
     const {
         defaultOpen,
@@ -15,9 +15,9 @@ export default function(){
         return false;
     }
     const self = this;
-    const allFacets = this.getAllFacets();
-    const { facetWrappers } = this;
-    const selectedFacets = this.getSelectedFacets();
+    const allFacets = this.getAllFacets() || [];
+    const { facetWrappers = [] } = this;
+    const selectedFacets = this.getSelectedFacets() || {} ; 
     facetWrappers.forEach((facetsWrapper) => {
         facetsWrapper.innerHTML = ``;
 		allFacets.forEach((facetItem, idx) => {

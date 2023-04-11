@@ -1,11 +1,11 @@
 export default function() {
-    const selectedFacetsInfo = this.getSelectedFacets();
-    const selectedRanges = this.getSelectedRanges();
+    const selectedFacetsInfo = this.getSelectedFacets() || {};
+    const selectedRanges = this.getSelectedRanges() || {};
     const k = Object.keys(selectedFacetsInfo);
     let selectedUi = ``;
     const {
-        selectedFacets,
-        facet
+        selectedFacets = {},
+        facet = {}
     } = this.options;
     let itemTemplate  = (facet.selectedFacetItemTemplate) ? facet.selectedFacetItemTemplate.bind(this) : selectedFacets.itemTemplate.bind(this);
     for (let i = 0; i < k.length; i++) {

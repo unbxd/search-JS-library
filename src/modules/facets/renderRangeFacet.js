@@ -1,13 +1,13 @@
-export default function(rangeFacet, isExpanded) {
+export default function(rangeFacet={}, isExpanded) {
     const {
         facetName
     } = rangeFacet;
     const {
-        openFacet,
-        closeFacet
+        openFacet = "",
+        closeFacet = ""
     } = this.cssList;
     const {
-        facet
+        facet = {}
     } = this.options;
     const {
         isCollapsible
