@@ -1,7 +1,7 @@
 function renderProductViewTypeUI(){
     try {
         const {
-            productView
+            productView = {}
         } = this.options;
         if (productView.el) {
             const {

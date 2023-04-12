@@ -12,7 +12,7 @@ const renderPageSize = function() {
         if (qParams) {
             selected = this.state.pageSize;
         }
-        const results = this.getSearchResults() || {};
+        const results = this.getSearchResults();
         if (results && results.numberOfProducts === 0) {
             this.pageSizeWrapper.innerHTML = ``;
         } else {
