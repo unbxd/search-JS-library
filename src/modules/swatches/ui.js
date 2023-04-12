@@ -6,13 +6,13 @@ export default function(swatchData, swatches,product) {
     let btnList = ``;
     let imgsUI = ``;
     const {
-        swatchClass
+        swatchClass = ""
     } = swatches;
     const {
-        UNX_swatchClrBtn
+        UNX_swatchClrBtn = ""
     } = this.testIds;
     const {
-        unxTitle
+        unxTitle = ""
     } = product;
     if(swatchImgs.length > 1) {
         swatchImgs.forEach((item,id) => {
