@@ -1,4 +1,4 @@
-import didYouMeanUI from "../modules/didYouMean/spellCheckView";
+import didYouMeanUI from "../modules/didYouMean/didYouMeanUI";
 import {
     selectedFacetUI,
     facetUIElem,
@@ -76,6 +76,9 @@ const options = {
     },
     onEvent: (state,type) => {
        
+    },
+    onError: (component)=>{
+        console.log(`Something in ${component} is breaking, please handle it.`)
     },
     startPageNo: 0,
     productView: {
