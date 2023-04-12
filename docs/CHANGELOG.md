@@ -17,6 +17,20 @@ nav_order: 8
 
 ---
 
+# v2.0.31
+
+- **Release Date**: 10th April, 2023
+- **Core SDK Version**: 0.4.29
+
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Fixed the `product` param  undefined issue in the `onProductClick` function. The fetched products were not being updated in the SDK state as a wrong ENUM was being used for the Fixed Pagination.
+
+
+--- 
+
+
 # v2.0.30
 
 - **Release Date**: 28th March, 2023
