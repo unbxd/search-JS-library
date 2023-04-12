@@ -1,12 +1,12 @@
-const renderProductViewType =  function(selectedViewType, productViewType) {
+const renderProductViewType =  function(selectedViewType, productViewType={}) {
     const isDisabled = (this.getSearchResults())?false:true;
     const {
-        selectedViewTypeClass,
-        viewTypeClass
+        selectedViewTypeClass = "",
+        viewTypeClass = ""
     } = productViewType;
-    const {
-        UNX_gridBtn,
-        UNX_listBtn
+    let {
+        UNX_gridBtn = "",
+        UNX_listBtn = ""
     } = this.testIds;
     let listBtnCss =`UNX-list-btn ${viewTypeClass}`;
     let gridBtnCss = `UNX-grid-btn ${viewTypeClass}`;

@@ -16,7 +16,7 @@ import {
     sortOptions,
     sortTemplate
 } from "../modules/sort";
-import renderProductViewType from '../modules/productViewType';
+import renderProductViewType from '../modules/productViewType/renderProductViewType';
 import bannerTemplateUI from '../modules/banners/bannerTemplateUI';
 import pageSizeUi from '../modules/pageSize/pageSizeUi';
 import swatchTemplate from "../modules/swatches/ui";
