@@ -78,6 +78,9 @@ const options = {
     onEvent: (state,type) => {
        
     },
+    onError: (component)=>{
+        console.log(`Something in ${component} is breaking, please handle it.`)
+    },
     startPageNo: 0,
     productView: {
         enabled: true,
