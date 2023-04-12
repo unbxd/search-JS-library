@@ -20,9 +20,20 @@ nav_order: 5
 
 This section documents the different methods exposed by the sdk/sdk config that one can use to perform various actions.
 
+{: .warning }
+> It is important to note that ONLY these JS methods listed on this page are for user's consumption and no other internal methods from the SDK should be overwritten. If other SDK methods are overwritten, it could potentially impact the default behavior of the SDK, and we cannot be held responsible for any resulting issues.
+
+
 ---
 ## reRender
-Call this function if you want to render the page again.
+
+The "reRender" function is a method used in ecommerce SDKs to re-render a page. In an ecommerce website or application, pages are typically rendered based on data retrieved from the server or user interactions with the page.
+
+In some cases, it may be necessary to re-render the page without reloading it from the server, such as when a user has made a change to a product or service that should be immediately reflected in the page display.
+
+The "reRender" function is called to force a re-render of the page. When this function is called, it typically triggers a new rendering cycle that updates the page display based on any new or modified data. This can be useful in situations where the content of the page needs to be dynamically updated, such as when a product is added or removed from the shopping cart, or when a user applies a filter or sorting option to a list of search results.
+
+
 ### Default invocation
 {: .no_toc }
 ```js
@@ -30,7 +41,13 @@ unbxdSearch.reRender()
 ```
 ---
 ## updateConfig
-Call this function for updating the config options in run time.
+
+The "updateConfig" function is a method used in the Unbxd SDK to update configuration options in runtime using JavaScript. Configuration options are the settings that determine how the ecommerce website or application functions, such as the pagination, sorting, facets, and product display options.
+
+When the "updateConfig" function is called, it typically takes an object containing the updated configuration options as its parameter. These updated configuration options can be applied any time during runtime, without requiring a page reload, and are used to modify the behavior of the ecommerce website or application.
+
+
+
 ### arguments
 {: .no_toc }
 1. `config`: Object with new config information (Only the updated keys need to be present)
@@ -146,7 +163,14 @@ unbxdSearch.getCategoryPage()
 ```
 ---
 ## getResults
-Call this function to refetch the search results.
+
+The "getResults" function is a method used in ecommerce JavaScript to refetch search results. In an ecommerce website, when a user performs a search for a product or service, the website displays a list of search results. These search results can be filtered or sorted by various criteria such as price, relevance, or popularity.
+
+In some cases, the search results may need to be updated without the user initiating a new search query. For example, if the user applies a filter to the search results, the search results may need to be refetched to show the updated results based on the selected filter.
+
+The "getResults" function is called to refetch the search results in such cases. When this function is called, it sends a new request to the server to retrieve the search results based on the current search query and any selected filters or sort options.
+
+
 ### Default invocation
 {: .no_toc }
 ```js
@@ -154,7 +178,13 @@ unbxdSearch.getResults("dress")
 ```
 ---
 ## resetFacets
-Call this method to reset the facets.
+
+The "resetFacets" method is a function that can be called in an ecommerce JavaScript code to reset the facets. Facets are filters used in ecommerce websites to allow users to refine their search results based on various criteria such as price, size, color, etc.
+
+When a user applies one or more facets to their search, the search results are narrowed down to products that match the selected facets. The "resetFacets" method allows users to reset all the selected facets and view the full search results again.
+
+The method typically works by removing any active facet filters applied to the search query and reloading the search results page with the updated results. This can improve the user experience by allowing them to start a new search or explore more products without having to manually deselect all the applied facets one by one.
+
 ### Default invocation
 {: .no_toc }
 ```js
@@ -162,7 +192,13 @@ unbxdSearch.resetFacets()
 ```
 ---
 ## resetAll
-Call this method to reset all the page elements like selected facets, selected sort option, pagination etc.
+
+The "reset all" functionality refers to a method that resets all of the page elements related to search and navigation. This includes search query, selected facets, selected sort options, pagination, and any other elements related to the search or navigation experience on the website.
+
+When this method is called, all of these elements are reset to their default states. This can be useful for situations where the user wants to start a new search or navigation experience from scratch, or if the user wants to clear all previous selections and start fresh.
+
+By calling the "reset all" method, the SDK ensures that the page elements related to search and navigation are consistent with the user's intentions, and that any previous selections or filters do not impact the current search experience. 
+
 ### Default invocation
 {: .no_toc }
 ```js
@@ -171,6 +207,13 @@ unbxdSearch.resetAll()
 ---
 ## setPageStart
 Call this method to set the the page number.
+
+The "setPageStart" function refers to a method that sets the starting page number for pagination. This method is used to indicate to the SDK which page of results should be displayed when the search or navigation page loads.
+
+For example, if the user has previously navigated to page 3 of search results and then performs a new search, the SDK may use the "setPageStart" function to set the starting page number to 1, so that the user is presented with the first page of results for the new search query.
+
+By using the "setPageStart" function, the SDK ensures that the correct page of results is displayed to the user, providing a seamless and consistent search experience on the ecommerce site.
+
 ### Default invocation
 {: .no_toc }
 ```js
