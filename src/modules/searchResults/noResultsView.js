@@ -1,5 +1,9 @@
 function renderNoResults(query) {
-
-    return this.options.noResults.template(query);
+    try{
+        return this.options.noResults.template(query);
+    }
+    catch{
+        this.options.onError("Noresults")
+    }
 }
 export default renderNoResults;
