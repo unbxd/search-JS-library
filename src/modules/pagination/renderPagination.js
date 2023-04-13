@@ -15,8 +15,9 @@ const renderPagination = function () {
         }
         return paginationUI;
     }
-    catch{
-        this.options.onError("Pagination")
+    catch(err){
+        this.options.onError("Pagination",err)
+        throw err;
     }
 
 }

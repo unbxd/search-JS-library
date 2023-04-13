@@ -15,8 +15,9 @@ function renderSort(){
             wrapper.innerHTML = ui;
         });
     }
-    catch{
-        this.options.onError("Sort")
+    catch(err){
+        this.options.onError("Sort",err);
+        throw err;
     }
 
 }

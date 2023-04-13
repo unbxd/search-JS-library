@@ -15,8 +15,9 @@ function renderProductViewTypeUI(){
             }
         }
         
-    }catch{
-        this.options.onError("Product view type");
+    }catch(err){
+        this.options.onError("Product view type",err);
+        throw err;
     }
 
 };

@@ -2,8 +2,9 @@ function renderNoResults(query) {
     try{
         return this.options.noResults.template(query);
     }
-    catch{
-        this.options.onError("Noresults")
+    catch(err){
+        this.options.onError("Noresults",err)
+        throw err;
     }
 }
 export default renderNoResults;
