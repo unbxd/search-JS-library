@@ -4941,160 +4941,163 @@ function infiniteScrollV3_getScrollXY() {
 }
 var infiniteScrollV3 = function infiniteScrollV3() {
   var _this = this;
-  var productsContainer = this.options.pagination.infiniteScrollTriggerEl;
-  // Select the UNX-post-loader and UNX-pre-loader elements
-  var postLoader = document.querySelector('.UNX-post-loader');
-  var preLoader = document.querySelector('.UNX-pre-loader');
-  // const loadingIndicator = document.querySelector('#loading-indicator');
-  var urlParams = new URLSearchParams(window.location.search);
-  var currentUrlPage, productsPerPage;
-  if (this.options.pagination.usePageAndCount) {
-    productsPerPage = Number(urlParams.get('count'));
-    currentUrlPage = Number(urlParams.get('page')) || 1;
-  } else {
-    currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-    productsPerPage = Number(urlParams.get('rows')) || 10;
-  }
-  var hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
+  return new Promise(function (resolve, reject) {
+    var productsContainer = _this.options.pagination.infiniteScrollTriggerEl;
+    // Select the UNX-post-loader and UNX-pre-loader elements
+    var postLoader = document.querySelector('.UNX-post-loader');
+    var preLoader = document.querySelector('.UNX-pre-loader');
+    // const loadingIndicator = document.querySelector('#loading-indicator');
+    var urlParams = new URLSearchParams(window.location.search);
+    var currentUrlPage, productsPerPage;
+    if (_this.options.pagination.usePageAndCount) {
+      productsPerPage = Number(urlParams.get('count'));
+      currentUrlPage = Number(urlParams.get('page')) || 1;
+    } else {
+      currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+      productsPerPage = Number(urlParams.get('rows')) || 10;
+    }
+    var hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
 
-  // const observer = new IntersectionObserver(entries => {
-  //     entries.forEach(entry => {
-  //         if (entry.isIntersecting && !this.state.isLoading) {
-  //                 currentPage++;
-  //                 // fetchProducts();
-  //                 this.setPageStart((currentPage - 1) * productsPerPage)
-  //                 this.viewState.lastAction = "next_page_loaded";
-  //                 this.renderNewResults('next', currentPage);
+    // const observer = new IntersectionObserver(entries => {
+    //     entries.forEach(entry => {
+    //         if (entry.isIntersecting && !this.state.isLoading) {
+    //                 currentPage++;
+    //                 // fetchProducts();
+    //                 this.setPageStart((currentPage - 1) * productsPerPage)
+    //                 this.viewState.lastAction = "next_page_loaded";
+    //                 this.renderNewResults('next', currentPage);
 
-  //         }
-  //     });
-  // }, {threshold: [0.5]});
+    //         }
+    //     });
+    // }, {threshold: [0.5]});
 
-  // observer.observe(productsContainer);
+    // observer.observe(productsContainer);
 
-  var updateUrl = function updateUrl(scrollTop) {
-    var products = document.querySelectorAll('.product-item');
-    var currentPage = null;
-    for (var i = 0; i < products.length; i++) {
-      var product = products[i];
-      var rank = parseInt(product.dataset.prank);
-      if (product.offsetTop > scrollTop && product.offsetTop < scrollTop + productsContainer.clientHeight) {
-        currentPage = Math.ceil(rank / productsPerPage);
-        break;
+    var updateUrl = function updateUrl(scrollTop) {
+      var products = document.querySelectorAll('.product-item');
+      var currentPage = null;
+      for (var i = 0; i < products.length; i++) {
+        var product = products[i];
+        var rank = parseInt(product.dataset.prank);
+        if (product.offsetTop > scrollTop && product.offsetTop < scrollTop + productsContainer.clientHeight) {
+          currentPage = Math.ceil(rank / productsPerPage);
+          break;
+        }
       }
-    }
-    if (currentPage !== null && currentPage !== currentUrlPage) {
-      currentUrlPage = currentPage;
-      // window.history.replaceState({}, document.title, `?page=${currentPage}`);
-      if (_this.options.pagination.usePageAndCount) {
-        urlParams.set('page', currentPage);
-      } else {
-        urlParams.set('start', (currentPage - 1) * productsPerPage);
+      if (currentPage !== null && currentPage !== currentUrlPage) {
+        currentUrlPage = currentPage;
+        // window.history.replaceState({}, document.title, `?page=${currentPage}`);
+        if (_this.options.pagination.usePageAndCount) {
+          urlParams.set('page', currentPage);
+        } else {
+          urlParams.set('start', (currentPage - 1) * productsPerPage);
+        }
+        history.replaceState(null, null, _this.urlSearchParamsToStr(urlParams));
       }
-      history.replaceState(null, null, _this.urlSearchParamsToStr(urlParams));
-    }
-  };
+    };
 
-  // Create a new IntersectionObserver object for the UNX-post-loader element
-  var postLoaderObserver = new IntersectionObserver(function (entries) {
-    // Check if the UNX-post-loader element is intersecting with the viewport
-    if (entries[0].isIntersecting) {
-      //   // Increment the current page number
-      //   currentPage++;
-      //   // Fetch more products from the next page
-      //   fetchProducts(currentPage);
-      currentUrlPage++;
-      // fetchProducts();
-      _this.setPageStart((currentUrlPage - 1) * productsPerPage);
-      _this.viewState.lastAction = "next_page_loaded";
-      _this.renderNewResults('next', currentUrlPage);
-    }
-  }, {
-    threshold: 1,
-    rootMargin: "0px 0px 100px 0px"
-  });
-
-  //   // Create a new IntersectionObserver object for the UNX-pre-loader element
-  //   const preLoaderObserver = new IntersectionObserver(entries => {
-  //     // Check if the UNX-pre-loader element is intersecting with the viewport
-  //     if (entries[0].isIntersecting && currentPage > 1) {
-  //     //   // Decrement the current page number
-  //     //   currentPage--;
-  //     //   // Fetch previous page products
-  //     //   fetchProducts(currentPage);
-  //     currentPage--;
-  //                 // fetchProducts();
-  //                 this.setPageStart((currentPage - 1) * productsPerPage)
-  //                 this.viewState.lastAction = "prev_page_loaded";
-  //                 this.renderNewResults('prev');
-  //     }
-  //   }, { threshold: 1 });
-
-  // Initialize the IntersectionObserver for the pre-loader element
-  var preLoaderObserver = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting && currentUrlPage > 1) {
-        currentUrlPage--;
+    // Create a new IntersectionObserver object for the UNX-post-loader element
+    var postLoaderObserver = new IntersectionObserver(function (entries) {
+      // Check if the UNX-post-loader element is intersecting with the viewport
+      if (entries[0].isIntersecting) {
+        //   // Increment the current page number
+        //   currentPage++;
+        //   // Fetch more products from the next page
+        //   fetchProducts(currentPage);
+        currentUrlPage++;
         // fetchProducts();
         _this.setPageStart((currentUrlPage - 1) * productsPerPage);
-        _this.viewState.lastAction = "prev_page_loaded";
-        _this.renderNewResults('prev');
+        _this.viewState.lastAction = "next_page_loaded";
+        _this.renderNewResults('next', currentUrlPage);
       }
+    }, {
+      threshold: 1,
+      rootMargin: "0px 0px 100px 0px"
     });
-  }, {
-    threshold: 0,
-    // Trigger when the element is fully visible in the viewport
-    rootMargin: "-".concat(productsContainer.offsetTop, "px 0px 0px 0px") // Offset the root margin by the height of the products container
-  });
 
-  //   postLoaderObserver.observe(postLoader);
-  // preLoaderObserver.observe(preLoader);
+    //   // Create a new IntersectionObserver object for the UNX-pre-loader element
+    //   const preLoaderObserver = new IntersectionObserver(entries => {
+    //     // Check if the UNX-pre-loader element is intersecting with the viewport
+    //     if (entries[0].isIntersecting && currentPage > 1) {
+    //     //   // Decrement the current page number
+    //     //   currentPage--;
+    //     //   // Fetch previous page products
+    //     //   fetchProducts(currentPage);
+    //     currentPage--;
+    //                 // fetchProducts();
+    //                 this.setPageStart((currentPage - 1) * productsPerPage)
+    //                 this.viewState.lastAction = "prev_page_loaded";
+    //                 this.renderNewResults('prev');
+    //     }
+    //   }, { threshold: 1 });
 
-  var containerObserverCallback = function containerObserverCallback(entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        // If the pre-loader is visible, start observing it
-        if (preLoader.offsetTop < entry.boundingClientRect.top && hasScrolledToTop) {
-          preLoaderObserver.observe(preLoader);
+    // Initialize the IntersectionObserver for the pre-loader element
+    var preLoaderObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && currentUrlPage > 1) {
+          currentUrlPage--;
+          // fetchProducts();
+          _this.setPageStart((currentUrlPage - 1) * productsPerPage);
+          _this.viewState.lastAction = "prev_page_loaded";
+          _this.renderNewResults('prev');
         }
-        // If the post-loader is visible, start observing it
-        if (postLoader.offsetTop < entry.boundingClientRect.bottom) {
-          postLoaderObserver.observe(postLoader);
+      });
+    }, {
+      threshold: 0,
+      // Trigger when the element is fully visible in the viewport
+      rootMargin: "-".concat(productsContainer.offsetTop, "px 0px 0px 0px") // Offset the root margin by the height of the products container
+    });
+
+    //   postLoaderObserver.observe(postLoader);
+    // preLoaderObserver.observe(preLoader);
+
+    var containerObserverCallback = function containerObserverCallback(entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          // If the pre-loader is visible, start observing it
+          if (preLoader.offsetTop < entry.boundingClientRect.top && hasScrolledToTop) {
+            preLoaderObserver.observe(preLoader);
+          }
+          // If the post-loader is visible, start observing it
+          if (postLoader.offsetTop < entry.boundingClientRect.bottom) {
+            postLoaderObserver.observe(postLoader);
+          }
+        } else {
+          // If the container is not visible, stop observing both the pre-loader and post-loader elements
+          preLoaderObserver.unobserve(preLoader);
+          postLoaderObserver.unobserve(postLoader);
         }
+      });
+    };
+
+    // Set up an IntersectionObserver on the products container to monitor for changes to the scroll position
+    var containerObserver = new IntersectionObserver(containerObserverCallback, {
+      threshold: 0 // Trigger when the container is fully visible in the viewport
+    });
+
+    // Set up an event listener to update the hasScrolledToTop flag when the user scrolls to the top of the container
+    window.addEventListener('scroll', function () {
+      var scrollTop = infiniteScrollV3_getScrollXY()[1];
+      if (scrollTop === 0) {
+        hasScrolledToTop = true;
+        preLoaderObserver.observe(preLoader);
+        containerObserver.observe(productsContainer);
+      } else {
+        hasScrolledToTop = false;
+        // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
       }
-      // else {
-      //     // If the container is not visible, stop observing both the pre-loader and post-loader elements
-      //     preLoaderObserver.unobserve(preLoader);
-      //     postLoaderObserver.unobserve(postLoader);
-      // }
+
+      updateUrl(scrollTop);
     });
-  };
-
-  // Set up an IntersectionObserver on the products container to monitor for changes to the scroll position
-  var containerObserver = new IntersectionObserver(containerObserverCallback, {
-    threshold: 0 // Trigger when the container is fully visible in the viewport
+    postLoaderObserver.observe(postLoader);
+    preLoaderObserver.observe(preLoader);
+    // Observe the container element
+    containerObserver.observe(productsContainer);
+    // Manually trigger the container observer callback function on page load
+    // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
   });
-
-  // Set up an event listener to update the hasScrolledToTop flag when the user scrolls to the top of the container
-  window.addEventListener('scroll', function () {
-    var scrollTop = infiniteScrollV3_getScrollXY()[1];
-    if (scrollTop === 0) {
-      hasScrolledToTop = true;
-      preLoaderObserver.observe(preLoader);
-      containerObserver.observe(productsContainer);
-    } else {
-      hasScrolledToTop = false;
-    }
-    updateUrl(scrollTop);
-  });
-
-  // Observe the container element
-  containerObserver.observe(productsContainer);
-  // Manually trigger the container observer callback function on page load
-  containerObserverCallback([{
-    isIntersecting: true
-  }], containerObserver);
 };
+
 /* harmony default export */ var pagination_infiniteScrollV3 = (infiniteScrollV3);
 // CONCATENATED MODULE: ./src/modules/pagination/actions.js
 var triggerNextPage = function triggerNextPage(context, next, action) {
@@ -5638,20 +5641,6 @@ var reRender = function reRender() {
   }
   this.renderPageSize();
   this.renderSort();
-  if (pagination.type !== "INFINITE_SCROLL") {
-    paginationWrappers.forEach(function (pagination) {
-      pagination.innerHTML = _this.renderPagination();
-    });
-  } else {
-    if (paginationWrappers) {
-      paginationWrappers.forEach(function (pagination) {
-        pagination.innerHTML = "";
-      });
-    }
-    this.infiniteScrollV3();
-    // this.renderInfiniteScrollPagination();
-  }
-
   if (breadcrumb.enabled) {
     breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
   }
@@ -5692,6 +5681,20 @@ var reRender = function reRender() {
   //         window.intersectionObserver.observe(this.options.pagination.infiniteScrollTriggerEl.lastElementChild)
   //     }
   // }
+
+  if (pagination.type !== "INFINITE_SCROLL") {
+    paginationWrappers.forEach(function (pagination) {
+      pagination.innerHTML = _this.renderPagination();
+    });
+  } else {
+    if (paginationWrappers) {
+      paginationWrappers.forEach(function (pagination) {
+        pagination.innerHTML = "";
+      });
+    }
+    this.infiniteScrollV3();
+    // this.renderInfiniteScrollPagination();
+  }
 
   onEvent(this, afterRender);
 };
