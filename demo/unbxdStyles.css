@@ -459,6 +459,8 @@ body {
 
 .UNX-footer-main {
   background-color: #eeeeee;
+  width: 100%;
+  display: block;
 }
 
 .UNX-company-footer {
@@ -466,6 +468,8 @@ body {
   display: flex;
   position: relative;
   z-index: 2;
+  width: 100%;
+  display: block;
 }
 
 .UNX-footer-info-head {

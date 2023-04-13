@@ -146,13 +146,13 @@ const infiniteScrollV3 = function () {
                         postLoaderObserver.observe(postLoader);
                     }
                     const scrollTop = getScrollXY()[ 1 ];
-                    updateUrl(scrollTop)
+
                 }
-                else {
-                    // If the container is not visible, stop observing both the pre-loader and post-loader elements
-                    preLoaderObserver.unobserve(preLoader);
-                    postLoaderObserver.unobserve(postLoader);
-                }
+                // else {
+                //     // If the container is not visible, stop observing both the pre-loader and post-loader elements
+                //     preLoaderObserver.unobserve(preLoader);
+                //     postLoaderObserver.unobserve(postLoader);
+                // }
             });
         }
 
@@ -162,26 +162,56 @@ const infiniteScrollV3 = function () {
         });
 
         // Set up an event listener to update the hasScrolledToTop flag when the user scrolls to the top of the container
-        window.addEventListener('scroll', () => {
-            const scrollTop = getScrollXY()[ 1 ];
-            if (scrollTop === 0) {
-                hasScrolledToTop = true;
-                preLoaderObserver.observe(preLoader);
+        window.removeEventListener('scroll', onInfiniteScrollCb);
+        window.addEventListener('scroll', onInfiniteScrollCb);
+        // window.removeEventListener('event', onInfiniteResizeCb);
+        // window.addEventListener('event', onInfiniteResizeCb);
+
+        const productObserver = new ResizeObserver(entries => {
+            entries.forEach(entry => {
+                const containerHeight = entry.contentRect.height;
+                onInfiniteScrollCb();
+                containerObserver.disconnect();
+                // observer.observe(productContainer, { threshold: [ 1 ] });
                 containerObserver.observe(productsContainer);
-            } else {
-                hasScrolledToTop = false;
-                // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
-            }
-            
-            
+                // preLoaderObserver.disconnect();
+                // preLoaderObserver.observe(preLoader);
+                postLoaderObserver.disconnect();
+                postLoaderObserver.observe(postLoader);
+            });
         });
 
         // postLoaderObserver.observe(postLoader);
         // preLoaderObserver.observe(preLoader);
         // Observe the container element
-        containerObserver.observe(productsContainer);
+
+        // function onInfiniteResizeCb(e){
+        //     productObserver.disconnect();
+        //     productObserver.observe(productsContainer);
+        // }
+
+        function onInfiniteScrollCb() {
+            const scrollTop = getScrollXY()[ 1 ];
+            updateUrl(scrollTop);
+            if (scrollTop === 0) {
+                hasScrolledToTop = true;
+                preLoaderObserver.disconnect();
+                productObserver.disconnect();
+                preLoaderObserver.observe(preLoader);
+                productObserver.observe(productsContainer);
+            } else {
+                hasScrolledToTop = false;
+                // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
+            }
+            // productObserver.observe(productsContainer);
+            // containerObserver.observe(productsContainer);
+        }
+
+        // containerObserver.observe(productsContainer);
+        productObserver.disconnect();
+        productObserver.observe(productsContainer);
         // Manually trigger the container observer callback function on page load
-        containerObserverCallback([ { isIntersecting: true } ], containerObserver);
+        // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
     })
 }
 
