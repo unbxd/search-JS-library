@@ -96,20 +96,7 @@ const reRender = function () {
     }
     this.renderPageSize();
     this.renderSort();
-    if (pagination.type !== "INFINITE_SCROLL") {
-        paginationWrappers.forEach((pagination) => {
-            pagination.innerHTML = this.renderPagination();
-        });
-    } else {
-        if (paginationWrappers) {
-            paginationWrappers.forEach((pagination) => {
-                pagination.innerHTML = ``;
-            });
-            
-        }
-        this.infiniteScrollV3()
-        // this.renderInfiniteScrollPagination();
-    }
+    
     if (breadcrumb.enabled) {
         breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
@@ -152,6 +139,21 @@ const reRender = function () {
     //         window.intersectionObserver.observe(this.options.pagination.infiniteScrollTriggerEl.lastElementChild)
     //     }
     // }
+
+    if (pagination.type !== "INFINITE_SCROLL") {
+        paginationWrappers.forEach((pagination) => {
+            pagination.innerHTML = this.renderPagination();
+        });
+    } else {
+        if (paginationWrappers) {
+            paginationWrappers.forEach((pagination) => {
+                pagination.innerHTML = ``;
+            });
+            
+        }
+            this.infiniteScrollV3()
+        // this.renderInfiniteScrollPagination();
+    }
 
     onEvent(this, afterRender);
 
