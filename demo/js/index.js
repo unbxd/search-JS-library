@@ -68,6 +68,78 @@ let routeTemplate = `
         </div>
         
     </div>
+    <div class="UNX-footer-main">
+				<div class="UNX-footer-container">
+					<div class="UNX-footer-features">
+						<div class="UNX-feature-item">
+							<span class="UNX-footer-icon UNX-icons UNX-icon-truck"></span>
+							<label class="UNX-footer-label">We ship worldwide</label>
+						</div>
+						<div class="UNX-feature-item UNX-money">
+							<span class="UNX-icons UNX-icon-call"></span>
+							<label class="UNX-footer-label">Call 18000 765 00000</label>
+						</div>
+						<div class="UNX-feature-item UNX-money">
+							<span class="UNX-icons UNX-icon-money-back"></span>
+							<label class="UNX-footer-label">Money Back Guarantee</label>
+						</div>
+						<div class="UNX-feature-item UNX-money">
+							<span class="UNX-icons UNX-icon-return"></span>
+							<label class="UNX-footer-label">30 Days Return</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="UNX-company-footer">
+				<div class="UNX-footer-container UNX-company-footer-wrap">
+					<div class="UNX-footer-info-column">
+						<h6 class="UNX-footer-info-head">Online Shopping</h6>
+						<div class="UNX-link-wrapper">
+							<a href="#">Men</a>
+							<a href="#">Women</a>
+							<a href="#">Kids</a>
+							<a href="#">Home & Living</a>
+							<a href="#">Discover</a>
+							<a href="#">Gift Cards</a>
+						</div>
+					</div>
+					<div class="UNX-footer-info-column">
+						<h6 class="UNX-footer-info-head">Policy</h6>
+						<div class="UNX-link-wrapper">
+							<a href="#">Contact Us</a>
+							<a href="#">FAQ</a>
+							<a href="#">T&C</a>
+							<a href="#">Track Orders</a>
+							<a href="#">Shipping</a>
+							<a href="#">Cancellation</a>
+						</div>
+					</div>
+					<div class="UNX-footer-info-column">
+						<h6 class="UNX-footer-info-head">About</h6>
+						<div class="UNX-link-wrapper">
+							<a href="#">Contact Us</a>
+							<a href="#">About Us</a>
+							<a href="#">Press</a>
+						</div>
+					</div>
+					<div class="UNX-footer-info-column">
+						<h6 class="UNX-footer-info-head">Registered Office Address</h6>
+						<div class="UNX-link-wrapper">
+							<a href="#">Company</a>
+							<a href="#">Careers</a>
+							<a href="#">Contact Us</a>
+						</div>
+					</div>
+					<div class="UNX-footer-info-column">
+						<h6 class="UNX-footer-info-head">Keep in Touch</h6>
+						<div class="UNX-link-wrapper UNX-keep-touch">
+							<a class="UNX-link-icon UNX-icons UNX-icon-linkedin" href="#"></a>
+							<a class="UNX-link-icon UNX-icons UNX-icon-twitter" href="#"></a>
+							<a class="UNX-link-icon UNX-icons UNX-icon-youtube" href="#"></a>
+						</div>
+					</div>
+				</div>
+			</div>
 `;
 
 
@@ -285,16 +357,7 @@ window.unbxdSearch = new UnbxdSearch({
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
-    products: {
-        productType: productType,
-    },
     unbxdAnalytics: true,
-    pagination: {
-        type: 'INFINITE_SCROLL',
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
-        // el: document.querySelector("#clickScrollContainer"),
-        onPaginate: function (data) { console.log(data, "data") }
-    },
     allowExternalUrlParams: false,
     setCategoryId: function (param, self) {
         const {
@@ -323,10 +386,7 @@ window.unbxdSearch = new UnbxdSearch({
         if (window.UnbxdAnalyticsConf) {
             window.UnbxdAnalyticsConf.page = "categoryPath:\"" + page + "\"";
         }
-    }
-});
-
-window.unbxdSearch.updateConfig({
+    },
     products: {
         el: document.getElementById("searchResultsWrapper"),
         productType: productType,
@@ -823,7 +883,7 @@ window.unbxdSearch.updateConfig({
     pagination: {
         type: 'INFINITE_SCROLL',
         usePageAndCount: true,
-        heightDiffToTriggerNextPage: 500,
+        heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
@@ -868,6 +928,10 @@ window.unbxdSearch.updateConfig({
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
 });
+
+// window.unbxdSearch.updateConfig({
+    
+// });
 
 window.unbxdSearch.getResults('*')
 

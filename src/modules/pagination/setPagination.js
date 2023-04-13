@@ -1,7 +1,6 @@
 
 import renderPagination from './renderPagination';
 import onInfiniteScroll from './infiniteScroller';
-import renderInfiniteScrollPagination from './infiniteScrollV2';
 import infiniteScrollV3 from './infiniteScrollV3';
 import {
     renderNewResults,
@@ -20,7 +19,6 @@ const setPagination = (prototype) => {
         paginationAction,
         onInfiniteScroll,
         getAutoScrollParams,
-        renderInfiniteScrollPagination,
         infiniteScrollV3
     })
 }
@@ -32,6 +30,5 @@ export {
     paginationAction,
     onInfiniteScroll,
     getAutoScrollParams,
-    renderInfiniteScrollPagination,
     infiniteScrollV3
 };
