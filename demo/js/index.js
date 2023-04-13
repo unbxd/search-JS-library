@@ -347,6 +347,7 @@ window.unbxdSearch.updateConfig({
     },
     facet: {
         isCollapsible: true,
+        defaultOpen: "NONE",
         facetsEl: document.getElementById("facetsWrapper"),
         selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         selectedFacetClass: "UNX-selected-facet-btn",

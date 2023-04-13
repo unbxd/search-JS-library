@@ -14,6 +14,7 @@ export default function(rangeFacet={}, isExpanded) {
     } = facet;
     const selectedRanges = this.state.rangeFacet;
     const selectedRange = selectedRanges[facetName] || [];
+    rangeFacet.isSelected = selectedRange.length > 0;
     const facetUI =  this.options.facet.rangeTemplate.bind(this)(rangeFacet,selectedRange, facet);
     const rangeUi = this.options.facet.facetTemplate.bind(this)(rangeFacet, facetUI, isExpanded, null,facet);
     let styles = (isExpanded)? openFacet:closeFacet;
