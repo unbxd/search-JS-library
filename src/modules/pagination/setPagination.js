@@ -1,38 +1,15 @@
 
 import renderPagination from './renderPagination';
-import setUpInfiniteScroll from './infiniteScroller';
+import onInfiniteScroll from './infiniteScroller';
+import infiniteScrollV3 from './infiniteScrollV3';
 import {
     renderNewResults,
     paginationAction
 } from './actions';
 
-
-const getProductsPerPage = function(){
-    const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-    let productsPerPage;
-    if (this.options.pagination.usePageAndCount) {
-        productsPerPage = Number(urlParams.get('count'));
-    } else {
-        productsPerPage = Number(urlParams.get('rows'));
-    }
-    return productsPerPage;
-}
-
-const getCurrentUrlPage = function(){
-    const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-    let currentUrlPage;
-    if (this.options.pagination.usePageAndCount) {
-        currentUrlPage = Number(urlParams.get('page')) || 1;
-    } else {
-        currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-    }
-    return currentUrlPage;
-}
-
-const replaceParamInUrl = function (key, value) {
-    const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-    urlParams.set(key, value);
-    history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+const getAutoScrollParams = function () {
+    const autoScrollParams = new URLSearchParams(window.location.search)
+    return autoScrollParams;
 }
 
 const setPagination = (prototype) => {
@@ -40,10 +17,9 @@ const setPagination = (prototype) => {
         renderPagination,
         renderNewResults,
         paginationAction,
-        setUpInfiniteScroll,
-        getProductsPerPage,
-        getCurrentUrlPage,
-        replaceParamInUrl
+        onInfiniteScroll,
+        getAutoScrollParams,
+        infiniteScrollV3
     })
 }
 
@@ -52,8 +28,7 @@ export {
     renderPagination,
     renderNewResults,
     paginationAction,
-    setUpInfiniteScroll,
-    getProductsPerPage,
-    getCurrentUrlPage,
-    replaceParamInUrl
+    onInfiniteScroll,
+    getAutoScrollParams,
+    infiniteScrollV3
 };

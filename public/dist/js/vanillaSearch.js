@@ -4759,167 +4759,6 @@ var onInfiniteScroll = function onInfiniteScroll() {
   }
 };
 /* harmony default export */ var infiniteScroller = (onInfiniteScroll);
-// CONCATENATED MODULE: ./src/modules/pagination/infiniteScrollV2.js
-function infiniteScrollV2_getScrollXY() {
-  var scrOfX = 0;
-  var scrOfY = 0;
-  if (typeof window.pageYOffset == 'number') {
-    //Netscape compliant
-    scrOfY = window.pageYOffset;
-    scrOfX = window.pageXOffset;
-  } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
-    //DOM compliant
-    scrOfY = document.body.scrollTop;
-    scrOfX = document.body.scrollLeft;
-  } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
-    //IE6 standards compliant mode
-    scrOfY = document.documentElement.scrollTop;
-    scrOfX = document.documentElement.scrollLeft;
-  }
-  return [scrOfX, scrOfY];
-}
-var renderInfiniteScrollPagination = function renderInfiniteScrollPagination() {
-  var _this = this;
-  var productContainer = this.options.pagination.infiniteScrollTriggerEl;
-  // const loadingIndicator = document.querySelector('#loading-indicator');
-  var urlParams = new URLSearchParams(window.location.search);
-  var currentPage = Number(urlParams.get('page')) || 1;
-  var productsPerPage = Number(urlParams.get('count')) || 10;
-  var isLoading = false;
-
-  // fetch products based on the current page number
-  // function fetchProducts() {
-  //     isLoading = true;
-  //     loadingIndicator.style.display = 'block';
-
-  //     // make a fetch request to get the products for the current page
-  //     fetch(`https://example.com/api/products?page=${currentPage}&count=${productsPerPage}`)
-  //         .then(response => response.json())
-  //         .then(products => {
-  //             isLoading = false;
-  //             loadingIndicator.style.display = 'none';
-
-  //             // render the products in the container
-  //             products.forEach(product => {
-  //                 const productElement = document.createElement('div');
-  //                 productElement.classList.add('product');
-  //                 productElement.dataset.index = product.index;
-  //                 productElement.innerHTML = `
-  //           <img src="${product.image}" alt="${product.name}">
-  //           <h3>${product.name}</h3>
-  //           <p>${product.price}</p>
-  //         `;
-  //                 productContainer.appendChild(productElement);
-  //             });
-  //         })
-  //         .catch(error => {
-  //             isLoading = false;
-  //             loadingIndicator.style.display = 'none';
-  //             console.error('Error fetching products:', error);
-  //         });
-  // }
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////
-  // intersectionObserver = new IntersectionObserver((entries) => {
-  //     entries.forEach(entry => {
-  //       if (entry.isIntersecting && !this.state.isLoading) {
-  //                         currentPage++;
-  //                 // fetchProducts();
-  //                 this.setPageStart((currentPage - 1) * productsPerPage)
-  //                 this.viewState.lastAction = "next_page_loaded";
-  //                 this.renderNewResults('next', currentPage);
-  //       }
-  //     });
-  //   }, { rootMargin: '0px 0px -200px 0px', threshold: [0.5] });
-
-  // //   intersectionObserver.observe(productContainer);
-
-  //   const productObserver = new ResizeObserver(entries => {
-  //     entries.forEach(entry => {
-  //         const containerHeight = entry.contentRect.height;
-  //         intersectionObserver.disconnect();
-  //         intersectionObserver.observe(productContainer.lastElementChild);
-  //         // intersectionObserver.observe(productContainer, { rootMargin: '0px 0px -200px 0px', threshold: [0.7] });
-  //     });
-  // });
-
-  // productObserver.observe(productContainer.lastElementChild);
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  // initialize the Intersection Observer
-  var observer = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting && !_this.state.isLoading) {
-        var currentProducts = 0;
-        var totalProducts = 0;
-        var scrollTop = infiniteScrollV2_getScrollXY()[1];
-        // const elHeight = entry.boundingClientRect.height || 0;
-        var elHeight = productContainer.clientHeight || 0;
-        var productResponse = window.unbxdSearch.state.responseObj.response || {};
-        if (productResponse) {
-          currentProducts = productResponse.products ? productResponse.products.length : 0;
-          totalProducts = productResponse.numberOfProducts || 0;
-        }
-
-        // fetch next page products when we hit the bottom 100 pixels of the products container
-        // if (entry.boundingClientRect.bottom <= productContainer.getBoundingClientRect().bottom + 100 &&
-        // currentProducts < totalProducts) {
-        if (entry.boundingClientRect.bottom <= productContainer.getBoundingClientRect().bottom + 100 && currentProducts < totalProducts) {
-          // if (scrollTop + window.innerHeight >= elHeight - this.options.pagination.heightDiffToTriggerNextPage &&
-          //     scrollTop + window.innerHeight < elHeight &&
-          //     currentProducts < totalProducts &&
-          //     !this.state.isLoading) {
-          currentPage++;
-          // fetchProducts();
-          _this.setPageStart((currentPage - 1) * productsPerPage);
-          _this.viewState.lastAction = "next_page_loaded";
-          _this.renderNewResults('next', currentPage);
-        }
-        // fetch previous page products on scroll to top of the page if the page number is greater than 1
-        // else if (entry.boundingClientRect.top >= productContainer.getBoundingClientRect().top && currentPage > 1) {
-        else if (scrollTop <= 0 && currentPage > 1 && !_this.state.isLoading) {
-          currentPage--;
-          // fetchProducts();
-          _this.setPageStart((currentPage - 1) * productsPerPage);
-          _this.viewState.lastAction = "prev_page_loaded";
-          _this.renderNewResults('prev');
-        }
-
-        // update URL with the current page number
-        var visibleProducts = document.querySelectorAll('.product-item');
-        var firstIndex = Number(visibleProducts[0].dataset.prank);
-        var lastIndex = Number(visibleProducts[visibleProducts.length - 1].dataset.prank);
-        var currentRange = Math.floor(firstIndex / productsPerPage) + 1;
-        if (currentPage !== currentRange) {
-          // history.replaceState({}, '', `?page=${currentRange}`);
-          urlParams.set('page', currentRange);
-          history.replaceState(null, null, _this.urlSearchParamsToStr(urlParams));
-        }
-      }
-    });
-  });
-
-  // observe changes in the height of the products container and update the threshold value accordingly
-  var productObserver = new ResizeObserver(function (entries) {
-    entries.forEach(function (entry) {
-      var containerHeight = entry.contentRect.height;
-      observer.disconnect();
-      // observer.observe(productContainer, { threshold: [ 1 ] });
-      observer.observe(productContainer);
-    });
-  });
-
-  // start fetching products for the initial page
-  // fetchProducts();
-
-  // start observing changes in the height of the products container
-  productObserver.observe(productContainer);
-};
-/* harmony default export */ var infiniteScrollV2 = (renderInfiniteScrollPagination);
 // CONCATENATED MODULE: ./src/modules/pagination/infiniteScrollV3.js
 function infiniteScrollV3_getScrollXY() {
   var scrOfX = 0;
@@ -4954,7 +4793,7 @@ var infiniteScrollV3 = function infiniteScrollV3() {
       currentUrlPage = Number(urlParams.get('page')) || 1;
     } else {
       currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-      productsPerPage = Number(urlParams.get('rows')) || 10;
+      productsPerPage = Number(urlParams.get('rows'));
     }
     var hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
 
@@ -5062,11 +4901,13 @@ var infiniteScrollV3 = function infiniteScrollV3() {
           if (postLoader.offsetTop < entry.boundingClientRect.bottom) {
             postLoaderObserver.observe(postLoader);
           }
-        } else {
-          // If the container is not visible, stop observing both the pre-loader and post-loader elements
-          preLoaderObserver.unobserve(preLoader);
-          postLoaderObserver.unobserve(postLoader);
+          var scrollTop = infiniteScrollV3_getScrollXY()[1];
         }
+        // else {
+        //     // If the container is not visible, stop observing both the pre-loader and post-loader elements
+        //     preLoaderObserver.unobserve(preLoader);
+        //     postLoaderObserver.unobserve(postLoader);
+        // }
       });
     };
 
@@ -5076,23 +4917,53 @@ var infiniteScrollV3 = function infiniteScrollV3() {
     });
 
     // Set up an event listener to update the hasScrolledToTop flag when the user scrolls to the top of the container
-    window.addEventListener('scroll', function () {
+    window.removeEventListener('scroll', onInfiniteScrollCb);
+    window.addEventListener('scroll', onInfiniteScrollCb);
+    // window.removeEventListener('event', onInfiniteResizeCb);
+    // window.addEventListener('event', onInfiniteResizeCb);
+
+    var productObserver = new ResizeObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var containerHeight = entry.contentRect.height;
+        containerObserver.disconnect();
+        // observer.observe(productContainer, { threshold: [ 1 ] });
+        containerObserver.observe(productsContainer);
+        // preLoaderObserver.disconnect();
+        // preLoaderObserver.observe(preLoader);
+        postLoaderObserver.disconnect();
+        postLoaderObserver.observe(postLoader);
+      });
+    });
+
+    // postLoaderObserver.observe(postLoader);
+    // preLoaderObserver.observe(preLoader);
+    // Observe the container element
+
+    // function onInfiniteResizeCb(e){
+    //     productObserver.disconnect();
+    //     productObserver.observe(productsContainer);
+    // }
+
+    function onInfiniteScrollCb() {
       var scrollTop = infiniteScrollV3_getScrollXY()[1];
+      updateUrl(scrollTop);
       if (scrollTop === 0) {
         hasScrolledToTop = true;
+        preLoaderObserver.disconnect();
+        productObserver.disconnect();
         preLoaderObserver.observe(preLoader);
-        containerObserver.observe(productsContainer);
+        productObserver.observe(productsContainer);
       } else {
         hasScrolledToTop = false;
         // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
       }
+      // productObserver.observe(productsContainer);
+      // containerObserver.observe(productsContainer);
+    }
 
-      updateUrl(scrollTop);
-    });
-    postLoaderObserver.observe(postLoader);
-    preLoaderObserver.observe(preLoader);
-    // Observe the container element
-    containerObserver.observe(productsContainer);
+    // containerObserver.observe(productsContainer);
+    productObserver.disconnect();
+    productObserver.observe(productsContainer);
     // Manually trigger the container observer callback function on page load
     // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
   });
@@ -5184,7 +5055,6 @@ function paginationAction(e) {
 
 
 
-
 var getAutoScrollParams = function getAutoScrollParams() {
   var autoScrollParams = new URLSearchParams(window.location.search);
   return autoScrollParams;
@@ -5196,7 +5066,6 @@ var setPagination_setPagination = function setPagination(prototype) {
     paginationAction: paginationAction,
     onInfiniteScroll: infiniteScroller,
     getAutoScrollParams: getAutoScrollParams,
-    renderInfiniteScrollPagination: infiniteScrollV2,
     infiniteScrollV3: pagination_infiniteScrollV3
   });
 };
