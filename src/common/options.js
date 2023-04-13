@@ -77,8 +77,8 @@ const options = {
     onEvent: (state,type) => {
        
     },
-    onError: (component)=>{
-        console.log(`Something in ${component} is breaking, please handle it.`)
+    onError: (module, error)=>{
+        console.log(`Something went wrong in ${module}: ${error}`)
     },
     startPageNo: 0,
     productView: {

@@ -17,8 +17,9 @@ function renderBreadCrumbs() {
         });
         return ui;
     }
-    catch{
-        this.options.onError("Breadcrumbs")
+    catch(err){
+        this.options.onError("Breadcrumbs",err);
+        throw err;
     }
     
 }

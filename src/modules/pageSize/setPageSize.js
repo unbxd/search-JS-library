@@ -19,8 +19,9 @@ const renderPageSize = function() {
             this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(selected, pagesize);
         }
     }
-    catch{
-        this.options.onError("Pagesize")
+    catch(err){
+        this.options.onError("Pagesize",err)
+        throw err;
     }
     
 }
