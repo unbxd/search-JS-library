@@ -1,4 +1,4 @@
-const paginationUI = function (paginationData, pagination) {
+const paginationUI = function (paginationData={}, pagination={}) {
     if(!paginationData) {
         return ``;
     }
