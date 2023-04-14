@@ -23,23 +23,10 @@ export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, 
                 return facet.dataId === dataId;
             })
             if(facetItem.isSelected) { 
-                // if at all isSelected is set to true once, capture that and store it 
-                // in selected variable for setting the final isSelected value
+                // if at all isSelected is set to true once, capture that and store it in selected variable for setting the final isSelected value
                 selected = facetItem.isSelected
             }
             return self.options.facet.facetItemTemplate.bind(self)(facetItem,value,facetSearchTxt)
-            // if(selectedFacet) {
-            //     selected = selectedFacet.some((facet) => {
-            //         return facet.dataId === dataId;
-            //     })
-            // }
-            // if(selected) {
-            //     facetItem.isSelected = true;
-            //     return self.options.facet.facetItemTemplate.bind(self)(facetItem,value,facetSearchTxt,facet)
-            // } else{
-            //     facetItem.isSelected = false;
-            //     return self.options.facet.facetItemTemplate.bind(self)(facetItem,value,facetSearchTxt)
-            // }
         });
     }
     if(onlyValues) {
