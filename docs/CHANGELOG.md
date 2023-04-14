@@ -17,6 +17,19 @@ nav_order: 8
 
 ---
 
+# v2.0.32
+
+- **Release Date**: 14th April, 2023
+- **Core SDK Version**: 0.4.29
+
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- The `isSelected` variable in the first parameter (`facetInfo`) of the `facetTemplate` callback was not being updated, due to which it was difficult to handle the facet open/close conditions if any facet is selected.
+
+
+--- 
+
 # v2.0.31
 
 - **Release Date**: 10th April, 2023
