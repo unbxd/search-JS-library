@@ -23,7 +23,7 @@ export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, 
                 return facet.dataId === dataId;
             })
             if(facetItem.isSelected) { 
-                // if at all isSelected is set to true once, capture that and store it in selected variable for setting the final isSelected value
+                // if isSelected is set to true once, capture it for setting the final isSelected value
                 selected = facetItem.isSelected
             }
             return self.options.facet.facetItemTemplate.bind(self)(facetItem,value,facetSearchTxt)
