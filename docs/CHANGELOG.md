@@ -17,6 +17,20 @@ nav_order: 8
 
 ---
 
+# v2.0.33 (hotfix)
+
+- **Release Date**: 14th April, 2023
+- **Core SDK Version**: 0.4.30 (hotfix)
+
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- There was an issue in fetching the API response due to an error in variable initialization in `getResultsFromApi` file.
+
+
+--- 
+
+
 # v2.0.32
 
 - **Release Date**: 14th April, 2023
