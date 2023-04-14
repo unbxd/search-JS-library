@@ -1,7 +1,7 @@
 const renderPagination = function () {
     try{
         const {
-            pagination
+            pagination = {}
         } = this.options;
         const {
             type
