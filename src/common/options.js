@@ -78,9 +78,6 @@ const options = {
     onEvent: (state,type) => {
        
     },
-    onError: (module, error)=>{
-        console.log(`Something went wrong in ${module}: ${error}`)
-    },
     startPageNo: 0,
     productView: {
         enabled: true,
