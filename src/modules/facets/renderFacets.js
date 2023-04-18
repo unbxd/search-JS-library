@@ -47,8 +47,8 @@ export default function(){
         });
         this.options.facet.onFacetLoad.bind(this)(allFacets);
     }
-    catch{
-        this.options.onError("Facets")
+    catch(err){
+        this.onError("Facets > renderFacets.js",err)
     }
     
 };

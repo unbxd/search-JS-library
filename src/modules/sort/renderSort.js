@@ -16,8 +16,7 @@ function renderSort(){
         });
     }
     catch(err){
-        this.options.onError("Sort",err);
-        throw err;
+        this.onError("Sort > renderSort",err);
     }
 
 }

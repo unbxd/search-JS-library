@@ -20,8 +20,7 @@ const renderPageSize = function() {
         }
     }
     catch(err){
-        this.options.onError("Pagesize",err)
-        throw err;
+        this.onError("Pagesize > renderPageSize",err)
     }
     
 }

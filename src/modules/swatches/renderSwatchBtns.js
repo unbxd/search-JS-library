@@ -7,8 +7,7 @@ function renderSwatchBtns(product) {
         return this.options.swatches.template.bind(this)(swatchData, swatches, product);
     }
     catch(err){
-        this.options.onError("Swatches",err)
-        throw err;
+        this.onError("Swatches > renderSwatchBtns",err)
     }
 
 };

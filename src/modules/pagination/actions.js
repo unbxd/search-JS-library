@@ -65,8 +65,7 @@ function renderNewResults(action) {
         }
     }
     catch(err){
-        this.options.onError("Pagination",err);
-        throw err;
+        this.onError("Pagination > renderNewResults",err);
     }
 };
 function paginationAction(e){
