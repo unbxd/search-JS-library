@@ -1,4 +1,4 @@
-export default function(facetItem,selectedFacet,isExpanded,facetSearchTxt, onlyValues) {
+export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, onlyValues) {
     let valuesUI = [];
     const {
         facetName,
@@ -15,27 +15,24 @@ export default function(facetItem,selectedFacet,isExpanded,facetSearchTxt, onlyV
     const {
         isCollapsible
     } = facet;
+    let selected = false;
     if(values.length > 0) {
-        valuesUI = values.map((value, index) => {
+        valuesUI = values.map((value = {}, index) => {
             const { dataId } = value;
-            let selected = false;
-            if(selectedFacet) {
-                selected = selectedFacet.some((facet) => {
-                    return facet.dataId === dataId;
-                })
+            facetItem.isSelected = selectedFacet.some((facet) => {
+                return facet.dataId === dataId;
+            })
+            if(facetItem.isSelected) { 
+                // if isSelected is set to true once, capture it for setting the final isSelected value
+                selected = facetItem.isSelected
             }
-            if(selected) {
-                facetItem.isSelected = true;
-                return self.options.facet.facetItemTemplate.bind(self)(facetItem,value,facetSearchTxt,facet)
-            } else{
-                facetItem.isSelected = false;
-                return self.options.facet.facetItemTemplate.bind(self)(facetItem, value,facetSearchTxt)
-            }
+            return self.options.facet.facetItemTemplate.bind(self)(facetItem,value,facetSearchTxt)
         });
     }
     if(onlyValues) {
         return valuesUI.join('');
     }
+    facetItem.isSelected = selected;
     const facetUI = this.options.facet.facetTemplate.bind(this)(facetItem, valuesUI.join(''),isExpanded,facetSearchTxt, facet);
     let styles = (isExpanded)? openFacet:closeFacet;
     if(!isCollapsible) {
