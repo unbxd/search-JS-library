@@ -3,8 +3,7 @@ function renderNoResults(query) {
         return this.options.noResults.template(query);
     }
     catch(err){
-        this.options.onError("Noresults",err)
-        throw err;
+        this.onError("searchresults > renderNoResults",err)
     }
 }
 export default renderNoResults;

@@ -47,8 +47,8 @@ const renderDidYouMean = function (suggestion) {
             wrapper.innerHTML = ui;
         })
     }
-    catch{
-        this.options.onError("Spellcheck")
+    catch(err){
+        this.onError("didYouMean > renderDidYouMean.js",err)
     }
     
 }

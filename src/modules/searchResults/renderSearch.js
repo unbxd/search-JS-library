@@ -54,8 +54,7 @@ const renderSearch =  function() {
         return productsUI;
     }
     catch(err){
-        this.options.onError("Search results", err)
-        throw err;
+        this.options.onError("searchResults > renderSearch", err)
     }
 }
 export default renderSearch

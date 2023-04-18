@@ -18,8 +18,7 @@ function renderBreadCrumbs() {
         return ui;
     }
     catch(err){
-        this.options.onError("Breadcrumbs",err);
-        throw err;
+        this.onError("Breadcrumbs > actions.js",err);
     }
     
 }

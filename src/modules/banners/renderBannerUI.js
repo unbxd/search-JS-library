@@ -7,8 +7,7 @@ function renderBannerUI(){
         this.bannerWrapper.innerHTML = this.options.banner.template(banners, banner); 
     }
     catch (err) {
-        this.options.onError("Banners", err)
-        throw err;
+        this.onError("Banners > renderBannerUI",err)
     }
 
 }
