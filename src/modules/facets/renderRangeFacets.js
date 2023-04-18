@@ -40,7 +40,7 @@ const renderRangeFacets = function(range, selectedRange, facet={}) {
             `<div>`,
             `</div>`].join('')
     }catch(err){
-        this.onError("facets > renderRangeFacets",err)
+        this.onError("facets > renderRangeFacets.js",err)
     }
     
 };
