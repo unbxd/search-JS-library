@@ -1,19 +1,19 @@
 export default function(swatchData, swatches,product) {
     const {
         swatchImgs = []
-    } = swatchData;
+    } = swatchData || {};
     let btnUI = ``;
     let btnList = ``;
     let imgsUI = ``;
     const {
         swatchClass = ""
-    } = swatches;
+    } = swatches || {};
     const {
         UNX_swatchClrBtn = ""
     } = this.testIds;
     const {
         unxTitle = ""
-    } = product;
+    } = product || {};
     if(swatchImgs.length > 1) {
         swatchImgs.forEach((item,id) => {
             const sid = this.generateRid("unx_swatch_");
