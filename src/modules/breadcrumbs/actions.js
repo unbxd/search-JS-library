@@ -8,7 +8,7 @@ function renderBreadCrumbs() {
             selectedCategories = ['categoryPath']
         }
         let ui = ``;
-        selectedCategories.forEach((item) => {
+        selectedCategories && selectedCategories.forEach((item) => {
             const data = this.getBreadCrumbsList(item) || [];
             const {
                 breadcrumb = {}
