@@ -1,4 +1,3 @@
-
 const sortOptions = [
     {
         value:"price desc",
@@ -9,17 +8,17 @@ const sortOptions = [
         text:" Price Low to High"
     }
 ];
-const sortTemplate = function(selectedSort, sortConfig={}) {
+const sortTemplate = function(selectedSort, sortConfig) {
     let optionsUI = "";
     const {
         options = [],
         sortClass = "",
         selectedSortClass = ""
-    } = sortConfig;
+    } = sortConfig || {};
     const {
         UNX_unbxdSorter = ""
     } = this.testIds;
-    options.forEach((item) => {
+    options && options.forEach((item) => {
         const {
             value = "",
             text = ""

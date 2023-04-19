@@ -7,7 +7,7 @@ function renderSort(){
         const {
             sortWrappers = []
         } = this;
-        sortWrappers.forEach(wrapper => {
+        sortWrappers && sortWrappers.forEach(wrapper => {
             let ui = ``;
             if (results && results.numberOfProducts > 0) {
                 ui = this.options.sort.template.bind(this)(this.getSelectedSort(), sort);
