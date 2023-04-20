@@ -1,7 +1,7 @@
 const renderDidYouMean = function (suggestion) {
     try{
         let {
-            userInput
+            userInput = ""
         } = this.state;
         const pages = this.getPaginationInfo() || {};
         const didYouMean = this.getDidYouMeanFromResponse() || [];

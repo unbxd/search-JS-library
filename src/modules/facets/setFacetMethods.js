@@ -9,7 +9,7 @@ import renderRangeFacet from "./renderRangeFacet";
 
 
 const isSelectedRange = function(facetName,range){
-    const selections = this.getSelectedRanges(facetName) || {};
+    const selections = this.getSelectedRanges(facetName);
     const {
         from,
         end
