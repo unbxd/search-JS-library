@@ -4925,6 +4925,7 @@ var infiniteScrollV3 = function infiniteScrollV3() {
     var productObserver = new ResizeObserver(function (entries) {
       entries.forEach(function (entry) {
         var containerHeight = entry.contentRect.height;
+        onInfiniteScrollCb();
         containerObserver.disconnect();
         // observer.observe(productContainer, { threshold: [ 1 ] });
         containerObserver.observe(productsContainer);

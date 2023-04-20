@@ -32,7 +32,6 @@ const initialize = function() {
         if(viewType) {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;
-            this.state.productViewType = viewType
         }
     } else {
         this.options.extraParams.viewType = defaultViewType;
