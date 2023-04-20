@@ -22,7 +22,7 @@ function renderNewResults(action) {
             rows,
             isNext,
             isPrev
-        } = pageInfo;
+        } = pageInfo || {};
         if (pagination.type === "CLICK_N_SCROLL") {
             const next = start + rows;
             if (isNext) {
