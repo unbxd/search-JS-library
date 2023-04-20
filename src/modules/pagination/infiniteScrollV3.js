@@ -22,10 +22,8 @@ function getScrollXY() {
 const infiniteScrollV3 = function () {
     return new Promise((resolve, reject) => {
         const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
-        // Select the UNX-post-loader and UNX-pre-loader elements
         const postLoader = document.querySelector('.UNX-post-loader');
         const preLoader = document.querySelector('.UNX-pre-loader');
-        // const loadingIndicator = document.querySelector('#loading-indicator');
         const urlParams = new URLSearchParams(window.location.search);
         let currentUrlPage, productsPerPage;
         if (this.options.pagination.usePageAndCount) {
@@ -79,9 +77,7 @@ const infiniteScrollV3 = function () {
             }
         }
 
-        // Create a new IntersectionObserver object for the UNX-post-loader element
         const postLoaderObserver = new IntersectionObserver(entries => {
-            // Check if the UNX-post-loader element is intersecting with the viewport
             if (entries[ 0 ].isIntersecting) {
                 //   // Increment the current page number
                 //   currentPage++;
@@ -114,15 +110,15 @@ const infiniteScrollV3 = function () {
         //     }
         //   }, { threshold: 1 });
 
-        // Initialize the IntersectionObserver for the pre-loader element
         const preLoaderObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && currentUrlPage > 1) {
+                if (entry.isIntersecting && currentUrlPage > 1 && hasScrolledToTop) {
                     currentUrlPage--;
                     // fetchProducts();
                     this.setPageStart((currentUrlPage - 1) * productsPerPage)
                     this.viewState.lastAction = "prev_page_loaded";
                     this.renderNewResults('prev');
+                    hasScrolledToTop = false
                 }
             });
         }, {
@@ -156,21 +152,17 @@ const infiniteScrollV3 = function () {
             });
         }
 
-        // Set up an IntersectionObserver on the products container to monitor for changes to the scroll position
         const containerObserver = new IntersectionObserver(containerObserverCallback, {
             threshold: 0 // Trigger when the container is fully visible in the viewport
         });
 
-        // Set up an event listener to update the hasScrolledToTop flag when the user scrolls to the top of the container
         window.removeEventListener('scroll', onInfiniteScrollCb);
         window.addEventListener('scroll', onInfiniteScrollCb);
-        // window.removeEventListener('event', onInfiniteResizeCb);
-        // window.addEventListener('event', onInfiniteResizeCb);
 
         const productObserver = new ResizeObserver(entries => {
             entries.forEach(entry => {
                 const containerHeight = entry.contentRect.height;
-                onInfiniteScrollCb();
+                // onInfiniteScrollCb();
                 containerObserver.disconnect();
                 // observer.observe(productContainer, { threshold: [ 1 ] });
                 containerObserver.observe(productsContainer);
@@ -195,9 +187,9 @@ const infiniteScrollV3 = function () {
             updateUrl(scrollTop);
             if (scrollTop === 0) {
                 hasScrolledToTop = true;
-                preLoaderObserver.disconnect();
+                // preLoaderObserver.disconnect();
                 productObserver.disconnect();
-                preLoaderObserver.observe(preLoader);
+                // preLoaderObserver.observe(preLoader);
                 productObserver.observe(productsContainer);
             } else {
                 hasScrolledToTop = false;
