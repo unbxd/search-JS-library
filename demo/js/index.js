@@ -3,72 +3,110 @@ import UnbxdSearch from "../../src/index";
 
 let routeTemplate = `
 <div class="UNX-header">
-        <div class="UNX-header-inner">
-            <div class="UNX-logo">
-                UNBXD
-            </div>
-            <div class="UNX-input-wrapper">
-            <form action="javascript:void(0);">
-                <input id="unbxdInput" class="UNX-input" />
-                <button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
-                </form>
-            </div>
-        </div>
-        <nav id="categoryLinks" class="UNX-naviagtion-wrap">
+			<div class="UNX-header-inner">
+				<div class="UNX-logo">
+					<a href="/" class="UNX-header-logo">
+						<span class="UNX-square"></span>
+					</a>
+				</div>
+				<nav class="UNX-nav">
+					<a href="" class="disabled"> Home </a>
+					<a href="" class="disabled"> Clothing </a>
+					<a href="" class="disabled"> Electronics </a>
+					<a href="" class="disabled"> Health & Beauty </a>
+					<a href="" class="disabled"> Watches </a>
+				</nav>
+				<div class="UNX-right-header">
+					<div id="autoSuggestInput" class="UNX-input-wrapper">
+						<input
+							id="unbxdInput"
+							placeholder="Search here..."
+							class="UNX-input"
+							autocomplete="off"
+						/>
+						<button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
+						<div class="UNX-pd-parent">
+							<div class="UNX-preview-debugger UNX-query"></div>
+						</div>
+					</div>
+				</div>
+                <nav id="categoryLinks" class="UNX-naviagtion-wrap">
             <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
             <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
             <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing Machines</button>
         </nav>
-    </div>
-
-    <div class="UNX-results-container">
-        <div class="UNX-head-wrapper">
-            <div class="UNX-selected-actions">
-                <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
-                <div class="UNX-selected-facet-wrapper" id="selectedFacetWrapper"></div>
-            </div>
-            <div class="UNX-product-type-block" id="productViewTypeContainer"></div>
-        </div>
-        <div class="UNX-product-results">
-            <div class="UNX-facet-wrapper">
-                <h2 class="UNX-filter-header">Filter By</h2>
-                <div class="UNX-fxd-facet">
-                    <div class="UNX-selected-facet-wrapper UNX-selected-f-m" id="selectedMFacetWrapper"></div>
-                    <div class="UNX-multilevel-block" id="bucketedFacetWrapper"></div>
-                    <div class="UNX-text-facet-block" id="facetsWrapper"></div>
-                    <div class="UNX-range-block" id="rangeFacetWrapper"></div>
-                    <div class="UNX-m-facet-row">
-                        <button data-action="applyFacets" class="UNX-primary-btn UNX-facet-trigger">Apply</button>
-                        <button data-action="clearFacets" class="UNX-default-btn UNX-facet-trigger">Clear</button>
-                    </div>
-
-                </div>
-                <div class="UNX-m-facet-row">
-                    <button class="UNX-m-facet-btn UNX-facet-trigger fa fa-filter"></button>
-                </div>
-            </div>
-            <div class="UNX-product-list">
-                <div class="UNX-result-header">
-                    <div id="didYouMeanWrapper"></div>
-                    <div class="UNX-result-right">
-                        <div class="UNX-change-products" id="changeNoOfProducts"></div>
-                        <div class="UNX-sort-wrapper" id="sortWrapper"></div>
-                        <div class="UNX-change-pagination-wrap" id="paginationContainer"></div>
-                        <div id="" class="UNX-change-pagination-wrap unxPagination"></div>
-                    </div>
-                </div>
-                <div id="bannerContainer"></div>
-                <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
-                <div id="" class="UNX-change-pagination-wrap UNX-m-page unxPagination"></div>
-            </div>
-        </div>
-        <div class="UNX-loader-container" id="loaderEl"></div>
-        <div id="noResultWrapper"></div>
-        <div id="clickScrollContainer">
-        </div>
-        
-    </div>
-    <div class="UNX-footer-main">
+			</div>
+		</div>
+		<div class="search-preview">
+			<div class="UNX-results-container">
+				<div class="UNX-head-wrapper">
+					<div class="UNX-selected-actions">
+						<div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
+						<div
+							class="UNX-selected-facet-wrapper"
+							id="selectedFacetWrapper"
+						></div>
+					</div>
+				</div>
+				<div class="UNX-product-results">
+					<div class="UNX-facet-wrapper">
+						<h2 class="UNX-filter-header">Filter By</h2>
+						<div class="UNX-fxd-facet">
+							<div
+								class="UNX-selected-facet-wrapper UNX-selected-f-m"
+								id="selectedMFacetWrapper"
+							></div>
+							<div class="UNX-text-facet-block" id="facetsWrapper"></div>
+							<div class="UNX-m-facet-row">
+								<button
+									data-action="applyFacets"
+									class="UNX-primary-btn UNX-facet-trigger"
+								>
+									Apply
+								</button>
+								<button
+									data-action="clearFacets"
+									class="UNX-default-btn UNX-facet-trigger"
+								>
+									Clear
+								</button>
+							</div>
+						</div>
+						<div class="UNX-m-facet-row">
+							<button
+								class="UNX-m-facet-btn UNX-facet-trigger fa fa-filter"
+							></button>
+						</div>
+					</div>
+					<div class="UNX-product-list">
+						<div id="didYouMeanWrapper"></div>
+						<div class="UNX-result-header">
+							<div class="UNX-sort-wrapper" id="sortWrapper"></div>
+							<div class="UNX-result-right">
+								<div class="UNX-change-products" id="changeNoOfProducts"></div>
+								<div
+									id=""
+									class="UNX-change-pagination-wrap unxPagination"
+								></div>
+								<div
+									class="UNX-product-type-block"
+									id="productViewTypeContainer"
+								></div>
+							</div>
+						</div>
+						<div id="bannerContainer"></div>
+						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+						<div
+							id=""
+							class="UNX-change-pagination-wrap UNX-m-page unxPagination"
+						></div>
+					</div>
+				</div>
+				<div class="UNX-loader-container" id="loaderEl"></div>
+				<div id="noResultWrapper"></div>
+				<div id="clickScrollContainer"></div>
+			</div>
+			<div class="UNX-footer-main">
 				<div class="UNX-footer-container">
 					<div class="UNX-footer-features">
 						<div class="UNX-feature-item">
@@ -140,6 +178,15 @@ let routeTemplate = `
 					</div>
 				</div>
 			</div>
+			<div class="UNX-privacy-footer-wrap">
+				<div class="UNX-footer-container">
+					<p>
+						In case of any concern,
+						<a class="UNX-contact-link" href="#">Contact Us</a>
+					</p>
+				</div>
+			</div>
+		</div>
 `;
 
 
