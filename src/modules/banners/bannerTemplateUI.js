@@ -1,4 +1,4 @@
-const bannerTemplateUI = (banners = [], bannerOpts) => {
+const bannerTemplateUI = (banners = [], bannerOpts={}) => {
     const {
         openNewTab
     } = bannerOpts || {}

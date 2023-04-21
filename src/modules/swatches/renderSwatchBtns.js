@@ -1,4 +1,4 @@
-function renderSwatchBtns(product) {
+function renderSwatchBtns(product={}) {
     try{
         const swatchData = this.getSwatches(product, this.options.swatches.attributesMap) || {};
         const {

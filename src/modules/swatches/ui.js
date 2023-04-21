@@ -1,4 +1,4 @@
-export default function(swatchData, swatches,product) {
+export default function(swatchData={}, swatches={},product={}) {
     const {
         swatchImgs = []
     } = swatchData || {};
