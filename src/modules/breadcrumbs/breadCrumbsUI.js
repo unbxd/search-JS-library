@@ -1,4 +1,4 @@
-const breadCrumbsUI = function(breadcrumbs = [], breadcrumb){
+const breadCrumbsUI = function(breadcrumbs = [], breadcrumb = {}){
     let ui = ``;
     const {
         selectorClass = ""

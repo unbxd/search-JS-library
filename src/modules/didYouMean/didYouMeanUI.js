@@ -13,12 +13,12 @@
     "isPrev": false
     }
 */
-const didYouMeanUI =  function(query,suggestion,pages = {}) {
+const didYouMeanUI =  function(query,suggestion,pages={}) {
     const {
         start,
         productsLn,
         numberOfProducts
-    } = pages;
+    } = pages || {};
     const {
         selectorClass = "",
         enabled
@@ -42,7 +42,7 @@ const didYouMeanUI =  function(query,suggestion,pages = {}) {
     if(numberOfProducts > 0) {
         countUi = `<span class="UNX-result-info">  -  ${start+1} to ${productsLn+start} of ${numberOfProducts} products</span>`;
     }
-    if(pages && newQuery){
+    if(pages && Object.keys(pages).length > 0 && newQuery){
         if(!enabled) {
             newQuery = suggestion || query
         }

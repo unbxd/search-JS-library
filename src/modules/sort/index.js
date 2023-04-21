@@ -8,7 +8,7 @@ const sortOptions = [
         text:" Price Low to High"
     }
 ];
-const sortTemplate = function(selectedSort, sortConfig) {
+const sortTemplate = function(selectedSort, sortConfig={}) {
     let optionsUI = "";
     const {
         options = [],
