@@ -292,3 +292,24 @@ browseQueryParam: "p"
 1. p-id: If we are providing the **category path id** to the search api.
 2. p: If we are providing the **category path** to the search api.
 
+---
+# searchQueryParam
+{: .d-inline-block }
+
+String
+{: .label }
+
+This will be the default query param for the search api to provide the query information. 
+
+## Default Value
+{: .no_toc }
+
+```js
+searchQueryParam: "q"
+```
+	
+## Scenarios
+{: .no_toc }
+
+This could be any valid string which would contain the query data that user has searched for like `q` or `query`.
+
