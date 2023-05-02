@@ -1,3 +1,5 @@
+
+
 function bindEvents() {
     const {
         searchButtonEl,
@@ -95,6 +97,9 @@ function bindEvents() {
         )
     }
 
+    if (this.options.pagination.type === 'INFINITE_SCROLL') {
+        this.setUpInfiniteScroll()
+    }
     // if (this.options.pagination.type === 'INFINITE_SCROLL') {
     //     let infiniteScrollTimer;
     //     const self = this
