@@ -198,10 +198,21 @@ const reRender = function () {
             } else {
                 if (lastAction === "prev_page_loaded") {
                     // searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
-                    const scrollTop = window.pageYOffset
+                    // const scrollTop = window.pageYOffset
                     searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
                     // const newHeight = container.scrollHeight;
-                    searchResultsWrapper.scrollTop = scrollTop;
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    let currentUrlPage, productsPerPage;
+                    if (this.options.pagination.usePageAndCount) {
+                        productsPerPage = Number(urlParams.get('count'));
+                        currentUrlPage = Number(urlParams.get('page')) || 1
+                    } else {
+                        currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+                        productsPerPage = Number(urlParams.get('rows'));
+                    }
+
+                    document.querySelector(`.product-item[data-pRank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
                 } else {
                     // searchResultsWrapper.innerHTML += this.renderSearch();
                     searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
@@ -268,7 +279,7 @@ const reRender = function () {
         paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });
-    } 
+    }
     // else {
     //     if (paginationWrappers) {
     //         paginationWrappers.forEach((pagination) => {
@@ -290,7 +301,7 @@ const reRender = function () {
     //     //     //     // this setTimeout and clearTimeout logic will ensure the callback is not called on every few seconds, 
     //     //     //     // instead it is called only when the user stops interacting with the scroll position
     //     //     //     // do not change this logic
-               
+
     //     //     //     infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
     //     //     //     infiniteScrollTimer = setTimeout(function () {
     //     //     //         if (!self.viewState.isInfiniteStarted && !self.state.loading) {
