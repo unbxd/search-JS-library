@@ -6,7 +6,7 @@ import {
     selectedFacetItemTemplateUI
 } from "../modules/facets/ui";
 import productTemplate from '../modules/searchResults/ui';
-import paginationUI from "../modules/pagination/paginationView";
+import paginationView from "../modules/pagination/paginationView";
 import {
     renderRangeFacets
 } from "../modules/facets/renderRangeFacets";
@@ -219,7 +219,7 @@ const options = {
     pagination: {
         enabled: true,
         el: null,
-        template: paginationUI,
+        template: paginationView,
         pageClass: "UNX-page-items",
         selectedPageClass: "UNX-selected-page-item",
         type: 'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
