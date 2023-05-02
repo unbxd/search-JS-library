@@ -354,9 +354,9 @@ const setUpInfiniteScroll = function () {
             // observeNewProducts(this);
 
             // start observing the target node for configured mutations
-            observer.observe(targetNode, { childList: true });
             preLoaderObserver.observe(preLoader);
             postLoaderObserver.observe(postLoader);
+            observer.observe(targetNode, { childList: true });
 
             // const containerObserver = new IntersectionObserver((entries) => {
             //     entries.forEach(entry => {
