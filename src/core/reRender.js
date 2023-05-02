@@ -1,3 +1,127 @@
+function getScrollXY() {
+    var scrOfX = 0;
+    var scrOfY = 0;
+    if (typeof (window.pageYOffset) == 'number') {
+        //Netscape compliant
+        scrOfY = window.pageYOffset;
+        scrOfX = window.pageXOffset;
+    } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+        //DOM compliant
+        scrOfY = document.body.scrollTop;
+        scrOfX = document.body.scrollLeft;
+    } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+        //IE6 standards compliant mode
+        scrOfY = document.documentElement.scrollTop;
+        scrOfX = document.documentElement.scrollLeft;
+    }
+    return [ scrOfX, scrOfY ];
+}
+
+function updateUrl2(self) {
+
+    const productItems = document.querySelectorAll('.product-item');
+    let currentUrlPage, productsPerPage;
+    const urlParams = new URLSearchParams(window.location.search);
+    if (self.options.pagination.usePageAndCount) {
+        productsPerPage = Number(urlParams.get('count'));
+        currentUrlPage = Number(urlParams.get('page')) || 1
+    } else {
+        currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+        productsPerPage = Number(urlParams.get('rows'));
+    }
+    // const self = this;
+    // productItems.forEach(function(productItem) {
+    for (let i = 0; i < productItems.length; i++) {
+        const productItem = productItems[ i ]
+        // Get the bounding rectangle of the product item
+        const boundingRect = productItem.getBoundingClientRect();
+
+        // Check if the product item is visible in the viewport
+        if (boundingRect.top < window.innerHeight && boundingRect.bottom >= 0) {
+            // Calculate the page number that the visible product belongs to
+            const productIndex = parseInt(productItem.dataset.prank);
+            const currentPage = Math.ceil(productIndex / productsPerPage);
+
+            // Update the current page number in the URL if necessary
+            if (currentPage !== currentUrlPage) {
+                // currentUrlPage = productPage;
+                // urlParams.set('page', currentUrlPage);
+                // const newUrl = `${window.location.pathname}?${urlParams.toString()}${window.location.hash}`;
+                // window.history.replaceState({path: newUrl}, '', newUrl);
+                if (self.options.pagination.usePageAndCount) {
+                    urlParams.set('page', currentPage);
+                } else {
+                    urlParams.set('start', (currentPage - 1) * productsPerPage);
+                }
+                history.replaceState(null, null, self.urlSearchParamsToStr(urlParams));
+                // break;
+            }
+        }
+    }
+    //   });
+}
+
+function updateUrl() {
+    // const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
+    //         const targetNode = productsContainer.querySelector('.UNX-search-results-block');
+
+    //         const self = this
+    const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentUrlPage, productsPerPage;
+    if (this.options.pagination.usePageAndCount) {
+        productsPerPage = Number(urlParams.get('count'));
+        currentUrlPage = Number(urlParams.get('page')) || 1
+    } else {
+        currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+        productsPerPage = Number(urlParams.get('rows'));
+    }
+    let hasScrolledToTop = false;
+
+
+
+    const scrollTop = getScrollXY()[ 1 ];
+    console.log("file: infiniteScrollV4.js:76 ~ document.addEventListener ~ scrollTop:", scrollTop)
+    const products = document.querySelectorAll('.product-item');
+    let currentPage = null;
+
+    if (scrollTop === 0) {
+        hasScrolledToTop = true;
+        // preLoaderObserver.disconnect();
+        // productObserver.disconnect();
+        // preLoaderObserver.observe(preLoader);
+        // productObserver.observe(productsContainer);
+    } else {
+        hasScrolledToTop = false;
+        // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
+    }
+    // updateUrl(scrollTop);
+
+    for (let i = 0; i < products.length; i++) {
+        const product = products[ i ];
+        const rank = parseInt(product.dataset.prank);
+
+        if (product.offsetTop > scrollTop && product.offsetTop < scrollTop + productsContainer.clientHeight) {
+            currentPage = Math.ceil(rank / productsPerPage);
+            break;
+        }
+    }
+
+    console.log("file: infiniteScrollV4.js:103 ~ document.addEventListener ~ currentUrlPage:", currentUrlPage)
+    console.log("file: infiniteScrollV4.js:103 ~ document.addEventListener ~ currentPage:", currentPage)
+
+    if (currentPage !== null && currentPage !== currentUrlPage) {
+        currentUrlPage = currentPage;
+        // window.history.replaceState({}, document.title, `?page=${currentPage}`);
+        if (this.options.pagination.usePageAndCount) {
+            urlParams.set('page', currentPage);
+        } else {
+            urlParams.set('start', (currentPage - 1) * productsPerPage);
+        }
+        history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+    }
+}
+
 const reRender = function () {
     const {
         onEvent,
@@ -96,7 +220,7 @@ const reRender = function () {
     }
     this.renderPageSize();
     this.renderSort();
-    
+
     if (breadcrumb.enabled) {
         breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
@@ -119,7 +243,7 @@ const reRender = function () {
     //         //     } else {
     //         //         this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
     //         //     }
-                
+
     //         // }
 
     //         if(this.options.pagination.usePageAndCount){
@@ -144,16 +268,41 @@ const reRender = function () {
         paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });
-    } else {
-        if (paginationWrappers) {
-            paginationWrappers.forEach((pagination) => {
-                pagination.innerHTML = ``;
-            });
-            
-        }
-            this.infiniteScrollV3()
-        // this.renderInfiniteScrollPagination();
-    }
+    } 
+    // else {
+    //     if (paginationWrappers) {
+    //         paginationWrappers.forEach((pagination) => {
+    //             pagination.innerHTML = ``;
+    //         });
+
+    //     }
+    //     // this.infiniteScrollV3()
+    //     // this.renderInfiniteScrollPagination();
+
+    //     // try {
+    //     //     const productsContainer = document.querySelector('.UNX-product-list');
+    //     //     //         const targetNode = productsContainer.querySelector('.UNX-search-results-block');
+    //     //     const self = this;
+    //     //     let infiniteScrollTimer;
+    //     //     //         
+    //     //     // productsContainer.removeEventListener('scroll', updateUrl2.bind(this));
+    //     //     // productsContainer.addEventListener('scroll', function () {
+    //     //     //     // this setTimeout and clearTimeout logic will ensure the callback is not called on every few seconds, 
+    //     //     //     // instead it is called only when the user stops interacting with the scroll position
+    //     //     //     // do not change this logic
+               
+    //     //     //     infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
+    //     //     //     infiniteScrollTimer = setTimeout(function () {
+    //     //     //         if (!self.viewState.isInfiniteStarted && !self.state.loading) {
+    //     //     //             updateUrl2(self);
+    //     //     //         }
+    //     //     //     }, 100)
+    //     //     // });
+
+    //     // } catch (err) {
+    //     //     console.error('error', err)
+    //     // }
+    // }
 
     onEvent(this, afterRender);
 

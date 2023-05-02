@@ -9,7 +9,7 @@ const triggerNextPage = (context,next, action) =>{
     });
 };
 function renderNewResults(action, currentPage) {
-    const pageInfo = this.getPaginationInfo();
+    const pageInfo = this.getPaginationInfo() || {};
     const {
         pagination,
         onEvent
