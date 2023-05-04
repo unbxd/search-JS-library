@@ -84,10 +84,7 @@ let routeTemplate = `
 							<div class="UNX-sort-wrapper" id="sortWrapper"></div>
 							<div class="UNX-result-right">
 								<div class="UNX-change-products" id="changeNoOfProducts"></div>
-								<div
-									id=""
-									class="UNX-change-pagination-wrap unxPagination"
-								></div>
+								
 								<div
 									class="UNX-product-type-block"
 									id="productViewTypeContainer"
@@ -96,9 +93,13 @@ let routeTemplate = `
 						</div>
 						<div id="bannerContainer"></div>
 						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+                        <div
+									id=""
+									class="UNX-change-pagination-wrap unxPagination"
+								></div>
 						<div
 							id=""
-							class="UNX-change-pagination-wrap UNX-m-page unxPagination"
+							class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination"
 						></div>
 					</div>
 				</div>
@@ -928,10 +929,11 @@ window.unbxdSearch = new UnbxdSearch({
     //     }
     // },
     pagination: {
-        type: 'INFINITE_SCROLL',
+        type: 'CLICK_N_SCROLL',
+        el: document.querySelector('.unxPagination'),
         usePageAndCount: true,
-        heightDiffToTriggerNextPage: 100,
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+        // heightDiffToTriggerNextPage: 300,
+        // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
     breadcrumb: {

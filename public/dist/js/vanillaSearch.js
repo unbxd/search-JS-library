@@ -91,19 +91,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 16:
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 39:
+/***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3168,7 +3168,7 @@ modules(UnbxdSearch_UnbxdSearch);
 
 /* harmony default export */ var src = (src_UnbxdSearch);
 // EXTERNAL MODULE: ./styles/index.scss
-var styles = __webpack_require__(16);
+var styles = __webpack_require__(18);
 
 // CONCATENATED MODULE: ./src/modules/utils/delegate.js
 function delegate_delegate(el, evt, sel, handler) {
@@ -4679,288 +4679,14 @@ var renderPagination = function renderPagination() {
   return paginationUI;
 };
 /* harmony default export */ var pagination_renderPagination = (renderPagination);
-// CONCATENATED MODULE: ./src/modules/pagination/infiniteScroller.js
-function getScrollXY() {
-  var scrOfX = 0;
-  var scrOfY = 0;
-  if (typeof window.pageYOffset == 'number') {
-    //Netscape compliant
-    scrOfY = window.pageYOffset;
-    scrOfX = window.pageXOffset;
-  } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
-    //DOM compliant
-    scrOfY = document.body.scrollTop;
-    scrOfX = document.body.scrollLeft;
-  } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
-    //IE6 standards compliant mode
-    scrOfY = document.documentElement.scrollTop;
-    scrOfX = document.documentElement.scrollLeft;
-  }
-  return [scrOfX, scrOfY];
-}
+// EXTERNAL MODULE: ./src/modules/pagination/infiniteScroller.js
+var infiniteScroller = __webpack_require__(5);
+var infiniteScroller_default = /*#__PURE__*/__webpack_require__.n(infiniteScroller);
 
-// update the start position in the URL
-var updatePageStart = function updatePageStart(context, page) {
-  var autoScrollParams = context.getAutoScrollParams();
-  var rows = context.options.pagination.usePageAndCount ? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
-  context.setPageStart((page - 1) * rows);
-  if (context.options.pagination.usePageAndCount) {
-    autoScrollParams.set('page', page);
-  } else {
-    autoScrollParams.set('start', (page - 1) * rows);
-  }
-  history.replaceState(null, null, context.urlSearchParamsToStr(autoScrollParams));
-};
+// EXTERNAL MODULE: ./src/modules/pagination/infiniteScrollV3.js
+var infiniteScrollV3 = __webpack_require__(6);
+var infiniteScrollV3_default = /*#__PURE__*/__webpack_require__.n(infiniteScrollV3);
 
-// callback on page scroll 
-var onInfiniteScroll = function onInfiniteScroll() {
-  var scrollTop = getScrollXY()[1];
-  var rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
-  // check if the products container is visible in the viewport and height is initialized
-  if (this.productContainerHeight != 0 && (rect.bottom > 0 || rect.top < window.innerHeight)) {
-    var autoScrollParams = this.getAutoScrollParams();
-    var page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
-    var start = 0,
-      rows = 0;
-    if (this.options.pagination.usePageAndCount) {
-      start = (parseInt(autoScrollParams.get('page')) - 1) * parseInt(autoScrollParams.get('count'));
-      rows = parseInt(autoScrollParams.get('count'));
-    } else {
-      start = parseInt(autoScrollParams.get('start'));
-      rows = parseInt(autoScrollParams.get('rows'));
-    }
-    // const start = parseInt(autoScrollParams.get('start')) || 0;
-    // // const rows = parseInt(autoScrollParams.get('rows')) || 0;
-    // const rows = this.options.pagination.usePageAndCount? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
-    var elHeight = document.getElementById('searchResultsWrapper').clientHeight || 0;
-    var currentProducts = 0;
-    var totalProducts = 0;
-    var productResponse = window.unbxdSearch.state.responseObj.response || {};
-    if (productResponse) {
-      currentProducts = productResponse.products ? productResponse.products.length : 0;
-      totalProducts = productResponse.numberOfProducts || 0;
-    }
-    if (scrollTop + window.innerHeight >= elHeight - this.options.pagination.heightDiffToTriggerNextPage && scrollTop + window.innerHeight < elHeight && currentProducts < totalProducts && !this.state.loading) {
-      // fetch next page when user scrolls to the bottom of threshold zone
-      updatePageStart(this, page + 1);
-      this.viewState.lastAction = "next_page_loaded";
-      this.renderNewResults('next');
-    } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
-      // fetch previous page
-      updatePageStart(this, page);
-      this.viewState.lastAction = "prev_page_loaded";
-      this.initialPage = this.initialPage - 1;
-      this.renderNewResults('prev');
-    }
-    if (start / rows + 1 != page && page != 0) {
-      // update page number in the URL as user scrolls up and down
-      updatePageStart(this, page);
-    }
-  }
-};
-/* harmony default export */ var infiniteScroller = (onInfiniteScroll);
-// CONCATENATED MODULE: ./src/modules/pagination/infiniteScrollV3.js
-function infiniteScrollV3_getScrollXY() {
-  var scrOfX = 0;
-  var scrOfY = 0;
-  if (typeof window.pageYOffset == 'number') {
-    //Netscape compliant
-    scrOfY = window.pageYOffset;
-    scrOfX = window.pageXOffset;
-  } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
-    //DOM compliant
-    scrOfY = document.body.scrollTop;
-    scrOfX = document.body.scrollLeft;
-  } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
-    //IE6 standards compliant mode
-    scrOfY = document.documentElement.scrollTop;
-    scrOfX = document.documentElement.scrollLeft;
-  }
-  return [scrOfX, scrOfY];
-}
-var infiniteScrollV3 = function infiniteScrollV3() {
-  var _this = this;
-  return new Promise(function (resolve, reject) {
-    var productsContainer = _this.options.pagination.infiniteScrollTriggerEl;
-    var postLoader = document.querySelector('.UNX-post-loader');
-    var preLoader = document.querySelector('.UNX-pre-loader');
-    var urlParams = new URLSearchParams(window.location.search);
-    var currentUrlPage, productsPerPage;
-    if (_this.options.pagination.usePageAndCount) {
-      productsPerPage = Number(urlParams.get('count'));
-      currentUrlPage = Number(urlParams.get('page')) || 1;
-    } else {
-      currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-      productsPerPage = Number(urlParams.get('rows'));
-    }
-    var hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
-
-    // const observer = new IntersectionObserver(entries => {
-    //     entries.forEach(entry => {
-    //         if (entry.isIntersecting && !this.state.isLoading) {
-    //                 currentPage++;
-    //                 // fetchProducts();
-    //                 this.setPageStart((currentPage - 1) * productsPerPage)
-    //                 this.viewState.lastAction = "next_page_loaded";
-    //                 this.renderNewResults('next', currentPage);
-
-    //         }
-    //     });
-    // }, {threshold: [0.5]});
-
-    // observer.observe(productsContainer);
-
-    var updateUrl = function updateUrl(scrollTop) {
-      var products = document.querySelectorAll('.product-item');
-      var currentPage = null;
-      for (var i = 0; i < products.length; i++) {
-        var product = products[i];
-        var rank = parseInt(product.dataset.prank);
-        if (product.offsetTop > scrollTop && product.offsetTop < scrollTop + productsContainer.clientHeight) {
-          currentPage = Math.ceil(rank / productsPerPage);
-          break;
-        }
-      }
-      if (currentPage !== null && currentPage !== currentUrlPage) {
-        currentUrlPage = currentPage;
-        // window.history.replaceState({}, document.title, `?page=${currentPage}`);
-        if (_this.options.pagination.usePageAndCount) {
-          urlParams.set('page', currentPage);
-        } else {
-          urlParams.set('start', (currentPage - 1) * productsPerPage);
-        }
-        history.replaceState(null, null, _this.urlSearchParamsToStr(urlParams));
-      }
-    };
-    var postLoaderObserver = new IntersectionObserver(function (entries) {
-      if (entries[0].isIntersecting) {
-        //   // Increment the current page number
-        //   currentPage++;
-        //   // Fetch more products from the next page
-        //   fetchProducts(currentPage);
-        currentUrlPage++;
-        // fetchProducts();
-        _this.setPageStart((currentUrlPage - 1) * productsPerPage);
-        _this.viewState.lastAction = "next_page_loaded";
-        _this.renderNewResults('next', currentUrlPage);
-      }
-    }, {
-      threshold: 1,
-      rootMargin: "0px 0px 100px 0px"
-    });
-
-    //   // Create a new IntersectionObserver object for the UNX-pre-loader element
-    //   const preLoaderObserver = new IntersectionObserver(entries => {
-    //     // Check if the UNX-pre-loader element is intersecting with the viewport
-    //     if (entries[0].isIntersecting && currentPage > 1) {
-    //     //   // Decrement the current page number
-    //     //   currentPage--;
-    //     //   // Fetch previous page products
-    //     //   fetchProducts(currentPage);
-    //     currentPage--;
-    //                 // fetchProducts();
-    //                 this.setPageStart((currentPage - 1) * productsPerPage)
-    //                 this.viewState.lastAction = "prev_page_loaded";
-    //                 this.renderNewResults('prev');
-    //     }
-    //   }, { threshold: 1 });
-
-    var preLoaderObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && currentUrlPage > 1 && hasScrolledToTop) {
-          currentUrlPage--;
-          // fetchProducts();
-          _this.setPageStart((currentUrlPage - 1) * productsPerPage);
-          _this.viewState.lastAction = "prev_page_loaded";
-          _this.renderNewResults('prev');
-          hasScrolledToTop = false;
-        }
-      });
-    }, {
-      threshold: 0,
-      // Trigger when the element is fully visible in the viewport
-      rootMargin: "-".concat(productsContainer.offsetTop, "px 0px 0px 0px") // Offset the root margin by the height of the products container
-    });
-
-    //   postLoaderObserver.observe(postLoader);
-    // preLoaderObserver.observe(preLoader);
-
-    var containerObserverCallback = function containerObserverCallback(entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          // If the pre-loader is visible, start observing it
-          if (preLoader.offsetTop < entry.boundingClientRect.top && hasScrolledToTop) {
-            preLoaderObserver.observe(preLoader);
-          }
-          // If the post-loader is visible, start observing it
-          if (postLoader.offsetTop < entry.boundingClientRect.bottom) {
-            postLoaderObserver.observe(postLoader);
-          }
-          var scrollTop = infiniteScrollV3_getScrollXY()[1];
-        }
-        // else {
-        //     // If the container is not visible, stop observing both the pre-loader and post-loader elements
-        //     preLoaderObserver.unobserve(preLoader);
-        //     postLoaderObserver.unobserve(postLoader);
-        // }
-      });
-    };
-
-    var containerObserver = new IntersectionObserver(containerObserverCallback, {
-      threshold: 0 // Trigger when the container is fully visible in the viewport
-    });
-
-    window.removeEventListener('scroll', onInfiniteScrollCb);
-    window.addEventListener('scroll', onInfiniteScrollCb);
-    var productObserver = new ResizeObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var containerHeight = entry.contentRect.height;
-        // onInfiniteScrollCb();
-        containerObserver.disconnect();
-        // observer.observe(productContainer, { threshold: [ 1 ] });
-        containerObserver.observe(productsContainer);
-        // preLoaderObserver.disconnect();
-        // preLoaderObserver.observe(preLoader);
-        postLoaderObserver.disconnect();
-        postLoaderObserver.observe(postLoader);
-      });
-    });
-
-    // postLoaderObserver.observe(postLoader);
-    // preLoaderObserver.observe(preLoader);
-    // Observe the container element
-
-    // function onInfiniteResizeCb(e){
-    //     productObserver.disconnect();
-    //     productObserver.observe(productsContainer);
-    // }
-
-    function onInfiniteScrollCb() {
-      var scrollTop = infiniteScrollV3_getScrollXY()[1];
-      updateUrl(scrollTop);
-      if (scrollTop === 0) {
-        hasScrolledToTop = true;
-        // preLoaderObserver.disconnect();
-        productObserver.disconnect();
-        // preLoaderObserver.observe(preLoader);
-        productObserver.observe(productsContainer);
-      } else {
-        hasScrolledToTop = false;
-        // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
-      }
-      // productObserver.observe(productsContainer);
-      // containerObserver.observe(productsContainer);
-    }
-
-    // containerObserver.observe(productsContainer);
-    productObserver.disconnect();
-    productObserver.observe(productsContainer);
-    // Manually trigger the container observer callback function on page load
-    // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
-  });
-};
-
-/* harmony default export */ var pagination_infiniteScrollV3 = (infiniteScrollV3);
 // CONCATENATED MODULE: ./src/modules/pagination/infiniteScrollV4.js
 function infiniteScrollV4_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = infiniteScrollV4_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 function infiniteScrollV4_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return infiniteScrollV4_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return infiniteScrollV4_arrayLikeToArray(o, minLen); }
@@ -5105,8 +4831,27 @@ function infiniteScrollV4_arrayLikeToArray(arr, len) { if (len == null || len > 
 
 var setUpInfiniteScroll = function setUpInfiniteScroll() {
   var _this = this;
+  var reTrigger = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   return new Promise(function (resolve, reject) {
     try {
+      _this.resetObservers = function () {
+        _this.observer.disconnect();
+        _this.preLoaderObserver.disconnect();
+        _this.postLoaderObserver.disconnect();
+        _this.preLoaderObserver.observe(preLoader);
+        _this.postLoaderObserver.observe(postLoader);
+        _this.observer.observe(productsContainer, {
+          childList: true,
+          subtree: true
+        });
+        return;
+      };
+
+      // if (reTrigger) {
+      //     resetObservers()
+      //     return;
+      // }
+
       var productsContainer = _this.options.pagination.infiniteScrollTriggerEl;
       var targetNode = productsContainer.querySelector('.UNX-search-results-block');
       var postLoader = document.querySelector('.UNX-post-loader');
@@ -5120,7 +4865,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       //     currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
       //     productsPerPage = Number(urlParams.get('rows'));
       // }
-      var hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
+      // let hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
 
       // document.addEventListener('scroll', () => {
       //     const scrollTop = getScrollXY()[ 1 ];
@@ -5165,7 +4910,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       //     }
       // });
 
-      var individualProductObserver = new IntersectionObserver(function (entries) {
+      _this.individualProductObserver = new IntersectionObserver(function (entries) {
         var self = _this;
         entries.forEach(function (entry) {
           // Check if the product item is fully in view
@@ -5187,8 +4932,6 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
 
             // Update the current page number in the URL if necessary
             if (currentPage !== currentUrlPage) {
-              console.error("file: infiniteScrollV4.js:221 ~ currentUrlPage:", currentUrlPage);
-              console.error("file: infiniteScrollV4.js:221 ~ currentPage:", currentPage);
               // currentPage = currentPage;
               // const urlParams = new URLSearchParams(window.location.search);
               if (self.options.pagination.usePageAndCount) {
@@ -5206,7 +4949,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       }, {
         threshold: [0.5, 0.75, 1]
       });
-      var preLoaderObserver = new IntersectionObserver(function (entries) {
+      _this.preLoaderObserver = new IntersectionObserver(function (entries) {
         var urlParams = new URLSearchParams(window.location.search);
         var currentUrlPage, productsPerPage;
         if (_this.options.pagination.usePageAndCount) {
@@ -5217,13 +4960,13 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
           productsPerPage = Number(urlParams.get('rows'));
         }
         entries.forEach(function (entry) {
-          if (entry.isIntersecting && currentUrlPage > 1 && !hasScrolledToTop) {
+          if (entry.isIntersecting && currentUrlPage > 1 && !_this.state.isLoading && !_this.viewState.isInfiniteStarted) {
             currentUrlPage--;
             // fetchProducts();
             _this.setPageStart((currentUrlPage - 1) * productsPerPage);
             _this.viewState.lastAction = "prev_page_loaded";
             _this.renderNewResults('prev');
-            hasScrolledToTop = false;
+            // hasScrolledToTop = false
           }
         });
       }, {
@@ -5232,7 +4975,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
         rootMargin: "-".concat(productsContainer.offsetTop, "px 0px 0px 0px") // Offset the root margin by the height of the products container
       });
 
-      var postLoaderObserver = new IntersectionObserver(function (entries) {
+      _this.postLoaderObserver = new IntersectionObserver(function (entries) {
         var urlParams = new URLSearchParams(window.location.search);
         var currentUrlPage, productsPerPage;
         if (_this.options.pagination.usePageAndCount) {
@@ -5242,7 +4985,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
           currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
           productsPerPage = Number(urlParams.get('rows'));
         }
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && !_this.state.isLoading && !_this.viewState.isInfiniteStarted) {
           //   // Increment the current page number
           //   currentPage++;
           //   // Fetch more products from the next page
@@ -5255,7 +4998,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
           _this.renderNewResults('next', currentUrlPage);
         }
       }, {
-        threshold: 1,
+        threshold: 0,
         rootMargin: "0px 0px ".concat(productsContainer.offsetTop, "px 0px")
       });
 
@@ -5273,11 +5016,11 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       // };
 
       // create an observer instance
-      var observer = new MutationObserver(function (mutationsList, observer) {
+      _this.observer = new MutationObserver(function (mutationsList, observer) {
         var _iterator = infiniteScrollV4_createForOfIteratorHelper(mutationsList),
           _step;
         try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var _loop = function _loop() {
             var mutation = _step.value;
             if (mutation.type === 'childList') {
               console.log('A child node has been added or removed.');
@@ -5299,20 +5042,22 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
                   // Observe the new product item
 
                   // individualProductObserver.disconnect()
-                  individualProductObserver.observe(node);
+                  self.individualProductObserver.observe(node);
                   // observeNewProducts(self);
                 }
               });
+              // observer.disconnect();
+              // preLoaderObserver.disconnect();
+              // postLoaderObserver.disconnect();
+              // preLoaderObserver.observe(preLoader);
+              // postLoaderObserver.observe(postLoader);
+              // observer.observe(productsContainer, { childList: true, subtree: true });
 
-              observer.disconnect();
-              preLoaderObserver.disconnect();
-              postLoaderObserver.disconnect();
-              preLoaderObserver.observe(preLoader);
-              postLoaderObserver.observe(postLoader);
-              observer.observe(targetNode, {
-                childList: true
-              });
+              _this.resetObservers();
             }
+          };
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            _loop();
           }
         } catch (err) {
           _iterator.e(err);
@@ -5323,12 +5068,19 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
 
       // observeNewProducts(this);
 
-      // start observing the target node for configured mutations
-      observer.observe(targetNode, {
-        childList: true
+      // this.resetObservers()
+
+      _this.preLoaderObserver.observe(preLoader);
+      _this.postLoaderObserver.observe(postLoader);
+      _this.observer.observe(productsContainer, {
+        childList: true,
+        subtree: true
       });
-      preLoaderObserver.observe(preLoader);
-      postLoaderObserver.observe(postLoader);
+
+      // // start observing the target node for configured mutations
+      // preLoaderObserver.observe(preLoader);
+      // postLoaderObserver.observe(postLoader);
+      // observer.observe(productsContainer, { childList: true, subtree: true });
 
       // const containerObserver = new IntersectionObserver((entries) => {
       //     entries.forEach(entry => {
@@ -5407,34 +5159,34 @@ function renderNewResults(action, currentPage) {
   } else if (pagination.type === "INFINITE_SCROLL") {
     if (action === this.actions.next) {
       // const next = start+rows;
-      var _next = (currentPage - 1) * rows;
+      // const next = (currentPage - 1) * rows
       if (isNext) {
         this.viewState.isInfiniteStarted = true;
-        triggerNextPage(this, _next, action);
+        triggerNextPage(this, null, action);
       }
     }
     if (action === this.actions.prev) {
       // const prev = start-rows;
-      var prev = (currentPage - 1) * rows;
+      // const prev = (currentPage - 1) * rows
       if (isPrev) {
         this.viewState.isInfiniteStarted = true;
-        triggerNextPage(this, prev, action);
+        triggerNextPage(this, null, action);
       }
     }
   } else {
     if (action === this.actions.next) {
-      var _next2 = start + rows;
+      var _next = start + rows;
       if (isNext) {
-        triggerNextPage(this, _next2);
+        triggerNextPage(this, _next);
       }
     }
     if (action === this.actions.prev) {
-      var _prev = start - rows;
+      var prev = start - rows;
       if (isPrev) {
         this.viewState.lastAction = "pagination";
-        triggerNextPage(this, _prev);
+        triggerNextPage(this, prev);
         onEvent(this, this.events.pagePrev, {
-          value: _prev
+          value: prev
         });
       }
     }
@@ -5471,9 +5223,9 @@ var setPagination_setPagination = function setPagination(prototype) {
     renderPagination: pagination_renderPagination,
     renderNewResults: renderNewResults,
     paginationAction: paginationAction,
-    onInfiniteScroll: infiniteScroller,
+    onInfiniteScroll: infiniteScroller_default.a,
     getAutoScrollParams: getAutoScrollParams,
-    infiniteScrollV3: pagination_infiniteScrollV3,
+    infiniteScrollV3: infiniteScrollV3_default.a,
     setUpInfiniteScroll: infiniteScrollV4
   });
 };
@@ -5829,120 +5581,128 @@ var unxSelectors = {
 };
 /* harmony default export */ var selectors = (unxSelectors);
 // CONCATENATED MODULE: ./src/core/reRender.js
-function reRender_getScrollXY() {
-  var scrOfX = 0;
-  var scrOfY = 0;
-  if (typeof window.pageYOffset == 'number') {
-    //Netscape compliant
-    scrOfY = window.pageYOffset;
-    scrOfX = window.pageXOffset;
-  } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
-    //DOM compliant
-    scrOfY = document.body.scrollTop;
-    scrOfX = document.body.scrollLeft;
-  } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
-    //IE6 standards compliant mode
-    scrOfY = document.documentElement.scrollTop;
-    scrOfX = document.documentElement.scrollLeft;
-  }
-  return [scrOfX, scrOfY];
-}
-function updateUrl2(self) {
-  var productItems = document.querySelectorAll('.product-item');
-  var currentUrlPage, productsPerPage;
-  var urlParams = new URLSearchParams(window.location.search);
-  if (self.options.pagination.usePageAndCount) {
-    productsPerPage = Number(urlParams.get('count'));
-    currentUrlPage = Number(urlParams.get('page')) || 1;
-  } else {
-    currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-    productsPerPage = Number(urlParams.get('rows'));
-  }
-  // const self = this;
-  // productItems.forEach(function(productItem) {
-  for (var i = 0; i < productItems.length; i++) {
-    var productItem = productItems[i];
-    // Get the bounding rectangle of the product item
-    var boundingRect = productItem.getBoundingClientRect();
+// function getScrollXY() {
+//     var scrOfX = 0;
+//     var scrOfY = 0;
+//     if (typeof (window.pageYOffset) == 'number') {
+//         //Netscape compliant
+//         scrOfY = window.pageYOffset;
+//         scrOfX = window.pageXOffset;
+//     } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+//         //DOM compliant
+//         scrOfY = document.body.scrollTop;
+//         scrOfX = document.body.scrollLeft;
+//     } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+//         //IE6 standards compliant mode
+//         scrOfY = document.documentElement.scrollTop;
+//         scrOfX = document.documentElement.scrollLeft;
+//     }
+//     return [ scrOfX, scrOfY ];
+// }
 
-    // Check if the product item is visible in the viewport
-    if (boundingRect.top < window.innerHeight && boundingRect.bottom >= 0) {
-      // Calculate the page number that the visible product belongs to
-      var productIndex = parseInt(productItem.dataset.prank);
-      var currentPage = Math.ceil(productIndex / productsPerPage);
+// function updateUrl2(self) {
 
-      // Update the current page number in the URL if necessary
-      if (currentPage !== currentUrlPage) {
-        // currentUrlPage = productPage;
-        // urlParams.set('page', currentUrlPage);
-        // const newUrl = `${window.location.pathname}?${urlParams.toString()}${window.location.hash}`;
-        // window.history.replaceState({path: newUrl}, '', newUrl);
-        if (self.options.pagination.usePageAndCount) {
-          urlParams.set('page', currentPage);
-        } else {
-          urlParams.set('start', (currentPage - 1) * productsPerPage);
-        }
-        history.replaceState(null, null, self.urlSearchParamsToStr(urlParams));
-        // break;
-      }
-    }
-  }
-  //   });
-}
+//     const productItems = document.querySelectorAll('.product-item');
+//     let currentUrlPage, productsPerPage;
+//     const urlParams = new URLSearchParams(window.location.search);
+//     if (self.options.pagination.usePageAndCount) {
+//         productsPerPage = Number(urlParams.get('count'));
+//         currentUrlPage = Number(urlParams.get('page')) || 1
+//     } else {
+//         currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+//         productsPerPage = Number(urlParams.get('rows'));
+//     }
+//     // const self = this;
+//     // productItems.forEach(function(productItem) {
+//     for (let i = 0; i < productItems.length; i++) {
+//         const productItem = productItems[ i ]
+//         // Get the bounding rectangle of the product item
+//         const boundingRect = productItem.getBoundingClientRect();
 
-function updateUrl() {
-  // const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
-  //         const targetNode = productsContainer.querySelector('.UNX-search-results-block');
+//         // Check if the product item is visible in the viewport
+//         if (boundingRect.top < window.innerHeight && boundingRect.bottom >= 0) {
+//             // Calculate the page number that the visible product belongs to
+//             const productIndex = parseInt(productItem.dataset.prank);
+//             const currentPage = Math.ceil(productIndex / productsPerPage);
 
-  //         const self = this
-  var productsContainer = this.options.pagination.infiniteScrollTriggerEl;
-  var urlParams = new URLSearchParams(window.location.search);
-  var currentUrlPage, productsPerPage;
-  if (this.options.pagination.usePageAndCount) {
-    productsPerPage = Number(urlParams.get('count'));
-    currentUrlPage = Number(urlParams.get('page')) || 1;
-  } else {
-    currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-    productsPerPage = Number(urlParams.get('rows'));
-  }
-  var hasScrolledToTop = false;
-  var scrollTop = reRender_getScrollXY()[1];
-  console.log("file: infiniteScrollV4.js:76 ~ document.addEventListener ~ scrollTop:", scrollTop);
-  var products = document.querySelectorAll('.product-item');
-  var currentPage = null;
-  if (scrollTop === 0) {
-    hasScrolledToTop = true;
-    // preLoaderObserver.disconnect();
-    // productObserver.disconnect();
-    // preLoaderObserver.observe(preLoader);
-    // productObserver.observe(productsContainer);
-  } else {
-    hasScrolledToTop = false;
-    // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
-  }
-  // updateUrl(scrollTop);
+//             // Update the current page number in the URL if necessary
+//             if (currentPage !== currentUrlPage) {
+//                 // currentUrlPage = productPage;
+//                 // urlParams.set('page', currentUrlPage);
+//                 // const newUrl = `${window.location.pathname}?${urlParams.toString()}${window.location.hash}`;
+//                 // window.history.replaceState({path: newUrl}, '', newUrl);
+//                 if (self.options.pagination.usePageAndCount) {
+//                     urlParams.set('page', currentPage);
+//                 } else {
+//                     urlParams.set('start', (currentPage - 1) * productsPerPage);
+//                 }
+//                 history.replaceState(null, null, self.urlSearchParamsToStr(urlParams));
+//                 // break;
+//             }
+//         }
+//     }
+//     //   });
+// }
 
-  for (var i = 0; i < products.length; i++) {
-    var product = products[i];
-    var rank = parseInt(product.dataset.prank);
-    if (product.offsetTop > scrollTop && product.offsetTop < scrollTop + productsContainer.clientHeight) {
-      currentPage = Math.ceil(rank / productsPerPage);
-      break;
-    }
-  }
-  console.log("file: infiniteScrollV4.js:103 ~ document.addEventListener ~ currentUrlPage:", currentUrlPage);
-  console.log("file: infiniteScrollV4.js:103 ~ document.addEventListener ~ currentPage:", currentPage);
-  if (currentPage !== null && currentPage !== currentUrlPage) {
-    currentUrlPage = currentPage;
-    // window.history.replaceState({}, document.title, `?page=${currentPage}`);
-    if (this.options.pagination.usePageAndCount) {
-      urlParams.set('page', currentPage);
-    } else {
-      urlParams.set('start', (currentPage - 1) * productsPerPage);
-    }
-    history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
-  }
-}
+// function updateUrl() {
+//     // const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
+//     //         const targetNode = productsContainer.querySelector('.UNX-search-results-block');
+
+//     //         const self = this
+//     const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
+//     const urlParams = new URLSearchParams(window.location.search);
+//     let currentUrlPage, productsPerPage;
+//     if (this.options.pagination.usePageAndCount) {
+//         productsPerPage = Number(urlParams.get('count'));
+//         currentUrlPage = Number(urlParams.get('page')) || 1
+//     } else {
+//         currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+//         productsPerPage = Number(urlParams.get('rows'));
+//     }
+//     let hasScrolledToTop = false;
+
+//     const scrollTop = getScrollXY()[ 1 ];
+//     console.log("file: infiniteScrollV4.js:76 ~ document.addEventListener ~ scrollTop:", scrollTop)
+//     const products = document.querySelectorAll('.product-item');
+//     let currentPage = null;
+
+//     if (scrollTop === 0) {
+//         hasScrolledToTop = true;
+//         // preLoaderObserver.disconnect();
+//         // productObserver.disconnect();
+//         // preLoaderObserver.observe(preLoader);
+//         // productObserver.observe(productsContainer);
+//     } else {
+//         hasScrolledToTop = false;
+//         // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
+//     }
+//     // updateUrl(scrollTop);
+
+//     for (let i = 0; i < products.length; i++) {
+//         const product = products[ i ];
+//         const rank = parseInt(product.dataset.prank);
+
+//         if (product.offsetTop > scrollTop && product.offsetTop < scrollTop + productsContainer.clientHeight) {
+//             currentPage = Math.ceil(rank / productsPerPage);
+//             break;
+//         }
+//     }
+
+//     console.log("file: infiniteScrollV4.js:103 ~ document.addEventListener ~ currentUrlPage:", currentUrlPage)
+//     console.log("file: infiniteScrollV4.js:103 ~ document.addEventListener ~ currentPage:", currentPage)
+
+//     if (currentPage !== null && currentPage !== currentUrlPage) {
+//         currentUrlPage = currentPage;
+//         // window.history.replaceState({}, document.title, `?page=${currentPage}`);
+//         if (this.options.pagination.usePageAndCount) {
+//             urlParams.set('page', currentPage);
+//         } else {
+//             urlParams.set('start', (currentPage - 1) * productsPerPage);
+//         }
+//         history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+//     }
+// }
+
 var reRender = function reRender() {
   var _this = this;
   var _this$options = this.options,
@@ -6010,7 +5770,7 @@ var reRender = function reRender() {
       } else {
         if (lastAction === "prev_page_loaded") {
           // searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
-          var scrollTop = window.pageYOffset;
+          // const scrollTop = window.pageYOffset
           searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
           // const newHeight = container.scrollHeight;
 
@@ -6088,6 +5848,18 @@ var reRender = function reRender() {
       pagination.innerHTML = _this.renderPagination();
     });
   }
+  // else {
+  //     // this.resetObservers(true)
+  //     const postLoader = document.querySelector('.UNX-post-loader');
+  //     const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
+  //     const preLoader = document.querySelector('.UNX-pre-loader');
+  //     this.observer.disconnect();
+  //     this.preLoaderObserver.disconnect();
+  //     this.postLoaderObserver.disconnect();
+  //     this.preLoaderObserver.observe(preLoader);
+  //     this.postLoaderObserver.observe(postLoader);
+  //     this.observer.observe(productsContainer, { childList: true, subtree: true });
+  // }
   // else {
   //     if (paginationWrappers) {
   //         paginationWrappers.forEach((pagination) => {
@@ -6380,10 +6152,12 @@ var createLayout = function createLayout() {
     products.el.innerHTML = "";
     var preLoader = document.createElement('div');
     preLoader.classList.add('UNX-pre-loader');
+    preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
     products.el.appendChild(preLoader);
     products.el.appendChild(this.searchResultsWrapper);
     var postLoader = document.createElement('div');
     postLoader.classList.add('UNX-post-loader');
+    postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
     products.el.appendChild(postLoader);
   }
   if (pagesize.el && pagesize.enabled) {
@@ -6923,6 +6697,309 @@ var src_UnbxdSearch_0 = /*#__PURE__*/function (_UnbxdSearchCore) {
 }(src);
 core_setMethods(src_UnbxdSearch_0);
 /* harmony default export */ var src_0 = __webpack_exports__["default"] = (src_UnbxdSearch_0);
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+// function getScrollXY() {
+//     var scrOfX = 0;
+//     var scrOfY = 0;
+//     if (typeof (window.pageYOffset) == 'number') {
+//         //Netscape compliant
+//         scrOfY = window.pageYOffset;
+//         scrOfX = window.pageXOffset;
+//     } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+//         //DOM compliant
+//         scrOfY = document.body.scrollTop;
+//         scrOfX = document.body.scrollLeft;
+//     } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+//         //IE6 standards compliant mode
+//         scrOfY = document.documentElement.scrollTop;
+//         scrOfX = document.documentElement.scrollLeft;
+//     }
+//     return [ scrOfX, scrOfY ];
+// }
+
+// // update the start position in the URL
+// const updatePageStart = function (context, page) {
+//     const autoScrollParams = context.getAutoScrollParams();
+//     const rows = context.options.pagination.usePageAndCount? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
+//     context.setPageStart((page - 1) * rows);
+//     if(context.options.pagination.usePageAndCount){
+//         autoScrollParams.set('page', page);
+//     } else {
+//         autoScrollParams.set('start', (page - 1) * rows);
+//     }
+
+//     history.replaceState(null, null, context.urlSearchParamsToStr(autoScrollParams));
+// }
+
+// // callback on page scroll 
+// const onInfiniteScroll = function () {
+//     const scrollTop = getScrollXY()[ 1 ];
+//     const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
+//     // check if the products container is visible in the viewport and height is initialized
+//     if (this.productContainerHeight != 0 && (rect.bottom > 0 || rect.top < window.innerHeight)) {
+//         const autoScrollParams = this.getAutoScrollParams();
+//         const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
+//         let start = 0, rows = 0;
+
+//         if(this.options.pagination.usePageAndCount){
+//             start = (parseInt(autoScrollParams.get('page')) - 1) * parseInt(autoScrollParams.get('count'));
+//             rows = parseInt(autoScrollParams.get('count'));
+//         }else {
+//             start = parseInt(autoScrollParams.get('start'));
+//             rows = parseInt(autoScrollParams.get('rows'));
+//         }
+//         // const start = parseInt(autoScrollParams.get('start')) || 0;
+//         // // const rows = parseInt(autoScrollParams.get('rows')) || 0;
+//         // const rows = this.options.pagination.usePageAndCount? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
+//         const elHeight = document.getElementById('searchResultsWrapper').clientHeight || 0;
+//         let currentProducts = 0;
+//         let totalProducts = 0;
+//         const productResponse = window.unbxdSearch.state.responseObj.response || {};
+//         if(productResponse){
+//             currentProducts = (productResponse.products) ? productResponse.products.length : 0;
+//             totalProducts = productResponse.numberOfProducts || 0;
+//         }
+
+//         if (scrollTop + window.innerHeight >= elHeight - this.options.pagination.heightDiffToTriggerNextPage &&
+//             scrollTop + window.innerHeight < elHeight &&
+//             currentProducts < totalProducts &&
+//             !this.state.loading) {
+//             // fetch next page when user scrolls to the bottom of threshold zone
+//             updatePageStart(this, page + 1);
+//             this.viewState.lastAction = "next_page_loaded";
+//             this.renderNewResults('next');
+//         } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
+//             // fetch previous page
+//             updatePageStart(this, page)
+//             this.viewState.lastAction = "prev_page_loaded";
+//             this.initialPage = this.initialPage - 1;
+//             this.renderNewResults('prev');
+//         }
+
+//         if ((start / rows) + 1 != page && page != 0) {
+//             // update page number in the URL as user scrolls up and down
+//             updatePageStart(this, page);
+//         }
+//     }
+// }
+// export default onInfiniteScroll;
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports) {
+
+// function getScrollXY() {
+//     var scrOfX = 0;
+//     var scrOfY = 0;
+//     if (typeof (window.pageYOffset) == 'number') {
+//         //Netscape compliant
+//         scrOfY = window.pageYOffset;
+//         scrOfX = window.pageXOffset;
+//     } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
+//         //DOM compliant
+//         scrOfY = document.body.scrollTop;
+//         scrOfX = document.body.scrollLeft;
+//     } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
+//         //IE6 standards compliant mode
+//         scrOfY = document.documentElement.scrollTop;
+//         scrOfX = document.documentElement.scrollLeft;
+//     }
+//     return [ scrOfX, scrOfY ];
+// }
+
+// const infiniteScrollV3 = function () {
+//     return new Promise((resolve, reject) => {
+//         const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
+//         const postLoader = document.querySelector('.UNX-post-loader');
+//         const preLoader = document.querySelector('.UNX-pre-loader');
+//         const urlParams = new URLSearchParams(window.location.search);
+//         let currentUrlPage, productsPerPage;
+//         if (this.options.pagination.usePageAndCount) {
+//             productsPerPage = Number(urlParams.get('count'));
+//             currentUrlPage = Number(urlParams.get('page')) || 1
+//         } else {
+//             currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+//             productsPerPage = Number(urlParams.get('rows'));
+//         }
+//         let hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
+
+//         // const observer = new IntersectionObserver(entries => {
+//         //     entries.forEach(entry => {
+//         //         if (entry.isIntersecting && !this.state.isLoading) {
+//         //                 currentPage++;
+//         //                 // fetchProducts();
+//         //                 this.setPageStart((currentPage - 1) * productsPerPage)
+//         //                 this.viewState.lastAction = "next_page_loaded";
+//         //                 this.renderNewResults('next', currentPage);
+
+//         //         }
+//         //     });
+//         // }, {threshold: [0.5]});
+
+//         // observer.observe(productsContainer);
+
+//         const updateUrl = (scrollTop) => {
+//             const products = document.querySelectorAll('.product-item');
+//             let currentPage = null;
+
+//             for (let i = 0; i < products.length; i++) {
+//                 const product = products[ i ];
+//                 const rank = parseInt(product.dataset.prank);
+
+//                 if (product.offsetTop > scrollTop && product.offsetTop < scrollTop + productsContainer.clientHeight) {
+//                     currentPage = Math.ceil(rank / productsPerPage);
+//                     break;
+//                 }
+//             }
+
+//             if (currentPage !== null && currentPage !== currentUrlPage) {
+//                 currentUrlPage = currentPage;
+//                 // window.history.replaceState({}, document.title, `?page=${currentPage}`);
+//                 if (this.options.pagination.usePageAndCount) {
+//                     urlParams.set('page', currentPage);
+//                 } else {
+//                     urlParams.set('start', (currentPage - 1) * productsPerPage);
+//                 }
+//                 history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+//             }
+//         }
+
+//         const postLoaderObserver = new IntersectionObserver(entries => {
+//             if (entries[ 0 ].isIntersecting) {
+//                 //   // Increment the current page number
+//                 //   currentPage++;
+//                 //   // Fetch more products from the next page
+//                 //   fetchProducts(currentPage);
+//                 currentUrlPage++;
+//                 // fetchProducts();
+//                 this.setPageStart((currentUrlPage - 1) * productsPerPage)
+//                 this.viewState.lastAction = "next_page_loaded";
+//                 this.renderNewResults('next', currentUrlPage);
+//             }
+//         }, {
+//             threshold: 1,
+//             rootMargin: `0px 0px 100px 0px`
+//         });
+
+//         //   // Create a new IntersectionObserver object for the UNX-pre-loader element
+//         //   const preLoaderObserver = new IntersectionObserver(entries => {
+//         //     // Check if the UNX-pre-loader element is intersecting with the viewport
+//         //     if (entries[0].isIntersecting && currentPage > 1) {
+//         //     //   // Decrement the current page number
+//         //     //   currentPage--;
+//         //     //   // Fetch previous page products
+//         //     //   fetchProducts(currentPage);
+//         //     currentPage--;
+//         //                 // fetchProducts();
+//         //                 this.setPageStart((currentPage - 1) * productsPerPage)
+//         //                 this.viewState.lastAction = "prev_page_loaded";
+//         //                 this.renderNewResults('prev');
+//         //     }
+//         //   }, { threshold: 1 });
+
+//         const preLoaderObserver = new IntersectionObserver(entries => {
+//             entries.forEach(entry => {
+//                 if (entry.isIntersecting && currentUrlPage > 1 && hasScrolledToTop) {
+//                     currentUrlPage--;
+//                     // fetchProducts();
+//                     this.setPageStart((currentUrlPage - 1) * productsPerPage)
+//                     this.viewState.lastAction = "prev_page_loaded";
+//                     this.renderNewResults('prev');
+//                     hasScrolledToTop = false
+//                 }
+//             });
+//         }, {
+//             threshold: 0, // Trigger when the element is fully visible in the viewport
+//             rootMargin: `-${productsContainer.offsetTop}px 0px 0px 0px`, // Offset the root margin by the height of the products container
+//         });
+
+//         //   postLoaderObserver.observe(postLoader);
+//         // preLoaderObserver.observe(preLoader);
+
+//         const containerObserverCallback = (entries) => {
+//             entries.forEach(entry => {
+//                 if (entry.isIntersecting) {
+//                     // If the pre-loader is visible, start observing it
+//                     if (preLoader.offsetTop < entry.boundingClientRect.top && hasScrolledToTop) {
+//                         preLoaderObserver.observe(preLoader);
+//                     }
+//                     // If the post-loader is visible, start observing it
+//                     if (postLoader.offsetTop < entry.boundingClientRect.bottom) {
+//                         postLoaderObserver.observe(postLoader);
+//                     }
+//                     const scrollTop = getScrollXY()[ 1 ];
+
+//                 }
+//                 // else {
+//                 //     // If the container is not visible, stop observing both the pre-loader and post-loader elements
+//                 //     preLoaderObserver.unobserve(preLoader);
+//                 //     postLoaderObserver.unobserve(postLoader);
+//                 // }
+//             });
+//         }
+
+//         const containerObserver = new IntersectionObserver(containerObserverCallback, {
+//             threshold: 0 // Trigger when the container is fully visible in the viewport
+//         });
+
+//         window.removeEventListener('scroll', onInfiniteScrollCb);
+//         window.addEventListener('scroll', onInfiniteScrollCb);
+
+//         const productObserver = new ResizeObserver(entries => {
+//             entries.forEach(entry => {
+//                 const containerHeight = entry.contentRect.height;
+//                 // onInfiniteScrollCb();
+//                 containerObserver.disconnect();
+//                 // observer.observe(productContainer, { threshold: [ 1 ] });
+//                 containerObserver.observe(productsContainer);
+//                 // preLoaderObserver.disconnect();
+//                 // preLoaderObserver.observe(preLoader);
+//                 postLoaderObserver.disconnect();
+//                 postLoaderObserver.observe(postLoader);
+//             });
+//         });
+
+//         // postLoaderObserver.observe(postLoader);
+//         // preLoaderObserver.observe(preLoader);
+//         // Observe the container element
+
+//         // function onInfiniteResizeCb(e){
+//         //     productObserver.disconnect();
+//         //     productObserver.observe(productsContainer);
+//         // }
+
+//         function onInfiniteScrollCb() {
+//             const scrollTop = getScrollXY()[ 1 ];
+//             updateUrl(scrollTop);
+//             if (scrollTop === 0) {
+//                 hasScrolledToTop = true;
+//                 // preLoaderObserver.disconnect();
+//                 productObserver.disconnect();
+//                 // preLoaderObserver.observe(preLoader);
+//                 productObserver.observe(productsContainer);
+//             } else {
+//                 hasScrolledToTop = false;
+//                 // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
+//             }
+//             // productObserver.observe(productsContainer);
+//             // containerObserver.observe(productsContainer);
+//         }
+
+//         // containerObserver.observe(productsContainer);
+//         productObserver.disconnect();
+//         productObserver.observe(productsContainer);
+//         // Manually trigger the container observer callback function on page load
+//         // containerObserverCallback([ { isIntersecting: true } ], containerObserver);
+//     })
+// }
+
+// export default infiniteScrollV3;
 
 /***/ })
 

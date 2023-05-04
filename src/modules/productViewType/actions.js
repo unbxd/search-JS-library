@@ -25,7 +25,7 @@ function onPageViewTypeClick(e) {
         this.state.isBack = false;
         this.viewState.lastAction = "viewType";
         this.getResults.bind(this)();
-
+        
     }
 }
 export {

@@ -31,18 +31,18 @@ function renderNewResults(action, currentPage) {
     } else if(pagination.type === "INFINITE_SCROLL") {
         if(action === this.actions.next){
             // const next = start+rows;
-            const next = (currentPage - 1) * rows
+            // const next = (currentPage - 1) * rows
             if(isNext){
                 this.viewState.isInfiniteStarted = true;
-                triggerNextPage(this,next, action);
+                triggerNextPage(this,null, action);
             }
         }
         if(action === this.actions.prev){
             // const prev = start-rows;
-            const prev = (currentPage - 1) * rows
+            // const prev = (currentPage - 1) * rows
             if(isPrev){
                 this.viewState.isInfiniteStarted = true;
-                triggerNextPage(this,prev, action);
+                triggerNextPage(this,null, action);
             }
         }
     } else {

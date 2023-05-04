@@ -123,12 +123,14 @@ const createLayout = function() {
 
         const preLoader = document.createElement('div');
         preLoader.classList.add('UNX-pre-loader');
+        preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
         products.el.appendChild(preLoader);
 
         products.el.appendChild(this.searchResultsWrapper);
 
         const postLoader = document.createElement('div');
         postLoader.classList.add('UNX-post-loader');
+        postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
         products.el.appendChild(postLoader);
 
     }
