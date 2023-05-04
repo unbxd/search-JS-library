@@ -140,10 +140,23 @@
 // }
 
 
-const setUpInfiniteScroll = function () {
+const setUpInfiniteScroll = function (reTrigger = false) {
     return new Promise((resolve, reject) => {
         try {
+            this.resetObservers = () => {
+                this.observer.disconnect();
+                this.preLoaderObserver.disconnect();
+                this.postLoaderObserver.disconnect();
+                this.preLoaderObserver.observe(preLoader);
+                this.postLoaderObserver.observe(postLoader);
+                this.observer.observe(productsContainer, { childList: true, subtree: true });
+                return;
+            }
 
+            // if (reTrigger) {
+            //     resetObservers()
+            //     return;
+            // }
 
             const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
             const targetNode = productsContainer.querySelector('.UNX-search-results-block');
@@ -158,7 +171,7 @@ const setUpInfiniteScroll = function () {
             //     currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
             //     productsPerPage = Number(urlParams.get('rows'));
             // }
-            let hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
+            // let hasScrolledToTop = false; // Initialize a flag to track whether the user has scrolled to the top of the container before
 
 
             // document.addEventListener('scroll', () => {
@@ -204,7 +217,7 @@ const setUpInfiniteScroll = function () {
             //     }
             // });
 
-            const individualProductObserver = new IntersectionObserver(entries => {
+            this.individualProductObserver = new IntersectionObserver(entries => {
                 const self = this;
                 entries.forEach(entry => {
                     // Check if the product item is fully in view
@@ -223,11 +236,9 @@ const setUpInfiniteScroll = function () {
                         // Calculate the page number that the visible product belongs to
                         const currentPage = Math.ceil(productIndex / productsPerPage);
                         console.log("file: infiniteScrollV4.js:216 ~ currentPage:", currentPage)
-                        
+
                         // Update the current page number in the URL if necessary
                         if (currentPage !== currentUrlPage) {
-                            console.error("file: infiniteScrollV4.js:221 ~ currentUrlPage:", currentUrlPage)
-                            console.error("file: infiniteScrollV4.js:221 ~ currentPage:", currentPage)
                             // currentPage = currentPage;
                             // const urlParams = new URLSearchParams(window.location.search);
                             if (self.options.pagination.usePageAndCount) {
@@ -243,10 +254,10 @@ const setUpInfiniteScroll = function () {
                     }
                 });
             }, {
-                threshold: [ 0.5, 0.75, 1]
+                threshold: [ 0.5, 0.75, 1 ]
             });
 
-            const preLoaderObserver = new IntersectionObserver(entries => {
+            this.preLoaderObserver = new IntersectionObserver(entries => {
                 const urlParams = new URLSearchParams(window.location.search);
                 let currentUrlPage, productsPerPage;
                 if (this.options.pagination.usePageAndCount) {
@@ -257,14 +268,14 @@ const setUpInfiniteScroll = function () {
                     productsPerPage = Number(urlParams.get('rows'));
                 }
                 entries.forEach(entry => {
-                    if (entry.isIntersecting && currentUrlPage > 1 && !hasScrolledToTop) {
+                    if (entry.isIntersecting && currentUrlPage > 1 && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
 
                         currentUrlPage--;
                         // fetchProducts();
                         this.setPageStart((currentUrlPage - 1) * productsPerPage)
                         this.viewState.lastAction = "prev_page_loaded";
                         this.renderNewResults('prev');
-                        hasScrolledToTop = false
+                        // hasScrolledToTop = false
                     }
                 });
             }, {
@@ -272,17 +283,17 @@ const setUpInfiniteScroll = function () {
                 rootMargin: `-${productsContainer.offsetTop}px 0px 0px 0px`, // Offset the root margin by the height of the products container
             });
 
-            const postLoaderObserver = new IntersectionObserver(entries => {
+            this.postLoaderObserver = new IntersectionObserver(entries => {
                 const urlParams = new URLSearchParams(window.location.search);
-            let currentUrlPage, productsPerPage;
-            if (this.options.pagination.usePageAndCount) {
-                productsPerPage = Number(urlParams.get('count'));
-                currentUrlPage = Number(urlParams.get('page')) || 1
-            } else {
-                currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-                productsPerPage = Number(urlParams.get('rows'));
-            }
-                if (entries[ 0 ].isIntersecting) {
+                let currentUrlPage, productsPerPage;
+                if (this.options.pagination.usePageAndCount) {
+                    productsPerPage = Number(urlParams.get('count'));
+                    currentUrlPage = Number(urlParams.get('page')) || 1
+                } else {
+                    currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+                    productsPerPage = Number(urlParams.get('rows'));
+                }
+                if (entries[ 0 ].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
                     //   // Increment the current page number
                     //   currentPage++;
                     //   // Fetch more products from the next page
@@ -295,7 +306,7 @@ const setUpInfiniteScroll = function () {
                     this.renderNewResults('next', currentUrlPage);
                 }
             }, {
-                threshold: 1,
+                threshold: 0,
                 rootMargin: `0px 0px ${productsContainer.offsetTop}px 0px`
             });
 
@@ -314,7 +325,7 @@ const setUpInfiniteScroll = function () {
             // };
 
             // create an observer instance
-            const observer = new MutationObserver((mutationsList, observer) => {
+            this.observer = new MutationObserver((mutationsList, observer) => {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList') {
                         console.log('A child node has been added or removed.');
@@ -336,27 +347,39 @@ const setUpInfiniteScroll = function () {
                                 // Observe the new product item
 
                                 // individualProductObserver.disconnect()
-                                individualProductObserver.observe(node)
+                                self.individualProductObserver.observe(node)
                                 // observeNewProducts(self);
 
                             }
                         });
-                        observer.disconnect();
-                        preLoaderObserver.disconnect();
-                        postLoaderObserver.disconnect();
-                        preLoaderObserver.observe(preLoader);
-                        postLoaderObserver.observe(postLoader);
-                        observer.observe(targetNode, { childList: true });
+                        // observer.disconnect();
+                        // preLoaderObserver.disconnect();
+                        // postLoaderObserver.disconnect();
+                        // preLoaderObserver.observe(preLoader);
+                        // postLoaderObserver.observe(postLoader);
+                        // observer.observe(productsContainer, { childList: true, subtree: true });
+
+                        this.resetObservers()
                     }
                 }
             });
 
             // observeNewProducts(this);
 
-            // start observing the target node for configured mutations
-            preLoaderObserver.observe(preLoader);
-            postLoaderObserver.observe(postLoader);
-            observer.observe(targetNode, { childList: true });
+            // this.resetObservers()
+
+
+
+            this.preLoaderObserver.observe(preLoader);
+                this.postLoaderObserver.observe(postLoader);
+                this.observer.observe(productsContainer, { childList: true, subtree: true });
+
+
+
+            // // start observing the target node for configured mutations
+            // preLoaderObserver.observe(preLoader);
+            // postLoaderObserver.observe(postLoader);
+            // observer.observe(productsContainer, { childList: true, subtree: true });
 
             // const containerObserver = new IntersectionObserver((entries) => {
             //     entries.forEach(entry => {

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#000000">
-    <title>Unxd SDK playground</title>
+    <title>Unbxd SDK playground</title>
     <!--required frame works should be loaded here-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
         rel="stylesheet" />
@@ -261,6 +261,27 @@
       
       .UNX-product-wrapper {
           margin-top: 20px;
+          position: relative;
+      }
+
+      .UNX-pre-loader {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left:0;
+        right:0;
+        height: 100px;
+        z-index: -1;
+      }
+
+      .UNX-post-loader {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left:0;
+        right:0;
+        height: 100px;
+        z-index: -1;
       }
       
       .footer {
