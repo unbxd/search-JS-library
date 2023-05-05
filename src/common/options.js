@@ -175,7 +175,7 @@ const options = {
         selectedFacetsEl: null,
         selectedFacetTemplate: selectedFacetUI,
         selectedFacetItemTemplate: selectedFacetItemTemplateUI,
-
+        selectedFacetConfig: {},
         clearAllText: "Clear All",
 
         rangeTemplate: renderRangeFacets,
