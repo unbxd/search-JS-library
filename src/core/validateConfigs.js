@@ -52,7 +52,7 @@ function validateConfigs() {
                             if (userConfig[key] === window) {
                                 return null
                             }
-                            this.onError(moduleName, `'${key}' sssis not a valid DOM selector`,)
+                            this.onError(moduleName, `'${key}' is not a valid DOM selector`,)
                         } else if (!required && userConfig[key] && (!isNode(userConfig[key]) || !isElement(userConfig[key]))) {
                             //The config is not required , so in case user passed null/undefined it should not throw error.
                             //Config is not required , throws error if still passed and not a valid selector
