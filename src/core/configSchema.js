@@ -65,7 +65,7 @@ export const paginationSchema = {
 
 export const bannerSchema = {
     moduleName: 'banner',
-    config:{
+    config: {
         enabled: {
             datatype: "boolean"
         },
@@ -89,7 +89,7 @@ export const bannerSchema = {
         },
         htmlAttributes: {
             datatype: "object"
-        }   
+        }
     }
 }
 
@@ -101,13 +101,13 @@ export const loaderSchema = {
             datatype: "element"
         },
         template: {
-            required: function(loader){
+            required: function (loader) {
                 return loader.el
             },
             datatype: "function"
         }
     }
-    
+
 }
 
 export const sortingSchema = {
@@ -117,7 +117,7 @@ export const sortingSchema = {
             datatype: "boolean"
         },
         el: {
-            required: function(sort){
+            required: function (sort) {
                 return sort.enabled
             },
             datatype: "element"
@@ -135,16 +135,16 @@ export const sortingSchema = {
             datatype: "string"
         },
         template: {
-            required: function(sort){
+            required: function (sort) {
                 return sort.enabled
             },
             datatype: "function"
         },
         action: {
             datatype: "string",
-            allowedOptions: ['click','change']
+            allowedOptions: ['click', 'change']
         },
-        tagName:{
+        tagName: {
             datatype: "string"
         },
         htmlAttributes: {
@@ -170,21 +170,26 @@ export const swatchesSchema = {
             datatype: "boolean"
         },
         attributesMap: {
-            required: function(swatches){
+            required: function (swatches) {
                 return swatches.enabled
             },
             datatype: "object",
+            customValidations: (swatches) => {
+                if (Object.keys(swatches.attributesMap).length === 0) {
+                    console.error(`SDK Config error in swatches: attributesMap should not be an empty object`)
+                }
+            }
         },
         swatchClass: {
             datatype: "string"
         },
         template: {
-            required: function(swatches){
+            required: function (swatches) {
                 return swatches.enabled
             },
             datatype: "function"
         }
-        
+
     }
 }
 
@@ -196,7 +201,7 @@ export const spellCheckSchema = {
             datatype: "boolean"
         },
         el: {
-            required: function(spellCheck){
+            required: function (spellCheck) {
                 return spellCheck.enabled
             },
             datatype: "element"
@@ -224,7 +229,7 @@ export const productsSchema = {
     productType: {
         required: true,
         datatype: "string",
-        allowedOptions: ["SEARCH","CATEGORY"]
+        allowedOptions: ["SEARCH", "CATEGORY"]
     },
     el: {
         required: true,
@@ -237,10 +242,20 @@ export const productsSchema = {
     productAttributes: {
         required: true,
         datatype: "array",
+        customValidations: (products) => {
+            if (products.attributesMap.length === 0) {
+                console.error(`SDK Config error in products: productAttributes should be an empty array`)
+            }
+        }
     },
     attributesMap: {
         required: true,
         datatype: "object",
+        customValidations: (products) => {
+            if (Object.keys(products.attributesMap).length === 0) {
+                console.error(`SDK Config error in products: attributesMap should be an empty object`)
+            }
+        }
     },
     gridCount: {
         datatype: "number"
@@ -257,10 +272,10 @@ export const productsSchema = {
     tagName: {
         datatype: "string"
     },
-    htmlAttributes:{
+    htmlAttributes: {
         datatype: "object"
     }
-    
+
 }
 
 export const pageSizeSchema = {
@@ -277,7 +292,7 @@ export const pageSizeSchema = {
             datatype: "number"
         },
         options: {
-            required: function(pageSize){
+            required: function (pageSize) {
                 return pageSize.enabled
             },
             datatype: "array"
@@ -285,23 +300,23 @@ export const pageSizeSchema = {
         pageSizeClass: {
             datatype: "string"
         },
-        selectedPageSizeClass:{
+        selectedPageSizeClass: {
             datatype: "string"
         },
-        action:{
+        action: {
             datatype: "string",
-            allowedOptions: ["click","change"]
+            allowedOptions: ["click", "change"]
         },
-        template:{
+        template: {
             required: function (pageSize) {
                 return pageSize.enabled
             },
             datatype: "function"
         },
-        tagName:{
+        tagName: {
             datatype: "string"
         },
-        htmlAttributes:{
+        htmlAttributes: {
             datatype: "object"
         }
     }
@@ -310,11 +325,11 @@ export const pageSizeSchema = {
 export const productViewSchema = {
     moduleName: "product view",
     config: {
-        enabled:{
+        enabled: {
             datatype: "boolean"
         },
         el: {
-            required: function(productView){
+            required: function (productView) {
                 return productView.enabled
             },
             datatype: "element"
@@ -326,26 +341,26 @@ export const productViewSchema = {
             datatype: "function"
         },
         defaultViewType: {
-            required: function(productView){
+            required: function (productView) {
                 return productView.enabled
             },
             datatype: "string",
-            allowedOptions: ["GRID","LIST"]
+            allowedOptions: ["GRID", "LIST"]
         },
         action: {
-            required: function(productView){
+            required: function (productView) {
                 return productView.enabled
             },
             datatype: "string",
-            allowedOptions: ["click","change"]
+            allowedOptions: ["click", "change"]
         },
         viewTypeClass: {
             datatype: "string"
         },
-        selectedViewTypeClass:{
+        selectedViewTypeClass: {
             datatype: "string"
         },
-        tagName:{
+        tagName: {
             datatype: "string"
         },
         htmlAttributes: {
@@ -361,13 +376,13 @@ export const breadcrumbSchema = {
             datatype: "boolean"
         },
         el: {
-            required: function(breadcrumbs){
+            required: function (breadcrumbs) {
                 return breadcrumbs.enabled
             },
             datatype: "element"
         },
         template: {
-            required: function(breadcrumbs){
+            required: function (breadcrumbs) {
                 return breadcrumbs.enabled
             },
             datatype: "function"
@@ -387,141 +402,141 @@ export const breadcrumbSchema = {
 export const facetsSchema = {
     moduleName: "facets",
     config: {
-        facetsEl:{
+        facetsEl: {
             datatype: "element"
         },
-        facetTemplate:{
-            required: function(facet){
-                return facet.facetsEl 
-            },
-            datatype: "function"
-        },
-        facetItemTemplate:{
+        facetTemplate: {
             required: function (facet) {
-                return facet.facetsEl 
+                return facet.facetsEl
             },
             datatype: "function"
         },
-        facetMultiSelect:{
+        facetItemTemplate: {
+            required: function (facet) {
+                return facet.facetsEl
+            },
+            datatype: "function"
+        },
+        facetMultiSelect: {
             datatype: "boolean"
         },
-        facetClass:{
+        facetClass: {
             datatype: "string"
         },
-        facetAction:{
+        facetAction: {
             required: function (facet) {
-                return facet.facetsEl 
+                return facet.facetsEl
             },
             datatype: "string",
-            allowedOptions: ["click","change"]
+            allowedOptions: ["click", "change"]
         },
-        selectedFacetClass:{
+        selectedFacetClass: {
             datatype: "string"
         },
-        selectedFacetsEl:{
+        selectedFacetsEl: {
             datatype: "element"
         },
-        selectedFacetTemplate:{
+        selectedFacetTemplate: {
             datatype: "function"
         },
-        selectedFacetItemTemplate:{
+        selectedFacetItemTemplate: {
             datatype: "function"
         },
-        selectedFacetConfig:{
+        selectedFacetConfig: {
             datatype: "object"
         },
-        clearAllText:{
+        clearAllText: {
             datatype: "string"
         },
-        rangeTemplate:{
+        rangeTemplate: {
             datatype: "function"
         },
-        rangeWidgetConfig:{
+        rangeWidgetConfig: {
             datatype: "object"
         },
-        facetMultilevel:{
+        facetMultilevel: {
             datatype: "boolean"
         },
-        facetMultilevelName:{
+        facetMultilevelName: {
             required: function (facet) {
                 return facet.facetsEl && facet.facetMultilevel
             },
             datatype: "string"
         },
-        multiLevelFacetSelectorClass:{
+        multiLevelFacetSelectorClass: {
             datatype: "string"
         },
-        multiLevelFacetTemplate:{
-            required: function(facet){
+        multiLevelFacetTemplate: {
+            required: function (facet) {
                 return facet.facetsEl && facet.facetMultilevel
             },
             datatype: "function"
         },
-        facetDepth:{
+        facetDepth: {
             datatype: "number"
         },
-        clearFacetsSelectorClass:{
+        clearFacetsSelectorClass: {
             datatype: "string"
         },
-        removeFacetsSelectorClass:{
+        removeFacetsSelectorClass: {
             datatype: "string"
         },
-        onFacetLoad:{
+        onFacetLoad: {
             datatype: "function"
         },
-        applyMultipleFilters:{
+        applyMultipleFilters: {
             datatype: "boolean"
         },
-        applyButtonText:{
-            required: function(facet){
-                return facet.facetsEl && facet.applyMultipleFilters
-            },
-            datatype: "string"
-        },
-        clearButtonText:{
+        applyButtonText: {
             required: function (facet) {
                 return facet.facetsEl && facet.applyMultipleFilters
             },
             datatype: "string"
         },
-        isCollapsible:{
+        clearButtonText: {
+            required: function (facet) {
+                return facet.facetsEl && facet.applyMultipleFilters
+            },
+            datatype: "string"
+        },
+        isCollapsible: {
             datatype: "boolean"
         },
-        defaultOpen:{
-            required: function(facet) {
+        defaultOpen: {
+            required: function (facet) {
                 return facet.facetsEl && facet.isCollapsible
             },
             datatype: "string",
-            allowedOptions: ["ALL", "FIRST","NONE"]
+            allowedOptions: ["ALL", "FIRST", "NONE"]
         },
-        isSearchable:{
+        isSearchable: {
             datatype: "boolean"
         },
-        searchPlaceHolder:{
+        searchPlaceHolder: {
             required: function (facet) {
                 return facet.facetsEl && facet.isSearchable
             },
             datatype: "string"
         },
-        enableViewMore:{
+        enableViewMore: {
             datatype: "boolean"
         },
-        viewMoreText:{
-            required: function(facet){
+        viewMoreText: {
+            required: function (facet) {
                 return facet.facetsEl && facet.enableViewMore
             },
             datatype: "array"
         },
-        viewMoreLimit:{
-            required: function(facet){
+        viewMoreLimit: {
+            required: function (facet) {
                 return facet.facetsEl && facet.enableViewMore
             },
             datatype: "number"
         },
-        tagName:{
+        tagName: {
             datatype: "string"
         },
-        htmlAttributes:{
+        htmlAttributes: {
             datatype: "object"
         },
     }
@@ -539,16 +554,16 @@ export const others = {
             datatype: "string"
         },
         searchBoxEl: {
-           required: true,
-           datatype: "element" 
+            required: true,
+            datatype: "element"
         },
-        searchButtonEl: { //discuss
+        searchButtonEl: {
             datatype: "element"
         },
         unbxdAnalytics: {
             datatype: "boolean"
         },
-        hashMode : {
+        hashMode: {
             datatype: "boolean"
         },
         updateUrls: {
@@ -560,13 +575,13 @@ export const others = {
         actionChangeClass: {
             datatype: "string"
         },
-        allowExternalUrlParams:{
+        allowExternalUrlParams: {
             datatype: "boolean"
         },
         extraParams: {
             datatype: "object"
         },
-        defaultFilters:{
+        defaultFilters: {
             datatype: "object"
         },
         searchEndPoint: {
@@ -574,7 +589,7 @@ export const others = {
         },
         browseQueryParam: {
             datatype: "string",
-            allowedOptions: ["p-id","p"]
+            allowedOptions: ["p-id", "p"]
         },
         searchQueryParam: {
             datatype: "string"
