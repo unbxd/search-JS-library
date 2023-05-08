@@ -243,7 +243,7 @@ export const productsSchema = {
         required: true,
         datatype: "array",
         customValidations: (products) => {
-            if (products.attributesMap.length === 0) {
+            if (products.productAttributes.length === 0) {
                 console.error(`SDK Config error in products: productAttributes should be an empty array`)
             }
         }
