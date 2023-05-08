@@ -121,17 +121,21 @@ const createLayout = function() {
     if(products.el){
         products.el.innerHTML=``;
 
-        const preLoader = document.createElement('div');
-        preLoader.classList.add('UNX-pre-loader');
-        preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
-        products.el.appendChild(preLoader);
+        if(pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL"){
+            const preLoader = document.createElement('div');
+            preLoader.classList.add('UNX-pre-loader');
+            preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+            products.el.appendChild(preLoader);
+        }
 
         products.el.appendChild(this.searchResultsWrapper);
 
-        const postLoader = document.createElement('div');
-        postLoader.classList.add('UNX-post-loader');
-        postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
-        products.el.appendChild(postLoader);
+        if(pagination.type === "INFINITE_SCROLL" ){
+            const postLoader = document.createElement('div');
+            postLoader.classList.add('UNX-post-loader');
+            postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+            products.el.appendChild(postLoader);
+        }
 
     }
     if(pagesize.el && pagesize.enabled){

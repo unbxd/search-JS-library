@@ -930,9 +930,10 @@ window.unbxdSearch = new UnbxdSearch({
     // },
     pagination: {
         type: 'CLICK_N_SCROLL',
+        // type: 'INFINITE_SCROLL',
         el: document.querySelector('.unxPagination'),
         usePageAndCount: true,
-        // heightDiffToTriggerNextPage: 300,
+        // heightDiffToTriggerNextPage: 100,
         // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },

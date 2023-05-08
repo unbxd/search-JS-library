@@ -302,9 +302,9 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       this.state.startPageNo = start ? start : 0;
     }
     this.state.isBack = false;
-    if (pagination.type === "CLICK_N_SCROLL") {
-      this.state.startPageNo = 0;
-    }
+    // if(pagination.type === "CLICK_N_SCROLL") {
+    //     this.state.startPageNo = 0;
+    // }
     this.state.pageSize = urlParts.rows ? Number(urlParts.rows) : this.options.pageSize;
     this.state.categoryFilter = this.getCategoryFilterFromParams(urlParts);
     if (loadFromUrl) {
@@ -1029,9 +1029,10 @@ function _toPrimitive(input, hint) { if (getResultsFromApi_typeof(input) !== "ob
         var products = response.products;
         var _this$options$paginat = _this.options.pagination,
           pagination = _this$options$paginat === void 0 ? {} : _this$options$paginat;
-        if (pagination.type === "CLICK_N_SCROLL") {
-          _this.state.products = _this.state.products.concat(products);
-        } else if (pagination.type === "INFINITE_SCROLL") {
+        // if(pagination.type === "CLICK_N_SCROLL"){
+        //     this.state.products = this.state.products.concat(products);
+        // }else 
+        if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
           if (action === "prev") {
             _this.state.products = [].concat(_toConsumableArray(products), _toConsumableArray(_this.state.products));
           } else {
@@ -3431,7 +3432,7 @@ var paginationUI = function paginationUI(paginationData, pagination) {
 // CONCATENATED MODULE: ./src/modules/pagination/clickNScrollView.js
 /* harmony default export */ var clickNScrollView = (function (pageData, pagination) {
   var pageClass = pagination.pageClass;
-  return "<div class=\"UNX-click-scroll\"><button data-test-id=\"".concat(this.testIds.UNX_loadMore, "\" class=\"UNX-click-n-scroll ").concat(pageClass, "\">Load More</button></div>");
+  return "<div class=\"UNX-click-scroll\"><button data-test-id=\"".concat(this.testIds.UNX_loadMore, "\" data-page-action=\"next\" class=\"UNX-click-n-scroll ").concat(pageClass, "\">Load More</button></div>");
 });
 ;
 // CONCATENATED MODULE: ./src/modules/pagination/paginationView.js
@@ -4837,9 +4838,11 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       _this.resetObservers = function () {
         _this.observer.disconnect();
         _this.preLoaderObserver.disconnect();
-        _this.postLoaderObserver.disconnect();
         _this.preLoaderObserver.observe(preLoader);
-        _this.postLoaderObserver.observe(postLoader);
+        if (_this.options.pagination.type === 'INFINITE_SCROLL') {
+          _this.postLoaderObserver.disconnect();
+          _this.postLoaderObserver.observe(postLoader);
+        }
         _this.observer.observe(productsContainer, {
           childList: true,
           subtree: true
@@ -4852,8 +4855,13 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       //     return;
       // }
 
-      var productsContainer = _this.options.pagination.infiniteScrollTriggerEl;
-      var targetNode = productsContainer.querySelector('.UNX-search-results-block');
+      var productsContainer = window;
+      if (_this.options.pagination.type === "INFINITE_SCROLL") {
+        productsContainer = _this.options.pagination.infiniteScrollTriggerEl;
+      } else if (_this.options.pagination.type === "CLICK_N_SCROLL") {
+        productsContainer = _this.options.products.el;
+      }
+      // const targetNode = productsContainer.querySelector('.UNX-search-results-block');
       var postLoader = document.querySelector('.UNX-post-loader');
       var preLoader = document.querySelector('.UNX-pre-loader');
       // const urlParams = new URLSearchParams(window.location.search);
@@ -4961,10 +4969,10 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
         }
         entries.forEach(function (entry) {
           if (entry.isIntersecting && currentUrlPage > 1 && !_this.state.isLoading && !_this.viewState.isInfiniteStarted) {
-            currentUrlPage--;
-            // fetchProducts();
-            _this.setPageStart((currentUrlPage - 1) * productsPerPage);
-            _this.viewState.lastAction = "prev_page_loaded";
+            // currentUrlPage--;
+            // // fetchProducts();
+            // this.setPageStart((currentUrlPage - 1) * productsPerPage)
+            // this.viewState.lastAction = "prev_page_loaded";
             _this.renderNewResults('prev');
             // hasScrolledToTop = false
           }
@@ -4972,34 +4980,34 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       }, {
         threshold: 0,
         // Trigger when the element is fully visible in the viewport
-        rootMargin: "-".concat(productsContainer.offsetTop, "px 0px 0px 0px") // Offset the root margin by the height of the products container
+        rootMargin: "0px 0px 0px 0px" // Offset the root margin by the height of the products container
       });
 
       _this.postLoaderObserver = new IntersectionObserver(function (entries) {
-        var urlParams = new URLSearchParams(window.location.search);
-        var currentUrlPage, productsPerPage;
-        if (_this.options.pagination.usePageAndCount) {
-          productsPerPage = Number(urlParams.get('count'));
-          currentUrlPage = Number(urlParams.get('page')) || 1;
-        } else {
-          currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-          productsPerPage = Number(urlParams.get('rows'));
-        }
+        // const urlParams = new URLSearchParams(window.location.search);
+        // let currentUrlPage, productsPerPage;
+        // if (this.options.pagination.usePageAndCount) {
+        //     productsPerPage = Number(urlParams.get('count'));
+        //     currentUrlPage = Number(urlParams.get('page')) || 1
+        // } else {
+        //     currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+        //     productsPerPage = Number(urlParams.get('rows'));
+        // }
         if (entries[0].isIntersecting && !_this.state.isLoading && !_this.viewState.isInfiniteStarted) {
           //   // Increment the current page number
           //   currentPage++;
           //   // Fetch more products from the next page
           //   fetchProducts(currentPage);
 
-          currentUrlPage++;
-          // fetchProducts();
-          _this.setPageStart((currentUrlPage - 1) * productsPerPage);
-          _this.viewState.lastAction = "next_page_loaded";
-          _this.renderNewResults('next', currentUrlPage);
+          // currentUrlPage++;
+          // // fetchProducts();
+          // this.setPageStart((currentUrlPage - 1) * productsPerPage)
+          // this.viewState.lastAction = "next_page_loaded";
+          _this.renderNewResults('next');
         }
       }, {
         threshold: 0,
-        rootMargin: "0px 0px ".concat(productsContainer.offsetTop, "px 0px")
+        rootMargin: "0px 0px 0px 0px"
       });
 
       // options for the observer (which mutations to observe)
@@ -5071,7 +5079,9 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
       // this.resetObservers()
 
       _this.preLoaderObserver.observe(preLoader);
-      _this.postLoaderObserver.observe(postLoader);
+      if (_this.options.pagination.type === 'INFINITE_SCROLL') {
+        _this.postLoaderObserver.observe(postLoader);
+      }
       _this.observer.observe(productsContainer, {
         childList: true,
         subtree: true
@@ -5130,7 +5140,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
 /* harmony default export */ var infiniteScrollV4 = (setUpInfiniteScroll);
 // CONCATENATED MODULE: ./src/modules/pagination/actions.js
 var triggerNextPage = function triggerNextPage(context, next, action) {
-  if (context.options.pagination.type !== "INFINITE_SCROLL") {
+  if (context.options.pagination.type === "FIXED_PAGINATION") {
     context.viewState.lastAction = "pagination";
     context.setPageStart(next);
   }
@@ -5150,18 +5160,40 @@ function renderNewResults(action, currentPage) {
     rows = pageInfo.rows,
     isNext = pageInfo.isNext,
     isPrev = pageInfo.isPrev;
-  if (pagination.type === "CLICK_N_SCROLL") {
-    var next = start + rows;
-    if (isNext) {
-      this.viewState.isInfiniteStarted = true;
-      triggerNextPage(this, next);
-    }
-  } else if (pagination.type === "INFINITE_SCROLL") {
+  var urlParams = new URLSearchParams(window.location.search);
+  var currentUrlPage, productsPerPage;
+  if (this.options.pagination.usePageAndCount) {
+    productsPerPage = Number(urlParams.get('count'));
+    currentUrlPage = Number(urlParams.get('page')) || 1;
+  } else {
+    currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+    productsPerPage = Number(urlParams.get('rows'));
+  }
+
+  // if(pagination.type === "CLICK_N_SCROLL" ) {
+  //     const next = start+rows;
+  //     if(isNext){
+  //         this.viewState.isInfiniteStarted = true;
+  //         triggerNextPage(this,next);
+  //     }
+  // } else 
+  // if(pagination.type === "CLICK_N_SCROLL" ) {
+  //     const next = start+rows;
+  //     if(isNext){
+  //         this.viewState.isInfiniteStarted = true;
+  //         triggerNextPage(this,next);
+  //     }
+  // } else   
+  if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
     if (action === this.actions.next) {
       // const next = start+rows;
       // const next = (currentPage - 1) * rows
       if (isNext) {
         this.viewState.isInfiniteStarted = true;
+        currentUrlPage++;
+        // fetchProducts();
+        this.setPageStart((currentUrlPage - 1) * productsPerPage);
+        this.viewState.lastAction = "next_page_loaded";
         triggerNextPage(this, null, action);
       }
     }
@@ -5170,14 +5202,18 @@ function renderNewResults(action, currentPage) {
       // const prev = (currentPage - 1) * rows
       if (isPrev) {
         this.viewState.isInfiniteStarted = true;
+        currentUrlPage--;
+        // fetchProducts();
+        this.setPageStart((currentUrlPage - 1) * productsPerPage);
+        this.viewState.lastAction = "prev_page_loaded";
         triggerNextPage(this, null, action);
       }
     }
   } else {
     if (action === this.actions.next) {
-      var _next = start + rows;
+      var next = start + rows;
       if (isNext) {
-        triggerNextPage(this, _next);
+        triggerNextPage(this, next);
       }
     }
     if (action === this.actions.prev) {
@@ -5970,7 +6006,7 @@ function bindEvents() {
   if (this.productViewTypeWrapper) {
     this.delegate(this.productViewTypeWrapper, productView.action, "." + productView.viewTypeClass, this.onPageViewTypeClick.bind(this));
   }
-  if (this.options.pagination.type === 'INFINITE_SCROLL') {
+  if (this.options.pagination.type === 'INFINITE_SCROLL' || this.options.pagination.type === "CLICK_N_SCROLL") {
     this.setUpInfiniteScroll();
   }
   // if (this.options.pagination.type === 'INFINITE_SCROLL') {
@@ -6150,15 +6186,19 @@ var createLayout = function createLayout() {
   }
   if (products.el) {
     products.el.innerHTML = "";
-    var preLoader = document.createElement('div');
-    preLoader.classList.add('UNX-pre-loader');
-    preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
-    products.el.appendChild(preLoader);
+    if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
+      var preLoader = document.createElement('div');
+      preLoader.classList.add('UNX-pre-loader');
+      preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+      products.el.appendChild(preLoader);
+    }
     products.el.appendChild(this.searchResultsWrapper);
-    var postLoader = document.createElement('div');
-    postLoader.classList.add('UNX-post-loader');
-    postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
-    products.el.appendChild(postLoader);
+    if (pagination.type === "INFINITE_SCROLL") {
+      var postLoader = document.createElement('div');
+      postLoader.classList.add('UNX-post-loader');
+      postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+      products.el.appendChild(postLoader);
+    }
   }
   if (pagesize.el && pagesize.enabled) {
     pagesize.el.innerHTML = "";

@@ -146,9 +146,11 @@ const setUpInfiniteScroll = function (reTrigger = false) {
             this.resetObservers = () => {
                 this.observer.disconnect();
                 this.preLoaderObserver.disconnect();
-                this.postLoaderObserver.disconnect();
                 this.preLoaderObserver.observe(preLoader);
-                this.postLoaderObserver.observe(postLoader);
+                if(this.options.pagination.type === 'INFINITE_SCROLL'){
+                    this.postLoaderObserver.disconnect();
+                    this.postLoaderObserver.observe(postLoader);
+                }
                 this.observer.observe(productsContainer, { childList: true, subtree: true });
                 return;
             }
@@ -158,8 +160,14 @@ const setUpInfiniteScroll = function (reTrigger = false) {
             //     return;
             // }
 
-            const productsContainer = this.options.pagination.infiniteScrollTriggerEl;
-            const targetNode = productsContainer.querySelector('.UNX-search-results-block');
+
+            let productsContainer = window;
+            if(this.options.pagination.type === "INFINITE_SCROLL"){
+                productsContainer = this.options.pagination.infiniteScrollTriggerEl
+            } else  if(this.options.pagination.type === "CLICK_N_SCROLL"){
+                productsContainer = this.options.products.el
+            }
+            // const targetNode = productsContainer.querySelector('.UNX-search-results-block');
             const postLoader = document.querySelector('.UNX-post-loader');
             const preLoader = document.querySelector('.UNX-pre-loader');
             // const urlParams = new URLSearchParams(window.location.search);
@@ -270,44 +278,44 @@ const setUpInfiniteScroll = function (reTrigger = false) {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && currentUrlPage > 1 && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
 
-                        currentUrlPage--;
-                        // fetchProducts();
-                        this.setPageStart((currentUrlPage - 1) * productsPerPage)
-                        this.viewState.lastAction = "prev_page_loaded";
+                        // currentUrlPage--;
+                        // // fetchProducts();
+                        // this.setPageStart((currentUrlPage - 1) * productsPerPage)
+                        // this.viewState.lastAction = "prev_page_loaded";
                         this.renderNewResults('prev');
                         // hasScrolledToTop = false
                     }
                 });
             }, {
                 threshold: 0, // Trigger when the element is fully visible in the viewport
-                rootMargin: `-${productsContainer.offsetTop}px 0px 0px 0px`, // Offset the root margin by the height of the products container
+                rootMargin: `0px 0px 0px 0px`, // Offset the root margin by the height of the products container
             });
 
             this.postLoaderObserver = new IntersectionObserver(entries => {
-                const urlParams = new URLSearchParams(window.location.search);
-                let currentUrlPage, productsPerPage;
-                if (this.options.pagination.usePageAndCount) {
-                    productsPerPage = Number(urlParams.get('count'));
-                    currentUrlPage = Number(urlParams.get('page')) || 1
-                } else {
-                    currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-                    productsPerPage = Number(urlParams.get('rows'));
-                }
+                // const urlParams = new URLSearchParams(window.location.search);
+                // let currentUrlPage, productsPerPage;
+                // if (this.options.pagination.usePageAndCount) {
+                //     productsPerPage = Number(urlParams.get('count'));
+                //     currentUrlPage = Number(urlParams.get('page')) || 1
+                // } else {
+                //     currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+                //     productsPerPage = Number(urlParams.get('rows'));
+                // }
                 if (entries[ 0 ].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
                     //   // Increment the current page number
                     //   currentPage++;
                     //   // Fetch more products from the next page
                     //   fetchProducts(currentPage);
 
-                    currentUrlPage++;
-                    // fetchProducts();
-                    this.setPageStart((currentUrlPage - 1) * productsPerPage)
-                    this.viewState.lastAction = "next_page_loaded";
-                    this.renderNewResults('next', currentUrlPage);
+                    // currentUrlPage++;
+                    // // fetchProducts();
+                    // this.setPageStart((currentUrlPage - 1) * productsPerPage)
+                    // this.viewState.lastAction = "next_page_loaded";
+                    this.renderNewResults('next');
                 }
             }, {
                 threshold: 0,
-                rootMargin: `0px 0px ${productsContainer.offsetTop}px 0px`
+                rootMargin: `0px 0px 0px 0px`
             });
 
 
@@ -371,8 +379,10 @@ const setUpInfiniteScroll = function (reTrigger = false) {
 
 
             this.preLoaderObserver.observe(preLoader);
+            if(this.options.pagination.type === 'INFINITE_SCROLL'){
                 this.postLoaderObserver.observe(postLoader);
-                this.observer.observe(productsContainer, { childList: true, subtree: true });
+            }
+            this.observer.observe(productsContainer, { childList: true, subtree: true });
 
 
 

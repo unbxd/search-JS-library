@@ -206,7 +206,7 @@ const reRender = function () {
                     let currentUrlPage, productsPerPage;
                     if (this.options.pagination.usePageAndCount) {
                         productsPerPage = Number(urlParams.get('count'));
-                        currentUrlPage = Number(urlParams.get('page')) || 1
+                        currentUrlPage = Number(urlParams.get('page')) || 1;
                     } else {
                         currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
                         productsPerPage = Number(urlParams.get('rows'));
