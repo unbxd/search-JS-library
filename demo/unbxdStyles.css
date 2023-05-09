@@ -370,6 +370,7 @@ body {
 .UNX-result-wrapper {
   grid-template-columns: 19% 19% 19% 19% 19%;
   grid-column-gap: 1%;
+  min-height: 100vh;
 }
 
 .UNX-grid-card {

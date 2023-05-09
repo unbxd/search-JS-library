@@ -319,6 +319,7 @@
 
 .UNX-result-wrapper {
   display: grid;
+  min-height: 100vh;
   grid-template-columns: 25% 25% 25% 25%;
 }
 .UNX-range-slider-wrap {

@@ -2888,7 +2888,7 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
       isBack: false,
       products: [],
       requestId: null,
-      unbxdKeys: ["filter", "category-filter", "rows", "start", "page", "count", "sort", this.options.browseQueryParam, this.options.searchQueryParam]
+      unbxdKeys: ["filter", "category-filter", "rows", "start", "page", "count", "sort", this.options.browseQueryParam, this.options.searchQueryParam, "uc_param"]
     };
     var _this$options = this.options,
       searchQueryParam = _this$options.searchQueryParam,
@@ -5798,6 +5798,7 @@ var reRender = function reRender() {
     searchResultsWrapper.classList.remove("UNX-grid-block");
     searchResultsWrapper.classList.add(viewCss);
     searchResultsWrapper.classList.remove(noResultCss);
+    searchResultsWrapper.style.minHeight = '100vh';
     if (isInfiniteStarted) {
       this.viewState.isInfiniteStarted = false;
       if (noResultLoaded) {
@@ -5819,7 +5820,7 @@ var reRender = function reRender() {
             currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
             productsPerPage = Number(urlParams.get('rows'));
           }
-          document.querySelector(".product-item[data-pRank=\"".concat(currentUrlPage * productsPerPage + 1, "\"]")).scrollIntoView();
+          document.querySelector(".product-item[data-prank=\"".concat(currentUrlPage * productsPerPage + 1, "\"]")).scrollIntoView();
         } else {
           // searchResultsWrapper.innerHTML += this.renderSearch();
           searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
