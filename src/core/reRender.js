@@ -190,11 +190,13 @@ const reRender = function () {
         searchResultsWrapper.classList.remove("UNX-grid-block");
         searchResultsWrapper.classList.add(viewCss);
         searchResultsWrapper.classList.remove(noResultCss);
+        searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
             this.viewState.isInfiniteStarted = false;
             if (noResultLoaded) {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
+                
             } else {
                 if (lastAction === "prev_page_loaded") {
                     // searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
@@ -212,7 +214,7 @@ const reRender = function () {
                         productsPerPage = Number(urlParams.get('rows'));
                     }
 
-                    document.querySelector(`.product-item[data-pRank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
+                    document.querySelector(`.product-item[data-prank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
                 } else {
                     // searchResultsWrapper.innerHTML += this.renderSearch();
                     searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());

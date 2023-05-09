@@ -941,10 +941,12 @@ window.unbxdSearch = new UnbxdSearch({
         el: document.getElementById("breadcrumpContainer")
     },
     pagesize: {
+        enabled: false,
         el: document.getElementById("changeNoOfProducts")
     },
 
     sort: {
+        enabled: false,
         el: document.getElementById("sortWrapper"),
         options: [ {
             value: "price desc",
@@ -979,9 +981,15 @@ window.unbxdSearch = new UnbxdSearch({
     onEvent: unbxdCallbackEcma
 });
 
-// window.unbxdSearch.updateConfig({
-    
-// });
+window.unbxdSearch.updateConfig({
+    sort: {
+        enabled: true
+    },
+    pagesize: {
+        enabled: true,
+        el: document.getElementById("changeNoOfProducts")
+    },
+});
 
 window.unbxdSearch.getResults('*')
 
