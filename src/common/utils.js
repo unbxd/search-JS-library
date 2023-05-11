@@ -15,7 +15,7 @@ export const isElement = (o) =>{
 }
 
 //Check if the passed one is a Nodelist 
-export function isNodeList (nodelist){
+export const isNodeList = (nodelist)=>{
     return (
         nodelist instanceof NodeList 
     )
