@@ -1,4 +1,4 @@
-import sortAction from './actions';
+import sortAction from './sortAction';
 import renderSort from './renderSort';
 
 const setSort = (prototype) => {

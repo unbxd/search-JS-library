@@ -1,6 +1,6 @@
 import {
     findChangedFacet
-} from './actions';
+} from './findChangedFacet';
 import renderFacets from "./renderFacets";
 import renderTextFacet from "./renderTextFacet";
 import renderSelectedFacets from "./renderSelectedFacets";
@@ -27,7 +27,7 @@ const clearAllFacets = function() {
 }
 const isExpandedFacet = function(facetName){
     const {
-        expandedFacets
+        expandedFacets = {}
     } = this.viewState;
     let isFound = false;
     if(expandedFacets[facetName] === true) {
@@ -45,10 +45,10 @@ const getSearchFacetsText = function(facet) {
 
 const reRenderTextFacet = function(facetName) {
     const {
-        facetClass
+        facetClass = ""
     } = this.options.facet;
     const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
-    const items = document.querySelectorAll(`.${facetName} .${facetClass}`);
+    const items = document.querySelectorAll(`.${facetName} .${facetClass}`) || [];
     items.forEach(item => {
         const {
             id
@@ -62,13 +62,13 @@ const reRenderTextFacet = function(facetName) {
 }
 
 
-const setRangeSlider = function(value) {
+const setRangeSlider = function(value = {}) {
     this.setRangeFacet(value)
     const {
         facetName,
         start,
         end
-    } =value;
+    } = value;
     this.getCallbackActions({
         facetName,
         facetAction:'changeFacet',
@@ -84,9 +84,10 @@ const checkFacets = function() {
         applyMultipleFilters
     } = this.options.facet;
     if(applyMultipleFilters){
-        const qS = this.getStateFromUrl();
+        const qS = this.getStateFromUrl() || {};
+
         const {
-            selectedFacets,
+            selectedFacets = {},
             selectedRanges
         } = qS;
         this.state.selectedFacets = selectedFacets;

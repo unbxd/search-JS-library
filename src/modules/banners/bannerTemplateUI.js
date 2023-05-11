@@ -1,8 +1,10 @@
-const bannerTemplateUI = (banners, bannerOpts) => {
+const bannerTemplateUI = (banners = [], bannerOpts={}) => {
     const {
         openNewTab
-    } = bannerOpts
-    const bannerUI = banners.map((item) => {
+    } = bannerOpts || {}
+
+    let bannerUI = ""
+    bannerUI = banners ? banners.map((item) => {
         const {
             imageUrl,
             landingUrl,
@@ -20,7 +22,7 @@ const bannerTemplateUI = (banners, bannerOpts) => {
         }
 
         return `<a class="UNX-banner-wrap" ${hrefStr} ><img style="max-width:100%" src="${imageUrl}"/></a>`
-    }).join('');
+    }).join(''): "";
     return `${bannerUI}`
 }
 export default bannerTemplateUI;

@@ -1,6 +1,6 @@
-import renderSearch from './searchResultsView';
+import renderSearch from './renderSearch';
 import onProductItemClick from './actions';
-import renderNoResults from './noResultsView';
+import renderNoResults from './renderNoResults';
 const mapProductAttrs = function(product) {
     const {
         products
