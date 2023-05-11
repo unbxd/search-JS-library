@@ -34,23 +34,26 @@ export const paginationSchema = {
         },
         pageLimit: {
             required: (pagination) => {
-                return pagination.type === "FIXED_PAGINATION"
+                return pagination.enabled && pagination.type === "FIXED_PAGINATION"
             },
             datatype: "number"
         },
         infiniteScrollTriggerEl: {
             required: (pagination) => {
-                return pagination.type === "INFINITE_SCROLL"
+                return pagination.enabled && pagination.type === "INFINITE_SCROLL"
             },
             datatype: "element",
         },
         heightDiffToTriggerNextPage: {
             required: (pagination) => {
-                return pagination.type === "INFINITE_SCROLL"
+                return pagination.enabled && pagination.type === "INFINITE_SCROLL"
             },
             datatype: "number"
         },
         action: {
+            required: (pagination)=>{
+                return pagination.enabled
+            },
             datatype: "string",
             allowedOptions: ["click", "change"]
         },
@@ -98,6 +101,7 @@ export const loaderSchema = {
     moduleName: 'loader',
     config: {
         el: {
+            required: true,
             datatype: "element"
         },
         template: {
@@ -156,8 +160,14 @@ export const sortingSchema = {
 export const noResultsSchema = {
     moduleName: 'No results',
     config: {
-        template: {
+        el: {
             required: true,
+            datatype: "element"
+        },
+        template: {
+            required: (noResults)=>{
+                return noResults.el;
+            },
             datatype: "function"
         }
     }
@@ -175,7 +185,7 @@ export const swatchesSchema = {
             },
             datatype: "object",
             customValidations: (swatches) => {
-                if (Object.keys(swatches.attributesMap).length === 0) {
+                if (swatches.enabled &&  Object.keys(swatches.attributesMap).length === 0) {
                     console.error(`SDK Config error in swatches: attributesMap should not be an empty object`)
                 }
             }
@@ -226,14 +236,15 @@ export const spellCheckSchema = {
 
 
 export const productsSchema = {
+    moduleName: "products",
+    el: {
+        required: true,
+        datatype: "element"
+    },
     productType: {
         required: true,
         datatype: "string",
         allowedOptions: ["SEARCH", "CATEGORY"]
-    },
-    el: {
-        required: true,
-        datatype: "element"
     },
     template: {
         required: true,
@@ -403,6 +414,7 @@ export const facetsSchema = {
     moduleName: "facets",
     config: {
         facetsEl: {
+            required:true,
             datatype: "element"
         },
         facetTemplate: {
@@ -542,7 +554,7 @@ export const facetsSchema = {
     }
 }
 
-export const others = {
+export const othersSchema = {
     moduleName: "Others",
     config: {
         siteKey: {
@@ -588,8 +600,7 @@ export const others = {
             datatype: "string"
         },
         browseQueryParam: {
-            datatype: "string",
-            allowedOptions: ["p-id", "p"]
+            datatype: "string"
         },
         searchQueryParam: {
             datatype: "string"

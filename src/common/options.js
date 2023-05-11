@@ -71,6 +71,7 @@ const options = {
     searchQueryParam: "q",
     browseQueryParam: 'p',
     defaultFilters: {}, //or object with keys
+    allowExternalUrlParams: false,
     noResults: {
         template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },

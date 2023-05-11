@@ -1,4 +1,4 @@
-function renderNoResults(query) {
+function renderNoResults(query="") {
     try{
         return this.options.noResults.template(query);
     }
