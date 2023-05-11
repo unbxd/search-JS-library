@@ -12,7 +12,7 @@ export default function() {
         for (let i = 0; i < k.length; i++) {
             const j = k[i];
             const isCategoryFacet = this.isCategoryFacet(j);
-            const vals = selectedFacetsInfo[j];
+            const vals = selectedFacetsInfo[j] || [];
             if (!isCategoryFacet) {
                 vals.forEach(item => {
                     const {
