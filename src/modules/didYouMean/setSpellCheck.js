@@ -1,6 +1,6 @@
-import renderDidYouMean from './renderSpellCheck';
+import renderDidYouMean from './renderDidYouMean';
 const setSuggestion = function(e) {
-    const txt = this.getSpellCheckSuggested();
+    const txt = this.getSpellCheckSuggested() || [];
     const didLength = txt.length;
     const {
         target
@@ -9,7 +9,7 @@ const setSuggestion = function(e) {
         dataset
     } = target || {};
     const {
-        userInput
+        userInput = ""
     } = this.state;
     if(dataset && dataset.action === "getSuggestion") {
         this.resetAll();

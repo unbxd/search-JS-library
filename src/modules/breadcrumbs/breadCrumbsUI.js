@@ -1,9 +1,9 @@
-const breadCrumbsUI = function(breadcrumbs, breadcrumb){
+const breadCrumbsUI = function(breadcrumbs = [], breadcrumb = {}){
     let ui = ``;
     const {
-        selectorClass
-    } = breadcrumb;
-    breadcrumbs.forEach((item ,id )=> {
+        selectorClass = ""
+    } = breadcrumb || {};
+    breadcrumbs && breadcrumbs.forEach((item ,id )=> {
         const {
             level,
             filterField,
@@ -15,7 +15,7 @@ const breadCrumbsUI = function(breadcrumbs, breadcrumb){
         }
         ui += [`<button data-parent="${filterField}" data-level="${level}" class="${css}" data-name="${value}" data-action = "clearCategoryFilter">`,
         `${decodeURIComponent(value)}</button>`].join('')
-    })
+    }) ;
     return `<div class="bread-crumb-main">${ui}</div>`
 }
 export default breadCrumbsUI;

@@ -1,9 +1,9 @@
-import FixedPaginationView from "./fixedPaginationView";
+import FixedPaginationView from "./paginationUI";
 import ClickToScrollView from "./clickNScrollView";
 
 export default function(pageData) {
     const {
-        pagination
+        pagination = {}
     } = this.options;
     const {
         type
