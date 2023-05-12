@@ -207,7 +207,7 @@ This is used to set a default filter condition for all search queries and catego
 
 ## Default Value
 {: .no_toc }
-null
+{}
 
 ## Scenarios
 {: .no_toc }

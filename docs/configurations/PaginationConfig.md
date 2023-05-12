@@ -105,7 +105,7 @@ Required
 {: .no_toc }
 
 ```js
-enabled: false
+enabled: true
 ```
 
 ### Scenarios
