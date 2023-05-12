@@ -17,6 +17,45 @@ nav_order: 8
 
 ---
 
+# v2.0.36
+
+- **Release Date**: 12th May, 2023
+- **Core SDK Version**: 0.4.33
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Fixing query redirect issue in the CORE SDK. 
+
+---
+
+# v2.0.35
+
+- **Release Date**: 11th May, 2023
+- **Core SDK Version**: 0.4.32
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Some default configs like defaultFilters,allowExternalUrlParams,selectedFacetConfig were not properly initialized in the options.js.
+
+
+## 🧰 Maintenance
+{: .no_toc}
+- Initialization of variables in entire code .
+- Addition of try catch blocks in render methods for proper error handling.
+- Simplified filename and function names.
+- Validating the user configuration for its dataytype, mandatory check , and specific custom valiadtions for values .
+
+--- 
+# v2.0.34
+
+- **Release Date**: 25th April, 2023
+- **Core SDK Version**: 0.4.31
+
+## 🚀 Features
+Ability to pass unbxd-user-id and unbxd-device-type request headers in the search API via the SDK for improving the personalisation and product ranking.
+
+---
+
 # v2.0.33 (hotfix)
 
 - **Release Date**: 14th April, 2023

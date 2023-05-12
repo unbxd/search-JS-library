@@ -111,7 +111,6 @@ This function passes two params:
 
 **Expected return value**: a string of HTML that will be used to render the products on the webpage
 
-
 ### Default Value
 {: .no_toc }
 ```js
