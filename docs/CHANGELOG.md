@@ -52,6 +52,7 @@ nav_order: 8
 - **Core SDK Version**: 0.4.31
 
 ## 🚀 Features
+{: .no_toc}
 Ability to pass unbxd-user-id and unbxd-device-type request headers in the search API via the SDK for improving the personalisation and product ranking.
 
 ---
