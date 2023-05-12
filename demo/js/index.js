@@ -232,7 +232,7 @@ searchButtonEl.addEventListener("click", () => {
         unbxdSearch.options.productType = 'SEARCH';
         window.history.pushState({
             replace: true
-        }, "", "/search?abc=true")
+        }, "", "/search?")
     }
 });
 
@@ -245,7 +245,7 @@ searchBoxEl.addEventListener("keydown", (e) => {
                 unbxdSearch.options.productType = 'SEARCH';
                 window.history.pushState({
                     replace: true
-                }, "", "/search?abc=true")
+                }, "", "/search?")
             }
         }
     }
@@ -285,12 +285,12 @@ window.unbxdSearch = new UnbxdSearch({
         productType: productType,
     },
     unbxdAnalytics: true,
-    pagination: {
-        type: 'INFINITE_SCROLL',
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
-        // el: document.querySelector("#clickScrollContainer"),
-        onPaginate: function (data) { console.log(data, "data") }
-    },
+    // pagination: {
+    //     type: 'INFINITE_SCROLL',
+    //     infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+    //     // el: document.querySelector("#clickScrollContainer"),
+    //     onPaginate: function (data) { console.log(data, "data") }
+    // },
     allowExternalUrlParams: false,
     setCategoryId: function (param, self) {
         const {
@@ -818,10 +818,11 @@ window.unbxdSearch.updateConfig({
     //     }
     // },
     pagination: {
-        type: 'INFINITE_SCROLL',
-        heightDiffToTriggerNextPage: 500,
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
-        onPaginate: function (data) { console.log(data, "data") }
+        type: 'FIXED_PAGINATION',
+        el: document.getElementById('paginationContainer')
+        // heightDiffToTriggerNextPage: 500,
+        // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+        // onPaginate: function (data) { console.log(data, "data") }
     },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
