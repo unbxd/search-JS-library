@@ -300,11 +300,16 @@ export const pageSizeSchema = {
             datatype: "element"
         },
         pageSize: {
-            datatype: "number"
+            datatype: "number",
+            customValidations: (pagesize)=>{
+                if(!pagesize.options.includes(pagesize.pageSize)){
+                    console.error(`SDK Config error in pagesize: pageSize should be among options`)
+                }
+            }
         },
         options: {
-            required: function (pageSize) {
-                return pageSize.enabled
+            required: function (pagesize) {
+                return pagesize.enabled
             },
             datatype: "array"
         },
@@ -319,8 +324,8 @@ export const pageSizeSchema = {
             allowedOptions: ["click", "change"]
         },
         template: {
-            required: function (pageSize) {
-                return pageSize.enabled
+            required: function (pagesize) {
+                return pagesize.enabled
             },
             datatype: "function"
         },

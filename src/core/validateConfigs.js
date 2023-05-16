@@ -47,7 +47,6 @@ function validateConfigs () {
                     if (datatype === "element") {
                         const isInvalidElement =  !isNode(userConfig[key]) && !isElement(userConfig[key]) && !isNodeList(userConfig[key]);
                         //The config is required , but the user passed either null/undefined , or the element is not present on the DOM.
-                        console.log("isInvalidElement", isInvalidElement,required,key ,moduleName)
                         if ((required && (!userConfig[key] || isInvalidElement)) || (!required && userConfig[key] && isInvalidElement)) {
                             if (userConfig[key] === window) {
                                 return null
