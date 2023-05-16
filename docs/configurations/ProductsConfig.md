@@ -109,7 +109,7 @@ This function passes two params:
 4. `productViewType` - Its value might either be "GRID" or "LIST".
 5. `products` - its contains common info related to products like :productItemClass,defaultImage.
 
-
+Following analytics data-attributes can be added : 
 1. `data-unxPageType="search"` - For Search results page , add this as html attribute.
 2. `data-unxPageType="category"` - For Category results page , add this as html attribute.
 3. `data-item='product'` - Add this as html attribute at the parent wrapper element of each product item
