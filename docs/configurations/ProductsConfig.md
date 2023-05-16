@@ -109,6 +109,17 @@ This function passes two params:
 4. `productViewType` - Its value might either be "GRID" or "LIST".
 5. `products` - its contains common info related to products like :productItemClass,defaultImage.
 
+
+1. `data-unxPageType="search"` - For Search results page , add this as html attribute.
+2. `data-unxPageType="category"` - For Category results page , add this as html attribute.
+3. `data-item='product'` - Add this as html attribute at the parent wrapper element of each product item
+4. `data-id` - Add this as html attribute at the parent wrapper element of each product item.
+5. `data-prank` - Add this as html attribute at the parent wrapper element of each product item.
+6. `data-unxCartBtn="addToCart"` - If AddToCart button present on the SRP, add this as  html attribute on that element.
+7. `data-unxQty="qty"` - If theres a quantity input-box on SRP, add this as html attribute on that input box.
+8. `data-unxQtyPlus='qtyPlus'`  - If theres a button to increase quantity on SRP, add this as html attribute on that button
+9. `data-unxQtyMinus='qtyMinus'` - If theres a button to decrease quantity on SRP, add this as html attribute on that button.
+
 **Expected return value**: a string of HTML that will be used to render the products on the webpage
 
 ### Default Value
