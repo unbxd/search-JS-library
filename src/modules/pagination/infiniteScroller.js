@@ -1,85 +1,117 @@
-// function getScrollXY() {
-//     var scrOfX = 0;
-//     var scrOfY = 0;
-//     if (typeof (window.pageYOffset) == 'number') {
-//         //Netscape compliant
-//         scrOfY = window.pageYOffset;
-//         scrOfX = window.pageXOffset;
-//     } else if (document.body && (document.body.scrollLeft || document.body.scrollTop)) {
-//         //DOM compliant
-//         scrOfY = document.body.scrollTop;
-//         scrOfX = document.body.scrollLeft;
-//     } else if (document.documentElement && (document.documentElement.scrollLeft || document.documentElement.scrollTop)) {
-//         //IE6 standards compliant mode
-//         scrOfY = document.documentElement.scrollTop;
-//         scrOfX = document.documentElement.scrollLeft;
-//     }
-//     return [ scrOfX, scrOfY ];
-// }
+const setUpInfiniteScroll = function () {
+    return new Promise((resolve, reject) => {
+            this.resetObservers = () => {
+                this.observer.disconnect();
+                this.preLoaderObserver.disconnect();
+                    this.preLoaderObserver.observe(preLoader);
+                    if(this.options.pagination.type === 'INFINITE_SCROLL'){
+                        this.postLoaderObserver.disconnect();
+                        this.postLoaderObserver.observe(postLoader);
+                    }
+                this.observer.observe(productsContainer, { childList: true, subtree: true });
+                return;
+            }
 
-// // update the start position in the URL
-// const updatePageStart = function (context, page) {
-//     const autoScrollParams = context.getAutoScrollParams();
-//     const rows = context.options.pagination.usePageAndCount? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
-//     context.setPageStart((page - 1) * rows);
-//     if(context.options.pagination.usePageAndCount){
-//         autoScrollParams.set('page', page);
-//     } else {
-//         autoScrollParams.set('start', (page - 1) * rows);
-//     }
-    
-//     history.replaceState(null, null, context.urlSearchParamsToStr(autoScrollParams));
-// }
+            let productsContainer = window;
+            if(this.options.pagination.type === "INFINITE_SCROLL"){
+                productsContainer = this.options.pagination.infiniteScrollTriggerEl
+            } else  if(this.options.pagination.type === "CLICK_N_SCROLL"){
+                productsContainer = this.options.products.el
+            }
+            const postLoader = document.querySelector('.UNX-post-loader');
+            const preLoader = document.querySelector('.UNX-pre-loader');
+           
+            this.individualProductObserver = new IntersectionObserver(entries => {
+                const self = this;
+                entries.forEach(entry => {
+                    // Check if the product item is fully in view
+                    if (entry.isIntersecting) {
+                        // Get the prank value of the visible product item
+                        const productIndex = parseInt(entry.target.dataset.prank);
+                        const urlParams = new URLSearchParams(window.location.search);
+                        let currentUrlPage, productsPerPage;
+                        if (this.options.pagination.usePageAndCount) {
+                            productsPerPage = Number(urlParams.get('count'));
+                            currentUrlPage = Number(urlParams.get('page')) || 1
+                        } else {
+                            currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+                            productsPerPage = Number(urlParams.get('rows'));
+                        }
+                        // Calculate the page number that the visible product belongs to
+                        const currentPage = Math.ceil(productIndex / productsPerPage);
 
-// // callback on page scroll 
-// const onInfiniteScroll = function () {
-//     const scrollTop = getScrollXY()[ 1 ];
-//     const rect = this.options.pagination.infiniteScrollTriggerEl.getBoundingClientRect();
-//     // check if the products container is visible in the viewport and height is initialized
-//     if (this.productContainerHeight != 0 && (rect.bottom > 0 || rect.top < window.innerHeight)) {
-//         const autoScrollParams = this.getAutoScrollParams();
-//         const page = Math.ceil(scrollTop / this.productContainerHeight) + this.initialPage - 1;
-//         let start = 0, rows = 0;
+                        // Update the current page number in the URL if necessary
+                        if (currentPage !== currentUrlPage) {
+                            if (self.options.pagination.usePageAndCount) {
+                                urlParams.set('page', currentPage);
+                            } else {
+                                urlParams.set('start', (currentPage - 1) * productsPerPage);
+                            }
+                            history.replaceState(null, null, self.urlSearchParamsToStr(urlParams));
+                        }
+                    }
+                });
+            }, {
+                threshold: [ 1 ]
+            });
 
-//         if(this.options.pagination.usePageAndCount){
-//             start = (parseInt(autoScrollParams.get('page')) - 1) * parseInt(autoScrollParams.get('count'));
-//             rows = parseInt(autoScrollParams.get('count'));
-//         }else {
-//             start = parseInt(autoScrollParams.get('start'));
-//             rows = parseInt(autoScrollParams.get('rows'));
-//         }
-//         // const start = parseInt(autoScrollParams.get('start')) || 0;
-//         // // const rows = parseInt(autoScrollParams.get('rows')) || 0;
-//         // const rows = this.options.pagination.usePageAndCount? parseInt(autoScrollParams.get('count')) : parseInt(autoScrollParams.get('rows'));
-//         const elHeight = document.getElementById('searchResultsWrapper').clientHeight || 0;
-//         let currentProducts = 0;
-//         let totalProducts = 0;
-//         const productResponse = window.unbxdSearch.state.responseObj.response || {};
-//         if(productResponse){
-//             currentProducts = (productResponse.products) ? productResponse.products.length : 0;
-//             totalProducts = productResponse.numberOfProducts || 0;
-//         }
+            this.preLoaderObserver = new IntersectionObserver(entries => {
+                const urlParams = new URLSearchParams(window.location.search);
+                let currentUrlPage, productsPerPage;
+                if (this.options.pagination.usePageAndCount) {
+                    productsPerPage = Number(urlParams.get('count'));
+                    currentUrlPage = Number(urlParams.get('page')) || 1
+                } else {
+                    currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+                    productsPerPage = Number(urlParams.get('rows'));
+                }
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && currentUrlPage > 1 && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
+                        this.renderNewResults('prev');
+                    }
+                });
+            }, {
+                threshold: 0, // Trigger when the element is fully visible in the viewport
+                rootMargin: `0px 0px 0px 0px`, // Offset the root margin by the height of the products container
+            });
 
-//         if (scrollTop + window.innerHeight >= elHeight - this.options.pagination.heightDiffToTriggerNextPage &&
-//             scrollTop + window.innerHeight < elHeight &&
-//             currentProducts < totalProducts &&
-//             !this.state.loading) {
-//             // fetch next page when user scrolls to the bottom of threshold zone
-//             updatePageStart(this, page + 1);
-//             this.viewState.lastAction = "next_page_loaded";
-//             this.renderNewResults('next');
-//         } else if (scrollTop <= 0 && page < this.initialPage && !(page < 1) && !this.state.loading) {
-//             // fetch previous page
-//             updatePageStart(this, page)
-//             this.viewState.lastAction = "prev_page_loaded";
-//             this.initialPage = this.initialPage - 1;
-//             this.renderNewResults('prev');
-//         }
+            this.postLoaderObserver = new IntersectionObserver(entries => {
+                if (entries[ 0 ].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
+                    this.renderNewResults('next');
+                }
+            }, {
+                threshold: 0,
+                rootMargin: `0px 0px 0px 0px`
+            });
 
-//         if ((start / rows) + 1 != page && page != 0) {
-//             // update page number in the URL as user scrolls up and down
-//             updatePageStart(this, page);
-//         }
-//     }
-// }
-// export default onInfiniteScroll;
+
+            // create an observer instance
+            this.observer = new MutationObserver((mutationsList, observer) => {
+                for (let mutation of mutationsList) {
+                    if (mutation.type === 'childList') {
+                        const self = this;
+                        mutation.addedNodes.forEach(function (node) {
+                            if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('product-item')) {
+                                self.individualProductObserver.observe(node)
+                            }
+                        });
+                      
+                        this.resetObservers()
+                    }
+                }
+            });
+
+
+
+            this.preLoaderObserver.observe(preLoader);
+            if(this.options.pagination.type === 'INFINITE_SCROLL'){
+                this.postLoaderObserver.observe(postLoader);
+            }
+            this.observer.observe(productsContainer, { childList: true, subtree: true });
+
+
+    })
+
+}
+
+export default setUpInfiniteScroll;
