@@ -100,6 +100,7 @@ function renderNewResults(action, currentPage) {
 
             }
         }
+    }
     catch (err) {
             this.onError("Pagination > renderNewResults", err);
         }
