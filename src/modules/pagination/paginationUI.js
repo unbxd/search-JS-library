@@ -10,14 +10,14 @@ const paginationUI = function (paginationData, pagination) {
         productsLn,
         numberOfProducts,
         rows
-    } = paginationData;
+    } = paginationData || {};
     const {
         pageClass,
         selectedPageClass,
         pageLimit
-    } = pagination;
+    } = pagination || {};
     const {
-        UNX_pageNumber
+        UNX_pageNumber = ""
     } = this.testIds;
     if(numberOfProducts <= productsLn) {
         return ``;

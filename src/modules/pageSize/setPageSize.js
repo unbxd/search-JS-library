@@ -1,21 +1,26 @@
 import {
     onClickPageSize
-} from './actions';
-import pageSizeUi from './pageSizeView';
+} from './onClickPageSize';
+import pageSizeUi from './pageSizeUi';
 const renderPageSize = function() {
-    const {
-        pagesize
-    } = this.options;
-    let selected = pagesize.pageSize;
-    const qParams  = this.getQueryParams();
-    if(qParams) {
-        selected = this.state.pageSize;
+    try{
+        const {
+            pagesize = {}
+        } = this.options;
+        let selected = pagesize.pageSize;
+        const qParams = this.getQueryParams() || {};
+        if (qParams) {
+            selected = this.state.pageSize;
+        }
+        const results = this.getSearchResults();
+        if (results && results.numberOfProducts === 0) {
+            this.pageSizeWrapper.innerHTML = ``;
+        } else {
+            this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(selected, pagesize);
+        }
     }
-    const results = this.getSearchResults();
-    if(results && results.numberOfProducts === 0) {
-        this.pageSizeWrapper.innerHTML = ``;
-    } else {
-        this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(selected, pagesize);
+    catch(err){
+        this.onError("Pagesize > renderPageSize",err)
     }
     
 }

@@ -2,7 +2,7 @@
 import renderProductViewTypeUI from './renderProductViewTypeUI';
 import {
     onPageViewTypeClick
-} from './actions';
+} from './onPageViewTypeClick';
 const setProductViewType = (prototype) => {
     prototype = Object.assign(prototype,{
         onPageViewTypeClick,

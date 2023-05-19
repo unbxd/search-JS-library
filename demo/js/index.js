@@ -352,7 +352,7 @@ searchButtonEl.addEventListener("click", () => {
         unbxdSearch.options.productType = 'SEARCH';
         window.history.pushState({
             replace: true
-        }, "", "/search?abc=true")
+        }, "", "/search?")
     }
 });
 
@@ -365,7 +365,7 @@ searchBoxEl.addEventListener("keydown", (e) => {
                 unbxdSearch.options.productType = 'SEARCH';
                 window.history.pushState({
                     replace: true
-                }, "", "/search?abc=true")
+                }, "", "/search?")
             }
         }
     }
@@ -394,18 +394,20 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    // siteKey: "demo-unbxd700181503576558",
-    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    siteKey: "ss-unbxd-gcp-SitNSleep-Prod14551676053299",
-    apiKey: "586bb35c3eb9bbbe1fdd72d1fc044807",
-    // siteKey: "ss-unbxd-betta-pre-prod35741675334517",
-    // apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
     unbxdAnalytics: true,
+    // pagination: {
+    //     type: 'INFINITE_SCROLL',
+    //     infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+    //     // el: document.querySelector("#clickScrollContainer"),
+    //     onPaginate: function (data) { console.log(data, "data") }
+    // },
     allowExternalUrlParams: false,
     setCategoryId: function (param, self) {
         const {
@@ -453,110 +455,111 @@ window.unbxdSearch = new UnbxdSearch({
     selectedFacets: {
         el: document.getElementById("selectedFacetWrapper")
     },
-    // facet: {
-    //     isCollapsible: true,
-    //     facetsEl: document.getElementById("facetsWrapper"),
-    //     selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-    //     selectedFacetClass: "UNX-selected-facet-btn",
-    //     facetTemplate: function (facetInfo, facets, isExpanded, facetSearchTxt, facet) {
-    //         const urlSearchParams = new URLSearchParams(window.location.search);
-    //         const params = Object.fromEntries(urlSearchParams.entries());
-    //         var name = facetInfo.displayName;
-    //         var filterField = facetInfo.filterField;
-    //         // var isSelected = (facetInfo.isSelected) ? 'is-expanded' : '';
-    //         var searchStr = window.location.search || '';
-    //         var isSelected = searchStr.includes(facetInfo.facetName) ? 'is-expanded' : '';
+    facet: {
+        isCollapsible: true,
+        defaultOpen: "NONE",
+        facetsEl: document.getElementById("facetsWrapper"),
+        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+        selectedFacetClass: "UNX-selected-facet-btn",
+        facetTemplate: function(facetInfo, facets, isExpanded,facetSearchTxt, facet){
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlSearchParams.entries());
+            var name = facetInfo.displayName;
+            var filterField = facetInfo.filterField;
+            // var isSelected = (facetInfo.isSelected) ? 'is-expanded' : '';
+            var searchStr = window.location.search || '';
+            var isSelected = searchStr.includes(facetInfo.facetName) ? 'is-expanded' : '';
+            
+              return[`<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
+                    <span aria-label="Filter: ${filterField}" role="text" class="facets__filters-label">${name}</span>
+                     <ul data-search-facet-container="" class="facets__filters-values facets__filters-values--size list-reset js-filter-values UNX_facet_open ${isSelected}">
+                      ${facets}
+                    </ul>
+                    </div>                 
+                    `].join('');
+                  },
+        facetItemTemplate : function(facet, value, facetSearchTxt){
+              const {
+                facetName,
+                isSelected,
+                multiLevelFacetSelectorClass,
+                displayName
+                } = facet;
+              const {
+                name,
+                count,
+                dataId
+                } = value;
+              let {
+                facetClass,
+                selectedFacetClass
+                } = this.options.facet;
+              const {
+                UNX_uFilter
+                  } = this.testIds;
+  
+               let action =  "changeFacet";
+                      let selectedFacet = 'disable';
+                      let liCss = '';
+                      let hightlighted = '';
+                      if(isSelected) {
+                          selectedFacet = 'checked';
+                          hightlighted = 'highlight';
+                          facetClass += ` ${selectedFacetClass} `
+                          action = "deleteFacetValue";
+                          liCss = (isSelected) ? 'selected' : '';
+                      }
+            return [`<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
+                <label data-search-facet-label="${name}" data-id="${dataId}" class="facet-checkbox facet-checkbox-${displayName} UNX-change-facet ${facetClass} " data-facet-action="${action}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-handler-init="true">
+                  <input data-search-facet-input="" ${selectedFacet} class="js-filter-checkbox" type="checkbox" value="${name}">
+                <span class="${hightlighted}">${name} (${count})</span>
+                </label>
+                </li>`].join(''); 
+              },
+        selectedFacetTemplate: function(selections, facet, selectedFacetsConfig) {
+          const {
+              clearAllText,
+              clearFacetsSelectorClass
+          } = facet;
+          const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
 
-    //         return [ `<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
-    //                 <span aria-label="Filter: ${filterField}" role="text" class="facets__filters-label">${name}</span>
-    //                  <ul data-search-facet-container="" class="facets__filters-values facets__filters-values--size list-reset js-filter-values UNX_facet_open ${isSelected}">
-    //                   ${facets}
-    //                 </ul>
-    //                 </div>                 
-    //                 `].join('');
-    //     },
-    //     facetItemTemplate: function (facet, value, facetSearchTxt) {
-    //         const {
-    //             facetName,
-    //             isSelected,
-    //             multiLevelFacetSelectorClass,
-    //             displayName
-    //         } = facet;
-    //         const {
-    //             name,
-    //             count,
-    //             dataId
-    //         } = value;
-    //         let {
-    //             facetClass,
-    //             selectedFacetClass
-    //         } = this.options.facet;
-    //         const {
-    //             UNX_uFilter
-    //         } = this.testIds;
-
-    //         let action = "changeFacet";
-    //         let selectedFacet = 'disable';
-    //         let liCss = '';
-    //         let hightlighted = '';
-    //         if (isSelected) {
-    //             selectedFacet = 'checked';
-    //             hightlighted = 'highlight';
-    //             facetClass += ` ${selectedFacetClass} `
-    //             action = "deleteFacetValue";
-    //             liCss = (isSelected) ? 'selected' : '';
-    //         }
-    //         return [ `<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
-    //             <label data-search-facet-label="${name}" data-id="${dataId}" class="facet-checkbox facet-checkbox-${displayName} UNX-change-facet ${facetClass} " data-facet-action="${action}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-handler-init="true">
-    //               <input data-search-facet-input="" ${selectedFacet} class="js-filter-checkbox" type="checkbox" value="${name}">
-    //             <span class="${hightlighted}">${name} (${count})</span>
-    //             </label>
-    //             </li>`].join('');
-    //     },
-    //     selectedFacetTemplate: function (selections, facet, selectedFacetsConfig) {
-    //         const {
-    //             clearAllText,
-    //             clearFacetsSelectorClass
-    //         } = facet;
-    //         const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
-
-    //         if (selections.length > 0) {
-    //             return [ `<div class="collection__active-filters UNX-facets-selections">`,
-    //                 `${selections}`,
-    //                 `</div>` ].join('');
-    //         } else {
-    //             return ``;
-    //         }
-    //     },
-    //     selectedFacetItemTemplate: function (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
-    //         const {
-    //             facetName,
-    //             facetType
-    //         } = selectedFacet;
-    //         const {
-    //             name,
-    //             count,
-    //             dataId
-    //         } = selectedFacetItem;
-    //         const {
-    //             facetClass,
-    //             selectedFacetClass,
-    //             removeFacetsSelectorClass
-    //         } = this.options.facet;
-    //         const {
-    //             UNX_uFilter
-    //         } = this.testIds;
-    //         let action = "deleteSelectedFacetValue";
-
-    //         const css = ` ${facetClass} ${selectedFacetClass} `;
-
-    //         return [ `<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
-    //                  data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" data-handler-init="true">${name}
-    //                  <i class="collection__active-filters-icon icon icon--close-blue" 
-    //                  data-facet-action="${action}" data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" >
-    //                  </i> </a>`].join('');
-    //     },
-    // },
+          if(selections.length > 0) {
+            return [`<div class="collection__active-filters UNX-facets-selections">`,
+                      `${selections}`,
+                    `</div>`].join('');
+          } else {
+              return ``;
+          }
+      },
+        selectedFacetItemTemplate:function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig){
+            const {
+                facetName,
+                facetType
+            } = selectedFacet;
+            const  {
+                name,
+                count,
+                dataId
+            } = selectedFacetItem;
+            const {
+                facetClass,
+                selectedFacetClass,
+                removeFacetsSelectorClass
+            } = this.options.facet;
+            const {
+                UNX_uFilter
+            } = this.testIds;
+            let action = "deleteSelectedFacetValue";
+          
+            const css = ` ${facetClass} ${selectedFacetClass} `;
+            
+            return [`<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
+                     data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" data-handler-init="true">${name}
+                     <i class="collection__active-filters-icon icon icon--close-blue" 
+                     data-facet-action="${action}" data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" >
+                     </i> </a>`].join('');
+        },
+      },
 
     // facet: {
     //     facetsEl: document.getElementById("facetsWrapper"),
@@ -979,16 +982,6 @@ window.unbxdSearch = new UnbxdSearch({
     },
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
-});
-
-window.unbxdSearch.updateConfig({
-    sort: {
-        enabled: true
-    },
-    pagesize: {
-        enabled: true,
-        el: document.getElementById("changeNoOfProducts")
-    },
 });
 
 window.unbxdSearch.getResults('*')

@@ -1,4 +1,4 @@
-import setInputValue from './actions';
+import setInputValue from './setInputValue';
 
 const setInput = (prototype) => {
     prototype = Object.assign(prototype,{
