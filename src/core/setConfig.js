@@ -16,14 +16,8 @@ const setConfig = function(options = {}, props = {}) {
         this.options.applyMultipleFilters = (typeof(facet.applyMultipleFilters) === "boolean") ? facet.applyMultipleFilters : options.facet.applyMultipleFilters;
     }
     
-    // if(pagesize) {
-        // this.options.pageSize = pagesize.pageSize || options.pagesize.pageSize;
-    // this.state.pageSize = this.options.pagesize.pageSize;
     this.setPageSize(this.state.pageSize || this.options.pagesize.pageSize)
-    // } else {
-    //     this.options.pageSize = options.pagesize.pageSize;
-    //     this.state.pageSize = this.options.pageSize;
-    // }
+
     if(products) {
         this.options.productAttributes = (products.productAttributes) ? products.productAttributes : options.products.productAttributes;
         this.options.productType = (products.productType) ? products.productType : options.products.productType;
