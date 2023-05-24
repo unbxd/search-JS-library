@@ -185,45 +185,8 @@ const reRender = function () {
         }
         onEvent(this, afterNoResultRender);
     } else {
-        const viewCss = (productViewType === "LIST") ? "UNX-list-block" : "UNX-grid-block";
-        searchResultsWrapper.classList.remove("UNX-list-block");
-        searchResultsWrapper.classList.remove("UNX-grid-block");
-        searchResultsWrapper.classList.add(viewCss);
-        searchResultsWrapper.classList.remove(noResultCss);
-        searchResultsWrapper.style.minHeight = '100vh'
-        if (isInfiniteStarted) {
-            this.viewState.isInfiniteStarted = false;
-            if (noResultLoaded) {
-                this.viewState.noResultLoaded = true;
-                searchResultsWrapper.innerHTML = this.renderSearch();
-                
-            } else {
-                if (lastAction === "prev_page_loaded") {
-                    // searchResultsWrapper.innerHTML = this.renderSearch() + searchResultsWrapper.innerHTML;
-                    // const scrollTop = window.pageYOffset
-                    searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
-                    // const newHeight = container.scrollHeight;
-
-                    const urlParams = new URLSearchParams(window.location.search);
-                    let currentUrlPage, productsPerPage;
-                    if (this.options.pagination.usePageAndCount) {
-                        productsPerPage = Number(urlParams.get('count'));
-                        currentUrlPage = Number(urlParams.get('page')) || 1;
-                    } else {
-                        currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-                        productsPerPage = Number(urlParams.get('rows'));
-                    }
-
-                    document.querySelector(`.product-item[data-prank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
-                } else {
-                    // searchResultsWrapper.innerHTML += this.renderSearch();
-                    searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
-                }
-            }
-        } else {
-            searchResultsWrapper.innerHTML = "";
-            searchResultsWrapper.innerHTML = this.renderSearch();
-        }
+        this.renderProducts();
+        
     }
     this.renderFacets();
     this.renderSelectedFacets();
@@ -246,7 +209,7 @@ const reRender = function () {
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
     }
 
-    const autoScrollParams = this.getAutoScrollParams();
+    // const autoScrollParams = this.getAutoScrollParams();
     // if (pagination.type === 'INFINITE_SCROLL') {
     //     if (!this.productContainerHeight) {
     //         this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;

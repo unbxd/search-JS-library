@@ -15,13 +15,7 @@ const setConfig = function(options = {}, props = {}) {
         this.options.facetDepth = (facet.facetDepth) ? facet.facetDepth : options.facet.facetDepth;
         this.options.applyMultipleFilters = (typeof(facet.applyMultipleFilters) === "boolean") ? facet.applyMultipleFilters : options.facet.applyMultipleFilters;
     }
-    if(pagesize) {
-        this.options.pageSize = pagesize.pageSize || options.pagesize.pageSize;
-        this.state.pageSize = this.options.pageSize;
-    } else {
-        this.options.pageSize = options.pagesize.pageSize;
-        this.state.pageSize = this.options.pageSize;
-    }
+    this.setPageSize(this.state.pageSize || this.options.pagesize.pageSize)
     if(products) {
         this.options.productAttributes = (products.productAttributes) ? products.productAttributes : options.products.productAttributes;
         this.options.productType = (products.productType) ? products.productType : options.products.productType;
@@ -35,6 +29,7 @@ const setConfig = function(options = {}, props = {}) {
     if(productView) {
         this.viewState.productViewType = (productView.defaultViewType) ? productView.defaultViewType: options.productView.defaultViewType;
         this.options.productView.productViewType = this.viewState.productViewType;
+        this.state.productViewType = this.options.productView.productViewType;
     }
     
 }
