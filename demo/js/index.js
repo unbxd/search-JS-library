@@ -935,7 +935,7 @@ window.unbxdSearch = new UnbxdSearch({
         // type: 'CLICK_N_SCROLL',
         type: 'INFINITE_SCROLL',
         // el: document.querySelector('.unxPagination'),
-        // usePageAndCount: false,
+        usePageAndCount: false,
         heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }

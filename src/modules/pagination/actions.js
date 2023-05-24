@@ -24,15 +24,18 @@ function renderNewResults(action, currentPage) {
             isPrev
         } = pageInfo;
 
-        const urlParams = new URLSearchParams(window.location.search);
-        let currentUrlPage, productsPerPage;
-        if (this.options.pagination.usePageAndCount) {
-            productsPerPage = Number(urlParams.get('count'));
-            currentUrlPage = Number(urlParams.get('page')) || 1
-        } else {
-            currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-            productsPerPage = Number(urlParams.get('rows'));
-        }
+        // const urlParams = new URLSearchParams(window.location.search);
+        // let currentUrlPage, productsPerPage;
+        // if (this.options.pagination.usePageAndCount) {
+        //     productsPerPage = Number(urlParams.get('count'));
+        //     currentUrlPage = Number(urlParams.get('page')) || 1
+        // } else {
+        //     currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+        //     productsPerPage = Number(urlParams.get('rows'));
+        // }
+
+        let currentUrlPage = this.getCurrentUrlPage();
+                        let productsPerPage = this.getProductsPerPage();
 
 
         // if(pagination.type === "CLICK_N_SCROLL" ) {

@@ -29,15 +29,18 @@ export default function renderProducts(){
                 window.scrollTo(0,0)
                 
             } else {
-                const urlParams = new URLSearchParams(window.location.search);
-                    let currentUrlPage, productsPerPage;
-                    if (this.options.pagination.usePageAndCount) {
-                        productsPerPage = Number(urlParams.get('count'));
-                        currentUrlPage = Number(urlParams.get('page')) || 1;
-                    } else {
-                        currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-                        productsPerPage = Number(urlParams.get('rows'));
-                    }
+                // const urlParams = new URLSearchParams(window.location.search);
+                //     let currentUrlPage, productsPerPage;
+                //     if (this.options.pagination.usePageAndCount) {
+                //         productsPerPage = Number(urlParams.get('count'));
+                //         currentUrlPage = Number(urlParams.get('page')) || 1;
+                //     } else {
+                //         currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+                //         productsPerPage = Number(urlParams.get('rows'));
+                //     }
+
+                let currentUrlPage = this.getCurrentUrlPage();
+                let productsPerPage = this.getProductsPerPage();
 
                     
                 if (lastAction === "prev_page_loaded") {
@@ -47,11 +50,17 @@ export default function renderProducts(){
                     searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
                     document.querySelector(`.product-item[data-prank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
                     if (this.options.pagination.usePageAndCount) {
-                        urlParams.set('page', currentUrlPage + 1);
+                        this.replaceParamInUrl('page', currentUrlPage + 1);
                     } else {
-                        urlParams.set('start', (currentUrlPage ) * productsPerPage);
+                        this.replaceParamInUrl('start', (currentUrlPage ) * productsPerPage);
                     }
-                    history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+                    // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+                    // if (this.options.pagination.usePageAndCount) {
+                    //     urlParams.set('page', currentUrlPage + 1);
+                    // } else {
+                    //     urlParams.set('start', (currentUrlPage ) * productsPerPage);
+                    // }
+                    // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
                     // const newHeight = container.scrollHeight;
 
                    
@@ -60,11 +69,17 @@ export default function renderProducts(){
                     
                     searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
                     if (this.options.pagination.usePageAndCount) {
-                        urlParams.set('page', currentUrlPage - 1);
+                        this.replaceParamInUrl('page', currentUrlPage - 1);
                     } else {
-                        urlParams.set('start', (currentUrlPage - 1) * productsPerPage);
+                        this.replaceParamInUrl('start', (currentUrlPage - 2) * productsPerPage);
                     }
-                    history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+                    // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+                    // if (this.options.pagination.usePageAndCount) {
+                    //     urlParams.set('page', currentUrlPage - 1);
+                    // } else {
+                    //     urlParams.set('start', (currentUrlPage - 2) * productsPerPage);
+                    // }
+                    // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
                 }
             }
         } else {
