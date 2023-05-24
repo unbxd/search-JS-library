@@ -53,7 +53,6 @@ function bindEvents() {
             this.delegate(wrapper, 'click', `.${spellCheck.selectorClass}`, this.setSuggestion.bind(this));
         });
     }
-    //productItemSelector
     this.delegate(
         this.searchResultsWrapper,
         "click",
@@ -100,21 +99,7 @@ function bindEvents() {
     if (this.options.pagination.type === 'INFINITE_SCROLL' || this.options.pagination.type === "CLICK_N_SCROLL") {
         this.setUpInfiniteScroll()
     }
-    // if (this.options.pagination.type === 'INFINITE_SCROLL') {
-    //     let infiniteScrollTimer;
-    //     const self = this
-    //     document.addEventListener("scroll", function () {
-    //         // this setTimeout and clearTimeout logic will ensure the callback is not called on every few seconds, 
-    //         // instead it is called only when the user stops interacting with the scroll position
-    //         // do not change this logic
-    //         infiniteScrollTimer && clearTimeout(infiniteScrollTimer);
-    //         infiniteScrollTimer = setTimeout(function () {
-    //             if (!self.viewState.isInfiniteStarted && !self.state.loading) {
-    //                 self.onInfiniteScroll();
-    //             }
-    //         }, 100)
-    //     });
-    // }
+
     this.delegate(
         this.pageSizeWrapper,
         pagesize.action,

@@ -37,14 +37,24 @@ const onProductItemClick = function (e) {
         // check if pRank is available in the dataset 
         // and update the corresponding start number of the product clicked it to the URL
         product.prank = elem.dataset.prank;
-        const urlParams = new URLSearchParams(window.location.search);
-        const pageNo = Math.ceil(Number(product.prank) / Number(urlParams.get(this.options.pagination.usePageAndCount ? 'count' : 'rows')))
+        // const urlParams = new URLSearchParams(window.location.search);
+        const pageNo = Math.ceil(Number(product.prank) / Number(this.getProductsPerPage()))
         if (this.options.pagination.usePageAndCount) {
-            urlParams.set('page', pageNo)
+            this.replaceParamInUrl('page', pageNo);
+            // urlParams.set('page', pageNo);
         } else {
-            urlParams.set('start', Number((pageNo - 1) * Number(urlParams.get('rows'))));
+            this.replaceParamInUrl('start', Number((pageNo - 1) * Number(this.getProductsPerPage())));
+            // urlParams.set('start', Number((pageNo - 1) * Number(urlParams.get('rows'))));
         }
-        history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+        // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+        // const urlParams = new URLSearchParams(window.location.search);
+        // const pageNo = Math.ceil(Number(product.prank) / Number(urlParams.get(this.options.pagination.usePageAndCount ? 'count' : 'rows')))
+        // if (this.options.pagination.usePageAndCount) {
+        //     urlParams.set('page', pageNo);
+        // } else {
+        //     urlParams.set('start', Number((pageNo - 1) * Number(urlParams.get('rows'))));
+        // }
+        // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
     }
     this.options.products.onProductClick(product, e);
     this.getCallbackActions(product, "click");
