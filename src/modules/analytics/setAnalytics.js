@@ -33,9 +33,7 @@ const trackImpression = function(){
     let obj = { 
         'pids_list' : []
     };
-    if(productType ==="SEARCH") {
-        obj['query'] = query;
-    }
+    
     if(products) {
         let pids = [];
         products.forEach(product => {
@@ -47,7 +45,16 @@ const trackImpression = function(){
             pids.push(pid)
         });
         obj['pids_list'] = pids;
-        Unbxd.track('search_impression',obj);  
+        if(productType ==="SEARCH") {
+            obj['query'] = query;
+            Unbxd.track('search_impression',obj);  
+        } else if(productType ==="CATEGORY" || productType ==="BROWSE") {
+            if(window.UnbxdAnalyticsConf){
+                obj['page'] = window.UnbxdAnalyticsConf.page || "";
+                obj['page_type'] = window.UnbxdAnalyticsConf.page_type || "";
+            }
+            Unbxd.track('browse_impression',obj);  
+        }
     }
 }
 const trackFacetClick = function(state,type){

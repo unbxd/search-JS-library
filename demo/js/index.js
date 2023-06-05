@@ -277,7 +277,7 @@ window.unbxdSearch = new UnbxdSearch({
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     updateUrls: true,
-    hashMode: false,
+    hashMode: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
