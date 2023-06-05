@@ -274,10 +274,12 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "prod-frenchbedroomcompany11861619415887",
+    apiKey: "62f8c3f47421a605fc5d1d1be55ae936",
+    // siteKey: "demo-unbxd700181503576558",
+    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     updateUrls: true,
-    hashMode: false,
+    hashMode: true,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
