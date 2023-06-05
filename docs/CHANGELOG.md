@@ -17,6 +17,17 @@ nav_order: 8
 
 ---
 
+# v2.0.37
+
+- **Release Date**: 5th June, 2023
+- **Core SDK Version**: 0.4.33
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- The Product Impression event was not being tracked for all the Category pages until now, This has been fixed by introducing the `browse_impression` event in the analytics.
+
+---
+
 # v2.0.36
 
 - **Release Date**: 12th May, 2023
