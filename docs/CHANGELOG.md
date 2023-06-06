@@ -24,8 +24,8 @@ nav_order: 8
 
 ## 🧰 Maintenance
 {: .no_toc}
-- **Rewriting Infinite Scroll Pagination**: The infinite scroll rewrite includes pre-loading and post-loading of content, dynamic URL updates, and improved performance using the Intersection Observer API. It avoids reliance on window.scroll and provides a smoother scrolling experience. Only new changes are rendered instead of replacing the entire content.
-- **Rewriting Click & Scroll Pagination**: The Click & Scroll (Load More) pagination has also been rewritten in lines with the new infinite scroll. The only difference here would be the trigger for fetching the successive pages would be user driven.
+- **Rewriting Infinite Scroll Pagination**: The infinite scroll rewrite includes pre-loading and post-loading of content based on the user's scrolling behavior. It utilizes a separate thread and the Intersection Observer API to observe changes in element intersections, improving performance and providing a smoother scrolling experience. The page number updates dynamically as the user scrolls, and the same set of products is loaded when the page is refreshed. The implementation eliminates delays caused by executing logic within the scroll event and removes dependencies on the user's scroll position, the number of products shown in a row, and the height of the product container. Only the new products are rendered, enhancing rendering performance.
+- **Rewriting Click & Scroll Pagination**: The re-write of click and scroll pagination allows users to trigger the fetching of successive pages through clicking or scrolling. The implementation dynamically updates the page and loads only the necessary products, eliminating dependencies on scroll position, product display, and container height. Rendering is optimized by appending or prepending new changes instead of replacing the entire content.
 - Separating out the `renderProducts` code to maintain consistency across all the render feature logics.
 
 ## 🚀 Features
@@ -36,6 +36,7 @@ nav_order: 8
 {: .no_toc}
 - Added `uc_param`, `count` and `page` in the `unbxdKeys` list.
 - Fixing CSS issues in the demo template.
+- Only the newly fetched products are rendered instead of re-creating and re-rendering all the products on every API call, enhancing the rendering performance.
 
 
 ---
