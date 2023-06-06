@@ -17,6 +17,29 @@ nav_order: 8
 
 ---
 
+# v2.0.38
+
+- **Release Date**: 6th June, 2023
+- **Core SDK Version**: 0.4.34
+
+## 🧰 Maintenance
+{: .no_toc}
+- **Rewriting Infinite Scroll Pagination**: The infinite scroll rewrite includes pre-loading and post-loading of content, dynamic URL updates, and improved performance using the Intersection Observer API. It avoids reliance on window.scroll and provides a smoother scrolling experience. Only new changes are rendered instead of replacing the entire content.
+- **Rewriting Click & Scroll Pagination**: The Click & Scroll (Load More) pagination has also been rewritten in lines with the new infinite scroll. The only difference here would be the trigger for fetching the successive pages would be user driven.
+- Separating out the `renderProducts` code to maintain consistency across all the render feature logics.
+
+## 🚀 Features
+{: .no_toc}
+- **Introducing Page and Count in URL**: A modification has been made to the URL variables used for pagination. Instead of using "rows" and "start" to determine the number of products displayed and the starting index, respectively, the variables "page" and "count" have been introduced. The boolean variable "usePageCount" under the `pagination` config object determines whether to use this new approach (when set to true) or continue using "start" and "rows" (when set to false).
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Added `uc_param`, `count` and `page` in the `unbxdKeys` list.
+- Fixing CSS issues in the demo template.
+
+
+---
+
 # v2.0.37
 
 - **Release Date**: 5th June, 2023
