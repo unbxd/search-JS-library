@@ -29,15 +29,6 @@ const setUpInfiniteScroll = function () {
                         if (entry.isIntersecting) {
                             // Get the prank value of the visible product item
                             const productIndex = parseInt(entry.target.dataset.prank);
-                            // const urlParams = new URLSearchParams(window.location.search);
-                            // let currentUrlPage, productsPerPage;
-                            // if (this.options.pagination.usePageAndCount) {
-                            //     productsPerPage = Number(urlParams.get('count'));
-                            //     currentUrlPage = Number(urlParams.get('page')) || 1;
-                            // } else {
-                            //     currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-                            //     productsPerPage = Number(urlParams.get('rows'));
-                            // }
     
                             let currentUrlPage = this.getCurrentUrlPage();
                             let productsPerPage = this.getProductsPerPage();
@@ -48,13 +39,10 @@ const setUpInfiniteScroll = function () {
                             // Update the current page number in the URL if necessary
                             if (currentPage !== currentUrlPage) {
                                 if (self.options.pagination.usePageAndCount) {
-                                    // urlParams.set('page', currentPage);
                                     this.replaceParamInUrl('page', currentPage);
                                 } else {
-                                    // urlParams.set('start', (currentPage - 1) * productsPerPage);
                                     this.replaceParamInUrl('start', (currentPage - 1) * productsPerPage);
                                 }
-                                // history.replaceState(null, null, self.urlSearchParamsToStr(urlParams));
                             }
                         }
                     });
@@ -63,19 +51,7 @@ const setUpInfiniteScroll = function () {
                 });
     
                 this.preLoaderObserver = new IntersectionObserver(entries => {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    // let currentUrlPage, productsPerPage;
-                    // if (this.options.pagination.usePageAndCount) {
-                    //     productsPerPage = Number(urlParams.get('count'));
-                    //     currentUrlPage = Number(urlParams.get('page')) || 1
-                    // } else {
-                    //     currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
-                    //     productsPerPage = Number(urlParams.get('rows'));
-                    // }
-    
                     let currentUrlPage = this.getCurrentUrlPage();
-                    // let productsPerPage = this.getProductsPerPage();
-    
                     entries.forEach(entry => {
                         if (entry.isIntersecting && currentUrlPage > 1 && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
                             this.renderNewResults('prev');
@@ -95,7 +71,6 @@ const setUpInfiniteScroll = function () {
                     rootMargin: `0px 0px 0px 0px`
                 });
     
-    
                 // create an observer instance
                 this.observer = new MutationObserver((mutationsList, observer) => {
                     for (let mutation of mutationsList) {
@@ -112,15 +87,11 @@ const setUpInfiniteScroll = function () {
                     }
                 });
     
-    
-    
                 this.preLoaderObserver.observe(preLoader);
                 if(this.options.pagination.type === 'INFINITE_SCROLL'){
                     this.postLoaderObserver.observe(postLoader);
                 }
                 this.observer.observe(productsContainer, { childList: true, subtree: true });
-    
-    
         })
     } catch (err){
         this.onError('infiniteScroller.js', err)
