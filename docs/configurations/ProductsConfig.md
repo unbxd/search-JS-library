@@ -47,6 +47,13 @@ products: {
 String
 {: .label }
 
+
+Unbxd offers a full-featured search and category solution that can help retailers to improve the search and browsing experience for their customers, increase conversions, and gain insights into customer behavior.
+
+Our search offering includes a powerful search engine that can handle large catalogs and complex queries, as well as advanced features such as autocomplete, spell correction, and synonyms. We also provide analytics and reporting tools to help retailers optimize their search results and improve the overall search experience for their customers.
+
+Our category offerings include solutions for navigation, filtering and sorting, and recommendations. These solutions can help retailers to improve the browsing experience for their customers and increase conversions by making it easy for shoppers to find the products they're looking for. The category solutions also come with analytics and reporting tools to help retailers understand how shoppers are interacting with their category pages and make data-driven decisions to improve the browsing experience.
+
 Used to indicate if the page is search or category. Possible values: search (or) category. “search” -> the search term in the url is used by library. “category”-> the getCategoryID function will be invoked to identify the category which needs to be displayed for the given url.
 
 
@@ -54,14 +61,14 @@ Used to indicate if the page is search or category. Possible values: search (or)
 ### Default Value
 {: .no_toc }
 ```js
-productType:"SEARCH"
+productType: "SEARCH"
 ```
 ### Scenarios
 {: .no_toc }
 
 Unbxd has two product offerings:
 1. `SEARCH`: Powers search results pages.
-2. `BROWSE or CATEGORY`: Powers category listing pages.
+2. `CATEGORY`: Powers category listing pages.
 
 ---
 ## el

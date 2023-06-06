@@ -22,11 +22,13 @@ function onPageViewTypeClick(e) {
         this.options.extraParams = extend(true,{},extraParams,{
             "viewType":viewAction
         });
-        this.setPageStart(0);
+        this.state.productViewType = this.viewState.productViewType;
         this.state.isBack = false;
         this.viewState.lastAction = "viewType";
-        this.getResults.bind(this)();
-
+        this.setUrl(false)
+        this.renderProductViewTypeUI()
+        this.renderProducts()
+        
     }
 }
 export {

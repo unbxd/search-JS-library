@@ -1,23 +1,23 @@
-const onProductItemClick = function(e) {
+const onProductItemClick = function (e) {
     const path = e.path || (e.composedPath && e.composedPath());
     const {
         productItemClass,
         attributesMap,
     } = this.options.products;
-    const id = productItemClass.replace(".","");
+    const id = productItemClass.replace(".", "");
     let dataset = e.target.dataset;
     const elem = path.find((item) => {
         const itemCss = item.className;
-        return (itemCss.indexOf(id)) >=0 
+        return (itemCss.indexOf(id)) >= 0
     });
     const {
         action,
         swatchId
     } = dataset || {};
-    if(action === this.actions.changeSwatch && swatchId) {
+    if (action === this.actions.changeSwatch && swatchId) {
         elem.querySelectorAll(".UNX-img-wrapper").forEach((imgBlock) => {
             const btnE = elem.querySelector(`.${imgBlock.id}`);
-            if(imgBlock.id === swatchId ) {
+            if (imgBlock.id === swatchId) {
                 imgBlock.classList.remove("UNX-swatch-hidden");
                 elem.querySelector(`.${swatchId}`).classList.add("UNX-selected-swatch");
             } else {
@@ -25,24 +25,25 @@ const onProductItemClick = function(e) {
                 btnE.classList.remove("UNX-selected-swatch");
             }
         })
-        this.options.onEvent(this,dataset.action);
+        this.options.onEvent(this, dataset.action);
         return false;
     }
     let product = null;
     dataset = elem.dataset;
-    if(dataset.id) {
-        product =  this.getProductByPropValue(attributesMap.unxId,dataset.id);
+    if (dataset.id) {
+        product = this.getProductByPropValue(attributesMap.unxId, dataset.id);
     }
-    if(product && elem.dataset.prank) {
-        // check if pRank is available in the dataset 
-        // and update the corresponding start number of the product clicked it to the URL
+    if (product && elem.dataset.prank) {
         product.prank = elem.dataset.prank;
-        const urlParams = new URLSearchParams(window.location.search);
-        urlParams.set('start', parseInt(parseInt(product.prank) - (parseInt(product.prank) % parseInt(urlParams.get('rows')))))
-        history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+        const pageNo = Math.ceil(Number(product.prank) / Number(this.getProductsPerPage()))
+        if (this.options.pagination.usePageAndCount) {
+            this.replaceParamInUrl('page', pageNo);
+        } else {
+            this.replaceParamInUrl('start', Number((pageNo - 1) * Number(this.getProductsPerPage())));
+        }
     }
-    this.options.products.onProductClick(product,e);
-    this.getCallbackActions(product,"click");
+    this.options.products.onProductClick(product, e);
+    this.getCallbackActions(product, "click");
 }
 export {
     onProductItemClick as default

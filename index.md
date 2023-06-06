@@ -12,7 +12,7 @@ permalink: /
 A JavaScript library for building performant and quick search experiences with Unbxd.
 {: .fs-6 .fw-300 }
 
-[Get started now](/docs/gettingStarted/GettingStarted.md){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Get started now](docs/prerequisites){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [View it on GitHub](https://github.com/unbxd/search-JS-library/){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
@@ -55,14 +55,9 @@ It is important to note that in order to use the Unbxd Vanilla JS SDK, the e-com
 > This document is ONLY for customers integrated with the new version of SDK (V2 integrations). Please refer to [this documentation here](https://unbxd.com/docs/site-search/integration-documentation/jssdk-documentation/) for the versions of integrations. Since we are gradually migrating all our customers toward our new upgraded SDKs, we would slowly **deprecate** the older version.
 
 
-# Prerequisite
-Please complete the Self Serve FTU flow for sign up, site creation, feed upload, relevancy, etc.
-[Self Serve Dashboard Documentation](https://unbxd.com/docs/site-search/integration-documentation/onboarding-flow/)
-
-
 # Need Help?
 If you need assistance or are looking for technical help, please search this documentation website to find relevant information. You can also contact Unbxd's support team for additional assistance. Feel free to write to [support@unbxd.com](support@unbxd.com) or buzz us on [+1.85555.UNBXD](+1.85555.UNBXD). We will be able to provide more guidance based on your specific implementation.
 
 
 # Stay up to date
-Please refer to the [changelog](/docs/CHANGELOG.md) to stay informed about the most recent releases and bug fixes, and to track the history of changes.
+Please refer to the [changelog](docs/CHANGELOG.md) to stay informed about the most recent releases and bug fixes, and to track the history of changes.

@@ -99,7 +99,7 @@
   height: auto;
 }
 .UNX-list-card .UNX-img-block {
-  height:auto
+  height: 200px;
 }
 .UNX-list-card .UNX-product-content {
   padding-left: 12px;
@@ -319,6 +319,7 @@
 
 .UNX-result-wrapper {
   display: grid;
+  min-height: 100vh;
   grid-template-columns: 25% 25% 25% 25%;
 }
 .UNX-range-slider-wrap {

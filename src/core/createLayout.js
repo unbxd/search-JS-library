@@ -89,7 +89,7 @@ const createLayout = function () {
         });
     }
     if (facet.selectedFacetsEl) {
-        console.log(`selectedFacetsEl option is depricated from v2.0.2, please use selectedFacets option to configure selected facets elements and template`)
+        console.error(`selectedFacetsEl option is deprecated from v2.0.2, please use selectedFacets option to configure selected facets elements and template`)
         facet.selectedFacetsEl.innerHTML = ``;
         facet.selectedFacetsEl.appendChild(getSelectedFacetsWrappers());
     } else {
@@ -118,9 +118,25 @@ const createLayout = function () {
         }
     }
 
-    if (products.el) {
-        products.el.innerHTML = ``;
+    if(products.el){
+        products.el.innerHTML=``;
+
+        if(pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL"){
+            const preLoader = document.createElement('div');
+            preLoader.classList.add('UNX-pre-loader');
+            preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+            products.el.appendChild(preLoader);
+        }
+
         products.el.appendChild(this.searchResultsWrapper);
+
+        if(pagination.type === "INFINITE_SCROLL" ){
+            const postLoader = document.createElement('div');
+            postLoader.classList.add('UNX-post-loader');
+            postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+            products.el.appendChild(postLoader);
+        }
+
     }
     if (pagesize.el) {
         pagesize.el.innerHTML = ``;
