@@ -375,10 +375,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.state.startPageNo = start ? start : 0;
       }
       this.state.isBack = false;
-      // if (pagination.type === "CLICK_N_SCROLL") {
-      //     this.state.startPageNo = 0;
-      // }
-
       if (this.options.pagination.usePageAndCount) {
         this.state.pageSize = count ? Number(count) : this.options.pagesize.pageSize;
       } else {
@@ -624,9 +620,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     var facetV2 = "&facet.version=V2";
     var apiUrl = this.url + categoryFilterStr + fctmulty + facetsUrlString + showVariantsStr + variantAttributesStr + variantsCountStr + variantsGroupByStr + productAttributesStr + sortStr + spellCheckUrlString + rangeFilterUrlStr + pagetype + this.getPageSizeStr(true) + this.getPageStartStr(true) + this.extraParamUrlString() + facetV2 + (ucParam ? ucParam : "");
     var webUrl = this.url + categoryFilterStr + facetsUrlString + sortStr + rangeFilterUrlStr + this.getPageSizeStr() + this.getPageStartStr() + this.getViewTypeForUrl();
-    // this.extraParamUrlString()+
-    // facetV2;
-
     this.state.currentApiUrl = apiUrl;
     this.state.currentWebUrl = webUrl;
     if (fetchApiUrl) {
@@ -1222,9 +1215,6 @@ function _toPrimitive(input, hint) { if (getResultsFromApi_typeof(input) !== "ob
             products = _response$products === void 0 ? [] : _response$products;
           var _this$options$paginat = _this.options.pagination,
             pagination = _this$options$paginat === void 0 ? {} : _this$options$paginat;
-          // if(pagination.type === "CLICK_N_SCROLL"){
-          //     this.state.products = this.state.products.concat(products);
-          // }else 
           if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
             if (action === "prev") {
               _this.state.products = [].concat(_toConsumableArray(products), _toConsumableArray(_this.state.products));
@@ -5947,9 +5937,6 @@ var trackImpression = function trackImpression() {
   var obj = {
     'pids_list': []
   };
-  if (productType === "SEARCH") {
-    obj['query'] = query;
-  }
   if (products) {
     var pids = [];
     products.forEach(function (product) {
@@ -5959,7 +5946,16 @@ var trackImpression = function trackImpression() {
       pids.push(pid);
     });
     obj['pids_list'] = pids;
-    Unbxd.track('search_impression', obj);
+    if (productType === "SEARCH") {
+      obj['query'] = query;
+      Unbxd.track('search_impression', obj);
+    } else if (productType === "CATEGORY" || productType === "BROWSE") {
+      if (window.UnbxdAnalyticsConf) {
+        obj['page'] = window.UnbxdAnalyticsConf.page || "";
+        obj['page_type'] = window.UnbxdAnalyticsConf.page_type || "";
+      }
+      Unbxd.track('browse_impression', obj);
+    }
   }
 };
 var trackFacetClick = function trackFacetClick(state, type) {
