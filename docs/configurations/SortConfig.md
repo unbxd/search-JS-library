@@ -288,8 +288,10 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 
 # Usecases
-## Usecase 1: Default Example
-Sample code for the Sort config:
+## Usecase 1: Sorting with dropdowns
+
+Using dropdown menus for sorting products in an ecommerce site offers a more compact and space-efficient way to present a wider range of sorting options. When users click on the dropdown menu, a list of available sorting criteria expands, allowing them to choose from options like "Price," "Popularity," "Release Date," or "Relevance." This format is useful when there are numerous sorting options to choose from, as it keeps the interface clean and organized. Users can select their preferred sorting option from the dropdown list, and the product listing will update accordingly.
+
 <img src="../assets/dropdownsort.png" width="500px">
 
 ```js
@@ -338,7 +340,9 @@ sort: {
 },
 ```
 
-## Usecase 2: Sort as Buttons
+## Usecase 2: Sorting with Buttons
+In the ecommerce site, sorting products using buttons provides a convenient and visually appealing way for users to select their desired sorting option. Each button represents a specific sorting criteria, such as "Price Low to High," "Price High to Low," "Newest First," or "Customer Ratings." Users can simply click on the button corresponding to their preference, and the product listing will update accordingly. Buttons are especially effective when there are only a few sorting options available, as they allow for quick and easy selection without overwhelming the user with too many choices.
+
 [![](../assets/button-sort.png)](../assets/button-sort.png)
 
 ```js
@@ -381,8 +385,11 @@ sort: {
   }
 
 ```
-## Usecase 3: Sorting as Radio Buttons
+## Usecase 3: Sorting with Radio Buttons
+Radio buttons are another effective method for sorting products in an ecommerce site. They present a set of exclusive options, allowing users to choose only one sorting criteria at a time. Users can see all the available sorting options listed next to individual radio buttons, such as "Best Selling," "Featured," "Average Customer Review," or "Discount." When a user selects a radio button, the product listing immediately rearranges based on the chosen criteria. Radio buttons are particularly useful when the available sorting options are distinct and mutually exclusive, allowing users to make a clear and single choice for their preferred sorting order.
+
 [![](../assets/radio-sort.png)](../assets/radio-sort.png)
+
 ```js
 sort: {
         enabled: true,
