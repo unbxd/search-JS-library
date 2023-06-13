@@ -381,4 +381,42 @@ sort: {
   }
 
 ```
-## Usecase 3: Apply default sorting
+## Usecase 3: Sorting as Radio Buttons
+[![](../assets/radio-sort.png)](../assets/radio-sort.png)
+```js
+sort: {
+        enabled: true,
+        el: document.getElementById("sortWrapper"),
+        options: [ {
+            value: "price desc",
+            text: "Price High to Low"
+        },
+        {
+            value: "price asc",
+            text: " Price Low to High"
+        }],
+        action: "click",
+        template: function (selectedSort, sortConfig) {
+            let optionsUI = "";
+            const { options, sortClass, selectedSortClass } = sortConfig;
+            const { UNX_unbxdSorter } = this.testIds;
+            options.forEach((item) => {
+                const { value, text } = item;
+                if (value == selectedSort) {
+                    optionsUI += `<input type="radio" checked value="${value}" data-action="changeSort" class="${selectedSortClass}"  >${text}</input>`;
+                } else {
+                    optionsUI += `<input type="radio"  value="${value}" data-action="changeSort" >${text}</input>`;
+                }
+            });
+            return [
+                `<div class="UNX-sort-block">`,
+                    `<span class="UNX-sort-header">Sort By</span>`,
+                    `<label class="UNX-hidden" for="unxSortSelect">Sort By</label>`,
+                    `<div data-test-id="${UNX_unbxdSorter}" name="unxSortSelect"  id="unxSortSelect" class="${sortClass}">`,
+                        optionsUI,
+                    `</div>`,
+                `</div>`,
+            ].join("");
+        }
+    }
+```
