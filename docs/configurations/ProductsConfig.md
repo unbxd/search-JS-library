@@ -109,7 +109,20 @@ This function passes two params:
 4. `productViewType` - Its value might either be "GRID" or "LIST".
 5. `products` - its contains common info related to products like :productItemClass,defaultImage.
 
-Following analytics data-attributes can be added : 
+**Expected return value**: a string of HTML that will be used to render the products on the webpage
+
+**Note:** When implementing Infinite Scroll (type: "INFINITE_SCROLL") or Click & Scroll (type: "CLICK_N_SCROLL") pagination, it is important to consider the following details:
+
+1. **Product Card Container Attributes**: The parent-most container of each product card should include the data-prank="<idx>" attribute in its HTML structure. This attribute represents the product's rank or index and is typically available as the second parameter in the product.template callback. By including this attribute, you can uniquely identify each product card within the container.
+2. **Invisible HTML Elements**: To facilitate smooth scrolling and pagination, it is recommended to add two invisible HTML elements above and below the products container. These elements act as pre-loader and post-loader placeholders. The pre-loader element, with the class name UNX-pre-loader, should be positioned above the products container. Similarly, the post-loader element, with the class name UNX=post-loader, should be positioned below the products container. It is crucial to ensure that these two elements are not placed next to each other but instead positioned above and below the products container. This can be achieved by setting the CSS flex-direction property of the parent container to column or by using custom CSS styles. This separation prevents API calls from running in an infinite loop by ensuring that the pre-loader and post-loader elements are not permanently visible in the viewport.
+
+By following these guidelines, you can effectively implement Infinite Scroll or Click & Scroll pagination for your product listing, providing a seamless user experience while avoiding potential issues related to API calls and loader element visibility.
+
+
+
+
+
+**Note:** Following analytics data-attributes can be added: 
 1. `data-unxPageType="search"` - For Search results page , add this as html attribute.
 2. `data-unxPageType="category"` - For Category results page , add this as html attribute.
 3. `data-item='product'` - Add this as html attribute at the parent wrapper element of each product item
@@ -120,7 +133,6 @@ Following analytics data-attributes can be added :
 8. `data-unxQtyPlus='qtyPlus'`  - If theres a button to increase quantity on SRP, add this as html attribute on that button
 9. `data-unxQtyMinus='qtyMinus'` - If theres a button to decrease quantity on SRP, add this as html attribute on that button.
 
-**Expected return value**: a string of HTML that will be used to render the products on the webpage
 
 ### Default Value
 {: .no_toc }
