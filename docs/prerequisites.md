@@ -28,7 +28,7 @@ Please complete the Self Serve FTU flow for sign up, site creation, feed upload,
     ```
     {: .important }
     > The **latest version** can be found via the npm repository:
-    [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library) or here in [ChangeLog](/docs/CHANGELOG.md)
+    [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library) or here in [ChangeLog](/search-JS-library/docs/CHANGELOG.md)
 
 2.  To get the default theme, include the library css in the link tag:
     ```js
