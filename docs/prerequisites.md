@@ -28,11 +28,11 @@ Please complete the Self Serve FTU flow for sign up, site creation, feed upload,
     ```
     {: .important }
     > The **latest version** can be found via the npm repository:
-    [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library)
+    [search js library](https://www.npmjs.com/package/@unbxd-ui/vanilla-search-library) or here in [ChangeLog](/CHANGELOG.md)
 
 2.  To get the default theme, include the library css in the link tag:
     ```js
-    <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v2.0.5/vanillaSearch.min.css">
+    <link rel="stylesheet" type="text/css" href="https://libraries.unbxdapi.com/search-sdk/v<<latest version>>/vanillaSearch.min.css">
     ```
 
 
