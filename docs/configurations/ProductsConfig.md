@@ -313,6 +313,7 @@ This function passes two params:
 onProductClick:function(product, event) {}	
 ```
 
+
 ---
 ## defaultImage
 {: .d-inline-block }
@@ -488,7 +489,37 @@ products:{
 }
 ```
 
-## Usercase 3: With swatches
+## Usecase 3: Scroll to particular product
+This code snippet provides a solution for a specific scenario where a user is scrolling through a list of products, clicks on a product to view its details on a separate page, and then navigates back to the previous page. The desired behavior is that the page should resume at the same position where the user left off, rather than scrolling to the bottom.
+
+When the page reloads, the code checks if the identifier exists and scrolls to the corresponding element. If found, it scrolls smoothly to the element, removing the stored identifier afterward. This preserves the user's scroll position, enhancing their experience.
+
+The code achieves this by utilizing the browser's localStorage object to store the unique identifier (uniqueId) of the clicked product. Here's a breakdown of the code:
+
+```js
+product:{
+    // other properties
+    onProductClick: function(product, e) {
+        localStorage.setItem("unx_product_clicked", product.uniqueId);
+        window.location.href = "https://www.google.com";
+    }
+}
+```
+
+```js
+onEvent: function(instance, type, state) {
+    if (type === "AFTER_RENDER") {
+        if (localStorage.getItem("unx_product_clicked") && document.getElementById(localStorage.getItem("unx_product_clicked"))) {
+            setTimeout(function() {
+                document.getElementById(localStorage.getItem("unx_product_clicked")).scrollIntoView({ behavior: "smooth" });
+                localStorage.removeItem("unx_product_clicked");
+            }, 500)
+        }
+    }
+}
+```
+
+## Usecase 4: With swatches
 
 ## User requirment
 {: .no_toc }
