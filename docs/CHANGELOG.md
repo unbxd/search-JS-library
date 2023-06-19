@@ -21,6 +21,7 @@ nav_order: 8
 
 - **Release Date**: 6th June, 2023
 - **Core SDK Version**: 0.4.34
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.38/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.38/vanillaSearch.min.js)
 
 ## 🧰 Maintenance
 {: .no_toc}
