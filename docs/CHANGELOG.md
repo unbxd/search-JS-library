@@ -20,7 +20,7 @@ nav_order: 8
 # v2.0.38
 
 - **Release Date**: 6th June, 2023
-- **Core SDK Version**: 0.4.34
+- **Core SDK Version**: v0.4.34
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.38/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.38/vanillaSearch.min.js)
 
 ## 🧰 Maintenance
@@ -45,7 +45,8 @@ nav_order: 8
 # v2.0.37
 
 - **Release Date**: 5th June, 2023
-- **Core SDK Version**: 0.4.33
+- **Core SDK Version**: v0.4.33
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.37/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.37/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -56,7 +57,8 @@ nav_order: 8
 # v2.0.36
 
 - **Release Date**: 12th May, 2023
-- **Core SDK Version**: 0.4.33
+- **Core SDK Version**: v0.4.33
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.36/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.36/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -67,7 +69,8 @@ nav_order: 8
 # v2.0.35
 
 - **Release Date**: 11th May, 2023
-- **Core SDK Version**: 0.4.32
+- **Core SDK Version**: v0.4.32
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.35/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.35/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -85,7 +88,8 @@ nav_order: 8
 # v2.0.34
 
 - **Release Date**: 25th April, 2023
-- **Core SDK Version**: 0.4.31
+- **Core SDK Version**: v0.4.31
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.34/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.34/vanillaSearch.min.js)
 
 ## 🚀 Features
 {: .no_toc}
@@ -96,7 +100,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.33 (hotfix)
 
 - **Release Date**: 14th April, 2023
-- **Core SDK Version**: 0.4.30 (hotfix)
+- **Core SDK Version**: v0.4.30 (hotfix)
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.33/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.33/vanillaSearch.min.js)
 
 
 ## 🐛 Bug Fixes
@@ -110,7 +115,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.32
 
 - **Release Date**: 14th April, 2023
-- **Core SDK Version**: 0.4.29
+- **Core SDK Version**: v0.4.29
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.32/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.32/vanillaSearch.min.js)
 
 
 ## 🐛 Bug Fixes
@@ -123,7 +129,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.31
 
 - **Release Date**: 10th April, 2023
-- **Core SDK Version**: 0.4.29
+- **Core SDK Version**: v0.4.29
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.31/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.31/vanillaSearch.min.js)
 
 
 ## 🐛 Bug Fixes
@@ -137,7 +144,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.30
 
 - **Release Date**: 28th March, 2023
-- **Core SDK Version**: 0.4.28
+- **Core SDK Version**: v0.4.28
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.30/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.30/vanillaSearch.min.js)
 
 
 ## 🚀 Features
@@ -160,7 +168,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.29
 
 - **Release Date**: 21st March, 2023
-- **Core SDK Version**: 0.4.28
+- **Core SDK Version**: v0.4.28
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.29/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.29/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -174,7 +183,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.28
 
 - **Release Date**: 16th March, 2023
-- **Core SDK Version**: 0.4.27
+- **Core SDK Version**: v0.4.27
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.28/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.28/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -194,7 +204,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.27
 
 - **Release Date**: 28th February, 2023
-- **Core SDK Version**: 0.4.25
+- **Core SDK Version**: v0.4.25
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.27/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.27/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -206,7 +217,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.26
 
 - **Release Date**: 28th February, 2023
-- **Core SDK Version**: 0.4.24
+- **Core SDK Version**: v0.4.24
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.26/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.26/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -223,7 +235,8 @@ Ability to pass unbxd-user-id and unbxd-device-type request headers in the searc
 # v2.0.25
 
 - **Release Date**: 23rd February, 2023
-- **Core SDK Version**: 0.4.24
+- **Core SDK Version**: v0.4.24
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.25/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.25/vanillaSearch.min.js)
 
 ## 🚀 Features
 {: .no_toc}
