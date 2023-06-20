@@ -1,5 +1,5 @@
-// import UnbxdSearchCore from "../../search-JS-core/src/index";
-import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+import UnbxdSearchCore from "../../search-JS-core/src/index";
+// import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
 import options from './common/options';
@@ -18,7 +18,7 @@ class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
         this.viewState = {
-            productViewType: options.productView.defaultViewType,
+            productViewType: this.state.productViewType || options.productView.defaultViewType,
             isInfiniteStarted:false,
             lastAction:'',
             selectedRange:{},
@@ -42,6 +42,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.onEvent(this, 'initialised');
     }
     callBack(state,type) {
+        debugger;
         this.getCallbackActions(state,type);
         const {
             onEvent,
