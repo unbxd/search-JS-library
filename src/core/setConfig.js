@@ -15,9 +15,7 @@ const setConfig = function(options = {}, props = {}) {
         this.options.facetDepth = (facet.facetDepth) ? facet.facetDepth : options.facet.facetDepth;
         this.options.applyMultipleFilters = (typeof(facet.applyMultipleFilters) === "boolean") ? facet.applyMultipleFilters : options.facet.applyMultipleFilters;
     }
-    
     this.setPageSize(this.state.pageSize || this.options.pagesize.pageSize)
-
     if(products) {
         this.options.productAttributes = (products.productAttributes) ? products.productAttributes : options.products.productAttributes;
         this.options.productType = (products.productType) ? products.productType : options.products.productType;

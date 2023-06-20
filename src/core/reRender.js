@@ -43,10 +43,7 @@ const reRender = function () {
         paginationWrappers,
         breadcrumbWrapper
     } = this;
-    const {
-        noResultLoaded,
-        isInfiniteStarted
-    } = this.viewState;
+    
     if (results && results.numberOfProducts === 0) {
         let redirect = this.state.responseObj.redirect || {};
         if (Object.keys(redirect).length) {
@@ -62,6 +59,7 @@ const reRender = function () {
         onEvent(this, afterNoResultRender);
     } else {
         this.renderProducts();
+        
     }
     this.renderFacets();
     this.renderSelectedFacets();
@@ -71,17 +69,7 @@ const reRender = function () {
     }
     this.renderPageSize();
     this.renderSort();
-    if (pagination.type !== "INFINITE_SCROLL") {
-        paginationWrappers.forEach((pagination) => {
-            pagination.innerHTML = this.renderPagination();
-        });
-    } else {
-        if (paginationWrappers) {
-            paginationWrappers.forEach((pagination) => {
-                pagination.innerHTML = ``;
-            });
-        }
-    }
+
     if (breadcrumb.enabled) {
         breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
     }
@@ -94,17 +82,11 @@ const reRender = function () {
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
     }
 
-    const autoScrollParams = this.getAutoScrollParams();
-    if (pagination.type === 'INFINITE_SCROLL') {
-        if (!this.productContainerHeight) {
-            this.productContainerHeight = pagination.infiniteScrollTriggerEl.clientHeight;
-            if (autoScrollParams.get('start') != null) {
-                this.initialPage = (parseInt(autoScrollParams.get('start')) / parseInt(autoScrollParams.get('rows')) + 1);
-            }
-        }
-
-
-    }
+    if (pagination.type !== "INFINITE_SCROLL") {
+        paginationWrappers.forEach((pagination) => {
+            pagination.innerHTML = this.renderPagination();
+        });
+    } 
 
     onEvent(this, afterRender);
 

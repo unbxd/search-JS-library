@@ -53,4 +53,4 @@ If you need assistance or are looking for technical help, please search this doc
 
 
 # Stay up to date
-Please refer to the [changelog]([/docs/CHANGELOG.md](https://unbxd.github.io/search-JS-library/docs/CHANGELOG.html)) to stay informed about the most recent releases and bug fixes, and to track the history of changes.
+Please refer to the [changelog](https://unbxd.github.io/search-JS-library/docs/CHANGELOG.html) to stay informed about the most recent releases and bug fixes, and to track the history of changes.
