@@ -4,6 +4,7 @@ import unxSelectors from '../common/constants/selectors';
 import reRender from './reRender';
 import bindEvents from './bindEvents';
 import validateConfigs from './validateConfigs';
+import { getKeyByValue } from '../common/utils';
 
 const initialize = function() {
     this.validateConfigs = validateConfigs.bind(this);
@@ -23,10 +24,12 @@ const initialize = function() {
         defaultViewType,
         enabled
     } = this.options.productView;
-    if(ln > 0){
+    if(ln > 0){     
         const {
-            viewType
+            [this.options.url.pageViewUrl.pageViewKeyReplacer]: type
         } = urlParams;
+
+        const viewType =  getKeyByValue(this.options.url.pageViewUrl.pageViewValueReplacer, type);
         if(viewType) {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;
