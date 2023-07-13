@@ -133,40 +133,40 @@ const options = {
     },
     
     url: {
-        // enableFriendlyUrl: true,
         pageViewUrl: {
-            showPageViewType: true,
-            customUrl: true,
-            pageViewKeyReplacer: "view",
+            showInUrl: true, // show in url
+            customize: false,// customize
+            pageViewKeyReplacer: "viewType",
             pageViewValueReplacer: {
                 "GRID": "GRID",
                 "LIST": "LIST"
-            },
+            }
         },
         sortUrl: {
-            showSort : true,
-            customUrl: true,
-            keyReplacer: "sortBy",
-            valueReplacer: {},
+            showInUrl : true,
+            customize: false,
+            keyReplacer: "sort", 
+            valueReplacer: {} //{
+                            // "price desc": "pd",
+                            // "price asc": "pa"
+                            // }
         },
         pageSizeUrl: {
-            showPageSizeUrl: true,
-            customUrl: true,
-            pageSizeKeyReplacer: "rowst"
+            showInUrl: true,
+            customize: false,
+            pageSizeKeyReplacer: "rows"
         },
         pageNoUrl: {
-            showPageNoUrl : true,
-            customUrl: true,
-            usePageNo: true,
-            keyReplacer: "page"
+            showInUrl : false,
+            customize: true
         },
         facetsUrl: {
-            showFacetsUrl: false,
-            customUrl: true,
-            filterReplacer: "filterss",
-            keyValueSeparator: ":",
-            valueSeparator: ",",
-            whiteSpaceSeparatorInValue: "-"
+            showInUrl: true,
+            customize: false,
+            // filterReplacer: "filterss",
+            // keyValueSeparator: ":",
+            // valueSeparator: ",",
+            // whiteSpaceSeparatorInValue: "-"
         }
         
     },

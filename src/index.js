@@ -17,7 +17,7 @@ import setConfig from './core/setConfig';
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
-        this.viewState = {
+    this.viewState = {
             productViewType: this.state.productViewType || options.productView.defaultViewType,
             isInfiniteStarted:false,
             lastAction:'',
@@ -42,7 +42,6 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.onEvent(this, 'initialised');
     }
     callBack(state,type) {
-        debugger;
         this.getCallbackActions(state,type);
         const {
             onEvent,

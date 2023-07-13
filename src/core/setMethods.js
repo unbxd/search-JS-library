@@ -1,7 +1,6 @@
 import renderBannerUI from '../modules/banners/renderBannerUI';
 import setFacets from '../modules/facets/setFacetMethods';
 import setProductsMethods from '../modules/products/setProductsMethods';
-import setProductsMethods from '../modules/products/setProductsMethods';
 import setSearch from '../modules/searchResults/setSearch';
 import setProductViewType from '../modules/productViewType/setProductViewType';
 import setPagination from '../modules/pagination/setPagination';
