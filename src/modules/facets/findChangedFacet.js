@@ -1,5 +1,4 @@
 const findChangedFacet = function(e) {
-    debugger;
     const elem = e.target;
     this.viewState.lastDidYouMean = "";
     const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
