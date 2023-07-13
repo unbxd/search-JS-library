@@ -134,7 +134,7 @@ const options = {
     
     url: {
         pageViewUrl: {
-            showInUrl: true, // show in url
+            addToUrl: true, // show in url
             customize: false,// customize
             pageViewKeyReplacer: "viewType",
             pageViewValueReplacer: {
@@ -143,7 +143,7 @@ const options = {
             }
         },
         sortUrl: {
-            showInUrl : true,
+            addToUrl : true,
             customize: false,
             keyReplacer: "sort", 
             valueReplacer: {} //{
@@ -152,16 +152,17 @@ const options = {
                             // }
         },
         pageSizeUrl: {
-            showInUrl: true,
+            addToUrl: true,
             customize: false,
             pageSizeKeyReplacer: "rows"
         },
         pageNoUrl: {
-            showInUrl : false,
-            customize: true
+            addToUrl : false,
+            customize: true,
+            usepageNumber: true, //false = index
         },
         facetsUrl: {
-            showInUrl: true,
+            addToUrl: true,
             customize: false,
             // filterReplacer: "filterss",
             // keyValueSeparator: ":",
