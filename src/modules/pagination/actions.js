@@ -25,7 +25,7 @@ function renderNewResults(action, currentPage) {
         } = pageInfo;
 
         let currentUrlPage = this.getCurrentUrlPage();
-                        let productsPerPage = this.getProductsPerPage();
+        let productsPerPage = this.getProductsPerPage();
 
         if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
             if (action === this.actions.next) {

@@ -29,7 +29,7 @@ const setConfig = function(options = {}, props = {}) {
     if(productView) {
         this.viewState.productViewType = (productView.defaultViewType) ? productView.defaultViewType: options.productView.defaultViewType;
         this.options.productView.productViewType = this.viewState.productViewType;
-        this.state.productViewType = this.options.productView.productViewType;
+        this.state.productViewType = this.viewState.productViewType;;
     }
     
 }

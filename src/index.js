@@ -17,8 +17,8 @@ import setConfig from './core/setConfig';
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
-        this.viewState = {
-            productViewType: options.productView.defaultViewType,
+    this.viewState = {
+            productViewType: this.state.productViewType || options.productView.defaultViewType,
             isInfiniteStarted:false,
             lastAction:'',
             selectedRange:{},

@@ -23,6 +23,7 @@ function onPageViewTypeClick(e) {
             "viewType":viewAction
         });
         this.state.productViewType = this.viewState.productViewType;
+        this.state.productViewType = this.viewState.productViewType;
         this.state.isBack = false;
         this.viewState.lastAction = "viewType";
         this.setUrl(false)

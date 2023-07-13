@@ -394,8 +394,8 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
+    apiKey: "b1b5f033416fbf18f301aee3dab41934",
     updateUrls: true,
     hashMode: true,
     searchBoxEl: document.getElementById("unbxdInput"),
@@ -571,16 +571,70 @@ window.unbxdSearch = new UnbxdSearch({
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
+    url: {
+        // updateUrls,
+        //hashMode
+        // allowExternalParamsInUrl
+        // searchQueryParam,
+        // browserQueryparam,
+        
+       pageViewUrl: { //pageview
+            addToUrl: false, // show in url/addToUrl
+            customize: false, //customize
+            pageViewKeyReplacer: "viewTT",
+            pageViewValueReplacer : {
+                "GRID": "GRI",
+                "LIST": "LIS"
+            }
+       },
+       sortUrl: {
+           addToUrl: false,
+           customize: false,
+           keyReplacer: "sortBy",
+           valueReplacer: {
+               "price desc": "pd",
+               "price asc": "pa"
+           }
+       },
+        pageSizeUrl: {
+            addToUrl: false,
+            customize: false,
+            // pageSizeKeyReplacer: "sss"
+        },
+        facetsUrl: {
+            addToUrl: true,
+            customize:true,
+            filterReplacer: "filtersssssss",  // filter prefix
+            valuesSeparator: ",", 
+            keyAndValueSeparator: "::", 
+            keysReplacer: { //key replace
+                "manufacturer_uFilter": "manuFilter"
+            },
+            valueReplacer: {
+                "manufacturer_uFilter": {
+                    "Eversleep": "EV",
+                    "Comfort Sleep": "CS"
+                },
+                "rmsColourfin_uFilter":{
+                    "BLACK": "black",
+                    "BLUE": "blue",
+                    "BRASS": "brass"
+                }
+            },
+            // categoryfilterReplacer: "category-handle",
+            showFilterStr: true //add filter prefix
+        }
+    },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
     },
     pagesize: {
-        enabled: false,
+        enabled: true,
         el: document.getElementById("changeNoOfProducts")
     },
 
     sort: {
-        enabled: false,
+        enabled: true,
         el: document.getElementById("sortWrapper"),
         options: [ {
             value: "price desc",
