@@ -397,7 +397,7 @@ window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-betta-pre-prod35741675334517",
     apiKey: "b1b5f033416fbf18f301aee3dab41934",
     updateUrls: true,
-    hashMode: true,
+    hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
@@ -443,7 +443,7 @@ window.unbxdSearch = new UnbxdSearch({
         onProductClick: function (product, e) {
             localStorage.setItem('unx_product_clicked', product.uniqueId);
             window.location.href = 'https://www.google.com';
-    }
+        }
     },
     spellCheck: {
         enabled: true,
@@ -461,7 +461,7 @@ window.unbxdSearch = new UnbxdSearch({
         facetsEl: document.getElementById("facetsWrapper"),
         selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         selectedFacetClass: "UNX-selected-facet-btn",
-        facetTemplate: function(facetInfo, facets, isExpanded,facetSearchTxt, facet){
+        facetTemplate: function (facetInfo, facets, isExpanded, facetSearchTxt, facet) {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const params = Object.fromEntries(urlSearchParams.entries());
             var name = facetInfo.displayName;
@@ -469,74 +469,74 @@ window.unbxdSearch = new UnbxdSearch({
             // var isSelected = (facetInfo.isSelected) ? 'is-expanded' : '';
             var searchStr = window.location.search || '';
             var isSelected = searchStr.includes(facetInfo.facetName) ? 'is-expanded' : '';
-            
-              return[`<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
+
+            return [ `<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
                     <span aria-label="Filter: ${filterField}" role="text" class="facets__filters-label">${name}</span>
                      <ul data-search-facet-container="" class="facets__filters-values facets__filters-values--size list-reset js-filter-values UNX_facet_open ${isSelected}">
                       ${facets}
                     </ul>
                     </div>                 
                     `].join('');
-                  },
-        facetItemTemplate : function(facet, value, facetSearchTxt){
-              const {
+        },
+        facetItemTemplate: function (facet, value, facetSearchTxt) {
+            const {
                 facetName,
                 isSelected,
                 multiLevelFacetSelectorClass,
                 displayName
-                } = facet;
-              const {
+            } = facet;
+            const {
                 name,
                 count,
                 dataId
-                } = value;
-              let {
+            } = value;
+            let {
                 facetClass,
                 selectedFacetClass
-                } = this.options.facet;
-              const {
+            } = this.options.facet;
+            const {
                 UNX_uFilter
-                  } = this.testIds;
-  
-               let action =  "changeFacet";
-                      let selectedFacet = 'disable';
-                      let liCss = '';
-                      let hightlighted = '';
-                      if(isSelected) {
-                          selectedFacet = 'checked';
-                          hightlighted = 'highlight';
-                          facetClass += ` ${selectedFacetClass} `
-                          action = "deleteFacetValue";
-                          liCss = (isSelected) ? 'selected' : '';
-                      }
-            return [`<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
+            } = this.testIds;
+
+            let action = "changeFacet";
+            let selectedFacet = 'disable';
+            let liCss = '';
+            let hightlighted = '';
+            if (isSelected) {
+                selectedFacet = 'checked';
+                hightlighted = 'highlight';
+                facetClass += ` ${selectedFacetClass} `
+                action = "deleteFacetValue";
+                liCss = (isSelected) ? 'selected' : '';
+            }
+            return [ `<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
                 <label data-search-facet-label="${name}" data-id="${dataId}" class="facet-checkbox facet-checkbox-${displayName} UNX-change-facet ${facetClass} " data-facet-action="${action}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-handler-init="true">
                   <input data-search-facet-input="" ${selectedFacet} class="js-filter-checkbox" type="checkbox" value="${name}">
                 <span class="${hightlighted}">${name} (${count})</span>
                 </label>
-                </li>`].join(''); 
-              },
-        selectedFacetTemplate: function(selections, facet, selectedFacetsConfig) {
-          const {
-              clearAllText,
-              clearFacetsSelectorClass
-          } = facet;
-          const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
+                </li>`].join('');
+        },
+        selectedFacetTemplate: function (selections, facet, selectedFacetsConfig) {
+            const {
+                clearAllText,
+                clearFacetsSelectorClass
+            } = facet;
+            const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
 
-          if(selections.length > 0) {
-            return [`<div class="collection__active-filters UNX-facets-selections">`,
-                      `${selections}`,
-                    `</div>`].join('');
-          } else {
-              return ``;
-          }
-      },
-        selectedFacetItemTemplate:function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig){
+            if (selections.length > 0) {
+                return [ `<div class="collection__active-filters UNX-facets-selections">`,
+                    `${selections}`,
+                    `</div>` ].join('');
+            } else {
+                return ``;
+            }
+        },
+        selectedFacetItemTemplate: function (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
             const {
                 facetName,
                 facetType
             } = selectedFacet;
-            const  {
+            const {
                 name,
                 count,
                 dataId
@@ -550,23 +550,23 @@ window.unbxdSearch = new UnbxdSearch({
                 UNX_uFilter
             } = this.testIds;
             let action = "deleteSelectedFacetValue";
-          
+
             const css = ` ${facetClass} ${selectedFacetClass} `;
-            
-            return [`<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
+
+            return [ `<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
                      data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" data-handler-init="true">${name}
                      <i class="collection__active-filters-icon icon icon--close-blue" 
                      data-facet-action="${action}" data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" >
                      </i> </a>`].join('');
         },
-      },
+    },
 
-    
+
     pagination: {
         // type: 'CLICK_N_SCROLL',
         type: 'INFINITE_SCROLL',
         // el: document.querySelector('.unxPagination'),
-        usePageAndCount: true,
+        usePageAndCount: false,
         heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
@@ -577,36 +577,40 @@ window.unbxdSearch = new UnbxdSearch({
         // allowExternalParamsInUrl
         // searchQueryParam,
         // browserQueryparam,
-        
-       pageViewUrl: { //pageview
+
+        pageViewUrl: { //pageview
             addToUrl: false, // show in url/addToUrl
             customize: false, //customize
             pageViewKeyReplacer: "viewTT",
-            pageViewValueReplacer : {
+            pageViewValueReplacer: {
                 "GRID": "GRI",
                 "LIST": "LIS"
             }
-       },
-       sortUrl: {
-           addToUrl: false,
-           customize: false,
-           keyReplacer: "sortBy",
-           valueReplacer: {
-               "price desc": "pd",
-               "price asc": "pa"
-           }
-       },
-        pageSizeUrl: {
+        },
+        sortUrl: {
             addToUrl: false,
+            customize: false,
+            keyReplacer: "sortBy",
+            valueReplacer: {
+                "price desc": "pd",
+                "price asc": "pa"
+            }
+        },
+        pageNoUrl: {
+            addToUrl: true,
+            customize: true,
+        },
+        pageSizeUrl: {
+            addToUrl: true,
             customize: false,
             // pageSizeKeyReplacer: "sss"
         },
         facetsUrl: {
             addToUrl: true,
-            customize:true,
+            customize: true,
             filterReplacer: "filtersssssss",  // filter prefix
-            valuesSeparator: ",", 
-            keyAndValueSeparator: "::", 
+            valuesSeparator: ",",
+            keyAndValueSeparator: "::",
             keysReplacer: { //key replace
                 "manufacturer_uFilter": "manuFilter"
             },
@@ -615,7 +619,7 @@ window.unbxdSearch = new UnbxdSearch({
                     "Eversleep": "EV",
                     "Comfort Sleep": "CS"
                 },
-                "rmsColourfin_uFilter":{
+                "rmsColourfin_uFilter": {
                     "BLACK": "black",
                     "BLUE": "blue",
                     "BRASS": "brass"

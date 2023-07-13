@@ -75,8 +75,8 @@ const options = {
     noResults: {
         template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },
-    onEvent: (state,type) => {
-       
+    onEvent: (state, type) => {
+
     },
     startPageNo: 0,
     productView: {
@@ -131,7 +131,7 @@ const options = {
         },
         events: {}
     },
-    
+
     url: {
         pageViewUrl: {
             addToUrl: true, // show in url
@@ -143,13 +143,13 @@ const options = {
             }
         },
         sortUrl: {
-            addToUrl : true,
+            addToUrl: true,
             customize: false,
-            keyReplacer: "sort", 
+            keyReplacer: "sort",
             valueReplacer: {} //{
-                            // "price desc": "pd",
-                            // "price asc": "pa"
-                            // }
+            // "price desc": "pd",
+            // "price asc": "pa"
+            // }
         },
         pageSizeUrl: {
             addToUrl: true,
@@ -157,9 +157,10 @@ const options = {
             pageSizeKeyReplacer: "rows"
         },
         pageNoUrl: {
-            addToUrl : false,
+            addToUrl: false,
             customize: true,
-            usepageNumber: true, //false = index
+            keyReplacer: 'start',
+            usePageNo: false // page or start
         },
         facetsUrl: {
             addToUrl: true,
@@ -169,7 +170,7 @@ const options = {
             // valueSeparator: ",",
             // whiteSpaceSeparatorInValue: "-"
         }
-        
+
     },
 
     sort: {
@@ -318,24 +319,24 @@ const options = {
     actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
     },
-    onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
-        if(redirect) {
+    onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
+        if (redirect) {
             const {
                 value,
                 type
             } = redirect;
-            if(type === "url") {
+            if (type === "url") {
                 /** If opening in same tab */
-                if(history.state && history.state.replace) {
-                    history.replaceState(null,"",urlBeforeRedirect);
+                if (history.state && history.state.replace) {
+                    history.replaceState(null, "", urlBeforeRedirect);
                 }
-                
-                location.href =  value;  
+
+                location.href = value;
 
                 /** If opening redirect in new tab (rare scenario), 
                  * then browser back + history push on search should be handled by client 
                  * (especially switching betsween category to search page scenarios)
-                 * Note: This is not recommended */                                                       
+                 * Note: This is not recommended */
             }
             return false;
         }
@@ -343,14 +344,14 @@ const options = {
     onBackFromRedirect: (hashMode) => {
         let urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
         let backFromRedirect = urlSearchParam.get("redirected");
-        if(backFromRedirect) {
+        if (backFromRedirect) {
             history.go(-1);
         }
     },
-    onNoUnbxdKeyRouting:() => {
+    onNoUnbxdKeyRouting: () => {
         history.go();
     },
-    setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
+    setRoutingStrategies: (locationParam, newUrl, productType, isUnbxdKey, replace) => {
         if (locationParam === newUrl) {
             return;
         } else if (productType === "CATEGORY") {
