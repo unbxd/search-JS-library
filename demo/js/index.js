@@ -579,7 +579,7 @@ window.unbxdSearch = new UnbxdSearch({
         // browserQueryparam,
         
        pageViewUrl: { //pageview
-            showInUrl: false, // show in url/addToUrl
+            addToUrl: false, // show in url/addToUrl
             customize: false, //customize
             pageViewKeyReplacer: "viewTT",
             pageViewValueReplacer : {
@@ -588,7 +588,7 @@ window.unbxdSearch = new UnbxdSearch({
             }
        },
        sortUrl: {
-           showInUrl: false,
+           addToUrl: false,
            customize: false,
            keyReplacer: "sortBy",
            valueReplacer: {
@@ -597,12 +597,12 @@ window.unbxdSearch = new UnbxdSearch({
            }
        },
         pageSizeUrl: {
-            showInUrl: false,
+            addToUrl: false,
             customize: false,
             // pageSizeKeyReplacer: "sss"
         },
         facetsUrl: {
-            showInUrl: true,
+            addToUrl: true,
             customize:true,
             filterReplacer: "filtersssssss",  // filter prefix
             valuesSeparator: ",", 
