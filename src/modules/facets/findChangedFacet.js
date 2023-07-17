@@ -4,7 +4,7 @@ const findChangedFacet = function(e) {
     const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
 
     const dataSet = selected.dataset;
-
+    debugger
     const {
         facetName,
         facetAction,

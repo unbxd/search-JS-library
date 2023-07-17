@@ -395,7 +395,11 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-betta-pre-prod35741675334517",
+    // c85ec9e6c53e6522f2d0f88c4a214717/ 
     apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    // siteKey: "hsn-com700091495001458",
+    // // c85ec9e6c53e6522f2d0f88c4a214717/ 
+    // apiKey: "c85ec9e6c53e6522f2d0f88c4a214717",
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
@@ -567,7 +571,7 @@ window.unbxdSearch = new UnbxdSearch({
         type: 'INFINITE_SCROLL',
         // el: document.querySelector('.unxPagination'),
         usePageAndCount: false,
-        heightDiffToTriggerNextPage: 100,
+        heightDiffToTriggerNextPage: 4000,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
@@ -598,7 +602,7 @@ window.unbxdSearch = new UnbxdSearch({
         },
         pageNoUrl: {
             addToUrl: true,
-            customize: true,
+            customize: false,
         },
         pageSizeUrl: {
             addToUrl: true,
@@ -626,7 +630,7 @@ window.unbxdSearch = new UnbxdSearch({
                 }
             },
             // categoryfilterReplacer: "category-handle",
-            showFilterStr: true //add filter prefix
+            showFilterStr: false //add filter prefix
         }
     },
     breadcrumb: {
@@ -675,3 +679,11 @@ window.unbxdSearch = new UnbxdSearch({
 
 window.unbxdSearch.getResults('*')
 
+
+// window.unbxdSearch.updateConfig({
+//     hashMode:true,
+//     productView: {
+//         el: document.getElementById("productViewTypeContainer"),
+//         defaultViewType: "LIST"
+//     },
+// })
