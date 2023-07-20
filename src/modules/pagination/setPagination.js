@@ -7,32 +7,117 @@ import {
 } from './actions';
 
 
-const getProductsPerPage = function(){
-    const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-    let productsPerPage;
-    if (this.options.pagination.usePageAndCount) {
-        productsPerPage = Number(urlParams.get('count'));
+const getProductsPerPage = function () {
+    let {
+        url: {
+            pageSizeUrl: {
+                keyReplacer = "",
+                addToUrl,
+                customize
+            } = {},
+            pageNoUrl: {
+                usePageNo = false,
+            } = {}
+        } = {},
+        pagesize: {
+            pageSize
+        } = {}
+    } = this.options;
+
+
+    if (addToUrl) {
+        const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+        // let productsPerPage;
+
+
+        // if (!customize) {
+        //     keyReplacer = this.options.url.pageSizeUrl.keyReplacer
+        // }
+
+        return Number(urlParams.get(customize ? keyReplacer : usePageNo ? "count" : "rows"))
     } else {
-        productsPerPage = Number(urlParams.get('rows'));
+        return this.state.pageSize || pageSize;
     }
-    return productsPerPage;
+    // return addToUrl ? Number(urlParams.get(keyReplacer)) : this.viewState[ 'count' ]
+
+    // if (this.options.pagination.usePageAndCount) {
+    //     productsPerPage = Number(urlParams.get('count'));
+    // } else {
+    //     productsPerPage = Number(urlParams.get('rows'));
+    // }
+    // return productsPerPage;
 }
 
-const getCurrentUrlPage = function(){
+const getCurrentUrlPage = function () {
     const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
     let currentUrlPage;
-    if (this.options.pagination.usePageAndCount) {
-        currentUrlPage = Number(urlParams.get('page')) || 1;
+    let {
+        url: {
+            pageNoUrl: {
+                customize = false,
+                usePageNo = false,
+                keyReplacer = "",
+                addToUrl
+            } = {}
+        } = {}
+    } = this.options;
+
+    // if (!customize) {
+    //     keyReplacer = this.options.url.pageNoUrl.keyReplacer
+    // }
+
+    // if (usePageNo) {
+    //     return addToUrl ? Number(urlParams.get(customize ? keyReplacer : "page") || 1 ) : (this.viewState[ 'page' ] || 1);
+    // } else {
+    //     return addToUrl ? (Number((urlParams.get(customize ? keyReplacer : "start") || 0) / getProductsPerPage.call(this)) + 1) : (this.viewState[ 'start' ] || 0);
+    // }
+
+    if (addToUrl) {
+        return Number(urlParams.get(customize ? keyReplacer : usePageNo ? "page" : "start"))
+    } else if (usePageNo) {
+        return this.viewState[ 'page' ] || 1;
     } else {
-        currentUrlPage = Number(urlParams.get('start') / urlParams.get('rows')) + 1;
+        return Number(((this.viewState[ 'start' ] || 0) / this.state.pageSize) + 1);
     }
-    return currentUrlPage;
+
+    // if (this.options.pagination.usePageAndCount) {
+    //     currentUrlPage = Number(urlParams.get('page')) || 1;
+    // } else {
+    //     currentUrlPage = Number(urlParams.get('start') / getProductsPerPage.call(this)) + 1;
+    // }
+    // return currentUrlPage;
 }
 
-const replaceParamInUrl = function (key, value) {
-    const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-    urlParams.set(key, value);
-    history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+const setPageNoParam = function (value) {
+    const {
+        url: {
+            pageNoUrl: {
+                customize = false,
+                usePageNo = false,
+                keyReplacer = "",
+                addToUrl
+            } = {},
+            // pageSizeUrl: {
+            //     customize,
+            //     addToUrl
+            // } = {}
+        } = {}
+    } = this.options;
+
+    if (addToUrl) {
+        const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+        urlParams.set((customize ? keyReplacer : usePageNo ? 'page' : 'start'), value);
+        history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+    } else if (usePageNo) {
+        this.viewState[ 'page' ] = value;
+    } else {
+        this.viewState[ 'start' ] = value;
+    }
+
+
+    // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+    // urlParams.set(key, value);
+    // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
 }
 
 const setPagination = (prototype) => {
@@ -43,7 +128,7 @@ const setPagination = (prototype) => {
         setUpInfiniteScroll,
         getProductsPerPage,
         getCurrentUrlPage,
-        replaceParamInUrl
+        setPageNoParam
     })
 }
 
@@ -55,5 +140,5 @@ export {
     setUpInfiniteScroll,
     getProductsPerPage,
     getCurrentUrlPage,
-    replaceParamInUrl
+    setPageNoParam
 };

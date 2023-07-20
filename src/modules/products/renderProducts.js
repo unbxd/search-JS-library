@@ -15,6 +15,8 @@ export default function renderProducts(){
             lastAction
         } = this.viewState;
 
+        
+
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" : "UNX-grid-block";
         searchResultsWrapper.classList.remove("UNX-list-block");
         searchResultsWrapper.classList.remove("UNX-grid-block");
@@ -33,23 +35,32 @@ export default function renderProducts(){
                 let currentUrlPage = this.getCurrentUrlPage();
                 let productsPerPage = this.getProductsPerPage();
 
+                const {
+                    url: {
+                        pageNoUrl: {
+                            // customize = false,
+                            usePageNo = false,
+                        } = {},
+                    } = {}
+                } = this.options;
+
                     
                 if (lastAction === "prev_page_loaded") {
                    
                     searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
                     document.querySelector(`.product-item[data-prank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
-                    if (this.options.pagination.usePageAndCount) {
-                        this.replaceParamInUrl('page', currentUrlPage + 1);
+                    if (usePageNo) {
+                        this.setPageNoParam(currentUrlPage + 1);
                     } else {
-                        this.replaceParamInUrl('start', (currentUrlPage ) * productsPerPage);
+                        this.setPageNoParam((currentUrlPage ) * productsPerPage);
                     }
                    
                 } else {
                     searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
-                    if (this.options.pagination.usePageAndCount) {
-                        this.replaceParamInUrl('page', currentUrlPage - 1);
+                    if (usePageNo) {
+                        this.setPageNoParam( currentUrlPage - 1);
                     } else {
-                        this.replaceParamInUrl('start', (currentUrlPage - 2) * productsPerPage);
+                        this.setPageNoParam( (currentUrlPage - 2) * productsPerPage);
                     }
                 }
             }

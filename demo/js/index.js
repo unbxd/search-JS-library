@@ -571,6 +571,19 @@ window.unbxdSearch = new UnbxdSearch({
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
+    // seoV1:{
+    //     keyReplacer: "",
+    //     valueReplacer: "",
+    //     sorting
+    // },
+    // seo:{
+    //     algorithm: "v1",
+    //     args: {
+    //         keyReplacer: "",
+    //         valueReplacer: "",
+    //     }
+        
+    // },
     url: {
         // updateUrls,
         //hashMode
@@ -579,7 +592,7 @@ window.unbxdSearch = new UnbxdSearch({
         // browserQueryparam,
 
         pageViewUrl: { //pageview
-            addToUrl: false, // show in url/addToUrl
+            addToUrl: true, // show in url/addToUrl
             customize: false, //customize
             pageViewKeyReplacer: "viewTT",
             pageViewValueReplacer: {
@@ -588,9 +601,9 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         sortUrl: {
-            addToUrl: false,
+            addToUrl: true,
             customize: false,
-            keyReplacer: "sortBy",
+            keyReplacer: "sortByyyyyy",
             valueReplacer: {
                 "price desc": "pd",
                 "price asc": "pa"
@@ -599,24 +612,28 @@ window.unbxdSearch = new UnbxdSearch({
         pageNoUrl: {
             addToUrl: true,
             customize: true,
+            keyReplacer: 'startttt',
+            usePageNo: false // page or start
         },
         pageSizeUrl: {
-            addToUrl: true,
+            addToUrl: false,
             customize: false,
-            // pageSizeKeyReplacer: "sss"
+            keyReplacer: "rowsssssssss",
         },
         facetsUrl: {
             addToUrl: true,
-            customize: true,
+            customize: false,
+            showFilterStr: true,//add filter prefix,
             filterReplacer: "filtersssssss",  // filter prefix
             valuesSeparator: ",",
             keyAndValueSeparator: "::",
+            algorithm: "FEED",
             keysReplacer: { //key replace
-                "manufacturer_uFilter": "manuFilter"
+                "manufacturer_uFilter": "manu"
             },
             valueReplacer: {
                 "manufacturer_uFilter": {
-                    "Eversleep": "EV",
+                    "0-200": "<200",
                     "Comfort Sleep": "CS"
                 },
                 "rmsColourfin_uFilter": {
@@ -626,7 +643,7 @@ window.unbxdSearch = new UnbxdSearch({
                 }
             },
             // categoryfilterReplacer: "category-handle",
-            showFilterStr: true //add filter prefix
+
         }
     },
     breadcrumb: {
@@ -672,6 +689,9 @@ window.unbxdSearch = new UnbxdSearch({
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
 });
+
+
+
 
 window.unbxdSearch.getResults('*')
 

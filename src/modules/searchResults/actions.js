@@ -34,12 +34,21 @@ const onProductItemClick = function (e) {
         product = this.getProductByPropValue(attributesMap.unxId, dataset.id);
     }
     if (product && elem.dataset.prank) {
+        const {
+            url: {
+                pageNoUrl: {
+                    // customize = false,
+                    usePageNo = false,
+                } = {},
+            } = {}
+        } = this.options;
+
         product.prank = elem.dataset.prank;
         const pageNo = Math.ceil(Number(product.prank) / Number(this.getProductsPerPage()))
-        if (this.options.pagination.usePageAndCount) {
-            this.replaceParamInUrl('page', pageNo);
+        if (usePageNo) {
+            this.setPageNoParam(pageNo);
         } else {
-            this.replaceParamInUrl('start', Number((pageNo - 1) * Number(this.getProductsPerPage())));
+            this.setPageNoParam(Number((pageNo - 1) * Number(this.getProductsPerPage())));
         }
     }
     this.options.products.onProductClick(product, e);

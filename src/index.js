@@ -1,5 +1,5 @@
-// import UnbxdSearchCore from "../../search-JS-core/src/index";
-import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+import UnbxdSearchCore from "../../search-JS-core/src/index";
+// import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
 import options from './common/options';
