@@ -2,6 +2,7 @@ const triggerNextPage = (context, next, action) => {
     if (context.options.pagination.type === "FIXED_PAGINATION") {
         context.viewState.lastAction = "pagination";
         context.setPageStart(next);
+        // context.viewState.start = next;
     }
     context.getResults("", true, action);
     context.options.onEvent(context, context.events.pageNext, {
@@ -33,6 +34,7 @@ function renderNewResults(action, currentPage) {
                     this.viewState.isInfiniteStarted = true;
                     currentUrlPage++;
                     this.setPageStart((currentUrlPage - 1) * productsPerPage)
+                    // this.viewState.start = (currentUrlPage - 1) * productsPerPage
                     this.viewState.lastAction = "next_page_loaded";
                     triggerNextPage(this, null, action);
                 }
@@ -42,6 +44,7 @@ function renderNewResults(action, currentPage) {
                     this.viewState.isInfiniteStarted = true;
                     currentUrlPage--;
                     this.setPageStart((currentUrlPage - 1) * productsPerPage)
+                    // this.viewState.start = (currentUrlPage - 1) * productsPerPage
                     this.viewState.lastAction = "prev_page_loaded";
                     triggerNextPage(this, null, action);
                 }
@@ -87,6 +90,7 @@ function renderNewResults(action, currentPage) {
         if (pageAction === 'paginate') {
             this.viewState.lastAction = "pagination";
             this.setPageStart(pageNo);
+            // this.viewState.start = pageNo;
             this.getResults();
         } else {
             this.renderNewResults(pageAction);

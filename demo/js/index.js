@@ -575,6 +575,19 @@ window.unbxdSearch = new UnbxdSearch({
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
+    // seoV1:{
+    //     keyReplacer: "",
+    //     valueReplacer: "",
+    //     sorting
+    // },
+    // seo:{
+    //     algorithm: "v1",
+    //     args: {
+    //         keyReplacer: "",
+    //         valueReplacer: "",
+    //     }
+        
+    // },
     url: {
         // updateUrls,
         //hashMode
@@ -679,6 +692,9 @@ window.unbxdSearch = new UnbxdSearch({
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
 });
+
+
+
 
 window.unbxdSearch.getResults('*')
 
