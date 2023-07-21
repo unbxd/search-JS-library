@@ -165,10 +165,8 @@ const options = {
         facetsUrl: {
             addToUrl: true,
             customize: false,
-            // filterReplacer: "filterss",
-            // keyValueSeparator: ":",
-            // valueSeparator: ",",
-            // whiteSpaceSeparatorInValue: "-"
+            showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
+            filterReplacer: "filter" //Not exposing this option for user yet.
         }
 
     },

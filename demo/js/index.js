@@ -583,7 +583,7 @@ window.unbxdSearch = new UnbxdSearch({
         // browserQueryparam,
 
         pageViewUrl: { //pageview
-            addToUrl: false, // show in url/addToUrl
+            addToUrl: true, // show in url/addToUrl
             customize: false, //customize
             pageViewKeyReplacer: "viewTT",
             pageViewValueReplacer: {
@@ -592,8 +592,8 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         sortUrl: {
-            addToUrl: false,
-            customize: false,
+            addToUrl: true,
+            customize: true,
             keyReplacer: "sortBy",
             valueReplacer: {
                 "price desc": "pd",
@@ -601,27 +601,30 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         pageNoUrl: {
-            addToUrl: true,
+            addToUrl: false,
             customize: false,
+            keyReplacer: 'starttttt',
+            usePageNo: false // p
         },
         pageSizeUrl: {
-            addToUrl: true,
+            addToUrl: false,
             customize: false,
-            // pageSizeKeyReplacer: "sss"
+            pageSizeKeyReplacer: "rowsss"
         },
         facetsUrl: {
             addToUrl: true,
             customize: true,
-            filterReplacer: "filtersssssss",  // filter prefix
-            valuesSeparator: ",",
-            keyAndValueSeparator: "::",
-            keysReplacer: { //key replace
-                "manufacturer_uFilter": "manuFilter"
+            facetValuesSeperator: ",",
+            facetKeyValueSeperator: "::",
+            facetDisplayNameMap: { //key replace
+                "manufacturer_uFilter": "manufacturer",
+                "rmsColourfin_uFilter": "color"
             },
-            valueReplacer: {
+            facetValueEncodeMap: {
                 "manufacturer_uFilter": {
                     "Eversleep": "EV",
-                    "Comfort Sleep": "CS"
+                    "Comfort Sleep": "CS",
+                    "Fisher & Paykel": "Fisher-Paykel"
                 },
                 "rmsColourfin_uFilter": {
                     "BLACK": "black",
@@ -629,8 +632,8 @@ window.unbxdSearch = new UnbxdSearch({
                     "BRASS": "brass"
                 }
             },
+            facetsOrderInUrl: [],
             // categoryfilterReplacer: "category-handle",
-            showFilterStr: false //add filter prefix
         }
     },
     breadcrumb: {
