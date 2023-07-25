@@ -75,9 +75,12 @@ const getCurrentUrlPage = function () {
     if (addToUrl) {
         return Number(urlParams.get(customize ? keyReplacer : usePageNo ? "page" : "start"))
     } else if (usePageNo) {
-        return this.viewState[ 'page' ] || 1;
+        if (!this.viewState[ 'page' ]) { this.viewState[ 'page' ] = 1; }
+        return this.viewState[ 'page' ]
+        // return this.viewState[ 'page' ] || 1;
     } else {
-        return Number(((this.viewState[ 'start' ] || 0) / this.state.pageSize) + 1);
+        if (!this.viewState[ 'start' ]) { this.viewState[ 'start' ] = 0; }
+        return Number(((this.viewState[ 'start' ]) / this.state.pageSize) + 1);
     }
 
     // if (this.options.pagination.usePageAndCount) {
@@ -94,7 +97,7 @@ const setPageNoParam = function (value) {
             pageNoUrl: {
                 customize = false,
                 usePageNo = false,
-                keyReplacer = "",
+                keyReplacer,
                 addToUrl
             } = {},
             // pageSizeUrl: {
@@ -106,7 +109,7 @@ const setPageNoParam = function (value) {
 
     if (addToUrl) {
         const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-        urlParams.set((customize ? keyReplacer : usePageNo ? 'page' : 'start'), value);
+        urlParams.set(((customize && keyReplacer) ? keyReplacer : usePageNo ? 'page' : 'start'), value);
         history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
     } else if (usePageNo) {
         this.viewState[ 'page' ] = value;

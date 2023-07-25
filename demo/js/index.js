@@ -613,13 +613,24 @@ window.unbxdSearch = new UnbxdSearch({
             addToUrl: true,
             customize: true,
             keyReplacer: 'startttt',
-            usePageNo: false // page or start
+            usePageNo: true // page or start
         },
         pageSizeUrl: {
-            addToUrl: false,
-            customize: false,
+            addToUrl: true,
+            customize: true,
             keyReplacer: "rowsssssssss",
         },
+        // pageNoUrl: {
+        //     addToUrl: true,
+        //     customize: true,
+        //     keyReplacer: 'starttttt',
+        //     usePageNo: true // p
+        // },
+        // pageSizeUrl: {
+        //     addToUrl: true,
+        //     customize: true,
+        //     pageSizeKeyReplacer: "rowsss"
+        // },
         facetsUrl: {
             addToUrl: true,
             customize: false,

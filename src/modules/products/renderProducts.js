@@ -40,6 +40,7 @@ export default function renderProducts(){
                         pageNoUrl: {
                             // customize = false,
                             usePageNo = false,
+                            
                         } = {},
                     } = {}
                 } = this.options;
