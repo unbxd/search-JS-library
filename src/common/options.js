@@ -136,8 +136,8 @@ const options = {
         pageViewUrl: {
             addToUrl: true, // show in url
             customize: false,// customize
-            pageViewKeyReplacer: "viewType",
-            pageViewValueReplacer: {
+            keyReplacer: "viewType",
+            valuesReplacer: {
                 "GRID": "GRID",
                 "LIST": "LIST"
             }
@@ -158,7 +158,7 @@ const options = {
         },
         pageNoUrl: {
             addToUrl: false,
-            customize: true,
+            customize: false,
             keyReplacer: 'start',
             usePageNo: false // page or start
         },

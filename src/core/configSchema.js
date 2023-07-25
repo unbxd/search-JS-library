@@ -628,11 +628,11 @@ export const pageViewUrlSchema = {
             required: false,
             datatype: "boolean"
         },
-        pageViewKeyReplacer: {
+        keyReplacer: {
             required: false,
             datatype: "string"
         },
-        pageViewValueReplacer: {
+        valuesReplacer: {
             required: false,
             datatype: "object",
             customValidations: (pageViewUrl)=>{
@@ -700,7 +700,7 @@ export const pageSizeUrlSchema = {
             requried: false,
             datatype: "boolean"
         },
-        pageSizeKeyReplacer: {
+        keyReplacer: {
             required: false,
             datatype: "string"
         }

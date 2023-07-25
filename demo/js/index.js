@@ -589,40 +589,34 @@ window.unbxdSearch = new UnbxdSearch({
         
     // },
     url: {
-        // updateUrls,
-        //hashMode
-        // allowExternalParamsInUrl
-        // searchQueryParam,
-        // browserQueryparam,
-
         pageViewUrl: { //pageview
             addToUrl: true, // show in url/addToUrl
-            customize: false, //customize
-            pageViewKeyReplacer: "viewTT",
-            pageViewValueReplacer: {
-                "GRID": "GRI",
+            customize: true, //customize
+            keyReplacer: "viewTT",
+            valuesReplacer: {
+                "GRID": "GRI-hermos",
                 "LIST": "LIS"
             }
         },
-        sortUrl: {
+        sortUrl: { //Checked : only the keyReplacer encoding needs to be corrected in urlSearchParamsToStr
             addToUrl: true,
             customize: true,
             keyReplacer: "sortBy",
             valueReplacer: {
-                "price desc": "pd",
-                "price asc": "pa"
+                "price desc": "p&d",
+                "price asc": "p-a"
             }
         },
         pageNoUrl: {
-            addToUrl: false,
-            customize: false,
-            keyReplacer: 'starttttt',
-            usePageNo: false // p
+            addToUrl: true,
+            customize: true,
+            keyReplacer: 'starttt', 
+            usePageNo: true // p
         },
         pageSizeUrl: {
-            addToUrl: false,
-            customize: false,
-            pageSizeKeyReplacer: "rowsss"
+            addToUrl: true,
+            customize: true, //count in url , on keeping this false.
+            keyReplacer: "rowsss"
         },
         facetsUrl: {
             addToUrl: true,
@@ -635,17 +629,18 @@ window.unbxdSearch = new UnbxdSearch({
             },
             facetValueEncodeMap: {
                 "manufacturer_uFilter": {
-                    "Eversleep": "EV",
-                    "Comfort Sleep": "CS",
+                    "Eversleep": "E &V",
+                    "Comfort Sleep": "C && S",
                     "Fisher & Paykel": "Fisher-Paykel"
                 },
                 "rmsColourfin_uFilter": {
                     "BLACK": "black",
                     "BLUE": "blue",
-                    "BRASS": "brass"
+                    "BRASS": "brass",
+                    "DARK STAINLESS": "dark-stainless"
                 }
             },
-            facetsOrderInUrl: [],
+            facetsOrderInUrl: ["rmsColourfin_uFilter", "manufacturer_uFilter"],
             // categoryfilterReplacer: "category-handle",
         }
     },

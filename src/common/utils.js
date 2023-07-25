@@ -23,5 +23,5 @@ export const isNodeList = (nodelist)=>{
 
 //Returns Key based on value
 export const getKeyByValue = (object, value) => {
-    return Object.keys(object).find(key => object[key] === value);
+    return Object.keys(object).find(key => object[key] === value) || value;
 }
