@@ -136,8 +136,8 @@ const options = {
         pageViewUrl: {
             addToUrl: true, // show in url
             customize: false,// customize
-            pageViewKeyReplacer: "viewType",
-            pageViewValueReplacer: {
+            keyReplacer: "viewType",
+            valuesReplacer: {
                 "GRID": "GRID",
                 "LIST": "LIST"
             }
@@ -158,17 +158,15 @@ const options = {
         },
         pageNoUrl: {
             addToUrl: false,
-            customize: true,
+            customize: false,
             keyReplacer: 'start',
             usePageNo: false // page or start
         },
         facetsUrl: {
             addToUrl: true,
             customize: false,
-            // filterReplacer: "filterss",
-            // keyValueSeparator: ":",
-            // valueSeparator: ",",
-            // whiteSpaceSeparatorInValue: "-"
+            showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
+            filterReplacer: "filter" //Not exposing this option for user yet.
         }
 
     },

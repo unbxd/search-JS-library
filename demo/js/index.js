@@ -395,7 +395,11 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     siteKey: "ss-unbxd-betta-pre-prod35741675334517",
+    // c85ec9e6c53e6522f2d0f88c4a214717/ 
     apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    // siteKey: "hsn-com700091495001458",
+    // // c85ec9e6c53e6522f2d0f88c4a214717/ 
+    // apiKey: "c85ec9e6c53e6522f2d0f88c4a214717",
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
@@ -567,7 +571,7 @@ window.unbxdSearch = new UnbxdSearch({
         type: 'INFINITE_SCROLL',
         // el: document.querySelector('.unxPagination'),
         usePageAndCount: false,
-        heightDiffToTriggerNextPage: 100,
+        heightDiffToTriggerNextPage: 4000,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
@@ -585,40 +589,34 @@ window.unbxdSearch = new UnbxdSearch({
         
     // },
     url: {
-        // updateUrls,
-        //hashMode
-        // allowExternalParamsInUrl
-        // searchQueryParam,
-        // browserQueryparam,
-
         pageViewUrl: { //pageview
             addToUrl: true, // show in url/addToUrl
-            customize: false, //customize
-            pageViewKeyReplacer: "viewTT",
-            pageViewValueReplacer: {
-                "GRID": "GRI",
+            customize: true, //customize
+            keyReplacer: "viewTT",
+            valuesReplacer: {
+                "GRID": "GRI-hermos",
                 "LIST": "LIS"
             }
         },
-        sortUrl: {
+        sortUrl: { //Checked : only the keyReplacer encoding needs to be corrected in urlSearchParamsToStr
             addToUrl: true,
-            customize: false,
-            keyReplacer: "sortByyyyyy",
+            customize: true,
+            keyReplacer: "sortBy",
             valueReplacer: {
-                "price desc": "pd",
-                "price asc": "pa"
+                "price desc": "p&d",
+                "price asc": "p-a"
             }
         },
         pageNoUrl: {
             addToUrl: true,
             customize: true,
-            keyReplacer: 'startttt',
-            usePageNo: true // page or start
+            keyReplacer: 'starttt', 
+            usePageNo: true // p
         },
         pageSizeUrl: {
             addToUrl: true,
-            customize: true,
-            keyReplacer: "rowsssssssss",
+            customize: true, //count in url , on keeping this false.
+            keyReplacer: "rowsss"
         },
         // pageNoUrl: {
         //     addToUrl: true,
@@ -633,28 +631,28 @@ window.unbxdSearch = new UnbxdSearch({
         // },
         facetsUrl: {
             addToUrl: true,
-            customize: false,
-            showFilterStr: true,//add filter prefix,
-            filterReplacer: "filtersssssss",  // filter prefix
-            valuesSeparator: ",",
-            keyAndValueSeparator: "::",
-            algorithm: "FEED",
-            keysReplacer: { //key replace
-                "manufacturer_uFilter": "manu"
+            customize: true,
+            facetValuesSeperator: ",",
+            facetKeyValueSeperator: "::",
+            facetDisplayNameMap: { //key replace
+                "manufacturer_uFilter": "manufacturer",
+                "rmsColourfin_uFilter": "color"
             },
-            valueReplacer: {
+            facetValueEncodeMap: {
                 "manufacturer_uFilter": {
-                    "0-200": "<200",
-                    "Comfort Sleep": "CS"
+                    "Eversleep": "E &V",
+                    "Comfort Sleep": "C && S",
+                    "Fisher & Paykel": "Fisher-Paykel"
                 },
                 "rmsColourfin_uFilter": {
                     "BLACK": "black",
                     "BLUE": "blue",
-                    "BRASS": "brass"
+                    "BRASS": "brass",
+                    "DARK STAINLESS": "dark-stainless"
                 }
             },
+            facetsOrderInUrl: ["rmsColourfin_uFilter", "manufacturer_uFilter"],
             // categoryfilterReplacer: "category-handle",
-
         }
     },
     breadcrumb: {
@@ -706,3 +704,11 @@ window.unbxdSearch = new UnbxdSearch({
 
 window.unbxdSearch.getResults('*')
 
+
+// window.unbxdSearch.updateConfig({
+//     hashMode:true,
+//     productView: {
+//         el: document.getElementById("productViewTypeContainer"),
+//         defaultViewType: "LIST"
+//     },
+// })

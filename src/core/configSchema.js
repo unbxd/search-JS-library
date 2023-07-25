@@ -559,6 +559,154 @@ export const facetsSchema = {
     }
 }
 
+export const facetsUrlSchema = {
+    moduleName: "facetsUrl",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        customize: {
+            required: false,
+            datatype: "boolean"
+        },
+        facetValuesSeperator:{
+            required: false,
+            datatype: "string",
+            customValidations: (facetsUrl)=>{
+                const notAllowedFacetValuesSeperators = ["&"];
+                if (notAllowedFacetValuesSeperators.includes(facetsUrl.facetValuesSeperator)){
+                    console.error(`SDK Config error in facetsUrl: facetValuesSeperator should not be following value ${notAllowedFacetValuesSeperators}`);
+                }
+            }
+        },
+        facetKeyValueSeperator:{
+            required: false,
+            datatype: "string",
+            customValidations: (facetsUrl)=>{
+                const allowedFacetKeyValueSeperator = ["::"];
+                if (!allowedFacetKeyValueSeperator.includes(facetsUrl.facetKeyValueSeperator)) {
+                    console.error(`SDK Config error in facetsUrl: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
+                }
+            }
+        },
+        facetDisplayNameMap: {
+            required: false,
+            datatype: "object",
+            customValidations: (facetsUrl)=>{
+                const vals = Object.values(facetsUrl.facetDisplayNameMap);
+                if (new Set(vals).size !== vals.length){
+                    console.error(`SDK Config error in facetsUrl: facetDisplayNameMap values should not be duplicate`);
+                }
+            }
+        },
+        facetValueEncodeMap: {
+            required: false,
+            datatype: "object",
+            customValidations: (facetsUrl)=>{
+                const facetValueEncodeMap = facetsUrl.facetValueEncodeMap;
+                const vals = Object.values(facetValueEncodeMap);
+                vals.forEach(item=>{
+                    let arr = Object.values(item);
+                    if (new Set(arr).size !== arr.length) {
+                        console.error(`SDK Config error in facetsUrl: facetValueEncodeMap values should not be duplicate`);
+                    }
+                })
+            }
+        }
+    }
+}
+
+export const pageViewUrlSchema = {
+    moduleName : "pageViewUrl",
+    config: {
+        addToUrl: {
+            required:false,
+            datatype: "boolean"
+        },
+        customize: {
+            required: false,
+            datatype: "boolean"
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        },
+        valuesReplacer: {
+            required: false,
+            datatype: "object",
+            customValidations: (pageViewUrl)=>{
+                
+            }
+        }
+    }
+}
+
+export const sortUrlSchema ={
+    moduleName: "sortUrl",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        customize:{
+            required: false,
+            datatype: "boolean"
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        },
+        valueReplacer: {
+            required: false,
+            datatype: "object",
+            customValidations: (sortUrl)=>{
+                
+            }
+        }
+    }
+}
+
+export const pageNoUrlSchema = {
+    moduleName: "pageNoUrl",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        customize: {
+            required: false,
+            datatype: "boolean",
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        },
+        usePageNo: {
+            required: false,
+            datatype: "boolean"
+        }
+    }
+}
+
+export const pageSizeUrlSchema = {
+    moduleName: "pageSizeUrl",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        customize:{
+            requried: false,
+            datatype: "boolean"
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        }
+    }
+}
+
 export const othersSchema = {
     moduleName: "Others",
     config: {
