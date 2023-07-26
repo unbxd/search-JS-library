@@ -15,6 +15,19 @@ nav_order: 8
 1. TOC
 {:toc}
 
+
+---
+# v2.0.39
+
+- **Release Date**: 26th July, 2023
+- **Core SDK Version**: v0.4.34
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.39/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.39/vanillaSearch.min.js)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Fixing navigation issues in the fixed pagination. The next and previous buttons had issues in the last release.
+
+  
 ---
 
 # v2.0.38
