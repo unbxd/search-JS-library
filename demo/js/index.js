@@ -572,60 +572,6 @@ window.unbxdSearch = new UnbxdSearch({
         // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
-    url: {
-        // updateUrls,
-        //hashMode
-        // allowExternalParamsInUrl
-        // searchQueryParam,
-        // browserQueryparam,
-        
-       pageViewUrl: { //pageview
-            addToUrl: false, // show in url/addToUrl
-            customize: false, //customize
-            pageViewKeyReplacer: "viewTT",
-            pageViewValueReplacer : {
-                "GRID": "GRI",
-                "LIST": "LIS"
-            }
-       },
-       sortUrl: {
-           addToUrl: false,
-           customize: false,
-           keyReplacer: "sortBy",
-           valueReplacer: {
-               "price desc": "pd",
-               "price asc": "pa"
-           }
-       },
-        pageSizeUrl: {
-            addToUrl: false,
-            customize: false,
-            // pageSizeKeyReplacer: "sss"
-        },
-        facetsUrl: {
-            addToUrl: true,
-            customize:true,
-            filterReplacer: "filtersssssss",  // filter prefix
-            valuesSeparator: ",", 
-            keyAndValueSeparator: "::", 
-            keysReplacer: { //key replace
-                "manufacturer_uFilter": "manuFilter"
-            },
-            valueReplacer: {
-                "manufacturer_uFilter": {
-                    "Eversleep": "EV",
-                    "Comfort Sleep": "CS"
-                },
-                "rmsColourfin_uFilter":{
-                    "BLACK": "black",
-                    "BLUE": "blue",
-                    "BRASS": "brass"
-                }
-            },
-            // categoryfilterReplacer: "category-handle",
-            showFilterStr: true //add filter prefix
-        }
-    },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
     },
