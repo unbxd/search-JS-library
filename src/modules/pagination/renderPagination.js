@@ -10,7 +10,7 @@ const renderPagination = function () {
         if (type !== 'INFINITE_SCROLL') {
             const pageInfo = this.getPaginationInfo();
             if (pageInfo) {
-                paginationUI = pagination.template.bind(this)(pageInfo);
+                paginationUI = pagination.template.bind(this)(pageInfo, pagination);
             }
         }
         return paginationUI;
