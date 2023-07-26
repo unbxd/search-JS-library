@@ -564,11 +564,12 @@ window.unbxdSearch = new UnbxdSearch({
     
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        type: 'INFINITE_SCROLL',
-        // el: document.querySelector('.unxPagination'),
-        usePageAndCount: true,
-        heightDiffToTriggerNextPage: 100,
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+        // type: 'INFINITE_SCROLL',
+        type: 'FIXED_PAGINATION',
+        el: document.querySelector('.unxPagination'),
+        // usePageAndCount: false,
+        // heightDiffToTriggerNextPage: 100,
+        // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
