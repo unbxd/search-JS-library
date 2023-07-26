@@ -131,7 +131,6 @@ const options = {
         },
         events: {}
     },
-
     sort: {
         enabled: true,
         el: null,

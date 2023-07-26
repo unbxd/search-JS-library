@@ -25,7 +25,7 @@ function renderNewResults(action, currentPage) {
         } = pageInfo;
 
         let currentUrlPage = this.getCurrentUrlPage();
-                        let productsPerPage = this.getProductsPerPage();
+        let productsPerPage = this.getProductsPerPage();
 
         if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
             if (action === this.actions.next) {
@@ -52,25 +52,25 @@ function renderNewResults(action, currentPage) {
                         triggerNextPage(this, prev, action);
                     }
                 }
-            } else {
-                if (action === this.actions.next) {
-                    const next = start + rows;
-                    if (isNext) {
-                        triggerNextPage(this, next);
-                    }
+            } 
+        } else {
+            if (action === this.actions.next) {
+                const next = start + rows;
+                if (isNext) {
+                    triggerNextPage(this, next);
                 }
-                if (action === this.actions.prev) {
-                    const prev = start - rows;
-                    if (isPrev) {
-                        this.viewState.lastAction = "pagination";
-                        triggerNextPage(this, prev);
-                        onEvent(this, this.events.pagePrev, {
-                            value: prev
-                        });
-                    }
-                }
-
             }
+            if (action === this.actions.prev) {
+                const prev = start - rows;
+                if (isPrev) {
+                    this.viewState.lastAction = "pagination";
+                    triggerNextPage(this, prev);
+                    onEvent(this, this.events.pagePrev, {
+                        value: prev
+                    });
+                }
+            }
+
         }
     }
     catch (err) {
