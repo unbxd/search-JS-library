@@ -394,8 +394,8 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
-    apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     updateUrls: true,
     hashMode: true,
     searchBoxEl: document.getElementById("unbxdInput"),
