@@ -38,7 +38,6 @@ export default function renderProducts(){
                 const {
                     url: {
                         pageNoUrl: {
-                            // customize = false,
                             usePageNo = false,
                         } = {},
                     } = {}

@@ -37,7 +37,6 @@ const onProductItemClick = function (e) {
         const {
             url: {
                 pageNoUrl: {
-                    // customize = false,
                     usePageNo = false,
                 } = {},
             } = {}
