@@ -134,8 +134,8 @@ const options = {
 
     url: {
         pageViewUrl: {
-            addToUrl: true, // show in url
-            customize: false,// customize
+            addToUrl: true,
+            algo: "DEFAULT",
             keyReplacer: "viewType",
             valuesReplacer: {
                 "GRID": "GRID",
@@ -144,29 +144,31 @@ const options = {
         },
         sortUrl: {
             addToUrl: true,
-            customize: false,
+            algo: "DEFAULT",
             keyReplacer: "sort",
-            valueReplacer: {} //{
-            // "price desc": "pd",
-            // "price asc": "pa"
-            // }
+            valueReplacer: {}
         },
         pageSizeUrl: {
             addToUrl: true,
-            customize: false,
-            pageSizeKeyReplacer: "rows"
+            algo: "DEFAULT",
+            keyReplacer: "rows"
         },
         pageNoUrl: {
             addToUrl: false,
-            customize: false,
+            algo: "DEFAULT",
             keyReplacer: 'start',
             usePageNo: false // page or start
         },
         facetsUrl: {
             addToUrl: true,
-            customize: false,
+            algo: "DEFAULT",
             showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
-            filterReplacer: "filter" //Not exposing this option for user yet.
+            filterReplacer: "filter", //Not exposing this option for user yet.
+            facetValuesSeperator: ",",
+            facetsOrderInUrl: [],
+            facetValueEncodeMap: {},
+            facetDisplayNameMap: {},
+            rangeFacetSeparator: "-"
         }
 
     },

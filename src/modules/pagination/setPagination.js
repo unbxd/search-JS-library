@@ -13,7 +13,7 @@ const getProductsPerPage = function () {
             pageSizeUrl: {
                 keyReplacer = "",
                 addToUrl,
-                customize
+                algo = "DEFAULT"
             } = {},
             pageNoUrl: {
                 usePageNo = false,
@@ -34,7 +34,7 @@ const getProductsPerPage = function () {
         //     keyReplacer = this.options.url.pageSizeUrl.keyReplacer
         // }
 
-        return Number(urlParams.get(customize ? keyReplacer : usePageNo ? "count" : "rows"))
+        return Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "count" : "rows"))
     } else {
         return this.state.pageSize || pageSize;
     }
@@ -54,7 +54,7 @@ const getCurrentUrlPage = function () {
     let {
         url: {
             pageNoUrl: {
-                customize = false,
+                algo = "DEFAULT",
                 usePageNo = false,
                 keyReplacer = "",
                 addToUrl
@@ -73,7 +73,7 @@ const getCurrentUrlPage = function () {
     // }
 
     if (addToUrl) {
-        return Number(urlParams.get(customize ? keyReplacer : usePageNo ? "page" : "start"))
+        return Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"))
     } else if (usePageNo) {
         if (!this.viewState[ 'page' ]) { this.viewState[ 'page' ] = 1; }
         return this.viewState[ 'page' ]
@@ -95,7 +95,7 @@ const setPageNoParam = function (value) {
     const {
         url: {
             pageNoUrl: {
-                customize = false,
+                algo,
                 usePageNo = false,
                 keyReplacer,
                 addToUrl
@@ -108,8 +108,9 @@ const setPageNoParam = function (value) {
     } = this.options;
 
     if (addToUrl) {
+        debugger
         const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-        urlParams.set(((customize && keyReplacer) ? keyReplacer : usePageNo ? 'page' : 'start'), value);
+        urlParams.set(((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start'), value);
         history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
     } else if (usePageNo) {
         this.viewState[ 'page' ] = value;

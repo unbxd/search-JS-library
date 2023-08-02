@@ -394,12 +394,18 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
-    // c85ec9e6c53e6522f2d0f88c4a214717/ 
-    apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    //betts
+    // siteKey: "ss-unbxd-betta-pre-prod35741675334517",
+    // apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    
+    //hsn
     // siteKey: "hsn-com700091495001458",
-    // // c85ec9e6c53e6522f2d0f88c4a214717/ 
     // apiKey: "c85ec9e6c53e6522f2d0f88c4a214717",
+    
+    //demo
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
@@ -575,48 +581,35 @@ window.unbxdSearch = new UnbxdSearch({
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
-    // seoV1:{
-    //     keyReplacer: "",
-    //     valueReplacer: "",
-    //     sorting
-    // },
-    // seo:{
-    //     algorithm: "v1",
-    //     args: {
-    //         keyReplacer: "",
-    //         valueReplacer: "",
-    //     }
-        
-    // },
     url: {
         pageViewUrl: { //pageview
             addToUrl: true, // show in url/addToUrl
-            customize: true, //customize
-            keyReplacer: "viewTT",
-            valuesReplacer: {
+            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER].
+            keyReplacer: "viewTT", //Can be any string , chars will be encoded.
+            valuesReplacer: {  // Can be any string , chars will be encoded.
                 "GRID": "GRI-hermos",
                 "LIST": "LIS"
             }
         },
-        sortUrl: { //Checked : only the keyReplacer encoding needs to be corrected in urlSearchParamsToStr
+        sortUrl: { 
             addToUrl: true,
-            customize: true,
+            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
             keyReplacer: "sortBy",
             valueReplacer: {
                 "price desc": "p&d",
                 "price asc": "p-a"
             }
         },
-        pageNoUrl: {
+        pageNoUrl: { 
             addToUrl: true,
-            customize: true,
-            keyReplacer: 'starttt', 
-            usePageNo: true // p
+            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
+            keyReplacer: 'start', 
+            usePageNo: true // uses page no. when turned on.else , index
         },
         pageSizeUrl: {
             addToUrl: true,
-            customize: true, //count in url , on keeping this false.
-            keyReplacer: "rowsss"
+            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
+            keyReplacer: "rows"
         },
         // pageNoUrl: {
         //     addToUrl: true,
@@ -631,28 +624,29 @@ window.unbxdSearch = new UnbxdSearch({
         // },
         facetsUrl: {
             addToUrl: true,
-            customize: true,
+            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER, HASH]
+            
+            //Below config can be passed only when algo is 
             facetValuesSeperator: ",",
-            facetKeyValueSeperator: "::",
             facetDisplayNameMap: { //key replace
-                "manufacturer_uFilter": "manufacturer",
-                "rmsColourfin_uFilter": "color"
+                "color_uFilter": "color",
+                "size_uFilter": "size",
+                "gender_uFilter": "gender",
+                "occasion_uFilter": "occasion",
+                "fit_uFilter": "fit",
+                "type_uFilter":"type"
             },
             facetValueEncodeMap: {
-                "manufacturer_uFilter": {
-                    "Eversleep": "E &V",
-                    "Comfort Sleep": "C && S",
-                    "Fisher & Paykel": "Fisher-Paykel"
+                "type_uFilter": {
+                    "Dress Pants": `"dre#ss-pan'ts"`
                 },
-                "rmsColourfin_uFilter": {
-                    "BLACK": "black",
-                    "BLUE": "blue",
-                    "BRASS": "brass",
-                    "DARK STAINLESS": "dark-stainless"
+                "color_uFilter": {
+                    "Multi": "multi"
                 }
             },
-            facetsOrderInUrl: ["rmsColourfin_uFilter", "manufacturer_uFilter"],
-            // categoryfilterReplacer: "category-handle",
+            facetsOrderInUrl: ["color_uFilter"],
+            rangeFacets: ["price"],
+            rangeFacetSeparator: "-"
         }
     },
     breadcrumb: {
