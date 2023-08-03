@@ -406,6 +406,9 @@ window.unbxdSearch = new UnbxdSearch({
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     
+    // siteKey: "ss-unbxd-gcp-prod-pneusratte17211685113377",
+    // apiKey: "3349bd70f91d09aef9ceb6967c41ea6f",
+    
     updateUrls: true,
     hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
@@ -584,11 +587,11 @@ window.unbxdSearch = new UnbxdSearch({
     url: {
         pageViewUrl: { //pageview
             addToUrl: true, // show in url/addToUrl
-            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER].
-            keyReplacer: "viewTT", //Can be any string , chars will be encoded.
+            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER].
+            keyReplacer: "view & TT", //Can be any string , chars will be encoded.
             valuesReplacer: {  // Can be any string , chars will be encoded.
-                "GRID": "GRI-hermos",
-                "LIST": "LIS"
+                "GRID": "GRIDV & VIEW",
+                "LIST": "LI@ST(list)"
             }
         },
         sortUrl: { 
@@ -602,14 +605,14 @@ window.unbxdSearch = new UnbxdSearch({
         },
         pageNoUrl: { 
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            keyReplacer: 'start', 
+            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
+            // keyReplacer: 'start&end', 
             usePageNo: true // uses page no. when turned on.else , index
         },
         pageSizeUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            keyReplacer: "rows"
+            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
+            // keyReplacer: "rowidea"
         },
         // pageNoUrl: {
         //     addToUrl: true,
@@ -624,9 +627,9 @@ window.unbxdSearch = new UnbxdSearch({
         // },
         facetsUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER, HASH]
+            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER, HASH]
             
-            //Below config can be passed only when algo is 
+            //Below config can be passed only when algo is KEY_VALUE_REPLACER , these are optional.
             facetValuesSeperator: ",",
             facetDisplayNameMap: { //key replace
                 "color_uFilter": "color",
@@ -643,6 +646,7 @@ window.unbxdSearch = new UnbxdSearch({
                 "color_uFilter": {
                     "Multi": "multi"
                 }
+                
             },
             facetsOrderInUrl: ["color_uFilter"],
             rangeFacets: ["price"],
