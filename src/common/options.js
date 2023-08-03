@@ -35,6 +35,7 @@ const options = {
         productItemClass: "product-item", // to find out product
         productType: "SEARCH",
         gridCount: 1,
+        searchTrigger: 'click',
         onProductClick: function (product, e) {
         },
         productAttributes: [
