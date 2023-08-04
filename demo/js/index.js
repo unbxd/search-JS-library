@@ -92,15 +92,9 @@ let routeTemplate = `
 							</div>
 						</div>
 						<div id="bannerContainer"></div>
+                        <div id="" class="UNX-change-pagination-wrap unxPagination" ></div>
 						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
-                        <div
-									id=""
-									class="UNX-change-pagination-wrap unxPagination"
-								></div>
-						<div
-							id=""
-							class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination"
-						></div>
+						<div id="" class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination" ></div>
 					</div>
 				</div>
 				<div class="UNX-loader-container" id="loaderEl"></div>
@@ -577,16 +571,18 @@ window.unbxdSearch = new UnbxdSearch({
 
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        type: 'INFINITE_SCROLL',
-        // el: document.querySelector('.unxPagination'),
-        usePageAndCount: false,
-        heightDiffToTriggerNextPage: 4000,
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+        type: 'FIXED_PAGINATION',
+        // type: 'INFINITE_SCROLL',
+        el: document.querySelector('.unxPagination'),
+        // usePageAndCount: false,
+        // heightDiffToTriggerNextPage: 100,
+        // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
+
         pageViewUrl: { //pageview
-            addToUrl: true, // show in url/addToUrl
+            addToUrl: false, // show in url/addToUrl
             algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER].
             keyReplacer: "view & TT", //Can be any string , chars will be encoded.
             valuesReplacer: {  // Can be any string , chars will be encoded.
@@ -595,7 +591,7 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         sortUrl: { 
-            addToUrl: true,
+            addToUrl: false,
             algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
             keyReplacer: "sortBy",
             valueReplacer: {
@@ -607,12 +603,12 @@ window.unbxdSearch = new UnbxdSearch({
             addToUrl: true,
             algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
             // keyReplacer: 'start&end', 
-            usePageNo: true // uses page no. when turned on.else , index
+            usePageNo: false // uses page no. when turned on.else , index
         },
         pageSizeUrl: {
             addToUrl: true,
-            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            // keyReplacer: "rowidea"
+            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
+            keyReplacer: "rowidea"
         },
         // pageNoUrl: {
         //     addToUrl: true,
@@ -626,7 +622,7 @@ window.unbxdSearch = new UnbxdSearch({
         //     pageSizeKeyReplacer: "rowsss"
         // },
         facetsUrl: {
-            addToUrl: true,
+            addToUrl: false,
             algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER, HASH]
             
             //Below config can be passed only when algo is KEY_VALUE_REPLACER , these are optional.
