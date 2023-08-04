@@ -92,8 +92,8 @@ let routeTemplate = `
 							</div>
 						</div>
 						<div id="bannerContainer"></div>
-                        <div id="" class="UNX-change-pagination-wrap unxPagination" ></div>
 						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
+                        <div id="" class="UNX-change-pagination-wrap unxPagination" ></div>
 						<div id="" class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination" ></div>
 					</div>
 				</div>
@@ -571,12 +571,12 @@ window.unbxdSearch = new UnbxdSearch({
 
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        type: 'FIXED_PAGINATION',
-        // type: 'INFINITE_SCROLL',
-        el: document.querySelector('.unxPagination'),
+        // type: 'FIXED_PAGINATION',
+        type: 'INFINITE_SCROLL',
+        // el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
-        // heightDiffToTriggerNextPage: 100,
-        // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+        heightDiffToTriggerNextPage: 100,
+        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
@@ -601,14 +601,14 @@ window.unbxdSearch = new UnbxdSearch({
         },
         pageNoUrl: { 
             addToUrl: true,
-            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            // keyReplacer: 'start&end', 
-            usePageNo: false // uses page no. when turned on.else , index
+            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
+            keyReplacer: 'p', 
+            usePageNo: true // uses page no. when turned on.else , index
         },
         pageSizeUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            keyReplacer: "rowidea"
+            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
+            keyReplacer: "count"
         },
         // pageNoUrl: {
         //     addToUrl: true,

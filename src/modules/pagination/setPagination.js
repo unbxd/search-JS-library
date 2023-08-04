@@ -34,7 +34,7 @@ const getProductsPerPage = function () {
         //     keyReplacer = this.options.url.pageSizeUrl.keyReplacer
         // }
 
-        return Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "count" : "rows"))
+        return Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : "rows"))
     } else {
         return this.state.pageSize || pageSize;
     }
@@ -73,7 +73,8 @@ const getCurrentUrlPage = function () {
     // }
 
     if (addToUrl) {
-        return Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"))
+        const pageNo = Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"));
+        return usePageNo ? Number(pageNo) : Number((pageNo / getProductsPerPage.call(this)) + 1)
     } else if (usePageNo) {
         if (!this.viewState[ 'page' ]) { this.viewState[ 'page' ] = 1; }
         return this.viewState[ 'page' ]
@@ -108,7 +109,6 @@ const setPageNoParam = function (value) {
     } = this.options;
 
     if (addToUrl) {
-        debugger
         const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
         urlParams.set(((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start'), value);
         history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
