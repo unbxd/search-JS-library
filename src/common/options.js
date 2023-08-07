@@ -167,8 +167,8 @@ const options = {
             filterReplacer: "filter", //Not exposing this option for user yet.
             facetValuesSeperator: ",",
             facetsOrderInUrl: [],
-            facetValueEncodeMap: {},
-            facetDisplayNameMap: {},
+            valueReplacer: {},
+            keyReplacer: {},
             rangeFacetSeparator: "-"
         }
 

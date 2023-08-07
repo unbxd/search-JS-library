@@ -622,12 +622,12 @@ window.unbxdSearch = new UnbxdSearch({
         //     pageSizeKeyReplacer: "rowsss"
         // },
         facetsUrl: {
-            addToUrl: false,
-            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER, HASH]
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER, HASH]
             
             //Below config can be passed only when algo is KEY_VALUE_REPLACER , these are optional.
             facetValuesSeperator: ",",
-            facetDisplayNameMap: { //key replace
+            keyReplacer: { //key replace
                 "color_uFilter": "color",
                 "size_uFilter": "size",
                 "gender_uFilter": "gender",
@@ -635,14 +635,13 @@ window.unbxdSearch = new UnbxdSearch({
                 "fit_uFilter": "fit",
                 "type_uFilter":"type"
             },
-            facetValueEncodeMap: {
+            valueReplacer: {
                 "type_uFilter": {
                     "Dress Pants": `"dre#ss-pan'ts"`
                 },
                 "color_uFilter": {
                     "Multi": "multi"
                 }
-                
             },
             facetsOrderInUrl: ["color_uFilter"],
             rangeFacets: ["price"],

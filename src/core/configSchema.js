@@ -566,53 +566,70 @@ export const facetsUrlSchema = {
             required: false,
             datatype: "boolean"
         },
-        customize: {
-            required: false,
-            datatype: "boolean"
+        algo: {
+            required: (facetsUrl)=>{
+                return facetsUrl.addToUrl
+            },
+            datatype: "string",
+            allowedOptions: ["DEFAULT","KEY_VALUE_REPLACER","HASH"]
         },
         facetValuesSeperator:{
-            required: false,
+            required: (facetsUrl)=>{
+                return facetsUrl.algo === "KEY_VALUE_REPLACER"
+            },
             datatype: "string",
-            customValidations: (facetsUrl)=>{
-                const notAllowedFacetValuesSeperators = ["&"];
-                if (notAllowedFacetValuesSeperators.includes(facetsUrl.facetValuesSeperator)){
-                    console.error(`SDK Config error in facetsUrl: facetValuesSeperator should not be following value ${notAllowedFacetValuesSeperators}`);
-                }
-            }
+            allowedOptions: [",","~"]
         },
-        facetKeyValueSeperator:{
-            required: false,
-            datatype: "string",
-            customValidations: (facetsUrl)=>{
-                const allowedFacetKeyValueSeperator = ["::"];
-                if (!allowedFacetKeyValueSeperator.includes(facetsUrl.facetKeyValueSeperator)) {
-                    console.error(`SDK Config error in facetsUrl: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
-                }
-            }
-        },
-        facetDisplayNameMap: {
+        // facetKeyValueSeperator:{
+        //     required: false,
+        //     datatype: "string",
+        //     customValidations: (facetsUrl)=>{
+        //         const allowedFacetKeyValueSeperator = ["::"];
+        //         if (!allowedFacetKeyValueSeperator.includes(facetsUrl.facetKeyValueSeperator)) {
+        //             console.error(`SDK Config error in facetsUrl: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
+        //         }
+        //     }
+        // },
+        keyReplacer: {
             required: false,
             datatype: "object",
             customValidations: (facetsUrl)=>{
-                const vals = Object.values(facetsUrl.facetDisplayNameMap);
+                const vals = Object.values(facetsUrl.keyReplacer);
                 if (new Set(vals).size !== vals.length){
-                    console.error(`SDK Config error in facetsUrl: facetDisplayNameMap values should not be duplicate`);
+                    console.error(`SDK Config error in facetsUrl: keysReplacer values should not be duplicate`);
                 }
             }
         },
-        facetValueEncodeMap: {
+        valueReplacer: {
             required: false,
             datatype: "object",
             customValidations: (facetsUrl)=>{
-                const facetValueEncodeMap = facetsUrl.facetValueEncodeMap;
-                const vals = Object.values(facetValueEncodeMap);
+                const valueReplacer = facetsUrl.valueReplacer;
+                const vals = Object.values(valueReplacer);
                 vals.forEach(item=>{
                     let arr = Object.values(item);
                     if (new Set(arr).size !== arr.length) {
-                        console.error(`SDK Config error in facetsUrl: facetValueEncodeMap values should not be duplicate`);
+                        console.error(`SDK Config error in facetsUrl: valueReplacer values should not be duplicate`);
                     }
                 })
             }
+        },
+        facetsOrderInUrl: {
+            required: false,
+            datatype: "array"
+        },
+        rangeFacets: {
+            required: (facetsUrl)=> {
+                return facetsUrl.algo === "KEY_VALUE_REPLACER"
+            },
+            datatype: "array"
+        },
+        rangeFacetSeparator: {
+            required: (facetsUrl)=>{
+                return facetsUrl.algo === "KEY_VALUE_REPLACER"
+            },
+            datatype: "string",
+            allowedOptions: ["-"]
         }
     }
 }
@@ -622,10 +639,6 @@ export const pageViewUrlSchema = {
     config: {
         addToUrl: {
             required:false,
-            datatype: "boolean"
-        },
-        customize: {
-            required: false,
             datatype: "boolean"
         },
         keyReplacer: {
@@ -646,10 +659,6 @@ export const sortUrlSchema ={
     moduleName: "sortUrl",
     config: {
         addToUrl: {
-            required: false,
-            datatype: "boolean"
-        },
-        customize:{
             required: false,
             datatype: "boolean"
         },
@@ -674,10 +683,6 @@ export const pageNoUrlSchema = {
             required: false,
             datatype: "boolean"
         },
-        customize: {
-            required: false,
-            datatype: "boolean",
-        },
         keyReplacer: {
             required: false,
             datatype: "string"
@@ -694,10 +699,6 @@ export const pageSizeUrlSchema = {
     config: {
         addToUrl: {
             required: false,
-            datatype: "boolean"
-        },
-        customize:{
-            requried: false,
             datatype: "boolean"
         },
         keyReplacer: {
