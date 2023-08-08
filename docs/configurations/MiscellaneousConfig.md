@@ -313,3 +313,4 @@ searchQueryParam: "q"
 
 This could be any valid string which would contain the query data that user has searched for like `q` or `query`.
 
+EOF
