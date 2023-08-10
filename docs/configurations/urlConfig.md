@@ -100,11 +100,7 @@ algo: 'DEFAULT'
 1. `DEFAULT`: Standard pagination keys like start or page are utilized for encoding and decoding.
 2. `KEY_VALUE_REPLACER`: Custom key names can be chosen by the user to encode and decode pagination data.
 
-
-
 ---
-
-
 
 ## keyReplacer
 {: .d-inline-block }
@@ -127,6 +123,17 @@ keyReplacer: 'start'
 Users have the liberty to select any string of their choice as the key name for for displaying pagination data in the URL.
 
 ---
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -191,10 +198,7 @@ algo: 'DEFAULT'
 1. `DEFAULT`: Standard key `rows` is utilized for displaying the page size data in the URL.
 2. `KEY_VALUE_REPLACER`: Custom key names can be chosen by the user to display page size data in the URL
 
-
-
 ---
-
 
 ## keyReplacer
 {: .d-inline-block }
@@ -217,6 +221,10 @@ keyReplacer: 'rows'
 Stick with 'rows' (default) or select a descriptive string as the key name for displaying page size data in the URL.
 
 ---
+
+
+
+
 
 
 
@@ -341,5 +349,150 @@ No default; uses the provided sorting values as keys
 Define key-value pairs to customize how sorting values are represented in the URL. Special characters are encoded automatically.
 
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# pageViewUrl
+
+In this configuration, product view preferences are effectively managed by tailoring the URL structure according to user selections. By configuring the `pageViewUrl` options, you ensure an enhanced browsing experience for users on your e-commerce site, allowing them to choose between list view and grid view as per their preference.
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+    pageViewUrl: { 
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER", 
+        keyReplacer: "viewType", 
+        valuesReplacer: {  
+            "GRID": "GRID",
+            "LIST": "LIST"
+        }
+    },
+}
+```
+
+## addToUrl
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+The `addToUrl` option determines whether the selected product view preference should be included in the URL. Enabling this option and setting it to true ensures that the chosen product view option is added to the URL. This enables the Unbxd SDK to remember the product view choice even after the page is reloaded. Disabling this option and setting it to false results in the product view preference not being added to the URL, and the default product view is applied.
+
+### Default Value
+{: .no_toc }
+
+```js
+addToUrl: true
+```
+
+### Scenarios
+{: .no_toc }
+
+1. true - to retain product view preference in the URL
+2. false - to reset to default product view upon reload
+   
+
+---
+
+## algo
+{: .d-inline-block }
+
+String
+{: .label }
+
+The algo option dictates the algorithm used for encoding and decoding the product view information within the URL. When set to `DEFAULT`, the standard and widely used approach for storing view type data is employed. When set to `KEY_VALUE_REPLACER`, users can specify a custom key name that represents the product view choice. This key is used to indicate the product view preference in the URL.
+
+### Default Value
+{: .no_toc }
+
+```js
+algo: 'DEFAULT'
+```
+
+### Scenarios
+{: .no_toc }
+
+1. `DEFAULT`: Standard key `viewType` is utilized for displaying the view type data in the URL.
+2. `KEY_VALUE_REPLACER`: Opt for KEY_VALUE_REPLACER to utilize a custom key name for encoding and decoding the product view preference in the URL.
+
+
+
+---
+
+
+## keyReplacer
+{: .d-inline-block }
+
+String
+{: .label }
+
+The keyReplacer option comes into play only when the algo is set to `KEY_VALUE_REPLACER`. The keyReplacer option defines the custom key name that is utilized within the URL to represent the product view preference. By default, this key name is set to 'viewType'. You can customize this key name to create a more descriptive representation of the product view choice.
+
+### Default Value
+{: .no_toc }
+
+```js
+keyReplacer: 'viewType'
+```
+
+### Scenarios
+{: .no_toc }
+
+Stick with 'viewType' (default) or select a descriptive string as the key name for displaying the product view preference.
+
+---
+
+## valueReplacer
+{: .d-inline-block }
+
+Object
+{: .label }
+
+The `valueReplacer` option comes into play only when the `algo` is set to `KEY_VALUE_REPLACER`. The `valuesReplacer` option is an object where you provide key-value pairs for replacing product view values. If nothing is provided, the default key (such as "GRID" or "LIST") will be used. This option enables customization of how product view values are displayed in the URL.
+
+### Default Value
+{: .no_toc }
+
+No default; uses the provided product view values as keys
+
+### Scenarios
+{: .no_toc }
+
+Define key-value pairs to customize how product view values are represented in the URL.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
