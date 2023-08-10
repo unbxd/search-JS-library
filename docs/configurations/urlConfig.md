@@ -20,6 +20,8 @@ This feature ensures both data persistence and readability within the Unbxd SDK'
 
 # Definition
 
+This feature ensures both data persistence and readability within the Unbxd SDK’s URL structure, making it easier than ever to optimize the presentation of products to your users.
+
 SEO-friendly URLs are web addresses that are optimized for search engines and users alike. These URLs are designed to be concise, descriptive, and relevant to the content they point to. SEO-friendly URLs typically include keywords that accurately represent the page's topic or content. They are easy to read, understand, and share, benefiting both search engines' ability to index content and users' experience when navigating a website. By using SEO-friendly URLs, websites can improve their search engine rankings, attract more organic traffic, and provide a more user-friendly browsing experience.
 
 
