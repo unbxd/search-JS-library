@@ -573,7 +573,7 @@ export const facetsUrlSchema = {
             datatype: "string",
             allowedOptions: ["DEFAULT","KEY_VALUE_REPLACER","HASH"]
         },
-        facetValuesSeperator:{
+        valuesSeperator:{
             required: (facetsUrl)=>{
                 return facetsUrl.algo === "KEY_VALUE_REPLACER"
             },
@@ -624,7 +624,7 @@ export const facetsUrlSchema = {
             },
             datatype: "array"
         },
-        rangeFacetSeparator: {
+        rangeSeparator: {
             required: (facetsUrl)=>{
                 return facetsUrl.algo === "KEY_VALUE_REPLACER"
             },

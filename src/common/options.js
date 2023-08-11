@@ -69,10 +69,7 @@ const options = {
         events: {}
 
     },
-    searchQueryParam: "q",
-    browseQueryParam: 'p',
     defaultFilters: {}, //or object with keys
-    allowExternalUrlParams: false,
     noResults: {
         template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },
@@ -134,9 +131,19 @@ const options = {
     },
 
     url: {
+        updateUrls: true,
+        hashMode: false,
+        allowExternalUrlParams: false,
+        browseQueryParam: 'p',
+        searchQueryParam: "q",
+        
+        seoFriendlyUrl: false,
+
+        orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
+        queryParamSeparator: "&",
         pageViewUrl: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "viewType",
             valuesReplacer: {
                 "GRID": "GRID",
@@ -145,31 +152,31 @@ const options = {
         },
         sortUrl: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "sort",
             valueReplacer: {}
         },
         pageSizeUrl: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "rows"
         },
         pageNoUrl: {
             addToUrl: false,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: 'start',
-            usePageNo: false // page or start
+            usePageNo: false 
         },
         facetsUrl: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
             filterReplacer: "filter", //Not exposing this option for user yet.
-            facetValuesSeperator: ",",
+            valuesSeperator: ",",
             facetsOrderInUrl: [],
             valueReplacer: {},
             keyReplacer: {},
-            rangeFacetSeparator: "-"
+            rangeSeparator: "-"
         }
 
     },
@@ -314,8 +321,7 @@ const options = {
         template: swatchTemplate
     },
     unbxdAnalytics: false,
-    hashMode: false,
-    updateUrls: true,
+    // hashMode: false,
     actionBtnClass: "UNX-action-item",
     actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {

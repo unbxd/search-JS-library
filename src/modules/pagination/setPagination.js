@@ -101,10 +101,6 @@ const setPageNoParam = function (value) {
                 keyReplacer,
                 addToUrl
             } = {},
-            // pageSizeUrl: {
-            //     customize,
-            //     addToUrl
-            // } = {}
         } = {}
     } = this.options;
 
@@ -118,10 +114,6 @@ const setPageNoParam = function (value) {
         this.viewState[ 'start' ] = value;
     }
 
-
-    // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-    // urlParams.set(key, value);
-    // history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
 }
 
 const setPagination = (prototype) => {

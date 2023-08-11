@@ -389,22 +389,22 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     //betts
-    // siteKey: "ss-unbxd-betta-pre-prod35741675334517",
-    // apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
+    apiKey: "b1b5f033416fbf18f301aee3dab41934",
     
     //hsn
     // siteKey: "hsn-com700091495001458",
     // apiKey: "c85ec9e6c53e6522f2d0f88c4a214717",
     
     //demo
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    // siteKey: "demo-unbxd700181503576558",
+    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     
     // siteKey: "ss-unbxd-gcp-prod-pneusratte17211685113377",
     // apiKey: "3349bd70f91d09aef9ceb6967c41ea6f",
     
-    updateUrls: true,
-    hashMode: false,
+    // updateUrls: true,
+    // hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
@@ -415,7 +415,7 @@ window.unbxdSearch = new UnbxdSearch({
     //     // el: document.querySelector("#clickScrollContainer"),
     //     onPaginate: function (data) { console.log(data, "data") }
     // },
-    allowExternalUrlParams: false,
+    // allowExternalUrlParams: false,
     setCategoryId: function (param, self) {
         const {
             level,
@@ -580,54 +580,52 @@ window.unbxdSearch = new UnbxdSearch({
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
-
-        pageViewUrl: { //pageview
-            addToUrl: false, // show in url/addToUrl
-            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER].
-            keyReplacer: "view & TT", //Can be any string , chars will be encoded.
-            valuesReplacer: {  // Can be any string , chars will be encoded.
-                "GRID": "GRIDV & VIEW",
+        seoFriendlyUrl: true,
+        updateUrls: true,
+        hashMode: false,
+        allowExternalUrlParams: false,
+        browseQueryParam: 'p',
+        searchQueryParam: "q",
+        
+        orderOfQueryParams: ["VIEW_TYPE","FILTERS"],
+        // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
+        // orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
+        
+        queryParamSeparator: "~",
+        pageViewUrl: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            // keyReplacer: "view",
+            valuesReplacer: {
+                "GRID": "GRID",
                 "LIST": "LI@ST(list)"
             }
         },
         sortUrl: { 
-            addToUrl: false,
-            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            keyReplacer: "sortBy",
-            valueReplacer: {
-                "price desc": "p&d",
-                "price asc": "p-a"
-            }
+            addToUrl: true,
+            algo: "DEFAULT", 
+            // keyReplacer: "sortBy",
+            // valueReplacer: {
+            //     "price desc": "p&d",
+            //     "price asc": "p-a"
+            // }
         },
         pageNoUrl: { 
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            keyReplacer: 'p', 
+            algo: "DEFAULT",
+            // keyReplacer: 'p', 
             usePageNo: true // uses page no. when turned on.else , index
         },
         pageSizeUrl: {
             addToUrl: true,
-            algo: "DEFAULT", // Can be [DEFAULT, KEY_VALUE_REPLACER]
-            keyReplacer: "count"
+            algo: "DEFAULT",
+            // keyReplacer: "count"
         },
-        // pageNoUrl: {
-        //     addToUrl: true,
-        //     customize: true,
-        //     keyReplacer: 'starttttt',
-        //     usePageNo: true // p
-        // },
-        // pageSizeUrl: {
-        //     addToUrl: true,
-        //     customize: true,
-        //     pageSizeKeyReplacer: "rowsss"
-        // },
         facetsUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER", // Can be [DEFAULT, KEY_VALUE_REPLACER, HASH]
-            
-            //Below config can be passed only when algo is KEY_VALUE_REPLACER , these are optional.
-            facetValuesSeperator: ",",
-            keyReplacer: { //key replace
+            algo: "KEY_VALUE_REPLACER",
+            valuesSeperator: ",",
+            keyReplacer: {
                 "color_uFilter": "color",
                 "size_uFilter": "size",
                 "gender_uFilter": "gender",
@@ -636,16 +634,17 @@ window.unbxdSearch = new UnbxdSearch({
                 "type_uFilter":"type"
             },
             valueReplacer: {
-                "type_uFilter": {
-                    "Dress Pants": `"dre#ss-pan'ts"`
-                },
                 "color_uFilter": {
-                    "Multi": "multi"
+                    "Multi": "multi",
+                    "White": "whitee"
+                },
+                "occasion_uFilter": {
+                    "Wear to Work": "Wear-to-work"
                 }
             },
-            facetsOrderInUrl: ["color_uFilter"],
+            facetsOrderInUrl: ["gender_uFilter","color_uFilter","price","category-filter"],
             rangeFacets: ["price"],
-            rangeFacetSeparator: "-"
+            rangeSeparator: "-"
         }
     },
     breadcrumb: {
