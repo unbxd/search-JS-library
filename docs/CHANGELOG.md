@@ -25,11 +25,11 @@ nav_order: 8
 
 ## 🚀 Features
 {: .no_toc}
-- **Introducing SEO friendly URLs for Category pages**: A seo friendly category URLs can now be achieved with Unbxd Search SDK by configuring the below code. When `seoFriendlyUrl` is set to `true`, the extra category related data (p=<categoryPath>) will not be appended in the URL. The configuration for same is here.
+- **Introducing SEO friendly URLs for Category pages**: A seo friendly category URLs can now be achieved with Unbxd Search SDK by configuring the below code. When `seoFriendlyUrl` is set to `true`, the extra category related data (p=<categoryPath>) will not be appended in the URL. The configuration for same is here. By default, `seoFriendlyUrl` will be set to `false`.
 ```js
 ///other configurations at root level
 url: {
-    seoFriendlyUrl: false
+    seoFriendlyUrl: true
 }
 ```
 
