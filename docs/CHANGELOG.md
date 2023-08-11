@@ -33,7 +33,6 @@ url: {
 }
 ```
 
-- 
 ## 🐛 Bug Fixes
 {: .no_toc}
 - There was an issue with the facet selection when there is a single or double apostrophe in the facet names. This issue has been fixed.
