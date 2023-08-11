@@ -34,6 +34,8 @@ let routeTemplate = `
             <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
             <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
             <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing Machines</button>
+            <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention Micro Ovens</button>
+            <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">BASES & BEDHEADS</button>
         </nav>
 			</div>
 		</div>
@@ -191,6 +193,8 @@ const routes = {
     '/men': routeTemplate,
     '/women': routeTemplate,
     '/washingMachine': routeTemplate,
+    '/kitchen-and-cooking/microwaves/convection-microwave-ovens-0': routeTemplate,
+    '/furniture-and-bedding/bedroom-furniture/bases-bedheads': routeTemplate,
 };
 
 const rootDiv = document.getElementById('root');
@@ -327,6 +331,17 @@ let performRouteActions = () => {
             page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
         };
         unbxdSearch.options.productType = "CATEGORY";
+    
+    } else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
+        window.UnbxdAnalyticsConf = {
+            page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"'
+        };
+        unbxdSearch.options.productType = "CATEGORY";
+    } else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
+        window.UnbxdAnalyticsConf = {
+            page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"'
+        };
+        unbxdSearch.options.productType = "CATEGORY";
     } else {
         window.UnbxdAnalyticsConf = {};
         unbxdSearch.options.productType = "SEARCH";
@@ -380,6 +395,16 @@ if (location.pathname === "/men") {
 } else if (location.pathname === "/washingMachine") {
     window.UnbxdAnalyticsConf = {
         page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
+    };
+    productType = "CATEGORY";
+} else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
+    window.UnbxdAnalyticsConf = {
+        page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"'
+    };
+    productType = "CATEGORY";
+} else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
+    window.UnbxdAnalyticsConf = {
+        page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"'
     };
     productType = "CATEGORY";
 } else {
