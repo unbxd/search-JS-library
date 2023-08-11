@@ -17,6 +17,30 @@ nav_order: 8
 
 
 ---
+# v2.0.40
+
+- **Release Date**: 11th Aug, 2023
+- **Core SDK Version**: v0.4.35
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.40/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.40/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- **Introducing SEO friendly URLs for Category pages**: A seo friendly category URLs can now be achieved with Unbxd Search SDK by configuring the below code. When `seoFriendlyUrl` is set to `true`, the extra category related data (p=<categoryPath>) will not be appended in the URL. The configuration for same is here.
+```js
+///other configurations at root level
+url: {
+    seoFriendlyUrl: false
+}
+```
+
+- 
+## 🐛 Bug Fixes
+{: .no_toc}
+- There was an issue with the facet selection when there is a single or double apostrophe in the facet names. This issue has been fixed.
+
+
+
+---
 # v2.0.39
 
 - **Release Date**: 26th July, 2023
