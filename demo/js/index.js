@@ -605,13 +605,13 @@ window.unbxdSearch = new UnbxdSearch({
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
-        seoFriendlyUrl: true,
         updateUrls: true,
         hashMode: false,
         allowExternalUrlParams: false,
         browseQueryParam: 'p',
         searchQueryParam: "q",
         
+        seoFriendlyUrl: false,
         orderOfQueryParams: ["VIEW_TYPE","FILTERS"],
         // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
         // orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.

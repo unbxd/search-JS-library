@@ -708,6 +708,33 @@ export const pageSizeUrlSchema = {
     }
 }
 
+export const otherUrlConfigsSchema = {
+    moduleName: "url",
+    config: {
+        seoFriendlyUrl: {
+            required: false,
+            datatype: "boolean",
+            customValidations: (urlConfigs)=>{
+                if (!urlConfigs.seoFriendlyUrl){
+                    urlConfigs.pageViewUrl.algo = "DEFAULT";
+                    urlConfigs.sortUrl.algo = "DEFAULT";
+                    urlConfigs.pageSizeUrl.algo = "DEFAULT";
+                    urlConfigs.pageNoUrl.algo = "DEFAULT";
+                    urlConfigs.facetsUrl.algo = "DEFAULT";
+                    urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
+                    urlConfigs.queryParamSeparator = "&";
+                }else{
+                    urlConfigs.pageViewUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.sortUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageSizeUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageNoUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.facetsUrl.algo = "KEY_VALUE_REPLACER";
+                }
+            }
+        }
+    }
+}
+
 export const othersSchema = {
     moduleName: "Others",
     config: {

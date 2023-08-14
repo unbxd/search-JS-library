@@ -17,7 +17,8 @@ import {
     pageViewUrlSchema,
     pageNoUrlSchema,
     pageSizeUrlSchema,
-    sortUrlSchema
+    sortUrlSchema,
+    otherUrlConfigsSchema
 } from "./configSchema";
 
 function validateConfigs () {
@@ -110,6 +111,7 @@ function validateConfigs () {
         validate(sortUrl, sortUrlSchema)
         validate(pageNoUrl, pageNoUrlSchema)
         validate(pageSizeUrl, pageSizeUrlSchema)
+        validate(this.options.url, otherUrlConfigsSchema)
 }
 
 export default validateConfigs;
