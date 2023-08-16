@@ -751,9 +751,6 @@ export const othersSchema = {
         hashMode: {
             datatype: "boolean"
         },
-        updateUrls: {
-            datatype: "boolean"
-        },
         actionBtnClass: {
             datatype: "string"
         },
