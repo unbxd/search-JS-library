@@ -616,7 +616,7 @@ window.unbxdSearch = new UnbxdSearch({
         // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
         // orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
-        queryParamSeparator: "~",
+        queryParamSeparator: "bklbhl",
         pageViewUrl: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",

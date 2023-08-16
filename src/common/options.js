@@ -140,7 +140,7 @@ const options = {
         seoFriendlyUrl: false,
 
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
-        queryParamSeparator: "&",
+        queryParamSeparator: "+",
         pageViewUrl: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
