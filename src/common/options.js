@@ -131,7 +131,6 @@ const options = {
     },
 
     url: {
-        updateUrls: true,
         hashMode: false,
         allowExternalUrlParams: false,
         browseQueryParam: 'p',
