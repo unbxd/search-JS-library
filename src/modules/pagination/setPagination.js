@@ -26,7 +26,8 @@ const getProductsPerPage = function () {
 
 
     if (addToUrl) {
-        const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+        const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+        // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
         // let productsPerPage;
 
 
@@ -34,7 +35,7 @@ const getProductsPerPage = function () {
         //     keyReplacer = this.options.url.pageSizeUrl.keyReplacer
         // }
 
-        return Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : "rows"))
+        return Number(urlParams[((algo === "KEY_VALUE_REPLACER") ? keyReplacer : "rows")])
     } else {
         return this.state.pageSize || pageSize;
     }
@@ -49,7 +50,8 @@ const getProductsPerPage = function () {
 }
 
 const getCurrentUrlPage = function () {
-    const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+    const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+    // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
     let currentUrlPage;
     let {
         url: {
@@ -73,7 +75,8 @@ const getCurrentUrlPage = function () {
     // }
 
     if (addToUrl) {
-        const pageNo = Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"));
+        const pageNo = Number(urlParams[(algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"]);
+        // const pageNo = Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"));
         return usePageNo ? Number(pageNo) : Number((pageNo / getProductsPerPage.call(this)) + 1)
     } else if (usePageNo) {
         if (!this.viewState[ 'page' ]) { this.viewState[ 'page' ] = 1; }
@@ -105,8 +108,9 @@ const setPageNoParam = function (value) {
     } = this.options;
 
     if (addToUrl) {
-        const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
-        urlParams.set(((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start'), value);
+        const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+        // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+        urlParams[((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start')] = [value];
         history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
     } else if (usePageNo) {
         this.viewState[ 'page' ] = value;
