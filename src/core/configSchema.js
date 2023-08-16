@@ -721,14 +721,6 @@ export const otherUrlConfigsSchema = {
                     urlConfigs.pageSizeUrl.algo = "DEFAULT";
                     urlConfigs.pageNoUrl.algo = "DEFAULT";
                     urlConfigs.facetsUrl.algo = "DEFAULT";
-                    urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
-                    urlConfigs.queryParamSeparator = "&";
-                }else{
-                    urlConfigs.pageViewUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.sortUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageSizeUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageNoUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.facetsUrl.algo = "KEY_VALUE_REPLACER";
                 }
             }
         }
