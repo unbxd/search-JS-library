@@ -720,10 +720,14 @@ export const otherUrlConfigsSchema = {
                     urlConfigs.sortUrl.algo = "DEFAULT";
                     urlConfigs.pageSizeUrl.algo = "DEFAULT";
                     urlConfigs.pageNoUrl.algo = "DEFAULT";
+                    urlConfigs.pageNoUrl.usePageNo = false;
                     urlConfigs.facetsUrl.algo = "DEFAULT";
+                    urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
+                    urlConfigs.queryParamSeparator = "&";
                 }
             }
-        }
+        },
+        
     }
 }
 
@@ -748,18 +752,18 @@ export const othersSchema = {
         unbxdAnalytics: {
             datatype: "boolean"
         },
-        hashMode: {
-            datatype: "boolean"
-        },
+        // hashMode: {
+        //     datatype: "boolean"
+        // },
         actionBtnClass: {
             datatype: "string"
         },
         actionChangeClass: {
             datatype: "string"
         },
-        allowExternalUrlParams: {
-            datatype: "boolean"
-        },
+        // allowExternalUrlParams: {
+        //     datatype: "boolean"
+        // },
         extraParams: {
             datatype: "object"
         },
@@ -769,11 +773,11 @@ export const othersSchema = {
         searchEndPoint: {
             datatype: "string"
         },
-        browseQueryParam: {
-            datatype: "string"
-        },
-        searchQueryParam: {
-            datatype: "string"
-        }
+        // browseQueryParam: {
+        //     datatype: "string"
+        // },
+        // searchQueryParam: {
+        //     datatype: "string"
+        // }
     }
 }

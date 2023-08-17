@@ -131,6 +131,7 @@ const options = {
     },
 
     url: {
+        updateUrls: true,
         hashMode: false,
         allowExternalUrlParams: false,
         browseQueryParam: 'p',
@@ -139,9 +140,9 @@ const options = {
         seoFriendlyUrl: false,
 
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
-        queryParamSeparator: "+",
+        queryParamSeparator: "&",
         pageViewUrl: {
-            addToUrl: true,
+            addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: "viewType",
             valuesReplacer: {
@@ -161,7 +162,7 @@ const options = {
             keyReplacer: "rows"
         },
         pageNoUrl: {
-            addToUrl: false,
+            addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: 'start',
             usePageNo: false 
