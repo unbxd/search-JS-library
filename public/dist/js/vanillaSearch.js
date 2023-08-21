@@ -1,1 +1,9007 @@
-!function(t,e){"object"==typeof exports&&"object"==typeof module?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.UnbxdSearch=e():t.UnbxdSearch=e()}(window,(function(){return function(t){var e={};function a(r){if(e[r])return e[r].exports;var n=e[r]={i:r,l:!1,exports:{}};return t[r].call(n.exports,n,n.exports,a),n.l=!0,n.exports}return a.m=t,a.c=e,a.d=function(t,e,r){a.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:r})},a.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},a.t=function(t,e){if(1&e&&(t=a(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var r=Object.create(null);if(a.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)a.d(r,n,function(e){return t[e]}.bind(null,n));return r},a.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return a.d(e,"a",e),e},a.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},a.p="",a(a.s=39)}({16:function(t,e,a){},39:function(t,e,a){"use strict";a.r(e);var r={siteKey:"api key",apiKey:"site key",isFlag:!0,searchEndPoint:"https://search.unbxd.io/",productType:"SEARCH",searchQueryParam:"q",browseQueryParam:"p",searchPath:"",productAttributes:["title"],defaultFilters:null,spellCheck:{enabled:!1},pageSize:5,startPageNo:0,facetMultiSelect:!0,updateUrls:!0,variants:void 0,extraParams:{},facetMultilevel:!0,facetDepth:6,showSwatches:!0,allowExternalUrlParams:!1,swatchMap:{},onEvent:function(){},getCategoryId:function(){return encodeURIComponent(window.UnbxdAnalyticsConf.page)||decodeURIComponent(location.pathname.split("category-path")[1].split("/").pop())},setCategoryId:function(t,e){var a,r=t.level,n=(t.parent,t.name),i=(t.action,[]),o=Number(r),s=e.getBreadCrumbsList();s.forEach((function(t,e){var a=t.filterField,r=t.value;a,o>e&&i.push(r)})),o>s.length&&i.push(n),a=i.join(">"),window.UnbxdAnalyticsConf&&(window.UnbxdAnalyticsConf.page=a)},url:{},applyMultipleFilters:!1,hashMode:!1,pagination:{type:"INFINITE_SCROLL"},onQueryRedirect:function(t,e,a){if(e){var r=e.value;return"url"===e.type&&(history.state&&history.state.replace&&history.replaceState(null,"",a),location.href=r),!1}},onBackFromRedirect:function(t){new URLSearchParams(t?location.hash.substring(1):location.search).get("redirected")&&history.go(-1)},onNoUnbxdKeyRouting:function(){history.go()},setRoutingStrategies:function(t,e,a,r,n){t!==e&&("CATEGORY"===a?r?history.pushState(null,"",e):history.replaceState(null,"",e):history.state&&history.state.replace||n?history.replaceState(null,"",e):history.pushState(null,"",e))}},n={encodeQueryParam:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return"string"!=typeof t?t:(t=(t=t.trim()).replace(/\%26/gim,"&"),t=(t=(t=encodeURIComponent(t)).replace(/\%20/gim,"+")).replace(/\++/gim,"+"))},decodeQueryParam:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";return"string"!=typeof t?t:(t=(t=t.replace(/\+/gim," ")).replace(/\s{2,}/gim," "),(t=decodeURIComponent(t)).trim())},getDeviceInfo:function(){return window.outerWidth<768?"Mobile":window.outerWidth<992?"Tablet":"Desktop"},decodeAndParse:function(t){return 0===t.indexOf('"')&&(t=t.slice(1,-1).replace(/\\"/g,'"').replace(/\\\\/g,"\\")),this.decodeCookie(t)},decodeCookie:function(t){return decodeURIComponent(t.replace(/\+/g," "))},cookie:function(t){for(var e,a=document.cookie.split("; "),r=0,n=a.length;r<n;r++){var i=a[r].split("="),o=this.decodeCookie(i.shift()),s=i.join("=");if(t&&t===o)try{e=this.decodeAndParse(s);break}catch(t){this.log(t)}}return e},readCookie:function(t){try{return this.cookie("unbxd."+t)}catch(t){this.log(t)}},getUserId:function(){return this.readCookie("userId")},getDefaultRequestHeaders:function(t){var e=this.getUserId(),a={"unbxd-device-type":this.getDeviceInfo()};return e&&(a["unbxd-user-id"]=e),a},getEachFacetValueEncodedFromStr:function(t,e){var a=t.split(n.getValuesSeparatorFacets(e)),r="";return a.forEach((function(t,a){r+=0===a?encodeURIComponent(t):n.getValuesSeparatorFacets(e)+encodeURIComponent(t)})),r},isTextFilterStr:function(t){var e=this.options.url,a=void 0===e?{}:e,r=a.sortUrl,n=void 0===r?{}:r,i=a.pageViewUrl,o=void 0===i?{}:i,s=a.pageSizeUrl,c=void 0===s?{}:s,l=a.pageNoUrl,u=void 0===l?{}:l,d="KEY_VALUE_REPLACER"===n.algo?n.keyReplacer:"sort",p="KEY_VALUE_REPLACER"===o.algo?o.keyReplacer:"viewType",h="KEY_VALUE_REPLACER"===c.algo?c.keyReplacer:"rows",f="KEY_VALUE_REPLACER"===u.algo?u.keyReplacer:u.usePageNo?"page":"start";return!![this.getSearchQueryParam(),this.getBrowseQueryParam(),p,d,h,f,"count"].includes(t)},getValuesSeparatorFacets:function(t){return["&","~","^",",","-","_",":",";","|","$","@","~"].includes(t)?t:","},getQueryParamSeparator:function(t){return["&","~","^",",","-","_",":",";","|","$","@","~"].includes(t)?t:"&"},getRangeSeparator:function(t){return["-"," TO "].includes(t)?t:" TO "}},i=n;function o(t){return o="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},o(t)}function s(t){return function(t){if(Array.isArray(t))return c(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return c(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return c(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function c(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}function l(t){return l="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},l(t)}function u(t){return u="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},u(t)}function d(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==u(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==u(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===u(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}function p(t){return p="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},p(t)}function h(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==p(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==p(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===p(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}function f(t){return f="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},f(t)}function g(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==f(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==f(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===f(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}function y(t){return y="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},y(t)}function v(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==y(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==y(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===y(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var b={extraParamUrlString:function(){try{var t=this.options.extraParams,e="";return Object.keys(t).forEach((function(a){e+="&"+a+"="+t[a]})),e}catch(t){this.onError("extraParamsFromUrlToString.js",t)}},renderFromUrl:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;try{var a=!1,r=this.getQueryParams(e),n=this.options,s=(n.pagination,n.browseQueryParam,n.productType),c=this.getSearchQueryParam();if("SEARCH"!==s&&(c=this.getBrowseQueryParam(),r[c]=this.getCategoryId()),"object"===o(r)&&r[c]){var l=this.options||{},u=l.url,d=void 0===u?{}:u,p=d.facetsUrl,h=void 0===p?{}:p,f=d.pageSizeUrl,g=void 0===f?{}:f,y=d.pageNoUrl,v=void 0===y?{}:y,b=d.sortUrl,m=void 0===b?{}:b,S=r[this.getSearchQueryParam()],E=r["KEY_VALUE_REPLACER"===h.algo?h.filterReplacer:"filter"],F=r["KEY_VALUE_REPLACER"===v.algo?encodeURIComponent(v.keyReplacer):v.usePageNo?"page":"start"],U=r["KEY_VALUE_REPLACER"===g.algo?encodeURIComponent(g.keyReplacer):v.usePageNo?"count":"rows"],P=r["KEY_VALUE_REPLACER"===m.algo?encodeURIComponent(m.keyReplacer):"sort"];if(a=!0,this.state.userInput!==S&&(this.state.userInput=i.decodeQueryParam(S)),"KEY_VALUE_REPLACER"===h.algo&&!h.showFilterStr){var w=S.split("&");w.length>1&&(E=w[1])}if("KEY_VALUE_REPLACER"===h.algo&&!h.showFilterStr){var C=[];Object.keys(r).forEach((function(e,a){i.isTextFilterStr.bind(t)(decodeURIComponent(e))||(C.length,C.push(e+"="+r[e]))})),E=C}var R=this.getFilterFromParams(E);this.state.rangeFacet=R.rangeFacet,this.state.selectedFacets=R.selectedFilters,this.state.selectedSort=P?"KEY_VALUE_REPLACER"===m.algo?this.getKeyByValue(m.valueReplacer,decodeURIComponent(P)):decodeURIComponent(P):"",U||(U=Number(this.options.pagesize.pageSize)),v.usePageNo?this.state.startPageNo=F?Number((F-1)*U):0:this.state.startPageNo=F?Number(F):0,this.state.isBack=!1,this.state.pageSize=U,this.state.categoryFilter=this.getCategoryFilterFromParams(r),a&&this.getResults()}}catch(t){this.onError("setStateFromUrl.js",t)}},getQueryParams:function(t){try{var e=this.options.url,a=(void 0===e?{}:e).queryParamSeparator,r=(this.getHashMode()?location.hash:location.search).substr(1);t&&(r=t);var n=r.split(i.getQueryParamSeparator(a)),o=[];n.forEach((function(t,e){t.indexOf("=")>0?o.push(t):o[e-1]=o[e-1]+"&"+t}));for(var s={},c=0;c<o.length;c++){var l=o[c].split("=");void 0===s[l[0]]?s[l[0]]=l[1]:"string"==typeof s[l[0]]?(s[l[0]]=[s[l[0]]],s[l[0]].push(l[1])):s[l[0]].push(l[1])}return s}catch(t){this.onError("getQueryParams.js",t)}},urlFlattenFacets:function(){try{var t="",e=this.state.selectedFacets,a=this.options.defaultFilters||{},r=Object.keys(e);return r.forEach((function(r,n){var i=e[r];i.length&&(t+="&filter="),i.forEach((function(e,n){var i=e.name,o=e.dataId;void 0!==a[r]&&a[r]===i||(i="".concat("%22").concat(o).concat("%22"),t+=0===n?"".concat(r,":").concat(i):" OR ".concat(r,":").concat(i))}))})),t}catch(t){this.onError("facetsToUrlString.js",t)}},facetsToWebUrlString:function(){try{var t=this.options.url||{},e=t.facetsUrl,a=void 0===e?{}:e,r=t.queryParamSeparator,n=a.algo,o=void 0===n?"DEFAULT":n;if("KEY_VALUE_REPLACER"===o){var c,l="",u=this.state.selectedFacets,d=this.options.defaultFilters||{},p=Object.keys(u),h=[];a.facetsOrderInUrl.forEach((function(t){p.includes(t)&&h.push(t)})),c=p.filter((function(t){return!h.includes(t)})),h=[].concat(s(h),s(c));var f=a.showFilterStr,g=a.filterReplacer,y=a.keyReplacer,v=a.valuesSeperator,b=a.valueReplacer;return h.forEach((function(t,e){var a=u[t],n="";a.length&&(l+=f?"".concat(i.getQueryParamSeparator(r)).concat(g,"="):"".concat(i.getQueryParamSeparator(r)),y&&Object.keys(y).length>0&&(n=t in y?y[t]:""),l+="".concat(n||t,"=")),a.forEach((function(e,a){var r=e.name,n=r;void 0!==d[t]&&d[t]===r||(b&&Object.keys(b).length>0&&b[t]&&b[t][r]&&(n=b[t][r]),l+=0===a?"".concat(encodeURIComponent(n)):"".concat(i.getValuesSeparatorFacets(v)).concat(encodeURIComponent(n)))}))})),l}if("DEFAULT"===o||"HASH"===o){var m="",S=this.state.selectedFacets,E=this.options.defaultFilters||{},F=Object.keys(S);return F.forEach((function(t,e){var n=S[t];n.length&&(m+="HASH"===a.algo?""!==m?i.getQueryParamSeparator(r):"":"".concat(i.getQueryParamSeparator(r),"filter=")),n.forEach((function(e,a){var r=e.name,n=e.dataId;void 0!==E[t]&&E[t]===r||(r="".concat("%22").concat(n).concat("%22"),m+=0===a?"".concat(t,":").concat(r):" OR ".concat(t,":").concat(r))}))})),m}}catch(t){this.onError("facetsToUrlString.js",t)}},getDefaultFiltersStr:function(){try{var t="",e=this.options.defaultFilters;if(null!==e)Object.keys(e).forEach((function(a){t+="&filter="+a+":"+JSON.stringify(e[a])}));return t}catch(t){this.onError("getDefaultFiltersString.js",t)}},getShowVariantsStr:function(){try{var t=this.options.variants;return t&&"boolean"==typeof t.enabled?"&variants=".concat(t.enabled):""}catch(t){this.onError("getShowVariantsUrlString.js",t)}},getVariantAttributesStr:function(){try{var t=this.options.variants;if(t){var e=t.enabled,a=t.attributes;return a&&e?"&variants.fields=".concat(a.join(",")):""}return""}catch(t){this.onError("getVariantAttributesUrlString.js",t)}},getVariantsCountStr:function(){try{var t=this.options.variants;if(t){var e=t.enabled,a=t.count;return a&&e?"&variants.count=".concat(a):""}return""}catch(t){this.onError("getVariantsCountUrlString.js",t)}},getVariantsGroupByStr:function(){try{var t=this.options.variants;if(t){var e=t.enabled,a=t.groupBy;return a&&e?"&variants.groupBy=".concat(a):""}return""}catch(t){this.onError("getVariantsGroupByUrlString.js",t)}},getProductAttributesStr:function(){try{return this.options.productAttributes?"&fields="+this.options.productAttributes.join(","):""}catch(t){this.onError("getProductAttributesUrlString.js",t)}},getPageSizeStr:function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];try{var e=this.options||{},a=e.url,r=void 0===a?{}:a,n=r.pageNoUrl,i=void 0===n?{}:n;return!t&&i.usePageNo?"&count=".concat(this.state.pageSize):"&rows=".concat(this.state.pageSize)}catch(t){this.onError("getPageSizeUrlString.js",t)}},getPageStartStr:function(){var t=arguments.length>0&&void 0!==arguments[0]&&arguments[0];try{var e=this.options||{},a=e.url,r=void 0===a?{}:a,n=r.pageNoUrl,i=void 0===n?{}:n;return!t&&i.usePageNo?"&page="+(Math.floor(this.state.startPageNo/this.state.pageSize)+1):"&start="+this.state.startPageNo}catch(t){this.onError("getPaginationStartUrlString.js",t)}},getNewUrlState:function(t){var e=this;try{var a=this.options,r=a.productType,n=(a.browseQueryParam,a.url),o=void 0===n?{}:n,s=(o.facetsUrl,o.sortUrl),c=void 0===s?{}:s,l=o.pageSizeUrl,u=void 0===l?{}:l,d=o.pageNoUrl,p=void 0===d?{}:d,h=o.pageViewUrl,f=void 0===h?{}:h,g=this.state.userInput,y="",v=this.getSearchQueryParam();if("BROWSE"===r||"CATEGORY"===r){y="",g=this.getCategoryId();v=this.getBrowseQueryParam();var b=this.getBaseUrl()+"/category?";this.webUrl=b+(this.options.url.seoFriendlyUrl?"":"".concat(v,"=").concat(g)),this.apiUrl=b+"p=".concat(g)}if("CATEGORY"===r&&(y="&pagetype=boolean"),"SEARCH"===r){var m="/search?";this.webUrl=this.getBaseUrl()+m+v+"="+i.encodeQueryParam(g),this.apiUrl=this.getBaseUrl()+m+"q="+i.encodeQueryParam(g)}var S=this.urlFlattenFacets(),E=this.getShowVariantsStr(),F=this.getVariantAttributesStr(),U=this.getVariantsCountStr(),P=this.getVariantsGroupByStr(),w=this.getProductAttributesStr()+this.getDefaultFiltersStr(),C=this.getSortUrlString(),R=this.getSpellCheckUrlString(),N=this.getRangeFilterStr(),A=this.categoryFilterUrlStr(),j=this.getUcParamUrlString(),T=this.options.facetMultiSelect?"&facet.multiselect=true":"&facet.multiselect=false",O=this.apiUrl+A+T+S+E+F+U+P+w+C+R+N+y+this.getPageSizeStr(!0)+this.getPageStartStr(!0)+this.extraParamUrlString()+"&facet.version=V2"+(j||""),I=this.webUrl+function(){var t=(e.options||{}).url,a=void 0===t?{}:t,r=a.facetsUrl,n=void 0===r?{}:r,o=a.queryParamSeparator;if(n.addToUrl){if("HASH"===n.algo){var s=window.btoa(e.categoryFilterWebUrlString()+e.facetsToWebUrlString()+e.getRangeFilterWebString());return s?"".concat(i.getQueryParamSeparator(o),"filter=").concat(s):""}return e.categoryFilterWebUrlString()+e.facetsToWebUrlString()+e.getRangeFilterWebString()}return""}()+(c.addToUrl?this.getSortWebUrlString():"")+(u.addToUrl?this.getPageSizeWebUrlString():"")+(p.addToUrl?this.getPaginationStartWebUrlString():"")+(f.addToUrl?this.getViewTypeForWebUrl():"");return this.state.currentApiUrl=O,this.state.currentWebUrl=I,t?O:I}catch(t){this.onError("getNewUrlState.js",t)}},getRangeFilterStr:function(){try{var t=this.state.rangeFacet,e=Object.keys(t),a="";return e.forEach((function(e){var r=t[e];Array.isArray(r)?r.length>0&&(a+="&filter=".concat(e,":").concat(r.join(" OR ".concat(e,":")))):a+="&filter=".concat(e,":").concat(r)})),a}catch(t){this.onError("getRangeFilterString.js",t)}},getRangeFilterWebString:function(){try{var t=this.options.url,e=void 0===t?{}:t,a=e.facetsUrl,r=void 0===a?{}:a,n=e.queryParamSeparator;if("KEY_VALUE_REPLACER"===r.algo){var o=this.state.rangeFacet,s=Object.keys(o),c="";return s.forEach((function(t){c="".concat(i.getQueryParamSeparator(n)).concat(Object.keys(r.keyReplacer).length>0&&t in r.keyReplacer?r.keyReplacer[t]:t,"="),o[t].forEach((function(t,e){c+=0===e?"".concat(t.replace(/\[|\]/g,"").split(" TO ").join(i.getRangeSeparator(r.rangeSeparator))):",".concat(t.replace(/\[|\]/g,"").split(" TO ").join(i.getRangeSeparator(r.rangeSeparator)))}))})),c}if("DEFAULT"===r.algo||"HASH"===r.algo){var l=this.state.rangeFacet,u=Object.keys(l),d="";return u.forEach((function(t){var e=l[t];Array.isArray(e)?e.length>0&&("HASH"===r.algo?d+="".concat(i.getQueryParamSeparator(n)).concat(t,":").concat(e.join(" OR ".concat(t,":"))):d+="".concat(i.getQueryParamSeparator(n),"filter=").concat(t,":").concat(e.join(" OR ".concat(t,":")))):d+="&filter=".concat(t,":").concat(e)})),d}}catch(t){this.onError("getRangeFilterWebString.js",t)}},categoryFilterUrlStr:function(){var t=this;try{var e=this.state.categoryFilter,a=void 0===e?{}:e,r="",n=Object.keys(a),i="%22";return n.forEach((function(e,n){var o=t.getAFacetByName(e)[0],s=t.getBreadCrumbsList(e),c=null;if(o){var l=o.filterField,u=o.values;l&&o;var d=a[e].map((function(e,a){if(c=u.find((function(a){return t.cleanFacetValue(encodeURIComponent(a.name))===t.cleanFacetValue(e)})),s){var r=s.find((function(t){return t.value===e}));r&&(c={name:r.value})}return c&&t.encodeCategoryFacetValue(c.name).split(i).join(""),a>0?">".concat(t.encodeCategoryFacetValue(e).split(i).join("")):t.encodeCategoryFacetValue(e).split(i).join("")}));r+="categoryPath"===l?"&category-filter=".concat(d.join("")):"&filter=".concat(l,':"').concat(d.join(""),'"')}else if(a&&a.categoryPath){var p="";a.categoryPath.forEach((function(e,a){e.split(">").forEach((function(e,a){var r=t.encodeCategoryFacetValue(e).split("%22").join("");""!==p?p+=">".concat(r):p=r}))})),r+="&category-filter=".concat(p)}})),r}catch(t){this.onError("categoryFilterUrlString.js",t)}},categoryFilterWebUrlString:function(){var t=this;try{var e=this.state.categoryFilter,a=void 0===e?{}:e,r="",n=Object.keys(a),o="%22";return n.forEach((function(e,n){var s=t.getAFacetByName(e)[0],c=t.getBreadCrumbsList(e),l=null;if(s){var u=s.filterField,d=s.values;u&&s;var p=a[e].map((function(e,a){if(l=d.find((function(a){return t.cleanFacetValue(encodeURIComponent(a.name))===t.cleanFacetValue(e)})),c){var r=c.find((function(t){return t.value===e}));r&&(l={name:r.value})}return l&&t.encodeCategoryFacetValue(l.name).split(o).join(""),a>0?">".concat(t.encodeCategoryFacetValue(e).split(o).join("")):t.encodeCategoryFacetValue(e).split(o).join("")}));r+="categoryPath"===u?"".concat(i.getQueryParamSeparator(t.options.url.queryParamSeparator),"category-filter=").concat(p.join("")):"".concat(i.getQueryParamSeparator(t.options.url.queryParamSeparator),"filter=").concat(u,':"').concat(p.join(""),'"')}else if(a&&a.categoryPath){var h="";a.categoryPath.forEach((function(e,a){e.split(">").forEach((function(e,a){var r=t.encodeCategoryFacetValue(e).split("%22").join("");""!==h?h+=">".concat(r):h=r}))})),r+="".concat(i.getQueryParamSeparator(t.options.url.queryParamSeparator),"category-filter=").concat(h)}})),r}catch(t){this.onError("categoryFilterWebUrlString.js",t)}},getSortUrlString:function(){try{var t=this.getSelectedSort();return t?"&sort="+encodeURI(t):""}catch(t){this.onError("getSortUrlString.js",t)}},getSortWebUrlString:function(){try{var t=this.getSelectedSort();if(t){var e=this.options||{},a=e.url,r=void 0===a?{}:a,n=r.sortUrl,o=r.queryParamSeparator,s=e.url;if((void 0===s?{}:s)&&n&&"KEY_VALUE_REPLACER"===n.algo){var c=n.keyReplacer,l=void 0===c?"sort":c,u=n.valueReplacer,d=void 0===u?{}:u,p=t;return Object.keys(d).length>0&&d[t]&&(p=d[t]),"".concat(i.getQueryParamSeparator(o)).concat(encodeURIComponent(l),"=")+encodeURIComponent(p)}return"".concat(i.getQueryParamSeparator(o),"sort=")+encodeURI(t)}return""}catch(t){this.onError("getSortWebUrlString.js",t)}},getSpellCheckUrlString:function(){try{return this.options.spellCheck.enabled?"&spellcheck="+!0:""}catch(t){this.onError("getSpellCheckUrlString.js",t)}},getBaseUrl:function(){try{var t=this.options,e=t.searchEndPoint,a=t.siteKey;return e+t.apiKey+"/"+a}catch(t){this.onError("getBaseUrl.js",t)}},getStateFromUrl:function(){var t=this;try{var e=(this.options||{}).url,a=void 0===e?{}:e,r=a.facetsUrl,n=void 0===r?{}:r,o=a.pageSizeUrl,s=void 0===o?{}:o,c=a.pageNoUrl,u=void 0===c?{}:c,d=a.sortUrl,p=void 0===d?{}:d,h=(a.pageViewUrl,"");h=("KEY_VALUE_REPLACER"===n.algo||"HASH"===n.algo)&!n.showFilterStr?this.getQueryParamsWhenCustomUrl():this.getQueryParams();var f={},g=this.options.pagesize.pageSize;if("object"===l(h)){var y=h,v=y[this.getSearchQueryParam()],b=y["KEY_VALUE_REPLACER"===n.algo?n.filterReplacer:"filter"],m=y["KEY_VALUE_REPLACER"===u.algo?u.keyReplacer:"page"],S=y["KEY_VALUE_REPLACER"===s.algo?s.keyReplacer:"filter"],E=y["KEY_VALUE_REPLACER"===p.algo?p.keyReplacer:"sort"],F=y.count,U=y.rows,P=void 0===U?g:U;if(this.state.userInput!==v&&(f.userInput=v),"KEY_VALUE_REPLACER"===n.algo&&!n.showFilterStr){var w=[];Object.keys(h).forEach((function(e){i.isTextFilterStr.bind(t)(e)||(w.length,w.push(e+"="+h[e]))})),b=w}var C=this.getFilterFromParams(b);f.rangeFacet=C.rangeFacet,f.selectedFacets=C.selectedFilters,f.selectedSort=E||"",u.usePageNo?f.startPageNo=m?(m-1)*F:0:f.startPageNo=S||0,f.pageSize=Number(P),f.categoryFilter=this.getCategoryFilterFromParams(h)}return f}catch(t){this.onError("getStateFromUrl.js",t)}},getUcParamUrlString:function(){try{var t=this.getQueryParams();if(t.uc_param)return"&uc_param="+t.uc_param}catch(t){this.onError("getUcParamUrlString.js",t)}},getViewTypeForWebUrl:function(){try{var t=this.state.productViewType,e=this.options,a=e.url,r=void 0===a?{}:a,n=e.url,o=n.pageViewUrl,s=void 0===o?{}:o,c=n.queryParamSeparator;if(r&&s&&"KEY_VALUE_REPLACER"===s.algo){var l=s.keyReplacer,u=void 0===l?"viewType":l,d=s.valuesReplacer,p=void 0===d?{GRID:"GRID",LIST:"LIST"}:d;return"".concat(i.getQueryParamSeparator(c)).concat(encodeURIComponent(u),"=").concat("GRID"===t?encodeURIComponent(p.GRID):encodeURIComponent(p.LIST))}return"".concat(i.getQueryParamSeparator(c),"viewType=").concat("GRID"===t?"GRID":"LIST")}catch(t){this.onError("getViewTypeForWebUrl.js",t)}},getPageSizeWebUrlString:function(){try{var t=(this.options||{}).url,e=void 0===t?{}:t,a=e.pageSizeUrl,r=void 0===a?{}:a,n=r.algo,o=r.keyReplacer,s=e.queryParamSeparator;return"".concat(i.getQueryParamSeparator(s)).concat("KEY_VALUE_REPLACER"===n?encodeURIComponent(o):"rows","=").concat(this.state.pageSize)}catch(t){this.onError("getPageSizeWebUrlString.js",t)}},getPaginationStartWebUrlString:function(){try{var t=this.options.url,e=void 0===t?{}:t,a=e.pageNoUrl,r=void 0===a?{}:a,n=r.algo,o=r.usePageNo,s=r.keyReplacer,c=e.queryParamSeparator;return"".concat(i.getQueryParamSeparator(c)).concat("KEY_VALUE_REPLACER"===n?encodeURIComponent(s):o?"page":"start","=").concat(o?Math.ceil(this.state.startPageNo/this.state.pageSize)+1:this.state.startPageNo)}catch(t){this.onError("getPaginationStartWebUrlString.js",t)}},getQueryParamsWhenCustomUrl:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",e=this.options.url||{},a=e.facetsUrl,r=void 0===a?{}:a,n=r.showFilterStr,o=e.facetsUrl,s=void 0===o?{}:o,c=e.queryParamSeparator;if(!n){var l=t||(this.getHashMode()?location.hash:location.search),u=l.substr(1),d=u.split(i.getQueryParamSeparator(c)),p={};return d.forEach((function(t){if(t.indexOf("=")>0){var e="";"HASH"===s.algo&&"filter"===t.split("=")[0]?(e=t.split("filter="),p.filter=e[1]):(e=t.split("="),p[e[0]]=e[1])}})),p}},readSortWebUrl:function(t){try{var e=this.options.url.sortUrl,a=e.algo,r=void 0===a?"DEFAULT":a,n=e.keyReplacer,i=void 0===n?"sort":n,o=this.getQueryParamsWhenCustomUrl(t)["KEY_VALUE_REPLACER"===r?encodeURIComponent(i):"sort"];if(o)return d({},"KEY_VALUE_REPLACER"===r?i:"sort",[decodeURIComponent(o)])}catch(t){this.onError("readSortWebUrl.js",t)}},readPageViewWebUrl:function(t){try{var e=this.options.url,a=(void 0===e?{}:e).pageViewUrl,r=void 0===a?{}:a,n=r.algo,i=void 0===n?"DEFAULT":n,o=r.keyReplacer,s=this.getQueryParamsWhenCustomUrl(t);if("KEY_VALUE_REPLACER"===i){var c=s[encodeURIComponent(o)];if(c)return h({},o,[decodeURIComponent(c)])}else{var l=s.viewType;if(l)return{viewType:[l]}}}catch(t){this.onError("readPageViewWebUrl.js",t)}},readPageSizeWebUrl:function(t){try{var e=this.options.url.pageSizeUrl,a=e.algo,r=void 0===a?"DEFAULT":a,n=e.keyReplacer,i=this.getQueryParamsWhenCustomUrl(t);if("KEY_VALUE_REPLACER"===r){var o=i[encodeURIComponent(n)];if(o)return g({},n,[o])}else{var s=i.rows;if(s)return{rows:[s]}}}catch(t){this.onError("readPageSizeWebUrl.js",t)}},readFacetsWebUrl:function(t){var e=this;try{var a=this.options.url,r=void 0===a?{}:a,n=r.facetsUrl,o=void 0===n?{}:n,s=r.queryParamSeparator;if("KEY_VALUE_REPLACER"===o.algo){var c=t||(this.getHashMode()?location.hash:location.search),l=this.getHashMode()?c:c.substr(1),u=l&&l.split(i.getQueryParamSeparator(s))||[],d={},p={};return u&&u.length&&u.forEach((function(t){var a="";(t=decodeURIComponent(t)).indexOf("=")>0&&(a=t.split("="),d[a[0]]=a[1]),i.isTextFilterStr.bind(e)(a[0])||(p[a[0]]=[a[1]])})),p}if("HASH"===o.algo){var h=this.readQueryParamsFromUrl(t),f={};return Object.keys(h).forEach((function(t){t===e.getSearchQueryParam()||i.isTextFilterStr.bind(e)(t)||(f[t]=[decodeURIComponent(window.atob(h[t]))])})),f}var g=this.readQueryParamsFromUrl(t),y={};return Object.keys(g).forEach((function(t){t===e.getSearchQueryParam()||i.isTextFilterStr.bind(e)(t)||(y[t]=g[t])})),y}catch(t){this.onError("readFacetsWebUrl.js",t)}},readPageNoWebUrl:function(t){try{var e=this.options.url,a=(void 0===e?{}:e).pageNoUrl,r=void 0===a?{}:a,n=r.algo,i=void 0===n?"DEFAULT":n,o=r.keyReplacer,s=r.usePageNo,c=this.getQueryParamsWhenCustomUrl(t);if("KEY_VALUE_REPLACER"===i){var l=c[encodeURIComponent(o)];if(l)return v({},o,[l])}else{var u=c[s?"page":"start"];if(u)return v({},s?"page":"start",[u])}}catch(t){this.onError("readPageNoWebUrl.js",t)}},readQueryParamsFromUrl:function(t){var e=this;try{var a=this.options.url,r=void 0===a?{}:a,n=r.facetsUrl,o=void 0===n?{}:n,s=r.queryParamSeparator,c=(r.rangeFacets,t||(this.getHashMode()?location.hash:location.search)),l=(this.getHashMode()?"#"===c[0]?c.substr(1):c:c.substr(1)).split(i.getQueryParamSeparator(s)),u={};return l.forEach((function(t){var a=t.startsWith("filter=")?t.split("filter=")[1]:t.split("=");i.isTextFilterStr.bind(e)(decodeURIComponent(a[0]))?a[0]===e.getSearchQueryParam()?u[a[0]]=[a[1]]:u[decodeURIComponent(a[0])]=[decodeURIComponent(a[1])]:"HASH"===o.algo?u.filter=[a]:"KEY_VALUE_REPLACER"===o.algo?Object.keys(u).includes(a[0])?u[a[0]].push(decodeURIComponent(a[1])):u[a[0]]=[decodeURIComponent(a[1])]:Object.keys(u).includes("filter")?u.filter.push(decodeURIComponent(a)):u.filter=[decodeURIComponent(a)]})),u}catch(t){this.onError("readQueryParamsFromUrl.js",t)}}},m=function(t){try{this.state.startPageNo=Number(t)}catch(t){this.onError("setPageStart.js",t)}},S=function(){try{var t=this.getSearchResults();if(!t)return null;var e=t.numberOfProducts,a=t.start,r=t.products;a=Number(a);var n=Number(this.state.pageSize),i=0;e>0&&(i=e%n==0?e/n:Math.floor(e/n)+1);var o=Math.floor(a/n)+1,s=!(a+n>=e||a>=e),c=!(a-n<0||a<=0);return{numberOfProducts:e,start:a,productsLn:r.length,rows:n,noOfPages:i,currentPage:o||0,isNext:s,isPrev:c}}catch(t){this.onError("getPaginationInfo.js",t)}},E=function(t){try{"number"==typeof t&&t===parseInt(t)&&(this.state.pageSize=Number(t),this.state.startPageNo=0)}catch(t){this.onError("setPageSize.js",t)}},F=function(t){try{Array.isArray(t)?this.options.productAttributes=t:this.options.productAttributes="*"}catch(t){this.onError("setProductAttributes.js",t)}},U=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;"boolean"==typeof t&&(a.enabled=t),this.options.variants=a}catch(t){this.onError("setShowVariants.js",t)}},P=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;"number"==typeof t&&(a.count=t),this.options.variants=a}catch(t){this.onError("setVariantsCount.js",t)}},w=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;Array.isArray(t)&&(a.attributes=t),this.options.variants=a}catch(t){this.onError("setVariantsAttributes.js",t)}},C=function(t){try{var e=this.options.variants,a=void 0===e?{}:e;"string"==typeof t&&t.length>0&&(a.groupBy=t),this.options.variants=a}catch(t){this.onError("setVariantsGroupBy.js",t)}},R=function(){try{return this.state.responseObj&&this.state.responseObj.searchMetaData||null}catch(t){this.onError("getSearchMetaDetails.js",t)}},N=function(){try{var t=this.getResponseObj();return t&&t.response||null}catch(t){this.onError("getSearchResults.js",t)}},A=function(){try{var t=this.getSearchMeta();return t&&t.queryParams||null}catch(t){this.onError("getSearchQueryParams.js",t)}},j=function(){try{if(this.state.responseObj){var t=this.state.responseObj.searchMetaData.queryParams;return t[this.getSearchQueryParam()]||t[this.getBrowseQueryParam()]}return""}catch(t){this.onError("getSearchQuery.js",t)}},T={changeInput:"CHANGE_INPUT",fetchError:"FETCH_ERROR",afterApiCall:"AFTER_API_CALL",beforeApiCall:"BEFORE_API_CALL"};function O(t){return O="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},O(t)}function I(t){return function(t){if(Array.isArray(t))return L(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return L(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return L(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function L(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}function k(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function _(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?k(Object(a),!0).forEach((function(e){V(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):k(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function V(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==O(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==O(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===O(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var x=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:"";try{var r=this.state,n=r.userInput,o=r.isHistory,s=r.isBack,c=""===e?n:e;if(this.state.userInput=c,this.state.currentApiUrl=this.getNewUrlState(!0),this.state.isLoading)return!1;this.state.isLoading=!0;var l=this,u=this.options,d=u.productType,p=(u.hashMode,u.updateUrls,u.variants);if(!this.getHashMode()&&this.getUpdateUrls()&&!o&&!s){this.state.isBack=!1;var h=this.state.currentWebUrl.split("".concat(d.toLocaleLowerCase(),"?"))[1];if(decodeURIComponent(location.search)!=="?".concat(i.decodeQueryParam(h)))return this.setUrl(!0),!1}this.options.spellCheck;this.callBack(this,T.beforeApiCall);var f=new Headers,g=i.getDefaultRequestHeaders(this);for(var y in g)f.append(y,g[y]);var v=fetch(this.state.currentApiUrl,{headers:f,method:"GET"}),b=function(e){t.state.isLoading=!1,t.state.userInput=c,e&&t.callBack(l,e)};v.then((function(e){return t.state.requestId=e&&e.headers?e.headers.get("X-Request-Id"):"",e.json()})).then((function(e){if(t.state.isLoading=!1,t.state.userInput=c,e&&!e.error){p&&p.enabled&&(e=t.processVariantMap(e)),t.state.responseObj=e;var r=t.getDidYouMeanFromResponse();r&&(t.state.didYouMean=r,t.state.noResultQuery=t.state.userInput);var n=e,i=n.facets,u=n.response,d=void 0===u?{}:u;if(i){var h=t.getFacets(),f=t.modifyFacetsList(h);e.facets=_(_({},i),{},{text:{list:f}})}if(d){var g=d.products,y=void 0===g?[]:g,v=t.options.pagination,m=void 0===v?{}:v;"INFINITE_SCROLL"===m.type||"CLICK_N_SCROLL"===m.type?t.state.products="prev"===a?[].concat(I(y),I(t.state.products)):[].concat(I(t.state.products),I(y)):"FIXED_PAGINATION"===m.type&&(t.state.products=y)}t.state.responseObj=e,t.setSort(),t.getUpdateUrls()&&o&&!s&&(t.state.isBack=!1,t.setUrl(!1),t.updateSelectedFacetsCount()),t.callBack(l,T.afterApiCall)}else b(T.fetchError)})).catch((function(t){b(T.fetchError)}))}catch(t){this.onError("getResultsFromApi.js",t)}},M=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var e=this,a=e.options.variants.mapping,r=void 0===a?{}:a,n=r,i=Object.keys(n);if(t.response&&t.response.products){var o=t.response.products.map((function(t){var e=t,a=e.variants,r=void 0===a?[]:a,o=e.relevantDocument,s=t;"variant"===o&&r.length>0&&(t=r[0],i.forEach((function(e){var a=n[e];s[e]=t[a]})));var c=[];return r.forEach((function(t,e){var a=t;i.forEach((function(e){var r=n[e];r&&(a[e]=t[r])})),c.push(a)})),s.variants=c,s}));t.response.products=o}return t}catch(t){this.onError("processVariantsMap.js",t)}},X=function(t,e){try{return this.state.products.find((function(a){return a[t]===e}))}catch(t){this.onError("getProductByPropValue.js",t)}},B=function(){var t=this;try{var e=this.getSearchQueryParams(),a=e[this.getSearchQueryParam()],r=e.filter;this.state.userInput=a;var n=[],i="__",o=":";if(r){if(Array.isArray(r))r.forEach((function(t,e){var a=t.replaceAll(o,i);a=encodeURIComponent(a).replaceAll(i,o),n.push(a)}));else{var s=r.replaceAll(o,i);s=encodeURIComponent(s).replaceAll(i,o),n=[s]}e.filter=n}var c=this.getFilterFromParams(n);this.state.rangeFacet=c.rangeFacet;var l=c.selectedFilters,u=null;if(l)Object.keys(l).forEach((function(e){if(t.isCategoryFacet(e)){u=e;var a=l[e][0].dataId;t.state.categoryFilter[u]=a.split(">"),t.state.selectedFacets[u]&&delete t.state.selectedFacets[u]}else t.state.selectedFacets[e]=l[e]}));else this.state.selectedFacets={};0===Object.keys(this.state.categoryFilter).length&&(this.state.categoryFilter=this.getCategoryFilterFromParams(e)),this.state.breadcrumbs=this.getBreadCrumbs(u)}catch(t){this.onError("setStateFromData.js",t)}};var D=function(t){try{var e=t.siteName,a=t.siteKey,r=t.searchEndPoint,n=t.searchQueryParam,i=t.browseQueryParam,o=t.defaultFilters,s=t.spellCheck,c=t.pageSize,l=t.startPageNo,u=t.facetDepth,d=t.facetMultilevel,p=t.facetMultiSelect,h=t.updateUrls,f=t.extraParams,g=t.onEvent,y=t.getCategoryId,v=t.applyMultipleFilters,b=t.hashMode;this.state.pageSize=c||this.state.pageSize,this.state.startPageNo=l||this.state.startPageNo,this.options.siteName=e||this.options.siteName,this.options.siteKey=a||this.options.siteKey,this.options.searchEndPoint=r||this.options.searchEndPoint,this.options.searchQueryParam=n||this.getSearchQueryParam(),this.options.browseQueryParam=i||this.getBrowseQueryParam(),this.options.defaultFilters=o||this.options.defaultFilters,this.options.spellCheck=s||this.options.spellCheck,this.options.startPageNo=l||this.options.startPageNo,this.options.applyMultipleFilters=v||this.options.applyMultipleFilters,this.options.facetDepth=u||this.options.facetDepth,this.options.facetMultilevel=d||this.options.facetMultilevel,this.options.facetMultiSelect=p||this.options.facetMultiSelect,this.options.updateUrls=h||this.options.url.updateUrls||this.options.updateUrls,this.options.extraParams=f||this.options.extraParams,this.options.onEvent=g||this.options.onEvent,this.options.getCategoryId=y||this.options.getCategoryId,this.options.hashMode=b||this.getHashMode()}catch(t){this.onError("setSearchConfigurations.js",t)}},Q=function(t){try{var e=this.state,a=e.urlState,r=e.isHistory,n=(e.unbxdKeys,this.options.hashMode,this.checkIfUnbxdKey());if(this.getHashMode())if(decodeURIComponent(location.hash)!=="#".concat(decodeURIComponent(a))){(history.state||{}).path;if(this.state.isBack=!0,!n)return void this.options.onNoUnbxdKeyRouting();this.renderFromUrl(t.state)}else this.callBack(this,"lastBack");else if(r){(history.state||{}).path;if(this.state.isBack=!0,!n)return void this.options.onNoUnbxdKeyRouting();this.renderFromUrl(t.state)}else this.callBack(this,"lastBack")}catch(t){this.onError("onLocationChange",t)}},W=function(){return this.state.requestId},q=function(t,e){try{var a={};return Object.keys(e).forEach((function(r){var n=e[r];a[r]=t[n]})),a}catch(t){this.onError("getSwatches.js",t)}},z=function(){try{var t=this.getResponseObj();if(t&&t.facets&&t.facets.multilevel){var e=t.facets.multilevel.bucket||t.facets.multilevel.list||[];return this.modifyFacetsList(e)}return[]}catch(t){this.onError("getBucketedFacets.js",t)}},H=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[];try{var e=this.options.url||{},a=e.facetsUrl,r=void 0===a?{}:a,n=e.queryParamSeparator;if("KEY_VALUE_REPLACER"===r.algo){var o=this,s={},c={};return"string"==typeof t&&(t=Array(t)),t.forEach((function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",e=t.split("="),a=decodeURIComponent(e[0]),n=o.getKeyByValue(r.keyReplacer,a),l=r.rangeFacets.includes(n),u=e[1].split(i.getValuesSeparatorFacets(r.valuesSeperator));u&&u.length>0&&u.forEach((function(t,e){var u=decodeURIComponent(t),d=r.valueReplacer[n]?o.getKeyByValue(r.valueReplacer[n],u):u;if(l){var p=d.split(i.getRangeSeparator(r.rangeSeparator)),h="[".concat(Number(p[0])," TO ").concat(Number(p[1]),"]");c[a]?c[a].push(h):c[a]=[h]}else{var f=o.getFacetByValue(n,d);if(f.actualFound){var g=f.facetName,y=f.selectedvalue;s[g]?s[g].push(y):s[g]=Array(y)}else{var v=f.facetName,b={name:f.selectedvalue.name,dataId:o.encodeFacetValue(u),count:0};s[v]?s[v].push(b):"category-filter"!==v&&(s[v]=Array(b))}}}))})),{selectedFilters:s,rangeFacet:c}}var l=this,u={},d={};return"HASH"===r.algo&&(t=window.atob(t)?window.atob(t).split(i.getQueryParamSeparator(n)):[]),"string"==typeof t&&(t=Array(t)),t.forEach((function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",e=t.split("%20OR%20");e.forEach((function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",e=t.split(/%3A(.+)/);if(3===e.length){var a=decodeURIComponent(e[1]);a=a.replace(/(^")|("$)/g,"").replace(/\"{2,}/g,'"').replace(/\\\"/g,'"').replace(/(^\[)|(\]$)/g,"");var r=e[1].indexOf("TO")>0;if(r){var n=a.split(" TO "),i=e[0],o="[".concat(Number(n[0])," TO ").concat(Number(n[1]),"]");d[i]?d[i].push(o):d[i]=[o]}else{var s=e[0],c=e[1],p=l.cleanEncodedFacetValue(c),h=l.decodeFacetValue(p),f=l.getFacetByValue(s,h),g=f.actualFound;if(g){var y=f.facetName,v=f.selectedvalue;u[y]?u[y].push(v):u[y]=Array(v)}else{var b=f.facetName,m=f.selectedvalue,S=m.name,E={name:S,dataId:p,count:0};u[b]?u[b].push(E):u[b]=Array(E)}}}}))})),{selectedFilters:u,rangeFacet:d}}catch(t){this.onError("getFilterFromParams.js",t)}},Y=function(t){var e=this;try{var a=t.filter,r=[];if(t["category-filter"]&&(r=(a=t["category-filter"]).split(">")),!a)return{};Array.isArray(a)||(a=[a]),a=(a=this.getFilterFromParams(a)||{}).selectedFilters;var n={};if(Object.keys(a).forEach((function(t){if(e.isCategoryFacet(t)){var r=a[t][0].dataId;n[t]=r.split(">")}})),r.length>0&&r){var i=[];r.forEach((function(t){decodeURIComponent(t).split(">").forEach((function(t){i.push(decodeURIComponent(t))}))})),n.categoryPath=i}return n}catch(t){this.onError("getCategoryFilterFromParams.js",t)}},K=function(){try{var t=this.getResponseObj();if(t){var e=t.facets;return e&&e.range&&e.range.list?e.range.list:[]}return[]}catch(t){this.onError("getRangeFacets.js",t)}},G=function(){try{var t=this.getResponseObj();if(t){var e=t.facets;return e&&e.text&&e.text.list?e.text.list:[]}return[]}catch(t){this.onError("getFacets.js",t)}},$=function(){try{return this.state.selectedFacets}catch(t){this.onError("getSelectedFacets.js",t)}},Z=function(t){try{return this.getFacets().find((function(e){return e.facetName===t?e:null}))}catch(t){this.onError("getSelectedFacet.js",t)}},J=function(t){try{var e=this.state.selectedFacets,a=t.selectedFacetName,r="",n="",i=0,o=this.getSelectedFacetValue(t);if(o){var s=o.name,c=o.dataId,l=o.count;r=s,n=c,i=l}if(this.isFacetAlreadyAdded(a,n))return!1;e[a]?e[a].push({name:r,dataId:n,count:i}):e[a]=[{name:r,dataId:n,count:i}],this.callBack(self,"added_facet"),this.options.applyMultipleFilters||(this.setPageStart(0),this.getResults.bind(this)())}catch(t){this.onError("updateFacets.js",t)}},tt=function(t){try{var e=this.state.selectedFacets;this.clearFacets(!1),Object.keys(t).map((function(a){e[a]?delete e[a]:e[a]=t[a]})),this.setPageStart(0),this.getResults.bind(this)()}catch(t){this.onError("applyFacets.js",t)}},et=function(){var t=!(arguments.length>0&&void 0!==arguments[0])||arguments[0];try{var e=this.state.selectedFacets;Object.keys(e).map((function(t){return delete e[t]})),t&&(this.setPageStart(0),this.getResults.bind(this)())}catch(t){this.onError("clearFacets.js",t)}};function at(t){return function(t){if(Array.isArray(t))return rt(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return rt(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return rt(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function rt(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}var nt=function(t){try{var e=this.state.selectedFacets;Object.keys(t).map((function(a){var r=e[a]||[];e[a]=[].concat(at(r),at(t[a]))}))}catch(t){this.onError("addFacets.js",t)}},it=function(t){try{return this.state.selectedFacets[t]}catch(t){this.onError("findSelectedFacet.js",t)}},ot=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var a=e.parent,r=void 0===a?null:a,n=e.level,i=void 0===n?null:n;e.name;if(i)if(this.state.categoryFilter[r])0===(i=Number(i)-1)?delete this.state.categoryFilter[r]:this.state.categoryFilter[r].splice(i,6);else{var o=this.getBreadCrumbsList(r);if(i>1){this.state.categoryFilter[r]=[],o.forEach((function(e,a){if(a<i-1){var n=e.value;t.state.categoryFilter[r].push(n)}}))}}}catch(t){this.onError("deleteCategoryFilter.js",t)}},st=function(t,e){try{var a=this.getSelectedFacets();if(e){var r=a[t];this.state.selectedFacets[t]=r.filter((function(t){return t.dataId!=e}))}else delete this.state.selectedFacets[t];return this.state.selectedFacets}catch(t){this.onError("deleteFacet.js",t)}};function ct(t){return ct="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},ct(t)}function lt(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function ut(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?lt(Object(a),!0).forEach((function(e){dt(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):lt(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function dt(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==ct(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==ct(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===ct(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var pt=function(t,e){try{var a=this.getSelectedFacet(t)||{facetName:t},r=!1,n=a.values,i=void 0===n?[]:n,o={name:e};if(i.length>0)for(var s=0;s<i.length;s++){var c=i[s];if(c.name===e){r=!0,o=c;break}}return r?ut(ut({},a),{},{selectedvalue:o,actualFound:r}):{facetName:t,actualFound:r,selectedvalue:{name:e,dataId:e,count:0}}}catch(t){this.onError("getFacetByValue.js",t)}},ht=function(t){try{var e=t.selectedFacetId;return t.facetData.values.find((function(t){return t.dataId===e}))}catch(t){this.onError("getSelectedFacetValue.js",t)}},ft=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var e=t.parent,a=void 0===e?null:e,r=t.level,n=void 0===r?null:r,i=t.name,o=void 0===i?null:i,s=this.getCategoryFacetByValue(o),c=this.getBreadCrumbsList(a);if((n=Number(n))&&s)if(this.state.categoryFilter[a]&&n<=c.length)this.state.categoryFilter[a][n-1]=s,this.callBack(this,"deletedcategoryFilter");else{var l=[];(l=c.map((function(t){return t.value}))).push(s),this.state.categoryFilter[a]=l,this.callBack(this,"setCategoryFilter")}}catch(t){this.onError("setCategoryFilter.js",t)}},gt=function(t){try{if(t.length){var e=this.options.extraParams["facet.multilevel"];this.state.categoryFilter[e]=[t]}}catch(t){this.onError("setDefaultCategoryFilter.js",t)}},yt=function(t){try{var e=t.start,a=t.end,r=t.facetName,n=t.applyMultiple,i="[".concat(e," TO ").concat(a,"]");if(n)if(this.state.rangeFacet[r]){var o=this.state.rangeFacet[r].indexOf(i);o<0?this.state.rangeFacet[r].push(i):this.state.rangeFacet[r].splice(o,1)}else this.state.rangeFacet[r]=[i];else this.state.rangeFacet[r]=[i];this.callBack(self,"added_facet")}catch(t){this.onError("setRangeFacet",t)}},vt=function(t){try{var e=this.state.rangeFacet;e[t]&&delete e[t],this.state.rangeFacet=e}catch(t){this.onError("clearARangeFacet.js",t)}},bt=function(t,e){try{this.deleteFacet(t,e),this.callBack(this,"deleted_facet"),this.options.applyMultipleFilters||(this.setPageStart(0),this.getResults.bind(this)())}catch(t){this.onError("deleteAFacet.js",t)}},mt=function(t,e){try{var a=this.getSelectedFacets()[t],r=!1;return a&&a.forEach((function(t){if(t.dataId===e)return r=!0,!1})),r}catch(t){this.onError("isFacetAlreadyAdded.js",t)}},St=function(t){try{var e=this.state.rangeFacet;return t?e[t]:e}catch(t){this.onError("getSelectedRanges.js",t)}};function Et(t){return Et="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},Et(t)}var Ft=void 0;function Ut(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function Pt(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?Ut(Object(a),!0).forEach((function(e){wt(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):Ut(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function wt(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==Et(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==Et(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===Et(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var Ct=function(t){try{var e=[];return(t||[]).forEach((function(t){for(var a=t.values,r=a.counts,n=a.gap,i=[],o=[],s=0;s<r.length;s+=2){var c=Number(r[s]),l={name:c,count:r[s+1],dataId:c};if(o.push(l),o.length>=2){var u=o[0],d=o[1];i.push({from:u,end:d}),o.shift()}}if(1===o.length){var p=o[0],h=p.dataId+n,f={name:h,count:0,dataId:h};i.push({from:p,end:f})}var g=i[0].from.dataId,y=i[i.length-1].end.dataId;t.start=g,t.end=y,t.max=y,t.gap=n||1,t.min=g,t.values=i,e.push(Pt(Pt({},t),{},{values:i}))})),e}catch(t){Ft.onError("processRangeFacets.js",t)}},Rt=function(){try{var t=this.getRangeFacets();return Ct(t)}catch(t){this.onError("getRanges.js",t)}},Nt=function(t){try{var e=this.getAFacetByName(t)[0];return!!e&&"category"===e.facetType}catch(t){this.onError("isCategoryFacet.js",t)}};function At(t){return function(t){if(Array.isArray(t))return jt(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,e){if(!t)return;if("string"==typeof t)return jt(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return jt(t,e)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function jt(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}var Tt=function(){try{var t=this.getAllTextFacets(),e=this.getAllRangeFacets(),a=this.getAllCategory();return[].concat(At(a),At(t),At(e)).sort(this.sortFacets)}catch(t){this.onError("getAllFacets.js",t)}},Ot=function(t){try{var e=this.getAllFacets(),a=[];return t&&(a=e.filter((function(e){return e.facetName===t}))),a}catch(t){this.onError("getAFacetByName.js",t)}},It=function(){try{var t=this.state.categoryFilter;return t?Object.keys(t):null}catch(t){this.onError("getSelectedMultilevelFacet.js",t)}},Lt=function(){try{var t=this.getSelectedBucketedFacet(),e=this.getSelectedRanges(),a=this.getSelectedFacets();return Object.assign({},t,e,a)}catch(t){this.onError("getAllSelectedFacets.js",t)}},kt=function(){try{var t=this.getAllSelectedFacets()||{};return Object.keys(t).length}catch(t){this.onError("getSelectedFacetsCount.js",t)}},_t=function(){try{var t=this.getAllSelectedFacets()||{},e=Object.keys(t),a=0;return e.forEach((function(e){var r=t[e];Array.isArray(r)&&(a+=r.length)})),a}catch(t){this.onError("getSelectedFacetValueCount.js",t)}},Vt=function(t){try{var e=this.getBucketedFacets(),a=null;if(e)for(var r=0;r<e.length;r++)for(var n=e[r].values,i=0;i<n.length;i++){var o=n[i],s=o.dataId,c=o.name;if(s===t){a=c;break}}return a}catch(t){this.onError("getCategoryFacetByValue.js",t)}};function xt(t){return xt="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},xt(t)}function Mt(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function Xt(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?Mt(Object(a),!0).forEach((function(e){Bt(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):Mt(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function Bt(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==xt(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==xt(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===xt(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var Dt=function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[];try{var a=[];return e.forEach((function(r,n){var i=r;if(r.name)a.push(Xt(Xt({},i),{},{dataId:t.encodeFacetValue(r.name)}));else{var o="";n%2==1&&(o=e[n-1],a.push({name:o,count:i,dataId:t.encodeFacetValue(o)}))}})),a}catch(t){this.onError("modifyValues",t)}},Qt=function(t){var e=this;try{var a=[];return(t||[]).forEach((function(t,r){var n=t.values,i=t.displayName,o=t.facetName,s=t.filterField;o||(i&&(t.facetName=i),s&&(t.facetName=s)),t.values=e.modifyValues(n),a.push(t)})),a}catch(t){this.onError("modifyFacetsList",t)}};function Wt(t){try{var e="0"+t.charCodeAt(0).toString(16);return"\\x"+e.substr(e.length-2)}catch(t){this.onError("hex",t)}}var qt=function(t){try{return t=t.replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\v/g,"\\v").replace(/'/g,"'").replace(/"/g,'"').replace(/[\x00-\x1F\x80-\x9F]/g,Wt),encodeURIComponent(t)}catch(t){this.onError("encodeFacetValue",t)}},zt=function(t){try{return t=t.replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/\t/g,"\\t").replace(/\v/g,"\\v").replace(/'/g,"'").replace(/"/g,'"').replace(/[\x00-\x1F\x80-\x9F]/g,Wt),encodeURIComponent(t)}catch(t){this.onError("encodeCategoryFacetValue",t)}},Ht=function(t){try{return decodeURIComponent(new String("".concat(t)))}catch(t){this.onError("decodeFacetValue",t)}},Yt=function(t){try{return t.replace(/[^\w\d]/g,"")}catch(t){this.onError("cleanFacetValue",t)}},Kt=function(t){try{var e=t.split("%22");return 1===e.length?e[1]:(e=e.slice(1,-1)).join("%22")}catch(t){this.onError("cleanEncodedFacetValue",t)}},Gt=function(t,e){return Object.keys(t).find((function(a){return t[a]===e}))||e},$t=function(){try{return this.state.categoryFilter}catch(t){this.onError("getSelectedBucketedFacet",t)}},Zt=function(){try{this.setPageStart(0),this.getResults.bind(this)()}catch(t){this.onError("applyRangeFacet",t)}},Jt=function(t,e){try{return t.position>e.position?1:-1}catch(t){this.onError("sortFacets",t)}},te=function(){try{return this.getFacets().map((function(t){return t.facetType="text",t}))}catch(t){this.onError("getAllTextFacets",t)}},ee=function(){try{return this.getRanges().map((function(t){return t.facetType="range",t}))}catch(t){this.onError("getAllRangeFacets",t)}},ae=function(){try{return this.getBucketedFacets().map((function(t){return t.facetType="category",t}))}catch(t){this.onError("getAllCategory",t)}},re=function(t){try{var e=this.getBreadCrumbs(t),a=[],r=e;if(e)for(var n=function(){if(r.level){var t=r,e=t.level,n=t.values,i=t.filterField;n.forEach((function(t){a.push({level:e,filterField:i,value:t.value||t.name})}))}if(!r.child)return"break";r=r.child},i=0;i<this.options.facetDepth;i++){if("break"===n())break}return a}catch(t){this.onError("getBreadCrumbsList.js",t)}},ne=function(t){try{var e=this.getResponseObj(),a=[];if(e&&e.facets&&e.facets.multilevel&&t){var r=e.facets.multilevel.list;if(r)r.forEach((function(e){var r=e.filterField,n=e.breadcrumb;r===t&&(a=n)}));else{var n=e.facets.multilevel.breadcrumb;a=n||null}}return a}catch(t){this.onError("getBreadCrumbs.js",t)}},ie=function(t){try{this.setSort(t),this.setPageStart(0),this.getResults.bind(this)()}catch(t){this.onError("applySort.js",t)}},oe=function(t){try{if(void 0!==t)this.state.selectedSort=t;else{var e=this.getSearchQueryParams();this.state.selectedSort=e.sort?e.sort:""}}catch(t){this.onError("setSort.js",t)}},se=function(){return this.state.selectedSort},ce=function(){try{var t=this.getResponseObj()||{};return t&&t.didYouMean?t.didYouMean:[]}catch(t){this.onError("getDidYouMeanFromResponse.js",t)}},le=function(){try{return(this.state.didYouMean||[]).map((function(t){return t.suggestion}))}catch(t){this.onError("getSpellCheckSuggested.js",t)}},ue=function(t){this.options.spellCheck.enabled=!!t},de=function(){try{var t=this.getResponseObj()||{};return t&&t.banner&&t.banner.banners&&t.banner.banners||[]}catch(t){this.onError("getbanners.js",t)}},pe=function(t,e){this.state.userInput=t,this.callBack(t,e)},he=function(){this.state.selectedFacets={},this.state.rangeFacet={},this.state.categoryFilter={},this.state.breadcrumbs={}},fe=function(){this.resetFacets(),this.state.didYouMean=null,this.state.startPageNo=0,this.state.selectedSort="",this.state.responseObj=null,this.state.userInput="",this.state.pageSize=this.state.pageSize||this.options.pagesize.pageSize},ge=function(t){var e=t.prototype;e.changeInput=pe,e.resetFacets=he,e.resetAll=fe,function(t){t=Object.assign(t,b)}(e),function(t){Object.assign(t,{setPageStart:m,getPaginationInfo:S,setPageSize:E})}(e),function(t){t=Object.assign(t,{setProductAttributes:F,setShowVariants:U,setVariantsCount:P,setVariantAttributes:w,setVariantsGroupBy:C,getSearchResults:N,getSearchMeta:R,getSearchQueryParams:A,getSearchQuery:j,getResults:x,processVariantMap:M,getProductByPropValue:X,setStateFromData:B,setSearchConfigurations:D,onLocationChange:Q,getRequestId:W})}(e),function(t){Object.assign(t,{getSwatches:q})}(e),function(t){t=Object.assign(t,{getBucketedFacets:z,getSelectedBucketedFacet:$t,getFilterFromParams:H,getCategoryFilterFromParams:Y,getRangeFacets:K,getFacets:G,getSelectedFacets:$,getSelectedFacet:Z,updateFacets:J,applyFacets:tt,clearFacets:et,addFacets:nt,findSelectedFacet:it,deleteCategoryFilter:ot,deleteFacet:st,getFacetByValue:pt,getSelectedFacetValue:ht,setCategoryFilter:ft,setDefaultCategoryFilter:gt,setRangeFacet:yt,clearARangeFacet:vt,deleteAFacet:bt,applyRangeFacet:Zt,isFacetAlreadyAdded:mt,getSelectedRanges:St,getRanges:Rt,sortFacets:Jt,isCategoryFacet:Nt,getAllFacets:Tt,getAFacetByName:Ot,getSelectedMultilevelFacet:It,getAllTextFacets:te,getAllRangeFacets:ee,getAllCategory:ae,getAllSelectedFacets:Lt,getSelectedFacetsCount:kt,getSelectedFacetValueCount:_t,encodeFacetValue:qt,modifyFacetsList:Qt,modifyValues:Dt,decodeFacetValue:Ht,cleanFacetValue:Yt,getCategoryFacetByValue:Vt,encodeCategoryFacetValue:zt,cleanEncodedFacetValue:Kt,getKeyByValue:Gt})}(e),function(t){t=Object.assign(t,{getBreadCrumbsList:re,getBreadCrumbs:ne})}(e),function(t){t=Object.assign(t,{applySort:ie,getSelectedSort:se,setSort:oe})}(e),function(t){t=Object.assign(t,{getDidYouMeanFromResponse:ce,getSpellCheckSuggested:le,setSpellCheck:ue})}(e),function(t){t=Object.assign(t,{getBanners:de})}(e)};function ye(t){return ye="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},ye(t)}var ve=function t(e){if(!e)return e;var a,r=Array.isArray(e)?[]:{};for(var n in e)a=e[n],r[n]="object"===ye(a)?t(a):a;return r};function be(t){return be="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},be(t)}function me(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){var a=null==t?null:"undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(null!=a){var r,n,i,o,s=[],c=!0,l=!1;try{if(i=(a=a.call(t)).next,0===e){if(Object(a)!==a)return;c=!1}else for(;!(c=(r=i.call(a)).done)&&(s.push(r.value),s.length!==e);c=!0);}catch(t){l=!0,n=t}finally{try{if(!c&&null!=a.return&&(o=a.return(),Object(o)!==o))return}finally{if(l)throw n}}return s}}(t,e)||Pe(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function Se(t,e){var a="undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(!a){if(Array.isArray(t)||(a=Pe(t))||e&&t&&"number"==typeof t.length){a&&(t=a);var r=0,n=function(){};return{s:n,n:function(){return r>=t.length?{done:!0}:{done:!1,value:t[r++]}},e:function(t){throw t},f:n}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,o=!0,s=!1;return{s:function(){a=a.call(t)},n:function(){var t=a.next();return o=t.done,t},e:function(t){s=!0,i=t},f:function(){try{o||null==a.return||a.return()}finally{if(s)throw i}}}}function Ee(t,e){var a=Object.keys(t);if(Object.getOwnPropertySymbols){var r=Object.getOwnPropertySymbols(t);e&&(r=r.filter((function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),a.push.apply(a,r)}return a}function Fe(t){for(var e=1;e<arguments.length;e++){var a=null!=arguments[e]?arguments[e]:{};e%2?Ee(Object(a),!0).forEach((function(e){Ce(t,e,a[e])})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(a)):Ee(Object(a)).forEach((function(e){Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(a,e))}))}return t}function Ue(t){return function(t){if(Array.isArray(t))return we(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||Pe(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function Pe(t,e){if(t){if("string"==typeof t)return we(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);return"Object"===a&&t.constructor&&(a=t.constructor.name),"Map"===a||"Set"===a?Array.from(t):"Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a)?we(t,e):void 0}}function we(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}function Ce(t,e,a){return(e=Ne(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}function Re(t,e){for(var a=0;a<e.length;a++){var r=e[a];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,Ne(r.key),r)}}function Ne(t){var e=function(t,e){if("object"!==be(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==be(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===be(e)?e:String(e)}var Ae=function(){function t(e){var a;!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.options=Object.assign({},r,e),this.state=(Ce(a={queryRef:{},userInput:"",responseObj:null,selectedFacets:{},currentWebUrl:"",currentApiUrl:"",didYouMean:null,startPageNo:this.options.startPageNo||0,isLoading:!1,selectedSort:"",isUrlUpdated:!1,rangeSliderList:[],rangeFacet:{},categoryFilter:{},breadcrumbs:{},urlState:"",noResultQuery:"",pageSize:this.options.pagesize&&this.options.pagesize.pageSize?this.options.pagesize.pageSize:12},"pageSize",this.options.pagesize&&this.options.pagesize.pageSize?this.options.pagesize.pageSize:12),Ce(a,"urlLoad",!1),Ce(a,"isHistory",window.history),Ce(a,"isBack",!1),Ce(a,"products",[]),Ce(a,"requestId",null),Ce(a,"unbxdKeys",["filter","category-filter","rows","start","page","count","sort",this.getBrowseQueryParam(),this.getSearchQueryParam(),"uc_param"]),a);var n=this.options,i=(n.browseQueryParam,n.productType),o=n.getCategoryId,s=n.setCategoryId,c="/search?";this.getSearchQueryParam();"CATEGORY"===i&&(c="/category?",this.getBrowseQueryParam()),this.getCategoryId=o,this.setCategoryId=s,this.apiUrl=this.webUrl=this.getBaseUrl()+c}var e,a,n;return e=t,a=[{key:"getResponseObj",value:function(){var t=this.state.responseObj;return t?ve(t):null}},{key:"getUrlParamString",value:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",a=arguments.length>1?arguments[1]:void 0,r=Object.keys(a),n=this.options||{},o=n.url,s=void 0===o?{}:o,c=s.facetsUrl,l=void 0===c?{}:c,u=s.queryParamSeparator,d=s.seoFriendlyUrl,p=s.orderOfQueryParams,h=void 0===p?[]:p;if(d&&h&&h.length>0){var f=[],g=["QUERY","FILTERS","PAGE_NUMBER","PAGE_SIZE","SORT","VIEW_TYPE"],y=g.filter((function(t){return!h.includes(t)})),v=[].concat(Ue(h),Ue(y)),b=[];r.forEach((function(e){i.isTextFilterStr.bind(t)(e)||b.push(e)})),v.forEach((function(e){switch(e){case"QUERY":r.includes(t.getSearchQueryParam())?f.push(t.getSearchQueryParam()):r.includes(t.getBrowseQueryParam())&&f.push(t.getBrowseQueryParam());break;case"FILTERS":b&&(f=[].concat(Ue(f),b));break;case"PAGE_NUMBER":r.includes("start")?f.push("start"):r.includes("page")?f.push("page"):r.includes(t.options.url.pageNoUrl.keyReplacer)&&f.push(t.options.url.pageNoUrl.keyReplacer);break;case"PAGE_SIZE":r.includes("rows")?f.push("rows"):r.includes(t.options.url.pageSizeUrl.keyReplacer)&&f.push(t.options.url.pageSizeUrl.keyReplacer);break;case"SORT":r.includes("sort")?f.push("sort"):r.includes(t.options.url.sortUrl.keyReplacer)&&f.push(t.options.url.sortUrl.keyReplacer);break;case"VIEW_TYPE":r.includes("viewType")?f.push("viewType"):r.includes(t.options.url.pageViewUrl.keyReplacer)&&f.push(t.options.url.pageViewUrl.keyReplacer)}})),r=f}return r.forEach((function(n,o){var s=a[n],c="";s.forEach((function(a,r){if("KEY_VALUE_REPLACER"!==l.algo||i.isTextFilterStr.bind(t)(n))"HASH"!==l.algo||i.isTextFilterStr.bind(t)(n)?e="".concat(e).concat(encodeURIComponent(n),"=").concat(n===t.getSearchQueryParam()?a:encodeURIComponent(a)):(0===r?c=a:c+="&".concat(a),e="".concat(e).concat(n,"=").concat(window.btoa(i.getEachFacetValueEncodedFromStr(decodeURIComponent(c),"&"))));else{var o=i.getEachFacetValueEncodedFromStr(a,i.getValuesSeparatorFacets(l.valuesSeperator));e="".concat(e).concat(n,"=").concat(o)}r!==s.length-1&&(e="".concat(e).concat(i.getQueryParamSeparator(u)))})),o!==r.length-1&&(e="".concat(e).concat(i.getQueryParamSeparator(u)))})),e}},{key:"getUrlStr",value:function(t){var e=(this.options||{}).url,a=(void 0===e?{}:e).queryParamSeparator,r={};t.split("".concat(this.getSearchQueryParam(),"="))[1]&&(r[this.getSearchQueryParam()]=[t.split("".concat(this.getSearchQueryParam(),"="))[1].split(a?i.getQueryParamSeparator(a):/\&\w+\-?\w+?=/gi)[0]]),t.split("".concat(this.getBrowseQueryParam(),"="))[1]&&(r[this.getBrowseQueryParam()]=[t.split("".concat(this.getBrowseQueryParam(),"="))[1].split(a?i.getQueryParamSeparator(a):/\&\w+\-?\w+?=/gi)[0]]);var n=this.readSortWebUrl(t),o=this.readFacetsWebUrl(t),s=this.readPageSizeWebUrl(t),c=this.readPageViewWebUrl(t),l=this.readPageNoWebUrl(t);if(r=Fe(Fe(Fe(Fe(Fe(Fe({},r),n),o),s),c),l),this.getAllowExternalUrlParams()){var u,d=new URLSearchParams(this.getHashMode()?location.hash.slice(1):location.search),p=Se(d);try{for(p.s();!(u=p.n()).done;){var h=me(u.value,2),f=h[0],g=h[1];this.state.unbxdKeys.indexOf(f)<0&&d.getAll(f).length&&""!==g&&(r[f]=d.getAll(f))}}catch(t){p.e(t)}finally{p.f()}}return this.getUrlParamString(this.getHashMode()?"":"?",r)}},{key:"urlSearchParamsToStr",value:function(t){for(var e={},a=0,r=Object.entries(t);a<r.length;a++){var n=me(r[a],2),o=n[0],s=n[1];o!==this.getSearchQueryParam()&&t[o].length&&""!==s&&(i.isTextFilterStr.bind(this)(decodeURIComponent(o))||"HASH"!==this.options.url.facetsUrl.algo?e[o]=t[o]:e[o]=[window.atob(t[o])]),o===this.getSearchQueryParam()&&(e[this.getSearchQueryParam()]=i.encodeQueryParam(t[o]))}return this.getUrlParamString(this.getHashMode()?"#":"?",e)}},{key:"checkIfUnbxdKey",value:function(){var t,e=!1,a=Se(new URLSearchParams(this.getHashMode()?location.hash.substring(1):location.search));try{for(a.s();!(t=a.n()).done;){var r=me(t.value,2),n=r[0];r[1],this.state.unbxdKeys.indexOf(n)>-1&&(e=!0)}}catch(t){a.e(t)}finally{a.f()}return e}},{key:"convertToHashString",value:function(t){var e=this.getUrlStr(t);return"?"===e.charAt(0)&&(e=e.substring(1)),e}},{key:"setUrl",value:function(t){var e=this.options,a=e.productType,r=(e.hashMode,e.searchPath),n=e.onQueryRedirect,i=(e.allowExternalUrlParams,this.state),o=i.urlLoad,s=i.isHistory,c=i.responseObj,l=void 0===c?{}:c,u=(i.unbxdKeys,l.redirect),d=l.didYouMean,p=void 0===d?[]:d;if("function"==typeof n&&u&&u.value){this.state.userInput="";var h=this.getUrlStr("redirected=true");return this.getHashMode()&&(h="#".concat(this.convertToHashString(h))),void n(this,u,h)}var f=this.getNewUrlState(!1).split("".concat(a.toLocaleLowerCase(),"?"))[1];this.state.urlState=f;var g=location.pathname.includes(r),y=this.checkIfUnbxdKey(),v=null;if(p.length&&p[0].suggestion?this.state.queryRef={replaceNext:!0}:this.state.queryRef.replaceNext&&(v=!0,this.state.queryRef={}),this.getHashMode()){var b="#".concat(f);if(g&&b!==location.hash){var m=this.convertToHashString(f);this.options.setRoutingStrategies(location.hash,"#".concat(m),a,y,v)}}else{if(s&&!o&&g){var S="?".concat(f),E=this.getUrlStr(S);decodeURI(E)!==decodeURI(location.search)&&this.options.setRoutingStrategies(location.search,"".concat(E),a,y,v),this.state.urlLoad=!1}t&&g&&(location.search=newQ)}}},{key:"updateSelectedFacetsCount",value:function(){var t=this,e="",a=this.options.url,r=(void 0===a?{}:a).facetsUrl,n=void 0===r?{}:r;e="KEY_VALUE_REPLACER"!==n.algo&&"HASH"!==n.algo||n.showFilterStr?this.getQueryParams():this.getQueryParamsWhenCustomUrl();var o=this.options,s=(o.browseQueryParam,o.productType),c=this.getSearchQueryParam();if("SEARCH"!==s&&(c=this.getBrowseQueryParam(),e[c]=this.getCategoryId()),"object"===be(e)&&e[c]){var l=e,u=(l[this.getSearchQueryParam()],l["KEY_VALUE_REPLACER"===n.algo?n.filterReplacer:"filter"]);if("KEY_VALUE_REPLACER"===n.algo&&!n.showFilterStr){var d=[];Object.keys(e).forEach((function(a,r){i.isTextFilterStr.bind(t)(decodeURIComponent(a))||(d.length,d.push(a+"="+e[a]))})),u=d}var p=this.getFilterFromParams(u);this.state.selectedFacets=this.options.url.facetsUrl.addToUrl?p.selectedFilters:this.state.selectedFacets}}},{key:"callBack",value:function(t,e){(0,this.options.onEvent)(this,e)}},{key:"onError",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";this.options.onError&&this.options.onError(t,e),console.error("Something went wrong in ".concat(t,": ").concat(e))}},{key:"getHashMode",value:function(){return this.options.url.hashMode||this.options.hashMode}},{key:"getUpdateUrls",value:function(){return!0}},{key:"getAllowExternalUrlParams",value:function(){return this.options.url.allowExternalUrlParams||this.options.allowExternalUrlParams}},{key:"getBrowseQueryParam",value:function(){return this.options.url.browseQueryParam||this.options.browseQueryParam}},{key:"getSearchQueryParam",value:function(){return this.options.url.searchQueryParam||this.options.searchQueryParam}}],a&&Re(e.prototype,a),n&&Re(e,n),Object.defineProperty(e,"prototype",{writable:!1}),t}();ge(Ae);var je=Ae;a(16);var Te=function(t,e,a,r){try{t.addEventListener(e,(function(t){for(var e=t.target;e&&e!==this;)e.matches(a)&&r.call(e,t),e=e.parentNode}))}catch(t){this.onError("delegate.js",t)}},Oe=function(t,e){var a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},r=a||{},n=r.start,i=r.productsLn,o=r.numberOfProducts,s=this.options.spellCheck,c=s.selectorClass,l=void 0===c?"":c,u=s.enabled,d=this.options.productType,p=t;if("SEARCH"!==d){var h=this.getCategoryId()||"",f=decodeURIComponent(h).split(">");p=f[f.length-1]||f[0]}var g=this.testIds.UNX_spellCheck,y=void 0===g?"":g,v=e?'<p class="UNX-no-result"> Your search "<strong>'.concat(e,'</strong>" did not match any products. Did you mean <button data-test-id="').concat(y,'" data-action="getSuggestion" class="').concat(l,'">').concat(t,"</button>? </p>"):"",b="",m="";return o>0&&(m='<span class="UNX-result-info">  -  '.concat(n+1," to ").concat(i+n," of ").concat(o," products</span>")),a&&Object.keys(a).length>0&&p&&(u||(p=e||t),b='<p class="UNX-suggestion-p">Showing results for <strong>'.concat(p,"</strong> ").concat(m,"</p>")),['<div class="UNX-spellcheck-block">',v,b,"</div>"].join("")};function Ie(t,e,a,r){var n=t.facetName,i=t.facetType,o=e.name,s=e.count,c=e.dataId,l=this.options.facet,u=l.facetClass,d=l.selectedFacetClass,p=l.removeFacetsSelectorClass,h=this.testIds.UNX_uFilter,f="deleteSelectedFacetValue";"range"===i&&(f="deleteSelectedRange");var g=" ".concat(u," ").concat(d," ");return['<div class="UNX-selected-facets-wrap">','<button data-test-id="'.concat(h,'" class="UNX-selected-facet-btn UNX-change-facet ').concat(g,'" data-facet-name="').concat(n,'" data-facet-action="').concat(f,'" data-id="').concat(c,'">'),'<span class="UNX-facet-text">'.concat(o,'</span> <span class="UNX-facet-count">(').concat(s,")</span>"),"</button>",'<button class="UNX-delete-facet '.concat(p," ").concat(g,'" data-id="').concat(c,'" data-facet-action="').concat(f,'" data-facet-name="').concat(n,'">x</button></div>')].join("")}function Le(t,e,a){var r=e.clearAllText,n=e.clearFacetsSelectorClass,i=this.selectedFacetClass?this.selectedFacetClass:a.selectedFacetClass;return t.length>0?['<div class="UNX-facets-selections">','<h5 class="UNX-selected-facet-header">Selected Filters</h5>','<div class="UNX-selected-facets-inner">'.concat(t,"</div>"),'<button class="'.concat(n," ").concat(i,'" data-facet-action="clearAllFacets">').concat(r,"</button>"),"</div>"].join(""):""}var ke=function(t,e){if(!t)return"";var a=t||{},r=a.currentPage,n=a.isNext,i=a.isPrev,o=a.noOfPages,s=a.productsLn,c=a.numberOfProducts,l=a.rows,u=e||{},d=u.pageClass,p=u.selectedPageClass,h=u.pageLimit,f=this.testIds.UNX_pageNumber,g=void 0===f?"":f;if(c<=s)return"";var y='<button class="UNX-next-btn UNX-page-next '.concat(d,'" data-page-no="').concat(r*l,'" data-page-action="next">></button>'),v='<button class="UNX-prev-btn UNX-page-prev '.concat(d,'" data-page-no="').concat((r-2)*l,'" data-page-action="prev"><</button>'),b="",m=o<h?o:h,S=1,E=Math.ceil(h/2),F=r-E;F>0&&(S=F,m=r+E);var U=r+E;U>=o&&((S-=U-o)<=0&&(S=1),m=o);for(var P=S;P<=m;P++){var w="".concat(g).concat(P),C=P===r?p:"";b+='<button data-test-id="'.concat(w,'" data-page-action="paginate" data-page-no="').concat((P-1)*l,'" class="UNX-page-button ').concat(d," ").concat(C,'">').concat(P,"</button>")}return n||(y='<button disabled class="UNX-next-btn UNX-page-next">></button>'),i||(v='<button disabled class="UNX-prev-btn UNX-page-prev"><</button>'),['<div class="UNX-pagination-block">',v,'<div class="UNX-page-no-block">'.concat(b,"</div>"),y,"</div>"].join("")},_e=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=e.pageClass,r=void 0===a?"":a;return'<div class="UNX-click-scroll"><button data-test-id="'.concat(this.testIds.UNX_loadMore,'" data-page-action="next" class="UNX-click-n-scroll ').concat(r,'">Load More</button></div>')},Ve=function(t,e,a,r){var n="",i=r.multiLevelFacetSelectorClass,o=r.facetClass,s=this.testIds.UNX_facetLevel;e&&e.forEach((function(t){var e=t.level,a=t.filterField,r=t.value,c='data-test-id="'.concat(s).concat(e,'"'),l="".concat(i,"  UNX-category-level-").concat(e);n+=["<button ".concat(c,' data-parent="').concat(a,'" data-level="').concat(e,'" data-name="').concat(r,'"'),'class=" '.concat(l," UNX-selected-crumb ").concat(o,'" data-action = "clearCategoryFilter">'),'<span class="UNX-category-icon"></span><label class="UNX-facet-text">'.concat(decodeURIComponent(r),"</label>"),"</button>"].join("")}));var c=t.level,l=(t.displayName,t.values),u=t.filterField,d=t.multiLevelField;d||(d=u);var p='data-test-id="'.concat(s).concat(c,'"'),h="UNX-category-level-".concat(c),f=l.map((function(t){var e=t.name,r=t.count,n=t.dataId;return a&&a.length>0&&e.toUpperCase().indexOf(a.toUpperCase())<0&&(o+=" UNX-search-hidden"),["<button ".concat(p,' data-parent="').concat(d,'" data-level="').concat(c,'"'),'class="'.concat(i," ").concat(h," ").concat(o,'" data-name="').concat(n,'" data-action = "setCategoryFilter">'),'<label class="UNX-facet-text">'.concat(e,'</label><label class="UNX-facet-count">(').concat(r,")</label></button>")].join("")}));return""!==(n+='<div class="UNX-category-values">'.concat(f.join(""),"</div>"))?['<div class="UNX-multi-facet-wrap">',"".concat(n,"</div>")].join(""):""},xe=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a="",r=e||{},n=r.selectorClass,i=void 0===n?"":n;return t&&t.forEach((function(t,e){var r=t.level,n=t.filterField,o=t.value,s="".concat(i," UNX-bread-crumb-item");e>0&&(a+='<span class="UNX-slash"> / </span>'),a+=['<button data-parent="'.concat(n,'" data-level="').concat(r,'" class="').concat(s,'" data-name="').concat(o,'" data-action = "clearCategoryFilter">'),"".concat(decodeURIComponent(o),"</button>")].join("")})),'<div class="bread-crumb-main">'.concat(a,"</div>")},Me=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};try{var a=!this.getSearchResults(),r=e.selectedViewTypeClass,n=void 0===r?"":r,i=e.viewTypeClass,o=void 0===i?"":i,s=this.testIds,c=s.UNX_gridBtn,l=void 0===c?"":c,u=s.UNX_listBtn,d=void 0===u?"":u,p="UNX-list-btn ".concat(o),h="UNX-grid-btn ".concat(o),f="data-test-id=".concat(l),g="data-test-id=".concat(d);"LIST"===t&&(p+=" ".concat(n)),"GRID"===t&&(h+=" ".concat(n));var y='<button id="listBtn" class="'.concat(p,'" ').concat(g,' data-view-action="LIST" >List</button>'),v="<button ".concat(f,' id="gridBtn" class="').concat(h,'" data-view-action="GRID" >Grid</button>');return a&&(y="<button ".concat(g,' id="listBtn" disabled class="').concat(p,' disabled-btn" data-view-action="LIST" >List</button>'),v="<button ".concat(f,' id="gridBtn" disabled class="').concat(h,'  disabled-btn"data-view-action="GRID" >Grid</button>')),"".concat(y," ").concat(v)}catch(t){this.onError("productViewtype > renderProductViewType",t)}},Xe=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:[],e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=e||{},r=a.openNewTab,n="";return n=t?t.map((function(t){var e=t.imageUrl,a=t.landingUrl,n=t.bannerHtml;if(n)return n;var i="";return a&&(i+="href=".concat(a)),r&&(i+='  target="_blank"'),'<a class="UNX-banner-wrap" '.concat(i,' ><img style="max-width:100%" src="').concat(e,'"/></a>')})).join(""):"","".concat(n)},Be=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=e||{},r=a.options,n=void 0===r?[]:r,i=a.pageSizeClass,o=void 0===i?"":i,s=a.selectedPageSizeClass,c=void 0===s?"":s,l=this.testIds.UNX_pagesize,u=void 0===l?"":l,d='<label class="UNX-hidden" for="unxPageSize">Sort By</label><select id="unxPageSize" name="unxPageSize" class="UNX-select-pagesize '.concat(o,'">');return n&&n.forEach((function(e,a){var r='data-test-id="'.concat(u).concat(a+1,'"');d+=t==e?"<option selected ".concat(r,' class="').concat(c,'" id="').concat(e,'">').concat(e,"</option>"):"<option ".concat(r,' id="').concat(e,'">').concat(e,"</option>")})),'<div class="UNX-pagesize-block">'.concat(d+="</select>","</div>")},De={productId:"uniqueId",searchBoxEl:null,searchButtonEl:null,siteKey:"demo-spanish-unbxd809051588861207",apiKey:"f19768e22b49909798bc2411fa3dd963",searchPath:"",searchEndPoint:"https://search.unbxd.io/",products:{el:null,template:function(t,e,a,r,n){var i=t.unxTitle,o=t.unxImageUrl,s=t.uniqueId,c=t.unxStrikePrice,l=t.unxPrice,u=t.unxDescription,d=n.productItemClass,p=n.defaultImage,h=Array.isArray(o)?o[0]:o;h||(h=p);var f='<div class="UNX-img-wrapper"><img class="UNX-img-block" width="100%" height="100%" alt="'.concat(i,'" src="').concat(h,'"/></div>'),g='<span class="UNX-sale-price">'.concat(l,"</span>"),y="";c&&(y='<span class="UNX-strike-price">'.concat(c,"<span>"));var v="",b="";"GRID"===r?v="UNX-grid-card":(v="UNX-list-card",b='<p class="UNX-description">'.concat(u,"</p>"));var m="",S=a||{},E=S.btnList,F=S.imgList;return E&&(m='<div class="UNX-swatch-wrapper">'.concat(E,"</div>")),F&&(f=F),['<div id="'.concat(s,'" data-id="').concat(s,'" data-prank="').concat(e,'" data-item="product" class="UNX-product-col ').concat(v," ").concat(d,'">'),,'<h3 class="UNX-product-number">'.concat(Math.floor(e),"</h3>"),'<div class="UNX-images-block">'.concat(f,"</div>"),'<div class="UNX-product-content">','<h3 class="UNX-product-title">'.concat(i,"</h3>"),m,b,'<div class="UNX-price-row">'.concat(g," ").concat(y,"</div>"),"</div>","</div>"].join("")},productItemClass:"product-item",productType:"SEARCH",gridCount:1,searchTrigger:"click",onProductClick:function(t,e){},productAttributes:["title","uniqueId","price","sku","imageUrl","displayPrice","salePrice","sortPrice","productDescription","unbxd_color_mapping","colorName","color","productUrl"],attributesMap:{unxTitle:"title",unxImageUrl:"imageUrl",unxPrice:"salePrice",unxStrikePrice:"displayPrice",unxId:"uniqueId",unxDescription:"productDescription"},defaultImage:"https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",tagName:"DIV",htmlAttributes:{class:"UNX-search-results-block UNX-result-wrapper"},events:{}},defaultFilters:{},noResults:{template:function(t){return'<div class="UNX-no-results"> No Results found '.concat(t," </div>")}},onEvent:function(t,e){},startPageNo:0,productView:{enabled:!0,el:null,template:Me,action:"click",viewTypeClass:"UNX-product-view",selectedViewTypeClass:"UNX-selected-product-view",defaultViewType:"GRID",tagName:"DIV",htmlAttributes:{class:"product-view-container"},events:{}},loader:{template:function(){return'<div class="UNX-loader">Loading search results....</div>'},el:null},variants:void 0,extraParams:{version:"V2"},spellCheck:{enabled:!0,el:null,template:Oe,selectorClass:"UNX-suggestion",tagName:"DIV",htmlAttributes:{class:"UNX-spellcheck-wrapper"},events:{}},breadcrumb:{enabled:!0,el:null,selectorClass:"UNX-bread-crumb",template:xe,tagName:"DIV",htmlAttributes:{class:"UNX-breadcrumbs-block"},events:{}},url:{updateUrls:!0,hashMode:!1,allowExternalUrlParams:!1,browseQueryParam:"p",searchQueryParam:"q",seoFriendlyUrl:!1,orderOfQueryParams:["QUERY","FILTERS","PAGE_NUMBER","PAGE_SIZE","SORT","VIEW_TYPE"],queryParamSeparator:"&",pageViewUrl:{addToUrl:!1,algo:"KEY_VALUE_REPLACER",keyReplacer:"viewType",valuesReplacer:{GRID:"GRID",LIST:"LIST"}},sortUrl:{addToUrl:!0,algo:"KEY_VALUE_REPLACER",keyReplacer:"sort",valueReplacer:{}},pageSizeUrl:{addToUrl:!0,algo:"KEY_VALUE_REPLACER",keyReplacer:"rows"},pageNoUrl:{addToUrl:!0,algo:"KEY_VALUE_REPLACER",keyReplacer:"start",usePageNo:!1},facetsUrl:{addToUrl:!0,algo:"KEY_VALUE_REPLACER",showFilterStr:!1,filterReplacer:"filter",valuesSeperator:",",facetsOrderInUrl:[],valueReplacer:{},keyReplacer:{},rangeSeparator:"-"}},sort:{enabled:!0,el:null,selectedSortClass:"UNX-selected-sort",sortClass:"UNX-sort-item",template:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a="",r=e||{},n=r.options,i=void 0===n?[]:n,o=r.sortClass,s=void 0===o?"":o,c=r.selectedSortClass,l=void 0===c?"":c,u=this.testIds.UNX_unbxdSorter,d=void 0===u?"":u;return i&&i.forEach((function(e){var r=e.value,n=void 0===r?"":r,i=e.text,o=void 0===i?"":i;a+=n==t?'<option value="'.concat(n,'" class="').concat(l,'" selected>').concat(o,"</option>"):'<option value="'.concat(n,'">').concat(o,"</option>")})),['<div class="UNX-sort-block">','<span class="UNX-sort-header">Sort By</span>','<label class="UNX-hidden" for="unxSortSelect">Sort By</label>','<select data-test-id="'.concat(d,'" name="unxSortSelect" data-action="changeSort" id="unxSortSelect" class="').concat(s,'">'),'<option value="">Relevancy</option>',a,"</select>","</div>"].join("")},options:[{value:"price desc",text:"Price High to Low"},{value:"price asc",text:" Price Low to High"}],action:"change",tagName:"DIV",htmlAttributes:{class:"UNX-sort-block-lb"},events:{}},selectedFacets:{enabled:!0,selectedFacetClass:"UNX-selected-facet-btn",el:null,template:Le,itemTemplate:Ie,clearAllText:"Clear All",tagName:"DIV",htmlAttributes:{class:"UNX-selected-facet-lb"},events:{},facetAction:"click",clearFacetsSelectorClass:"UNX-clear-facet",removeFacetsSelectorClass:"UNX-remove-facet"},facet:{facetsEl:null,facetTemplate:function(t,e,a,r,n){var i=t.displayName,o=t.facetName,s=(t.multiLevelField,t.facetType),c=t.values,l=n.facetClass,u=n.applyMultipleFilters,d=n.isCollapsible,p=n.isSearchable,h=n.searchPlaceHolder,f=n.textFacetWrapper,g=n.enableViewMore,y=n.viewMoreText,v=n.viewMoreLimit,b=n.applyButtonText,m=n.clearButtonText,S=this.options,E=S.actionBtnClass,F=S.actionChangeClass,U=this.cssList,P=(U.openBtn,U.closeBtn,""),w="",C=this.getSelectedFacets()[o],R=!!(C&&C.length>0);g&&"text"===s&&c.length>v&&(w="UNX-view-more",P='<div class="UNX-view-more-row "><button class="'.concat(E,'" data-facet-name="').concat(o,'" data-action="viewMore" data-id="').concat(y[0],'">').concat(y[0],"</button></div>"));var N="",A="";R&&(N='<button class="UNX-facet-clear '.concat(l,' "data-facet-action="deleteFacet" data-facet-name="').concat(o,'">').concat(m,"</button>")),u&&R&&(A='<button class="UNX-facet-primary '.concat(l,' "data-facet-action="applyFacets" >').concat(b,"</button>"));var j="",T="";return d&&(j=a?'<div class="UNX-facet-header '.concat(E,' UNX-facet-open"  data-facet-name="').concat(o,'" data-facet-action="facetClose"> <h3>').concat(i,"</h3> </div>"):'<div class="UNX-facet-header '.concat(E,' UNX-facet-close"  data-facet-name="').concat(o,'" data-facet-action="facetOpen"> <h3>').concat(i,"</h3></div>")),p&&null!==r&&(T='<div class="UNX-searchable-facets"><label class="UNX-hidden" for="'.concat(o,'_searchBox">').concat(h,'</label><input  id="').concat(o,'_searchBox" name="').concat(o,'_searchBox" data-test-id="').concat(this.testIds.UNX_searchFacets,'" class="UNX-facet-search ').concat(F,'" value="').concat(r,'"  data-facet-name="').concat(o,'" data-facet-action="searchFacets" type="text" placeholder="').concat(h,'"/></div>')),['<div class="UNX-text-facet-wrap">',j,'<div class="UNX-facets-all">',T,'<div class="UNX-facets '.concat(f," ").concat(w,'">').concat(e,"</div>"),P,'<div class="UNX-facet-footer">'.concat(A," ").concat(N,"</div>"),"</div>","</div>"].join("")},facetItemTemplate:function(t,e,a){var r=t.facetName,n=t.isSelected,i=e.name,o=e.count,s=e.dataId,c=this.options.facet,l=c.facetClass,u=c.selectedFacetClass,d=this.testIds.UNX_uFilter;a&&a.length>0&&i.toUpperCase().indexOf(a.toUpperCase())<0&&(l+=" UNX-search-hidden");var p="changeFacet";return n&&(l+=" ".concat(u),p="deleteFacetValue"),['<button data-test-id="'.concat(d,'" data-facet-name="').concat(r,'" data-facet-action="').concat(p,'" class="UNX-change-facet ').concat(l,'" data-id="').concat(s,'">'),'<span class="UNX-facet-text">'.concat(i,'</span> <span class="UNX-facet-count">(').concat(o,")</span>"),"</button>"].join("")},facetMultiSelect:!0,facetClass:"UNX-facets-block",facetAction:"click",selectedFacetClass:"UNX-selected-facet-btn",selectedFacetsEl:null,selectedFacetTemplate:Le,selectedFacetItemTemplate:Ie,selectedFacetConfig:{},clearAllText:"Clear All",rangeTemplate:function(t,e){var a=this,r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};try{var n=t.facetName,i=t.values,o=void 0===i?[]:i,s="",c=r.facetClass,l=r.selectedFacetClass,u=r.applyMultipleFilters,d=r.applyButtonText,p=r.clearButtonText,h=e.length>0;o.forEach((function(t){var e=t.from,r=t.end,i=a.isSelectedRange(n,t)?"UNX-selected-facet-btn ".concat(c," ").concat(l):"".concat(c);s+=['<button class="'.concat(i,' UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="').concat(n,'" data-start="').concat(e.dataId,'" data-end="').concat(r.dataId,'" >'),'<span class="UNX-facet-text">'.concat(e.name,"  -  ").concat(r.name,"</span>"),'<span class="UNX-facet-count">('.concat(e.count,")</span>"),"</button>"].join("")}));var f="",g="";return h&&(u&&(g='<button class="UNX-default-btn '.concat(c,' UNX-facet-primary" data-action="applyRange"> ').concat(d,"</button>")),f='<button class="UNX-default-btn UNX-facet-clear  '.concat(c,'" data-action="clearRangeFacets">').concat(p,"</button>")),['<div class="UNX-range-wrapper">',s,'<div class="UNX-price-action-row">',g,f,"<div>","</div>"].join("")}catch(t){this.onError("facets > renderRangeFacets.js",t)}},rangeWidgetConfig:{minLabel:"",maxLabel:"",prefix:"$"},facetMultilevel:!0,facetMultilevelName:"Category",multiLevelFacetSelectorClass:"UNX-multilevel-facet",multiLevelFacetTemplate:Ve,facetDepth:4,clearFacetsSelectorClass:"UNX-clear-facet",removeFacetsSelectorClass:"UNX-remove-facet",onFacetLoad:function(t){},applyMultipleFilters:!1,applyButtonText:"Apply",clearButtonText:"clear",isCollapsible:!0,isSearchable:!0,searchPlaceHolder:"Search Filter",textFacetWrapper:"UNX-facets-item",defaultOpen:"ALL",enableViewMore:!1,viewMoreText:["show all","show less"],viewMoreLimit:3,tagName:"DIV",htmlAttributes:{class:"UNX-facets-results-block"},events:{}},pagination:{enabled:!0,el:null,template:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:this.options.pagination,a=e.type;return"CLICK_N_SCROLL"===a?_e.bind(this)(t,e):"FIXED_PAGINATION"===a?ke.bind(this)(t,e):""},pageClass:"UNX-page-items",selectedPageClass:"UNX-selected-page-item",type:"CLICK_N_SCROLL",infiniteScrollTriggerEl:window,heightDiffToTriggerNextPage:100,onPaginate:function(t){},action:"click",pageLimit:6,tagName:"DIV",htmlAttributes:{class:"UNX-pagination-size-block"},events:{}},pagesize:{enabled:!0,pageSize:12,options:[8,12,16,20,24],pageSizeClass:"UNX-pagesize",selectedPageSizeClass:"UNX-selected-pagesize",action:"change",template:Be,el:null,tagName:"DIV",htmlAttributes:{class:"UNX-page-size-block"},events:{}},banner:{enabled:!0,el:null,template:Xe,count:1,openNewTab:!1,tagName:"DIV",htmlAttributes:{class:"UNX-banner-block"},events:{}},swatches:{enabled:!1,attributesMap:{},swatchClass:"UNX-swatch-btn",template:function(){var t=this,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=e||{},i=n.swatchImgs,o=void 0===i?[]:i,s="",c="",l="",u=a||{},d=u.swatchClass,p=void 0===d?"":d,h=this.testIds.UNX_swatchClrBtn,f=void 0===h?"":h,g=r||{},y=g.unxTitle,v=void 0===y?"":y;return o.length>1&&(o.forEach((function(e,a){var r=t.generateRid("unx_swatch_"),n=0===a?"":" UNX-swatch-hidden",i=0===a?" UNX-selected-swatch":"",o=e.split("::");o&&(s+=['<button value="swatch color '.concat(o[0],'" data-test-id="').concat(f).concat(a,'" data-swatch-id="').concat(r,'" data-action="changeSwatch" class="').concat(p," ").concat(r," ").concat(i,'" style="background-color:').concat(o[0],'"> swatch color ').concat(o[0]," </button>")].join(""),l+='<div id="'.concat(r,'" class="UNX-img-wrapper ').concat(n,'"><img alt="').concat(v," for the ").concat(o[0],'" class="UNX-img-block" src="').concat(o[1],'"/></div>'))})),c='<div class="UNX-swatch-color-list">'.concat(s,"</div>")),{btnList:c,imgList:l}}},unbxdAnalytics:!1,actionBtnClass:"UNX-action-item",actionChangeClass:"UNX-action-change",onAction:function(t,e){},onQueryRedirect:function(t,e,a){if(e){var r=e.value;return"url"===e.type&&(history.state&&history.state.replace&&history.replaceState(null,"",a),location.href=r),!1}},onBackFromRedirect:function(t){new URLSearchParams(t?location.hash.substring(1):location.search).get("redirected")&&history.go(-1)},onNoUnbxdKeyRouting:function(){history.go()},setRoutingStrategies:function(t,e,a,r,n){t!==e&&("CATEGORY"===a?r?history.pushState(null,"",e):history.replaceState(null,"",e):history.state&&history.state.replace||n?history.replaceState(null,"",e):history.pushState(null,"",e))}},Qe=De;var We=function(){try{var t=this.getBanners()||[],e=this.options.banner,a=void 0===e?{}:e;this.bannerWrapper.innerHTML=this.options.banner.template(t,a)}catch(t){this.onError("Banners > renderBannerUI",t)}},qe=function(t){var e=t.target;this.viewState.lastDidYouMean="";var a=("click"===this.options.facet.facetAction?e:e.options[e.selectedIndex]).dataset,r=a.facetName,n=a.facetAction,i=a.id,o=a.action,s=a.end,c=a.start,l=this.getStateFromUrl(),u=this.getSelectedFacets(),d=u?Object.keys(u).length:0,p=Object.keys(l.selectedFacets).length,h=this.options,f=h.productType,g=h.facet.applyMultipleFilters,y=this.events,v=this.actions,b=this.state.rangeFacet[r],m=Object.keys(l.rangeFacet);if(n===v.changeFacet){var S=this.getSelectedFacet(r),E={selectedFacetName:r,selectedFacetId:i,facetData:S};this.viewState.lastAction="addedAFacet",this.options.onEvent(this,y.facetClick,{facetName:r,facetData:S}),this.updateFacets(E),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick")}if("deleteSelectedFacetValue"===n&&this.findSelectedFacet(r)&&(this.viewState.lastAction="deletedAfacet",this.deleteAFacet.bind(this)(r,i),this.options.onEvent(this,y.deleteFacetValue,{facetName:r}),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick"),this.setPageStart(0),this.getResults()),n===v.deleteFacetValue&&this.findSelectedFacet(r)){this.viewState.lastAction="deletedAfacet",this.deleteAFacet.bind(this)(r,i),this.options.onEvent(this,y.deleteFacetValue,{facetName:r}),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick");var F=u[r].length;p>0&&1===d&&0===F&&g&&(this.setPageStart(0),this.getResults())}n===v.deleteFacet&&(this.findSelectedFacet(r)&&(this.viewState.lastAction="deletedAfacet",this.deleteAFacet.bind(this)(r),this.options.onEvent(this,y.deleteFacet,{facetName:r}),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick"),l.selectedFacets[r]&&(this.viewState.lastAction="clearAFacet",this.setPageStart(0),this.getResults())));if("applyFacets"===n&&(this.viewState.lastAction="applyFacets",this.setPageStart(0),this.getResults()),"clearAllFacets"===n&&(this.viewState.lastAction="clearAllFacets",this.state.selectedFacets=[],this.state.rangeFacet=[],this.setPageStart(0),this.getResults()),"deleteSelectedRange"===n){var U=a.facetName,P=a.id,w=P.replace(/[^\w\s]/gi,"").split(" TO ");this.setRangeFacet({start:w[0],end:w[1],facetName:U,applyMultiple:!0}),this.getCallbackActions({facetName:U,facetAction:n,id:P},"facetClick"),this.setPageStart(0),this.getResults()}if(o===v.setCategoryFilter&&("SEARCH"===f?(this.setCategoryFilter(a),this.options.onEvent(this,y.setCategoryFilter,a)):this.setCategoryId(a,this),this.setPageStart(0),this.getResults(),this.getCallbackActions(a,"facetClick")),o===v.clearCategoryFilter&&("SEARCH"===f?(this.deleteCategoryFilter(a),this.options.onEvent(this,y.deleteCategoryFilter,a)):this.setCategoryId(a,this),this.setPageStart(0),this.getResults(),this.getCallbackActions(a,"facetClick")),"setRange"===o){var C=!1;b&&1===b.length&&m.length>0&&(C=this.isSelectedRange(r,{from:{name:c},end:{name:s}})),C||this.setRangeFacet({start:c,end:s,facetName:r,applyMultiple:!0}),C&&(this.state.rangeFacet=[],this.applyRangeFacet()),g||(this.setPageStart(0),this.applyRangeFacet()),this.getCallbackActions({facetName:r,facetAction:n,id:i},"facetClick")}"clearRangeFacets"===o&&(this.state.rangeFacet=[],this.renderFacets(),m.length>0&&this.applyRangeFacet()),o===v.applyRange&&(this.applyRangeFacet(),this.options.onEvent(this,o,{facetName:r}),this.getCallbackActions({facetName:r},"facetClick")),o===v.clearPriceRange&&r&&(this.clearARangeFacet(r),this.getResults.bind(this)(),this.options.onEvent(this,o,{facetName:r}),this.getCallbackActions({facetName:r},"facetClick")),this.viewState.lastAction=o},ze=function(){var t=this;try{var e=this.options.facet,a=void 0===e?{}:e,r=a.defaultOpen,n=a.applyMultipleFilters,i=(a.isCollapsible,this.viewState),o=i.expandedFacets;if("updatedRangeSlider"===i.lastAction&&n)return!1;var s=this.getAllFacets()||[],c=this.facetWrappers,l=void 0===c?[]:c,u=this.getSelectedFacets()||{};l.forEach((function(e){e.innerHTML="",s.forEach((function(a,n){var i=a.facetType,s=a.facetName;void 0===o[s]&&"ALL"===r&&(o[s]=!0),"FIRST"===r&&0==n&&(o[s]=!0);var c=t.isExpandedFacet(s),l=t.getSearchFacetsText(s)||"",d=u[s];"text"===i&&(e.innerHTML+=t.renderTextFacet(a,d,c,l)),"range"===i&&(e.innerHTML+=t.renderRangeFacet(a,c,"")),"category"===i&&(e.innerHTML+=t.renderMultiLevelFacet(a,c,l)),t.viewState.facetElementMap[s]=s}))})),this.options.facet.onFacetLoad.bind(this)(s)}catch(t){this.onError("Facets > renderFacets.js",t)}},He=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[],a=arguments.length>2?arguments[2]:void 0,r=arguments.length>3?arguments[3]:void 0,n=arguments.length>4?arguments[4]:void 0;try{var i=[],o=t.facetName,s=t.values,c=void 0===s?[]:s,l=this.cssList,u=l.openFacet,d=l.closeFacet,p=this,h=this.options.facet,f=h.isCollapsible,g=!1;if(c.length>0&&(i=c.map((function(){var a=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},n=a.dataId;return t.isSelected=e.some((function(t){return t.dataId===n})),t.isSelected&&(g=t.isSelected),p.options.facet.facetItemTemplate.bind(p)(t,a,r)}))),n)return i.join("");t.isSelected=g;var y=this.options.facet.facetTemplate.bind(this)(t,i.join(""),a,r,h),v=a?u:d;return f||(v=""),'<div class="UNX-facet-item-d '.concat(o," ").concat(v,'">').concat(y,"</div>")}catch(t){this.onError("facets > renderTextFacet.js",t)}},Ye=function(){var t=this;try{for(var e=this.getSelectedFacets()||{},a=this.getSelectedRanges()||{},r=Object.keys(e),n="",i=this.options,o=i.selectedFacets,s=void 0===o?{}:o,c=i.facet,l=void 0===c?{}:c,u=l.selectedFacetItemTemplate?l.selectedFacetItemTemplate.bind(this):s.itemTemplate.bind(this),d=function(){var a=r[p],i=t.isCategoryFacet(a),o=e[a]||[];i||o.forEach((function(t){var e=t.name,r=t.count,i=t.dataId;n+=u({facetName:a,facetType:"text"},{name:e,dataId:i||e,count:r||0},l,s)}))},p=0;p<r.length;p++)d();for(var h=Object.keys(a),f=function(){var t=h[g];a[t].forEach((function(e){n+=u({facetName:t,facetType:"range"},{name:e.replace(/[^\w\s]/gi,""),dataId:e},l,s)}))},g=0;g<h.length;g++)f();var y=l.selectedFacetTemplate?l.selectedFacetTemplate.bind(this):s.template.bind(this);this.selectedFacetWrappers.forEach((function(t){t.innerHTML=y(n,l,s)}))}catch(t){this.onError("facets > renderSelectedFacets.js",t)}},Ke=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1?arguments[1]:void 0;try{var a="",r=this,n=this.cssList,i=n.openFacet,o=void 0===i?"":i,s=n.closeFacet,c=void 0===s?"":s,l=t.facetName,u=this.options.facet,d=void 0===u?{}:u,p=d.isCollapsible,h=this.getBreadCrumbsList(l)||[],f=r.options.facet.multiLevelFacetTemplate.bind(this)(t,h,"",d);a+=r.options.facet.facetTemplate.bind(r)(t,f,e,null,d);var g=e?o:c;return p||(g=""),'<div class="'.concat(l," UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ").concat(g,'">').concat(a,"</div>")}catch(t){this.onError("facets > renderMultiLevelFacet.js",t)}},Ge=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1?arguments[1]:void 0;try{var a=t.facetName,r=this.cssList,n=r.openFacet,i=void 0===n?"":n,o=r.closeFacet,s=void 0===o?"":o,c=this.options.facet,l=void 0===c?{}:c,u=l.isCollapsible,d=this.state.rangeFacet,p=d[a]||[];t.isSelected=p.length>0;var h=this.options.facet.rangeTemplate.bind(this)(t,p,l),f=this.options.facet.facetTemplate.bind(this)(t,h,e,null,l),g=e?i:s;return u||(g=""),'<div class="'.concat(a," UNX-facet-item-d range-facets-block ").concat(g,'">').concat(f,"</div>")}catch(t){this.onError("facets > renderRangeFacet.js",t)}},$e=function(t,e){var a=this.getSelectedRanges(t),r=e.from,n=e.end,i="[".concat(r.name," TO ").concat(n.name,"]");return!!(a&&a.indexOf(i)>=0)},Ze=function(){this.state.selectedFacets={},this.state.rangeFacet=[],this.state.categoryFilter={}},Je=function(t){var e=this.viewState.expandedFacets,a=!1;return!0===(void 0===e?{}:e)[t]&&(a=!0),a},ta=function(t,e){this.viewState.searchFacetsText[t]=e,this.reRenderTextFacet(t)},ea=function(t){return this.viewState.searchFacetsText[t]||""},aa=function(t){var e=this.options.facet.facetClass,a=void 0===e?"":e,r=this.getSearchFacetsText(t)||"";(document.querySelectorAll(".".concat(t," .").concat(a))||[]).forEach((function(t){var e=(t.dataset||{}).id;e&&e.toUpperCase().indexOf(r.toUpperCase())>=0?t.classList.remove("UNX-search-hidden"):t.classList.add("UNX-search-hidden")}))},ra=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};this.setRangeFacet(t);var e=t.facetName;t.start,t.end;this.getCallbackActions({facetName:e,facetAction:"changeFacet",id:e},"facetClick"),this.viewState.lastAction="updatedRangeSlider",this.setPageStart(0),this.applyRangeFacet()},na=function(){if(this.options.facet.applyMultipleFilters){var t=this.getStateFromUrl()||{},e=t.selectedFacets,a=void 0===e?{}:e,r=t.selectedRanges;this.state.selectedFacets=a,this.state.selectedRanges=r}};function ia(){try{var t=this.viewState.productViewType,e=this.searchResultsWrapper,a=this.viewState,r=a.noResultLoaded,n=a.isInfiniteStarted,i=a.lastAction,o="LIST"===t?"UNX-list-block":"UNX-grid-block";if(e.classList.remove("UNX-list-block"),e.classList.remove("UNX-grid-block"),e.classList.add(o),e.classList.remove("UNX-no-resultss-wrap"),e.style.minHeight="100vh",n)if(this.viewState.isInfiniteStarted=!1,r)this.viewState.noResultLoaded=!0,e.innerHTML=this.renderSearch(),window.scrollTo(0,0);else{var s=this.getCurrentUrlPage(),c=this.getProductsPerPage(),l=this.options.url,u=(void 0===l?{}:l).pageNoUrl,d=(void 0===u?{}:u).usePageNo,p=void 0!==d&&d;"prev_page_loaded"===i?(e.insertAdjacentHTML("afterbegin",this.renderSearch()),document.querySelector('.product-item[data-prank="'.concat(s*c+1,'"]')).scrollIntoView(),p?this.setPageNoParam(s+1):this.setPageNoParam(s*c)):(e.insertAdjacentHTML("beforeend",this.renderSearch()),p?this.setPageNoParam(s-1):this.setPageNoParam((s-2)*c))}else e.innerHTML="",e.innerHTML=this.renderSearch(),window.scrollTo(0,0)}catch(t){this.onError("renderProducts.js",t)}}var oa=function(){var t=this;try{var e=this.getSearchResults();if(!e)return"";var a=e.products,r=this,n=this.options.swatches,i=this.options.products.gridCount,o=this.viewState.productViewType,s="",c=Number(this.state.startPageNo),l="";return"GRID"===o&&i&&i>1?a.forEach((function(e,a){var u=a%i;0===u&&(s+='<div class="UNX-row">');var d=a+c+1,p=t.mapProductAttrs(e);n.enabled&&(l=t.renderSwatchBtns(e)),s+=r.options.products.template.bind(r)(p,d,l,o,t.options.products),u===i-1&&(s+="</div>")})):s=a.map((function(e,a){var i=a+c+1,s=t.mapProductAttrs(e);return n.enabled&&(l=t.renderSwatchBtns(e)),r.options.products.template.bind(r)(s,i,l,o,t.options.products)})).join(""),s}catch(t){this.options.onError("searchResults > renderSearch",t)}},sa=function(t){var e=t.path||t.composedPath&&t.composedPath(),a=this.options.products,r=a.productItemClass,n=a.attributesMap,i=r.replace(".",""),o=t.target.dataset,s=e.find((function(t){return t.className.indexOf(i)>=0})),c=o||{},l=c.action,u=c.swatchId;if(l===this.actions.changeSwatch&&u)return s.querySelectorAll(".UNX-img-wrapper").forEach((function(t){var e=s.querySelector(".".concat(t.id));t.id===u?(t.classList.remove("UNX-swatch-hidden"),s.querySelector(".".concat(u)).classList.add("UNX-selected-swatch")):(t.classList.add("UNX-swatch-hidden"),e.classList.remove("UNX-selected-swatch"))})),this.options.onEvent(this,o.action),!1;var d=null;if((o=s.dataset).id&&(d=this.getProductByPropValue(n.unxId,o.id)),d&&s.dataset.prank){var p=this.options.url,h=(void 0===p?{}:p).pageNoUrl,f=(void 0===h?{}:h).usePageNo,g=void 0!==f&&f;d.prank=s.dataset.prank;var y=Math.ceil(Number(d.prank)/Number(this.getProductsPerPage()));g?this.setPageNoParam(y):this.setPageNoParam(Number((y-1)*Number(this.getProductsPerPage())))}this.options.products.onProductClick(d,t),this.getCallbackActions(d,"click")};var ca=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";try{return this.options.noResults.template(t)}catch(t){this.onError("searchresults > renderNoResults",t)}},la=function(t){var e=this.options.products.attributesMap;return Object.keys(e).forEach((function(a){var r=t[a],n=e[a];r||(t[a]=t[n])})),t};var ua=function(){try{var t=this.options.productView,e=void 0===t?{}:t;if(e.el){var a=this.viewState.productViewType,r=this.getSearchResults();r&&0===r.numberOfProducts?this.productViewTypeWrapper.innerHTML="":this.productViewTypeWrapper.innerHTML=this.options.productView.template.bind(this)(a,e)}}catch(t){this.onError("ProductViewType > renderProductViewTypeUI",t)}},da=function t(){var e={},a=!0,r=0,n=arguments.length;"[object Boolean]"===Object.prototype.toString.call(arguments[0])&&(a=arguments[0],r++);for(var i=function(r){for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(a&&"[object Object]"===Object.prototype.toString.call(r[n])?e[n]=t(!0,e[n],r[n]):e[n]=r[n])};r<n;r++){var o=arguments[r];i(o)}return e};function pa(t){var e=t.target,a=this.options.productView.action,r=this.viewState.productViewType,n=(("click"===a?e:e.options[e.selectedIndex]).dataset||{}).viewAction;if(this.checkFacets(),r!==n){this.viewState.productViewType=n;var i=this.options.extraParams,o=void 0===i?{}:i;this.options.extraParams=da(!0,{},o,{viewType:n}),this.state.productViewType=this.viewState.productViewType,this.state.isBack=!1,this.viewState.lastAction="viewType",this.setUrl(!1),this.renderProductViewTypeUI(),this.renderProducts()}}var ha=function(){try{var t=this.options.pagination,e=void 0===t?{}:t,a=(e||{}).type,r="";if("INFINITE_SCROLL"!==a){var n=this.getPaginationInfo();n&&(r=e.template.bind(this)(n,e))}return r}catch(t){this.onError("Pagination > renderPagination.js",t)}};function fa(t,e){var a="undefined"!=typeof Symbol&&t[Symbol.iterator]||t["@@iterator"];if(!a){if(Array.isArray(t)||(a=function(t,e){if(!t)return;if("string"==typeof t)return ga(t,e);var a=Object.prototype.toString.call(t).slice(8,-1);"Object"===a&&t.constructor&&(a=t.constructor.name);if("Map"===a||"Set"===a)return Array.from(t);if("Arguments"===a||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(a))return ga(t,e)}(t))||e&&t&&"number"==typeof t.length){a&&(t=a);var r=0,n=function(){};return{s:n,n:function(){return r>=t.length?{done:!0}:{done:!1,value:t[r++]}},e:function(t){throw t},f:n}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var i,o=!0,s=!1;return{s:function(){a=a.call(t)},n:function(){var t=a.next();return o=t.done,t},e:function(t){s=!0,i=t},f:function(){try{o||null==a.return||a.return()}finally{if(s)throw i}}}}function ga(t,e){(null==e||e>t.length)&&(e=t.length);for(var a=0,r=new Array(e);a<e;a++)r[a]=t[a];return r}var ya=function(){var t=this;try{return new Promise((function(e,a){var r=t.options.url,n=(void 0===r?{}:r).pageNoUrl,i=void 0===n?{}:n,o=i.usePageNo,s=void 0!==o&&o;i.keyReplacer,i.addToUrl;t.resetObservers=function(){t.observer.disconnect(),t.preLoaderObserver.disconnect(),t.preLoaderObserver.observe(u),"INFINITE_SCROLL"===t.options.pagination.type&&(t.postLoaderObserver.disconnect(),t.postLoaderObserver.observe(l)),t.observer.observe(c,{childList:!0,subtree:!0})};var c=window;"INFINITE_SCROLL"===t.options.pagination.type?c=t.options.pagination.infiniteScrollTriggerEl:"CLICK_N_SCROLL"===t.options.pagination.type&&(c=t.options.products.el);var l=document.querySelector(".UNX-post-loader"),u=document.querySelector(".UNX-pre-loader");t.individualProductObserver=new IntersectionObserver((function(e){e.forEach((function(e){if(e.isIntersecting){var a=parseInt(e.target.dataset.prank),r=t.getCurrentUrlPage(),n=t.getProductsPerPage(),i=Math.ceil(a/n);i!==r&&(s?t.setPageNoParam(i):t.setPageNoParam((i-1)*n))}}))}),{threshold:[1]}),t.preLoaderObserver=new IntersectionObserver((function(e){var a=t.getCurrentUrlPage();e.forEach((function(e){e.isIntersecting&&a>1&&!t.state.isLoading&&!t.viewState.isInfiniteStarted&&t.renderNewResults("prev")}))}),{threshold:0,rootMargin:"0px 0px 0px 0px"}),t.postLoaderObserver=new IntersectionObserver((function(e){!e[0].isIntersecting||t.state.isLoading||t.viewState.isInfiniteStarted||t.renderNewResults("next")}),{threshold:0,rootMargin:"0px 0px 0px 0px"}),t.observer=new MutationObserver((function(e,a){var r,n=fa(e);try{var i=function(){var e=r.value;if("childList"===e.type){var a=t;e.addedNodes.forEach((function(t){t.nodeType===Node.ELEMENT_NODE&&t.classList.contains("product-item")&&a.individualProductObserver.observe(t)})),t.resetObservers()}};for(n.s();!(r=n.n()).done;)i()}catch(t){n.e(t)}finally{n.f()}})),t.preLoaderObserver.observe(u),"INFINITE_SCROLL"===t.options.pagination.type&&t.postLoaderObserver.observe(l),t.observer.observe(c,{childList:!0,subtree:!0})}))}catch(t){this.onError("infiniteScroller.js",t)}},va=function(t,e,a){"FIXED_PAGINATION"===t.options.pagination.type&&(t.viewState.lastAction="pagination",t.setPageStart(e)),t.getResults("",!0,a),t.options.onEvent(t,t.events.pageNext,{value:e})};function ba(t,e){try{var a=this.getPaginationInfo()||{},r=this.options,n=r.pagination,i=r.onEvent,o=a.start,s=(a.productsLn,a.numberOfProducts,a.rows),c=a.isNext,l=a.isPrev,u=this.getCurrentUrlPage(),d=this.getProductsPerPage();if("INFINITE_SCROLL"===n.type||"CLICK_N_SCROLL"===n.type){if(t===this.actions.next&&c&&(this.viewState.isInfiniteStarted=!0,u++,this.setPageStart((u-1)*d),this.viewState.lastAction="next_page_loaded",va(this,null,t)),t===this.actions.prev&&(l&&(this.viewState.isInfiniteStarted=!0,u--,this.setPageStart((u-1)*d),this.viewState.lastAction="prev_page_loaded",va(this,null,t)),t===this.actions.prev)){var p=o-s;l&&(this.viewState.isInfiniteStarted=!0,va(this,p,t))}}else{if(t===this.actions.next)c&&va(this,o+s);if(t===this.actions.prev){var h=o-s;l&&(this.viewState.lastAction="pagination",va(this,h),i(this,this.events.pagePrev,{value:h}))}}}catch(t){this.onError("Pagination > renderNewResults",t)}}function ma(t){var e=t.target.dataset,a=e.pageAction,r=e.pageNo;this.checkFacets(),this.viewState.lastDidYouMean="","paginate"===a?(this.viewState.lastAction="pagination",this.setPageStart(r),this.getResults()):this.renderNewResults(a)}var Sa=function(){var t=this.options,e=t.url,a=void 0===e?{}:e,r=a.pageSizeUrl,n=void 0===r?{}:r,i=n.keyReplacer,o=void 0===i?"":i,s=n.addToUrl,c=n.algo,l=void 0===c?"DEFAULT":c,u=a.pageNoUrl,d=((void 0===u?{}:u).usePageNo,t.pagesize),p=(void 0===d?{}:d).pageSize;if(s){var h=this.readQueryParamsFromUrl(this.options.hashMode?location.hash.slice(1):location.search);return Number(h["KEY_VALUE_REPLACER"===l?o:"rows"])}return this.state.pageSize||p},Ea=function(){var t=this.readQueryParamsFromUrl(this.options.hashMode?location.hash.slice(1):location.search),e=this.options.url,a=(void 0===e?{}:e).pageNoUrl,r=void 0===a?{}:a,n=r.algo,i=void 0===n?"DEFAULT":n,o=r.usePageNo,s=void 0!==o&&o,c=r.keyReplacer,l=void 0===c?"":c;if(r.addToUrl){var u=Number(t["KEY_VALUE_REPLACER"===i?l:s?"page":"start"]);return Number(s?u:u/Sa.call(this)+1)}return s?(this.viewState.page||(this.viewState.page=1),this.viewState.page):(this.viewState.start||(this.viewState.start=0),Number(this.viewState.start/this.state.pageSize+1))},Fa=function(t){var e=this.options.url,a=(void 0===e?{}:e).pageNoUrl,r=void 0===a?{}:a,n=r.algo,i=r.usePageNo,o=void 0!==i&&i,s=r.keyReplacer;if(r.addToUrl){var c=this.readQueryParamsFromUrl(this.options.hashMode?location.hash.slice(1):location.search);c["KEY_VALUE_REPLACER"===n?s:o?"page":"start"]=[t],history.replaceState(null,null,this.urlSearchParamsToStr(c))}else o?this.viewState.page=t:this.viewState.start=t};function Ua(t){var e=t.target;this.viewState.lastDidYouMean="";("click"===this.options.sort.action?e:e.options[e.selectedIndex]).dataset;var a=e.dataset,r=a.action,n=a.value,i=e.value||n||"",o=this.events.changeSort;this.checkFacets(),r===this.actions.clearSort&&(this.applySort(""),this.options.onEvent(this,r)),r===this.actions.changeSort&&(this.applySort(i),this.options.onEvent(this,o,{sort:i}))}var Pa=function(){var t=this;try{var e=this.getSearchResults(),a=this.options.sort,r=void 0===a?{}:a,n=this.sortWrappers,i=void 0===n?[]:n;i&&i.forEach((function(a){var n="";e&&e.numberOfProducts>0&&(n=t.options.sort.template.bind(t)(t.getSelectedSort(),r)),a.innerHTML=n}))}catch(t){this.onError("Sort > renderSort",t)}},wa=function(t){try{var e=this.options.searchBoxEl.value;if(!e.replace(/\s/g,"").length)return!1;this.options.productType="SEARCH",(e=0===e.indexOf("#")?e.replace("#",""):e)?(this.resetAll(),this.changeInput(e,this.events.changeInput),this.options.products.productType="SEARCH",this.viewState.loadedFromSuggestion=!1,this.state.selectedSort="",this.setPageStart(0),this.resetViewState(),this.getResults()):this.searchResultsWrapper.innerHTML=null}catch(t){this.onError("input > setInputValue.js",t)}},Ca=function(t){try{var e=this.state.userInput,a=void 0===e?"":e,r=this.getPaginationInfo()||{},n=this.getDidYouMeanFromResponse()||[],i=this.options.pagination.type,o=this.options.spellCheck,s=(o.spellCheck,o.enabled),c=this.viewState,l=c.loadedFromSuggestion,u=c.lastDidYouMean;if("FIXED_PAGINATION"!==i&&r){var d=r.start,p=r.productsLn;r.productsLn=p+d,r.start=0}var h=n.length>0?n[0].suggestion:"",f="";h&&!l?(this.viewState.lastDidYouMean=a,this.viewState.loadedFromSuggestion=!0,s&&this.getResults(h)):this.viewState.lastDidYouMean="",f=this.options.spellCheck.template.bind(this)(a,u,r),!s&&h&&(f=this.options.spellCheck.template.bind(this)(h,a,r)),this.spellCheckWrappers.forEach((function(t){t.innerHTML=f}))}catch(t){this.onError("didYouMean > renderDidYouMean.js",t)}},Ra=function(t){var e=this.getSpellCheckSuggested()||[],a=e.length,r=(t.target||{}).dataset,n=this.state.userInput,i=void 0===n?"":n;r&&"getSuggestion"===r.action&&(this.resetAll(),this.setPageStart(0),this.getResults(a?e[0]:i),this.viewState.lastDidYouMean=null,this.viewState.loadedFromSuggestion=!1)};function Na(t){}function Aa(){var t=this;try{var e,a,r=this.getSelectedMultilevelFacet()||[];"CATEGORY"===this.options.products.productType&&-1!==(null===(e=window.unbxdAnalyticsConf)||void 0===e||null===(a=e.page)||void 0===a?void 0:a.indexOf("categoryPath"))&&(r=["categoryPath"]);var n="";return r&&r.forEach((function(e){var a=t.getBreadCrumbsList(e)||[],r=t.options.breadcrumb,i=void 0===r?{}:r;n+=t.options.breadcrumb.template(a,i)})),n}catch(t){this.onError("Breadcrumbs > actions.js",t)}}var ja=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{var e=this.getSwatches(t,this.options.swatches.attributesMap)||{},a=this.options.swatches,r=void 0===a?{}:a;return this.options.swatches.template.bind(this)(e,r,t)}catch(t){this.onError("Swatches > renderSwatchBtns",t)}},Ta=function(t){var e=t.target;this.viewState.lastDidYouMean="";var a=("click"===this.options.pagesize.action?e:e.options[e.selectedIndex]).id,r=this.events.pageSizeChange;a&&(this.checkFacets(),this.setPageSize(Number(a)),this.getResults.bind(this)(),this.options.onEvent(this,r,{count:a}))},Oa=function(){try{var t=this.options.pagesize,e=void 0===t?{}:t,a=e.pageSize;(this.getQueryParams()||{})&&(a=this.state.pageSize);var r=this.getSearchResults();r&&0===r.numberOfProducts?this.pageSizeWrapper.innerHTML="":this.pageSizeWrapper.innerHTML=this.options.pagesize.template.bind(this)(a,e)}catch(t){this.onError("Pagesize > renderPageSize",t)}},Ia=function(t){Unbxd.track("search",{query:t})},La=function(t){var e=t.uniqueId,a=t.sku,r=t.prank;Unbxd.track("click",{pid:e||a,prank:r,requestId:null})},ka=function(){var t=this.getSearchResults(),e=this.getSearchQuery(),a=this.options.productType,r=t.products,n={pids_list:[]};if(r){var i=[];r.forEach((function(t){var e=t.sku,a=t.uniqueId||e;i.push(a)})),n.pids_list=i,"SEARCH"===a?(n.query=e,Unbxd.track("search_impression",n)):"CATEGORY"!==a&&"BROWSE"!==a||(window.UnbxdAnalyticsConf&&(n.page=window.UnbxdAnalyticsConf.page||"",n.page_type=window.UnbxdAnalyticsConf.page_type||""),Unbxd.track("browse_impression",n))}},_a=function(t,e){var a=this.getSelectedFacets(),r=this.state.rangeFacet,n=this.state.categoryFilter,i=Object.keys(a),o=Object.keys(r),s=Object.keys(n),c={};i.forEach((function(t){var e=a[t],r=[];e.forEach((function(t){r.push(t.name)})),c[t]=r})),o.forEach((function(t){var e=r[t][0];if(e){var a=e.replace(/\[|\]/g,"").split(",");c[t]=a}})),s.forEach((function(t){var e=n[t].join(">");c[t]=e}));var l=this.getSearchQuery();Unbxd.track("facets",{query:l,facets:c})},Va=function(t,e){window.UnbxdAnalyticsConf&&Unbxd.track("categoryPage",window.UnbxdAnalyticsConf)},xa=function(t,e){var a=window.Unbxd||null,r=this.options.unbxdAnalytics;if(!a||!r||a&&!a.track)return!1;if(t)switch(e){case"CHANGE_INPUT":this.trackSearch(t);break;case"click":this.trackProductClick(t);break;case"AFTER_API_CALL":this.trackImpression();break;case"facetClick":this.trackFacetClick(t,e);case"categoryPage":this.trackCategoryPageLoad(t,e)}},Ma={unxPageSize:"unxPageSize"},Xa=function(){var t=this,e=this.options,a=e.onEvent,r=e.spellCheck,n=e.pagination,i=e.productType,o=e.searchBoxEl,s=e.loader,c=e.breadcrumb,l=e.productView,u=(e.facet,this.events),d=u.beforeRender,p=u.beforeNoResultRender,h=u.afterNoResultRender,f=u.afterRender;a(this,d),s.el&&(s.el.innerHTML="");var g=this.getSearchResults(),y=this.getQueryParams()||{},v=this.getSearchQuery(),b=this.viewState,m=b.lastAction;b.productViewType;"SEARCH"===i&&o&&(o.value=this.state.userInput),"SEARCH"!==i&&o&&(o.value="");var S=this.searchResultsWrapper,E=this.paginationWrappers,F=this.breadcrumbWrapper;if(g&&0===g.numberOfProducts){var U=this.state.responseObj.redirect||{};if(Object.keys(U).length)return;a(this,p),this.viewState.noResultLoaded=!0,S.classList.add("UNX-no-results-wrap"),S.innerHTML=this.renderNoResults(v),y.filter||this.renderFacets(),a(this,h)}else this.renderProducts();this.renderFacets(),this.renderSelectedFacets(),this.renderBannerUI(),l.enabled&&this.renderProductViewTypeUI(),this.renderPageSize(),this.renderSort(),c.enabled&&(F.innerHTML=this.renderBreadCrumbs());var P=this.getSpellCheckSuggested();r.el&&this.renderDidYouMean(P),"pagination"===m&&n.onPaginate.bind(this)(this.getPaginationInfo()),"INFINITE_SCROLL"!==n.type&&E.forEach((function(e){e.innerHTML=t.renderPagination()})),a(this,f)};var Ba=function(){var t=this,e=this.options,a=e.searchButtonEl,r=e.searchTrigger,n=e.products,i=e.facet,o=e.productView,s=e.pagination,c=e.sort,l=e.pagesize,u=e.spellCheck,d=e.searchBoxEl,p=e.actionChangeClass,h=e.actionBtnClass,f=e.breadcrumb,g=e.selectedFacets;if(d&&d.addEventListener("keydown",(function(e){var a=e.target.value;13===e.keyCode&&""!==a&&t.setInputValue.bind(t)()})),s.enabled&&this.paginationWrappers.forEach((function(e){t.delegate(e,s.action,".".concat(s.pageClass),t.paginationAction.bind(t))})),i.facetsEl&&this.facetWrappers.forEach((function(e){t.delegate(e,i.facetAction,".".concat(i.facetClass),t.findChangedFacet.bind(t)),t.delegate(e,"change","."+p,t.extraActionsChange.bind(t)),t.delegate(e,"keyup","."+p,t.extraActionsChange.bind(t)),t.delegate(e,"click","."+h,t.extraActions.bind(t))})),a&&a.addEventListener(r,this.setInputValue.bind(this)),u.el&&this.spellCheckWrappers.forEach((function(e){t.delegate(e,"click",".".concat(u.selectorClass),t.setSuggestion.bind(t))})),this.delegate(this.searchResultsWrapper,"click",".".concat(n.productItemClass),this.onProductItemClick.bind(this)),c.el&&this.sortWrappers.forEach((function(e){t.delegate(e,c.action,".".concat(c.sortClass),t.sortAction.bind(t))})),i.selectedFacetsEl?this.selectedFacetWrappers.forEach((function(e){t.delegate(e,i.facetAction,".".concat(i.selectedFacetClass),t.findChangedFacet.bind(t))})):this.selectedFacetWrappers.forEach((function(e){t.delegate(e,g.facetAction,".".concat(g.selectedFacetClass),t.findChangedFacet.bind(t))})),this.breadcrumbWrapper&&this.delegate(this.breadcrumbWrapper,"click","."+f.selectorClass,this.findChangedFacet.bind(this)),this.productViewTypeWrapper&&this.delegate(this.productViewTypeWrapper,o.action,"."+o.viewTypeClass,this.onPageViewTypeClick.bind(this)),"INFINITE_SCROLL"!==this.options.pagination.type&&"CLICK_N_SCROLL"!==this.options.pagination.type||this.setUpInfiniteScroll(),this.delegate(this.pageSizeWrapper,l.action,".".concat(l.pageSizeClass),this.onClickPageSize.bind(this)),!this.viewState.initialised){window.addEventListener("popstate",this.onLocationChange.bind(this),!1);var y=this.getQueryParams();Object.keys(y).length>0&&this.renderFromUrl(),this.viewState.initialised=!0}};function Da(t){return Da="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},Da(t)}var Qa=function(t){return"object"===("undefined"==typeof Node?"undefined":Da(Node))?t instanceof Node:t&&"object"===Da(t)&&"number"==typeof t.nodeType&&"string"==typeof t.nodeName},Wa=function(t){return"object"===("undefined"==typeof HTMLElement?"undefined":Da(HTMLElement))?t instanceof HTMLElement:t&&"object"===Da(t)&&null!==t&&1===t.nodeType&&"string"==typeof t.nodeName},qa=function(t){return t instanceof NodeList},za={moduleName:"pagination",config:{enabled:{datatype:"boolean"},type:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["CLICK_N_SCROLL","FIXED_PAGINATION","INFINITE_SCROLL"]},el:{required:function(t){return t.enabled&&"INFINITE_SCROLL"!==t.type},datatype:"element"},template:{required:function(t){return t.enabled&&"INFINITE_SCROLL"!==t.type},datatype:"function"},pageClass:{datatype:"string"},selectedPageClass:{datatype:"string"},onPaginate:{datatype:"function"},pageLimit:{required:function(t){return t.enabled&&"FIXED_PAGINATION"===t.type},datatype:"number"},infiniteScrollTriggerEl:{required:function(t){return t.enabled&&"INFINITE_SCROLL"===t.type},datatype:"element"},heightDiffToTriggerNextPage:{required:function(t){return t.enabled&&"INFINITE_SCROLL"===t.type},datatype:"number"},action:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["click","change"]},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Ha={moduleName:"banner",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},openNewTab:{datatype:"boolean"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Ya={moduleName:"loader",config:{el:{required:!0,datatype:"element"},template:{required:function(t){return t.el},datatype:"function"}}},Ka={moduleName:"sorting",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},options:{required:function(t){return t.enabled},datatype:"array"},sortClass:{datatype:"string"},selectedSortClass:{datatype:"string"},template:{required:function(t){return t.enabled},datatype:"function"},action:{datatype:"string",allowedOptions:["click","change"]},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Ga={moduleName:"No results",config:{el:{required:!0,datatype:"element"},template:{required:function(t){return t.el},datatype:"function"}}},$a={moduleName:"swatches",config:{enabled:{datatype:"boolean"},attributesMap:{required:function(t){return t.enabled},datatype:"object",customValidations:function(t){t.enabled&&0===Object.keys(t.attributesMap).length&&console.error("SDK Config error in swatches: attributesMap should not be an empty object")}},swatchClass:{datatype:"string"},template:{required:function(t){return t.enabled},datatype:"function"}}},Za={moduleName:"spellcheck",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},selectorClass:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},Ja={moduleName:"products",el:{required:!0,datatype:"element"},productType:{required:!0,datatype:"string",allowedOptions:["SEARCH","CATEGORY"]},template:{required:!0,datatype:"function"},productAttributes:{required:!0,datatype:"array",customValidations:function(t){0===t.productAttributes.length&&console.error("SDK Config error in products: productAttributes should be an empty array")}},attributesMap:{required:!0,datatype:"object",customValidations:function(t){0===Object.keys(t.attributesMap).length&&console.error("SDK Config error in products: attributesMap should be an empty object")}},gridCount:{datatype:"number"},productItemClass:{datatype:"string"},onProductClick:{datatype:"function"},defaultImage:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}},tr={moduleName:"page size",config:{enabled:{datatype:"boolean"},el:{required:!0,datatype:"element"},pageSize:{datatype:"number",customValidations:function(t){t.options.includes(t.pageSize)||console.error("SDK Config error in pagesize: pageSize should be among options")}},options:{required:function(t){return t.enabled},datatype:"array"},pageSizeClass:{datatype:"string"},selectedPageSizeClass:{datatype:"string"},action:{datatype:"string",allowedOptions:["click","change"]},template:{required:function(t){return t.enabled},datatype:"function"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},er={moduleName:"product view",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},defaultViewType:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["GRID","LIST"]},action:{required:function(t){return t.enabled},datatype:"string",allowedOptions:["click","change"]},viewTypeClass:{datatype:"string"},selectedViewTypeClass:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},ar={moduleName:"breadcrumbs",config:{enabled:{datatype:"boolean"},el:{required:function(t){return t.enabled},datatype:"element"},template:{required:function(t){return t.enabled},datatype:"function"},selectorClass:{datatype:"string"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},rr={moduleName:"facets",config:{facetsEl:{required:!0,datatype:"element"},facetTemplate:{required:function(t){return t.facetsEl},datatype:"function"},facetItemTemplate:{required:function(t){return t.facetsEl},datatype:"function"},facetMultiSelect:{datatype:"boolean"},facetClass:{datatype:"string"},facetAction:{required:function(t){return t.facetsEl},datatype:"string",allowedOptions:["click","change"]},selectedFacetClass:{datatype:"string"},selectedFacetsEl:{datatype:"element"},selectedFacetTemplate:{datatype:"function"},selectedFacetItemTemplate:{datatype:"function"},selectedFacetConfig:{datatype:"object"},clearAllText:{datatype:"string"},rangeTemplate:{datatype:"function"},rangeWidgetConfig:{datatype:"object"},facetMultilevel:{datatype:"boolean"},facetMultilevelName:{required:function(t){return t.facetsEl&&t.facetMultilevel},datatype:"string"},multiLevelFacetSelectorClass:{datatype:"string"},multiLevelFacetTemplate:{required:function(t){return t.facetsEl&&t.facetMultilevel},datatype:"function"},facetDepth:{datatype:"number"},clearFacetsSelectorClass:{datatype:"string"},removeFacetsSelectorClass:{datatype:"string"},onFacetLoad:{datatype:"function"},applyMultipleFilters:{datatype:"boolean"},applyButtonText:{required:function(t){return t.facetsEl&&t.applyMultipleFilters},datatype:"string"},clearButtonText:{required:function(t){return t.facetsEl&&t.applyMultipleFilters},datatype:"string"},isCollapsible:{datatype:"boolean"},defaultOpen:{required:function(t){return t.facetsEl&&t.isCollapsible},datatype:"string",allowedOptions:["ALL","FIRST","NONE"]},isSearchable:{datatype:"boolean"},searchPlaceHolder:{required:function(t){return t.facetsEl&&t.isSearchable},datatype:"string"},enableViewMore:{datatype:"boolean"},viewMoreText:{required:function(t){return t.facetsEl&&t.enableViewMore},datatype:"array"},viewMoreLimit:{required:function(t){return t.facetsEl&&t.enableViewMore},datatype:"number"},tagName:{datatype:"string"},htmlAttributes:{datatype:"object"}}},nr={moduleName:"facetsUrl",config:{addToUrl:{required:!1,datatype:"boolean"},algo:{required:function(t){return t.addToUrl},datatype:"string",allowedOptions:["DEFAULT","KEY_VALUE_REPLACER","HASH"]},valuesSeperator:{required:function(t){return"KEY_VALUE_REPLACER"===t.algo},datatype:"string",allowedOptions:[",","~"]},keyReplacer:{required:!1,datatype:"object",customValidations:function(t){var e=Object.values(t.keyReplacer);new Set(e).size!==e.length&&console.error("SDK Config error in facetsUrl: keysReplacer values should not be duplicate")}},valueReplacer:{required:!1,datatype:"object",customValidations:function(t){var e=t.valueReplacer;Object.values(e).forEach((function(t){var e=Object.values(t);new Set(e).size!==e.length&&console.error("SDK Config error in facetsUrl: valueReplacer values should not be duplicate")}))}},facetsOrderInUrl:{required:!1,datatype:"array"},rangeFacets:{required:function(t){return"KEY_VALUE_REPLACER"===t.algo},datatype:"array"},rangeSeparator:{required:function(t){return"KEY_VALUE_REPLACER"===t.algo},datatype:"string",allowedOptions:["-"]}}},ir={moduleName:"pageViewUrl",config:{addToUrl:{required:!1,datatype:"boolean"},keyReplacer:{required:!1,datatype:"string"},valuesReplacer:{required:!1,datatype:"object",customValidations:function(t){}}}},or={moduleName:"sortUrl",config:{addToUrl:{required:!1,datatype:"boolean"},keyReplacer:{required:!1,datatype:"string"},valueReplacer:{required:!1,datatype:"object",customValidations:function(t){}}}},sr={moduleName:"pageNoUrl",config:{addToUrl:{required:!1,datatype:"boolean"},keyReplacer:{required:!1,datatype:"string"},usePageNo:{required:!1,datatype:"boolean"}}},cr={moduleName:"pageSizeUrl",config:{addToUrl:{required:!1,datatype:"boolean"},keyReplacer:{required:!1,datatype:"string"}}},lr={moduleName:"url",config:{seoFriendlyUrl:{required:!1,datatype:"boolean",customValidations:function(t){t.seoFriendlyUrl||(t.pageViewUrl.algo="DEFAULT",t.sortUrl.algo="DEFAULT",t.pageSizeUrl.algo="DEFAULT",t.pageNoUrl.algo="DEFAULT",t.pageNoUrl.usePageNo=!1,t.facetsUrl.algo="DEFAULT",t.orderOfQueryParams=["QUERY","FILTERS","PAGE_NUMBER","PAGE_SIZE","SORT","VIEW_TYPE"],t.queryParamSeparator="&")}}}},ur={moduleName:"Others",config:{siteKey:{required:!0,datatype:"string"},apiKey:{required:!0,datatype:"string"},searchBoxEl:{required:!0,datatype:"element"},searchButtonEl:{datatype:"element"},unbxdAnalytics:{datatype:"boolean"},actionBtnClass:{datatype:"string"},actionChangeClass:{datatype:"string"},extraParams:{datatype:"object"},defaultFilters:{datatype:"object"},searchEndPoint:{datatype:"string"}}};function dr(t){return dr="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},dr(t)}var pr,hr=function(){var t=this,e=this.options,a=e.banner,r=e.facet,n=e.breadcrumb,i=e.spellCheck,o=e.sort,s=e.pagination,c=e.loader,l=e.noResults,u=e.swatches,d=e.pagesize,p=e.products,h=e.productView,f=e.url,g=f.facetsUrl,y=f.pageViewUrl,v=f.sortUrl,b=f.pageSizeUrl,m=f.pageNoUrl,S=function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},a=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},r=a.moduleName,n=void 0===r?"":r,i=a.config,o=void 0===i?{}:i;Object.keys(o).map((function(a){var r=o[a],i=r.datatype,s=r.required,c=void 0!==s&&s,l=r.allowedOptions,u=void 0===l?[]:l,d=r.customValidations,p=void 0===d?null:d;if("function"==typeof c&&(c=c(e)),dr(e[a])!==i||"object"===i&&null===e[a])if("element"===i||"array"===i)if("element"===i){var h=!Qa(e[a])&&!Wa(e[a])&&!qa(e[a]);if(c&&(!e[a]||h)||!c&&e[a]&&h){if(e[a]===window)return null;t.onError(n,"'".concat(a,"' is not a valid DOM selector"))}}else"array"!==i||Array.isArray(e[a])||t.onError(n,"'".concat(a,"' should be of ").concat(i," datatype"));else t.onError(n,"'".concat(a,"' should be of ").concat(i," datatype"));c&&!e[a]&&"element"!==i&&t.onError(n,"'".concat(a,"' is required")),u.length&&!u.includes(e[a])&&t.onError(n,"Only ".concat(u.join(", ")," are allowed for '").concat(a,"'")),p&&p(e)}))};S(s,za),S(a,Ha),S(o,Ka),S(l,Ga),S(u,$a),S(i,Za),S(d,tr),S(r,rr),S(this.options,ur),S(c,Ya),S(l,Ga),S(p,Ja),S(h,er),S(n,ar),S(g,nr),S(y,ir),S(v,or),S(m,sr),S(b,cr),S(this.options.url,lr)},fr=function(){this.validateConfigs=hr.bind(this),this.validateConfigs(),this.createLayout(),this.unxSelectors=Ma,this.renderDidYouMean.bind(this),this.options.onEvent.bind(this),this.options.products.onProductClick.bind(this),this.reRender=Xa.bind(this),this.bindEvents=Ba.bind(this),this.bindEvents();var t=this.getQueryParams(),e=Object.keys(t).length,a=this.options.productView,r=a.defaultViewType,n=a.enabled;if(e>0){var i=t["KEY_VALUE_REPLACER"===this.options.url.pageViewUrl.algo?this.options.url.pageViewUrl.keyReplacer:"viewType"],o=this.getKeyByValue(this.options.url.pageViewUrl.valuesReplacer,decodeURIComponent(i));o&&(this.viewState.productViewType=o,this.options.extraParams.viewType=o,this.state.productViewType=o)}else this.options.extraParams.viewType=r;n&&this.renderProductViewTypeUI()},gr=function(){var t=this;this.searchResultsWrapper=this.createtSearchWrapper(),this.bannerWrapper=this.createBannerWrapper(),this.breadcrumbWrapper=this.createBreadcrumbWrapper(),this.pageSizeWrapper=this.createPageSizeWrapper(),this.productViewTypeWrapper=this.createProductViewTypeWrapper(),this.paginationWrappers=[],this.facetWrappers=[],this.sortWrappers=[],this.selectedFacetWrappers=[],this.spellCheckWrappers=[];var e=function(){var e=t.createSelectedFacetWrapper();return t.selectedFacetWrappers.push(e),e},a=this.options,r=a.facet,n=a.breadcrumb,i=a.banner,o=a.sort,s=a.products,c=a.pagesize,l=a.pagination,u=a.productView,d=a.selectedFacets,p=r.facetsEl,h=this.options.spellCheck.el;if(h){var f=h;f.length||(f=[h]),f.forEach((function(e){var a;e.innerHTML="",e.appendChild((a=t.createSpellCheckWrapper(),t.spellCheckWrappers.push(a),a))}))}if(p){var g=p;p.length||(g=[p]),g.forEach((function(e){var a;e.innerHTML="",e.appendChild((a=t.createFacetWrapper(),t.facetWrappers.push(a),a))}))}var y=o.el;if(y){var v=y;y.length||(v=[y]),v.forEach((function(e){var a;e.innerHTML="",o.enabled&&e.appendChild((a=t.createSortWrapper(),t.sortWrappers.push(a),a))}))}if(r.selectedFacetsEl)console.error("selectedFacetsEl option is deprecated from v2.0.2, please use selectedFacets option to configure selected facets elements and template"),r.selectedFacetsEl.innerHTML="",r.selectedFacetsEl.appendChild(e());else{var b=d.el;if(d.enabled&&b){var m=b;b.length||(m=[b]),m.forEach((function(t){t.innerHTML="",t.appendChild(e())}))}}if(n.el&&(n.el.innerHTML="",n.enabled&&n.el.appendChild(this.breadcrumbWrapper)),i.el&&(i.el.innerHTML="",i.enabled&&(i.template.bind(this),i.el.appendChild(this.bannerWrapper))),s.el){if(s.el.innerHTML="","INFINITE_SCROLL"===l.type||"CLICK_N_SCROLL"===l.type){var S=document.createElement("div");S.classList.add("UNX-pre-loader"),S.style.height=this.options.pagination.heightDiffToTriggerNextPage+"px",s.el.appendChild(S)}if(s.el.appendChild(this.searchResultsWrapper),"INFINITE_SCROLL"===l.type){var E=document.createElement("div");E.classList.add("UNX-post-loader"),E.style.height=this.options.pagination.heightDiffToTriggerNextPage+"px",s.el.appendChild(E)}}c.el&&(c.el.innerHTML="",c.enabled&&c.el.appendChild(this.pageSizeWrapper)),u.el&&(u.el.innerHTML="",u.el.appendChild(this.productViewTypeWrapper));var F=l.el;if(F){var U=F;F.length||(U=[F]),U.forEach((function(e){var a;e.innerHTML="",l.enabled&&e.appendChild((a=t.createPaginationWrapper(),t.paginationWrappers.push(a),a))}))}},yr=function(){var t=this.options.products,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},vr=function(){var t=this.options.facet,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},br=function(){var t=this.options.banner,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},mr=function(){var t=this.options.breadcrumb,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Sr=function(){var t=this.options.pagesize,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Er=function(){var t=this.options.sort,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Fr=function(){var t=this.options.selectedFacets,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Ur=function(){var t=this.options.spellCheck,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Pr=function(){var t=this.options.pagination,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},wr=function(){var t=this.options.productView,e=t.tagName,a=t.htmlAttributes,r=void 0===a?{}:a,n=t.events;return this.createElement(e,Object.assign({},r),n,this)},Cr=function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},a=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},r=arguments.length>3&&void 0!==arguments[3]?arguments[3]:window,n=document.createElement(t),i=Object.keys(e);i.forEach((function(t){n.setAttribute(t,e[t])}));var o=Object.keys(a);return o.length>0&&o.forEach((function(t){n.addEventListener(t,a[t].bind(r))})),n},Rr=function(t){var e=this.options.products,a=Object.assign({},e,t);this.options.products=a},Nr=function(t){var e=this.options.facet,a=Object.assign({},e,t);this.options.facet=a},Ar=function(t){var e=this.options;this.setConfig(e,t),this.initialize()},jr=function(t){var e=this.options.onAction,a=t.target,r=a.dataset,n=this.cssList,i=n.openFacet,o=n.closeFacet,s=n.openBtn,c=n.closeBtn,l=n.viewMore,u=n.viewLess,d=this.options.facet,p=d.viewMoreText,h=d.textFacetWrapper;if(r){var f=r.facetAction,g=r.facetName,y=r.action,v=(r.id,this.viewState.facetElementMap),b=a.closest(".".concat(v[g]));if("facetOpen"===f&&(this.viewState.expandedFacets[g]=!0,a.classList.add(s),a.classList.remove(c),a.setAttribute("data-facet-action","facetClose"),b.classList.remove(o),b.classList.add(i)),"facetClose"===f&&(this.viewState.expandedFacets[g]=!1,a.classList.remove(s),a.classList.add(c),a.setAttribute("data-facet-action","facetOpen"),b.classList.remove(i),b.classList.add(o)),"viewMore"===y){a.setAttribute("data-action","viewLess"),a.innerHTML=p[1];var m=b.querySelector(".".concat(h));m.classList.remove(l),m.classList.add(u)}if("viewLess"===y){a.setAttribute("data-action","viewMore"),a.innerHTML=p[0];var S=b.querySelector(".".concat(h));S.classList.remove(u),S.classList.add(l)}}e(t,this)},Tr=function(t){var e=this.options.onAction,a=t.target.dataset;if(a){var r=a.facetAction,n=a.facetName;"searchFacets"===r&&this.setSearchFacetsText(n,t.target.value)}e(t,this)},Or=function(){this.resetAll(),this.options.productType="CATEGORY",this.options.products.productType="CATEGORY",this.getCallbackActions(this,"categoryPage"),this.getResults()},Ir=function(){this.resetAll(),this.options.productType="BROWSE",this.options.products.productType="BROWSE",this.getCallbackActions(this,"categoryPage"),this.getResults()},Lr=function(){this.viewState.lastDidYouMean=null,this.viewState.searchFacetsText={},this.viewState.lastDidYouMean=null,this.viewState.expandedFacets={}},kr=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"unx_";return t+Math.random().toString(36).substr(2,9)},_r=function(){},Vr=function(t){var e=t.prototype;e.renderBannerUI=We,e.setSearchWidget=Rr,e.setFacetWidget=Nr,e.updateConfig=Ar,e.createLayout=gr,e.initialize=fr,e.extraActions=jr,e.extraActionsChange=Tr,e.getCategoryPage=Or,e.getBrowsePage=Ir,e.resetViewState=Lr,e.generateRid=kr,e.createElement=Cr,e.createFacetsLayout=_r,function(t){t=Object.assign(t,{createtSearchWrapper:yr,createFacetWrapper:vr,createBannerWrapper:br,createBreadcrumbWrapper:mr,createPageSizeWrapper:Sr,createSortWrapper:Er,createSelectedFacetWrapper:Fr,createSpellCheckWrapper:Ur,createPaginationWrapper:Pr,createProductViewTypeWrapper:wr})}(e),function(t){t=Object.assign(t,{setInputValue:wa})}(e),function(t){t=Object.assign(t,{onPageViewTypeClick:pa,renderProductViewTypeUI:ua})}(e),function(t){t=Object.assign(t,{findChangedFacet:qe,isSelectedRange:$e,clearAllFacets:Ze,isExpandedFacet:Je,setSearchFacetsText:ta,getSearchFacetsText:ea,reRenderTextFacet:aa,renderTextFacet:He,renderRangeFacet:Ge,renderMultiLevelFacet:Ke,renderFacets:ze,renderSelectedFacets:Ye,checkFacets:na,setRangeSlider:ra})}(e),function(t){t=Object.assign(t,{renderProducts:ia})}(e),function(t){t=Object.assign(t,{renderSearch:oa,onProductItemClick:sa,renderNoResults:ca,mapProductAttrs:la})}(e),function(t){t=Object.assign(t,{renderPagination:ha,renderNewResults:ba,paginationAction:ma,setUpInfiniteScroll:ya,getProductsPerPage:Sa,getCurrentUrlPage:Ea,setPageNoParam:Fa})}(e),function(t){t=Object.assign(t,{sortAction:Ua,renderSort:Pa})}(e),function(t){t=Object.assign(t,{renderDidYouMean:Ca,setSuggestion:Ra})}(e),function(t){t=Object.assign(t,{onBreadCrumbClick:Na,renderBreadCrumbs:Aa})}(e),function(t){t=Object.assign(t,{renderSwatchBtns:ja})}(e),function(t){t=Object.assign(t,{pageSizeUi:Be,onClickPageSize:Ta,renderPageSize:Oa})}(e),function(t){t=Object.assign(t,{trackSearch:Ia,getCallbackActions:xa,trackProductClick:La,trackImpression:ka,trackFacetClick:_a,trackCategoryPageLoad:Va})}(e)};function xr(t){return xr="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},xr(t)}function Mr(t,e,a){return(e=function(t){var e=function(t,e){if("object"!==xr(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==xr(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(t,"string");return"symbol"===xr(e)?e:String(e)}(e))in t?Object.defineProperty(t,e,{value:a,enumerable:!0,configurable:!0,writable:!0}):t[e]=a,t}var Xr=(Mr(pr={beforeApiCall:"BEFORE_API_CALL",afterApiCall:"AFTER_API_CALL",beforeRender:"BEFORE_RENDER",beforeNoResultRender:"BEFORE_NO_RESULTS_RENDER",afterNoResultRender:"AFTER_NO_RESULTS_RENDER",afterRender:"AFTER_RENDER",deleteFacet:"DELETE_FACET",facetClick:"FACETS_CLICK",deleteFacetValue:"DELETE_FACET_VALUE"},"deleteFacet","DELETE_FACET"),Mr(pr,"clearSort","CLEAR_SORT"),Mr(pr,"changeSort","CHANGE_SORT"),Mr(pr,"pageNext","PAGE_NEXT"),Mr(pr,"pagePrev","PAGE_PREV"),Mr(pr,"changeInput","CHANGE_INPUT"),Mr(pr,"setCategoryFilter","SET_CATEGORY_FILTER"),Mr(pr,"deleteCategoryFilter","DELETE_CATEGORY_FILTER"),Mr(pr,"pageSizeChange","PAGESIZE_CHANGE"),pr),Br={clearCategoryFilter:"clearCategoryFilter",setCategoryFilter:"setCategoryFilter",changeSwatch:"changeSwatch",clearPriceRange:"clearPriceRange",applyRange:"applyRange",prev:"prev",next:"next",clearSort:"clearSort",changeSort:"changeSort",deleteFacet:"deleteFacet",deleteFacetValue:"deleteFacetValue",changeFacet:"changeFacet"},Dr={openFacet:"UNX-accordian-open",closeFacet:"UNX-accordian-close",openBtn:"UNX-facet-open",closeBtn:"UNX-facet-close",viewMore:"UNX-view-more",viewLess:"UNX-view-less"},Qr={UNX_gridBtn:"UNX_gridBtn",UNX_listBtn:"UNX_listBtn",UNX_loadMore:"UNX_loadMore",UNX_variant:"UNX_variant",UNX_spellCheck:"UNX_spellCheck",UNX_pagesize:"UNX_pagesize",UNX_pageNumber:"UNX_pageNumber",UNX_unbxdSorter:"UNX_unbxdSorter",UNX_uFilter:"UNX_uFilter",UNX_rangeslider:"UNX_rangeslider",UNX_facetLevel:"UNX_facetLevel",UNX_searchFacets:"UNX_searchFacets",UNX_swatchClrBtn:"UNX_swatchClrBtn"},Wr=function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};this.options=da(!0,{},t,e);var a=e.facet,r=(e.pagesize,e.swatches),n=e.products,i=e.productView;a&&(this.options.facetMultilevel=a.facetMultilevel?a.facetMultilevel:t.facet.facetMultilevel,this.options.facetMultiSelect="boolean"==typeof a.facetMultiSelect?a.facetMultiSelect:t.facet.facetMultiSelect,this.options.facetDepth=a.facetDepth?a.facetDepth:t.facet.facetDepth,this.options.applyMultipleFilters="boolean"==typeof a.applyMultipleFilters?a.applyMultipleFilters:t.facet.applyMultipleFilters),this.setPageSize(this.state.pageSize||this.options.pagesize.pageSize),n?(this.options.productAttributes=n.productAttributes?n.productAttributes:t.products.productAttributes,this.options.productType=n.productType?n.productType:t.products.productType):(this.options.productType=t.products.productType,this.options.productAttributes=t.products.productAttributes),r&&(this.options.showSwatches=r&&r.enabled?r.enabled:t.swatches.enabled),i&&(this.viewState.productViewType=i.defaultViewType?i.defaultViewType:t.productView.defaultViewType,this.options.productView.productViewType=this.viewState.productViewType,this.state.productViewType=this.viewState.productViewType)};function qr(t){return qr="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},qr(t)}function zr(t,e){for(var a=0;a<e.length;a++){var r=e[a];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,(n=r.key,i=void 0,i=function(t,e){if("object"!==qr(t)||null===t)return t;var a=t[Symbol.toPrimitive];if(void 0!==a){var r=a.call(t,e||"default");if("object"!==qr(r))return r;throw new TypeError("@@toPrimitive must return a primitive value.")}return("string"===e?String:Number)(t)}(n,"string"),"symbol"===qr(i)?i:String(i)),r)}var n,i}function Hr(t,e){return Hr=Object.setPrototypeOf?Object.setPrototypeOf.bind():function(t,e){return t.__proto__=e,t},Hr(t,e)}function Yr(t){var e=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1;if(Reflect.construct.sham)return!1;if("function"==typeof Proxy)return!0;try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(t){return!1}}();return function(){var a,r=$r(t);if(e){var n=$r(this).constructor;a=Reflect.construct(r,arguments,n)}else a=r.apply(this,arguments);return Kr(this,a)}}function Kr(t,e){if(e&&("object"===qr(e)||"function"==typeof e))return e;if(void 0!==e)throw new TypeError("Derived constructors may only return object or undefined");return Gr(t)}function Gr(t){if(void 0===t)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return t}function $r(t){return $r=Object.setPrototypeOf?Object.getPrototypeOf.bind():function(t){return t.__proto__||Object.getPrototypeOf(t)},$r(t)}var Zr=function(t){!function(t,e){if("function"!=typeof e&&null!==e)throw new TypeError("Super expression must either be null or a function");t.prototype=Object.create(e&&e.prototype,{constructor:{value:t,writable:!0,configurable:!0}}),Object.defineProperty(t,"prototype",{writable:!1}),e&&Hr(t,e)}(i,t);var e,a,r,n=Yr(i);function i(t){var e;return function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,i),(e=n.call(this,t)).viewState={productViewType:e.state.productViewType||Qe.productView.defaultViewType,isInfiniteStarted:!1,lastAction:"",selectedRange:{},expandedFacets:{},searchFacetsText:{},noResultLoaded:!1,lastDidYouMean:null,loadedFromSuggestion:!1,setFromSuggest:!1,facetElementMap:{},initialised:!1},e.setConfig=Wr.bind(Gr(e)),e.setConfig(Qe,t),e.events=Xr,e.actions=Br,e.cssList=Dr,e.testIds=Qr,e.updateConfig(),e.options.onBackFromRedirect(e.getHashMode()),e.options.onEvent(Gr(e),"initialised"),e}return e=i,(a=[{key:"callBack",value:function(t,e){this.getCallbackActions(t,e);var a=this.options,r=a.onEvent,n=a.loader,i=a.facet,o=a.productView,s=this.events,c=s.beforeApiCall,l=s.afterApiCall,u=(this.getQueryParams()||{}).viewType;"viewType"===this.viewState.lastAction&&(u=this.viewState.productViewType,this.options.extraParams.viewType=u,this.viewState.lastAction=""),"pagination"!=this.viewState.lastAction&&"prev_page_loaded"!=this.viewState.lastAction&&"next_page_loaded"!=this.viewState.lastAction&&(this.viewState.isInfiniteStarted=!1),u||(u=this.viewState.productViewType||o.defaultViewType,this.viewState.productViewType=u,this.options.extraParams.viewType=u),this.viewState.productViewType!==u&&(this.viewState.productViewType=u,this.options.extraParams.viewType=u),e===c&&(r(this,c),n&&n.el&&(n.el.innerHTML=n.template(this))),e===l&&(r(this,l),this.state.products.length>0&&(this.viewState.noResultLoaded=!1),this.reRender()),"added_facet"!==e&&"deleted_facet"!==e||!i.applyMultipleFilters||(r(this,"added_facet"),this.renderFacets()),"FETCH_ERROR"===e&&n&&n.el&&(n.el.innerHTML="")}},{key:"delegate",value:function(t,e,a,r){return Te(t,e,a,r)}}])&&zr(e.prototype,a),r&&zr(e,r),Object.defineProperty(e,"prototype",{writable:!1}),i}(je);Vr(Zr);e.default=Zr}}).default}));
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["UnbxdSearch"] = factory();
+	else
+		root["UnbxdSearch"] = factory();
+})(window, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ 16:
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ 39:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// CONCATENATED MODULE: ../search-JS-core/src/config/index.js
+var config_options = {
+  siteKey: 'api key',
+  apiKey: 'site key',
+  isFlag: true,
+  searchEndPoint: 'https://search.unbxd.io/',
+  productType: 'SEARCH',
+  // searchQueryParam:'q',
+  // searchQueryParam: {
+  //     addToUrl: true,
+  //     algo: "DEFAULT",
+  //     keyReplacer: "q"
+  // },
+  // browseQueryParam:'p',
+  searchPath: "",
+  productAttributes: ['title'],
+  defaultFilters: null,
+  spellCheck: {
+    enabled: false
+  },
+  pageSize: 5,
+  startPageNo: 0,
+  facetMultiSelect: true,
+  updateUrls: true,
+  variants: undefined,
+  extraParams: {},
+  facetMultilevel: true,
+  facetDepth: 6,
+  showSwatches: true,
+  allowExternalUrlParams: false,
+  swatchMap: {},
+  onEvent: function onEvent() {},
+  getCategoryId: function getCategoryId() {
+    return encodeURIComponent(window.UnbxdAnalyticsConf["page"]) || decodeURIComponent(location.pathname.split('category-path')[1].split('/').pop());
+  },
+  setCategoryId: function setCategoryId(param, self) {
+    //const page = self.setCategoryFilter(param)[param.parent].join(">");
+    var level = param.level,
+      parent = param.parent,
+      name = param.name,
+      action = param.action;
+    var page = "";
+    var fPath = "";
+    var pathArr = [];
+    var l = Number(level);
+    var breadCrumbs = self.getBreadCrumbsList();
+    breadCrumbs.forEach(function (element, i) {
+      var filterField = element.filterField,
+        value = element.value;
+      fPath = filterField;
+      if (l > i) {
+        pathArr.push(value);
+      }
+    });
+    if (l > breadCrumbs.length) {
+      pathArr.push(name);
+    }
+    page = pathArr.join(">");
+    if (window.UnbxdAnalyticsConf) {
+      window.UnbxdAnalyticsConf.page = page;
+    }
+  },
+  url: {},
+  applyMultipleFilters: false,
+  hashMode: false,
+  pagination: {
+    type: "INFINITE_SCROLL"
+  },
+  onQueryRedirect: function onQueryRedirect(self, redirect, urlBeforeRedirect) {
+    if (redirect) {
+      var value = redirect.value,
+        type = redirect.type;
+      if (type === "url") {
+        /** If opening in same tab */
+        if (history.state && history.state.replace) {
+          history.replaceState(null, "", urlBeforeRedirect);
+        }
+        location.href = value;
+
+        /** If opening redirect in new tab (rare scenario), 
+         * then browser back + history push on search should be handled by client 
+         * (especially switching betsween category to search page scenarios)
+         * Note: This is not recommended */
+      }
+
+      return false;
+    }
+  },
+  onBackFromRedirect: function onBackFromRedirect(hashMode) {
+    var urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
+    var backFromRedirect = urlSearchParam.get("redirected");
+    if (backFromRedirect) {
+      history.go(-1);
+    }
+  },
+  onNoUnbxdKeyRouting: function onNoUnbxdKeyRouting() {
+    history.go();
+  },
+  setRoutingStrategies: function setRoutingStrategies(locationParam, newUrl, productType, isUnbxdKey, replace) {
+    if (locationParam === newUrl) {
+      return;
+    } else if (productType === "CATEGORY") {
+      /** Do not navigate to base category page  */
+      if (!isUnbxdKey) {
+        history.replaceState(null, "", newUrl);
+      } else {
+        history.pushState(null, "", newUrl);
+      }
+    } else {
+      if (history.state && history.state.replace || replace) {
+        history.replaceState(null, "", newUrl);
+      } else {
+        history.pushState(null, "", newUrl);
+      }
+    }
+  }
+};
+/* harmony default export */ var src_config = (config_options);
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getBaseUrl.js
+/* harmony default export */ var getBaseUrl = (function () {
+  try {
+    var _this$options = this.options,
+      searchEndPoint = _this$options.searchEndPoint,
+      siteKey = _this$options.siteKey,
+      apiKey = _this$options.apiKey;
+    return searchEndPoint + apiKey + "/" + siteKey;
+  } catch (err) {
+    this.onError("getBaseUrl.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/extraParamsFromUrlToString.js
+/* harmony default export */ var extraParamsFromUrlToString = (function () {
+  try {
+    var extraParams = this.options.extraParams;
+    var str = "";
+    var keys = Object.keys(extraParams);
+    keys.forEach(function (key) {
+      str += "&" + key + "=" + extraParams[key];
+    });
+    return str;
+  } catch (err) {
+    this.onError("extraParamsFromUrlToString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/utils/urlUtils.js
+var urlUtils = {
+  encodeQueryParam: function encodeQueryParam() {
+    var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+    if (typeof p !== "string") return p;
+    p = p.trim();
+    p = p.replace(/\%26/gmi, "&");
+    p = encodeURIComponent(p);
+    p = p.replace(/\%20/gmi, "+");
+    p = p.replace(/\++/gmi, "+");
+    return p;
+  },
+  decodeQueryParam: function decodeQueryParam() {
+    var p = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+    if (typeof p !== "string") return p;
+    p = p.replace(/\+/gmi, " ");
+    p = p.replace(/\s{2,}/gmi, " ");
+    p = decodeURIComponent(p);
+    return p.trim();
+  },
+  getDeviceInfo: function getDeviceInfo() {
+    var smallDeviceMaxWidth = 768,
+      mediumDeviceMaxWidth = 992;
+    if (window.outerWidth < smallDeviceMaxWidth) {
+      return "Mobile";
+    } else if (window.outerWidth < mediumDeviceMaxWidth) {
+      return "Tablet";
+    } else {
+      return "Desktop";
+    }
+  },
+  decodeAndParse: function decodeAndParse(s) {
+    if (s.indexOf('"') === 0) {
+      // This is a quoted cookie as according to RFC2068, unescape...
+      s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+    }
+    return this.decodeCookie(s);
+  },
+  decodeCookie: function decodeCookie(s) {
+    var pluses = /\+/g;
+    return decodeURIComponent(s.replace(pluses, ' '));
+  },
+  cookie: function cookie(key) {
+    // Read
+    var cookies = document.cookie.split('; ');
+    var result;
+    for (var i = 0, l = cookies.length; i < l; i++) {
+      var parts = cookies[i].split('=');
+      var name = this.decodeCookie(parts.shift());
+      var cookie = parts.join('=');
+      if (key && key === name) {
+        try {
+          result = this.decodeAndParse(cookie);
+          break;
+        } catch (e) {
+          this.log(e);
+        }
+      }
+    }
+    return result;
+  },
+  readCookie: function readCookie(name) {
+    try {
+      return this.cookie('unbxd.' + name);
+    } catch (e) {
+      this.log(e);
+    }
+    return undefined;
+  },
+  getUserId: function getUserId() {
+    return this.readCookie('userId');
+  },
+  getDefaultRequestHeaders: function getDefaultRequestHeaders(context) {
+    var self = this,
+      userId = this.getUserId(),
+      defaultRequestHeaders = {
+        "unbxd-device-type": self.getDeviceInfo()
+      };
+    if (userId) {
+      defaultRequestHeaders["unbxd-user-id"] = userId;
+    }
+    return defaultRequestHeaders;
+  },
+  getEachFacetValueEncodedFromStr: function getEachFacetValueEncodedFromStr(facetStr, valuesSeparator) {
+    var vals = facetStr.split(urlUtils.getValuesSeparatorFacets(valuesSeparator));
+    var newVals = "";
+    vals.forEach(function (item, index) {
+      if (index === 0) {
+        newVals += encodeURIComponent(item);
+      } else {
+        newVals += urlUtils.getValuesSeparatorFacets(valuesSeparator) + encodeURIComponent(item);
+      }
+    });
+    return newVals;
+  },
+  isTextFilterStr: function isTextFilterStr(item) {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$so = _this$options$url2.sortUrl,
+      sortUrl = _this$options$url2$so === void 0 ? {} : _this$options$url2$so,
+      _this$options$url2$pa = _this$options$url2.pageViewUrl,
+      pageViewUrl = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa2 = _this$options$url2.pageSizeUrl,
+      pageSizeUrl = _this$options$url2$pa2 === void 0 ? {} : _this$options$url2$pa2,
+      _this$options$url2$pa3 = _this$options$url2.pageNoUrl,
+      pageNoUrl = _this$options$url2$pa3 === void 0 ? {} : _this$options$url2$pa3;
+    var sortStr = sortUrl.algo === "KEY_VALUE_REPLACER" ? sortUrl.keyReplacer : "sort";
+    var viewStr = pageViewUrl.algo === "KEY_VALUE_REPLACER" ? pageViewUrl.keyReplacer : "viewType";
+    var pageSizeStr = pageSizeUrl.algo === "KEY_VALUE_REPLACER" ? pageSizeUrl.keyReplacer : "rows";
+    var pageNoStr = pageNoUrl.algo === "KEY_VALUE_REPLACER" ? pageNoUrl.keyReplacer : pageNoUrl.usePageNo ? "page" : "start";
+    if ([this.getSearchQueryParam(), this.getBrowseQueryParam(), viewStr, sortStr, pageSizeStr, pageNoStr, "count"].includes(item)) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+  getValuesSeparatorFacets: function getValuesSeparatorFacets(valuesSeperator) {
+    var allowedValues = ["&", "~", "^", ",", "-", "_", ":", ";", "|", "$", "@", '~'];
+    return allowedValues.includes(valuesSeperator) ? valuesSeperator : ",";
+  },
+  getQueryParamSeparator: function getQueryParamSeparator(queryParamSeperator) {
+    var allowedValues = ["&", "~", "^", ",", "-", "_", ":", ";", "|", "$", "@", '~'];
+    return allowedValues.includes(queryParamSeperator) ? queryParamSeperator : "&";
+  },
+  getRangeSeparator: function getRangeSeparator(rangeSeparator) {
+    var allowedValues = ["-", " TO "];
+    return allowedValues.includes(rangeSeparator) ? rangeSeparator : " TO ";
+  }
+};
+/* harmony default export */ var utils_urlUtils = (urlUtils);
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/setStateFromUrl.js
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+/* harmony default export */ var setStateFromUrl = (function () {
+  var _this = this;
+  var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  try {
+    var loadFromUrl = false;
+    var urlParts = this.getQueryParams(url);
+    var _this$options = this.options,
+      pagination = _this$options.pagination,
+      productType = _this$options.productType;
+    var queryParam = this.getSearchQueryParam();
+    if (productType !== 'SEARCH') {
+      queryParam = this.getBrowseQueryParam();
+      urlParts[queryParam] = this.getCategoryId();
+    }
+    if (_typeof(urlParts) === 'object' && urlParts[queryParam]) {
+      var _ref = this.options || {},
+        _ref$url = _ref.url,
+        _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+        _ref$url2$facetsUrl = _ref$url2.facetsUrl,
+        facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
+        _ref$url2$pageSizeUrl = _ref$url2.pageSizeUrl,
+        pageSizeUrl = _ref$url2$pageSizeUrl === void 0 ? {} : _ref$url2$pageSizeUrl,
+        _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
+        pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl,
+        _ref$url2$sortUrl = _ref$url2.sortUrl,
+        sortUrl = _ref$url2$sortUrl === void 0 ? {} : _ref$url2$sortUrl;
+      var q = urlParts[this.getSearchQueryParam()],
+        filter = urlParts[facetsUrl.algo === "KEY_VALUE_REPLACER" ? facetsUrl.filterReplacer : "filter"],
+        pageValue = urlParts[pageNoUrl.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(pageNoUrl.keyReplacer) : pageNoUrl.usePageNo ? "page" : "start"],
+        rowsValue = urlParts[pageSizeUrl.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(pageSizeUrl.keyReplacer) : pageNoUrl.usePageNo ? "count" : "rows"],
+        sort = urlParts[sortUrl.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(sortUrl.keyReplacer) : "sort"];
+
+      // let page = 1, start = 0;
+      // if(pageNoUrl.usePageNo){
+      //     page = pageValue
+      // } else {
+      //     start = pageValue
+      // }
+
+      loadFromUrl = true;
+      if (this.state.userInput !== q) {
+        this.state.userInput = utils_urlUtils.decodeQueryParam(q);
+      }
+
+      // if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr){
+      //     let paramArr = q.split("&")
+      //     if (paramArr.length > 1) {
+      //         filter = paramArr[1]
+      //     }
+      // }
+
+      if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr) {
+        var filtersStr = [];
+        Object.keys(urlParts).forEach(function (item, index) {
+          if (!utils_urlUtils.isTextFilterStr.bind(_this)(decodeURIComponent(item))) {
+            if (!filtersStr.length) {
+              filtersStr.push(item + "=" + urlParts[item]);
+            } else {
+              filtersStr.push(item + "=" + urlParts[item]);
+            }
+          }
+        });
+        filter = filtersStr;
+      }
+      var facets = this.getFilterFromParams(filter);
+      this.state.rangeFacet = facets.rangeFacet;
+      this.state.selectedFacets = facets.selectedFilters;
+      this.state.selectedSort = sort ? sortUrl.algo === "KEY_VALUE_REPLACER" ? this.getKeyByValue(sortUrl.valueReplacer, decodeURIComponent(sort)) : decodeURIComponent(sort) : "";
+      if (!rowsValue) {
+        rowsValue = Number(this.options.pagesize.pageSize);
+      }
+      if (pageNoUrl.usePageNo) {
+        this.state.startPageNo = pageValue ? Number((pageValue - 1) * rowsValue) : 0;
+      } else {
+        this.state.startPageNo = pageValue ? Number(pageValue) : 0;
+      }
+      // if(pageNoUrl.usePageNo){
+      //     this.state.startPageNo = page? (page-1)* count : 0;
+      // } else {
+      //     this.state.startPageNo = start? start : 0;
+      // }
+      this.state.isBack = false;
+      this.state.pageSize = rowsValue;
+      // this.state.pageSize = rowsValue ? Number(rowsValue) : this.options.pagesize.pageSize;
+
+      // if(pageNoUrl.usePageNo){
+      //     this.state.pageSize = count ? Number(count) : this.options.pagesize.pageSize;
+      // } else {
+      //     this.state.pageSize = rows ? Number(rows) : this.options.pagesize.pageSize;
+      // }
+
+      // -------
+      // if (this.options.url.pageSizeUrl.addToUrl && this.options.url.pageSizeUrl.customize){
+      //     this.state.pageSize = urlParts[this.options.url.pageSizeUrl.keyReplacer] ? Number(urlParts[this.options.url.pageSizeUrl.keyReplacer]) : this.options.pagesize.pageSize;
+      // }else{
+      //     this.state.pageSize = urlParts.rows ? Number(urlParts.rows) : this.options.pagesize.pageSize;
+      // }
+      // -------
+
+      this.state.categoryFilter = this.getCategoryFilterFromParams(urlParts);
+      if (loadFromUrl) {
+        this.getResults();
+      }
+    }
+  } catch (err) {
+    this.onError("setStateFromUrl.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getQueryParams.js
+
+/* harmony default export */ var getQueryParams = (function (pathState) {
+  try {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      queryParamSeparator = _this$options$url2.queryParamSeparator;
+    var q = this.getHashMode() ? location.hash : location.search;
+    var uri = q.substr(1);
+    if (pathState) {
+      uri = pathState;
+    }
+    var splited = uri.split(utils_urlUtils.getQueryParamSeparator(queryParamSeparator));
+    var chunks = [];
+    splited.forEach(function (item, index) {
+      if (item.indexOf("=") > 0) {
+        chunks.push(item);
+      } else {
+        chunks[index - 1] = chunks[index - 1] + "&" + item;
+      }
+    });
+    var params = {};
+    for (var i = 0; i < chunks.length; i++) {
+      var chunk = chunks[i].split('=');
+      if (typeof params[chunk[0]] === 'undefined') {
+        params[chunk[0]] = chunk[1];
+      } else {
+        if (typeof params[chunk[0]] === "string") {
+          params[chunk[0]] = [params[chunk[0]]];
+          params[chunk[0]].push(chunk[1]);
+        } else {
+          params[chunk[0]].push(chunk[1]);
+        }
+      }
+    }
+    return params;
+  } catch (err) {
+    this.onError("getQueryParams.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getQueryParamsWhenCustomUrl.js
+
+/* harmony default export */ var getQueryParamsWhenCustomUrl = (function () {
+  var newQ = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var _ref = this.options.url || {},
+    _ref$facetsUrl = _ref.facetsUrl,
+    _ref$facetsUrl2 = _ref$facetsUrl === void 0 ? {} : _ref$facetsUrl,
+    showFilterStr = _ref$facetsUrl2.showFilterStr,
+    _ref$facetsUrl3 = _ref.facetsUrl,
+    facetsUrl = _ref$facetsUrl3 === void 0 ? {} : _ref$facetsUrl3,
+    queryParamSeparator = _ref.queryParamSeparator;
+  if (!showFilterStr) {
+    var q = newQ ? newQ : this.getHashMode() ? location.hash : location.search;
+    var uri = q.substr(1);
+    var splited = uri.split(utils_urlUtils.getQueryParamSeparator(queryParamSeparator));
+    var params = {};
+    splited.forEach(function (item) {
+      // item = item);
+      if (item.indexOf('=') > 0) {
+        var splitItem = "";
+        if (facetsUrl.algo === "HASH" && item.split('=')[0] === "filter") {
+          splitItem = item.split('filter=');
+          params["filter"] = splitItem[1];
+        } else {
+          splitItem = item.split('=');
+          params[splitItem[0]] = splitItem[1];
+        }
+      }
+    });
+    return params;
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getDefaultFiltersString.js
+/* harmony default export */ var getDefaultFiltersString = (function () {
+  try {
+    var str = "";
+    var filters = this.options.defaultFilters;
+    if (filters !== null) {
+      var keys = Object.keys(filters);
+      keys.forEach(function (item) {
+        str += "&filter=" + item + ":" + JSON.stringify(filters[item]);
+      });
+    }
+    return str;
+  } catch (err) {
+    this.onError("getDefaultFiltersString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/facetsToUrlString.js
+/* harmony default export */ var facetsToUrlString = (function () {
+  try {
+    var facetUrl = "";
+    var selectedFacets = this.state.selectedFacets;
+    var defaultFilters = this.options.defaultFilters || {};
+    var keys = Object.keys(selectedFacets);
+    var doubleStr = "%22";
+    keys.forEach(function (key, indexKey) {
+      var facet = selectedFacets[key];
+      /** Remove unnecessary &filter from url */
+      if (facet.length) {
+        facetUrl += "&filter=";
+      }
+      // facetUrl += indexKey < (keys.length - 1) ? `&filter=` : "";
+      facet.forEach(function (item, index) {
+        var name = item.name,
+          dataId = item.dataId;
+        if (defaultFilters[key] !== undefined && defaultFilters[key] === name) {
+          return;
+        }
+        name = "".concat(doubleStr).concat(dataId).concat(doubleStr);
+        if (index === 0) {
+          facetUrl += "".concat(key, ":").concat(name);
+        } else {
+          facetUrl += " OR ".concat(key, ":").concat(name);
+        }
+      });
+    });
+    return facetUrl;
+  } catch (err) {
+    this.onError("facetsToUrlString.js", err);
+  }
+
+  // if(customizeFacets){
+  //     initialiuze  facetUrlString = ""
+  //     get all the selected facet keys
+  //     loop through the selected facet keys
+  // values = []
+  // loop through all the values
+  // values.push(replaced value)
+  // facetUrlString += '&' + {key replacer} + key value seperator + values.join(value separator)
+
+  // return facetUrlString
+  // }
+});
+
+// color=black,blue&gender=male
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/facetsToWebUrlString.js
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+
+/* harmony default export */ var facetsToWebUrlString = (function () {
+  try {
+    var _ref = this.options.url || {},
+      _ref$facetsUrl = _ref.facetsUrl,
+      facetsUrl = _ref$facetsUrl === void 0 ? {} : _ref$facetsUrl,
+      queryParamSeparator = _ref.queryParamSeparator;
+    var _facetsUrl$algo = facetsUrl.algo,
+      algo = _facetsUrl$algo === void 0 ? "DEFAULT" : _facetsUrl$algo;
+    if (algo === "KEY_VALUE_REPLACER") {
+      var facetUrl = "";
+      var selectedFacets = this.state.selectedFacets;
+      var defaultFilters = this.options.defaultFilters || {};
+      var keys = Object.keys(selectedFacets);
+      var remainingKeys = [];
+      var orderedFacets = [];
+      facetsUrl.facetsOrderInUrl.forEach(function (facet) {
+        if (keys.includes(facet)) {
+          orderedFacets.push(facet);
+        }
+      });
+      remainingKeys = keys.filter(function (item) {
+        return !orderedFacets.includes(item);
+      });
+      orderedFacets = [].concat(_toConsumableArray(orderedFacets), _toConsumableArray(remainingKeys));
+      var showFilterStr = facetsUrl.showFilterStr,
+        filterReplacer = facetsUrl.filterReplacer,
+        keyReplacer = facetsUrl.keyReplacer,
+        valuesSeparator = facetsUrl.valuesSeparator,
+        valueReplacer = facetsUrl.valueReplacer;
+      orderedFacets.forEach(function (key, indexKey) {
+        var facet = selectedFacets[key];
+        var replacedKey = "";
+        if (facet.length) {
+          if (showFilterStr) {
+            facetUrl += "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(filterReplacer, "=");
+          } else {
+            facetUrl += "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator));
+          }
+          if (keyReplacer && Object.keys(keyReplacer).length > 0) {
+            replacedKey = key in keyReplacer ? keyReplacer[key] : "";
+          }
+          facetUrl += "".concat(replacedKey ? replacedKey : key, "=");
+        }
+        facet.forEach(function (item, index) {
+          var name = item.name;
+          var replacedName = name;
+          if (defaultFilters[key] !== undefined && defaultFilters[key] === name) {
+            return;
+          }
+          if (valueReplacer && Object.keys(valueReplacer).length > 0) {
+            if (valueReplacer[key] && valueReplacer[key][name]) {
+              replacedName = valueReplacer[key][name];
+            }
+          }
+          if (index === 0) {
+            facetUrl += "".concat(encodeURIComponent(replacedName));
+          } else {
+            facetUrl += "".concat(utils_urlUtils.getValuesSeparatorFacets(valuesSeparator)).concat(encodeURIComponent(replacedName));
+          }
+        });
+      });
+      return facetUrl;
+    } else if (algo === "DEFAULT" || algo === "HASH") {
+      var _facetUrl = "";
+      var _selectedFacets = this.state.selectedFacets;
+      var _defaultFilters = this.options.defaultFilters || {};
+      var _keys = Object.keys(_selectedFacets);
+      var doubleStr = "%22";
+      _keys.forEach(function (key, indexKey) {
+        var facet = _selectedFacets[key];
+        /** Remove unnecessary &filter from url */
+        if (facet.length) {
+          _facetUrl += facetsUrl.algo === "HASH" ? _facetUrl !== "" ? utils_urlUtils.getQueryParamSeparator(queryParamSeparator) : "" : "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "filter=");
+        }
+        facet.forEach(function (item, index) {
+          var name = item.name,
+            dataId = item.dataId;
+          if (_defaultFilters[key] !== undefined && _defaultFilters[key] === name) {
+            return;
+          }
+          name = "".concat(doubleStr).concat(dataId).concat(doubleStr);
+          if (index === 0) {
+            _facetUrl += "".concat(key, ":").concat(name);
+          } else {
+            _facetUrl += " OR ".concat(key, ":").concat(name);
+          }
+        });
+      });
+      return _facetUrl; //facetUrl = ~filter=color=Blue OR color=Gray OR color =GRAY ~filter=gender=male OR gender = female
+    }
+  } catch (err) {
+    this.onError("facetsToUrlString.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getShowVariantsUrlString.js
+/* harmony default export */ var getShowVariantsUrlString = (function () {
+  try {
+    var variants = this.options.variants;
+    return variants && typeof variants.enabled === "boolean" ? "&variants=".concat(variants.enabled) : "";
+  } catch (err) {
+    this.onError("getShowVariantsUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getVariantAttributesUrlString.js
+/* harmony default export */ var getVariantAttributesUrlString = (function () {
+  try {
+    var variants = this.options.variants;
+    if (variants) {
+      var enabled = variants.enabled,
+        attributes = variants.attributes;
+      return attributes && enabled ? "&variants.fields=".concat(attributes.join(",")) : "";
+    }
+    return "";
+  } catch (err) {
+    this.onError("getVariantAttributesUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getVariantsCountUrlString.js
+/* harmony default export */ var getVariantsCountUrlString = (function () {
+  try {
+    var variants = this.options.variants;
+    if (variants) {
+      var enabled = variants.enabled,
+        count = variants.count;
+      return count && enabled ? "&variants.count=".concat(count) : "";
+    }
+    return "";
+  } catch (err) {
+    this.onError("getVariantsCountUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getVariantsGroupByUrlString.js
+/* harmony default export */ var getVariantsGroupByUrlString = (function () {
+  try {
+    var variants = this.options.variants;
+    if (variants) {
+      var enabled = variants.enabled,
+        groupBy = variants.groupBy;
+      return groupBy && enabled ? "&variants.groupBy=".concat(groupBy) : "";
+    }
+    return "";
+  } catch (err) {
+    this.onError("getVariantsGroupByUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getProductAttributesUrlString.js
+/* harmony default export */ var getProductAttributesUrlString = (function () {
+  try {
+    if (this.options.productAttributes) {
+      return "&fields=" + this.options.productAttributes.join(",");
+    }
+    return "";
+  } catch (err) {
+    this.onError("getProductAttributesUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getPageSizeUrlString.js
+/* harmony default export */ var getPageSizeUrlString = (function () {
+  var api = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  try {
+    var _ref = this.options || {},
+      _ref$url = _ref.url,
+      _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+      _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
+      pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl;
+    if (!api && pageNoUrl.usePageNo) {
+      return "&count=".concat(this.state.pageSize);
+    } else {
+      return "&rows=".concat(this.state.pageSize);
+    }
+  } catch (err) {
+    this.onError("getPageSizeUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getPageSizeWebUrlString.js
+
+/* harmony default export */ var getPageSizeWebUrlString = (function () {
+  try {
+    var _ref = this.options || {},
+      _ref$url = _ref.url,
+      _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+      _ref$url2$pageSizeUrl = _ref$url2.pageSizeUrl,
+      _ref$url2$pageSizeUrl2 = _ref$url2$pageSizeUrl === void 0 ? {} : _ref$url2$pageSizeUrl,
+      algo = _ref$url2$pageSizeUrl2.algo,
+      keyReplacer = _ref$url2$pageSizeUrl2.keyReplacer,
+      queryParamSeparator = _ref$url2.queryParamSeparator;
+    return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(keyReplacer) : "rows", "=").concat(this.state.pageSize);
+  } catch (err) {
+    this.onError("getPageSizeWebUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getPaginationStartUrlString.js
+/* harmony default export */ var getPaginationStartUrlString = (function () {
+  var api = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  try {
+    var _ref = this.options || {},
+      _ref$url = _ref.url,
+      _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+      _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
+      pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl;
+    if (!api && pageNoUrl.usePageNo) {
+      return "&page=" + (Math.floor(this.state.startPageNo / this.state.pageSize) + 1);
+    } else {
+      return "&start=" + this.state.startPageNo;
+    }
+  } catch (err) {
+    this.onError("getPaginationStartUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getPaginationStartWebUrlString.js
+
+/* harmony default export */ var getPaginationStartWebUrlString = (function () {
+  try {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$pa = _this$options$url2.pageNoUrl,
+      _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      algo = _this$options$url2$pa2.algo,
+      usePageNo = _this$options$url2$pa2.usePageNo,
+      keyReplacer = _this$options$url2$pa2.keyReplacer,
+      queryParamSeparator = _this$options$url2.queryParamSeparator;
+
+    // if (customize) {
+    // if (usePageNo){
+    return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(keyReplacer) : usePageNo ? "page" : "start", "=").concat(usePageNo ? Math.ceil(this.state.startPageNo / this.state.pageSize) + 1 : this.state.startPageNo);
+    // } else {
+    //     return `&${keyReplacer}=${this.state.startPageNo}` 
+    // }
+    // } else {
+    //     return `&${usePageNo ? "page" : "start"}=` + this.state.startPageNo;
+    // }
+  } catch (err) {
+    this.onError("getPaginationStartWebUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getNewUrlState.js
+
+/* harmony default export */ var getNewUrlState = (function (fetchApiUrl) {
+  var _this = this;
+  try {
+    var _this$options = this.options,
+      productType = _this$options.productType,
+      _this$options$url = _this$options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$fa = _this$options$url2.facetsUrl,
+      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      _this$options$url2$so = _this$options$url2.sortUrl,
+      sortUrl = _this$options$url2$so === void 0 ? {} : _this$options$url2$so,
+      _this$options$url2$pa = _this$options$url2.pageSizeUrl,
+      pageSizeUrl = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa2 = _this$options$url2.pageNoUrl,
+      pageNoUrl = _this$options$url2$pa2 === void 0 ? {} : _this$options$url2$pa2,
+      _this$options$url2$pa3 = _this$options$url2.pageViewUrl,
+      pageViewUrl = _this$options$url2$pa3 === void 0 ? {} : _this$options$url2$pa3,
+      _this$options$url2$br = _this$options$url2.browseQueryParam,
+      browseQueryParam = _this$options$url2$br === void 0 ? {} : _this$options$url2$br,
+      _this$options$url2$se = _this$options$url2.searchQueryParam,
+      searchQueryParam = _this$options$url2$se === void 0 ? {} : _this$options$url2$se;
+    var value = this.state.userInput;
+    var pagetype = '';
+    var baseUrl = this.getBaseUrl();
+    if (productType === "BROWSE" || productType === "CATEGORY") {
+      pagetype = "";
+      value = this.getCategoryId();
+      var queryString = '/category?';
+      this.webUrl = baseUrl + queryString + (browseQueryParam.addToUrl ? "".concat(this.getBrowseQueryParam(), "=").concat(value) : "");
+      this.apiUrl = baseUrl + queryString + "p=".concat(value);
+    }
+    if (productType === "CATEGORY") {
+      pagetype = "&pagetype=boolean";
+    }
+    if (productType === "SEARCH") {
+      var _queryString = '/search?';
+      this.webUrl = baseUrl + _queryString + (searchQueryParam.addToUrl ? "".concat(this.getSearchQueryParam(), "=").concat(utils_urlUtils.encodeQueryParam(value)) : "");
+      this.apiUrl = baseUrl + _queryString + 'q=' + utils_urlUtils.encodeQueryParam(value);
+    }
+    var facetsUrlString = this.urlFlattenFacets();
+    var showVariantsStr = this.getShowVariantsStr();
+    var variantAttributesStr = this.getVariantAttributesStr();
+    var variantsCountStr = this.getVariantsCountStr();
+    var variantsGroupByStr = this.getVariantsGroupByStr();
+    var productAttributesStr = this.getProductAttributesStr() + this.getDefaultFiltersStr();
+    var sortStr = this.getSortUrlString();
+    var spellCheckUrlString = this.getSpellCheckUrlString();
+    var rangeFilterUrlStr = this.getRangeFilterStr();
+    var categoryFilterStr = this.categoryFilterUrlStr();
+    var ucParam = this.getUcParamUrlString();
+    var fctmulty = this.options.facetMultiSelect ? "&facet.multiselect=true" : "&facet.multiselect=false";
+    var facetV2 = "&facet.version=V2";
+    var apiUrl = this.apiUrl + categoryFilterStr + fctmulty + facetsUrlString + showVariantsStr + variantAttributesStr + variantsCountStr + variantsGroupByStr + productAttributesStr + sortStr + spellCheckUrlString + rangeFilterUrlStr + pagetype + this.getPageSizeStr(true) + this.getPageStartStr(true) + this.extraParamUrlString() + facetV2 + (ucParam ? ucParam : "");
+    var getfacets = function getfacets() {
+      var _ref = _this.options || {},
+        _ref$url = _ref.url,
+        _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+        _ref$url2$facetsUrl = _ref$url2.facetsUrl,
+        facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
+        queryParamSeparator = _ref$url2.queryParamSeparator;
+      if (facetsUrl.addToUrl) {
+        if (facetsUrl.algo === "HASH") {
+          var filterStr = window.btoa(_this.categoryFilterWebUrlString() + _this.facetsToWebUrlString() + _this.getRangeFilterWebString());
+          if (filterStr) {
+            return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "filter=").concat(filterStr);
+          } else {
+            return '';
+          }
+          // return `&filter=${window.btoa(categoryFilterStr + this.facetsToWebUrlString() + this.getRangeFilterWebString())}`;
+        } else {
+          return _this.categoryFilterWebUrlString() + _this.facetsToWebUrlString() + _this.getRangeFilterWebString();
+        }
+      } else {
+        return "";
+      }
+    };
+    var webUrl = this.webUrl + getfacets() + (sortUrl.addToUrl ? this.getSortWebUrlString() : "") + (
+    // rangeFilterUrlStr +
+    pageSizeUrl.addToUrl ? this.getPageSizeWebUrlString() : "") + (pageNoUrl.addToUrl ? this.getPaginationStartWebUrlString() : "") + (pageViewUrl.addToUrl ? this.getViewTypeForWebUrl() : "");
+    this.state.currentApiUrl = apiUrl;
+    this.state.currentWebUrl = webUrl;
+    if (fetchApiUrl) {
+      return apiUrl;
+    } else {
+      return webUrl;
+    }
+  } catch (err) {
+    this.onError("getNewUrlState.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getRangeFilterString.js
+/* harmony default export */ var getRangeFilterString = (function () {
+  try {
+    var rangeFacet = this.state.rangeFacet;
+    var keysMap = Object.keys(rangeFacet);
+    var str = "";
+    keysMap.forEach(function (item) {
+      var range = rangeFacet[item];
+      if (Array.isArray(range)) {
+        if (range.length > 0) {
+          str += "&filter=".concat(item, ":").concat(range.join(" OR ".concat(item, ":"))); //1-100 , 2-200
+        }
+      } else {
+        str += "&filter=".concat(item, ":").concat(range);
+      }
+    });
+    return str;
+  } catch (err) {
+    this.onError("getRangeFilterString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getRangeFilterWebString.js
+
+function getRangeFilterWebString() {
+  try {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$fa = _this$options$url2.facetsUrl,
+      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      queryParamSeparator = _this$options$url2.queryParamSeparator;
+    if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+      var rangeFacet = this.state.rangeFacet;
+      var keysMap = Object.keys(rangeFacet);
+      var str = "";
+      keysMap.forEach(function (item) {
+        str = "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(Object.keys(facetsUrl.keyReplacer).length > 0 && item in facetsUrl.keyReplacer ? facetsUrl.keyReplacer[item] : item, "=");
+        var range = rangeFacet[item];
+        range.forEach(function (r, index) {
+          if (index === 0) {
+            str += "".concat(r.replace(/\[|\]/g, "").split(" TO ").join(utils_urlUtils.getRangeSeparator(facetsUrl.rangeSeparator)));
+          } else {
+            str += "".concat(facetsUrl.valuesSeperator).concat(r.replace(/\[|\]/g, "").split(" TO ").join(utils_urlUtils.getRangeSeparator(facetsUrl.rangeSeparator)));
+          }
+        });
+      });
+      return str;
+    } else if (facetsUrl.algo === "DEFAULT" || facetsUrl.algo === "HASH") {
+      var _rangeFacet = this.state.rangeFacet;
+      var _keysMap = Object.keys(_rangeFacet);
+      var _str = "";
+      _keysMap.forEach(function (item) {
+        var range = _rangeFacet[item];
+        if (Array.isArray(range)) {
+          if (range.length > 0) {
+            if (facetsUrl.algo === "HASH") {
+              _str += "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(item, ":").concat(range.join(" OR ".concat(item, ":"))); //&price=[100 to 200] OR price=[200 to 300]
+            } else {
+              _str += "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "filter=").concat(item, ":").concat(range.join(" OR ".concat(item, ":"))); //filter=ptice=
+            }
+          }
+        } else {
+          _str += "&filter=".concat(item, ":").concat(range);
+        }
+      });
+      return _str;
+    }
+  } catch (error) {
+    this.onError("getRangeFilterWebString.js", error);
+  }
+}
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/categoryFilterUrlString.js
+/* harmony default export */ var categoryFilterUrlString = (function () {
+  var _this = this;
+  try {
+    var _this$state$categoryF = this.state.categoryFilter,
+      categoryFilter = _this$state$categoryF === void 0 ? {} : _this$state$categoryF;
+    var str = "";
+    var keys = Object.keys(categoryFilter);
+    var doubleQuotes = "%22";
+    keys.forEach(function (key, index) {
+      var selectedCategory = _this.getAFacetByName(key)[0];
+      var breadcrumbList = _this.getBreadCrumbsList(key);
+      var selectedVal = null;
+      if (selectedCategory) {
+        var categoryFilterKey = "";
+        var filterField = selectedCategory.filterField,
+          values = selectedCategory.values;
+        if (filterField) {
+          categoryFilterKey = selectedCategory;
+        }
+        var valStr = categoryFilter[key].map(function (item, index) {
+          selectedVal = values.find(function (val) {
+            return _this.cleanFacetValue(encodeURIComponent(val.name)) === _this.cleanFacetValue(item);
+          });
+          if (breadcrumbList) {
+            var selecteditem = breadcrumbList.find(function (crumb) {
+              return crumb.value === item;
+            });
+            if (selecteditem) {
+              selectedVal = {
+                name: selecteditem.value
+              };
+            }
+          }
+          var it = item;
+          if (selectedVal) {
+            it = _this.encodeCategoryFacetValue(selectedVal.name).split(doubleQuotes).join("");
+          }
+          if (index > 0) {
+            it = ">".concat(_this.encodeCategoryFacetValue(item).split(doubleQuotes).join(""));
+          } else {
+            it = _this.encodeCategoryFacetValue(item).split(doubleQuotes).join("");
+          }
+          return it;
+        });
+        //category-filter specific code
+        if (filterField === "categoryPath") {
+          str += "&category-filter=".concat(valStr.join(""));
+          //category-filter specific code
+        } else {
+          str += "&filter=".concat(filterField, ":\"").concat(valStr.join(""), "\"");
+        }
+      } else {
+        //category-filter specific code
+        if (categoryFilter && categoryFilter["categoryPath"]) {
+          var vals = "";
+          categoryFilter.categoryPath.forEach(function (item, i) {
+            var valArr = item.split(">");
+            valArr.forEach(function (item, i) {
+              var dVal = _this.encodeCategoryFacetValue(item).split("%22").join("");
+              if (vals !== "") {
+                vals += ">".concat(dVal);
+              } else {
+                vals = dVal;
+              }
+            });
+          });
+          str += "&category-filter=".concat(vals);
+        }
+      }
+    });
+    return str;
+  } catch (err) {
+    this.onError("categoryFilterUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getSortUrlString.js
+/* harmony default export */ var getSortUrlString = (function () {
+  try {
+    var selectedSort = this.getSelectedSort();
+    if (selectedSort) {
+      return "&sort=" + encodeURI(selectedSort);
+    }
+    return "";
+  } catch (err) {
+    this.onError("getSortUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getSortWebUrlString.js
+
+/* harmony default export */ var getSortWebUrlString = (function () {
+  try {
+    var selectedSort = this.getSelectedSort();
+    if (selectedSort) {
+      var _ref = this.options || {},
+        _ref$url = _ref.url,
+        _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+        sortUrl = _ref$url2.sortUrl,
+        queryParamSeparator = _ref$url2.queryParamSeparator,
+        _ref$url3 = _ref.url,
+        url = _ref$url3 === void 0 ? {} : _ref$url3;
+      if (url && sortUrl && sortUrl.algo === "KEY_VALUE_REPLACER") {
+        var _sortUrl$keyReplacer = sortUrl.keyReplacer,
+          keyReplacer = _sortUrl$keyReplacer === void 0 ? "sort" : _sortUrl$keyReplacer,
+          _sortUrl$valueReplace = sortUrl.valueReplacer,
+          valueReplacer = _sortUrl$valueReplace === void 0 ? {} : _sortUrl$valueReplace;
+        var replacedValue = selectedSort;
+        if (Object.keys(valueReplacer).length > 0 && valueReplacer[selectedSort]) {
+          replacedValue = valueReplacer[selectedSort];
+        }
+        return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(encodeURIComponent(keyReplacer), "=") + encodeURIComponent(replacedValue);
+      } else {
+        return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "sort=") + encodeURI(selectedSort);
+      }
+    }
+    return "";
+  } catch (err) {
+    this.onError("getSortWebUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getSpellCheckUrlString.js
+/* harmony default export */ var getSpellCheckUrlString = (function () {
+  try {
+    if (this.options.spellCheck.enabled) {
+      return "&spellcheck=" + true;
+    }
+    return "";
+  } catch (err) {
+    this.onError("getSpellCheckUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getStateFromUrl.js
+function getStateFromUrl_typeof(obj) { "@babel/helpers - typeof"; return getStateFromUrl_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, getStateFromUrl_typeof(obj); }
+
+/* harmony default export */ var getStateFromUrl = (function () {
+  var _this = this;
+  try {
+    var _ref = this.options || {},
+      _ref$url = _ref.url,
+      _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+      _ref$url2$facetsUrl = _ref$url2.facetsUrl,
+      facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
+      _ref$url2$pageSizeUrl = _ref$url2.pageSizeUrl,
+      pageSizeUrl = _ref$url2$pageSizeUrl === void 0 ? {} : _ref$url2$pageSizeUrl,
+      _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
+      pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl,
+      _ref$url2$sortUrl = _ref$url2.sortUrl,
+      sortUrl = _ref$url2$sortUrl === void 0 ? {} : _ref$url2$sortUrl,
+      _ref$url2$pageViewUrl = _ref$url2.pageViewUrl,
+      pageViewUrl = _ref$url2$pageViewUrl === void 0 ? {} : _ref$url2$pageViewUrl;
+    var urlParts = "";
+    if ((facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH") & !facetsUrl.showFilterStr) {
+      urlParts = this.getQueryParamsWhenCustomUrl();
+    } else {
+      urlParts = this.getQueryParams();
+    }
+    var qState = {};
+    var pageSize = this.options.pagesize.pageSize;
+    if (getStateFromUrl_typeof(urlParts) === 'object') {
+      var _urlParts = urlParts,
+        q = _urlParts[this.getSearchQueryParam()],
+        filter = _urlParts[facetsUrl.algo === "KEY_VALUE_REPLACER" ? facetsUrl.filterReplacer : "filter"],
+        page = _urlParts[pageNoUrl.algo === "KEY_VALUE_REPLACER" ? pageNoUrl.keyReplacer : "page"],
+        start = _urlParts[pageSizeUrl.algo === "KEY_VALUE_REPLACER" ? pageSizeUrl.keyReplacer : "filter"],
+        sort = _urlParts[sortUrl.algo === "KEY_VALUE_REPLACER" ? sortUrl.keyReplacer : "sort"],
+        count = _urlParts.count,
+        _urlParts$rows = _urlParts.rows,
+        rows = _urlParts$rows === void 0 ? pageSize : _urlParts$rows;
+      if (this.state.userInput !== q) {
+        qState.userInput = q;
+      }
+      if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr) {
+        var filtersStr = [];
+        Object.keys(urlParts).forEach(function (item) {
+          if (!utils_urlUtils.isTextFilterStr.bind(_this)(item)) {
+            if (!filtersStr.length) {
+              filtersStr.push(item + "=" + urlParts[item]);
+            } else {
+              filtersStr.push(item + "=" + urlParts[item]);
+            }
+          }
+        });
+        filter = filtersStr;
+      }
+      var facets = this.getFilterFromParams(filter);
+      qState.rangeFacet = facets.rangeFacet;
+      qState.selectedFacets = facets.selectedFilters;
+      qState.selectedSort = sort ? sort : "";
+      if (pageNoUrl.usePageNo) {
+        qState.startPageNo = page ? (page - 1) * count : 0;
+      } else {
+        qState.startPageNo = start ? start : 0;
+      }
+      qState.pageSize = Number(rows);
+      qState.categoryFilter = this.getCategoryFilterFromParams(urlParts);
+    }
+    return qState;
+  } catch (err) {
+    this.onError("getStateFromUrl.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getUcParamUrlString.js
+/* harmony default export */ var getUcParamUrlString = (function () {
+  try {
+    var urlParts = this.getQueryParams();
+    if (urlParts.uc_param) {
+      return "&uc_param=" + urlParts.uc_param;
+    }
+  } catch (err) {
+    this.onError("getUcParamUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getViewTypeForWebUrl.js
+
+function getViewTypeForWebUrl() {
+  try {
+    var productViewType = this.state.productViewType;
+    var _this$options = this.options,
+      _this$options$url = _this$options.url,
+      url = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2 = _this$options.url,
+      _this$options$url2$pa = _this$options$url2.pageViewUrl,
+      pageViewUrl = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      queryParamSeparator = _this$options$url2.queryParamSeparator;
+    if (url && pageViewUrl && pageViewUrl.algo === "KEY_VALUE_REPLACER") {
+      var _pageViewUrl$keyRepla = pageViewUrl.keyReplacer,
+        keyReplacer = _pageViewUrl$keyRepla === void 0 ? "viewType" : _pageViewUrl$keyRepla,
+        _pageViewUrl$valuesRe = pageViewUrl.valuesReplacer,
+        valuesReplacer = _pageViewUrl$valuesRe === void 0 ? {
+          "GRID": "GRID",
+          "LIST": "LIST"
+        } : _pageViewUrl$valuesRe;
+      return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(encodeURIComponent(keyReplacer), "=").concat(productViewType === "GRID" ? encodeURIComponent(valuesReplacer["GRID"]) : encodeURIComponent(valuesReplacer["LIST"]));
+    } else {
+      return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "viewType=").concat(productViewType === "GRID" ? "GRID" : "LIST");
+    }
+  } catch (err) {
+    this.onError("getViewTypeForWebUrl.js", err);
+  }
+}
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/readSortWebUrl.js
+function readSortWebUrl_typeof(obj) { "@babel/helpers - typeof"; return readSortWebUrl_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, readSortWebUrl_typeof(obj); }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return readSortWebUrl_typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (readSortWebUrl_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (readSortWebUrl_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+/* harmony default export */ var readSortWebUrl = (function (newQ) {
+  try {
+    var _this$options$url$sor = this.options.url.sortUrl,
+      _this$options$url$sor2 = _this$options$url$sor.algo,
+      algo = _this$options$url$sor2 === void 0 ? "DEFAULT" : _this$options$url$sor2,
+      _this$options$url$sor3 = _this$options$url$sor.keyReplacer,
+      keyReplacer = _this$options$url$sor3 === void 0 ? "sort" : _this$options$url$sor3;
+    var urlParts = this.getQueryParamsWhenCustomUrl(newQ);
+    var sortVal = urlParts[algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(keyReplacer) : "sort"];
+    if (sortVal) {
+      return _defineProperty({}, algo === "KEY_VALUE_REPLACER" ? keyReplacer : "sort", [decodeURIComponent(sortVal)]);
+    }
+  } catch (err) {
+    this.onError("readSortWebUrl.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/readPageViewWebUrl.js
+function readPageViewWebUrl_typeof(obj) { "@babel/helpers - typeof"; return readPageViewWebUrl_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, readPageViewWebUrl_typeof(obj); }
+function readPageViewWebUrl_defineProperty(obj, key, value) { key = readPageViewWebUrl_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function readPageViewWebUrl_toPropertyKey(arg) { var key = readPageViewWebUrl_toPrimitive(arg, "string"); return readPageViewWebUrl_typeof(key) === "symbol" ? key : String(key); }
+function readPageViewWebUrl_toPrimitive(input, hint) { if (readPageViewWebUrl_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (readPageViewWebUrl_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function readPageViewWebUrl(newQ) {
+  try {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$pa = _this$options$url2.pageViewUrl,
+      _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa3 = _this$options$url2$pa2.algo,
+      algo = _this$options$url2$pa3 === void 0 ? "DEFAULT" : _this$options$url2$pa3,
+      keyReplacer = _this$options$url2$pa2.keyReplacer;
+    var urlParts = this.getQueryParamsWhenCustomUrl(newQ);
+    if (algo === "KEY_VALUE_REPLACER") {
+      var viewType = urlParts[encodeURIComponent(keyReplacer)];
+      var key = keyReplacer;
+      if (viewType) {
+        return readPageViewWebUrl_defineProperty({}, key, [decodeURIComponent(viewType)]);
+      }
+    } else {
+      var _viewType = urlParts.viewType;
+      if (_viewType) {
+        // if (returnStr === "key") {
+        //     return "viewType";
+        // } else if (returnStr === "value") {
+        //     return viewType
+        // } else {
+        return {
+          "viewType": [_viewType]
+        };
+        // }
+      }
+    }
+  } catch (err) {
+    this.onError("readPageViewWebUrl.js", err);
+  }
+}
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/readPageSizeWebUrl.js
+function readPageSizeWebUrl_typeof(obj) { "@babel/helpers - typeof"; return readPageSizeWebUrl_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, readPageSizeWebUrl_typeof(obj); }
+function readPageSizeWebUrl_defineProperty(obj, key, value) { key = readPageSizeWebUrl_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function readPageSizeWebUrl_toPropertyKey(arg) { var key = readPageSizeWebUrl_toPrimitive(arg, "string"); return readPageSizeWebUrl_typeof(key) === "symbol" ? key : String(key); }
+function readPageSizeWebUrl_toPrimitive(input, hint) { if (readPageSizeWebUrl_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (readPageSizeWebUrl_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function readPageSizeWebUrl(newQ) {
+  try {
+    var _this$options$url$pag = this.options.url.pageSizeUrl,
+      _this$options$url$pag2 = _this$options$url$pag.algo,
+      algo = _this$options$url$pag2 === void 0 ? "DEFAULT" : _this$options$url$pag2,
+      keyReplacer = _this$options$url$pag.keyReplacer;
+    var urlParts = this.getQueryParamsWhenCustomUrl(newQ);
+    if (algo === "KEY_VALUE_REPLACER") {
+      var rows = urlParts[encodeURIComponent(keyReplacer)];
+      var key = keyReplacer;
+      if (rows) {
+        return readPageSizeWebUrl_defineProperty({}, key, [rows]);
+      }
+    } else {
+      var _rows = urlParts.rows;
+      if (_rows) {
+        return {
+          "rows": [_rows]
+        };
+      }
+    }
+  } catch (error) {
+    this.onError("readPageSizeWebUrl.js", error);
+  }
+}
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/readFacetsWebUrl.js
+
+function readFacetsWebUrl(newQ) {
+  var _this = this;
+  try {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$fa = _this$options$url2.facetsUrl,
+      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      queryParamSeparator = _this$options$url2.queryParamSeparator;
+    if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+      var q = newQ ? newQ : this.getHashMode() ? location.hash : location.search;
+      var uri = this.getHashMode() ? q : q.substr(1);
+      var splited = uri && uri.split(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)) || [];
+      var params = {};
+      var filters = {};
+      splited && splited.length && splited.forEach(function (item) {
+        if (item !== "") {
+          var splitItem = "";
+          item = decodeURIComponent(item);
+          if (item.indexOf('=') > 0) {
+            splitItem = item.split('=');
+            params[splitItem[0]] = splitItem[1];
+          }
+          if (!utils_urlUtils.isTextFilterStr.bind(_this)(splitItem[0])) {
+            filters[splitItem[0]] = [splitItem[1]];
+          }
+        }
+      });
+      return filters;
+    } else if (facetsUrl.algo === "HASH") {
+      var urlParts = this.readQueryParamsFromUrl(newQ);
+      var urlObj = {};
+      Object.keys(urlParts).forEach(function (key) {
+        if (key !== _this.getSearchQueryParam() && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
+          urlObj[key] = [decodeURIComponent(window.atob(urlParts[key]))];
+        }
+      });
+      return urlObj;
+    } else {
+      var _urlParts = this.readQueryParamsFromUrl(newQ);
+      var _urlObj = {};
+      Object.keys(_urlParts).forEach(function (key) {
+        if (key !== _this.getSearchQueryParam() && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
+          _urlObj[key] = _urlParts[key];
+        }
+      });
+      return _urlObj;
+    }
+  } catch (err) {
+    this.onError("readFacetsWebUrl.js", err);
+  }
+}
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/readPageNoWebUrl.js
+function readPageNoWebUrl_typeof(obj) { "@babel/helpers - typeof"; return readPageNoWebUrl_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, readPageNoWebUrl_typeof(obj); }
+function readPageNoWebUrl_defineProperty(obj, key, value) { key = readPageNoWebUrl_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function readPageNoWebUrl_toPropertyKey(arg) { var key = readPageNoWebUrl_toPrimitive(arg, "string"); return readPageNoWebUrl_typeof(key) === "symbol" ? key : String(key); }
+function readPageNoWebUrl_toPrimitive(input, hint) { if (readPageNoWebUrl_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (readPageNoWebUrl_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function readPageNoWebUrl(newQ) {
+  try {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$pa = _this$options$url2.pageNoUrl,
+      _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa3 = _this$options$url2$pa2.algo,
+      algo = _this$options$url2$pa3 === void 0 ? "DEFAULT" : _this$options$url2$pa3,
+      keyReplacer = _this$options$url2$pa2.keyReplacer,
+      usePageNo = _this$options$url2$pa2.usePageNo;
+    var urlParts = this.getQueryParamsWhenCustomUrl(newQ);
+    if (algo === "KEY_VALUE_REPLACER") {
+      var start = urlParts[encodeURIComponent(keyReplacer)];
+      var key = keyReplacer;
+      if (start) {
+        return readPageNoWebUrl_defineProperty({}, key, [start]);
+      }
+    } else {
+      var _start = urlParts[usePageNo ? "page" : "start"];
+      if (_start) {
+        return readPageNoWebUrl_defineProperty({}, usePageNo ? "page" : "start", [_start]);
+      }
+    }
+  } catch (error) {
+    this.onError("readPageNoWebUrl.js", error);
+  }
+}
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/readQueryParamsFromUrl.js
+
+/* harmony default export */ var readQueryParamsFromUrl = (function (newQ) {
+  var _this = this;
+  try {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$fa = _this$options$url2.facetsUrl,
+      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      queryParamSeparator = _this$options$url2.queryParamSeparator,
+      rangeFacets = _this$options$url2.rangeFacets;
+    var q = newQ ? newQ : this.getHashMode() ? location.hash : location.search;
+    var uri = this.getHashMode() ? q[0] === "#" ? q.substr(1) : q : q.substr(1);
+    var splited = uri.split(utils_urlUtils.getQueryParamSeparator(queryParamSeparator));
+    var urlObj = {};
+    splited.forEach(function (key) {
+      // key = decodeURIComponent(key);
+      var splitItemArr = key.startsWith('filter=') ? key.split("filter=")[1] : key.split("=");
+      if (!utils_urlUtils.isTextFilterStr.bind(_this)(decodeURIComponent(splitItemArr[0]))) {
+        if (facetsUrl.algo === "HASH") {
+          urlObj["filter"] = [splitItemArr];
+        } else if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+          if (Object.keys(urlObj).includes(splitItemArr[0])) {
+            urlObj[splitItemArr[0]].push(decodeURIComponent(splitItemArr[1]));
+          } else {
+            urlObj[splitItemArr[0]] = [decodeURIComponent(splitItemArr[1])];
+          }
+        } else {
+          if (Object.keys(urlObj).includes("filter")) {
+            urlObj["filter"].push(decodeURIComponent(splitItemArr));
+          } else {
+            urlObj["filter"] = [decodeURIComponent(splitItemArr)];
+          }
+          // urlObj["filter"] = [splitItemArr]
+        }
+      } else if (splitItemArr[0] === _this.getSearchQueryParam()) {
+        urlObj[splitItemArr[0]] = [splitItemArr[1]];
+      } else {
+        urlObj[decodeURIComponent(splitItemArr[0])] = [decodeURIComponent(splitItemArr[1])];
+      }
+    });
+    return urlObj;
+  } catch (err) {
+    this.onError("readQueryParamsFromUrl.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/categoryFilterWebUrlString.js
+
+/* harmony default export */ var categoryFilterWebUrlString = (function () {
+  var _this = this;
+  try {
+    var _this$state$categoryF = this.state.categoryFilter,
+      categoryFilter = _this$state$categoryF === void 0 ? {} : _this$state$categoryF;
+    var str = "";
+    var keys = Object.keys(categoryFilter);
+    var doubleQuotes = "%22";
+    keys.forEach(function (key, index) {
+      var selectedCategory = _this.getAFacetByName(key)[0];
+      var breadcrumbList = _this.getBreadCrumbsList(key);
+      var selectedVal = null;
+      if (selectedCategory) {
+        var categoryFilterKey = "";
+        var filterField = selectedCategory.filterField,
+          values = selectedCategory.values;
+        if (filterField) {
+          categoryFilterKey = selectedCategory;
+        }
+        var valStr = categoryFilter[key].map(function (item, index) {
+          selectedVal = values.find(function (val) {
+            return _this.cleanFacetValue(encodeURIComponent(val.name)) === _this.cleanFacetValue(item);
+          });
+          if (breadcrumbList) {
+            var selecteditem = breadcrumbList.find(function (crumb) {
+              return crumb.value === item;
+            });
+            if (selecteditem) {
+              selectedVal = {
+                name: selecteditem.value
+              };
+            }
+          }
+          var it = item;
+          if (selectedVal) {
+            it = _this.encodeCategoryFacetValue(selectedVal.name).split(doubleQuotes).join("");
+          }
+          if (index > 0) {
+            it = ">".concat(_this.encodeCategoryFacetValue(item).split(doubleQuotes).join(""));
+          } else {
+            it = _this.encodeCategoryFacetValue(item).split(doubleQuotes).join("");
+          }
+          return it;
+        });
+        //category-filter specific code
+        if (filterField === "categoryPath") {
+          str += "".concat(utils_urlUtils.getQueryParamSeparator(_this.options.url.queryParamSeparator), "category-filter=").concat(valStr.join(""));
+          //category-filter specific code
+        } else {
+          str += "".concat(utils_urlUtils.getQueryParamSeparator(_this.options.url.queryParamSeparator), "filter=").concat(filterField, ":\"").concat(valStr.join(""), "\"");
+        }
+      } else {
+        //category-filter specific code
+        if (categoryFilter && categoryFilter["categoryPath"]) {
+          var vals = "";
+          categoryFilter.categoryPath.forEach(function (item, i) {
+            var valArr = item.split(">");
+            valArr.forEach(function (item, i) {
+              var dVal = _this.encodeCategoryFacetValue(item).split("%22").join("");
+              if (vals !== "") {
+                vals += ">".concat(dVal);
+              } else {
+                vals = dVal;
+              }
+            });
+          });
+          str += "".concat(utils_urlUtils.getQueryParamSeparator(_this.options.url.queryParamSeparator), "category-filter=").concat(vals);
+        }
+      }
+    });
+    return str;
+  } catch (err) {
+    this.onError("categoryFilterWebUrlString.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/index.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var methods = {
+  extraParamUrlString: extraParamsFromUrlToString,
+  renderFromUrl: setStateFromUrl,
+  getQueryParams: getQueryParams,
+  urlFlattenFacets: facetsToUrlString,
+  facetsToWebUrlString: facetsToWebUrlString,
+  getDefaultFiltersStr: getDefaultFiltersString,
+  getShowVariantsStr: getShowVariantsUrlString,
+  getVariantAttributesStr: getVariantAttributesUrlString,
+  getVariantsCountStr: getVariantsCountUrlString,
+  getVariantsGroupByStr: getVariantsGroupByUrlString,
+  getProductAttributesStr: getProductAttributesUrlString,
+  getPageSizeStr: getPageSizeUrlString,
+  getPageStartStr: getPaginationStartUrlString,
+  getNewUrlState: getNewUrlState,
+  getRangeFilterStr: getRangeFilterString,
+  getRangeFilterWebString: getRangeFilterWebString,
+  categoryFilterUrlStr: categoryFilterUrlString,
+  categoryFilterWebUrlString: categoryFilterWebUrlString,
+  getSortUrlString: getSortUrlString,
+  getSortWebUrlString: getSortWebUrlString,
+  getSpellCheckUrlString: getSpellCheckUrlString,
+  getBaseUrl: getBaseUrl,
+  getStateFromUrl: getStateFromUrl,
+  getUcParamUrlString: getUcParamUrlString,
+  getViewTypeForWebUrl: getViewTypeForWebUrl,
+  getPageSizeWebUrlString: getPageSizeWebUrlString,
+  getPaginationStartWebUrlString: getPaginationStartWebUrlString,
+  getQueryParamsWhenCustomUrl: getQueryParamsWhenCustomUrl,
+  readSortWebUrl: readSortWebUrl,
+  readPageViewWebUrl: readPageViewWebUrl,
+  readPageSizeWebUrl: readPageSizeWebUrl,
+  readFacetsWebUrl: readFacetsWebUrl,
+  readPageNoWebUrl: readPageNoWebUrl,
+  readQueryParamsFromUrl: readQueryParamsFromUrl
+};
+var urlMethods = function urlMethods(prototype) {
+  prototype = Object.assign(prototype, methods);
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/pagination/setPageStart.js
+/**
+* @description 
+<pre>
+    <code>
+        setPageStart(12)
+    </code>
+</pre>
+* to set the pagination in state
+* @method setPageStart(pageNo)
+*/
+/* harmony default export */ var setPageStart = (function (pageNo) {
+  try {
+    this.state.startPageNo = Number(pageNo);
+    // this.viewState.start = pageNo;
+  } catch (err) {
+    this.onError("setPageStart.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/pagination/getPaginationInfo.js
+/**
+ * @description 
+ <pre>
+ <code>
+ getPaginationInfo()
+ </code>
+ </pre>
+ * to get the pagination data from response
+ * @method getPaginationInfo
+ */
+/* harmony default export */ var getPaginationInfo = (function () {
+  try {
+    var resp = this.getSearchResults();
+    if (!resp) {
+      return null;
+    }
+    var numberOfProducts = resp.numberOfProducts,
+      start = resp.start,
+      products = resp.products;
+    start = Number(start);
+    var rows = Number(this.state.pageSize);
+    var noOfPages = 0;
+    if (numberOfProducts > 0) {
+      if (numberOfProducts % rows === 0) {
+        noOfPages = numberOfProducts / rows;
+      } else {
+        noOfPages = Math.floor(numberOfProducts / rows) + 1;
+      }
+    }
+    var currentPage = Math.floor(start / rows) + 1;
+    var isNext = start + rows >= numberOfProducts || start >= numberOfProducts ? false : true;
+    var isPrev = start - rows < 0 || start <= 0 ? false : true;
+    return {
+      numberOfProducts: numberOfProducts,
+      start: start,
+      productsLn: products.length,
+      rows: rows,
+      noOfPages: noOfPages,
+      currentPage: currentPage || 0,
+      isNext: isNext,
+      isPrev: isPrev
+    };
+  } catch (err) {
+    this.onError("getPaginationInfo.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/pagination/setPageSize.js
+/**
+* @description 
+<pre>
+    <code>
+        setPageStart(12)
+    </code>
+</pre>
+* to set the number of products in state
+* @method pageSize(pageNo)
+*/
+/* harmony default export */ var pagination_setPageSize = (function (nProducts) {
+  try {
+    if (typeof nProducts === 'number' && nProducts === parseInt(nProducts)) {
+      this.state.pageSize = Number(nProducts);
+      this.state.startPageNo = 0;
+    }
+  } catch (err) {
+    this.onError("setPageSize.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/pagination/index.js
+
+
+
+var pagination_setPaginationMethods = function setPaginationMethods(prototype) {
+  Object.assign(prototype, {
+    setPageStart: setPageStart,
+    getPaginationInfo: getPaginationInfo,
+    setPageSize: pagination_setPageSize
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/setProductAttributes.js
+/* harmony default export */ var setProductAttributes = (function (requiredFields) {
+  try {
+    if (Array.isArray(requiredFields)) {
+      this.options.productAttributes = requiredFields;
+    } else {
+      this.options.productAttributes = '*';
+    }
+  } catch (err) {
+    this.onError("setProductAttributes.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/setShowVariants.js
+/* harmony default export */ var setShowVariants = (function (isVariant) {
+  try {
+    var _this$options$variant = this.options.variants,
+      variants = _this$options$variant === void 0 ? {} : _this$options$variant;
+    if (typeof isVariant === 'boolean') {
+      variants.enabled = isVariant;
+    }
+    this.options.variants = variants;
+  } catch (err) {
+    this.onError("setShowVariants.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/setVariantsCount.js
+/* harmony default export */ var setVariantsCount = (function (nVariants) {
+  try {
+    var _this$options$variant = this.options.variants,
+      variants = _this$options$variant === void 0 ? {} : _this$options$variant;
+    if (typeof nVariants === 'number') {
+      variants.count = nVariants;
+    }
+    this.options.variants = variants;
+  } catch (err) {
+    this.onError("setVariantsCount.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/setVariantAttributes.js
+/* harmony default export */ var setVariantAttributes = (function (requiredFields) {
+  try {
+    var _this$options$variant = this.options.variants,
+      variants = _this$options$variant === void 0 ? {} : _this$options$variant;
+    if (Array.isArray(requiredFields)) {
+      variants.attributes = requiredFields;
+    }
+    this.options.variants = variants;
+  } catch (err) {
+    this.onError("setVariantsAttributes.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/setVariantsGroupBy.js
+/* harmony default export */ var setVariantsGroupBy = (function (field) {
+  try {
+    var _this$options$variant = this.options.variants,
+      variants = _this$options$variant === void 0 ? {} : _this$options$variant;
+    if (typeof field === 'string' && field.length > 0) {
+      variants.groupBy = field;
+    }
+    this.options.variants = variants;
+  } catch (err) {
+    this.onError("setVariantsGroupBy.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/getSearchMetaDetails.js
+/* harmony default export */ var getSearchMetaDetails = (function () {
+  try {
+    return this.state.responseObj && this.state.responseObj.searchMetaData || null;
+  } catch (err) {
+    this.onError("getSearchMetaDetails.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/getSearchResults.js
+/**
+* @description 
+<pre>
+    <code>
+        getSearchResults()
+    </code>
+</pre>
+* to get the loaded results from state
+* @method getSearchResults
+*/
+/* harmony default export */ var getSearchResults = (function () {
+  try {
+    var responseObj = this.getResponseObj();
+    if (responseObj) {
+      var response = responseObj.response;
+      return response || null;
+    } else {
+      return null;
+    }
+  } catch (err) {
+    this.onError("getSearchResults.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/getSearchQueryParams.js
+/* harmony default export */ var getSearchQueryParams = (function () {
+  try {
+    var searchMeta = this.getSearchMeta();
+    if (searchMeta) {
+      return searchMeta.queryParams || null;
+    }
+    return null;
+  } catch (err) {
+    this.onError("getSearchQueryParams.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/getSearchQuery.js
+/* harmony default export */ var getSearchQuery = (function () {
+  try {
+    if (this.state.responseObj) {
+      var queryParams = this.state.responseObj.searchMetaData.queryParams;
+      return queryParams[this.getSearchQueryParam()] || queryParams[this.getBrowseQueryParam()];
+    }
+    return "";
+  } catch (err) {
+    this.onError("getSearchQuery.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/constants/libEvents.js
+var libEvents = {
+  changeInput: "CHANGE_INPUT",
+  fetchError: "FETCH_ERROR",
+  afterApiCall: "AFTER_API_CALL",
+  beforeApiCall: "BEFORE_API_CALL"
+};
+/* harmony default export */ var constants_libEvents = (libEvents);
+// CONCATENATED MODULE: ../search-JS-core/src/constants/index.js
+
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/getResultsFromApi.js
+function getResultsFromApi_typeof(obj) { "@babel/helpers - typeof"; return getResultsFromApi_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, getResultsFromApi_typeof(obj); }
+function getResultsFromApi_toConsumableArray(arr) { return getResultsFromApi_arrayWithoutHoles(arr) || getResultsFromApi_iterableToArray(arr) || getResultsFromApi_unsupportedIterableToArray(arr) || getResultsFromApi_nonIterableSpread(); }
+function getResultsFromApi_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function getResultsFromApi_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return getResultsFromApi_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return getResultsFromApi_arrayLikeToArray(o, minLen); }
+function getResultsFromApi_iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function getResultsFromApi_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return getResultsFromApi_arrayLikeToArray(arr); }
+function getResultsFromApi_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { getResultsFromApi_defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function getResultsFromApi_defineProperty(obj, key, value) { key = getResultsFromApi_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function getResultsFromApi_toPropertyKey(arg) { var key = getResultsFromApi_toPrimitive(arg, "string"); return getResultsFromApi_typeof(key) === "symbol" ? key : String(key); }
+function getResultsFromApi_toPrimitive(input, hint) { if (getResultsFromApi_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (getResultsFromApi_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+/**
+* @description 
+<pre>
+    <code>
+        getResults()
+    </code>
+    <code>
+        optional : getResults('shirt')
+    </code>
+</pre>
+* to fetch the results from api
+* It can accept search term as parameter
+* @method getResults
+*/
+
+/* harmony default export */ var getResultsFromApi = (function () {
+  var _this = this;
+  var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var newUrl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+  var action = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  try {
+    var _this$state = this.state,
+      userInput = _this$state.userInput,
+      isHistory = _this$state.isHistory,
+      isBack = _this$state.isBack;
+    var newVal = query === "" ? userInput : query;
+    this.state.userInput = newVal;
+    this.state.currentApiUrl = this.getNewUrlState(true);
+    if (this.state.isLoading) {
+      return false;
+    }
+    this.state.isLoading = true;
+    var self = this;
+    var _this$options = this.options,
+      productType = _this$options.productType,
+      hashMode = _this$options.hashMode,
+      updateUrls = _this$options.updateUrls,
+      variants = _this$options.variants;
+    if (!this.getHashMode() && this.getUpdateUrls() && !isHistory && !isBack) {
+      this.state.isBack = false;
+      var q = this.state.currentWebUrl.split("".concat(productType.toLocaleLowerCase(), "?"))[1];
+      if (decodeURIComponent(location.search) !== "?".concat(utils_urlUtils.decodeQueryParam(q))) {
+        this.setUrl(true);
+        return false;
+      }
+    }
+    var spellCheck = this.options.spellCheck;
+    this.callBack(this, constants_libEvents.beforeApiCall);
+    var headers = new Headers();
+    var customHeaders = utils_urlUtils.getDefaultRequestHeaders(this);
+    for (var key in customHeaders) {
+      headers.append(key, customHeaders[key]);
+    }
+    var fetchPromise = fetch(this.state.currentApiUrl, {
+      headers: headers,
+      method: 'GET'
+    });
+    var errorHandler = function errorHandler(error) {
+      _this.state.isLoading = false;
+      _this.state.userInput = newVal;
+      if (error) {
+        _this.callBack(self, error);
+      }
+    };
+    fetchPromise.then(function (response) {
+      _this.state.requestId = response && response.headers ? response.headers.get('X-Request-Id') : '';
+      return response.json();
+    }).then(function (respJson) {
+      _this.state.isLoading = false;
+      _this.state.userInput = newVal;
+      if (respJson && !respJson.error) {
+        if (variants && variants.enabled) {
+          respJson = _this.processVariantMap(respJson);
+        }
+        _this.state.responseObj = respJson;
+        var didYouMean = _this.getDidYouMeanFromResponse();
+        if (didYouMean) {
+          _this.state.didYouMean = didYouMean;
+          _this.state.noResultQuery = _this.state.userInput;
+        }
+        var _respJson = respJson,
+          facets = _respJson.facets,
+          _respJson$response = _respJson.response,
+          response = _respJson$response === void 0 ? {} : _respJson$response;
+        if (facets) {
+          var facetsList = _this.getFacets();
+          var newListFacet = _this.modifyFacetsList(facetsList);
+          respJson.facets = _objectSpread(_objectSpread({}, facets), {}, {
+            text: {
+              list: newListFacet
+            }
+          });
+        }
+        if (response) {
+          var _response$products = response.products,
+            products = _response$products === void 0 ? [] : _response$products;
+          var _this$options$paginat = _this.options.pagination,
+            pagination = _this$options$paginat === void 0 ? {} : _this$options$paginat;
+          if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
+            if (action === "prev") {
+              _this.state.products = [].concat(getResultsFromApi_toConsumableArray(products), getResultsFromApi_toConsumableArray(_this.state.products));
+            } else {
+              _this.state.products = [].concat(getResultsFromApi_toConsumableArray(_this.state.products), getResultsFromApi_toConsumableArray(products));
+            }
+          } else if (pagination.type === "FIXED_PAGINATION") {
+            _this.state.products = products;
+          }
+        }
+        _this.state.responseObj = respJson;
+        _this.setSort();
+        //this.setStateFromData();
+        if (_this.getUpdateUrls() && isHistory && !isBack) {
+          _this.state.isBack = false;
+          _this.setUrl(false);
+          /** Selected facets are fetched from the url(without count)->
+           * Search api is fired based on these ->
+           * Count is now available in state, and facets ui should reflect it
+           */
+          _this.updateSelectedFacetsCount();
+        }
+        _this.callBack(self, constants_libEvents.afterApiCall);
+      } else {
+        errorHandler(constants_libEvents.fetchError);
+      }
+    })["catch"](function (error) {
+      errorHandler(constants_libEvents.fetchError);
+    });
+  } catch (err) {
+    this.onError("getResultsFromApi.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/processVariantMap.js
+/* harmony default export */ var processVariantMap = (function () {
+  var resp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  try {
+    var self = this;
+    var _self$options$variant = self.options.variants.mapping,
+      mapping = _self$options$variant === void 0 ? {} : _self$options$variant;
+    var vMap = mapping;
+    var obArr = Object.keys(vMap);
+    if (resp.response && resp.response.products) {
+      var mappedProducts = resp.response.products.map(function (item) {
+        var _item = item,
+          _item$variants = _item.variants,
+          variants = _item$variants === void 0 ? [] : _item$variants,
+          relevantDocument = _item.relevantDocument;
+        var newObj = item;
+        if (relevantDocument === "variant" && variants.length > 0) {
+          item = variants[0];
+          obArr.forEach(function (keyItem) {
+            var mapKey = vMap[keyItem];
+            newObj[keyItem] = item[mapKey];
+          });
+        }
+        var mappedVariants = [];
+        variants.forEach(function (item, i) {
+          var mItem = item;
+          obArr.forEach(function (keyItem) {
+            var mapKey = vMap[keyItem];
+            if (mapKey) {
+              mItem[keyItem] = item[mapKey];
+            }
+          });
+          mappedVariants.push(mItem);
+        });
+        newObj.variants = mappedVariants;
+        return newObj;
+      });
+      resp.response.products = mappedProducts;
+    }
+    return resp;
+  } catch (err) {
+    this.onError("processVariantsMap.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/getProductByPropValue.js
+/**
+* @description 
+<pre>
+    <code>
+        getProductByPropValue(uniqueId , 'u123344')
+    </code>
+</pre>
+* to get a specific object from response using a property and value
+* @param {string} prop eg: "uniqueId
+* @param {string} value eg:'100'
+* @method getProductByPropValue
+*/
+/* harmony default export */ var getProductByPropValue = (function (prop, value) {
+  try {
+    var products = this.state.products;
+    return products.find(function (item) {
+      return item[prop] === value;
+    });
+  } catch (err) {
+    this.onError("getProductByPropValue.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/setStateFromData.js
+/* harmony default export */ var setStateFromData = (function () {
+  var _this = this;
+  try {
+    var searchParams = this.getSearchQueryParams();
+    var q = searchParams[this.getSearchQueryParam()],
+      filter = searchParams.filter;
+    this.state.userInput = q;
+    var filterArr = [];
+    var replaceStr = "__";
+    var colun = ":";
+    if (filter) {
+      if (Array.isArray(filter)) {
+        filter.forEach(function (item, i) {
+          var modItem = item.replaceAll(colun, replaceStr);
+          modItem = encodeURIComponent(modItem).replaceAll(replaceStr, colun);
+          filterArr.push(modItem);
+        });
+      } else {
+        var modItem = filter.replaceAll(colun, replaceStr);
+        modItem = encodeURIComponent(modItem).replaceAll(replaceStr, colun);
+        filterArr = [modItem];
+      }
+      searchParams.filter = filterArr;
+    }
+    var facets = this.getFilterFromParams(filterArr);
+    this.state.rangeFacet = facets.rangeFacet;
+    var selectedFilters = facets.selectedFilters;
+    var categoryFilterName = null;
+    if (selectedFilters) {
+      var facetKeys = Object.keys(selectedFilters);
+      facetKeys.forEach(function (item) {
+        if (_this.isCategoryFacet(item)) {
+          categoryFilterName = item;
+          var categoryVal = selectedFilters[item][0].dataId;
+          _this.state.categoryFilter[categoryFilterName] = categoryVal.split(">");
+          if (_this.state.selectedFacets[categoryFilterName]) {
+            delete _this.state.selectedFacets[categoryFilterName];
+          }
+        } else {
+          _this.state.selectedFacets[item] = selectedFilters[item];
+        }
+      });
+    } else {
+      this.state.selectedFacets = {};
+    }
+    var categoryFiltersL = Object.keys(this.state.categoryFilter).length;
+    if (categoryFiltersL === 0) {
+      this.state.categoryFilter = this.getCategoryFilterFromParams(searchParams);
+    }
+    this.state.breadcrumbs = this.getBreadCrumbs(categoryFilterName);
+  } catch (err) {
+    this.onError("setStateFromData.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/setSearchConfigurations.js
+function setSearchConfigurations(configurations) {
+  try {
+    var siteName = configurations.siteName,
+      siteKey = configurations.siteKey,
+      searchEndPoint = configurations.searchEndPoint,
+      defaultFilters = configurations.defaultFilters,
+      spellCheck = configurations.spellCheck,
+      pageSize = configurations.pageSize,
+      startPageNo = configurations.startPageNo,
+      facetDepth = configurations.facetDepth,
+      facetMultilevel = configurations.facetMultilevel,
+      facetMultiSelect = configurations.facetMultiSelect,
+      updateUrls = configurations.updateUrls,
+      extraParams = configurations.extraParams,
+      onEvent = configurations.onEvent,
+      getCategoryId = configurations.getCategoryId,
+      applyMultipleFilters = configurations.applyMultipleFilters,
+      hashMode = configurations.hashMode;
+    this.state.pageSize = pageSize || this.state.pageSize;
+    this.state.startPageNo = startPageNo || this.state.startPageNo;
+    this.options.siteName = siteName || this.options.siteName;
+    this.options.siteKey = siteKey || this.options.siteKey;
+    this.options.searchEndPoint = searchEndPoint || this.options.searchEndPoint;
+    // this.options.searchQueryParam = searchQueryParam || this.getSearchQueryParam();
+    // this.options.browseQueryParam = browseQueryParam || this.getBrowseQueryParam()
+    this.options.defaultFilters = defaultFilters || this.options.defaultFilters;
+    this.options.spellCheck = spellCheck || this.options.spellCheck;
+    this.options.startPageNo = startPageNo || this.options.startPageNo;
+    this.options.applyMultipleFilters = applyMultipleFilters || this.options.applyMultipleFilters;
+    this.options.facetDepth = facetDepth || this.options.facetDepth;
+    this.options.facetMultilevel = facetMultilevel || this.options.facetMultilevel;
+    this.options.facetMultiSelect = facetMultiSelect || this.options.facetMultiSelect;
+    this.options.updateUrls = updateUrls || this.options.url.updateUrls || this.options.updateUrls;
+    this.options.extraParams = extraParams || this.options.extraParams;
+    this.options.onEvent = onEvent || this.options.onEvent;
+    this.options.getCategoryId = getCategoryId || this.options.getCategoryId;
+    this.options.hashMode = hashMode || this.getHashMode();
+  } catch (err) {
+    this.onError("setSearchConfigurations.js", err);
+  }
+}
+/* harmony default export */ var search_setSearchConfigurations = (setSearchConfigurations);
+// CONCATENATED MODULE: ../search-JS-core/src/modules/search/index.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var onLocationChange = function onLocationChange(evt) {
+  try {
+    var _this$state = this.state,
+      urlState = _this$state.urlState,
+      isHistory = _this$state.isHistory,
+      unbxdKeys = _this$state.unbxdKeys;
+    var hashMode = this.options.hashMode;
+    var unbxdParam = this.checkIfUnbxdKey();
+    if (this.getHashMode()) {
+      if (decodeURIComponent(location.hash) !== "#".concat(decodeURIComponent(urlState))) {
+        var _ref = history.state || {},
+          path = _ref.path;
+        this.state.isBack = true;
+        /** Detect if back from a page with no unbxd param */
+        // let unbxdParam = this.checkIfUnbxdKey();
+
+        if (!unbxdParam) {
+          /** Url is redirected via history state manipulation, but needs to be
+           * reloaded as well
+           * Use case: Base Home Page
+           */
+          this.options.onNoUnbxdKeyRouting();
+          return;
+        }
+        this.renderFromUrl(evt.state);
+      } else {
+        this.callBack(this, "lastBack");
+      }
+    } else {
+      if (isHistory) {
+        var _ref2 = history.state || {},
+          _path = _ref2.path;
+        this.state.isBack = true;
+        if (!unbxdParam) {
+          /** Url is redirected via history state manipulation, but needs to be
+           * reloaded as well
+           * Use case: Base Home Page
+           */
+          this.options.onNoUnbxdKeyRouting();
+          return;
+        }
+        this.renderFromUrl(evt.state);
+      } else {
+        this.callBack(this, "lastBack");
+      }
+    }
+  } catch (err) {
+    this.onError("onLocationChange", err);
+  }
+};
+var getRequestId = function getRequestId() {
+  var requestId = this.state.requestId;
+  return requestId;
+};
+var search_setSearchMethods = function setSearchMethods(prototype) {
+  prototype = Object.assign(prototype, {
+    setProductAttributes: setProductAttributes,
+    setShowVariants: setShowVariants,
+    setVariantsCount: setVariantsCount,
+    setVariantAttributes: setVariantAttributes,
+    setVariantsGroupBy: setVariantsGroupBy,
+    getSearchResults: getSearchResults,
+    getSearchMeta: getSearchMetaDetails,
+    getSearchQueryParams: getSearchQueryParams,
+    getSearchQuery: getSearchQuery,
+    getResults: getResultsFromApi,
+    processVariantMap: processVariantMap,
+    getProductByPropValue: getProductByPropValue,
+    setStateFromData: setStateFromData,
+    setSearchConfigurations: search_setSearchConfigurations,
+    onLocationChange: onLocationChange,
+    getRequestId: getRequestId
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/swatches/getSwatches.js
+/* harmony default export */ var getSwatches = (function (product, map) {
+  try {
+    var swatches = {};
+    var keys = Object.keys(map);
+    keys.forEach(function (item) {
+      var val = map[item];
+      swatches[item] = product[val];
+    });
+    return swatches;
+  } catch (err) {
+    this.onError("getSwatches.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/swatches/index.js
+
+var swatches_setSwatchMethods = function setSwatchMethods(prototype) {
+  Object.assign(prototype, {
+    getSwatches: getSwatches
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getBucketedFacets.js
+/**
+* @description 
+* to get the multilevel facets
+* @method getBucketedFacets
+*/
+/* harmony default export */ var getBucketedFacets = (function () {
+  try {
+    var resp = this.getResponseObj();
+    if (resp && resp.facets && resp.facets.multilevel) {
+      var bucket = resp.facets.multilevel.bucket || resp.facets.multilevel.list || [];
+      return this.modifyFacetsList(bucket);
+    }
+    return [];
+  } catch (err) {
+    this.onError("getBucketedFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getFilterFromParams.js
+/**
+* @description 
+* to get the applied filters from api response
+* @method getFilterFromParams
+*/
+
+/* harmony default export */ var getFilterFromParams = (function () {
+  var filters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  try {
+    var _ref = this.options.url || {},
+      _ref$facetsUrl = _ref.facetsUrl,
+      facetsUrl = _ref$facetsUrl === void 0 ? {} : _ref$facetsUrl,
+      queryParamSeparator = _ref.queryParamSeparator;
+    if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+      var self = this;
+      var selectedFilters = {};
+      var rangeFacet = {};
+      if (typeof filters === "string") {
+        filters = Array(filters);
+      }
+      filters.forEach(function () {
+        var filter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+        var index = arguments.length > 1 ? arguments[1] : undefined;
+        var filterStrArr = filter.split("=");
+        var fName = decodeURIComponent(filterStrArr[0]);
+        var actualFname = self.getKeyByValue(facetsUrl.keyReplacer, fName);
+        var isRange = facetsUrl.rangeFacets.includes(actualFname);
+        var filterStrValues = filterStrArr[1] && filterStrArr[1].split(utils_urlUtils.getValuesSeparatorFacets(facetsUrl.valuesSeparator));
+        filterStrValues && filterStrValues.length > 0 && filterStrValues.forEach(function (item, index) {
+          var fVal = decodeURIComponent(item);
+          var actualFVal = facetsUrl.valueReplacer[actualFname] ? self.getKeyByValue(facetsUrl.valueReplacer[actualFname], fVal) : fVal;
+          if (isRange) {
+            var range = actualFVal.split(utils_urlUtils.getRangeSeparator(facetsUrl.rangeSeparator));
+            var val = "[".concat(Number(range[0]), " TO ").concat(Number(range[1]), "]");
+            if (rangeFacet[fName]) {
+              rangeFacet[fName].push(val);
+            } else {
+              rangeFacet[fName] = [val];
+            }
+          } else {
+            var facetInfo = self.getFacetByValue(actualFname, actualFVal);
+            var actualFound = facetInfo.actualFound;
+            if (actualFound) {
+              var facetName = facetInfo.facetName,
+                selectedvalue = facetInfo.selectedvalue;
+              if (selectedFilters[facetName]) {
+                selectedFilters[facetName].push(selectedvalue);
+              } else {
+                selectedFilters[facetName] = Array(selectedvalue);
+              }
+            } else {
+              var _facetName = facetInfo.facetName,
+                _selectedvalue = facetInfo.selectedvalue;
+              var name = _selectedvalue.name;
+              var f = {
+                name: name,
+                dataId: self.encodeFacetValue(fVal),
+                count: 0
+              };
+              if (selectedFilters[_facetName]) {
+                selectedFilters[_facetName].push(f);
+              } else if (_facetName !== 'category-filter') {
+                selectedFilters[_facetName] = Array(f);
+              }
+            }
+          }
+        });
+      });
+      return {
+        selectedFilters: selectedFilters,
+        rangeFacet: rangeFacet
+      };
+    } else {
+      var _self = this;
+      var _selectedFilters = {};
+      var _rangeFacet = {};
+      if (facetsUrl.algo === "HASH") {
+        filters = window.atob(filters) ? window.atob(filters).split(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)) : [];
+      }
+      if (typeof filters === "string") {
+        filters = Array(filters);
+      }
+      filters.forEach(function () {
+        var filter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+        var index = arguments.length > 1 ? arguments[1] : undefined;
+        var filterStrArr = filter.split("%20OR%20");
+        filterStrArr.forEach(function () {
+          var item = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+          var index = arguments.length > 1 ? arguments[1] : undefined;
+          var arr = item.split(/%3A(.+)/);
+          if (arr.length === 3) {
+            var rVal = decodeURIComponent(arr[1]);
+            rVal = rVal.replace(/(^")|("$)/g, '').replace(/\"{2,}/g, '"').replace(/\\\"/g, '"').replace(/(^\[)|(\]$)/g, '');
+            var isRange = arr[1].indexOf("TO") > 0 ? true : false;
+            if (isRange) {
+              var range = rVal.split(" TO ");
+              var fName = arr[0];
+              var val = "[".concat(Number(range[0]), " TO ").concat(Number(range[1]), "]");
+              if (_rangeFacet[fName]) {
+                _rangeFacet[fName].push(val);
+              } else {
+                _rangeFacet[fName] = [val];
+              }
+            } else {
+              var _fName = arr[0];
+              var fVal = arr[1];
+              var cleanedFacetValue = _self.cleanEncodedFacetValue(fVal);
+              var decodedFval = _self.decodeFacetValue(cleanedFacetValue);
+              var facetInfo = _self.getFacetByValue(_fName, decodedFval);
+              var actualFound = facetInfo.actualFound;
+              if (actualFound) {
+                var facetName = facetInfo.facetName,
+                  selectedvalue = facetInfo.selectedvalue;
+                if (_selectedFilters[facetName]) {
+                  _selectedFilters[facetName].push(selectedvalue);
+                } else {
+                  _selectedFilters[facetName] = Array(selectedvalue);
+                }
+              } else {
+                var _facetName2 = facetInfo.facetName,
+                  _selectedvalue2 = facetInfo.selectedvalue;
+                var name = _selectedvalue2.name;
+                var f = {
+                  name: name,
+                  dataId: cleanedFacetValue,
+                  count: 0
+                };
+                if (_selectedFilters[_facetName2]) {
+                  _selectedFilters[_facetName2].push(f);
+                } else {
+                  _selectedFilters[_facetName2] = Array(f);
+                }
+              }
+            }
+          }
+        });
+      });
+      return {
+        selectedFilters: _selectedFilters,
+        rangeFacet: _rangeFacet
+      };
+    }
+  } catch (err) {
+    this.onError("getFilterFromParams.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getCategoryFilterFromParams.js
+/* harmony default export */ var getCategoryFilterFromParams = (function (searchParams) {
+  var _this = this;
+  try {
+    var currentFilters = searchParams["filter"];
+
+    //category-filter specific code
+    var categorypathFilter = [];
+    if (searchParams["category-filter"]) {
+      currentFilters = searchParams["category-filter"];
+      categorypathFilter = currentFilters.split(">");
+    }
+    //category-filter specific code
+
+    if (!currentFilters) {
+      return {};
+    }
+    if (!Array.isArray(currentFilters)) {
+      currentFilters = [currentFilters];
+    }
+    currentFilters = this.getFilterFromParams(currentFilters) || {};
+    currentFilters = currentFilters.selectedFilters;
+    var newObj = {};
+    var facetKeys = Object.keys(currentFilters);
+    facetKeys.forEach(function (item) {
+      if (_this.isCategoryFacet(item)) {
+        var categoryVal = currentFilters[item][0].dataId;
+        newObj[item] = categoryVal.split(">");
+      }
+    });
+    //category-filter specific code
+    var categorypathFilterLength = categorypathFilter.length;
+    if (categorypathFilterLength > 0) {
+      if (categorypathFilter) {
+        var catValues = [];
+        categorypathFilter.forEach(function (item) {
+          var dVal = decodeURIComponent(item);
+          var catValArr = dVal.split(">");
+          catValArr.forEach(function (val) {
+            catValues.push(decodeURIComponent(val));
+          });
+        });
+        newObj['categoryPath'] = catValues;
+      }
+    }
+    //category-filter specific code
+    return newObj;
+  } catch (err) {
+    this.onError("getCategoryFilterFromParams.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getRangeFacets.js
+/**
+* @description 
+* to get the Range facets from the api response
+* @method getRangeFacets
+*/
+/* harmony default export */ var getRangeFacets = (function () {
+  try {
+    var responseObj = this.getResponseObj();
+    if (responseObj) {
+      var facets = responseObj.facets;
+      if (facets && facets.range && facets.range.list) {
+        return facets.range.list;
+      } else {
+        return [];
+      }
+    }
+    return [];
+  } catch (err) {
+    this.onError("getRangeFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getFacets.js
+/**
+* @description 
+* to get the facets from api response
+* @method getFacets
+*/
+/* harmony default export */ var getFacets = (function () {
+  try {
+    var responseObj = this.getResponseObj();
+    if (responseObj) {
+      var facets = responseObj.facets;
+      if (facets && facets.text && facets.text.list) {
+        return facets.text.list;
+      } else {
+        return [];
+      }
+    }
+    return [];
+  } catch (err) {
+    this.onError("getFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getSelectedFacets.js
+/**
+* @description 
+<pre>
+    <code>
+        getSelectedFacets()
+    </code>
+</pre>
+* to get all the selected facets
+* @method getSelectedFacets
+*/
+/* harmony default export */ var getSelectedFacets = (function () {
+  try {
+    var selectedFacets = this.state.selectedFacets;
+    return selectedFacets;
+  } catch (err) {
+    this.onError("getSelectedFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getSelectedFacet.js
+/**
+* @description 
+<pre>
+    <code>
+        getSelectedFacet(facetName)
+    </code>
+</pre>
+* to get the whole facet information from facet name
+* @param {string} name eg:facetName
+* @method getSelectedFacet
+*/
+/* harmony default export */ var getSelectedFacet = (function (name) {
+  try {
+    var facets = this.getFacets();
+    return facets.find(function (facet) {
+      var facetName = facet.facetName;
+      return facetName === name ? facet : null;
+    });
+  } catch (err) {
+    this.onError("getSelectedFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/updateFacets.js
+/**
+* @description 
+<pre>
+    <code>
+        updateFacets({
+            "selectedFacetName": "v_unbxd_parentcolours_uFilter",
+            "selectedFacetId": "1",
+            "facetData": {
+                "facetName": "v_unbxd_parentcolours_uFilter",
+                "filterField": "v_unbxd_parentcolours_uFilter",
+                "values": [
+                    {
+                        "name": "white",
+                        "count": 143,
+                        "dataId": 1
+                    },
+                    {
+                        "name": "black",
+                        "count": 133,
+                        "dataId": 3
+                    },
+                    {
+                        "name": "beige",
+                        "count": 70,
+                        "dataId": 5
+                    }
+                ],
+            "displayName": "Colour",
+            "position": 1
+        }
+    })
+    </code>
+</pre>
+* to set a filter value
+* accepts an Object with 3  parameters
+* @param {string} selectedFacetName eg: v_unbxd_parentcolours_uFilter 
+* @param {string} selectedFacetId eg: '1'
+* @param {object} facet facetData 
+* @method updateFacets
+*/
+/* harmony default export */ var updateFacets = (function (selectedFacet) {
+  try {
+    var selectedFacets = this.state.selectedFacets;
+    var selectedFacetName = selectedFacet.selectedFacetName;
+    var selectedFacetId = "";
+    var selectedFacetdataId = "";
+    var selectedCount = 0;
+    var selectedFacetVal = this.getSelectedFacetValue(selectedFacet);
+    if (selectedFacetVal) {
+      var name = selectedFacetVal.name,
+        dataId = selectedFacetVal.dataId,
+        count = selectedFacetVal.count;
+      selectedFacetId = name;
+      selectedFacetdataId = dataId;
+      selectedCount = count;
+    }
+    if (this.isFacetAlreadyAdded(selectedFacetName, selectedFacetdataId)) {
+      return false;
+    }
+    if (!selectedFacets[selectedFacetName]) {
+      selectedFacets[selectedFacetName] = [{
+        name: selectedFacetId,
+        dataId: selectedFacetdataId,
+        count: selectedCount
+      }];
+    } else {
+      selectedFacets[selectedFacetName].push({
+        name: selectedFacetId,
+        dataId: selectedFacetdataId,
+        count: selectedCount
+      });
+    }
+    this.callBack(self, 'added_facet');
+    if (!this.options.applyMultipleFilters) {
+      this.setPageStart(0);
+      this.getResults.bind(this)();
+    }
+  } catch (err) {
+    this.onError("updateFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/applyFacets.js
+/**
+* @description 
+<pre>
+    <code>
+        applyFacets({
+            "selectedFacetName": "v_unbxd_parentcolours_uFilter",
+            "selectedFacetId": "1",
+            "facetData": {
+                "facetName": "v_unbxd_parentcolours_uFilter",
+                "filterField": "v_unbxd_parentcolours_uFilter",
+                "values": [
+                    {
+                        "name": "white",
+                        "count": 143,
+                        "dataId": 1
+                    },
+                    {
+                        "name": "black",
+                        "count": 133,
+                        "dataId": 3
+                    },
+                    {
+                        "name": "beige",
+                        "count": 70,
+                        "dataId": 5
+                    }
+                ],
+            "displayName": "Colour",
+            "position": 1
+        }
+    })
+    </code>
+</pre>
+* to set a filter value
+* accepts an Object with 3  parameters
+* @param {string} selectedFacetName eg: v_unbxd_parentcolours_uFilter 
+* @param {string} selectedFacetId eg: '1'
+* @param {object} facet facetData 
+* @method updateFacets
+*/
+/* harmony default export */ var applyFacets = (function (applyFacets) {
+  try {
+    var selectedFacets = this.state.selectedFacets;
+    this.clearFacets(false);
+    Object.keys(applyFacets).map(function (facetName) {
+      if (selectedFacets[facetName]) {
+        delete selectedFacets[facetName];
+      } else {
+        selectedFacets[facetName] = applyFacets[facetName];
+      }
+    });
+    this.setPageStart(0);
+    this.getResults.bind(this)();
+  } catch (err) {
+    this.onError("applyFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/clearFacets.js
+/**
+* @description 
+<pre>
+    <code>
+        clearFacets({
+            "selectedFacetName": "v_unbxd_parentcolours_uFilter",
+            "selectedFacetId": "1",
+            "facetData": {
+                "facetName": "v_unbxd_parentcolours_uFilter",
+                "filterField": "v_unbxd_parentcolours_uFilter",
+                "values": [
+                    {
+                        "name": "white",
+                        "count": 143,
+                        "dataId": 1
+                    },
+                    {
+                        "name": "black",
+                        "count": 133,
+                        "dataId": 3
+                    },
+                    {
+                        "name": "beige",
+                        "count": 70,
+                        "dataId": 5
+                    }
+                ],
+            "displayName": "Colour",
+            "position": 1
+        }
+    })
+    </code>
+</pre>
+* to set a filter value
+* accepts an Object with 3  parameters
+* @param {string} selectedFacetName eg: v_unbxd_parentcolours_uFilter 
+* @param {string} selectedFacetId eg: '1'
+* @param {object} facet facetData 
+* @method updateFacets
+*/
+/* harmony default export */ var clearFacets = (function () {
+  var getResults = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+  try {
+    var selectedFacets = this.state.selectedFacets;
+    Object.keys(selectedFacets).map(function (facetName) {
+      return delete selectedFacets[facetName];
+    });
+    if (getResults) {
+      this.setPageStart(0);
+      this.getResults.bind(this)();
+    }
+  } catch (err) {
+    this.onError("clearFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/addFacets.js
+function addFacets_toConsumableArray(arr) { return addFacets_arrayWithoutHoles(arr) || addFacets_iterableToArray(arr) || addFacets_unsupportedIterableToArray(arr) || addFacets_nonIterableSpread(); }
+function addFacets_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function addFacets_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return addFacets_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return addFacets_arrayLikeToArray(o, minLen); }
+function addFacets_iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function addFacets_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return addFacets_arrayLikeToArray(arr); }
+function addFacets_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+/**
+* @description 
+<pre>
+    <code>
+        addFacets({
+            "selectedFacetName": "v_unbxd_parentcolours_uFilter",
+            "selectedFacetId": "1",
+            "facetData": {
+                "facetName": "v_unbxd_parentcolours_uFilter",
+                "filterField": "v_unbxd_parentcolours_uFilter",
+                "values": [
+                    {
+                        "name": "white",
+                        "count": 143,
+                        "dataId": 1
+                    },
+                    {
+                        "name": "black",
+                        "count": 133,
+                        "dataId": 3
+                    },
+                    {
+                        "name": "beige",
+                        "count": 70,
+                        "dataId": 5
+                    }
+                ],
+            "displayName": "Colour",
+            "position": 1
+        }
+    })
+    </code>
+</pre>
+* to set a filter value
+* accepts an Object with 3  parameters
+* @param {string} selectedFacetName eg: v_unbxd_parentcolours_uFilter 
+* @param {string} selectedFacetId eg: '1'
+* @param {object} facet facetData 
+* @method updateFacets
+*/
+/* harmony default export */ var addFacets = (function (facets) {
+  try {
+    var selectedFacets = this.state.selectedFacets;
+    Object.keys(facets).map(function (facetName) {
+      var oldFacetValues = selectedFacets[facetName] || [];
+      selectedFacets[facetName] = [].concat(addFacets_toConsumableArray(oldFacetValues), addFacets_toConsumableArray(facets[facetName]));
+      return;
+    });
+  } catch (err) {
+    this.onError("addFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/findSelectedFacet.js
+/**
+* @description 
+* to get the selected facet values
+* accepts a string
+* @param {string} parent eg:color_facet 
+* @method findSelectedFacet
+*/
+/* harmony default export */ var findSelectedFacet = (function (selected) {
+  try {
+    //items.findIndex(x => x.id == item.id);
+    return this.state.selectedFacets[selected];
+  } catch (err) {
+    this.onError("findSelectedFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/deleteCategoryFilter.js
+/**
+* @description 
+<pre>
+        <code>
+        deleteCategoryFilter({
+            "parent": "categoryPath",
+            "level": "1",
+            "name": "Top"
+        })
+        </code>
+</pre>
+* to clear a category filter 
+* accepts an Object with 3  parameters
+* @param {string} parent eg:categoryPath 
+* @param {string} level eg:1
+* @param {string} name eg:"Top"
+* @method deleteCategoryFilter
+*/
+/* harmony default export */ var deleteCategoryFilter = (function () {
+  var _this = this;
+  var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  try {
+    var _action$parent = action.parent,
+      parent = _action$parent === void 0 ? null : _action$parent,
+      _action$level = action.level,
+      level = _action$level === void 0 ? null : _action$level,
+      _action$name = action.name,
+      name = _action$name === void 0 ? null : _action$name;
+    if (level) {
+      if (this.state.categoryFilter[parent]) {
+        level = Number(level) - 1;
+        if (level === 0) {
+          delete this.state.categoryFilter[parent];
+        } else {
+          this.state.categoryFilter[parent].splice(level, 6);
+        }
+      } else {
+        var checkCrumbs = this.getBreadCrumbsList(parent);
+        if (level > 1) {
+          var crumbs = [];
+          this.state.categoryFilter[parent] = [];
+          checkCrumbs.forEach(function (item, i) {
+            if (i < level - 1) {
+              var value = item.value;
+              _this.state.categoryFilter[parent].push(value);
+            }
+          });
+        }
+      }
+    }
+  } catch (err) {
+    this.onError("deleteCategoryFilter.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/deleteFacet.js
+/**
+* @description 
+<pre>
+        <code>
+        deleteCategoryFilter({
+            "parent": "categoryPath",
+            "level": "1",
+            "name": "Top"
+        })
+        </code>
+</pre>
+* to clear all the filters under a facet
+* accepts an Object with 3  parameters
+* @param {string} parent eg:categoryPath 
+* @param {string} level eg:1
+* @param {string} name eg:"Top"
+* @method deleteCategoryFilter
+*/
+/* harmony default export */ var deleteFacet = (function (facetName, valueId) {
+  try {
+    var selectedFacets = this.getSelectedFacets();
+    if (valueId) {
+      var selectedValues = selectedFacets[facetName];
+      this.state.selectedFacets[facetName] = selectedValues.filter(function (facetObj) {
+        return facetObj.dataId != valueId;
+      });
+    } else {
+      delete this.state.selectedFacets[facetName];
+    }
+    return this.state.selectedFacets;
+  } catch (err) {
+    this.onError("deleteFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getFacetByValue.js
+function getFacetByValue_typeof(obj) { "@babel/helpers - typeof"; return getFacetByValue_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, getFacetByValue_typeof(obj); }
+function getFacetByValue_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function getFacetByValue_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? getFacetByValue_ownKeys(Object(source), !0).forEach(function (key) { getFacetByValue_defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : getFacetByValue_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function getFacetByValue_defineProperty(obj, key, value) { key = getFacetByValue_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function getFacetByValue_toPropertyKey(arg) { var key = getFacetByValue_toPrimitive(arg, "string"); return getFacetByValue_typeof(key) === "symbol" ? key : String(key); }
+function getFacetByValue_toPrimitive(input, hint) { if (getFacetByValue_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (getFacetByValue_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+/* harmony default export */ var getFacetByValue = (function (facetName, valueName) {
+  try {
+    var selectedfacetInfo = this.getSelectedFacet(facetName) || {
+      facetName: facetName
+    };
+    var actualFound = false;
+    var selectedFound = null;
+    var _selectedfacetInfo$va = selectedfacetInfo.values,
+      values = _selectedfacetInfo$va === void 0 ? [] : _selectedfacetInfo$va;
+    var foundId = {
+      name: valueName
+    };
+    if (values.length > 0) {
+      for (var i = 0; i < values.length; i++) {
+        var item = values[i];
+        if (item.name === valueName) {
+          actualFound = true;
+          foundId = item;
+          break;
+        }
+      }
+    }
+    if (actualFound) {
+      selectedFound = getFacetByValue_objectSpread(getFacetByValue_objectSpread({}, selectedfacetInfo), {}, {
+        selectedvalue: foundId,
+        actualFound: actualFound
+      });
+    } else {
+      selectedFound = {
+        facetName: facetName,
+        actualFound: actualFound,
+        selectedvalue: {
+          name: valueName,
+          dataId: valueName,
+          count: 0
+        }
+      };
+    }
+    return selectedFound;
+  } catch (err) {
+    this.onError("getFacetByValue.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getSelectedFacetValue.js
+/* harmony default export */ var getSelectedFacetValue = (function (selectedFacet) {
+  try {
+    var selectedFacetId = selectedFacet.selectedFacetId,
+      facetData = selectedFacet.facetData;
+    return facetData.values.find(function (facet) {
+      var dataId = facet.dataId;
+      return dataId === selectedFacetId;
+    });
+  } catch (err) {
+    this.onError("getSelectedFacetValue.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/setCategoryFilter.js
+/**
+* @description 
+<pre>
+    <code>
+        setCategoryFilter({
+            "parent": "categoryPath",
+            "level": "1",
+            "name": "Top"
+        })
+    </code>
+</pre>
+* to set a category filter in state
+* accepts an Object with 3  parameters
+* @param {string} parent eg:categoryPath 
+* @param {string} level eg:1
+* @param {string} name eg:"Top"
+* @method setCategoryFilter
+*/
+/* harmony default export */ var setCategoryFilter = (function () {
+  var action = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  try {
+    var _action$parent = action.parent,
+      parent = _action$parent === void 0 ? null : _action$parent,
+      _action$level = action.level,
+      level = _action$level === void 0 ? null : _action$level,
+      _action$name = action.name,
+      name = _action$name === void 0 ? null : _action$name;
+    var selectedValue = this.getCategoryFacetByValue(name);
+    var list = this.getBreadCrumbsList(parent);
+    level = Number(level);
+    if (level && selectedValue) {
+      if (this.state.categoryFilter[parent] && level <= list.length) {
+        this.state.categoryFilter[parent][level - 1] = selectedValue;
+        this.callBack(this, 'deletedcategoryFilter');
+      } else {
+        var crumbs = [];
+        crumbs = list.map(function (item) {
+          return item.value;
+        });
+        crumbs.push(selectedValue);
+        this.state.categoryFilter[parent] = crumbs;
+        this.callBack(this, 'setCategoryFilter');
+      }
+    }
+  } catch (err) {
+    this.onError("setCategoryFilter.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/setDefaultCategoryFilter.js
+/**
+* @description 
+<pre>
+    <code>
+        setCategoryFilter({
+            "parent": "categoryPath",
+            "level": "1",
+            "name": "Top"
+        })
+    </code>
+</pre>
+* to set a category filter in state
+* accepts an Object with 3  parameters
+* @param {string} parent eg:categoryPath 
+* @param {string} level eg:1
+* @param {string} name eg:"Top"
+* @method setCategoryFilter
+*/
+/* harmony default export */ var setDefaultCategoryFilter = (function (categoryPathStr) {
+  try {
+    if (categoryPathStr.length) {
+      var multilevelFieldName = this.options.extraParams['facet.multilevel'];
+      this.state.categoryFilter[multilevelFieldName] = [categoryPathStr];
+    }
+  } catch (err) {
+    this.onError("setDefaultCategoryFilter.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/setRangeFacet.js
+/**
+* @description 
+<pre>
+    <code>
+        setRangeFacet({
+            "start": 0,
+            "end": "100",
+            "name": "price_facet"
+            "applyMultiple":false
+        })
+    </code>
+</pre>
+* to set a range filter in state
+* accepts an Object with 3  parameters
+* @param {number} start eg:0 
+* @param {number} end eg:100
+* @param {string} facet name eg:"price"
+* @param {boolean} applyMultiple eg:"price"
+* @method setRangeFacet
+*/
+/* harmony default export */ var setRangeFacet = (function (rangeFacet) {
+  try {
+    var start = rangeFacet.start,
+      end = rangeFacet.end,
+      facetName = rangeFacet.facetName,
+      applyMultiple = rangeFacet.applyMultiple;
+    var rangeVal = "[".concat(start, " TO ").concat(end, "]");
+    if (applyMultiple) {
+      if (!this.state.rangeFacet[facetName]) {
+        this.state.rangeFacet[facetName] = [rangeVal];
+      } else {
+        var id = this.state.rangeFacet[facetName].indexOf(rangeVal);
+        if (id < 0) {
+          this.state.rangeFacet[facetName].push(rangeVal);
+        } else {
+          this.state.rangeFacet[facetName].splice(id, 1);
+        }
+      }
+    } else {
+      this.state.rangeFacet[facetName] = [rangeVal];
+    }
+    this.callBack(self, 'added_facet');
+  } catch (err) {
+    this.onError("setRangeFacet", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/clearARangeFacet.js
+/**
+*  @description 
+* to clear a rangefacet
+* @method clearARangeFacet
+* @param {string} facetName eg:v_price 
+*/
+/* harmony default export */ var clearARangeFacet = (function (facetName) {
+  try {
+    var rangeFacet = this.state.rangeFacet;
+    if (rangeFacet[facetName]) {
+      delete rangeFacet[facetName];
+    }
+    this.state.rangeFacet = rangeFacet;
+  } catch (err) {
+    this.onError("clearARangeFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/deleteAFacet.js
+/**
+* @description 
+* to clear a selected facet value
+* @method deleteAFacet
+* @param {string} facetName eg:v_unbxd_parentcolours_uFilter 
+* @param {string} value eg:black
+*/
+/* harmony default export */ var deleteAFacet = (function (facetName, value) {
+  try {
+    this.deleteFacet(facetName, value);
+    this.callBack(this, 'deleted_facet');
+    if (!this.options.applyMultipleFilters) {
+      this.setPageStart(0);
+      this.getResults.bind(this)();
+    }
+  } catch (err) {
+    this.onError("deleteAFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/isFacetAlreadyAdded.js
+/**
+* @description 
+<pre>
+    <code>
+        isFacetAlreadyAdded(facetName, value)
+    </code>
+</pre>
+* to know whether facet is already seleted or not
+* @param {string} name eg:facetName
+* @param {value} filter value eg:xs
+* @method isFacetAlreadyAdded
+*/
+/* harmony default export */ var isFacetAlreadyAdded = (function (facetName, value) {
+  try {
+    var selectedFacets = this.getSelectedFacets();
+    var facet = selectedFacets[facetName];
+    var isAdded = false;
+    if (facet) {
+      facet.forEach(function (item) {
+        var dataId = item.dataId;
+        if (dataId === value) {
+          isAdded = true;
+          return false;
+        }
+      });
+    }
+    return isAdded;
+  } catch (err) {
+    this.onError("isFacetAlreadyAdded.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getSelectedRanges.js
+/* harmony default export */ var getSelectedRanges = (function (facetName) {
+  try {
+    var rangeFacet = this.state.rangeFacet;
+    if (facetName) {
+      return rangeFacet[facetName];
+    }
+    return rangeFacet;
+  } catch (err) {
+    this.onError("getSelectedRanges.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/processRangeFacets.js
+function processRangeFacets_typeof(obj) { "@babel/helpers - typeof"; return processRangeFacets_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, processRangeFacets_typeof(obj); }
+var processRangeFacets_this = undefined;
+function processRangeFacets_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function processRangeFacets_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? processRangeFacets_ownKeys(Object(source), !0).forEach(function (key) { processRangeFacets_defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : processRangeFacets_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function processRangeFacets_defineProperty(obj, key, value) { key = processRangeFacets_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function processRangeFacets_toPropertyKey(arg) { var key = processRangeFacets_toPrimitive(arg, "string"); return processRangeFacets_typeof(key) === "symbol" ? key : String(key); }
+function processRangeFacets_toPrimitive(input, hint) { if (processRangeFacets_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (processRangeFacets_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var processRangeFacet = function processRangeFacet(facets) {
+  try {
+    var facetList = [];
+    var modifiedFacets = facets || [];
+    modifiedFacets.forEach(function (facet) {
+      var _facet$values = facet.values,
+        counts = _facet$values.counts,
+        gap = _facet$values.gap;
+      var values = [];
+      var valuesHolder = [];
+      for (var i = 0; i < counts.length; i = i + 2) {
+        var valLabel = Number(counts[i]);
+        // facet value object
+        var valObject = {
+          name: valLabel,
+          count: counts[i + 1],
+          dataId: valLabel
+        };
+
+        // push facet object into a temporary holder
+        valuesHolder.push(valObject);
+        if (valuesHolder.length >= 2) {
+          // get from and end values from the holder
+          var from = valuesHolder[0],
+            end = valuesHolder[1];
+          values.push({
+            from: from,
+            end: end
+          });
+          // remove the first value from the holder
+          valuesHolder.shift();
+          // use the first value as from value in the next iteration
+        }
+      }
+
+      if (valuesHolder.length === 1) {
+        var _from = valuesHolder[0];
+        // formulate an end value using gap
+        var _valLabel = _from.dataId + gap;
+        var _end = {
+          name: _valLabel,
+          count: 0,
+          dataId: _valLabel
+        };
+        values.push({
+          from: _from,
+          end: _end
+        });
+      }
+
+      // pick up start and end values from the parsed array.
+      var startVal = values[0]['from']['dataId'];
+      var endVal = values[values.length - 1]['end']['dataId'];
+      facet.start = startVal;
+      facet.end = endVal;
+      facet.max = endVal;
+      facet.gap = gap || 1;
+      facet.min = startVal;
+      facet.values = values;
+      facetList.push(processRangeFacets_objectSpread(processRangeFacets_objectSpread({}, facet), {}, {
+        values: values
+      }));
+    });
+    return facetList;
+  } catch (err) {
+    processRangeFacets_this.onError("processRangeFacets.js", err);
+  }
+};
+/* harmony default export */ var processRangeFacets = (processRangeFacet);
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getRanges.js
+
+/* harmony default export */ var getRanges = (function () {
+  try {
+    var rangeFacets = this.getRangeFacets();
+    return processRangeFacets(rangeFacets);
+  } catch (err) {
+    this.onError("getRanges.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/isCategoryFacet.js
+/**
+* @description 
+<pre>
+    <code>
+        isCategoryFacet(facetName)
+    </code>
+</pre>
+* to know whether facet is category Facet or not
+* @param {string} name eg:facetName
+* @method isCategoryFacet
+*/
+/* harmony default export */ var isCategoryFacet = (function (facetName) {
+  try {
+    var facetItem = this.getAFacetByName(facetName)[0];
+    if (facetItem) {
+      var facetType = facetItem.facetType;
+      if (facetType === "category") {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  } catch (err) {
+    this.onError("isCategoryFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getAllFacets.js
+function getAllFacets_toConsumableArray(arr) { return getAllFacets_arrayWithoutHoles(arr) || getAllFacets_iterableToArray(arr) || getAllFacets_unsupportedIterableToArray(arr) || getAllFacets_nonIterableSpread(); }
+function getAllFacets_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function getAllFacets_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return getAllFacets_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return getAllFacets_arrayLikeToArray(o, minLen); }
+function getAllFacets_iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function getAllFacets_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return getAllFacets_arrayLikeToArray(arr); }
+function getAllFacets_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+/**
+* @description 
+<pre>
+    <code>
+        getAllFacets()
+    </code>
+</pre>
+* to get all the facets in an array.
+* @method getAllFacets
+*/
+
+/* harmony default export */ var getAllFacets = (function () {
+  try {
+    var texts = this.getAllTextFacets();
+    var ranges = this.getAllRangeFacets();
+    var multiFacets = this.getAllCategory();
+    var all = [].concat(getAllFacets_toConsumableArray(multiFacets), getAllFacets_toConsumableArray(texts), getAllFacets_toConsumableArray(ranges));
+    return all.sort(this.sortFacets);
+  } catch (err) {
+    this.onError("getAllFacets.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getAFacetByName.js
+/**
+* @description 
+<pre>
+    <code>
+        getAFacetByName()
+    </code>
+</pre>
+* to return the facet details by the facet name.
+* @param name
+* @method getAFacetByName
+*/
+/* harmony default export */ var getAFacetByName = (function (name) {
+  try {
+    var facets = this.getAllFacets();
+    var selected = [];
+    if (name) {
+      selected = facets.filter(function (item) {
+        var facetName = item.facetName;
+        return facetName === name;
+      });
+    }
+    return selected;
+  } catch (err) {
+    this.onError("getAFacetByName.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getSelectedMultilevelFacet.js
+/**
+* @description 
+<pre>
+    <code>
+        getSelectedMultilevelFacet()
+    </code>
+</pre>
+* to get all the selected multilevel facets
+* @method getSelectedMultilevelFacet
+*/
+/* harmony default export */ var getSelectedMultilevelFacet = (function () {
+  try {
+    var categoryFilter = this.state.categoryFilter;
+    if (categoryFilter) {
+      var categories = Object.keys(categoryFilter);
+      return categories;
+    }
+    return null;
+  } catch (err) {
+    this.onError("getSelectedMultilevelFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getAllSelectedFacets.js
+/* harmony default export */ var getAllSelectedFacets = (function () {
+  try {
+    var multiLevels = this.getSelectedBucketedFacet();
+    var ranges = this.getSelectedRanges();
+    var texts = this.getSelectedFacets();
+    return Object.assign({}, multiLevels, ranges, texts);
+  } catch (err) {
+    this.onError("getAllSelectedFacets.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getSelectedFacetsCount.js
+/* harmony default export */ var getSelectedFacetsCount = (function () {
+  try {
+    var facets = this.getAllSelectedFacets() || {};
+    return Object.keys(facets).length;
+  } catch (err) {
+    this.onError("getSelectedFacetsCount.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getSelectedFacetValueCount.js
+/* harmony default export */ var getSelectedFacetValueCount = (function () {
+  try {
+    var selectedFacets = this.getAllSelectedFacets() || {};
+    var facetArray = Object.keys(selectedFacets);
+    var valueCount = 0;
+    facetArray.forEach(function (item) {
+      var facetObj = selectedFacets[item];
+      if (Array.isArray(facetObj)) {
+        valueCount += facetObj.length;
+      }
+    });
+    return valueCount;
+  } catch (err) {
+    this.onError("getSelectedFacetValueCount.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/getCategoryFacetByValue.js
+/* harmony default export */ var getCategoryFacetByValue = (function (value) {
+  try {
+    var multilevelFacets = this.getBucketedFacets();
+    var selectedValue = null;
+    if (multilevelFacets) {
+      for (var i = 0; i < multilevelFacets.length; i++) {
+        var current = multilevelFacets[i];
+        var values = current.values;
+        for (var j = 0; j < values.length; j++) {
+          var _values$j = values[j],
+            dataId = _values$j.dataId,
+            name = _values$j.name;
+          if (dataId === value) {
+            selectedValue = name;
+            break;
+          }
+        }
+      }
+    }
+    return selectedValue;
+  } catch (err) {
+    this.onError("getCategoryFacetByValue.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/utils.js
+function utils_typeof(obj) { "@babel/helpers - typeof"; return utils_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, utils_typeof(obj); }
+function utils_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function utils_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? utils_ownKeys(Object(source), !0).forEach(function (key) { utils_defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : utils_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function utils_defineProperty(obj, key, value) { key = utils_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function utils_toPropertyKey(arg) { var key = utils_toPrimitive(arg, "string"); return utils_typeof(key) === "symbol" ? key : String(key); }
+function utils_toPrimitive(input, hint) { if (utils_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (utils_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var modifyValues = function modifyValues() {
+  var _this = this;
+  var values = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  try {
+    var valuesList = [];
+    values.forEach(function (value, index) {
+      var data = value;
+      var newObj = {};
+      if (value.name) {
+        valuesList.push(utils_objectSpread(utils_objectSpread({}, data), {}, {
+          'dataId': _this.encodeFacetValue(value.name)
+        }));
+      } else {
+        var prevData = "";
+        if (index % 2 === 1) {
+          prevData = values[index - 1];
+          valuesList.push({
+            name: prevData,
+            count: data,
+            dataId: _this.encodeFacetValue(prevData)
+          });
+        }
+      }
+    });
+    return valuesList;
+  } catch (err) {
+    this.onError("modifyValues", err);
+  }
+};
+var modifyFacetsList = function modifyFacetsList(facets) {
+  var _this2 = this;
+  try {
+    var facetList = [];
+    var modifiedFacets = facets || [];
+    modifiedFacets.forEach(function (facet, index) {
+      var values = facet.values,
+        displayName = facet.displayName,
+        facetName = facet.facetName,
+        filterField = facet.filterField;
+      if (!facetName) {
+        if (displayName) {
+          facet.facetName = displayName;
+        }
+        if (filterField) {
+          facet.facetName = filterField;
+        }
+      }
+      facet.values = _this2.modifyValues(values);
+      facetList.push(facet);
+    });
+    return facetList;
+  } catch (err) {
+    this.onError("modifyFacetsList", err);
+  }
+};
+//this method is used to encode the facet values if it has some special characters
+function hex(c) {
+  try {
+    var v = '0' + c.charCodeAt(0).toString(16);
+    return '\\x' + v.substr(v.length - 2);
+  } catch (err) {
+    this.onError("hex", err);
+  }
+}
+var encodeFacetValue = function encodeFacetValue(value) {
+  try {
+    value = value.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\t/g, '\\t').replace(/\v/g, '\\v').replace(/'/g, "\'").replace(/"/g, '\"').replace(/[\x00-\x1F\x80-\x9F]/g, hex);
+    return encodeURIComponent(value);
+  } catch (err) {
+    this.onError("encodeFacetValue", err);
+  }
+};
+var encodeCategoryFacetValue = function encodeCategoryFacetValue(value) {
+  try {
+    value = value.replace(/\\/g, '\\\\').replace(/\n/g, '\\n').replace(/\t/g, '\\t').replace(/\v/g, '\\v').replace(/'/g, "\'").replace(/"/g, '\"').replace(/[\x00-\x1F\x80-\x9F]/g, hex);
+    return encodeURIComponent(value);
+  } catch (err) {
+    this.onError("encodeCategoryFacetValue", err);
+  }
+};
+var decodeFacetValue = function decodeFacetValue(value) {
+  try {
+    return decodeURIComponent(new String("".concat(value)));
+  } catch (err) {
+    this.onError("decodeFacetValue", err);
+  }
+};
+var cleanFacetValue = function cleanFacetValue(value) {
+  try {
+    return value.replace(/[^\w\d]/g, '');
+  } catch (err) {
+    this.onError("cleanFacetValue", err);
+  }
+};
+var cleanEncodedFacetValue = function cleanEncodedFacetValue(value) {
+  try {
+    var newValue = "";
+    var doubleStr = "%22";
+    var valArr = value.split(doubleStr);
+    if (valArr.length === 1) {
+      newValue = valArr[1];
+    } else {
+      valArr = valArr.slice(1, -1);
+      newValue = valArr.join(doubleStr);
+    }
+    return newValue;
+  } catch (err) {
+    this.onError("cleanEncodedFacetValue", err);
+  }
+};
+var getKeyByValue = function getKeyByValue(object, value) {
+  return Object.keys(object).find(function (key) {
+    return object[key] === value;
+  }) || value;
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/facets/index.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var getSelectedBucketedFacet = function getSelectedBucketedFacet() {
+  try {
+    return this.state.categoryFilter;
+  } catch (err) {
+    this.onError("getSelectedBucketedFacet", err);
+  }
+};
+var applyRangeFacet = function applyRangeFacet() {
+  try {
+    this.setPageStart(0);
+    this.getResults.bind(this)();
+  } catch (err) {
+    this.onError("applyRangeFacet", err);
+  }
+};
+var sortFacets = function sortFacets(a, b) {
+  try {
+    return a.position > b.position ? 1 : -1;
+  } catch (err) {
+    this.onError("sortFacets", err);
+  }
+};
+var getAllTextFacets = function getAllTextFacets() {
+  try {
+    var text = this.getFacets();
+    return text.map(function (item) {
+      item.facetType = "text";
+      return item;
+    });
+  } catch (err) {
+    this.onError("getAllTextFacets", err);
+  }
+};
+var getAllRangeFacets = function getAllRangeFacets() {
+  try {
+    var ranges = this.getRanges();
+    return ranges.map(function (item) {
+      item.facetType = "range";
+      return item;
+    });
+  } catch (err) {
+    this.onError("getAllRangeFacets", err);
+  }
+};
+var getAllCategory = function getAllCategory() {
+  try {
+    var multiFacets = this.getBucketedFacets();
+    return multiFacets.map(function (item) {
+      item.facetType = "category";
+      return item;
+    });
+  } catch (err) {
+    this.onError("getAllCategory", err);
+  }
+};
+var facets_setFacetMethods = function setFacetMethods(prototype) {
+  prototype = Object.assign(prototype, {
+    getBucketedFacets: getBucketedFacets,
+    getSelectedBucketedFacet: getSelectedBucketedFacet,
+    getFilterFromParams: getFilterFromParams,
+    getCategoryFilterFromParams: getCategoryFilterFromParams,
+    getRangeFacets: getRangeFacets,
+    getFacets: getFacets,
+    getSelectedFacets: getSelectedFacets,
+    getSelectedFacet: getSelectedFacet,
+    updateFacets: updateFacets,
+    applyFacets: applyFacets,
+    clearFacets: clearFacets,
+    addFacets: addFacets,
+    findSelectedFacet: findSelectedFacet,
+    deleteCategoryFilter: deleteCategoryFilter,
+    deleteFacet: deleteFacet,
+    getFacetByValue: getFacetByValue,
+    getSelectedFacetValue: getSelectedFacetValue,
+    setCategoryFilter: setCategoryFilter,
+    setDefaultCategoryFilter: setDefaultCategoryFilter,
+    setRangeFacet: setRangeFacet,
+    clearARangeFacet: clearARangeFacet,
+    deleteAFacet: deleteAFacet,
+    applyRangeFacet: applyRangeFacet,
+    isFacetAlreadyAdded: isFacetAlreadyAdded,
+    getSelectedRanges: getSelectedRanges,
+    getRanges: getRanges,
+    sortFacets: sortFacets,
+    isCategoryFacet: isCategoryFacet,
+    getAllFacets: getAllFacets,
+    getAFacetByName: getAFacetByName,
+    getSelectedMultilevelFacet: getSelectedMultilevelFacet,
+    getAllTextFacets: getAllTextFacets,
+    getAllRangeFacets: getAllRangeFacets,
+    getAllCategory: getAllCategory,
+    getAllSelectedFacets: getAllSelectedFacets,
+    getSelectedFacetsCount: getSelectedFacetsCount,
+    getSelectedFacetValueCount: getSelectedFacetValueCount,
+    encodeFacetValue: encodeFacetValue,
+    modifyFacetsList: modifyFacetsList,
+    modifyValues: modifyValues,
+    decodeFacetValue: decodeFacetValue,
+    cleanFacetValue: cleanFacetValue,
+    getCategoryFacetByValue: getCategoryFacetByValue,
+    encodeCategoryFacetValue: encodeCategoryFacetValue,
+    cleanEncodedFacetValue: cleanEncodedFacetValue,
+    getKeyByValue: getKeyByValue
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/breadcrumbs/getBreadCrumbsList.js
+/**
+*  @description 
+* will return breadcrumbs in array format.
+*example:
+    * @method getBreadCrumbsList
+*/
+
+/* harmony default export */ var getBreadCrumbsList = (function (categoryName) {
+  try {
+    var data = this.getBreadCrumbs(categoryName);
+    var arr = [];
+    var temp = data;
+    if (data) {
+      var _loop = function _loop() {
+        if (temp.level) {
+          var _temp = temp,
+            level = _temp.level,
+            values = _temp.values,
+            filterField = _temp.filterField;
+          values.forEach(function (val) {
+            arr.push({
+              level: level,
+              filterField: filterField,
+              value: val.value || val.name
+            });
+          });
+        }
+        if (temp.child) {
+          temp = temp.child;
+        } else {
+          return "break";
+        }
+      };
+      for (var i = 0; i < this.options.facetDepth; i++) {
+        var _ret = _loop();
+        if (_ret === "break") break;
+      }
+    }
+    return arr;
+  } catch (err) {
+    this.onError("getBreadCrumbsList.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/breadcrumbs/getBreadCrumbs.js
+/**
+*  @description 
+* will return breadcrumbs object if it is available. in following format.
+*example:
+   <pre>
+        <code>
+        {
+            "filterField": "categoryPath",
+            "values": [
+                {
+                "value": "Dress"
+                }
+            ],
+            "child": {
+                "filterField": "categoryPath",
+                "values": [
+                {
+                    "value": "Short Sleeves"
+                }
+                ],
+                "level": 2
+            },
+            "level": 1
+        }
+        </code>
+    </pre>
+    * @method getBreadCrumbs 
+*/
+
+/* harmony default export */ var getBreadCrumbs = (function (categoryName) {
+  try {
+    var resp = this.getResponseObj();
+    var breadCrumbs = [];
+    if (resp && resp.facets && resp.facets.multilevel) {
+      if (categoryName) {
+        var multiFacets = resp.facets.multilevel.list;
+        if (multiFacets) {
+          multiFacets.forEach(function (item) {
+            var filterField = item.filterField,
+              breadcrumb = item.breadcrumb;
+            if (filterField === categoryName) {
+              breadCrumbs = breadcrumb;
+            }
+          });
+        } else {
+          var crumb = resp.facets.multilevel.breadcrumb;
+          breadCrumbs = crumb ? crumb : null;
+        }
+      }
+    }
+    return breadCrumbs;
+  } catch (err) {
+    this.onError("getBreadCrumbs.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/breadcrumbs/index.js
+
+
+var breadcrumbs_setBreadCrumbs = function setBreadCrumbs(prototype) {
+  prototype = Object.assign(prototype, {
+    getBreadCrumbsList: getBreadCrumbsList,
+    getBreadCrumbs: getBreadCrumbs
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/sort/applySort.js
+/**
+* @description 
+<pre>
+    <code>
+        applySort("price desc")
+    </code>
+</pre>
+* to apply the sort
+* @param {string} sortItem eg: "price asc"
+* @method applySort
+*/
+/* harmony default export */ var applySort = (function (sortItem) {
+  try {
+    this.setSort(sortItem);
+    this.setPageStart(0);
+    this.getResults.bind(this)();
+  } catch (err) {
+    this.onError("applySort.js", err);
+  }
+});
+// CONCATENATED MODULE: ../search-JS-core/src/modules/sort/setSort.js
+/* harmony default export */ var sort_setSort = (function (sortItem) {
+  try {
+    if (sortItem !== undefined) {
+      this.state.selectedSort = sortItem;
+    } else {
+      var qParams = this.getSearchQueryParams();
+      this.state.selectedSort = qParams.sort ? qParams.sort : "";
+    }
+  } catch (err) {
+    this.onError("setSort.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/sort/index.js
+
+
+var getSelectedSort = function getSelectedSort() {
+  return this.state.selectedSort;
+};
+var sort_setSortMethods = function setSortMethods(prototype) {
+  prototype = Object.assign(prototype, {
+    applySort: applySort,
+    getSelectedSort: getSelectedSort,
+    setSort: sort_setSort
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/didyoumean/getDidYouMeanFromResponse.js
+/**
+*  @description 
+* will return did you mean texts in an array. 
+*example:
+   <pre>
+        <code>
+        [
+            {
+                "suggestion": "black",
+                "frequency": "509"
+            }
+        ]
+        </code>
+    </pre>
+    * @method getDidYouMeanFromResponse 
+*/
+
+/* harmony default export */ var getDidYouMeanFromResponse = (function () {
+  try {
+    var responseObj = this.getResponseObj() || {};
+    if (responseObj && responseObj.didYouMean) {
+      return responseObj.didYouMean;
+    }
+    return [];
+  } catch (err) {
+    this.onError("getDidYouMeanFromResponse.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/didyoumean/getSpellCheckSuggested.js
+/**
+*  @description 
+* will return did you mean text. 
+*example:
+   <pre>
+        <code style='color:red'>
+             "black"
+        </code>
+    </pre>
+    * @method getDidYouMeanFromResponse 
+*/
+
+/* harmony default export */ var getSpellCheckSuggested = (function () {
+  try {
+    var arr = this.state.didYouMean || [];
+    var suggestions = arr.map(function (item) {
+      return item.suggestion;
+    });
+    return suggestions;
+  } catch (err) {
+    this.onError("getSpellCheckSuggested.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/didyoumean/setSpellCheck.js
+/* harmony default export */ var didyoumean_setSpellCheck = (function (enableSpellCheck) {
+  if (enableSpellCheck) {
+    this.options.spellCheck.enabled = true;
+  } else {
+    this.options.spellCheck.enabled = false;
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/didyoumean/index.js
+
+
+
+var didyoumean_setDidYouMeanMethods = function setDidYouMeanMethods(prototype) {
+  prototype = Object.assign(prototype, {
+    getDidYouMeanFromResponse: getDidYouMeanFromResponse,
+    getSpellCheckSuggested: getSpellCheckSuggested,
+    setSpellCheck: didyoumean_setSpellCheck
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/banner/getbanners.js
+/**
+*  @description 
+* will return Banners array if it is available. in following format.
+*example:
+   <pre>
+        <code>
+        [
+            {
+                "imageUrl": "http://andersonpta.org/test/static/sale.jpg"
+            }
+        ]
+        </code>
+    </pre>
+    * @method getBanners 
+*/
+
+/* harmony default export */ var getbanners = (function () {
+  try {
+    var resp = this.getResponseObj() || {};
+    if (resp && resp.banner && resp.banner.banners) {
+      return resp.banner.banners || [];
+    }
+    return [];
+  } catch (err) {
+    this.onError("getbanners.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ../search-JS-core/src/modules/banner/index.js
+
+var banner_setBannerMethods = function setBannerMethods(prototype) {
+  prototype = Object.assign(prototype, {
+    getBanners: getbanners
+  });
+};
+
+// CONCATENATED MODULE: ../search-JS-core/src/modules/index.js
+
+
+
+
+
+
+
+
+
+var changeInput = function changeInput(value, evt) {
+  this.state.userInput = value;
+  this.callBack(value, evt);
+};
+var resetFacets = function resetFacets() {
+  this.state.selectedFacets = {};
+  this.state.rangeFacet = {};
+  this.state.categoryFilter = {};
+  this.state.breadcrumbs = {};
+};
+var resetAll = function resetAll() {
+  this.resetFacets();
+  this.state.didYouMean = null;
+  this.state.startPageNo = 0;
+  this.state.selectedSort = '';
+  this.state.responseObj = null;
+  this.state.userInput = '';
+  this.state.pageSize = this.state.pageSize || this.options.pagesize.pageSize;
+};
+var modules_setMethods = function setMethods(UnbxdSearch) {
+  var prototype = UnbxdSearch.prototype;
+  prototype.changeInput = changeInput;
+  prototype.resetFacets = resetFacets;
+  prototype.resetAll = resetAll;
+  urlMethods(prototype);
+  pagination_setPaginationMethods(prototype);
+  search_setSearchMethods(prototype);
+  swatches_setSwatchMethods(prototype);
+  facets_setFacetMethods(prototype);
+  breadcrumbs_setBreadCrumbs(prototype);
+  sort_setSortMethods(prototype);
+  didyoumean_setDidYouMeanMethods(prototype);
+  banner_setBannerMethods(prototype);
+};
+/* harmony default export */ var modules = (modules_setMethods);
+// CONCATENATED MODULE: ../search-JS-core/src/utils/copyObject.js
+function copyObject_typeof(obj) { "@babel/helpers - typeof"; return copyObject_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, copyObject_typeof(obj); }
+function copyObject(aObject) {
+  if (!aObject) {
+    return aObject;
+  }
+  var v;
+  var bObject = Array.isArray(aObject) ? [] : {};
+  for (var k in aObject) {
+    v = aObject[k];
+    bObject[k] = copyObject_typeof(v) === "object" ? copyObject(v) : v;
+  }
+  return bObject;
+}
+/* harmony default export */ var utils_copyObject = (copyObject);
+// CONCATENATED MODULE: ../search-JS-core/src/UnbxdSearch.js
+function UnbxdSearch_typeof(obj) { "@babel/helpers - typeof"; return UnbxdSearch_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, UnbxdSearch_typeof(obj); }
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || UnbxdSearch_unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = UnbxdSearch_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function UnbxdSearch_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function UnbxdSearch_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? UnbxdSearch_ownKeys(Object(source), !0).forEach(function (key) { UnbxdSearch_defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : UnbxdSearch_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function UnbxdSearch_toConsumableArray(arr) { return UnbxdSearch_arrayWithoutHoles(arr) || UnbxdSearch_iterableToArray(arr) || UnbxdSearch_unsupportedIterableToArray(arr) || UnbxdSearch_nonIterableSpread(); }
+function UnbxdSearch_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function UnbxdSearch_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return UnbxdSearch_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return UnbxdSearch_arrayLikeToArray(o, minLen); }
+function UnbxdSearch_iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+function UnbxdSearch_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return UnbxdSearch_arrayLikeToArray(arr); }
+function UnbxdSearch_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function UnbxdSearch_defineProperty(obj, key, value) { key = UnbxdSearch_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, UnbxdSearch_toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function UnbxdSearch_toPropertyKey(arg) { var key = UnbxdSearch_toPrimitive(arg, "string"); return UnbxdSearch_typeof(key) === "symbol" ? key : String(key); }
+function UnbxdSearch_toPrimitive(input, hint) { if (UnbxdSearch_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (UnbxdSearch_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
+
+
+
+/**
+ * Represents the Unbxd wrapper around the api.
+ * @constructor
+ */
+var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
+  function UnbxdSearch(props) {
+    var _this$state;
+    _classCallCheck(this, UnbxdSearch);
+    this.options = Object.assign({}, src_config, props);
+    this.state = (_this$state = {
+      queryRef: {},
+      userInput: '',
+      responseObj: null,
+      selectedFacets: {},
+      currentWebUrl: '',
+      currentApiUrl: '',
+      didYouMean: null,
+      startPageNo: this.options.startPageNo || 0,
+      isLoading: false,
+      selectedSort: '',
+      isUrlUpdated: false,
+      rangeSliderList: [],
+      rangeFacet: {},
+      categoryFilter: {},
+      breadcrumbs: {},
+      urlState: '',
+      noResultQuery: "",
+      pageSize: this.options.pagesize && this.options.pagesize.pageSize ? this.options.pagesize.pageSize : 12
+    }, UnbxdSearch_defineProperty(_this$state, "pageSize", this.options.pagesize && this.options.pagesize.pageSize ? this.options.pagesize.pageSize : 12), UnbxdSearch_defineProperty(_this$state, "urlLoad", false), UnbxdSearch_defineProperty(_this$state, "isHistory", window.history), UnbxdSearch_defineProperty(_this$state, "isBack", false), UnbxdSearch_defineProperty(_this$state, "products", []), UnbxdSearch_defineProperty(_this$state, "requestId", null), UnbxdSearch_defineProperty(_this$state, "unbxdKeys", ["filter", "category-filter", "rows", "start", "page", "count", "sort", this.getBrowseQueryParam(), this.getSearchQueryParam(), "uc_param"]), _this$state);
+    var _this$options = this.options,
+      productType = _this$options.productType,
+      getCategoryId = _this$options.getCategoryId,
+      setCategoryId = _this$options.setCategoryId;
+    var queryString = '/search?';
+    var queryParam = this.getSearchQueryParam();
+    if (productType === 'CATEGORY') {
+      queryString = '/category?';
+      queryParam = this.getBrowseQueryParam();
+    }
+    this.getCategoryId = getCategoryId;
+    this.setCategoryId = setCategoryId;
+    this.apiUrl = this.webUrl = this.getBaseUrl() + queryString;
+  }
+  /**
+   *  @returns the response {object}.
+   */
+  _createClass(UnbxdSearch, [{
+    key: "getResponseObj",
+    value: function getResponseObj() {
+      var responseObj = this.state.responseObj;
+      if (responseObj) {
+        return utils_copyObject(responseObj);
+      }
+      return null;
+    }
+  }, {
+    key: "getUrlParamString",
+    value: function getUrlParamString() {
+      var _this = this;
+      var urlStr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+      var urlObj = arguments.length > 1 ? arguments[1] : undefined;
+      var urlObjKeys = Object.keys(urlObj);
+      var _ref = this.options || {},
+        _ref$url = _ref.url,
+        _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
+        _ref$url2$facetsUrl = _ref$url2.facetsUrl,
+        facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
+        queryParamSeparator = _ref$url2.queryParamSeparator,
+        seoFriendlyUrl = _ref$url2.seoFriendlyUrl,
+        _ref$url2$orderOfQuer = _ref$url2.orderOfQueryParams,
+        orderOfQueryParams = _ref$url2$orderOfQuer === void 0 ? [] : _ref$url2$orderOfQuer;
+      if (seoFriendlyUrl && orderOfQueryParams && orderOfQueryParams.length > 0) {
+        var str = [];
+        var expectedParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
+        var remainingKeys = expectedParams.filter(function (item) {
+          return !orderOfQueryParams.includes(item);
+        });
+        var finalOrderedArr = [].concat(UnbxdSearch_toConsumableArray(orderOfQueryParams), UnbxdSearch_toConsumableArray(remainingKeys));
+        var filters = [];
+        urlObjKeys.forEach(function (item) {
+          if (!utils_urlUtils.isTextFilterStr.bind(_this)(item)) {
+            filters.push(item);
+          }
+        });
+        finalOrderedArr.forEach(function (item) {
+          switch (item) {
+            case "QUERY":
+              if (urlObjKeys.includes(_this.getSearchQueryParam())) {
+                str.push(_this.getSearchQueryParam());
+              } else if (urlObjKeys.includes(_this.getBrowseQueryParam())) {
+                str.push(_this.getBrowseQueryParam());
+              }
+              break;
+            case "FILTERS":
+              if (filters) {
+                str = [].concat(UnbxdSearch_toConsumableArray(str), filters);
+              }
+              break;
+            case "PAGE_NUMBER":
+              if (urlObjKeys.includes("start")) {
+                str.push("start");
+              } else if (urlObjKeys.includes("page")) {
+                str.push("page");
+              } else if (urlObjKeys.includes(_this.options.url.pageNoUrl.keyReplacer)) {
+                str.push(_this.options.url.pageNoUrl.keyReplacer);
+              }
+              break;
+            case "PAGE_SIZE":
+              if (urlObjKeys.includes("rows")) {
+                str.push("rows");
+              } else if (urlObjKeys.includes(_this.options.url.pageSizeUrl.keyReplacer)) {
+                str.push(_this.options.url.pageSizeUrl.keyReplacer);
+              }
+              break;
+            case "SORT":
+              if (urlObjKeys.includes("sort")) {
+                str.push("sort");
+              } else if (urlObjKeys.includes(_this.options.url.sortUrl.keyReplacer)) {
+                str.push(_this.options.url.sortUrl.keyReplacer);
+              }
+              break;
+            case "VIEW_TYPE":
+              if (urlObjKeys.includes("viewType")) {
+                str.push("viewType");
+              } else if (urlObjKeys.includes(_this.options.url.pageViewUrl.keyReplacer)) {
+                str.push(_this.options.url.pageViewUrl.keyReplacer);
+              }
+              break;
+          }
+        });
+        urlObjKeys = str;
+      }
+      urlObjKeys.forEach(function (key, keyIndex) {
+        var val = urlObj[key];
+        var facetHashStr = "";
+        val.forEach(function (item, itemIndex) {
+          if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
+            var item2 = utils_urlUtils.getEachFacetValueEncodedFromStr(item, utils_urlUtils.getValuesSeparatorFacets(facetsUrl.valuesSeparator));
+            urlStr = "".concat(urlStr).concat(key, "=").concat(item2);
+          } else if (facetsUrl.algo === "HASH" && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
+            if (itemIndex === 0) {
+              facetHashStr = item;
+            } else {
+              facetHashStr += "&".concat(item);
+            }
+
+            // facetHashStr = facetHashStr.split("&");
+            urlStr = "".concat(urlStr).concat(key, "=").concat(window.btoa(utils_urlUtils.getEachFacetValueEncodedFromStr(decodeURIComponent(facetHashStr), "&")));
+          } else {
+            urlStr = "".concat(urlStr).concat(encodeURIComponent(key), "=").concat(key === _this.getSearchQueryParam() ? item : encodeURIComponent(item));
+          }
+          if (itemIndex !== val.length - 1) {
+            urlStr = "".concat(urlStr).concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator));
+          }
+        });
+        if (keyIndex !== urlObjKeys.length - 1) {
+          urlStr = "".concat(urlStr).concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator));
+        }
+      });
+      return urlStr;
+    }
+  }, {
+    key: "getUrlStr",
+    value: function getUrlStr(newQ) {
+      var _ref2 = this.options || {},
+        _ref2$url = _ref2.url,
+        _ref2$url2 = _ref2$url === void 0 ? {} : _ref2$url,
+        queryParamSeparator = _ref2$url2.queryParamSeparator;
+
+      // if ((facetsUrl.addToUrl && (facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH")) || (sortUrl.addToUrl && (sortUrl.algo === "KEY_VALUE_REPLACER")) || (pageViewUrl.addToUrl && (pageViewUrl.algo === "KEY_VALUE_REPLACER")) || (pageNoUrl.addToUrl && (pageNoUrl.algo === "KEY_VALUE_REPLACER")) || (pageSizeUrl.addToUrl && (pageSizeUrl.algo === "KEY_VALUE_REPLACER"))) {
+      var urlObj = {};
+      if (newQ.split("".concat(this.getSearchQueryParam(), "="))[1]) {
+        urlObj[this.getSearchQueryParam()] = [newQ.split("".concat(this.getSearchQueryParam(), "="))[1].split(queryParamSeparator ? utils_urlUtils.getQueryParamSeparator(queryParamSeparator) : /\&\w+\-?\w+?=/ig)[0]];
+      }
+      if (newQ.split("".concat(this.getBrowseQueryParam(), "="))[1]) {
+        urlObj[this.getBrowseQueryParam()] = [newQ.split("".concat(this.getBrowseQueryParam(), "="))[1].split(queryParamSeparator ? utils_urlUtils.getQueryParamSeparator(queryParamSeparator) : /\&\w+\-?\w+?=/ig)[0]];
+      }
+      var sortStr = this.readSortWebUrl(newQ);
+      var facetStr = this.readFacetsWebUrl(newQ);
+      var pageSizeStr = this.readPageSizeWebUrl(newQ);
+      var pageViewStr = this.readPageViewWebUrl(newQ);
+      var pageNoStr = this.readPageNoWebUrl(newQ);
+      urlObj = UnbxdSearch_objectSpread(UnbxdSearch_objectSpread(UnbxdSearch_objectSpread(UnbxdSearch_objectSpread(UnbxdSearch_objectSpread(UnbxdSearch_objectSpread({}, urlObj), sortStr), facetStr), pageSizeStr), pageViewStr), pageNoStr);
+      if (this.getAllowExternalUrlParams()) {
+        var urlSearchParam = new URLSearchParams(this.getHashMode() ? location.hash.slice(1) : location.search);
+        /** Add customer keys */
+        var _iterator = _createForOfIteratorHelper(urlSearchParam),
+          _step;
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var _step$value = _slicedToArray(_step.value, 2),
+              key = _step$value[0],
+              value = _step$value[1];
+            if (this.state.unbxdKeys.indexOf(key) < 0 && urlSearchParam.getAll(key).length && value !== '') {
+              /** It is a customer key */
+              urlObj[key] = urlSearchParam.getAll(key);
+            }
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      }
+      var urlStr = this.getUrlParamString(this.getHashMode() ? "" : "?", urlObj);
+      return urlStr;
+      // }
+      // } else {
+      //     //Run when facets are not customizable and nothing else also customizable
+      //     let urlSearchParam = new URLSearchParams((this.options.url.hashMode || this.options.hashMode) ? location.hash.slice(1) : location.search);
+      //     let currentSearchParams = new URLSearchParams(newQ);
+      //     let urlObj = {};
+
+      //     // query to appear first in the URL
+      //     if (newQ.split(`${this.options.searchQueryParam}=`)[1]) {
+      //         urlObj[this.options.searchQueryParam] = [newQ.split(`${this.options.searchQueryParam}=`)[1].split(/\&\w+\-?\w+?=/ig)[0]]
+      //     }
+
+      //     // Add current state keys 
+      //     for (const [key, value] of currentSearchParams) {
+      //         if (key !== this.options.searchQueryParam && (value !== "")) {
+      //             urlObj[key] = currentSearchParams.getAll(key);
+      //         }
+      //     }
+
+      //     // moving this down to maintain the order of params in the URL and keep extra params in the last
+      //     if (this.options.url.allowExternalUrlParams || this.options.allowExternalUrlParams) {
+      //         /** Add customer keys */
+      //         for (const [key, value] of urlSearchParam) {
+      //             if (this.state.unbxdKeys.indexOf(key) < 0 && urlSearchParam.getAll(key).length && value !== '') {
+      //                 /** It is a customer key */
+      //                 urlObj[key] = urlSearchParam.getAll(key);
+      //             }
+      //         }
+      //     }
+
+      //     let urlStr = this.getUrlParamString((this.options.url.hashMode || this.options.hashMode) ? "" : "?", urlObj);
+
+      //     return urlStr;
+      // }
+    }
+
+    // getUrlStr(newQ) {
+    //     const {
+    //         url: {
+    //             facetsUrl = {},
+    //             sortUrl = {},
+    //             pageViewUrl= {},
+    //             pageNoUrl={},
+    //             pageSizeUrl={},
+    //             queryParamSeparator
+    //         } = {}
+    //     } = this.options || {};
+
+    //     if ((facetsUrl.addToUrl && (facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH")) || (sortUrl.addToUrl && (sortUrl.algo === "KEY_VALUE_REPLACER")) || (pageViewUrl.addToUrl && (pageViewUrl.algo === "KEY_VALUE_REPLACER")) || (pageNoUrl.addToUrl && (pageNoUrl.algo === "KEY_VALUE_REPLACER")) || (pageSizeUrl.addToUrl && (pageSizeUrl.algo === "KEY_VALUE_REPLACER"))){
+    //         let urlObj = {};
+
+    //         if (newQ.split(`${this.getSearchQueryParam() }=`)[1]) {
+    //             urlObj[this.getSearchQueryParam()] = [newQ.split(`${this.getSearchQueryParam()}=`)[1].split(urlUtils.getQueryParamSeparator(queryParamSeparator) || /\&/ig)[0]];
+    //         }
+    //         let sortStr = this.readSortWebUrl(newQ);
+    //         let facetStr = this.readFacetsWebUrl(newQ);
+    //         let pageSizeStr = this.readPageSizeWebUrl(newQ);
+    //         let pageViewStr = this.readPageViewWebUrl(newQ);
+    //         let pageNoStr = this.readPageNoWebUrl(newQ);
+
+    //         urlObj = { ...urlObj,...sortStr, ...facetStr, ...pageSizeStr, ...pageViewStr, ...pageNoStr }
+
+    //         let urlStr = this.getUrlParamString(this.getHashMode() ? "" : "?", urlObj);
+
+    //         return urlStr;
+    //     }else{
+    //         //Run when facets are not customizable and nothing else also customizable
+    //         let urlSearchParam = new URLSearchParams((this.options.url.hashMode || this.options.hashMode) ? location.hash.slice(1) : location.search);
+    //         let currentSearchParams = new URLSearchParams(newQ);
+    //         let urlObj = {};
+
+    //         // query to appear first in the URL
+    //         if (newQ.split(`${this.getSearchQueryParam()}=`)[1]) {
+    //             urlObj[this.getSearchQueryParam()] = [newQ.split(`${this.getSearchQueryParam() }=`)[1].split(/\&\w+\-?\w+?=/ig)[0]]
+    //         }
+
+    //         // Add current state keys 
+    //         for (const [key, value] of currentSearchParams) {
+    //             if (key !== this.options.searchQueryParam && (value !== "")) {
+    //                 urlObj[key] = currentSearchParams.getAll(key);
+    //             }
+    //         }
+
+    //         // moving this down to maintain the order of params in the URL and keep extra params in the last
+    //         if (this.options.url.allowExternalUrlParams || this.options.allowExternalUrlParams) {
+    //             /** Add customer keys */
+    //             for (const [key, value] of urlSearchParam) {
+    //                 if (this.state.unbxdKeys.indexOf(key) < 0 && urlSearchParam.getAll(key).length && value !== '') {
+    //                     /** It is a customer key */
+    //                     urlObj[key] = urlSearchParam.getAll(key);
+    //                 }
+    //             }
+    //         }
+
+    //         let urlStr = this.getUrlParamString(this.getHashMode() ? "" : "?", urlObj);
+
+    //         return urlStr;
+    //     }
+    // }
+  }, {
+    key: "urlSearchParamsToStr",
+    value: function urlSearchParamsToStr(urlParams) {
+      var urlObj = {};
+      for (var _i2 = 0, _Object$entries = Object.entries(urlParams); _i2 < _Object$entries.length; _i2++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
+          key = _Object$entries$_i[0],
+          value = _Object$entries$_i[1];
+        if (key !== this.getSearchQueryParam() && urlParams[key].length && value !== "") {
+          if (!utils_urlUtils.isTextFilterStr.bind(this)(decodeURIComponent(key)) && this.options.url.facetsUrl.algo === "HASH") {
+            urlObj[key] = [window.atob(urlParams[key])];
+          } else {
+            urlObj[key] = urlParams[key];
+          }
+        }
+
+        // Note: unlike the above function, this one will just take the query param from the URL and encodes it as urlParams will decode it by default
+        if (key === this.getSearchQueryParam()) {
+          urlObj[this.getSearchQueryParam()] = utils_urlUtils.encodeQueryParam(urlParams[key]);
+        }
+      }
+      var urlStr = this.getUrlParamString(this.getHashMode() ? "#" : "?", urlObj);
+      return urlStr;
+    }
+  }, {
+    key: "checkIfUnbxdKey",
+    value: function checkIfUnbxdKey() {
+      var urlSearchParam = new URLSearchParams(this.getHashMode() ? location.hash.substring(1) : location.search);
+      var unbxdParam = false;
+      var _iterator2 = _createForOfIteratorHelper(urlSearchParam),
+        _step2;
+      try {
+        for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+          var _step2$value = _slicedToArray(_step2.value, 2),
+            key = _step2$value[0],
+            value = _step2$value[1];
+          if (this.state.unbxdKeys.indexOf(key) > -1) {
+            unbxdParam = true;
+          }
+        }
+      } catch (err) {
+        _iterator2.e(err);
+      } finally {
+        _iterator2.f();
+      }
+      return unbxdParam;
+    }
+  }, {
+    key: "convertToHashString",
+    value: function convertToHashString(q) {
+      var url = this.getUrlStr(q);
+      if (url.charAt(0) === "?") {
+        url = url.substring(1);
+      }
+      return url;
+    }
+  }, {
+    key: "setUrl",
+    value: function setUrl(reload) {
+      var _this$options2 = this.options,
+        productType = _this$options2.productType,
+        hashMode = _this$options2.hashMode,
+        searchPath = _this$options2.searchPath,
+        onQueryRedirect = _this$options2.onQueryRedirect,
+        _this$options2$allowE = _this$options2.allowExternalUrlParams,
+        allowExternalUrlParams = _this$options2$allowE === void 0 ? false : _this$options2$allowE;
+      var _this$state2 = this.state,
+        urlLoad = _this$state2.urlLoad,
+        isHistory = _this$state2.isHistory,
+        _this$state2$response = _this$state2.responseObj,
+        responseObj = _this$state2$response === void 0 ? {} : _this$state2$response,
+        _this$state2$unbxdKey = _this$state2.unbxdKeys,
+        unbxdKeys = _this$state2$unbxdKey === void 0 ? [] : _this$state2$unbxdKey;
+      var redirect = responseObj.redirect,
+        _responseObj$didYouMe = responseObj.didYouMean,
+        didYouMean = _responseObj$didYouMe === void 0 ? [] : _responseObj$didYouMe;
+      if (typeof onQueryRedirect === "function" && redirect && redirect.value) {
+        /** Empty redirected query */
+        this.state.userInput = "";
+
+        /** Add redirected indication to url */
+        var urlBeforeRedirect = this.getUrlStr("redirected=true");
+        if (this.getHashMode()) {
+          urlBeforeRedirect = "#".concat(this.convertToHashString(urlBeforeRedirect));
+        }
+        onQueryRedirect(this, redirect, urlBeforeRedirect);
+
+        /** Do not update url with this query, as it is not needed */
+        return;
+      }
+      var q = this.getNewUrlState(false).split("".concat(productType.toLocaleLowerCase(), "?"))[1];
+      this.state.urlState = q;
+      var isPath = location.pathname.includes(searchPath);
+      var isUnbxdKey = this.checkIfUnbxdKey();
+      var replace = null;
+      if (didYouMean.length && didYouMean[0].suggestion) {
+        this.state.queryRef = {
+          replaceNext: true
+        };
+      } else {
+        /** Replace state with the corrected query post didyoumean */
+        if (this.state.queryRef.replaceNext) {
+          replace = true;
+          this.state.queryRef = {};
+        }
+      }
+      if (this.getHashMode()) {
+        var _newQ = "#".concat(q);
+        if (isPath && _newQ !== location.hash) {
+          var url = this.convertToHashString(q);
+          this.options.setRoutingStrategies(location.hash, "#".concat(url), productType, isUnbxdKey, replace);
+        }
+      } else {
+        if (isHistory && !urlLoad && isPath) {
+          var query = "?".concat(q);
+          var _newQ2 = this.getUrlStr(query);
+          if (decodeURI(_newQ2) !== decodeURI(location.search)) {
+            // newQ = this.getUrlStr(newQ);
+            this.options.setRoutingStrategies(location.search, "".concat(_newQ2), productType, isUnbxdKey, replace);
+          }
+          // window.history.pushState(q, null, newQ);
+          this.state.urlLoad = false;
+        }
+        if (reload && isPath) {
+          /** Not encountering this scenario in demo setup as of now */
+          // let newQ = this.getUrlStr(newQ);
+          location.search = newQ;
+        }
+      }
+    }
+  }, {
+    key: "updateSelectedFacetsCount",
+    value: function updateSelectedFacetsCount() {
+      var _this2 = this;
+      /** Update selected facets count */
+      var urlParts = "";
+      var _this$options$url = this.options.url,
+        _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+        _this$options$url2$fa = _this$options$url2.facetsUrl,
+        facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa;
+      if ((facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH") && !facetsUrl.showFilterStr) {
+        urlParts = this.getQueryParamsWhenCustomUrl();
+      } else {
+        urlParts = this.getQueryParams();
+      }
+      var productType = this.options.productType;
+      var queryParam = this.getSearchQueryParam();
+      if (productType !== 'SEARCH') {
+        queryParam = this.getBrowseQueryParam();
+        urlParts[queryParam] = this.getCategoryId();
+      }
+      if (UnbxdSearch_typeof(urlParts) === 'object' && urlParts[queryParam]) {
+        var _urlParts = urlParts,
+          q = _urlParts[this.getSearchQueryParam()],
+          filter = _urlParts[facetsUrl.algo === "KEY_VALUE_REPLACER" ? facetsUrl.filterReplacer : "filter"];
+        if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr) {
+          var filtersStr = [];
+          Object.keys(urlParts).forEach(function (item, index) {
+            if (!utils_urlUtils.isTextFilterStr.bind(_this2)(decodeURIComponent(item))) {
+              if (!filtersStr.length) {
+                filtersStr.push(item + "=" + urlParts[item]);
+              } else {
+                filtersStr.push(item + "=" + urlParts[item]);
+              }
+            }
+          });
+          filter = filtersStr;
+        }
+        var facetsNew = this.getFilterFromParams(filter);
+        this.state.selectedFacets = !this.options.url.facetsUrl.addToUrl ? this.state.selectedFacets : facetsNew.selectedFilters;
+      }
+    }
+    /**
+     *  @returns the response {object}.
+     */
+  }, {
+    key: "callBack",
+    value: function callBack(value, evt) {
+      var onEvent = this.options.onEvent;
+      onEvent(this, evt);
+    }
+  }, {
+    key: "onError",
+    value: function onError() {
+      var module = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+      var err = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+      if (this.options.onError) {
+        this.options.onError(module, err);
+      }
+      console.error("Something went wrong in ".concat(module, ": ").concat(err));
+    }
+  }, {
+    key: "getHashMode",
+    value: function getHashMode() {
+      return this.options.url.hashMode || this.options.hashMode;
+    }
+  }, {
+    key: "getUpdateUrls",
+    value: function getUpdateUrls() {
+      // return this.options.url.updateUrls || this.options.updateUrls;
+      return true;
+    }
+  }, {
+    key: "getAllowExternalUrlParams",
+    value: function getAllowExternalUrlParams() {
+      return this.options.url.allowExternalUrlParams || this.options.allowExternalUrlParams;
+    }
+  }, {
+    key: "getBrowseQueryParam",
+    value: function getBrowseQueryParam() {
+      var _this$options$url3 = this.options.url,
+        _this$options$url4 = _this$options$url3 === void 0 ? {} : _this$options$url3,
+        _this$options$url4$br = _this$options$url4.browseQueryParam,
+        _this$options$url4$br2 = _this$options$url4$br === void 0 ? {} : _this$options$url4$br,
+        _this$options$url4$br3 = _this$options$url4$br2.addToUrl,
+        addToUrl = _this$options$url4$br3 === void 0 ? true : _this$options$url4$br3,
+        _this$options$url4$br4 = _this$options$url4$br2.algo,
+        algo = _this$options$url4$br4 === void 0 ? "DEFAULT" : _this$options$url4$br4,
+        _this$options$url4$br5 = _this$options$url4$br2.keyReplacer,
+        keyReplacer = _this$options$url4$br5 === void 0 ? "p" : _this$options$url4$br5;
+      return algo === "DEFAULT" ? 'p' : keyReplacer;
+      // return this.options.url.browseQueryParam || this.options.browseQueryParam;
+    }
+  }, {
+    key: "getSearchQueryParam",
+    value: function getSearchQueryParam() {
+      var _this$options$url5 = this.options.url,
+        _this$options$url6 = _this$options$url5 === void 0 ? {} : _this$options$url5,
+        _this$options$url6$se = _this$options$url6.searchQueryParam,
+        _this$options$url6$se2 = _this$options$url6$se === void 0 ? {} : _this$options$url6$se,
+        _this$options$url6$se3 = _this$options$url6$se2.addToUrl,
+        addToUrl = _this$options$url6$se3 === void 0 ? true : _this$options$url6$se3,
+        _this$options$url6$se4 = _this$options$url6$se2.algo,
+        algo = _this$options$url6$se4 === void 0 ? "DEFAULT" : _this$options$url6$se4,
+        _this$options$url6$se5 = _this$options$url6$se2.keyReplacer,
+        keyReplacer = _this$options$url6$se5 === void 0 ? "q" : _this$options$url6$se5;
+      return algo === "DEFAULT" ? 'q' : keyReplacer;
+      // return this.options.url.searchQueryParam || this.options.searchQueryParam
+    }
+  }]);
+  return UnbxdSearch;
+}();
+modules(UnbxdSearch_UnbxdSearch);
+/* harmony default export */ var src_UnbxdSearch = (UnbxdSearch_UnbxdSearch);
+// CONCATENATED MODULE: ../search-JS-core/src/index.js
+
+/* harmony default export */ var src = (src_UnbxdSearch);
+// EXTERNAL MODULE: ./styles/index.scss
+var styles = __webpack_require__(16);
+
+// CONCATENATED MODULE: ./src/modules/utils/delegate.js
+function delegate_delegate(el, evt, sel, handler) {
+  try {
+    el.addEventListener(evt, function (event) {
+      var t = event.target;
+      while (t && t !== this) {
+        if (t.matches(sel)) {
+          handler.call(t, event);
+        }
+        t = t.parentNode;
+      }
+    });
+  } catch (err) {
+    this.onError("delegate.js", err);
+  }
+}
+/* harmony default export */ var utils_delegate = (delegate_delegate);
+// CONCATENATED MODULE: ./src/modules/didYouMean/didYouMeanUI.js
+//query - current search term
+//suggestion - suggest search term
+//pages - details search response
+/*
+    {
+    "numberOfProducts": 194,
+    "start": 0,
+    "productsLn": 12,
+    "rows": 12,
+    "noOfPages": 17,
+    "currentPage": 1,
+    "isNext": true,
+    "isPrev": false
+    }
+*/
+var didYouMeanUI = function didYouMeanUI(query, suggestion) {
+  var pages = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var _ref = pages || {},
+    start = _ref.start,
+    productsLn = _ref.productsLn,
+    numberOfProducts = _ref.numberOfProducts;
+  var _this$options$spellCh = this.options.spellCheck,
+    _this$options$spellCh2 = _this$options$spellCh.selectorClass,
+    selectorClass = _this$options$spellCh2 === void 0 ? "" : _this$options$spellCh2,
+    enabled = _this$options$spellCh.enabled;
+  var productType = this.options.productType;
+  var newQuery = query;
+  if (productType !== "SEARCH") {
+    var catId = this.getCategoryId() || "";
+    var cId = decodeURIComponent(catId).split(">");
+    newQuery = cId[cId.length - 1] || cId[0];
+  }
+  var _this$testIds$UNX_spe = this.testIds.UNX_spellCheck,
+    UNX_spellCheck = _this$testIds$UNX_spe === void 0 ? "" : _this$testIds$UNX_spe;
+  var noUi = suggestion ? "<p class=\"UNX-no-result\"> Your search \"<strong>".concat(suggestion, "</strong>\" did not match any products. Did you mean <button data-test-id=\"").concat(UNX_spellCheck, "\" data-action=\"getSuggestion\" class=\"").concat(selectorClass, "\">").concat(query, "</button>? </p>") : "";
+  var qUi = "";
+  var countUi = "";
+  if (numberOfProducts > 0) {
+    countUi = "<span class=\"UNX-result-info\">  -  ".concat(start + 1, " to ").concat(productsLn + start, " of ").concat(numberOfProducts, " products</span>");
+  }
+  if (pages && Object.keys(pages).length > 0 && newQuery) {
+    if (!enabled) {
+      newQuery = suggestion || query;
+    }
+    qUi = "<p class=\"UNX-suggestion-p\">Showing results for <strong>".concat(newQuery, "</strong> ").concat(countUi, "</p>");
+  }
+  return ["<div class=\"UNX-spellcheck-block\">", noUi, qUi, "</div>"].join('');
+};
+/* harmony default export */ var didYouMean_didYouMeanUI = (didYouMeanUI);
+// CONCATENATED MODULE: ./src/modules/facets/ui.js
+function selectedFacetItemTemplateUI(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
+  var facetName = selectedFacet.facetName,
+    facetType = selectedFacet.facetType;
+  var name = selectedFacetItem.name,
+    count = selectedFacetItem.count,
+    dataId = selectedFacetItem.dataId;
+  var _this$options$facet = this.options.facet,
+    facetClass = _this$options$facet.facetClass,
+    selectedFacetClass = _this$options$facet.selectedFacetClass,
+    removeFacetsSelectorClass = _this$options$facet.removeFacetsSelectorClass;
+  var UNX_uFilter = this.testIds.UNX_uFilter;
+  var action = "deleteSelectedFacetValue";
+  if (facetType === "range") {
+    action = "deleteSelectedRange";
+  }
+  var css = " ".concat(facetClass, " ").concat(selectedFacetClass, " ");
+  return ["<div class=\"UNX-selected-facets-wrap\">", "<button data-test-id=\"".concat(UNX_uFilter, "\" class=\"UNX-selected-facet-btn UNX-change-facet ").concat(css, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" data-id=\"").concat(dataId, "\">"), "<span class=\"UNX-facet-text\">".concat(name, "</span> <span class=\"UNX-facet-count\">(").concat(count, ")</span>"), "</button>", "<button class=\"UNX-delete-facet ".concat(removeFacetsSelectorClass, " ").concat(css, "\" data-id=\"").concat(dataId, "\" data-facet-action=\"").concat(action, "\" data-facet-name=\"").concat(facetName, "\">x</button></div>")].join('');
+}
+function selectedFacetUI(selections, facet, selectedFacetsConfig) {
+  var clearAllText = facet.clearAllText,
+    clearFacetsSelectorClass = facet.clearFacetsSelectorClass;
+  var selectedFClass = this.selectedFacetClass ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
+  if (selections.length > 0) {
+    return ["<div class=\"UNX-facets-selections\">", "<h5 class=\"UNX-selected-facet-header\">Selected Filters</h5>", "<div class=\"UNX-selected-facets-inner\">".concat(selections, "</div>"), "<button class=\"".concat(clearFacetsSelectorClass, " ").concat(selectedFClass, "\" data-facet-action=\"clearAllFacets\">").concat(clearAllText, "</button>"), "</div>"].join('');
+  } else {
+    return "";
+  }
+}
+function facetItemUiElem(facet, value, facetSearchTxt) {
+  var facetName = facet.facetName,
+    isSelected = facet.isSelected;
+  var name = value.name,
+    count = value.count,
+    dataId = value.dataId;
+  var _this$options$facet2 = this.options.facet,
+    facetClass = _this$options$facet2.facetClass,
+    selectedFacetClass = _this$options$facet2.selectedFacetClass;
+  var UNX_uFilter = this.testIds.UNX_uFilter;
+  if (facetSearchTxt && facetSearchTxt.length > 0) {
+    if (name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0) {
+      facetClass += ' UNX-search-hidden';
+    }
+  }
+  var action = "changeFacet";
+  if (isSelected) {
+    facetClass += " ".concat(selectedFacetClass);
+    action = "deleteFacetValue";
+  }
+  return ["<button data-test-id=\"".concat(UNX_uFilter, "\" data-facet-name=\"").concat(facetName, "\" data-facet-action=\"").concat(action, "\" class=\"UNX-change-facet ").concat(facetClass, "\" data-id=\"").concat(dataId, "\">"), "<span class=\"UNX-facet-text\">".concat(name, "</span> <span class=\"UNX-facet-count\">(").concat(count, ")</span>"), "</button>"].join('');
+}
+function facetUIElem(facetObj, children, isExpanded, facetSearchTxt, facet) {
+  var displayName = facetObj.displayName,
+    facetName = facetObj.facetName,
+    multiLevelField = facetObj.multiLevelField,
+    facetType = facetObj.facetType,
+    values = facetObj.values;
+  var facetClass = facet.facetClass,
+    applyMultipleFilters = facet.applyMultipleFilters,
+    isCollapsible = facet.isCollapsible,
+    isSearchable = facet.isSearchable,
+    searchPlaceHolder = facet.searchPlaceHolder,
+    textFacetWrapper = facet.textFacetWrapper,
+    enableViewMore = facet.enableViewMore,
+    viewMoreText = facet.viewMoreText,
+    viewMoreLimit = facet.viewMoreLimit,
+    applyButtonText = facet.applyButtonText,
+    clearButtonText = facet.clearButtonText;
+  var _this$options = this.options,
+    actionBtnClass = _this$options.actionBtnClass,
+    actionChangeClass = _this$options.actionChangeClass;
+  var _this$cssList = this.cssList,
+    openBtn = _this$cssList.openBtn,
+    closeBtn = _this$cssList.closeBtn;
+  var viewMoreUi = "";
+  var viewMoreCss = "";
+  var selected = this.getSelectedFacets()[facetName];
+  var isFtr = selected && selected.length > 0 ? true : false;
+  if (enableViewMore && facetType === "text" && values.length > viewMoreLimit) {
+    viewMoreCss = "UNX-view-more";
+    viewMoreUi = "<div class=\"UNX-view-more-row \"><button class=\"".concat(actionBtnClass, "\" data-facet-name=\"").concat(facetName, "\" data-action=\"viewMore\" data-id=\"").concat(viewMoreText[0], "\">").concat(viewMoreText[0], "</button></div>");
+  }
+  var clearUI = "";
+  var applyBtn = "";
+  if (isFtr) {
+    clearUI = "<button class=\"UNX-facet-clear ".concat(facetClass, " \"data-facet-action=\"deleteFacet\" data-facet-name=\"").concat(facetName, "\">").concat(clearButtonText, "</button>");
+  }
+  if (applyMultipleFilters && isFtr) {
+    applyBtn = "<button class=\"UNX-facet-primary ".concat(facetClass, " \"data-facet-action=\"applyFacets\" >").concat(applyButtonText, "</button>");
+  }
+  var collapsibleUI = "";
+  var searchInput = "";
+  if (isCollapsible) {
+    if (isExpanded) {
+      collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-open\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetClose\"> <h3>").concat(displayName, "</h3> </div>");
+    } else {
+      collapsibleUI = "<div class=\"UNX-facet-header ".concat(actionBtnClass, " UNX-facet-close\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"facetOpen\"> <h3>").concat(displayName, "</h3></div>");
+    }
+  }
+  if (isSearchable && facetSearchTxt !== null) {
+    searchInput = "<div class=\"UNX-searchable-facets\"><label class=\"UNX-hidden\" for=\"".concat(facetName, "_searchBox\">").concat(searchPlaceHolder, "</label><input  id=\"").concat(facetName, "_searchBox\" name=\"").concat(facetName, "_searchBox\" data-test-id=\"").concat(this.testIds.UNX_searchFacets, "\" class=\"UNX-facet-search ").concat(actionChangeClass, "\" value=\"").concat(facetSearchTxt, "\"  data-facet-name=\"").concat(facetName, "\" data-facet-action=\"searchFacets\" type=\"text\" placeholder=\"").concat(searchPlaceHolder, "\"/></div>");
+  }
+  return ["<div class=\"UNX-text-facet-wrap\">", collapsibleUI, "<div class=\"UNX-facets-all\">", searchInput, "<div class=\"UNX-facets ".concat(textFacetWrapper, " ").concat(viewMoreCss, "\">").concat(children, "</div>"), viewMoreUi, "<div class=\"UNX-facet-footer\">".concat(applyBtn, " ").concat(clearUI, "</div>"), "</div>", "</div>"].join('');
+}
+
+// CONCATENATED MODULE: ./src/modules/searchResults/ui.js
+/* harmony default export */ var ui = (function (product, idx, swatchUI, productViewType, products) {
+  var unxTitle = product.unxTitle,
+    unxImageUrl = product.unxImageUrl,
+    uniqueId = product.uniqueId,
+    unxStrikePrice = product.unxStrikePrice,
+    unxPrice = product.unxPrice,
+    unxDescription = product.unxDescription;
+  var productItemClass = products.productItemClass,
+    defaultImage = products.defaultImage;
+  var imgUrl = Array.isArray(unxImageUrl) ? unxImageUrl[0] : unxImageUrl;
+  if (!imgUrl) {
+    imgUrl = defaultImage;
+  }
+  var imagesUI = "<div class=\"UNX-img-wrapper\"><img class=\"UNX-img-block\" width=\"100%\" height=\"100%\" alt=\"".concat(unxTitle, "\" src=\"").concat(imgUrl, "\"/></div>");
+  var priceUI = "<span class=\"UNX-sale-price\">".concat(unxPrice, "</span>");
+  var strikeUi = "";
+  if (unxStrikePrice) {
+    strikeUi = "<span class=\"UNX-strike-price\">".concat(unxStrikePrice, "<span>");
+  }
+  var cardType = "";
+  var descUI = "";
+  if (productViewType === "GRID") {
+    cardType = "UNX-grid-card";
+  } else {
+    cardType = "UNX-list-card";
+    descUI = "<p class=\"UNX-description\">".concat(unxDescription, "</p>");
+  }
+  var swatchBtnUI = "";
+  var _ref = swatchUI || {},
+    btnList = _ref.btnList,
+    imgList = _ref.imgList;
+  if (btnList) {
+    swatchBtnUI = "<div class=\"UNX-swatch-wrapper\">".concat(btnList, "</div>");
+  }
+  if (imgList) {
+    imagesUI = imgList;
+  }
+  return ["<div id=\"".concat(uniqueId, "\" data-id=\"").concat(uniqueId, "\" data-prank=\"").concat(idx, "\" data-item=\"product\" class=\"UNX-product-col ").concat(cardType, " ").concat(productItemClass, "\">"),, "<h3 class=\"UNX-product-number\">".concat(Math.floor(idx), "</h3>"), "<div class=\"UNX-images-block\">".concat(imagesUI, "</div>"), "<div class=\"UNX-product-content\">", "<h3 class=\"UNX-product-title\">".concat(unxTitle, "</h3>"), swatchBtnUI, descUI, "<div class=\"UNX-price-row\">".concat(priceUI, " ").concat(strikeUi, "</div>"), "</div>", "</div>"].join('');
+});
+;
+// CONCATENATED MODULE: ./src/modules/pagination/paginationUI.js
+var paginationUI = function paginationUI(paginationData, pagination) {
+  if (!paginationData) {
+    return "";
+  }
+  var _ref = paginationData || {},
+    currentPage = _ref.currentPage,
+    isNext = _ref.isNext,
+    isPrev = _ref.isPrev,
+    noOfPages = _ref.noOfPages,
+    productsLn = _ref.productsLn,
+    numberOfProducts = _ref.numberOfProducts,
+    rows = _ref.rows;
+  var _ref2 = pagination || {},
+    pageClass = _ref2.pageClass,
+    selectedPageClass = _ref2.selectedPageClass,
+    pageLimit = _ref2.pageLimit;
+  var _this$testIds$UNX_pag = this.testIds.UNX_pageNumber,
+    UNX_pageNumber = _this$testIds$UNX_pag === void 0 ? "" : _this$testIds$UNX_pag;
+  if (numberOfProducts <= productsLn) {
+    return "";
+  }
+  var nextBtn = "<button class=\"UNX-next-btn UNX-page-next ".concat(pageClass, "\" data-page-no=\"").concat(currentPage * rows, "\" data-page-action=\"next\">></button>");
+  var prevBtn = "<button class=\"UNX-prev-btn UNX-page-prev ".concat(pageClass, "\" data-page-no=\"").concat((currentPage - 2) * rows, "\" data-page-action=\"prev\"><</button>");
+  var pageNumbers = "";
+  var pages = noOfPages < pageLimit ? noOfPages : pageLimit;
+  var startPoint = 1;
+  var r = Math.ceil(pageLimit / 2);
+  var point = currentPage - r;
+  if (point > 0) {
+    startPoint = point;
+    pages = currentPage + r;
+  }
+  var ls = currentPage + r;
+  if (ls >= noOfPages) {
+    var diff = ls - noOfPages;
+    startPoint = startPoint - diff;
+    if (startPoint <= 0) {
+      startPoint = 1;
+    }
+    pages = noOfPages;
+  }
+  for (var i = startPoint; i <= pages; i++) {
+    var tId = "".concat(UNX_pageNumber).concat(i);
+    var pageClassSelected = i === currentPage ? selectedPageClass : '';
+    pageNumbers += "<button data-test-id=\"".concat(tId, "\" data-page-action=\"paginate\" data-page-no=\"").concat((i - 1) * rows, "\" class=\"UNX-page-button ").concat(pageClass, " ").concat(pageClassSelected, "\">").concat(i, "</button>");
+  }
+  if (!isNext) {
+    nextBtn = "<button disabled class=\"UNX-next-btn UNX-page-next\">></button>";
+  }
+  if (!isPrev) {
+    prevBtn = "<button disabled class=\"UNX-prev-btn UNX-page-prev\"><</button>";
+  }
+  return ["<div class=\"UNX-pagination-block\">", prevBtn, "<div class=\"UNX-page-no-block\">".concat(pageNumbers, "</div>"), nextBtn, "</div>"].join('');
+};
+/* harmony default export */ var pagination_paginationUI = (paginationUI);
+// CONCATENATED MODULE: ./src/modules/pagination/clickNScrollView.js
+/* harmony default export */ var clickNScrollView = (function (pageData) {
+  var pagination = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _pagination$pageClass = pagination.pageClass,
+    pageClass = _pagination$pageClass === void 0 ? "" : _pagination$pageClass;
+  return "<div class=\"UNX-click-scroll\"><button data-test-id=\"".concat(this.testIds.UNX_loadMore, "\" data-page-action=\"next\" class=\"UNX-click-n-scroll ").concat(pageClass, "\">Load More</button></div>");
+});
+;
+// CONCATENATED MODULE: ./src/modules/pagination/paginationView.js
+
+
+/* harmony default export */ var paginationView = (function (pageData) {
+  var pagination = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.options.pagination;
+  var type = pagination.type;
+  if (type === "CLICK_N_SCROLL") {
+    return clickNScrollView.bind(this)(pageData, pagination);
+  }
+  if (type === "FIXED_PAGINATION") {
+    return pagination_paginationUI.bind(this)(pageData, pagination);
+  }
+  return "";
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderRangeFacets.js
+var renderRangeFacets = function renderRangeFacets(range, selectedRange) {
+  var _this = this;
+  var facet = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  try {
+    var facetName = range.facetName,
+      _range$values = range.values,
+      values = _range$values === void 0 ? [] : _range$values;
+    var valueUI = "";
+    var facetClass = facet.facetClass,
+      selectedFacetClass = facet.selectedFacetClass,
+      applyMultipleFilters = facet.applyMultipleFilters,
+      applyButtonText = facet.applyButtonText,
+      clearButtonText = facet.clearButtonText;
+    var selected = selectedRange.length > 0 ? true : false;
+    values.forEach(function (item) {
+      var from = item.from,
+        end = item.end;
+      var isSelected = _this.isSelectedRange(facetName, item);
+      var btnCss = isSelected ? "UNX-selected-facet-btn ".concat(facetClass, " ").concat(selectedFacetClass) : "".concat(facetClass);
+      valueUI += ["<button class=\"".concat(btnCss, " UNX-range-facet UNX-change-facet\" data-action=\"setRange\" data-facet-name=\"").concat(facetName, "\" data-start=\"").concat(from.dataId, "\" data-end=\"").concat(end.dataId, "\" >"), "<span class=\"UNX-facet-text\">".concat(from.name, "  -  ").concat(end.name, "</span>"), "<span class=\"UNX-facet-count\">(".concat(from.count, ")</span>"), "</button>"].join('');
+    });
+    var clearBtn = "";
+    var applyBtn = "";
+    if (selected) {
+      if (applyMultipleFilters) {
+        applyBtn = "<button class=\"UNX-default-btn ".concat(facetClass, " UNX-facet-primary\" data-action=\"applyRange\"> ").concat(applyButtonText, "</button>");
+      }
+      clearBtn = "<button class=\"UNX-default-btn UNX-facet-clear  ".concat(facetClass, "\" data-action=\"clearRangeFacets\">").concat(clearButtonText, "</button>");
+    }
+    return ["<div class=\"UNX-range-wrapper\">", valueUI, "<div class=\"UNX-price-action-row\">", applyBtn, clearBtn, "<div>", "</div>"].join('');
+  } catch (err) {
+    this.onError("facets > renderRangeFacets.js", err);
+  }
+};
+
+// CONCATENATED MODULE: ./src/modules/facets/multiLevelFacetUI.js
+var multiLevelFacetUI = function multiLevelFacetUI(facet, selectedCategories, facetSearchTxt, facetConfig) {
+  var ui = "";
+  var multiLevelFacetSelectorClass = facetConfig.multiLevelFacetSelectorClass,
+    facetClass = facetConfig.facetClass;
+  var UNX_facetLevel = this.testIds.UNX_facetLevel;
+  if (selectedCategories) {
+    selectedCategories.forEach(function (item) {
+      var level = item.level,
+        filterField = item.filterField,
+        value = item.value;
+      var lTid = "data-test-id=\"".concat(UNX_facetLevel).concat(level, "\"");
+      var levelCss = "".concat(multiLevelFacetSelectorClass, "  UNX-category-level-").concat(level);
+      ui += ["<button ".concat(lTid, " data-parent=\"").concat(filterField, "\" data-level=\"").concat(level, "\" data-name=\"").concat(value, "\""), "class=\" ".concat(levelCss, " UNX-selected-crumb ").concat(facetClass, "\" data-action = \"clearCategoryFilter\">"), "<span class=\"UNX-category-icon\"></span><label class=\"UNX-facet-text\">".concat(decodeURIComponent(value), "</label>"), "</button>"].join('');
+    });
+  }
+  var level = facet.level,
+    displayName = facet.displayName,
+    values = facet.values,
+    filterField = facet.filterField;
+  var multiLevelField = facet.multiLevelField;
+  if (!multiLevelField) {
+    multiLevelField = filterField;
+  }
+  var lTid = "data-test-id=\"".concat(UNX_facetLevel).concat(level, "\"");
+  var levelCss = "UNX-category-level-".concat(level);
+  var valueUI = values.map(function (item) {
+    var name = item.name,
+      count = item.count,
+      dataId = item.dataId;
+    if (facetSearchTxt && facetSearchTxt.length > 0) {
+      if (name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0) {
+        facetClass += ' UNX-search-hidden';
+      }
+    }
+    return ["<button ".concat(lTid, " data-parent=\"").concat(multiLevelField, "\" data-level=\"").concat(level, "\""), "class=\"".concat(multiLevelFacetSelectorClass, " ").concat(levelCss, " ").concat(facetClass, "\" data-name=\"").concat(dataId, "\" data-action = \"setCategoryFilter\">"), "<label class=\"UNX-facet-text\">".concat(name, "</label><label class=\"UNX-facet-count\">(").concat(count, ")</label></button>")].join('');
+  });
+  ui += "<div class=\"UNX-category-values\">".concat(valueUI.join(''), "</div>");
+  if (ui !== "") {
+    return ["<div class=\"UNX-multi-facet-wrap\">", "".concat(ui, "</div>")].join('');
+  } else {
+    return "";
+  }
+};
+/* harmony default export */ var facets_multiLevelFacetUI = (multiLevelFacetUI);
+// CONCATENATED MODULE: ./src/modules/breadcrumbs/breadCrumbsUI.js
+var breadCrumbsUI = function breadCrumbsUI() {
+  var breadcrumbs = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var breadcrumb = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var ui = "";
+  var _ref = breadcrumb || {},
+    _ref$selectorClass = _ref.selectorClass,
+    selectorClass = _ref$selectorClass === void 0 ? "" : _ref$selectorClass;
+  breadcrumbs && breadcrumbs.forEach(function (item, id) {
+    var level = item.level,
+      filterField = item.filterField,
+      value = item.value;
+    var css = "".concat(selectorClass, " UNX-bread-crumb-item");
+    if (id > 0) {
+      ui += "<span class=\"UNX-slash\"> / </span>";
+    }
+    ui += ["<button data-parent=\"".concat(filterField, "\" data-level=\"").concat(level, "\" class=\"").concat(css, "\" data-name=\"").concat(value, "\" data-action = \"clearCategoryFilter\">"), "".concat(decodeURIComponent(value), "</button>")].join('');
+  });
+  return "<div class=\"bread-crumb-main\">".concat(ui, "</div>");
+};
+/* harmony default export */ var breadcrumbs_breadCrumbsUI = (breadCrumbsUI);
+// CONCATENATED MODULE: ./src/modules/sort/index.js
+var sortOptions = [{
+  value: "price desc",
+  text: "Price High to Low"
+}, {
+  value: "price asc",
+  text: " Price Low to High"
+}];
+var sortTemplate = function sortTemplate(selectedSort) {
+  var sortConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var optionsUI = "";
+  var _ref = sortConfig || {},
+    _ref$options = _ref.options,
+    options = _ref$options === void 0 ? [] : _ref$options,
+    _ref$sortClass = _ref.sortClass,
+    sortClass = _ref$sortClass === void 0 ? "" : _ref$sortClass,
+    _ref$selectedSortClas = _ref.selectedSortClass,
+    selectedSortClass = _ref$selectedSortClas === void 0 ? "" : _ref$selectedSortClas;
+  var _this$testIds$UNX_unb = this.testIds.UNX_unbxdSorter,
+    UNX_unbxdSorter = _this$testIds$UNX_unb === void 0 ? "" : _this$testIds$UNX_unb;
+  options && options.forEach(function (item) {
+    var _item$value = item.value,
+      value = _item$value === void 0 ? "" : _item$value,
+      _item$text = item.text,
+      text = _item$text === void 0 ? "" : _item$text;
+    if (value == selectedSort) {
+      optionsUI += "<option value=\"".concat(value, "\" class=\"").concat(selectedSortClass, "\" selected>").concat(text, "</option>");
+    } else {
+      optionsUI += "<option value=\"".concat(value, "\">").concat(text, "</option>");
+    }
+  });
+  return ["<div class=\"UNX-sort-block\">", "<span class=\"UNX-sort-header\">Sort By</span>", "<label class=\"UNX-hidden\" for=\"unxSortSelect\">Sort By</label>", "<select data-test-id=\"".concat(UNX_unbxdSorter, "\" name=\"unxSortSelect\" data-action=\"changeSort\" id=\"unxSortSelect\" class=\"").concat(sortClass, "\">"), "<option value=\"\">Relevancy</option>", optionsUI, "</select>", "</div>"].join('');
+};
+
+// CONCATENATED MODULE: ./src/modules/productViewType/renderProductViewType.js
+var renderProductViewType = function renderProductViewType(selectedViewType) {
+  var productViewType = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  try {
+    var isDisabled = this.getSearchResults() ? false : true;
+    var _productViewType$sele = productViewType.selectedViewTypeClass,
+      selectedViewTypeClass = _productViewType$sele === void 0 ? "" : _productViewType$sele,
+      _productViewType$view = productViewType.viewTypeClass,
+      viewTypeClass = _productViewType$view === void 0 ? "" : _productViewType$view;
+    var _this$testIds = this.testIds,
+      _this$testIds$UNX_gri = _this$testIds.UNX_gridBtn,
+      UNX_gridBtn = _this$testIds$UNX_gri === void 0 ? "" : _this$testIds$UNX_gri,
+      _this$testIds$UNX_lis = _this$testIds.UNX_listBtn,
+      UNX_listBtn = _this$testIds$UNX_lis === void 0 ? "" : _this$testIds$UNX_lis;
+    var listBtnCss = "UNX-list-btn ".concat(viewTypeClass);
+    var gridBtnCss = "UNX-grid-btn ".concat(viewTypeClass);
+    var gTAttr = "data-test-id=".concat(UNX_gridBtn);
+    var lTAttr = "data-test-id=".concat(UNX_listBtn);
+    if (selectedViewType === 'LIST') {
+      listBtnCss += " ".concat(selectedViewTypeClass);
+    }
+    if (selectedViewType === 'GRID') {
+      gridBtnCss += " ".concat(selectedViewTypeClass);
+    }
+    var listBtn = "<button id=\"listBtn\" class=\"".concat(listBtnCss, "\" ").concat(lTAttr, " data-view-action=\"LIST\" >List</button>");
+    var gridBtn = "<button ".concat(gTAttr, " id=\"gridBtn\" class=\"").concat(gridBtnCss, "\" data-view-action=\"GRID\" >Grid</button>");
+    if (isDisabled) {
+      listBtn = "<button ".concat(lTAttr, " id=\"listBtn\" disabled class=\"").concat(listBtnCss, " disabled-btn\" data-view-action=\"LIST\" >List</button>");
+      gridBtn = "<button ".concat(gTAttr, " id=\"gridBtn\" disabled class=\"").concat(gridBtnCss, "  disabled-btn\"data-view-action=\"GRID\" >Grid</button>");
+    }
+    return "".concat(listBtn, " ").concat(gridBtn);
+  } catch (err) {
+    this.onError("productViewtype > renderProductViewType", err);
+  }
+};
+/* harmony default export */ var productViewType_renderProductViewType = (renderProductViewType);
+// CONCATENATED MODULE: ./src/modules/banners/bannerTemplateUI.js
+var bannerTemplateUI = function bannerTemplateUI() {
+  var banners = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var bannerOpts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _ref = bannerOpts || {},
+    openNewTab = _ref.openNewTab;
+  var bannerUI = "";
+  bannerUI = banners ? banners.map(function (item) {
+    var imageUrl = item.imageUrl,
+      landingUrl = item.landingUrl,
+      bannerHtml = item.bannerHtml;
+    if (bannerHtml) {
+      return bannerHtml;
+    }
+    var hrefStr = "";
+    if (landingUrl) {
+      hrefStr += "href=".concat(landingUrl);
+    }
+    if (openNewTab) {
+      hrefStr += "  target=\"_blank\"";
+    }
+    return "<a class=\"UNX-banner-wrap\" ".concat(hrefStr, " ><img style=\"max-width:100%\" src=\"").concat(imageUrl, "\"/></a>");
+  }).join('') : "";
+  return "".concat(bannerUI);
+};
+/* harmony default export */ var banners_bannerTemplateUI = (bannerTemplateUI);
+// CONCATENATED MODULE: ./src/modules/pageSize/pageSizeUi.js
+var pageSizeUi = function pageSizeUi(selected) {
+  var pagesize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var _ref = pagesize || {},
+    _ref$options = _ref.options,
+    options = _ref$options === void 0 ? [] : _ref$options,
+    _ref$pageSizeClass = _ref.pageSizeClass,
+    pageSizeClass = _ref$pageSizeClass === void 0 ? "" : _ref$pageSizeClass,
+    _ref$selectedPageSize = _ref.selectedPageSizeClass,
+    selectedPageSizeClass = _ref$selectedPageSize === void 0 ? "" : _ref$selectedPageSize;
+  var _this$testIds$UNX_pag = this.testIds.UNX_pagesize,
+    UNX_pagesize = _this$testIds$UNX_pag === void 0 ? "" : _this$testIds$UNX_pag;
+  var ui = "<label class=\"UNX-hidden\" for=\"unxPageSize\">Sort By</label><select id=\"unxPageSize\" name=\"unxPageSize\" class=\"UNX-select-pagesize ".concat(pageSizeClass, "\">");
+  options && options.forEach(function (opt, i) {
+    var tId = "data-test-id=\"".concat(UNX_pagesize).concat(i + 1, "\"");
+    if (selected == opt) {
+      ui += "<option selected ".concat(tId, " class=\"").concat(selectedPageSizeClass, "\" id=\"").concat(opt, "\">").concat(opt, "</option>");
+    } else {
+      ui += "<option ".concat(tId, " id=\"").concat(opt, "\">").concat(opt, "</option>");
+    }
+  });
+  ui += "</select>";
+  return "<div class=\"UNX-pagesize-block\">".concat(ui, "</div>");
+};
+/* harmony default export */ var pageSize_pageSizeUi = (pageSizeUi);
+// CONCATENATED MODULE: ./src/modules/swatches/ui.js
+/* harmony default export */ var swatches_ui = (function () {
+  var _this = this;
+  var swatchData = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var swatches = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var product = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var _ref = swatchData || {},
+    _ref$swatchImgs = _ref.swatchImgs,
+    swatchImgs = _ref$swatchImgs === void 0 ? [] : _ref$swatchImgs;
+  var btnUI = "";
+  var btnList = "";
+  var imgsUI = "";
+  var _ref2 = swatches || {},
+    _ref2$swatchClass = _ref2.swatchClass,
+    swatchClass = _ref2$swatchClass === void 0 ? "" : _ref2$swatchClass;
+  var _this$testIds$UNX_swa = this.testIds.UNX_swatchClrBtn,
+    UNX_swatchClrBtn = _this$testIds$UNX_swa === void 0 ? "" : _this$testIds$UNX_swa;
+  var _ref3 = product || {},
+    _ref3$unxTitle = _ref3.unxTitle,
+    unxTitle = _ref3$unxTitle === void 0 ? "" : _ref3$unxTitle;
+  if (swatchImgs.length > 1) {
+    swatchImgs.forEach(function (item, id) {
+      var sid = _this.generateRid("unx_swatch_");
+      var sCss = id === 0 ? '' : ' UNX-swatch-hidden';
+      var bCss = id === 0 ? ' UNX-selected-swatch' : '';
+      var data = item.split("::");
+      if (data) {
+        btnUI += ["<button value=\"swatch color ".concat(data[0], "\" data-test-id=\"").concat(UNX_swatchClrBtn).concat(id, "\" data-swatch-id=\"").concat(sid, "\" data-action=\"changeSwatch\" class=\"").concat(swatchClass, " ").concat(sid, " ").concat(bCss, "\" style=\"background-color:").concat(data[0], "\"> swatch color ").concat(data[0], " </button>")].join('');
+        imgsUI += "<div id=\"".concat(sid, "\" class=\"UNX-img-wrapper ").concat(sCss, "\"><img alt=\"").concat(unxTitle, " for the ").concat(data[0], "\" class=\"UNX-img-block\" src=\"").concat(data[1], "\"/></div>");
+      }
+    });
+    btnList = "<div class=\"UNX-swatch-color-list\">".concat(btnUI, "</div>");
+  }
+  return {
+    btnList: btnList,
+    imgList: imgsUI
+  };
+});
+;
+// CONCATENATED MODULE: ./src/common/options.js
+
+
+
+
+
+
+
+
+
+
+
+
+var options_options = {
+  productId: "uniqueId",
+  searchBoxEl: null,
+  searchButtonEl: null,
+  siteKey: "demo-spanish-unbxd809051588861207",
+  apiKey: "f19768e22b49909798bc2411fa3dd963",
+  searchPath: "",
+  searchEndPoint: "https://search.unbxd.io/",
+  products: {
+    el: null,
+    template: ui,
+    productItemClass: "product-item",
+    // to find out product
+    productType: "SEARCH",
+    gridCount: 1,
+    searchTrigger: 'click',
+    onProductClick: function onProductClick(product, e) {},
+    productAttributes: ["title", "uniqueId", "price", "sku", "imageUrl", "displayPrice", "salePrice", "sortPrice", "productDescription", "unbxd_color_mapping", "colorName", "color", "productUrl"],
+    attributesMap: {
+      'unxTitle': 'title',
+      'unxImageUrl': 'imageUrl',
+      'unxPrice': 'salePrice',
+      'unxStrikePrice': 'displayPrice',
+      'unxId': 'uniqueId',
+      'unxDescription': 'productDescription'
+    },
+    defaultImage: "https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-search-results-block UNX-result-wrapper"
+    },
+    events: {}
+  },
+  defaultFilters: {},
+  //or object with keys
+  noResults: {
+    template: function template(query) {
+      return "<div class=\"UNX-no-results\"> No Results found ".concat(query, " </div>");
+    }
+  },
+  onEvent: function onEvent(state, type) {},
+  startPageNo: 0,
+  productView: {
+    enabled: true,
+    el: null,
+    template: productViewType_renderProductViewType,
+    action: 'click',
+    // CLICK or CHANGE
+    viewTypeClass: 'UNX-product-view',
+    selectedViewTypeClass: 'UNX-selected-product-view',
+    defaultViewType: 'GRID',
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "product-view-container"
+    },
+    events: {}
+  },
+  loader: {
+    template: function template() {
+      return "<div class=\"UNX-loader\">Loading search results....</div>";
+    },
+    el: null
+  },
+  variants: undefined,
+  extraParams: {
+    "version": "V2"
+    /*"facet.multilevel":"categoryPath",
+    "f.categoryPath.displayName":"category",
+    "f.categoryPath.max.depth":"4",
+    "f.categoryPath.facet.limit":"100"*/
+  },
+
+  spellCheck: {
+    enabled: true,
+    el: null,
+    template: didYouMean_didYouMeanUI,
+    selectorClass: "UNX-suggestion",
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-spellcheck-wrapper"
+    },
+    events: {}
+  },
+  breadcrumb: {
+    enabled: true,
+    el: null,
+    selectorClass: "UNX-bread-crumb",
+    template: breadcrumbs_breadCrumbsUI,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-breadcrumbs-block"
+    },
+    events: {}
+  },
+  url: {
+    updateUrls: true,
+    hashMode: false,
+    allowExternalUrlParams: false,
+    seoFriendlyUrl: false,
+    // browseQueryParam: 'p',
+    // searchQueryParam: "q",
+    searchQueryParam: {
+      addToUrl: true,
+      algo: "DEFAULT",
+      keyReplacer: "q"
+    },
+    browseQueryParam: {
+      addToUrl: true,
+      algo: "DEFAULT",
+      keyReplacer: "p"
+    },
+    orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"],
+    queryParamSeparator: "&",
+    pageViewUrl: {
+      addToUrl: false,
+      algo: "DEFAULT",
+      keyReplacer: "viewType",
+      valuesReplacer: {
+        "GRID": "GRID",
+        "LIST": "LIST"
+      }
+    },
+    sortUrl: {
+      addToUrl: true,
+      algo: "DEFAULT",
+      keyReplacer: "sort",
+      valueReplacer: {}
+    },
+    pageSizeUrl: {
+      addToUrl: true,
+      algo: "DEFAULT",
+      keyReplacer: "rows"
+    },
+    pageNoUrl: {
+      addToUrl: true,
+      algo: "DEFAULT",
+      keyReplacer: 'start',
+      usePageNo: false
+    },
+    facetsUrl: {
+      addToUrl: true,
+      algo: "DEFAULT",
+      showFilterStr: false,
+      //Not exposing this option for user yet , will always be false for now.
+      filterReplacer: "filter",
+      //Not exposing this option for user yet.
+      valuesSeparator: ",",
+      facetsOrderInUrl: [],
+      valueReplacer: {},
+      keyReplacer: {},
+      rangeSeparator: "-"
+    }
+  },
+  sort: {
+    enabled: true,
+    el: null,
+    selectedSortClass: 'UNX-selected-sort',
+    sortClass: 'UNX-sort-item',
+    template: sortTemplate,
+    options: sortOptions,
+    action: 'change',
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-sort-block-lb"
+    },
+    events: {}
+  },
+  selectedFacets: {
+    enabled: true,
+    selectedFacetClass: "UNX-selected-facet-btn",
+    el: null,
+    template: selectedFacetUI,
+    itemTemplate: selectedFacetItemTemplateUI,
+    clearAllText: "Clear All",
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-selected-facet-lb"
+    },
+    events: {},
+    facetAction: "click",
+    clearFacetsSelectorClass: 'UNX-clear-facet',
+    removeFacetsSelectorClass: 'UNX-remove-facet'
+  },
+  facet: {
+    facetsEl: null,
+    facetTemplate: facetUIElem,
+    facetItemTemplate: facetItemUiElem,
+    facetMultiSelect: true,
+    facetClass: "UNX-facets-block",
+    facetAction: "click",
+    selectedFacetClass: "UNX-selected-facet-btn",
+    selectedFacetsEl: null,
+    selectedFacetTemplate: selectedFacetUI,
+    selectedFacetItemTemplate: selectedFacetItemTemplateUI,
+    selectedFacetConfig: {},
+    clearAllText: "Clear All",
+    rangeTemplate: renderRangeFacets,
+    rangeWidgetConfig: {
+      "minLabel": "",
+      "maxLabel": "",
+      "prefix": '$'
+    },
+    facetMultilevel: true,
+    facetMultilevelName: 'Category',
+    multiLevelFacetSelectorClass: 'UNX-multilevel-facet',
+    multiLevelFacetTemplate: facets_multiLevelFacetUI,
+    facetDepth: 4,
+    clearFacetsSelectorClass: 'UNX-clear-facet',
+    removeFacetsSelectorClass: 'UNX-remove-facet',
+    onFacetLoad: function onFacetLoad(facets) {},
+    applyMultipleFilters: false,
+    applyButtonText: "Apply",
+    clearButtonText: "clear",
+    isCollapsible: true,
+    isSearchable: true,
+    searchPlaceHolder: "Search Filter",
+    textFacetWrapper: "UNX-facets-item",
+    defaultOpen: "ALL",
+    enableViewMore: false,
+    viewMoreText: ["show all", "show less"],
+    viewMoreLimit: 3,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-facets-results-block"
+    },
+    events: {}
+  },
+  pagination: {
+    enabled: true,
+    el: null,
+    template: paginationView,
+    pageClass: "UNX-page-items",
+    selectedPageClass: "UNX-selected-page-item",
+    type: 'CLICK_N_SCROLL',
+    // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+    infiniteScrollTriggerEl: window,
+    //if paginationType = INFINITE_SCROLL
+    heightDiffToTriggerNextPage: 100,
+    //if paginationType = INFINITE_SCROLL,    
+    onPaginate: function onPaginate(paginationInfo) {},
+    action: 'click',
+    pageLimit: 6,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-pagination-size-block"
+    },
+    events: {}
+  },
+  pagesize: {
+    enabled: true,
+    pageSize: 12,
+    options: [8, 12, 16, 20, 24],
+    pageSizeClass: "UNX-pagesize",
+    selectedPageSizeClass: "UNX-selected-pagesize",
+    action: 'change',
+    template: pageSize_pageSizeUi,
+    el: null,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-page-size-block"
+    },
+    events: {}
+  },
+  banner: {
+    enabled: true,
+    el: null,
+    template: banners_bannerTemplateUI,
+    count: 1,
+    openNewTab: false,
+    tagName: "DIV",
+    htmlAttributes: {
+      "class": "UNX-banner-block"
+    },
+    events: {}
+  },
+  swatches: {
+    enabled: false,
+    attributesMap: {},
+    swatchClass: 'UNX-swatch-btn',
+    template: swatches_ui
+  },
+  unbxdAnalytics: false,
+  // hashMode: false,
+  actionBtnClass: "UNX-action-item",
+  actionChangeClass: "UNX-action-change",
+  onAction: function onAction(e, ctx) {},
+  onQueryRedirect: function onQueryRedirect(self, redirect, urlBeforeRedirect) {
+    if (redirect) {
+      var value = redirect.value,
+        type = redirect.type;
+      if (type === "url") {
+        /** If opening in same tab */
+        if (history.state && history.state.replace) {
+          history.replaceState(null, "", urlBeforeRedirect);
+        }
+        location.href = value;
+
+        /** If opening redirect in new tab (rare scenario), 
+         * then browser back + history push on search should be handled by client 
+         * (especially switching betsween category to search page scenarios)
+         * Note: This is not recommended */
+      }
+
+      return false;
+    }
+  },
+  onBackFromRedirect: function onBackFromRedirect(hashMode) {
+    var urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
+    var backFromRedirect = urlSearchParam.get("redirected");
+    if (backFromRedirect) {
+      history.go(-1);
+    }
+  },
+  onNoUnbxdKeyRouting: function onNoUnbxdKeyRouting() {
+    history.go();
+  },
+  setRoutingStrategies: function setRoutingStrategies(locationParam, newUrl, productType, isUnbxdKey, replace) {
+    if (locationParam === newUrl) {
+      return;
+    } else if (productType === "CATEGORY") {
+      /** Do not navigate to base category page  */
+      if (!isUnbxdKey) {
+        history.replaceState(null, "", newUrl);
+      } else {
+        history.pushState(null, "", newUrl);
+      }
+    } else {
+      if (history.state && history.state.replace || replace) {
+        history.replaceState(null, "", newUrl);
+      } else {
+        history.pushState(null, "", newUrl);
+      }
+    }
+  }
+  // searchQueryParam:null
+};
+
+/* harmony default export */ var common_options = (options_options);
+// CONCATENATED MODULE: ./src/modules/banners/renderBannerUI.js
+function renderBannerUI() {
+  try {
+    var banners = this.getBanners() || [];
+    var _this$options$banner = this.options.banner,
+      banner = _this$options$banner === void 0 ? {} : _this$options$banner;
+    this.bannerWrapper.innerHTML = this.options.banner.template(banners, banner);
+  } catch (err) {
+    this.onError("Banners > renderBannerUI", err);
+  }
+}
+/* harmony default export */ var banners_renderBannerUI = (renderBannerUI);
+// CONCATENATED MODULE: ./src/modules/facets/findChangedFacet.js
+var findChangedFacet = function findChangedFacet(e) {
+  var elem = e.target;
+  this.viewState.lastDidYouMean = "";
+  var selected = this.options.facet.facetAction === "click" ? elem : elem.options[elem.selectedIndex];
+  var dataSet = selected.dataset;
+  var facetName = dataSet.facetName,
+    facetAction = dataSet.facetAction,
+    id = dataSet.id,
+    action = dataSet.action,
+    end = dataSet.end,
+    start = dataSet.start;
+  var qState = this.getStateFromUrl();
+  var selectedfacets = this.getSelectedFacets();
+  var ln = selectedfacets ? Object.keys(selectedfacets).length : 0;
+  var ql = Object.keys(qState.selectedFacets).length;
+  var _this$options = this.options,
+    productType = _this$options.productType,
+    facet = _this$options.facet;
+  var applyMultipleFilters = facet.applyMultipleFilters;
+  var events = this.events,
+    actions = this.actions;
+  var ranges = this.state.rangeFacet[facetName];
+  var isSelections = Object.keys(qState.rangeFacet);
+  if (facetAction === actions.changeFacet) {
+    var selectedfacetInfo = this.getSelectedFacet(facetName);
+    var selectedOpt = {
+      selectedFacetName: facetName,
+      selectedFacetId: id,
+      facetData: selectedfacetInfo
+    };
+    this.viewState.lastAction = "addedAFacet";
+    this.options.onEvent(this, events.facetClick, {
+      facetName: facetName,
+      facetData: selectedfacetInfo
+    });
+    this.updateFacets(selectedOpt);
+    this.getCallbackActions({
+      facetName: facetName,
+      facetAction: facetAction,
+      id: id
+    }, 'facetClick');
+  }
+  if (facetAction === "deleteSelectedFacetValue") {
+    if (this.findSelectedFacet(facetName)) {
+      this.viewState.lastAction = "deletedAfacet";
+      this.deleteAFacet.bind(this)(facetName, id);
+      this.options.onEvent(this, events.deleteFacetValue, {
+        facetName: facetName
+      });
+      this.getCallbackActions({
+        facetName: facetName,
+        facetAction: facetAction,
+        id: id
+      }, 'facetClick');
+      this.setPageStart(0);
+      this.getResults();
+    }
+  }
+  if (facetAction === actions.deleteFacetValue) {
+    if (this.findSelectedFacet(facetName)) {
+      this.viewState.lastAction = "deletedAfacet";
+      this.deleteAFacet.bind(this)(facetName, id);
+      this.options.onEvent(this, events.deleteFacetValue, {
+        facetName: facetName
+      });
+      this.getCallbackActions({
+        facetName: facetName,
+        facetAction: facetAction,
+        id: id
+      }, 'facetClick');
+      var fl = selectedfacets[facetName].length;
+      if (ql > 0 && ln === 1 && fl === 0 && applyMultipleFilters) {
+        this.setPageStart(0);
+        this.getResults();
+      }
+    }
+  }
+  if (facetAction === actions.deleteFacet) {
+    if (this.findSelectedFacet(facetName)) {
+      this.viewState.lastAction = "deletedAfacet";
+      this.deleteAFacet.bind(this)(facetName);
+      this.options.onEvent(this, events.deleteFacet, {
+        facetName: facetName
+      });
+      this.getCallbackActions({
+        facetName: facetName,
+        facetAction: facetAction,
+        id: id
+      }, 'facetClick');
+      var isReload = qState.selectedFacets[facetName];
+      if (isReload) {
+        this.viewState.lastAction = "clearAFacet";
+        this.setPageStart(0);
+        this.getResults();
+      }
+    }
+  }
+  if (facetAction === "applyFacets") {
+    this.viewState.lastAction = "applyFacets";
+    this.setPageStart(0);
+    this.getResults();
+  }
+  if (facetAction === "clearAllFacets") {
+    this.viewState.lastAction = "clearAllFacets";
+    this.state.selectedFacets = [];
+    this.state.rangeFacet = [];
+    this.setPageStart(0);
+    this.getResults();
+  }
+  if (facetAction === "deleteSelectedRange") {
+    var _facetName = dataSet.facetName,
+      _id = dataSet.id;
+    var range = _id.replace(/[^\w\s]/gi, '').split(" TO ");
+    this.setRangeFacet({
+      start: range[0],
+      end: range[1],
+      facetName: _facetName,
+      applyMultiple: true
+    });
+    this.getCallbackActions({
+      facetName: _facetName,
+      facetAction: facetAction,
+      id: _id
+    }, 'facetClick');
+    this.setPageStart(0);
+    this.getResults();
+  }
+  if (action === actions.setCategoryFilter) {
+    if (productType === "SEARCH") {
+      this.setCategoryFilter(dataSet);
+      this.options.onEvent(this, events.setCategoryFilter, dataSet);
+    } else {
+      this.setCategoryId(dataSet, this);
+    }
+    this.setPageStart(0);
+    this.getResults();
+    this.getCallbackActions(dataSet, 'facetClick');
+  }
+  if (action === actions.clearCategoryFilter) {
+    if (productType === "SEARCH") {
+      this.deleteCategoryFilter(dataSet);
+      this.options.onEvent(this, events.deleteCategoryFilter, dataSet);
+    } else {
+      this.setCategoryId(dataSet, this);
+    }
+    this.setPageStart(0);
+    this.getResults();
+    this.getCallbackActions(dataSet, 'facetClick');
+  }
+  if (action === "setRange") {
+    var already = false;
+    if (ranges && ranges.length === 1 && isSelections.length > 0) {
+      already = this.isSelectedRange(facetName, {
+        from: {
+          name: start
+        },
+        end: {
+          name: end
+        }
+      });
+    }
+    ;
+    if (!already) {
+      this.setRangeFacet({
+        start: start,
+        end: end,
+        facetName: facetName,
+        applyMultiple: true
+      });
+    }
+    if (already) {
+      this.state.rangeFacet = [];
+      this.applyRangeFacet();
+    }
+    if (!applyMultipleFilters) {
+      this.setPageStart(0);
+      this.applyRangeFacet();
+    }
+    this.getCallbackActions({
+      facetName: facetName,
+      facetAction: facetAction,
+      id: id
+    }, 'facetClick');
+  }
+  if (action === "clearRangeFacets") {
+    this.state.rangeFacet = [];
+    this.renderFacets();
+    if (isSelections.length > 0) {
+      ;
+      this.applyRangeFacet();
+    }
+  }
+  if (action === actions.applyRange) {
+    this.applyRangeFacet();
+    this.options.onEvent(this, action, {
+      facetName: facetName
+    });
+    this.getCallbackActions({
+      facetName: facetName
+    }, 'facetClick');
+  }
+  if (action === actions.clearPriceRange && facetName) {
+    this.clearARangeFacet(facetName);
+    this.getResults.bind(this)();
+    this.options.onEvent(this, action, {
+      facetName: facetName
+    });
+    this.getCallbackActions({
+      facetName: facetName
+    }, 'facetClick');
+  }
+  this.viewState.lastAction = action;
+  //this.renderFacets();
+};
+
+
+// CONCATENATED MODULE: ./src/modules/facets/renderFacets.js
+/* harmony default export */ var renderFacets = (function () {
+  var _this = this;
+  try {
+    var _this$options$facet = this.options.facet,
+      facet = _this$options$facet === void 0 ? {} : _this$options$facet;
+    var defaultOpen = facet.defaultOpen,
+      applyMultipleFilters = facet.applyMultipleFilters,
+      isCollapsible = facet.isCollapsible;
+    var _this$viewState = this.viewState,
+      expandedFacets = _this$viewState.expandedFacets,
+      lastAction = _this$viewState.lastAction;
+    if (lastAction === "updatedRangeSlider" && applyMultipleFilters) {
+      return false;
+    }
+    var self = this;
+    var allFacets = this.getAllFacets() || [];
+    var _this$facetWrappers = this.facetWrappers,
+      facetWrappers = _this$facetWrappers === void 0 ? [] : _this$facetWrappers;
+    var selectedFacets = this.getSelectedFacets() || {};
+    facetWrappers.forEach(function (facetsWrapper) {
+      facetsWrapper.innerHTML = "";
+      allFacets.forEach(function (facetItem, idx) {
+        var facetType = facetItem.facetType,
+          facetName = facetItem.facetName;
+        if (typeof expandedFacets[facetName] === 'undefined' && defaultOpen === 'ALL') {
+          expandedFacets[facetName] = true;
+        }
+        if (defaultOpen === 'FIRST' && idx == 0) {
+          expandedFacets[facetName] = true;
+        }
+        var isExpanded = _this.isExpandedFacet(facetName);
+        var facetSearchTxt = _this.getSearchFacetsText(facetName) || '';
+        var selectedFacet = selectedFacets[facetName];
+        if (facetType === 'text') {
+          facetsWrapper.innerHTML += _this.renderTextFacet(facetItem, selectedFacet, isExpanded, facetSearchTxt);
+        }
+        if (facetType === 'range') {
+          facetsWrapper.innerHTML += _this.renderRangeFacet(facetItem, isExpanded, '');
+        }
+        if (facetType === 'category') {
+          facetsWrapper.innerHTML += _this.renderMultiLevelFacet(facetItem, isExpanded, facetSearchTxt);
+        }
+        _this.viewState.facetElementMap[facetName] = facetName;
+      });
+    });
+    this.options.facet.onFacetLoad.bind(this)(allFacets);
+  } catch (err) {
+    this.onError("Facets > renderFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderTextFacet.js
+/* harmony default export */ var renderTextFacet = (function (facetItem) {
+  var selectedFacet = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+  var isExpanded = arguments.length > 2 ? arguments[2] : undefined;
+  var facetSearchTxt = arguments.length > 3 ? arguments[3] : undefined;
+  var onlyValues = arguments.length > 4 ? arguments[4] : undefined;
+  try {
+    var valuesUI = [];
+    var facetName = facetItem.facetName,
+      _facetItem$values = facetItem.values,
+      values = _facetItem$values === void 0 ? [] : _facetItem$values;
+    var _this$cssList = this.cssList,
+      openFacet = _this$cssList.openFacet,
+      closeFacet = _this$cssList.closeFacet;
+    var self = this;
+    var facet = this.options.facet;
+    var isCollapsible = facet.isCollapsible;
+    var selected = false;
+    if (values.length > 0) {
+      valuesUI = values.map(function () {
+        var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var index = arguments.length > 1 ? arguments[1] : undefined;
+        var dataId = value.dataId;
+        facetItem.isSelected = selectedFacet.some(function (facet) {
+          return facet.dataId === dataId;
+        });
+        if (facetItem.isSelected) {
+          // if isSelected is set to true once, capture it for setting the final isSelected value
+          selected = facetItem.isSelected;
+        }
+        return self.options.facet.facetItemTemplate.bind(self)(facetItem, value, facetSearchTxt);
+      });
+    }
+    if (onlyValues) {
+      return valuesUI.join('');
+    }
+    facetItem.isSelected = selected;
+    var facetUI = this.options.facet.facetTemplate.bind(this)(facetItem, valuesUI.join(''), isExpanded, facetSearchTxt, facet);
+    var styles = isExpanded ? openFacet : closeFacet;
+    if (!isCollapsible) {
+      styles = "";
+    }
+    return "<div class=\"UNX-facet-item-d ".concat(facetName, " ").concat(styles, "\">").concat(facetUI, "</div>");
+  } catch (err) {
+    this.onError("facets > renderTextFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderSelectedFacets.js
+/* harmony default export */ var renderSelectedFacets = (function () {
+  var _this = this;
+  try {
+    var selectedFacetsInfo = this.getSelectedFacets() || {};
+    var selectedRanges = this.getSelectedRanges() || {};
+    var k = Object.keys(selectedFacetsInfo);
+    var selectedUi = "";
+    var _this$options = this.options,
+      _this$options$selecte = _this$options.selectedFacets,
+      selectedFacets = _this$options$selecte === void 0 ? {} : _this$options$selecte,
+      _this$options$facet = _this$options.facet,
+      facet = _this$options$facet === void 0 ? {} : _this$options$facet;
+    var itemTemplate = facet.selectedFacetItemTemplate ? facet.selectedFacetItemTemplate.bind(this) : selectedFacets.itemTemplate.bind(this);
+    var _loop = function _loop() {
+      var j = k[i];
+      var isCategoryFacet = _this.isCategoryFacet(j);
+      var vals = selectedFacetsInfo[j] || [];
+      if (!isCategoryFacet) {
+        vals.forEach(function (item) {
+          var name = item.name,
+            count = item.count,
+            dataId = item.dataId;
+          selectedUi += itemTemplate({
+            facetName: j,
+            facetType: "text"
+          }, {
+            name: name,
+            dataId: dataId ? dataId : name,
+            count: count ? count : 0
+          }, facet, selectedFacets);
+        });
+      }
+    };
+    for (var i = 0; i < k.length; i++) {
+      _loop();
+    }
+    var r = Object.keys(selectedRanges);
+    var _loop2 = function _loop2() {
+      var l = r[j];
+      var val = selectedRanges[l];
+      val.forEach(function (rEl) {
+        selectedUi += itemTemplate({
+          facetName: l,
+          facetType: "range"
+        }, {
+          name: rEl.replace(/[^\w\s]/gi, ''),
+          dataId: rEl
+        }, facet, selectedFacets);
+      });
+    };
+    for (var j = 0; j < r.length; j++) {
+      _loop2();
+    }
+    var selectedFacetTemp = facet.selectedFacetTemplate ? facet.selectedFacetTemplate.bind(this) : selectedFacets.template.bind(this);
+    this.selectedFacetWrappers.forEach(function (wrapper) {
+      wrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
+    });
+  } catch (err) {
+    this.onError("facets > renderSelectedFacets.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderMultiLevelFacet.js
+/* harmony default export */ var renderMultiLevelFacet = (function () {
+  var bucketedFacet = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var isExpanded = arguments.length > 1 ? arguments[1] : undefined;
+  try {
+    var bucketedUi = "";
+    var self = this;
+    var _this$cssList = this.cssList,
+      _this$cssList$openFac = _this$cssList.openFacet,
+      openFacet = _this$cssList$openFac === void 0 ? "" : _this$cssList$openFac,
+      _this$cssList$closeFa = _this$cssList.closeFacet,
+      closeFacet = _this$cssList$closeFa === void 0 ? "" : _this$cssList$closeFa;
+    var facetName = bucketedFacet.facetName;
+    var _this$options$facet = this.options.facet,
+      facet = _this$options$facet === void 0 ? {} : _this$options$facet;
+    var isCollapsible = facet.isCollapsible;
+    var breadCrumb = this.getBreadCrumbsList(facetName) || [];
+    var valueUI = self.options.facet.multiLevelFacetTemplate.bind(this)(bucketedFacet, breadCrumb, "", facet);
+    bucketedUi += self.options.facet.facetTemplate.bind(self)(bucketedFacet, valueUI, isExpanded, null, facet);
+    var styles = isExpanded ? openFacet : closeFacet;
+    if (!isCollapsible) {
+      styles = "";
+    }
+    return "<div class=\"".concat(facetName, " UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ").concat(styles, "\">").concat(bucketedUi, "</div>");
+  } catch (err) {
+    this.onError("facets > renderMultiLevelFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/renderRangeFacet.js
+/* harmony default export */ var renderRangeFacet = (function () {
+  var rangeFacet = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var isExpanded = arguments.length > 1 ? arguments[1] : undefined;
+  try {
+    var facetName = rangeFacet.facetName;
+    var _this$cssList = this.cssList,
+      _this$cssList$openFac = _this$cssList.openFacet,
+      openFacet = _this$cssList$openFac === void 0 ? "" : _this$cssList$openFac,
+      _this$cssList$closeFa = _this$cssList.closeFacet,
+      closeFacet = _this$cssList$closeFa === void 0 ? "" : _this$cssList$closeFa;
+    var _this$options$facet = this.options.facet,
+      facet = _this$options$facet === void 0 ? {} : _this$options$facet;
+    var isCollapsible = facet.isCollapsible;
+    var selectedRanges = this.state.rangeFacet;
+    var selectedRange = selectedRanges[facetName] || [];
+    rangeFacet.isSelected = selectedRange.length > 0;
+    var facetUI = this.options.facet.rangeTemplate.bind(this)(rangeFacet, selectedRange, facet);
+    var rangeUi = this.options.facet.facetTemplate.bind(this)(rangeFacet, facetUI, isExpanded, null, facet);
+    var styles = isExpanded ? openFacet : closeFacet;
+    if (!isCollapsible) {
+      styles = "";
+    }
+    return "<div class=\"".concat(facetName, " UNX-facet-item-d range-facets-block ").concat(styles, "\">").concat(rangeUi, "</div>");
+  } catch (err) {
+    this.onError("facets > renderRangeFacet.js", err);
+  }
+});
+;
+// CONCATENATED MODULE: ./src/modules/facets/setFacetMethods.js
+
+
+
+
+
+
+var isSelectedRange = function isSelectedRange(facetName, range) {
+  var selections = this.getSelectedRanges(facetName);
+  var from = range.from,
+    end = range.end;
+  var aR = "[".concat(from.name, " TO ").concat(end.name, "]");
+  if (selections && selections.indexOf(aR) >= 0) {
+    return true;
+  }
+  return false;
+};
+var clearAllFacets = function clearAllFacets() {
+  this.state.selectedFacets = {};
+  this.state.rangeFacet = [];
+  this.state.categoryFilter = {};
+};
+var isExpandedFacet = function isExpandedFacet(facetName) {
+  var _this$viewState$expan = this.viewState.expandedFacets,
+    expandedFacets = _this$viewState$expan === void 0 ? {} : _this$viewState$expan;
+  var isFound = false;
+  if (expandedFacets[facetName] === true) {
+    isFound = true;
+  }
+  return isFound;
+};
+var setSearchFacetsText = function setSearchFacetsText(facet, value) {
+  this.viewState.searchFacetsText[facet] = value;
+  this.reRenderTextFacet(facet);
+};
+var getSearchFacetsText = function getSearchFacetsText(facet) {
+  return this.viewState.searchFacetsText[facet] || "";
+};
+var reRenderTextFacet = function reRenderTextFacet(facetName) {
+  var _this$options$facet$f = this.options.facet.facetClass,
+    facetClass = _this$options$facet$f === void 0 ? "" : _this$options$facet$f;
+  var facetSearchTxt = this.getSearchFacetsText(facetName) || "";
+  var items = document.querySelectorAll(".".concat(facetName, " .").concat(facetClass)) || [];
+  items.forEach(function (item) {
+    var _ref = item.dataset || {},
+      id = _ref.id;
+    if (id && id.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) >= 0) {
+      item.classList.remove("UNX-search-hidden");
+    } else {
+      item.classList.add("UNX-search-hidden");
+    }
+  });
+};
+var setRangeSlider = function setRangeSlider() {
+  var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  this.setRangeFacet(value);
+  var facetName = value.facetName,
+    start = value.start,
+    end = value.end;
+  this.getCallbackActions({
+    facetName: facetName,
+    facetAction: 'changeFacet',
+    id: facetName
+  }, 'facetClick');
+  this.viewState.lastAction = "updatedRangeSlider";
+  this.setPageStart(0);
+  this.applyRangeFacet();
+};
+var checkFacets = function checkFacets() {
+  var applyMultipleFilters = this.options.facet.applyMultipleFilters;
+  if (applyMultipleFilters) {
+    var qS = this.getStateFromUrl() || {};
+    var _qS$selectedFacets = qS.selectedFacets,
+      selectedFacets = _qS$selectedFacets === void 0 ? {} : _qS$selectedFacets,
+      selectedRanges = qS.selectedRanges;
+    this.state.selectedFacets = selectedFacets;
+    this.state.selectedRanges = selectedRanges;
+  }
+};
+var setFacetMethods_setFacets = function setFacets(prototype) {
+  prototype = Object.assign(prototype, {
+    findChangedFacet: findChangedFacet,
+    isSelectedRange: isSelectedRange,
+    clearAllFacets: clearAllFacets,
+    isExpandedFacet: isExpandedFacet,
+    setSearchFacetsText: setSearchFacetsText,
+    getSearchFacetsText: getSearchFacetsText,
+    reRenderTextFacet: reRenderTextFacet,
+    renderTextFacet: renderTextFacet,
+    renderRangeFacet: renderRangeFacet,
+    renderMultiLevelFacet: renderMultiLevelFacet,
+    renderFacets: renderFacets,
+    renderSelectedFacets: renderSelectedFacets,
+    checkFacets: checkFacets,
+    setRangeSlider: setRangeSlider
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/products/renderProducts.js
+function renderProducts() {
+  try {
+    var productViewType = this.viewState.productViewType;
+    var searchResultsWrapper = this.searchResultsWrapper;
+    var noResultCss = "UNX-no-resultss-wrap";
+    var _this$viewState = this.viewState,
+      noResultLoaded = _this$viewState.noResultLoaded,
+      isInfiniteStarted = _this$viewState.isInfiniteStarted,
+      lastAction = _this$viewState.lastAction;
+    var viewCss = productViewType === "LIST" ? "UNX-list-block" : "UNX-grid-block";
+    searchResultsWrapper.classList.remove("UNX-list-block");
+    searchResultsWrapper.classList.remove("UNX-grid-block");
+    searchResultsWrapper.classList.add(viewCss);
+    searchResultsWrapper.classList.remove(noResultCss);
+    searchResultsWrapper.style.minHeight = '100vh';
+    if (isInfiniteStarted) {
+      this.viewState.isInfiniteStarted = false;
+      if (noResultLoaded) {
+        this.viewState.noResultLoaded = true;
+        searchResultsWrapper.innerHTML = this.renderSearch();
+        window.scrollTo(0, 0);
+      } else {
+        var currentUrlPage = this.getCurrentUrlPage();
+        var productsPerPage = this.getProductsPerPage();
+        var _this$options$url = this.options.url,
+          _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+          _this$options$url2$pa = _this$options$url2.pageNoUrl,
+          _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+          _this$options$url2$pa3 = _this$options$url2$pa2.usePageNo,
+          usePageNo = _this$options$url2$pa3 === void 0 ? false : _this$options$url2$pa3;
+        if (lastAction === "prev_page_loaded") {
+          searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
+          document.querySelector(".product-item[data-prank=\"".concat(currentUrlPage * productsPerPage + 1, "\"]")).scrollIntoView();
+          if (usePageNo) {
+            this.setPageNoParam(currentUrlPage + 1);
+          } else {
+            this.setPageNoParam(currentUrlPage * productsPerPage);
+          }
+        } else {
+          searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
+          if (usePageNo) {
+            this.setPageNoParam(currentUrlPage - 1);
+          } else {
+            this.setPageNoParam((currentUrlPage - 2) * productsPerPage);
+          }
+        }
+      }
+    } else {
+      searchResultsWrapper.innerHTML = "";
+      searchResultsWrapper.innerHTML = this.renderSearch();
+      window.scrollTo(0, 0);
+    }
+  } catch (err) {
+    this.onError("renderProducts.js", err);
+  }
+}
+// CONCATENATED MODULE: ./src/modules/products/setProductsMethods.js
+
+var setProductsMethods_setProductsMethods = function setProductsMethods(prototype) {
+  prototype = Object.assign(prototype, {
+    renderProducts: renderProducts
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/searchResults/renderSearch.js
+var renderSearch = function renderSearch() {
+  var _this = this;
+  try {
+    var searchResults = this.getSearchResults();
+    if (!searchResults) {
+      return "";
+    }
+    var products = searchResults.products;
+    var self = this;
+    var swatches = this.options.swatches;
+    var gridCount = this.options.products.gridCount;
+    var productViewType = this.viewState.productViewType;
+    var productsUI = "";
+    var idx = Number(this.state.startPageNo);
+    var swatchUI = "";
+    if (productViewType === "GRID" && gridCount && gridCount > 1) {
+      products.forEach(function (product, index) {
+        var row = index % gridCount;
+        if (row === 0) {
+          productsUI += "<div class=\"UNX-row\">";
+        }
+        var pRank = index + idx + 1;
+        var mappedProduct = _this.mapProductAttrs(product);
+        if (swatches.enabled) {
+          swatchUI = _this.renderSwatchBtns(product);
+        }
+        productsUI += self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, _this.options.products);
+        if (row === gridCount - 1) {
+          productsUI += "</div>";
+        }
+      });
+    } else {
+      productsUI = products.map(function (product, index) {
+        var pRank = index + idx + 1;
+        var mappedProduct = _this.mapProductAttrs(product);
+        if (swatches.enabled) {
+          swatchUI = _this.renderSwatchBtns(product);
+        }
+        return self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, _this.options.products);
+      }).join('');
+    }
+    return productsUI;
+  } catch (err) {
+    this.options.onError("searchResults > renderSearch", err);
+  }
+};
+/* harmony default export */ var searchResults_renderSearch = (renderSearch);
+// CONCATENATED MODULE: ./src/modules/searchResults/actions.js
+var onProductItemClick = function onProductItemClick(e) {
+  var path = e.path || e.composedPath && e.composedPath();
+  var _this$options$product = this.options.products,
+    productItemClass = _this$options$product.productItemClass,
+    attributesMap = _this$options$product.attributesMap;
+  var id = productItemClass.replace(".", "");
+  var dataset = e.target.dataset;
+  var elem = path.find(function (item) {
+    var itemCss = item.className;
+    return itemCss.indexOf(id) >= 0;
+  });
+  var _ref = dataset || {},
+    action = _ref.action,
+    swatchId = _ref.swatchId;
+  if (action === this.actions.changeSwatch && swatchId) {
+    elem.querySelectorAll(".UNX-img-wrapper").forEach(function (imgBlock) {
+      var btnE = elem.querySelector(".".concat(imgBlock.id));
+      if (imgBlock.id === swatchId) {
+        imgBlock.classList.remove("UNX-swatch-hidden");
+        elem.querySelector(".".concat(swatchId)).classList.add("UNX-selected-swatch");
+      } else {
+        imgBlock.classList.add("UNX-swatch-hidden");
+        btnE.classList.remove("UNX-selected-swatch");
+      }
+    });
+    this.options.onEvent(this, dataset.action);
+    return false;
+  }
+  var product = null;
+  dataset = elem.dataset;
+  if (dataset.id) {
+    product = this.getProductByPropValue(attributesMap.unxId, dataset.id);
+  }
+  if (product && elem.dataset.prank) {
+    var _this$options$url = this.options.url,
+      _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+      _this$options$url2$pa = _this$options$url2.pageNoUrl,
+      _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa3 = _this$options$url2$pa2.usePageNo,
+      usePageNo = _this$options$url2$pa3 === void 0 ? false : _this$options$url2$pa3;
+    product.prank = elem.dataset.prank;
+    var pageNo = Math.ceil(Number(product.prank) / Number(this.getProductsPerPage()));
+    if (usePageNo) {
+      this.setPageNoParam(pageNo);
+    } else {
+      this.setPageNoParam(Number((pageNo - 1) * Number(this.getProductsPerPage())));
+    }
+  }
+  this.options.products.onProductClick(product, e);
+  this.getCallbackActions(product, "click");
+};
+
+// CONCATENATED MODULE: ./src/modules/searchResults/renderNoResults.js
+function renderNoResults() {
+  var query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  try {
+    return this.options.noResults.template(query);
+  } catch (err) {
+    this.onError("searchresults > renderNoResults", err);
+  }
+}
+/* harmony default export */ var searchResults_renderNoResults = (renderNoResults);
+// CONCATENATED MODULE: ./src/modules/searchResults/setSearch.js
+
+
+
+var mapProductAttrs = function mapProductAttrs(product) {
+  var products = this.options.products;
+  var attributesMap = products.attributesMap;
+  var attrArray = Object.keys(attributesMap);
+  attrArray.forEach(function (item) {
+    var pI = product[item];
+    var mI = attributesMap[item];
+    if (!pI) {
+      product[item] = product[mI];
+    }
+  });
+  return product;
+};
+var setSearch_setSearch = function setSearch(prototype) {
+  prototype = Object.assign(prototype, {
+    renderSearch: searchResults_renderSearch,
+    onProductItemClick: onProductItemClick,
+    renderNoResults: searchResults_renderNoResults,
+    mapProductAttrs: mapProductAttrs
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/productViewType/renderProductViewTypeUI.js
+function renderProductViewTypeUI() {
+  try {
+    var _this$options$product = this.options.productView,
+      productView = _this$options$product === void 0 ? {} : _this$options$product;
+    if (productView.el) {
+      var productViewType = this.viewState.productViewType;
+      var results = this.getSearchResults();
+      if (results && results.numberOfProducts === 0) {
+        this.productViewTypeWrapper.innerHTML = "";
+      } else {
+        this.productViewTypeWrapper.innerHTML = this.options.productView.template.bind(this)(productViewType, productView);
+      }
+    }
+  } catch (err) {
+    this.onError("ProductViewType > renderProductViewTypeUI", err);
+  }
+}
+;
+/* harmony default export */ var productViewType_renderProductViewTypeUI = (renderProductViewTypeUI);
+// CONCATENATED MODULE: ./src/modules/utils/extend.js
+var extend = function extend() {
+  // Variables
+  var extended = {};
+  var deep = true;
+  var i = 0;
+  var length = arguments.length;
+
+  // Check if a deep merge
+  if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
+    deep = arguments[0];
+    i++;
+  }
+
+  // Merge the object into the extended object
+  var merge = function merge(obj) {
+    for (var prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+        if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+          extended[prop] = extend(true, extended[prop], obj[prop]);
+        } else {
+          extended[prop] = obj[prop];
+        }
+      }
+    }
+  };
+
+  // Loop through each object and conduct a merge
+  for (; i < length; i++) {
+    var obj = arguments[i];
+    merge(obj);
+  }
+  return extended;
+};
+/* harmony default export */ var utils_extend = (extend);
+// CONCATENATED MODULE: ./src/modules/productViewType/onPageViewTypeClick.js
+
+function onPageViewTypeClick(e) {
+  var elem = e.target;
+  var action = this.options.productView.action;
+  var productViewType = this.viewState.productViewType;
+  var selected = action === "click" ? elem : elem.options[elem.selectedIndex];
+  var dataSet = selected.dataset || {};
+  var viewAction = dataSet.viewAction;
+  this.checkFacets();
+  if (productViewType !== viewAction) {
+    this.viewState.productViewType = viewAction;
+    var _this$options$extraPa = this.options.extraParams,
+      extraParams = _this$options$extraPa === void 0 ? {} : _this$options$extraPa;
+    this.options.extraParams = utils_extend(true, {}, extraParams, {
+      "viewType": viewAction
+    });
+    this.state.productViewType = this.viewState.productViewType;
+    this.state.isBack = false;
+    this.viewState.lastAction = "viewType";
+    this.setUrl(false);
+    this.renderProductViewTypeUI();
+    this.renderProducts();
+  }
+}
+
+// CONCATENATED MODULE: ./src/modules/productViewType/setProductViewType.js
+
+
+var setProductViewType_setProductViewType = function setProductViewType(prototype) {
+  prototype = Object.assign(prototype, {
+    onPageViewTypeClick: onPageViewTypeClick,
+    renderProductViewTypeUI: productViewType_renderProductViewTypeUI
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/pagination/renderPagination.js
+var renderPagination = function renderPagination() {
+  try {
+    var _this$options$paginat = this.options.pagination,
+      pagination = _this$options$paginat === void 0 ? {} : _this$options$paginat;
+    var _ref = pagination || {},
+      type = _ref.type;
+    var paginationUI = "";
+    if (type !== 'INFINITE_SCROLL') {
+      var pageInfo = this.getPaginationInfo();
+      if (pageInfo) {
+        paginationUI = pagination.template.bind(this)(pageInfo, pagination);
+      }
+    }
+    return paginationUI;
+  } catch (err) {
+    this.onError("Pagination > renderPagination.js", err);
+  }
+};
+/* harmony default export */ var pagination_renderPagination = (renderPagination);
+// CONCATENATED MODULE: ./src/modules/pagination/infiniteScroller.js
+function infiniteScroller_createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = infiniteScroller_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function infiniteScroller_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return infiniteScroller_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return infiniteScroller_arrayLikeToArray(o, minLen); }
+function infiniteScroller_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+var setUpInfiniteScroll = function setUpInfiniteScroll() {
+  var _this = this;
+  try {
+    return new Promise(function (resolve, reject) {
+      var _this$options$url = _this.options.url,
+        _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+        _this$options$url2$pa = _this$options$url2.pageNoUrl,
+        _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+        _this$options$url2$pa3 = _this$options$url2$pa2.usePageNo,
+        usePageNo = _this$options$url2$pa3 === void 0 ? false : _this$options$url2$pa3,
+        _this$options$url2$pa4 = _this$options$url2$pa2.keyReplacer,
+        keyReplacer = _this$options$url2$pa4 === void 0 ? "" : _this$options$url2$pa4,
+        addToUrl = _this$options$url2$pa2.addToUrl;
+      _this.resetObservers = function () {
+        _this.observer.disconnect();
+        _this.preLoaderObserver.disconnect();
+        _this.preLoaderObserver.observe(preLoader);
+        if (_this.options.pagination.type === 'INFINITE_SCROLL') {
+          _this.postLoaderObserver.disconnect();
+          _this.postLoaderObserver.observe(postLoader);
+        }
+        _this.observer.observe(productsContainer, {
+          childList: true,
+          subtree: true
+        });
+        return;
+      };
+      var productsContainer = window;
+      if (_this.options.pagination.type === "INFINITE_SCROLL") {
+        productsContainer = _this.options.pagination.infiniteScrollTriggerEl;
+      } else if (_this.options.pagination.type === "CLICK_N_SCROLL") {
+        productsContainer = _this.options.products.el;
+      }
+      var postLoader = document.querySelector('.UNX-post-loader');
+      var preLoader = document.querySelector('.UNX-pre-loader');
+      _this.individualProductObserver = new IntersectionObserver(function (entries) {
+        var self = _this;
+        entries.forEach(function (entry) {
+          // Check if the product item is fully in view
+          if (entry.isIntersecting) {
+            // Get the prank value of the visible product item
+            var productIndex = parseInt(entry.target.dataset.prank);
+            var currentUrlPage = _this.getCurrentUrlPage();
+            var productsPerPage = _this.getProductsPerPage();
+
+            // Calculate the page number that the visible product belongs to
+            var currentPage = Math.ceil(productIndex / productsPerPage);
+
+            // Update the current page number in the URL if necessary
+            if (currentPage !== currentUrlPage) {
+              if (usePageNo) {
+                _this.setPageNoParam(currentPage);
+              } else {
+                _this.setPageNoParam((currentPage - 1) * productsPerPage);
+              }
+            }
+            // if (currentPage !== currentUrlPage) {
+            //     if (self.options.pagination.usePageAndCount) {
+            //         this.setPageNoParam('page', currentPage);
+            //     } else {
+            //         this.setPageNoParam('start', (currentPage - 1) * productsPerPage);
+            //     }
+            // }
+          }
+        });
+      }, {
+        threshold: [1]
+      });
+      _this.preLoaderObserver = new IntersectionObserver(function (entries) {
+        var currentUrlPage = _this.getCurrentUrlPage();
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && currentUrlPage > 1 && !_this.state.isLoading && !_this.viewState.isInfiniteStarted) {
+            _this.renderNewResults('prev');
+          }
+        });
+      }, {
+        threshold: 0,
+        // Trigger when the element is fully visible in the viewport
+        rootMargin: "0px 0px 0px 0px" // Offset the root margin by the height of the products container
+      });
+
+      _this.postLoaderObserver = new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting && !_this.state.isLoading && !_this.viewState.isInfiniteStarted) {
+          _this.renderNewResults('next');
+        }
+      }, {
+        threshold: 0,
+        rootMargin: "0px 0px 0px 0px"
+      });
+
+      // create an observer instance
+      _this.observer = new MutationObserver(function (mutationsList, observer) {
+        var _iterator = infiniteScroller_createForOfIteratorHelper(mutationsList),
+          _step;
+        try {
+          var _loop = function _loop() {
+            var mutation = _step.value;
+            if (mutation.type === 'childList') {
+              var self = _this;
+              mutation.addedNodes.forEach(function (node) {
+                if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('product-item')) {
+                  self.individualProductObserver.observe(node);
+                }
+              });
+              _this.resetObservers();
+            }
+          };
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            _loop();
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+      });
+      _this.preLoaderObserver.observe(preLoader);
+      if (_this.options.pagination.type === 'INFINITE_SCROLL') {
+        _this.postLoaderObserver.observe(postLoader);
+      }
+      _this.observer.observe(productsContainer, {
+        childList: true,
+        subtree: true
+      });
+    });
+  } catch (err) {
+    this.onError('infiniteScroller.js', err);
+  }
+};
+/* harmony default export */ var infiniteScroller = (setUpInfiniteScroll);
+// CONCATENATED MODULE: ./src/modules/pagination/actions.js
+var triggerNextPage = function triggerNextPage(context, next, action) {
+  if (context.options.pagination.type === "FIXED_PAGINATION") {
+    context.viewState.lastAction = "pagination";
+    context.setPageStart(next);
+    // context.viewState.start = next;
+  }
+
+  context.getResults("", true, action);
+  context.options.onEvent(context, context.events.pageNext, {
+    value: next
+  });
+};
+function renderNewResults(action, currentPage) {
+  try {
+    var pageInfo = this.getPaginationInfo() || {};
+    var _this$options = this.options,
+      pagination = _this$options.pagination,
+      onEvent = _this$options.onEvent;
+    var start = pageInfo.start,
+      productsLn = pageInfo.productsLn,
+      numberOfProducts = pageInfo.numberOfProducts,
+      rows = pageInfo.rows,
+      isNext = pageInfo.isNext,
+      isPrev = pageInfo.isPrev;
+    var currentUrlPage = this.getCurrentUrlPage();
+    var productsPerPage = this.getProductsPerPage();
+    if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
+      if (action === this.actions.next) {
+        if (isNext) {
+          this.viewState.isInfiniteStarted = true;
+          currentUrlPage++;
+          this.setPageStart((currentUrlPage - 1) * productsPerPage);
+          // this.viewState.start = (currentUrlPage - 1) * productsPerPage
+          this.viewState.lastAction = "next_page_loaded";
+          triggerNextPage(this, null, action);
+        }
+      }
+      if (action === this.actions.prev) {
+        if (isPrev) {
+          this.viewState.isInfiniteStarted = true;
+          currentUrlPage--;
+          this.setPageStart((currentUrlPage - 1) * productsPerPage);
+          // this.viewState.start = (currentUrlPage - 1) * productsPerPage
+          this.viewState.lastAction = "prev_page_loaded";
+          triggerNextPage(this, null, action);
+        }
+        if (action === this.actions.prev) {
+          var prev = start - rows;
+          if (isPrev) {
+            this.viewState.isInfiniteStarted = true;
+            triggerNextPage(this, prev, action);
+          }
+        }
+      }
+    } else {
+      if (action === this.actions.next) {
+        var next = start + rows;
+        if (isNext) {
+          triggerNextPage(this, next);
+        }
+      }
+      if (action === this.actions.prev) {
+        var _prev = start - rows;
+        if (isPrev) {
+          this.viewState.lastAction = "pagination";
+          triggerNextPage(this, _prev);
+          onEvent(this, this.events.pagePrev, {
+            value: _prev
+          });
+        }
+      }
+    }
+  } catch (err) {
+    this.onError("Pagination > renderNewResults", err);
+  }
+}
+;
+function paginationAction(e) {
+  var _e$target$dataset = e.target.dataset,
+    pageAction = _e$target$dataset.pageAction,
+    pageNo = _e$target$dataset.pageNo;
+  this.checkFacets();
+  this.viewState.lastDidYouMean = "";
+  if (pageAction === 'paginate') {
+    this.viewState.lastAction = "pagination";
+    this.setPageStart(pageNo);
+    // this.viewState.start = pageNo;
+    this.getResults();
+  } else {
+    this.renderNewResults(pageAction);
+  }
+}
+
+// CONCATENATED MODULE: ./src/modules/pagination/setPagination.js
+
+
+
+var getProductsPerPage = function getProductsPerPage() {
+  var _this$options = this.options,
+    _this$options$url = _this$options.url,
+    _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
+    _this$options$url2$pa = _this$options$url2.pageSizeUrl,
+    _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+    _this$options$url2$pa3 = _this$options$url2$pa2.keyReplacer,
+    keyReplacer = _this$options$url2$pa3 === void 0 ? "" : _this$options$url2$pa3,
+    addToUrl = _this$options$url2$pa2.addToUrl,
+    _this$options$url2$pa4 = _this$options$url2$pa2.algo,
+    algo = _this$options$url2$pa4 === void 0 ? "DEFAULT" : _this$options$url2$pa4,
+    _this$options$url2$pa5 = _this$options$url2.pageNoUrl,
+    _this$options$url2$pa6 = _this$options$url2$pa5 === void 0 ? {} : _this$options$url2$pa5,
+    _this$options$url2$pa7 = _this$options$url2$pa6.usePageNo,
+    usePageNo = _this$options$url2$pa7 === void 0 ? false : _this$options$url2$pa7,
+    _this$options$pagesiz = _this$options.pagesize,
+    _this$options$pagesiz2 = _this$options$pagesiz === void 0 ? {} : _this$options$pagesiz,
+    pageSize = _this$options$pagesiz2.pageSize;
+  if (addToUrl) {
+    var urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+    // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+    // let productsPerPage;
+
+    // if (!customize) {
+    //     keyReplacer = this.options.url.pageSizeUrl.keyReplacer
+    // }
+
+    return Number(urlParams[algo === "KEY_VALUE_REPLACER" ? keyReplacer : "rows"]);
+  } else {
+    return this.state.pageSize || pageSize;
+  }
+  // return addToUrl ? Number(urlParams.get(keyReplacer)) : this.viewState[ 'count' ]
+
+  // if (this.options.pagination.usePageAndCount) {
+  //     productsPerPage = Number(urlParams.get('count'));
+  // } else {
+  //     productsPerPage = Number(urlParams.get('rows'));
+  // }
+  // return productsPerPage;
+};
+
+var getCurrentUrlPage = function getCurrentUrlPage() {
+  var urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+  // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+  var currentUrlPage;
+  var _this$options$url3 = this.options.url,
+    _this$options$url4 = _this$options$url3 === void 0 ? {} : _this$options$url3,
+    _this$options$url4$pa = _this$options$url4.pageNoUrl,
+    _this$options$url4$pa2 = _this$options$url4$pa === void 0 ? {} : _this$options$url4$pa,
+    _this$options$url4$pa3 = _this$options$url4$pa2.algo,
+    algo = _this$options$url4$pa3 === void 0 ? "DEFAULT" : _this$options$url4$pa3,
+    _this$options$url4$pa4 = _this$options$url4$pa2.usePageNo,
+    usePageNo = _this$options$url4$pa4 === void 0 ? false : _this$options$url4$pa4,
+    _this$options$url4$pa5 = _this$options$url4$pa2.keyReplacer,
+    keyReplacer = _this$options$url4$pa5 === void 0 ? "" : _this$options$url4$pa5,
+    addToUrl = _this$options$url4$pa2.addToUrl;
+
+  // if (!customize) {
+  //     keyReplacer = this.options.url.pageNoUrl.keyReplacer
+  // }
+
+  // if (usePageNo) {
+  //     return addToUrl ? Number(urlParams.get(customize ? keyReplacer : "page") || 1 ) : (this.viewState[ 'page' ] || 1);
+  // } else {
+  //     return addToUrl ? (Number((urlParams.get(customize ? keyReplacer : "start") || 0) / getProductsPerPage.call(this)) + 1) : (this.viewState[ 'start' ] || 0);
+  // }
+
+  if (addToUrl) {
+    var pageNo = Number(urlParams[algo === "KEY_VALUE_REPLACER" ? keyReplacer : usePageNo ? "page" : "start"]);
+    // const pageNo = Number(urlParams.get((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"));
+    return usePageNo ? Number(pageNo) : Number(pageNo / getProductsPerPage.call(this) + 1);
+  } else if (usePageNo) {
+    if (!this.viewState['page']) {
+      this.viewState['page'] = 1;
+    }
+    return this.viewState['page'];
+    // return this.viewState[ 'page' ] || 1;
+  } else {
+    if (!this.viewState['start']) {
+      this.viewState['start'] = 0;
+    }
+    return Number(this.viewState['start'] / this.state.pageSize + 1);
+  }
+
+  // if (this.options.pagination.usePageAndCount) {
+  //     currentUrlPage = Number(urlParams.get('page')) || 1;
+  // } else {
+  //     currentUrlPage = Number(urlParams.get('start') / getProductsPerPage.call(this)) + 1;
+  // }
+  // return currentUrlPage;
+};
+
+var setPageNoParam = function setPageNoParam(value) {
+  var _this$options$url5 = this.options.url,
+    _this$options$url6 = _this$options$url5 === void 0 ? {} : _this$options$url5,
+    _this$options$url6$pa = _this$options$url6.pageNoUrl,
+    _this$options$url6$pa2 = _this$options$url6$pa === void 0 ? {} : _this$options$url6$pa,
+    algo = _this$options$url6$pa2.algo,
+    _this$options$url6$pa3 = _this$options$url6$pa2.usePageNo,
+    usePageNo = _this$options$url6$pa3 === void 0 ? false : _this$options$url6$pa3,
+    keyReplacer = _this$options$url6$pa2.keyReplacer,
+    addToUrl = _this$options$url6$pa2.addToUrl;
+  if (addToUrl) {
+    var urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+    // const urlParams = new URLSearchParams(this.options.hashMode ? location.hash.slice(1) : location.search);
+    urlParams[algo === "KEY_VALUE_REPLACER" ? keyReplacer : usePageNo ? 'page' : 'start'] = [value];
+    history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+  } else if (usePageNo) {
+    this.viewState['page'] = value;
+  } else {
+    this.viewState['start'] = value;
+  }
+};
+var setPagination_setPagination = function setPagination(prototype) {
+  prototype = Object.assign(prototype, {
+    renderPagination: pagination_renderPagination,
+    renderNewResults: renderNewResults,
+    paginationAction: paginationAction,
+    setUpInfiniteScroll: infiniteScroller,
+    getProductsPerPage: getProductsPerPage,
+    getCurrentUrlPage: getCurrentUrlPage,
+    setPageNoParam: setPageNoParam
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/sort/sortAction.js
+function sortAction(e) {
+  var elem = e.target;
+  this.viewState.lastDidYouMean = "";
+  var selected = this.options.sort.action === "click" ? elem : elem.options[elem.selectedIndex];
+  var dataSet = selected.dataset;
+  var _elem$dataset = elem.dataset,
+    action = _elem$dataset.action,
+    value = _elem$dataset.value;
+  var sortVal = elem.value || value || "";
+  var changeSort = this.events.changeSort;
+  this.checkFacets();
+  if (action === this.actions.clearSort) {
+    this.applySort("");
+    this.options.onEvent(this, action);
+  }
+  if (action === this.actions.changeSort) {
+    this.applySort(sortVal);
+    this.options.onEvent(this, changeSort, {
+      sort: sortVal
+    });
+  }
+}
+;
+
+// CONCATENATED MODULE: ./src/modules/sort/renderSort.js
+function renderSort() {
+  var _this = this;
+  try {
+    var results = this.getSearchResults();
+    var _this$options$sort = this.options.sort,
+      sort = _this$options$sort === void 0 ? {} : _this$options$sort;
+    var _this$sortWrappers = this.sortWrappers,
+      sortWrappers = _this$sortWrappers === void 0 ? [] : _this$sortWrappers;
+    sortWrappers && sortWrappers.forEach(function (wrapper) {
+      var ui = "";
+      if (results && results.numberOfProducts > 0) {
+        ui = _this.options.sort.template.bind(_this)(_this.getSelectedSort(), sort);
+      }
+      wrapper.innerHTML = ui;
+    });
+  } catch (err) {
+    this.onError("Sort > renderSort", err);
+  }
+}
+/* harmony default export */ var sort_renderSort = (renderSort);
+// CONCATENATED MODULE: ./src/modules/sort/setSort.js
+
+
+var setSort_setSort = function setSort(prototype) {
+  prototype = Object.assign(prototype, {
+    sortAction: sortAction,
+    renderSort: sort_renderSort
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/input/setInputValue.js
+var setInputValue = function setInputValue(e) {
+  try {
+    var val = this.options.searchBoxEl.value;
+    if (!val.replace(/\s/g, '').length) {
+      return false;
+    }
+    this.options.productType = "SEARCH";
+    val = val.indexOf("#") === 0 ? val.replace("#", "") : val;
+    if (val) {
+      this.resetAll();
+      this.changeInput(val, this.events.changeInput);
+      this.options.products.productType = "SEARCH";
+      this.viewState.loadedFromSuggestion = false;
+      this.state.selectedSort = "";
+      this.setPageStart(0);
+      this.resetViewState();
+      this.getResults();
+    } else {
+      this.searchResultsWrapper.innerHTML = null;
+    }
+  } catch (err) {
+    this.onError("input > setInputValue.js", err);
+  }
+};
+
+// CONCATENATED MODULE: ./src/modules/input/setInput.js
+
+var setInput_setInput = function setInput(prototype) {
+  prototype = Object.assign(prototype, {
+    setInputValue: setInputValue
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/didYouMean/renderDidYouMean.js
+var renderDidYouMean = function renderDidYouMean(suggestion) {
+  try {
+    var _this$state$userInput = this.state.userInput,
+      userInput = _this$state$userInput === void 0 ? "" : _this$state$userInput;
+    var pages = this.getPaginationInfo() || {};
+    var didYouMean = this.getDidYouMeanFromResponse() || [];
+    var type = this.options.pagination.type;
+    var _this$options$spellCh = this.options.spellCheck,
+      spellCheck = _this$options$spellCh.spellCheck,
+      enabled = _this$options$spellCh.enabled;
+    var viewState = this.viewState;
+    var loadedFromSuggestion = viewState.loadedFromSuggestion,
+      lastDidYouMean = viewState.lastDidYouMean;
+    if (type !== "FIXED_PAGINATION" && pages) {
+      var start = pages.start,
+        productsLn = pages.productsLn;
+      pages.productsLn = productsLn + start;
+      pages.start = 0;
+    }
+    var sugString = didYouMean.length > 0 ? didYouMean[0].suggestion : "";
+    var ui = "";
+    if (sugString && !loadedFromSuggestion) {
+      this.viewState.lastDidYouMean = userInput;
+      this.viewState.loadedFromSuggestion = true;
+      if (enabled) {
+        this.getResults(sugString);
+      }
+    } else {
+      this.viewState.lastDidYouMean = "";
+    }
+    ui = this.options.spellCheck.template.bind(this)(userInput, lastDidYouMean, pages);
+    if (!enabled && sugString) {
+      ui = this.options.spellCheck.template.bind(this)(sugString, userInput, pages);
+    }
+    this.spellCheckWrappers.forEach(function (wrapper) {
+      wrapper.innerHTML = ui;
+    });
+  } catch (err) {
+    this.onError("didYouMean > renderDidYouMean.js", err);
+  }
+};
+/* harmony default export */ var didYouMean_renderDidYouMean = (renderDidYouMean);
+// CONCATENATED MODULE: ./src/modules/didYouMean/setSpellCheck.js
+
+var setSuggestion = function setSuggestion(e) {
+  var txt = this.getSpellCheckSuggested() || [];
+  var didLength = txt.length;
+  var target = e.target;
+  var _ref = target || {},
+    dataset = _ref.dataset;
+  var _this$state$userInput = this.state.userInput,
+    userInput = _this$state$userInput === void 0 ? "" : _this$state$userInput;
+  if (dataset && dataset.action === "getSuggestion") {
+    this.resetAll();
+    this.setPageStart(0);
+    this.getResults(didLength ? txt[0] : userInput);
+    this.viewState.lastDidYouMean = null;
+    this.viewState.loadedFromSuggestion = false;
+  }
+};
+var setSpellCheck_setSpellCheck = function setSpellCheck(prototype) {
+  prototype = Object.assign(prototype, {
+    renderDidYouMean: didYouMean_renderDidYouMean,
+    setSuggestion: setSuggestion
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/breadcrumbs/actions.js
+function onBreadCrumbClick(e) {}
+;
+function renderBreadCrumbs() {
+  var _this = this;
+  try {
+    var _window$unbxdAnalytic, _window$unbxdAnalytic2;
+    var selectedCategories = this.getSelectedMultilevelFacet() || [];
+    if (this.options.products.productType === 'CATEGORY' && ((_window$unbxdAnalytic = window.unbxdAnalyticsConf) === null || _window$unbxdAnalytic === void 0 ? void 0 : (_window$unbxdAnalytic2 = _window$unbxdAnalytic.page) === null || _window$unbxdAnalytic2 === void 0 ? void 0 : _window$unbxdAnalytic2.indexOf("categoryPath")) !== -1) {
+      selectedCategories = ['categoryPath'];
+    }
+    var ui = "";
+    selectedCategories && selectedCategories.forEach(function (item) {
+      var data = _this.getBreadCrumbsList(item) || [];
+      var _this$options$breadcr = _this.options.breadcrumb,
+        breadcrumb = _this$options$breadcr === void 0 ? {} : _this$options$breadcr;
+      ui += _this.options.breadcrumb.template(data, breadcrumb);
+    });
+    return ui;
+  } catch (err) {
+    this.onError("Breadcrumbs > actions.js", err);
+  }
+}
+
+// CONCATENATED MODULE: ./src/modules/breadcrumbs/setBreadcrumbs.js
+
+var setBreadcrumbs_setBreadCrumbs = function setBreadCrumbs(prototype) {
+  prototype = Object.assign(prototype, {
+    onBreadCrumbClick: onBreadCrumbClick,
+    renderBreadCrumbs: renderBreadCrumbs
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/swatches/renderSwatchBtns.js
+function renderSwatchBtns() {
+  var product = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  try {
+    var swatchData = this.getSwatches(product, this.options.swatches.attributesMap) || {};
+    var _this$options$swatche = this.options.swatches,
+      swatches = _this$options$swatche === void 0 ? {} : _this$options$swatche;
+    return this.options.swatches.template.bind(this)(swatchData, swatches, product);
+  } catch (err) {
+    this.onError("Swatches > renderSwatchBtns", err);
+  }
+}
+;
+/* harmony default export */ var swatches_renderSwatchBtns = (renderSwatchBtns);
+// CONCATENATED MODULE: ./src/modules/swatches/setSwatches.js
+
+var setSwatches_setSwatches = function setSwatches(prototype) {
+  prototype = Object.assign(prototype, {
+    renderSwatchBtns: swatches_renderSwatchBtns
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/pageSize/onClickPageSize.js
+var onClickPageSize = function onClickPageSize(e) {
+  var elem = e.target;
+  this.viewState.lastDidYouMean = "";
+  var selected = this.options.pagesize.action === "click" ? elem : elem.options[elem.selectedIndex];
+  var val = selected.id;
+  var pageSizeChange = this.events.pageSizeChange;
+  if (val) {
+    this.checkFacets();
+    this.setPageSize(Number(val));
+    this.getResults.bind(this)();
+    this.options.onEvent(this, pageSizeChange, {
+      count: val
+    });
+  }
+};
+
+// CONCATENATED MODULE: ./src/modules/pageSize/setPageSize.js
+
+
+var renderPageSize = function renderPageSize() {
+  try {
+    var _this$options$pagesiz = this.options.pagesize,
+      pagesize = _this$options$pagesiz === void 0 ? {} : _this$options$pagesiz;
+    var selected = pagesize.pageSize;
+    var qParams = this.getQueryParams() || {};
+    if (qParams) {
+      selected = this.state.pageSize;
+    }
+    var results = this.getSearchResults();
+    if (results && results.numberOfProducts === 0) {
+      this.pageSizeWrapper.innerHTML = "";
+    } else {
+      this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(selected, pagesize);
+    }
+  } catch (err) {
+    this.onError("Pagesize > renderPageSize", err);
+  }
+};
+var setPageSize_setPageSize = function setPageSize(prototype) {
+  prototype = Object.assign(prototype, {
+    pageSizeUi: pageSize_pageSizeUi,
+    onClickPageSize: onClickPageSize,
+    renderPageSize: renderPageSize
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/analytics/setAnalytics.js
+var trackSearch = function trackSearch(value) {
+  Unbxd.track("search", {
+    "query": value
+  });
+};
+var trackProductClick = function trackProductClick(value) {
+  var uniqueId = value.uniqueId,
+    sku = value.sku,
+    prank = value.prank;
+  Unbxd.track("click", {
+    "pid": uniqueId || sku,
+    "prank": prank,
+    "requestId": null
+  });
+};
+var trackImpression = function trackImpression() {
+  var results = this.getSearchResults();
+  var query = this.getSearchQuery();
+  var productType = this.options.productType;
+  var products = results.products;
+  var obj = {
+    'pids_list': []
+  };
+  if (products) {
+    var pids = [];
+    products.forEach(function (product) {
+      var sku = product.sku,
+        uniqueId = product.uniqueId;
+      var pid = uniqueId || sku;
+      pids.push(pid);
+    });
+    obj['pids_list'] = pids;
+    if (productType === "SEARCH") {
+      obj['query'] = query;
+      Unbxd.track('search_impression', obj);
+    } else if (productType === "CATEGORY" || productType === "BROWSE") {
+      if (window.UnbxdAnalyticsConf) {
+        obj['page'] = window.UnbxdAnalyticsConf.page || "";
+        obj['page_type'] = window.UnbxdAnalyticsConf.page_type || "";
+      }
+      Unbxd.track('browse_impression', obj);
+    }
+  }
+};
+var trackFacetClick = function trackFacetClick(state, type) {
+  var textFacets = this.getSelectedFacets();
+  var rangeFacets = this.state.rangeFacet;
+  var categoryField = this.state.categoryFilter;
+  var textFacetsArr = Object.keys(textFacets);
+  var rangeFacetsArr = Object.keys(rangeFacets);
+  var categoryArr = Object.keys(categoryField);
+  var facetArr = {};
+  textFacetsArr.forEach(function (facet) {
+    var valObj = textFacets[facet];
+    var arr = [];
+    valObj.forEach(function (val) {
+      arr.push(val.name);
+    });
+    facetArr[facet] = arr;
+  });
+  rangeFacetsArr.forEach(function (facet) {
+    // const val =rangeFacetsArr[facet];
+    var val = rangeFacets[facet][0];
+    if (val) {
+      var modifiedVal = val.replace(/\[|\]/g, '').split(',');
+      facetArr[facet] = modifiedVal;
+    }
+  });
+  categoryArr.forEach(function (category) {
+    var val = categoryField[category];
+    var original = val.join('>');
+    facetArr[category] = original;
+  });
+  var query = this.getSearchQuery();
+  Unbxd.track('facets', {
+    'query': query,
+    'facets': facetArr
+  });
+};
+var trackCategoryPageLoad = function trackCategoryPageLoad(instance, type) {
+  if (window.UnbxdAnalyticsConf) {
+    //window.UnbxdAnalyticsConf["page_type"] ="CATEGORY_PATH";
+    Unbxd.track("categoryPage", window.UnbxdAnalyticsConf);
+  }
+};
+var getCallbackActions = function getCallbackActions(state, type) {
+  var Unbxd = window.Unbxd || null;
+  var unbxdAnalytics = this.options.unbxdAnalytics;
+  if (!Unbxd || !unbxdAnalytics || Unbxd && !Unbxd.track) {
+    return false;
+  }
+  if (state) {
+    switch (type) {
+      case 'CHANGE_INPUT':
+        this.trackSearch(state);
+        break;
+      case 'click':
+        this.trackProductClick(state);
+        break;
+      case 'AFTER_API_CALL':
+        this.trackImpression();
+        break;
+      case 'facetClick':
+        this.trackFacetClick(state, type);
+      case 'categoryPage':
+        this.trackCategoryPageLoad(state, type);
+        break;
+    }
+  }
+};
+var setAnalytics = function setAnalytics(prototype) {
+  prototype = Object.assign(prototype, {
+    trackSearch: trackSearch,
+    getCallbackActions: getCallbackActions,
+    trackProductClick: trackProductClick,
+    trackImpression: trackImpression,
+    trackFacetClick: trackFacetClick,
+    trackCategoryPageLoad: trackCategoryPageLoad
+  });
+};
+
+// CONCATENATED MODULE: ./src/common/constants/selectors.js
+var unxSelectors = {
+  unxPageSize: 'unxPageSize'
+};
+/* harmony default export */ var selectors = (unxSelectors);
+// CONCATENATED MODULE: ./src/core/reRender.js
+var reRender = function reRender() {
+  var _this = this;
+  var _this$options = this.options,
+    onEvent = _this$options.onEvent,
+    spellCheck = _this$options.spellCheck,
+    pagination = _this$options.pagination,
+    productType = _this$options.productType,
+    searchBoxEl = _this$options.searchBoxEl,
+    loader = _this$options.loader,
+    breadcrumb = _this$options.breadcrumb,
+    productView = _this$options.productView,
+    facet = _this$options.facet;
+  var _this$events = this.events,
+    beforeRender = _this$events.beforeRender,
+    beforeNoResultRender = _this$events.beforeNoResultRender,
+    afterNoResultRender = _this$events.afterNoResultRender,
+    afterRender = _this$events.afterRender;
+  onEvent(this, beforeRender);
+  if (loader.el) {
+    loader.el.innerHTML = "";
+  }
+  var results = this.getSearchResults();
+  var qParams = this.getQueryParams() || {};
+  var query = this.getSearchQuery();
+  var noResultCss = "UNX-no-results-wrap";
+  var _this$viewState = this.viewState,
+    lastAction = _this$viewState.lastAction,
+    productViewType = _this$viewState.productViewType;
+  if (productType === "SEARCH" && searchBoxEl) {
+    searchBoxEl.value = this.state.userInput;
+  }
+  if (productType !== "SEARCH" && searchBoxEl) {
+    searchBoxEl.value = "";
+  }
+  var searchResultsWrapper = this.searchResultsWrapper,
+    paginationWrappers = this.paginationWrappers,
+    breadcrumbWrapper = this.breadcrumbWrapper;
+  if (results && results.numberOfProducts === 0) {
+    var redirect = this.state.responseObj.redirect || {};
+    if (Object.keys(redirect).length) {
+      return;
+    }
+    onEvent(this, beforeNoResultRender);
+    this.viewState.noResultLoaded = true;
+    searchResultsWrapper.classList.add(noResultCss);
+    searchResultsWrapper.innerHTML = this.renderNoResults(query);
+    if (!qParams.filter) {
+      this.renderFacets();
+    }
+    onEvent(this, afterNoResultRender);
+  } else {
+    this.renderProducts();
+  }
+  this.renderFacets();
+  this.renderSelectedFacets();
+  this.renderBannerUI();
+  if (productView.enabled) {
+    this.renderProductViewTypeUI();
+  }
+  this.renderPageSize();
+  this.renderSort();
+  if (breadcrumb.enabled) {
+    breadcrumbWrapper.innerHTML = this.renderBreadCrumbs();
+  }
+  var suggestion = this.getSpellCheckSuggested();
+  if (spellCheck.el) {
+    this.renderDidYouMean(suggestion);
+  }
+  if (lastAction === "pagination") {
+    pagination.onPaginate.bind(this)(this.getPaginationInfo());
+  }
+  if (pagination.type !== "INFINITE_SCROLL") {
+    paginationWrappers.forEach(function (pagination) {
+      pagination.innerHTML = _this.renderPagination();
+    });
+  }
+  onEvent(this, afterRender);
+};
+/* harmony default export */ var core_reRender = (reRender);
+// CONCATENATED MODULE: ./src/core/bindEvents.js
+function bindEvents() {
+  var _this = this;
+  var _this$options = this.options,
+    searchButtonEl = _this$options.searchButtonEl,
+    searchTrigger = _this$options.searchTrigger,
+    products = _this$options.products,
+    facet = _this$options.facet,
+    productView = _this$options.productView,
+    pagination = _this$options.pagination,
+    sort = _this$options.sort,
+    pagesize = _this$options.pagesize,
+    spellCheck = _this$options.spellCheck,
+    searchBoxEl = _this$options.searchBoxEl,
+    actionChangeClass = _this$options.actionChangeClass,
+    actionBtnClass = _this$options.actionBtnClass,
+    breadcrumb = _this$options.breadcrumb,
+    selectedFacets = _this$options.selectedFacets;
+  if (searchBoxEl) {
+    searchBoxEl.addEventListener("keydown", function (e) {
+      var val = e.target.value;
+      if (e.keyCode === 13) {
+        //checks whether the pressed key is "Enter"
+        if (val !== "") {
+          _this.setInputValue.bind(_this)();
+        }
+      }
+    });
+  }
+  if (pagination.enabled) {
+    this.paginationWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, pagination.action, ".".concat(pagination.pageClass), _this.paginationAction.bind(_this));
+    });
+  }
+  if (facet.facetsEl) {
+    this.facetWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, facet.facetAction, ".".concat(facet.facetClass), _this.findChangedFacet.bind(_this));
+      _this.delegate(wrapper, 'change', '.' + actionChangeClass, _this.extraActionsChange.bind(_this));
+      _this.delegate(wrapper, 'keyup', '.' + actionChangeClass, _this.extraActionsChange.bind(_this));
+      _this.delegate(wrapper, 'click', '.' + actionBtnClass, _this.extraActions.bind(_this));
+    });
+  }
+  if (searchButtonEl) {
+    searchButtonEl.addEventListener(searchTrigger, this.setInputValue.bind(this));
+  }
+  if (spellCheck.el) {
+    this.spellCheckWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, 'click', ".".concat(spellCheck.selectorClass), _this.setSuggestion.bind(_this));
+    });
+  }
+  this.delegate(this.searchResultsWrapper, "click", ".".concat(products.productItemClass), this.onProductItemClick.bind(this));
+  if (sort.el) {
+    this.sortWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, sort.action, ".".concat(sort.sortClass), _this.sortAction.bind(_this));
+    });
+  }
+  if (facet.selectedFacetsEl) {
+    this.selectedFacetWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, facet.facetAction, ".".concat(facet.selectedFacetClass), _this.findChangedFacet.bind(_this));
+    });
+  } else {
+    this.selectedFacetWrappers.forEach(function (wrapper) {
+      _this.delegate(wrapper, selectedFacets.facetAction, ".".concat(selectedFacets.selectedFacetClass), _this.findChangedFacet.bind(_this));
+    });
+  }
+  if (this.breadcrumbWrapper) {
+    this.delegate(this.breadcrumbWrapper, "click", "." + breadcrumb.selectorClass, this.findChangedFacet.bind(this));
+  }
+  if (this.productViewTypeWrapper) {
+    this.delegate(this.productViewTypeWrapper, productView.action, "." + productView.viewTypeClass, this.onPageViewTypeClick.bind(this));
+  }
+  if (this.options.pagination.type === 'INFINITE_SCROLL' || this.options.pagination.type === "CLICK_N_SCROLL") {
+    this.setUpInfiniteScroll();
+  }
+  this.delegate(this.pageSizeWrapper, pagesize.action, ".".concat(pagesize.pageSizeClass), this.onClickPageSize.bind(this));
+  if (!this.viewState.initialised) {
+    window.addEventListener('popstate', this.onLocationChange.bind(this), false);
+    // if(this.options.hashMode) {
+    //     // window.addEventListener('hashchange',this.onLocationChange.bind(this),false);
+    //     window.onhashchange= this.onLocationChange.bind(this);
+    // } else {
+    //     window.addEventListener('popstate',this.onLocationChange.bind(this),false);
+    // }
+    var urlParams = this.getQueryParams();
+    var ln = Object.keys(urlParams).length;
+    if (ln > 0) {
+      this.renderFromUrl();
+    }
+    this.viewState.initialised = true;
+  }
+}
+/* harmony default export */ var core_bindEvents = (bindEvents);
+// CONCATENATED MODULE: ./src/common/utils.js
+function common_utils_typeof(obj) { "@babel/helpers - typeof"; return common_utils_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, common_utils_typeof(obj); }
+//Returns true if it is a DOM node
+var isNode = function isNode(o) {
+  return (typeof Node === "undefined" ? "undefined" : common_utils_typeof(Node)) === "object" ? o instanceof Node : o && common_utils_typeof(o) === "object" && typeof o.nodeType === "number" && typeof o.nodeName === "string";
+};
+
+//Returns true if it is a DOM element    
+var isElement = function isElement(o) {
+  return (typeof HTMLElement === "undefined" ? "undefined" : common_utils_typeof(HTMLElement)) === "object" ? o instanceof HTMLElement :
+  //DOM2
+  o && common_utils_typeof(o) === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName === "string";
+};
+
+//Check if the passed one is a Nodelist 
+var isNodeList = function isNodeList(nodelist) {
+  return nodelist instanceof NodeList;
+};
+
+//Returns Key based on value
+var utils_getKeyByValue = function getKeyByValue(object, value) {
+  return Object.keys(object).find(function (key) {
+    return object[key] === value;
+  }) || value;
+};
+// CONCATENATED MODULE: ./src/core/configSchema.js
+var paginationSchema = {
+  moduleName: 'pagination',
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    type: {
+      required: function required(pagination) {
+        return pagination.enabled;
+      },
+      datatype: "string",
+      allowedOptions: ["CLICK_N_SCROLL", "FIXED_PAGINATION", "INFINITE_SCROLL"]
+    },
+    el: {
+      required: function required(pagination) {
+        return pagination.enabled && pagination.type !== "INFINITE_SCROLL";
+      },
+      datatype: "element"
+    },
+    template: {
+      required: function required(pagination) {
+        return pagination.enabled && pagination.type !== "INFINITE_SCROLL";
+      },
+      datatype: "function"
+    },
+    pageClass: {
+      datatype: "string"
+    },
+    selectedPageClass: {
+      datatype: "string"
+    },
+    onPaginate: {
+      datatype: "function"
+    },
+    pageLimit: {
+      required: function required(pagination) {
+        return pagination.enabled && pagination.type === "FIXED_PAGINATION";
+      },
+      datatype: "number"
+    },
+    infiniteScrollTriggerEl: {
+      required: function required(pagination) {
+        return pagination.enabled && pagination.type === "INFINITE_SCROLL";
+      },
+      datatype: "element"
+    },
+    heightDiffToTriggerNextPage: {
+      required: function required(pagination) {
+        return pagination.enabled && pagination.type === "INFINITE_SCROLL";
+      },
+      datatype: "number"
+    },
+    action: {
+      required: function required(pagination) {
+        return pagination.enabled;
+      },
+      datatype: "string",
+      allowedOptions: ["click", "change"]
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var bannerSchema = {
+  moduleName: 'banner',
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    el: {
+      required: function required(banner) {
+        return banner.enabled;
+      },
+      datatype: "element"
+    },
+    template: {
+      required: function required(banner) {
+        return banner.enabled;
+      },
+      datatype: "function"
+    },
+    openNewTab: {
+      datatype: "boolean"
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var loaderSchema = {
+  moduleName: 'loader',
+  config: {
+    el: {
+      required: true,
+      datatype: "element"
+    },
+    template: {
+      required: function required(loader) {
+        return loader.el;
+      },
+      datatype: "function"
+    }
+  }
+};
+var sortingSchema = {
+  moduleName: 'sorting',
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    el: {
+      required: function required(sort) {
+        return sort.enabled;
+      },
+      datatype: "element"
+    },
+    options: {
+      required: function required(sort) {
+        return sort.enabled;
+      },
+      datatype: "array"
+    },
+    sortClass: {
+      datatype: "string"
+    },
+    selectedSortClass: {
+      datatype: "string"
+    },
+    template: {
+      required: function required(sort) {
+        return sort.enabled;
+      },
+      datatype: "function"
+    },
+    action: {
+      datatype: "string",
+      allowedOptions: ['click', 'change']
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var noResultsSchema = {
+  moduleName: 'No results',
+  config: {
+    el: {
+      required: true,
+      datatype: "element"
+    },
+    template: {
+      required: function required(noResults) {
+        return noResults.el;
+      },
+      datatype: "function"
+    }
+  }
+};
+var swatchesSchema = {
+  moduleName: "swatches",
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    attributesMap: {
+      required: function required(swatches) {
+        return swatches.enabled;
+      },
+      datatype: "object",
+      customValidations: function customValidations(swatches) {
+        if (swatches.enabled && Object.keys(swatches.attributesMap).length === 0) {
+          console.error("SDK Config error in swatches: attributesMap should not be an empty object");
+        }
+      }
+    },
+    swatchClass: {
+      datatype: "string"
+    },
+    template: {
+      required: function required(swatches) {
+        return swatches.enabled;
+      },
+      datatype: "function"
+    }
+  }
+};
+var spellCheckSchema = {
+  moduleName: "spellcheck",
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    el: {
+      required: function required(spellCheck) {
+        return spellCheck.enabled;
+      },
+      datatype: "element"
+    },
+    template: {
+      required: function required(spellCheck) {
+        return spellCheck.enabled;
+      },
+      datatype: "function"
+    },
+    selectorClass: {
+      datatype: "string"
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var productsSchema = {
+  moduleName: "products",
+  el: {
+    required: true,
+    datatype: "element"
+  },
+  productType: {
+    required: true,
+    datatype: "string",
+    allowedOptions: ["SEARCH", "CATEGORY"]
+  },
+  template: {
+    required: true,
+    datatype: "function"
+  },
+  productAttributes: {
+    required: true,
+    datatype: "array",
+    customValidations: function customValidations(products) {
+      if (products.productAttributes.length === 0) {
+        console.error("SDK Config error in products: productAttributes should be an empty array");
+      }
+    }
+  },
+  attributesMap: {
+    required: true,
+    datatype: "object",
+    customValidations: function customValidations(products) {
+      if (Object.keys(products.attributesMap).length === 0) {
+        console.error("SDK Config error in products: attributesMap should be an empty object");
+      }
+    }
+  },
+  gridCount: {
+    datatype: "number"
+  },
+  productItemClass: {
+    datatype: "string"
+  },
+  onProductClick: {
+    datatype: "function"
+  },
+  defaultImage: {
+    datatype: "string"
+  },
+  tagName: {
+    datatype: "string"
+  },
+  htmlAttributes: {
+    datatype: "object"
+  }
+};
+var pageSizeSchema = {
+  moduleName: "page size",
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    el: {
+      required: true,
+      datatype: "element"
+    },
+    pageSize: {
+      datatype: "number",
+      customValidations: function customValidations(pagesize) {
+        if (!pagesize.options.includes(pagesize.pageSize)) {
+          console.error("SDK Config error in pagesize: pageSize should be among options");
+        }
+      }
+    },
+    options: {
+      required: function required(pagesize) {
+        return pagesize.enabled;
+      },
+      datatype: "array"
+    },
+    pageSizeClass: {
+      datatype: "string"
+    },
+    selectedPageSizeClass: {
+      datatype: "string"
+    },
+    action: {
+      datatype: "string",
+      allowedOptions: ["click", "change"]
+    },
+    template: {
+      required: function required(pagesize) {
+        return pagesize.enabled;
+      },
+      datatype: "function"
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var productViewSchema = {
+  moduleName: "product view",
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    el: {
+      required: function required(productView) {
+        return productView.enabled;
+      },
+      datatype: "element"
+    },
+    template: {
+      required: function required(productView) {
+        return productView.enabled;
+      },
+      datatype: "function"
+    },
+    defaultViewType: {
+      required: function required(productView) {
+        return productView.enabled;
+      },
+      datatype: "string",
+      allowedOptions: ["GRID", "LIST"]
+    },
+    action: {
+      required: function required(productView) {
+        return productView.enabled;
+      },
+      datatype: "string",
+      allowedOptions: ["click", "change"]
+    },
+    viewTypeClass: {
+      datatype: "string"
+    },
+    selectedViewTypeClass: {
+      datatype: "string"
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var breadcrumbSchema = {
+  moduleName: "breadcrumbs",
+  config: {
+    enabled: {
+      datatype: "boolean"
+    },
+    el: {
+      required: function required(breadcrumbs) {
+        return breadcrumbs.enabled;
+      },
+      datatype: "element"
+    },
+    template: {
+      required: function required(breadcrumbs) {
+        return breadcrumbs.enabled;
+      },
+      datatype: "function"
+    },
+    selectorClass: {
+      datatype: "string"
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var facetsSchema = {
+  moduleName: "facets",
+  config: {
+    facetsEl: {
+      required: true,
+      datatype: "element"
+    },
+    facetTemplate: {
+      required: function required(facet) {
+        return facet.facetsEl;
+      },
+      datatype: "function"
+    },
+    facetItemTemplate: {
+      required: function required(facet) {
+        return facet.facetsEl;
+      },
+      datatype: "function"
+    },
+    facetMultiSelect: {
+      datatype: "boolean"
+    },
+    facetClass: {
+      datatype: "string"
+    },
+    facetAction: {
+      required: function required(facet) {
+        return facet.facetsEl;
+      },
+      datatype: "string",
+      allowedOptions: ["click", "change"]
+    },
+    selectedFacetClass: {
+      datatype: "string"
+    },
+    selectedFacetsEl: {
+      datatype: "element"
+    },
+    selectedFacetTemplate: {
+      datatype: "function"
+    },
+    selectedFacetItemTemplate: {
+      datatype: "function"
+    },
+    selectedFacetConfig: {
+      datatype: "object"
+    },
+    clearAllText: {
+      datatype: "string"
+    },
+    rangeTemplate: {
+      datatype: "function"
+    },
+    rangeWidgetConfig: {
+      datatype: "object"
+    },
+    facetMultilevel: {
+      datatype: "boolean"
+    },
+    facetMultilevelName: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.facetMultilevel;
+      },
+      datatype: "string"
+    },
+    multiLevelFacetSelectorClass: {
+      datatype: "string"
+    },
+    multiLevelFacetTemplate: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.facetMultilevel;
+      },
+      datatype: "function"
+    },
+    facetDepth: {
+      datatype: "number"
+    },
+    clearFacetsSelectorClass: {
+      datatype: "string"
+    },
+    removeFacetsSelectorClass: {
+      datatype: "string"
+    },
+    onFacetLoad: {
+      datatype: "function"
+    },
+    applyMultipleFilters: {
+      datatype: "boolean"
+    },
+    applyButtonText: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.applyMultipleFilters;
+      },
+      datatype: "string"
+    },
+    clearButtonText: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.applyMultipleFilters;
+      },
+      datatype: "string"
+    },
+    isCollapsible: {
+      datatype: "boolean"
+    },
+    defaultOpen: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.isCollapsible;
+      },
+      datatype: "string",
+      allowedOptions: ["ALL", "FIRST", "NONE"]
+    },
+    isSearchable: {
+      datatype: "boolean"
+    },
+    searchPlaceHolder: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.isSearchable;
+      },
+      datatype: "string"
+    },
+    enableViewMore: {
+      datatype: "boolean"
+    },
+    viewMoreText: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.enableViewMore;
+      },
+      datatype: "array"
+    },
+    viewMoreLimit: {
+      required: function required(facet) {
+        return facet.facetsEl && facet.enableViewMore;
+      },
+      datatype: "number"
+    },
+    tagName: {
+      datatype: "string"
+    },
+    htmlAttributes: {
+      datatype: "object"
+    }
+  }
+};
+var facetsUrlSchema = {
+  moduleName: "facetsUrl",
+  config: {
+    addToUrl: {
+      required: false,
+      datatype: "boolean"
+    },
+    algo: {
+      required: function required(facetsUrl) {
+        return facetsUrl.addToUrl;
+      },
+      datatype: "string",
+      allowedOptions: ["DEFAULT", "KEY_VALUE_REPLACER", "HASH"]
+    },
+    valuesSeparator: {
+      required: function required(facetsUrl) {
+        return facetsUrl.algo === "KEY_VALUE_REPLACER";
+      },
+      datatype: "string",
+      allowedOptions: [",", "~"]
+    },
+    // facetKeyValueSeperator:{
+    //     required: false,
+    //     datatype: "string",
+    //     customValidations: (facetsUrl)=>{
+    //         const allowedFacetKeyValueSeperator = ["::"];
+    //         if (!allowedFacetKeyValueSeperator.includes(facetsUrl.facetKeyValueSeperator)) {
+    //             console.error(`SDK Config error in facetsUrl: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
+    //         }
+    //     }
+    // },
+    keyReplacer: {
+      required: false,
+      datatype: "object",
+      customValidations: function customValidations(facetsUrl) {
+        var vals = Object.values(facetsUrl.keyReplacer);
+        if (new Set(vals).size !== vals.length) {
+          console.error("SDK Config error in facetsUrl: keysReplacer values should not be duplicate");
+        }
+      }
+    },
+    valueReplacer: {
+      required: false,
+      datatype: "object",
+      customValidations: function customValidations(facetsUrl) {
+        var valueReplacer = facetsUrl.valueReplacer;
+        var vals = Object.values(valueReplacer);
+        vals.forEach(function (item) {
+          var arr = Object.values(item);
+          if (new Set(arr).size !== arr.length) {
+            console.error("SDK Config error in facetsUrl: valueReplacer values should not be duplicate");
+          }
+        });
+      }
+    },
+    facetsOrderInUrl: {
+      required: false,
+      datatype: "array"
+    },
+    rangeFacets: {
+      required: function required(facetsUrl) {
+        return facetsUrl.algo === "KEY_VALUE_REPLACER";
+      },
+      datatype: "array"
+    },
+    rangeSeparator: {
+      required: function required(facetsUrl) {
+        return facetsUrl.algo === "KEY_VALUE_REPLACER";
+      },
+      datatype: "string",
+      allowedOptions: ["-"]
+    }
+  }
+};
+var pageViewUrlSchema = {
+  moduleName: "pageViewUrl",
+  config: {
+    addToUrl: {
+      required: false,
+      datatype: "boolean"
+    },
+    keyReplacer: {
+      required: false,
+      datatype: "string"
+    },
+    valuesReplacer: {
+      required: false,
+      datatype: "object",
+      customValidations: function customValidations(pageViewUrl) {}
+    }
+  }
+};
+var sortUrlSchema = {
+  moduleName: "sortUrl",
+  config: {
+    addToUrl: {
+      required: false,
+      datatype: "boolean"
+    },
+    keyReplacer: {
+      required: false,
+      datatype: "string"
+    },
+    valueReplacer: {
+      required: false,
+      datatype: "object",
+      customValidations: function customValidations(sortUrl) {}
+    }
+  }
+};
+var pageNoUrlSchema = {
+  moduleName: "pageNoUrl",
+  config: {
+    addToUrl: {
+      required: false,
+      datatype: "boolean"
+    },
+    keyReplacer: {
+      required: false,
+      datatype: "string"
+    },
+    usePageNo: {
+      required: false,
+      datatype: "boolean"
+    }
+  }
+};
+var pageSizeUrlSchema = {
+  moduleName: "pageSizeUrl",
+  config: {
+    addToUrl: {
+      required: false,
+      datatype: "boolean"
+    },
+    keyReplacer: {
+      required: false,
+      datatype: "string"
+    }
+  }
+};
+var otherUrlConfigsSchema = {
+  moduleName: "url",
+  config: {
+    seoFriendlyUrl: {
+      required: false,
+      datatype: "boolean",
+      customValidations: function customValidations(urlConfigs) {
+        if (!urlConfigs.seoFriendlyUrl) {
+          urlConfigs.pageViewUrl.algo = "DEFAULT";
+          urlConfigs.sortUrl.algo = "DEFAULT";
+          urlConfigs.pageSizeUrl.algo = "DEFAULT";
+          urlConfigs.pageNoUrl.algo = "DEFAULT";
+          urlConfigs.pageNoUrl.usePageNo = false;
+          urlConfigs.facetsUrl.algo = "DEFAULT";
+          urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
+          urlConfigs.queryParamSeparator = "&";
+        } else {
+          urlConfigs.pageViewUrl.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.sortUrl.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.pageSizeUrl.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.pageNoUrl.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.pageNoUrl.usePageNo = true;
+          urlConfigs.facetsUrl.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
+          urlConfigs.queryParamSeparator = "&";
+        }
+      }
+    }
+  }
+};
+var othersSchema = {
+  moduleName: "Others",
+  config: {
+    siteKey: {
+      required: true,
+      datatype: "string"
+    },
+    apiKey: {
+      required: true,
+      datatype: "string"
+    },
+    searchBoxEl: {
+      required: true,
+      datatype: "element"
+    },
+    searchButtonEl: {
+      datatype: "element"
+    },
+    unbxdAnalytics: {
+      datatype: "boolean"
+    },
+    // hashMode: {
+    //     datatype: "boolean"
+    // },
+    actionBtnClass: {
+      datatype: "string"
+    },
+    actionChangeClass: {
+      datatype: "string"
+    },
+    // allowExternalUrlParams: {
+    //     datatype: "boolean"
+    // },
+    extraParams: {
+      datatype: "object"
+    },
+    defaultFilters: {
+      datatype: "object"
+    },
+    searchEndPoint: {
+      datatype: "string"
+    }
+    // browseQueryParam: {
+    //     datatype: "string"
+    // },
+    // searchQueryParam: {
+    //     datatype: "string"
+    // }
+  }
+};
+// CONCATENATED MODULE: ./src/core/validateConfigs.js
+function validateConfigs_typeof(obj) { "@babel/helpers - typeof"; return validateConfigs_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, validateConfigs_typeof(obj); }
+
+
+function validateConfigs() {
+  var _this = this;
+  var _this$options = this.options,
+    banner = _this$options.banner,
+    facet = _this$options.facet,
+    breadcrumb = _this$options.breadcrumb,
+    spellCheck = _this$options.spellCheck,
+    sort = _this$options.sort,
+    pagination = _this$options.pagination,
+    loader = _this$options.loader,
+    noResults = _this$options.noResults,
+    swatches = _this$options.swatches,
+    pagesize = _this$options.pagesize,
+    products = _this$options.products,
+    productView = _this$options.productView,
+    url = _this$options.url;
+  var facetsUrl = url.facetsUrl,
+    pageViewUrl = url.pageViewUrl,
+    sortUrl = url.sortUrl,
+    pageSizeUrl = url.pageSizeUrl,
+    pageNoUrl = url.pageNoUrl;
+  var validate = function validate() {
+    var userConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var schema = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var _schema$moduleName = schema.moduleName,
+      moduleName = _schema$moduleName === void 0 ? "" : _schema$moduleName,
+      _schema$config = schema.config,
+      config = _schema$config === void 0 ? {} : _schema$config;
+    Object.keys(config).map(function (key) {
+      var _config$key = config[key],
+        datatype = _config$key.datatype,
+        _config$key$required = _config$key.required,
+        required = _config$key$required === void 0 ? false : _config$key$required,
+        _config$key$allowedOp = _config$key.allowedOptions,
+        allowedOptions = _config$key$allowedOp === void 0 ? [] : _config$key$allowedOp,
+        _config$key$customVal = _config$key.customValidations,
+        customValidations = _config$key$customVal === void 0 ? null : _config$key$customVal;
+      if (typeof required === "function") {
+        required = required(userConfig);
+      }
+
+      //Checking if the datatype in user input config is not equal to that in metadata.
+      if (validateConfigs_typeof(userConfig[key]) !== datatype || datatype === "object" && userConfig[key] === null) {
+        if (datatype === "element" || datatype === "array") {
+          if (datatype === "element") {
+            var isInvalidElement = !isNode(userConfig[key]) && !isElement(userConfig[key]) && !isNodeList(userConfig[key]);
+            //The config is required , but the user passed either null/undefined , or the element is not present on the DOM.
+            if (required && (!userConfig[key] || isInvalidElement) || !required && userConfig[key] && isInvalidElement) {
+              if (userConfig[key] === window) {
+                return null;
+              }
+              _this.onError(moduleName, "'".concat(key, "' is not a valid DOM selector"));
+            }
+          } else if (datatype === "array" && !Array.isArray(userConfig[key])) {
+            _this.onError(moduleName, "'".concat(key, "' should be of ").concat(datatype, " datatype"));
+          }
+        } else {
+          _this.onError(moduleName, "'".concat(key, "' should be of ").concat(datatype, " datatype"));
+        }
+      }
+      if (required && !userConfig[key] && datatype !== "element") {
+        _this.onError(moduleName, "'".concat(key, "' is required"));
+      }
+      if (allowedOptions.length && !allowedOptions.includes(userConfig[key])) {
+        _this.onError(moduleName, "Only ".concat(allowedOptions.join(', '), " are allowed for '").concat(key, "'"));
+      }
+      //Checking for custom validations if any .
+      if (customValidations) {
+        customValidations(userConfig);
+      }
+    });
+  };
+  validate(pagination, paginationSchema);
+  validate(banner, bannerSchema);
+  validate(sort, sortingSchema);
+  validate(noResults, noResultsSchema);
+  validate(swatches, swatchesSchema);
+  validate(spellCheck, spellCheckSchema);
+  validate(pagesize, pageSizeSchema);
+  validate(facet, facetsSchema);
+  validate(this.options, othersSchema);
+  validate(loader, loaderSchema);
+  validate(noResults, noResultsSchema);
+  validate(products, productsSchema);
+  validate(productView, productViewSchema);
+  validate(breadcrumb, breadcrumbSchema);
+  validate(facetsUrl, facetsUrlSchema);
+  validate(pageViewUrl, pageViewUrlSchema);
+  validate(sortUrl, sortUrlSchema);
+  validate(pageNoUrl, pageNoUrlSchema);
+  validate(pageSizeUrl, pageSizeUrlSchema);
+  validate(this.options.url, otherUrlConfigsSchema);
+}
+/* harmony default export */ var core_validateConfigs = (validateConfigs);
+// CONCATENATED MODULE: ./src/core/initialize.js
+
+
+
+
+
+var initialize_initialize = function initialize() {
+  this.validateConfigs = core_validateConfigs.bind(this);
+  this.validateConfigs();
+  this.createLayout();
+  this.unxSelectors = selectors;
+  this.renderDidYouMean.bind(this);
+  this.options.onEvent.bind(this);
+  this.options.products.onProductClick.bind(this);
+  this.reRender = core_reRender.bind(this);
+  this.bindEvents = core_bindEvents.bind(this);
+  this.bindEvents();
+  var urlParams = this.getQueryParams();
+  var ln = Object.keys(urlParams).length;
+  var _this$options$product = this.options.productView,
+    defaultViewType = _this$options$product.defaultViewType,
+    enabled = _this$options$product.enabled;
+  if (ln > 0) {
+    var type = urlParams[this.options.url.pageViewUrl.algo === "KEY_VALUE_REPLACER" ? this.options.url.pageViewUrl.keyReplacer : "viewType"];
+    var viewType = this.getKeyByValue(this.options.url.pageViewUrl.valuesReplacer, decodeURIComponent(type || defaultViewType));
+    if (viewType) {
+      this.viewState.productViewType = viewType;
+      this.options.extraParams.viewType = viewType;
+      this.state.productViewType = viewType;
+    }
+  } else {
+    this.options.extraParams.viewType = defaultViewType;
+  }
+  if (enabled) {
+    this.renderProductViewTypeUI();
+  }
+};
+/* harmony default export */ var core_initialize = (initialize_initialize);
+// CONCATENATED MODULE: ./src/core/createLayout.js
+var createLayout = function createLayout() {
+  var _this = this;
+  this.searchResultsWrapper = this.createtSearchWrapper();
+  this.bannerWrapper = this.createBannerWrapper();
+  this.breadcrumbWrapper = this.createBreadcrumbWrapper();
+  this.pageSizeWrapper = this.createPageSizeWrapper();
+  this.productViewTypeWrapper = this.createProductViewTypeWrapper();
+  this.paginationWrappers = [];
+  this.facetWrappers = [];
+  this.sortWrappers = [];
+  this.selectedFacetWrappers = [];
+  this.spellCheckWrappers = [];
+  var getPaginationWrapper = function getPaginationWrapper() {
+    var elem = _this.createPaginationWrapper();
+    _this.paginationWrappers.push(elem);
+    return elem;
+  };
+  var getfacetWrappers = function getfacetWrappers() {
+    var elem = _this.createFacetWrapper();
+    _this.facetWrappers.push(elem);
+    return elem;
+  };
+  var getSortElementWrappers = function getSortElementWrappers() {
+    var elem = _this.createSortWrapper();
+    _this.sortWrappers.push(elem);
+    return elem;
+  };
+  var getSelectedFacetsWrappers = function getSelectedFacetsWrappers() {
+    var elem = _this.createSelectedFacetWrapper();
+    _this.selectedFacetWrappers.push(elem);
+    return elem;
+  };
+  var getSpellCheckWrappers = function getSpellCheckWrappers() {
+    var elem = _this.createSpellCheckWrapper();
+    _this.spellCheckWrappers.push(elem);
+    return elem;
+  };
+  var _this$options = this.options,
+    facet = _this$options.facet,
+    breadcrumb = _this$options.breadcrumb,
+    banner = _this$options.banner,
+    sort = _this$options.sort,
+    products = _this$options.products,
+    pagesize = _this$options.pagesize,
+    pagination = _this$options.pagination,
+    productView = _this$options.productView,
+    selectedFacets = _this$options.selectedFacets;
+  var facetsEl = facet.facetsEl;
+  var spellCheck = this.options.spellCheck;
+  var spellCheckEl = spellCheck.el;
+  if (spellCheckEl) {
+    var els = spellCheckEl;
+    if (!els.length) {
+      els = [spellCheckEl];
+    }
+    els.forEach(function (el) {
+      el.innerHTML = "";
+      el.appendChild(getSpellCheckWrappers());
+    });
+  }
+  if (facetsEl) {
+    var _els = facetsEl;
+    if (!facetsEl.length) {
+      _els = [facetsEl];
+    }
+    _els.forEach(function (facetEl) {
+      facetEl.innerHTML = "";
+      facetEl.appendChild(getfacetWrappers());
+    });
+  }
+  var sortEls = sort.el;
+  if (sortEls) {
+    var _els2 = sortEls;
+    if (!sortEls.length) {
+      _els2 = [sortEls];
+    }
+    _els2.forEach(function (sortEl) {
+      sortEl.innerHTML = "";
+      sort.enabled && sortEl.appendChild(getSortElementWrappers());
+    });
+  }
+  if (facet.selectedFacetsEl) {
+    console.error("selectedFacetsEl option is deprecated from v2.0.2, please use selectedFacets option to configure selected facets elements and template");
+    facet.selectedFacetsEl.innerHTML = "";
+    facet.selectedFacetsEl.appendChild(getSelectedFacetsWrappers());
+  } else {
+    var selectedFacetsElems = selectedFacets.el;
+    if (selectedFacets.enabled && selectedFacetsElems) {
+      var _els3 = selectedFacetsElems;
+      if (!selectedFacetsElems.length) {
+        _els3 = [selectedFacetsElems];
+      }
+      _els3.forEach(function (el) {
+        el.innerHTML = "";
+        el.appendChild(getSelectedFacetsWrappers());
+      });
+    }
+  }
+  if (breadcrumb.el) {
+    breadcrumb.el.innerHTML = "";
+    breadcrumb.enabled && breadcrumb.el.appendChild(this.breadcrumbWrapper);
+  }
+  if (banner.el) {
+    banner.el.innerHTML = "";
+    if (banner.enabled) {
+      banner.template.bind(this);
+      banner.el.appendChild(this.bannerWrapper);
+    }
+  }
+  if (products.el) {
+    products.el.innerHTML = "";
+    if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
+      var preLoader = document.createElement('div');
+      preLoader.classList.add('UNX-pre-loader');
+      preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+      products.el.appendChild(preLoader);
+    }
+    products.el.appendChild(this.searchResultsWrapper);
+    if (pagination.type === "INFINITE_SCROLL") {
+      var postLoader = document.createElement('div');
+      postLoader.classList.add('UNX-post-loader');
+      postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+      products.el.appendChild(postLoader);
+    }
+  }
+  if (pagesize.el) {
+    pagesize.el.innerHTML = "";
+    pagesize.enabled && pagesize.el.appendChild(this.pageSizeWrapper);
+  }
+  if (productView.el) {
+    productView.el.innerHTML = "";
+    productView.el.appendChild(this.productViewTypeWrapper);
+  }
+  var el = pagination.el;
+  if (el) {
+    var _els4 = el;
+    if (!el.length) {
+      _els4 = [el];
+    }
+    _els4.forEach(function (element) {
+      element.innerHTML = "";
+      pagination.enabled && element.appendChild(getPaginationWrapper());
+    });
+  }
+};
+/* harmony default export */ var core_createLayout = (createLayout);
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSearchWrapper.js
+/* harmony default export */ var createSearchWrapper = (function () {
+  var _this$options$product = this.options.products,
+    tagName = _this$options$product.tagName,
+    _this$options$product2 = _this$options$product.htmlAttributes,
+    htmlAttributes = _this$options$product2 === void 0 ? {} : _this$options$product2,
+    events = _this$options$product.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createFacetWrapper.js
+/* harmony default export */ var createFacetWrapper = (function () {
+  var _this$options$facet = this.options.facet,
+    tagName = _this$options$facet.tagName,
+    _this$options$facet$h = _this$options$facet.htmlAttributes,
+    htmlAttributes = _this$options$facet$h === void 0 ? {} : _this$options$facet$h,
+    events = _this$options$facet.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createBannerWrapper.js
+/* harmony default export */ var createBannerWrapper = (function () {
+  var _this$options$banner = this.options.banner,
+    tagName = _this$options$banner.tagName,
+    _this$options$banner$ = _this$options$banner.htmlAttributes,
+    htmlAttributes = _this$options$banner$ === void 0 ? {} : _this$options$banner$,
+    events = _this$options$banner.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createBreadcrumbWrapper.js
+/* harmony default export */ var createBreadcrumbWrapper = (function () {
+  var _this$options$breadcr = this.options.breadcrumb,
+    tagName = _this$options$breadcr.tagName,
+    _this$options$breadcr2 = _this$options$breadcr.htmlAttributes,
+    htmlAttributes = _this$options$breadcr2 === void 0 ? {} : _this$options$breadcr2,
+    events = _this$options$breadcr.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+;
+// CONCATENATED MODULE: ./src/core/componentWrappers/createPageSizeWrapper.js
+/* harmony default export */ var createPageSizeWrapper = (function () {
+  var _this$options$pagesiz = this.options.pagesize,
+    tagName = _this$options$pagesiz.tagName,
+    _this$options$pagesiz2 = _this$options$pagesiz.htmlAttributes,
+    htmlAttributes = _this$options$pagesiz2 === void 0 ? {} : _this$options$pagesiz2,
+    events = _this$options$pagesiz.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSortWrapper.js
+/* harmony default export */ var createSortWrapper = (function () {
+  var _this$options$sort = this.options.sort,
+    tagName = _this$options$sort.tagName,
+    _this$options$sort$ht = _this$options$sort.htmlAttributes,
+    htmlAttributes = _this$options$sort$ht === void 0 ? {} : _this$options$sort$ht,
+    events = _this$options$sort.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSelectedFacetWrapper.js
+/* harmony default export */ var createSelectedFacetWrapper = (function () {
+  var _this$options$selecte = this.options.selectedFacets,
+    tagName = _this$options$selecte.tagName,
+    _this$options$selecte2 = _this$options$selecte.htmlAttributes,
+    htmlAttributes = _this$options$selecte2 === void 0 ? {} : _this$options$selecte2,
+    events = _this$options$selecte.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createSpellCheckWrapper.js
+/* harmony default export */ var createSpellCheckWrapper = (function () {
+  var _this$options$spellCh = this.options.spellCheck,
+    tagName = _this$options$spellCh.tagName,
+    _this$options$spellCh2 = _this$options$spellCh.htmlAttributes,
+    htmlAttributes = _this$options$spellCh2 === void 0 ? {} : _this$options$spellCh2,
+    events = _this$options$spellCh.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createPaginationWrapper.js
+/* harmony default export */ var createPaginationWrapper = (function () {
+  var _this$options$paginat = this.options.pagination,
+    tagName = _this$options$paginat.tagName,
+    _this$options$paginat2 = _this$options$paginat.htmlAttributes,
+    htmlAttributes = _this$options$paginat2 === void 0 ? {} : _this$options$paginat2,
+    events = _this$options$paginat.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/createProductViewTypeWrapper.js
+/* harmony default export */ var createProductViewTypeWrapper = (function () {
+  var _this$options$product = this.options.productView,
+    tagName = _this$options$product.tagName,
+    _this$options$product2 = _this$options$product.htmlAttributes,
+    htmlAttributes = _this$options$product2 === void 0 ? {} : _this$options$product2,
+    events = _this$options$product.events;
+  return this.createElement(tagName, Object.assign({}, htmlAttributes), events, this);
+});
+// CONCATENATED MODULE: ./src/core/componentWrappers/index.js
+
+
+
+
+
+
+
+
+
+
+var componentWrappers_setComponentWrappers = function setComponentWrappers(prototype) {
+  prototype = Object.assign(prototype, {
+    createtSearchWrapper: createSearchWrapper,
+    createFacetWrapper: createFacetWrapper,
+    createBannerWrapper: createBannerWrapper,
+    createBreadcrumbWrapper: createBreadcrumbWrapper,
+    createPageSizeWrapper: createPageSizeWrapper,
+    createSortWrapper: createSortWrapper,
+    createSelectedFacetWrapper: createSelectedFacetWrapper,
+    createSpellCheckWrapper: createSpellCheckWrapper,
+    createPaginationWrapper: createPaginationWrapper,
+    createProductViewTypeWrapper: createProductViewTypeWrapper
+  });
+};
+
+// CONCATENATED MODULE: ./src/modules/utils/createElement.js
+var createElement = function createElement(type) {
+  var attr = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  var events = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var context = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : window;
+  var elem = document.createElement(type);
+  var attrArr = Object.keys(attr);
+  attrArr.forEach(function (item) {
+    elem.setAttribute(item, attr[item]);
+  });
+  var eventsArr = Object.keys(events);
+  if (eventsArr.length > 0) {
+    eventsArr.forEach(function (event) {
+      elem.addEventListener(event, events[event].bind(context));
+    });
+  }
+  return elem;
+};
+/* harmony default export */ var utils_createElement = (createElement);
+// CONCATENATED MODULE: ./src/core/setMethods.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var setSearchWidget = function setSearchWidget(config) {
+  var products = this.options.products;
+  var newOps = Object.assign({}, products, config);
+  this.options.products = newOps;
+};
+var setFacetWidget = function setFacetWidget(config) {
+  var facet = this.options.facet;
+  var newOps = Object.assign({}, facet, config);
+  this.options.facet = newOps;
+};
+var updateConfig = function updateConfig(config) {
+  var options = this.options;
+  this.setConfig(options, config);
+  this.initialize();
+};
+var extraActions = function extraActions(e) {
+  var onAction = this.options.onAction;
+  var target = e.target;
+  var dataset = target.dataset;
+  var _this$cssList = this.cssList,
+    openFacet = _this$cssList.openFacet,
+    closeFacet = _this$cssList.closeFacet,
+    openBtn = _this$cssList.openBtn,
+    closeBtn = _this$cssList.closeBtn,
+    viewMore = _this$cssList.viewMore,
+    viewLess = _this$cssList.viewLess;
+  var _this$options$facet = this.options.facet,
+    viewMoreText = _this$options$facet.viewMoreText,
+    textFacetWrapper = _this$options$facet.textFacetWrapper;
+  if (dataset) {
+    var facetAction = dataset.facetAction,
+      facetName = dataset.facetName,
+      action = dataset.action,
+      id = dataset.id;
+    var facetElementMap = this.viewState.facetElementMap;
+    var fI = target.closest(".".concat(facetElementMap[facetName]));
+    if (facetAction === "facetOpen") {
+      this.viewState.expandedFacets[facetName] = true;
+      target.classList.add(openBtn);
+      target.classList.remove(closeBtn);
+      target.setAttribute("data-facet-action", "facetClose");
+      fI.classList.remove(closeFacet);
+      fI.classList.add(openFacet);
+    }
+    if (facetAction === "facetClose") {
+      this.viewState.expandedFacets[facetName] = false;
+      target.classList.remove(openBtn);
+      target.classList.add(closeBtn);
+      target.setAttribute("data-facet-action", "facetOpen");
+      fI.classList.remove(openFacet);
+      fI.classList.add(closeFacet);
+    }
+    if (action === "viewMore") {
+      target.setAttribute("data-action", "viewLess");
+      target.innerHTML = viewMoreText[1];
+      var fcEl = fI.querySelector(".".concat(textFacetWrapper));
+      fcEl.classList.remove(viewMore);
+      fcEl.classList.add(viewLess);
+    }
+    if (action === "viewLess") {
+      target.setAttribute("data-action", "viewMore");
+      target.innerHTML = viewMoreText[0];
+      var _fcEl = fI.querySelector(".".concat(textFacetWrapper));
+      _fcEl.classList.remove(viewLess);
+      _fcEl.classList.add(viewMore);
+    }
+  }
+  onAction(e, this);
+};
+var extraActionsChange = function extraActionsChange(e) {
+  var onAction = this.options.onAction;
+  var dataset = e.target.dataset;
+  if (dataset) {
+    var facetAction = dataset.facetAction,
+      facetName = dataset.facetName;
+    if (facetAction === "searchFacets") {
+      this.setSearchFacetsText(facetName, e.target.value);
+    }
+  }
+  onAction(e, this);
+};
+var getCategoryPage = function getCategoryPage() {
+  this.resetAll();
+  this.options.productType = "CATEGORY";
+  this.options.products.productType = "CATEGORY";
+  this.getCallbackActions(this, 'categoryPage');
+  this.getResults();
+};
+var getBrowsePage = function getBrowsePage() {
+  this.resetAll();
+  this.options.productType = "BROWSE";
+  this.options.products.productType = "BROWSE";
+  this.getCallbackActions(this, 'categoryPage');
+  this.getResults();
+};
+var resetViewState = function resetViewState() {
+  this.viewState.lastDidYouMean = null;
+  this.viewState.searchFacetsText = {};
+  this.viewState.lastDidYouMean = null;
+  this.viewState.expandedFacets = {};
+};
+var generateRid = function generateRid() {
+  var custom = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "unx_";
+  return custom + Math.random().toString(36).substr(2, 9);
+};
+var createFacetsLayout = function createFacetsLayout() {};
+var setMethods_setMethods = function setMethods(UnbxdSearch) {
+  var prototype = UnbxdSearch.prototype;
+  prototype.renderBannerUI = banners_renderBannerUI;
+  prototype.setSearchWidget = setSearchWidget;
+  prototype.setFacetWidget = setFacetWidget;
+  prototype.updateConfig = updateConfig;
+  prototype.createLayout = core_createLayout;
+  prototype.initialize = core_initialize;
+  prototype.extraActions = extraActions;
+  prototype.extraActionsChange = extraActionsChange;
+  prototype.getCategoryPage = getCategoryPage;
+  prototype.getBrowsePage = getBrowsePage;
+  prototype.resetViewState = resetViewState;
+  prototype.generateRid = generateRid;
+  prototype.createElement = utils_createElement;
+  prototype.createFacetsLayout = createFacetsLayout;
+  componentWrappers_setComponentWrappers(prototype);
+  setInput_setInput(prototype);
+  setProductViewType_setProductViewType(prototype);
+  setFacetMethods_setFacets(prototype);
+  setProductsMethods_setProductsMethods(prototype);
+  setSearch_setSearch(prototype);
+  setPagination_setPagination(prototype);
+  setSort_setSort(prototype);
+  setSpellCheck_setSpellCheck(prototype);
+  setBreadcrumbs_setBreadCrumbs(prototype);
+  setSwatches_setSwatches(prototype);
+  setPageSize_setPageSize(prototype);
+  setAnalytics(prototype);
+};
+/* harmony default export */ var core_setMethods = (setMethods_setMethods);
+// CONCATENATED MODULE: ./src/common/constants/eventsLib.js
+var _events;
+function eventsLib_typeof(obj) { "@babel/helpers - typeof"; return eventsLib_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, eventsLib_typeof(obj); }
+function eventsLib_defineProperty(obj, key, value) { key = eventsLib_toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function eventsLib_toPropertyKey(arg) { var key = eventsLib_toPrimitive(arg, "string"); return eventsLib_typeof(key) === "symbol" ? key : String(key); }
+function eventsLib_toPrimitive(input, hint) { if (eventsLib_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (eventsLib_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var events = (_events = {
+  beforeApiCall: "BEFORE_API_CALL",
+  afterApiCall: "AFTER_API_CALL",
+  beforeRender: "BEFORE_RENDER",
+  beforeNoResultRender: "BEFORE_NO_RESULTS_RENDER",
+  afterNoResultRender: "AFTER_NO_RESULTS_RENDER",
+  afterRender: "AFTER_RENDER",
+  deleteFacet: "DELETE_FACET",
+  facetClick: "FACETS_CLICK",
+  deleteFacetValue: "DELETE_FACET_VALUE"
+}, eventsLib_defineProperty(_events, "deleteFacet", "DELETE_FACET"), eventsLib_defineProperty(_events, "clearSort", "CLEAR_SORT"), eventsLib_defineProperty(_events, "changeSort", "CHANGE_SORT"), eventsLib_defineProperty(_events, "pageNext", "PAGE_NEXT"), eventsLib_defineProperty(_events, "pagePrev", "PAGE_PREV"), eventsLib_defineProperty(_events, "changeInput", "CHANGE_INPUT"), eventsLib_defineProperty(_events, "setCategoryFilter", "SET_CATEGORY_FILTER"), eventsLib_defineProperty(_events, "deleteCategoryFilter", "DELETE_CATEGORY_FILTER"), eventsLib_defineProperty(_events, "pageSizeChange", "PAGESIZE_CHANGE"), _events);
+/* harmony default export */ var eventsLib = (events);
+// CONCATENATED MODULE: ./src/common/constants/actions.js
+var actions = {
+  clearCategoryFilter: "clearCategoryFilter",
+  setCategoryFilter: "setCategoryFilter",
+  changeSwatch: "changeSwatch",
+  clearPriceRange: "clearPriceRange",
+  applyRange: "applyRange",
+  prev: "prev",
+  next: "next",
+  clearSort: "clearSort",
+  changeSort: "changeSort",
+  deleteFacet: "deleteFacet",
+  deleteFacetValue: "deleteFacetValue",
+  changeFacet: "changeFacet"
+};
+/* harmony default export */ var constants_actions = (actions);
+// CONCATENATED MODULE: ./src/common/constants/index.js
+
+
+var cssClasses = {
+  openFacet: "UNX-accordian-open",
+  closeFacet: "UNX-accordian-close",
+  openBtn: "UNX-facet-open",
+  closeBtn: "UNX-facet-close",
+  viewMore: "UNX-view-more",
+  viewLess: "UNX-view-less"
+};
+var testIds = {
+  UNX_gridBtn: "UNX_gridBtn",
+  UNX_listBtn: "UNX_listBtn",
+  UNX_loadMore: "UNX_loadMore",
+  UNX_variant: "UNX_variant",
+  UNX_spellCheck: "UNX_spellCheck",
+  UNX_pagesize: "UNX_pagesize",
+  UNX_pageNumber: "UNX_pageNumber",
+  UNX_unbxdSorter: "UNX_unbxdSorter",
+  UNX_uFilter: "UNX_uFilter",
+  UNX_rangeslider: "UNX_rangeslider",
+  UNX_facetLevel: "UNX_facetLevel",
+  UNX_searchFacets: "UNX_searchFacets",
+  UNX_swatchClrBtn: "UNX_swatchClrBtn"
+};
+
+// CONCATENATED MODULE: ./src/core/setConfig.js
+
+var setConfig_setConfig = function setConfig() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var props = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  this.options = utils_extend(true, {}, options, props);
+  var facet = props.facet,
+    pagesize = props.pagesize,
+    swatches = props.swatches,
+    products = props.products,
+    productView = props.productView;
+  if (facet) {
+    this.options.facetMultilevel = facet.facetMultilevel ? facet.facetMultilevel : options.facet.facetMultilevel;
+    this.options.facetMultiSelect = typeof facet.facetMultiSelect === "boolean" ? facet.facetMultiSelect : options.facet.facetMultiSelect;
+    this.options.facetDepth = facet.facetDepth ? facet.facetDepth : options.facet.facetDepth;
+    this.options.applyMultipleFilters = typeof facet.applyMultipleFilters === "boolean" ? facet.applyMultipleFilters : options.facet.applyMultipleFilters;
+  }
+  this.setPageSize(this.state.pageSize || this.options.pagesize.pageSize);
+  if (products) {
+    this.options.productAttributes = products.productAttributes ? products.productAttributes : options.products.productAttributes;
+    this.options.productType = products.productType ? products.productType : options.products.productType;
+  } else {
+    this.options.productType = options.products.productType;
+    this.options.productAttributes = options.products.productAttributes;
+  }
+  if (swatches) {
+    this.options.showSwatches = swatches && swatches.enabled ? swatches.enabled : options.swatches.enabled;
+  }
+  if (productView) {
+    this.viewState.productViewType = productView.defaultViewType ? productView.defaultViewType : options.productView.defaultViewType;
+    this.options.productView.productViewType = this.viewState.productViewType;
+    this.state.productViewType = this.viewState.productViewType;
+    ;
+  }
+};
+/* harmony default export */ var core_setConfig = (setConfig_setConfig);
+// CONCATENATED MODULE: ./src/index.js
+function src_typeof(obj) { "@babel/helpers - typeof"; return src_typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, src_typeof(obj); }
+function src_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function src_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, src_toPropertyKey(descriptor.key), descriptor); } }
+function src_createClass(Constructor, protoProps, staticProps) { if (protoProps) src_defineProperties(Constructor.prototype, protoProps); if (staticProps) src_defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function src_toPropertyKey(arg) { var key = src_toPrimitive(arg, "string"); return src_typeof(key) === "symbol" ? key : String(key); }
+function src_toPrimitive(input, hint) { if (src_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (src_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); Object.defineProperty(subClass, "prototype", { writable: false }); if (superClass) _setPrototypeOf(subClass, superClass); }
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+function _possibleConstructorReturn(self, call) { if (call && (src_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+// import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+
+
+
+
+
+
+
+
+var src_UnbxdSearch_0 = /*#__PURE__*/function (_UnbxdSearchCore) {
+  _inherits(UnbxdSearch, _UnbxdSearchCore);
+  var _super = _createSuper(UnbxdSearch);
+  function UnbxdSearch(props) {
+    var _this;
+    src_classCallCheck(this, UnbxdSearch);
+    _this = _super.call(this, props);
+    _this.viewState = {
+      productViewType: _this.state.productViewType || common_options.productView.defaultViewType,
+      isInfiniteStarted: false,
+      lastAction: '',
+      selectedRange: {},
+      expandedFacets: {},
+      searchFacetsText: {},
+      noResultLoaded: false,
+      lastDidYouMean: null,
+      loadedFromSuggestion: false,
+      setFromSuggest: false,
+      facetElementMap: {},
+      initialised: false
+    };
+    _this.setConfig = core_setConfig.bind(_assertThisInitialized(_this));
+    _this.setConfig(common_options, props);
+    _this.events = eventsLib;
+    _this.actions = constants_actions;
+    _this.cssList = cssClasses;
+    _this.testIds = testIds;
+    _this.updateConfig();
+    _this.options.onBackFromRedirect(_this.getHashMode());
+    _this.options.onEvent(_assertThisInitialized(_this), 'initialised');
+    return _this;
+  }
+  src_createClass(UnbxdSearch, [{
+    key: "callBack",
+    value: function callBack(state, type) {
+      this.getCallbackActions(state, type);
+      var _this$options = this.options,
+        onEvent = _this$options.onEvent,
+        loader = _this$options.loader,
+        facet = _this$options.facet,
+        productView = _this$options.productView;
+      var _this$events = this.events,
+        beforeApiCall = _this$events.beforeApiCall,
+        afterApiCall = _this$events.afterApiCall;
+      var urlParams = this.getQueryParams();
+      var _ref = urlParams || {},
+        viewType = _ref.viewType;
+      if (this.viewState.lastAction === "viewType") {
+        viewType = this.viewState.productViewType;
+        this.options.extraParams.viewType = viewType;
+        this.viewState.lastAction = "";
+      }
+      if (this.viewState.lastAction != "pagination" && this.viewState.lastAction != "prev_page_loaded" && this.viewState.lastAction != "next_page_loaded") {
+        this.viewState.isInfiniteStarted = false;
+      }
+      if (!viewType) {
+        viewType = this.viewState.productViewType || productView.defaultViewType;
+        this.viewState.productViewType = viewType;
+        this.options.extraParams.viewType = viewType;
+      }
+      if (this.viewState.productViewType !== viewType) {
+        this.viewState.productViewType = viewType;
+        this.options.extraParams.viewType = viewType;
+      }
+      if (type === beforeApiCall) {
+        onEvent(this, beforeApiCall);
+        if (loader && loader.el) {
+          loader.el.innerHTML = loader.template(this);
+        }
+      }
+      if (type === afterApiCall) {
+        onEvent(this, afterApiCall);
+        if (this.state.products.length > 0) {
+          this.viewState.noResultLoaded = false;
+        }
+        this.reRender();
+      }
+      if ((type === 'added_facet' || type === 'deleted_facet') && facet.applyMultipleFilters) {
+        onEvent(this, 'added_facet');
+        this.renderFacets();
+      }
+      if (type === "FETCH_ERROR") {
+        if (loader && loader.el) {
+          loader.el.innerHTML = "";
+        }
+      }
+    }
+  }, {
+    key: "delegate",
+    value: function delegate(delgationElem, evt, elem, fn) {
+      return utils_delegate(delgationElem, evt, elem, fn);
+    }
+  }]);
+  return UnbxdSearch;
+}(src);
+core_setMethods(src_UnbxdSearch_0);
+/* harmony default export */ var src_0 = __webpack_exports__["default"] = (src_UnbxdSearch_0);
+
+/***/ })
+
+/******/ })["default"];
+});
