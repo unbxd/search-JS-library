@@ -629,6 +629,7 @@ window.unbxdSearch = new UnbxdSearch({
         },
         pageViewUrl: {
             addToUrl: false,
+            addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
             // keyReplacer: "view",
             valuesReplacer: {
@@ -648,8 +649,8 @@ window.unbxdSearch = new UnbxdSearch({
         pageNoUrl: { 
             addToUrl: true,
             algo: "DEFAULT",
-            // keyReplacer: 'p', 
-            usePageNo: true // uses page no. when turned on.else , index
+            keyReplacer: 'p', 
+            usePageNo: false // uses page no. when turned on.else , index
         },
         pageSizeUrl: {
             addToUrl: true,
@@ -659,7 +660,7 @@ window.unbxdSearch = new UnbxdSearch({
         facetsUrl: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
-            valuesSeperator: ",",
+            valuesSeperator: "@",
             keyReplacer: {
                 "color_uFilter": "color",
                 "size_uFilter": "size",

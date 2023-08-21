@@ -29,7 +29,7 @@ const initialize = function() {
             [(this.options.url.pageViewUrl.algo === "KEY_VALUE_REPLACER") ? this.options.url.pageViewUrl.keyReplacer: "viewType"]: type
         } = urlParams;
 
-        const viewType = this.getKeyByValue(this.options.url.pageViewUrl.valuesReplacer, decodeURIComponent(type));
+        const viewType = this.getKeyByValue(this.options.url.pageViewUrl.valuesReplacer, decodeURIComponent(type || defaultViewType))
         if(viewType) {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;
