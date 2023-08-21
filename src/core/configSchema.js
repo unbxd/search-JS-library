@@ -1,3 +1,7 @@
+import constantValues from "../../../search-JS-core/src/constants/constantValues";
+
+const { ALLOWED_VALUE_SEPARATORS } = constantValues
+
 export const paginationSchema = {
     moduleName: 'pagination',
     config: {
@@ -578,7 +582,7 @@ export const facetsParamSchema = {
                 return facetsParam.algo === "KEY_VALUE_REPLACER"
             },
             datatype: "string",
-            allowedOptions: [",","~"]
+            allowedOptions: ALLOWED_VALUE_SEPARATORS
         },
         // facetKeyValueSeperator:{
         //     required: false,
@@ -732,7 +736,6 @@ export const otherUrlConfigsSchema = {
                     urlConfigs.pageNoParam.usePageNo = true;
                     urlConfigs.facetsParam.algo = "KEY_VALUE_REPLACER";
                     urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
-                    urlConfigs.queryParamSeparator = "&";
                 }
             }
         },
