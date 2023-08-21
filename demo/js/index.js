@@ -609,16 +609,16 @@ window.unbxdSearch = new UnbxdSearch({
         hashMode: false,
         allowExternalUrlParams: false,
         browseQueryParam: 'pppp',
-        searchQueryParam: "qu",
+        searchQueryParam: "q",
         
-        seoFriendlyUrl: false,
+        seoFriendlyUrl: true,
         // orderOfQueryParams: ["VIEW_TYPE","FILTERS"],
         // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
-        queryParamSeparator: "bklbhl",
+        queryParamSeparator: "&",
         pageViewUrl: {
-            addToUrl: true,
+            addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
             // keyReplacer: "view",
             valuesReplacer: {
