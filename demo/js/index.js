@@ -611,6 +611,7 @@ window.unbxdSearch = new UnbxdSearch({
         browseQueryParam: 'pppp',
         searchQueryParam: "q",
         
+        // seoFriendlyUrl: true,
         seoFriendlyUrl: true,
         // orderOfQueryParams: ["VIEW_TYPE","FILTERS"],
         // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
@@ -618,6 +619,7 @@ window.unbxdSearch = new UnbxdSearch({
         
         queryParamSeparator: "&",
         pageViewUrl: {
+            addToUrl: false,
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
             // keyReplacer: "view",
@@ -638,8 +640,8 @@ window.unbxdSearch = new UnbxdSearch({
         pageNoUrl: { 
             addToUrl: true,
             algo: "DEFAULT",
-            // keyReplacer: 'p', 
-            usePageNo: true // uses page no. when turned on.else , index
+            keyReplacer: 'p', 
+            usePageNo: false // uses page no. when turned on.else , index
         },
         pageSizeUrl: {
             addToUrl: true,
@@ -649,7 +651,7 @@ window.unbxdSearch = new UnbxdSearch({
         facetsUrl: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
-            valuesSeperator: ",",
+            valuesSeperator: "@",
             keyReplacer: {
                 "color_uFilter": "color",
                 "size_uFilter": "size",
