@@ -4,7 +4,7 @@ const setUpInfiniteScroll = function () {
 
             const {
                 url: {
-                    pageNoUrl: {
+                    pageNoParam: {
                         // customize = false,
                         usePageNo = false,
                         keyReplacer = "",

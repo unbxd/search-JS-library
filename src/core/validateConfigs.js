@@ -13,11 +13,11 @@ import {
     productViewSchema,
     breadcrumbSchema,
     othersSchema,
-    facetsUrlSchema,
-    pageViewUrlSchema,
-    pageNoUrlSchema,
-    pageSizeUrlSchema,
-    sortUrlSchema,
+    facetsParamSchema,
+    pageViewParamSchema,
+    pageNoParamSchema,
+    pageSizeParamSchema,
+    sortParamSchema,
     otherUrlConfigsSchema
 } from "./configSchema";
 
@@ -39,11 +39,11 @@ function validateConfigs () {
     } = this.options
     
     const {
-        facetsUrl,
-        pageViewUrl,
-        sortUrl,
-        pageSizeUrl,
-        pageNoUrl
+        facetsParam,
+        pageViewParam,
+        sortParam,
+        pageSizeParam,
+        pageNoParam
     } = url
 
     const validate = (userConfig = {}, schema = {}) => {
@@ -106,11 +106,11 @@ function validateConfigs () {
         validate(products, productsSchema)
         validate(productView, productViewSchema)
         validate(breadcrumb, breadcrumbSchema)
-        validate(facetsUrl, facetsUrlSchema)
-        validate(pageViewUrl, pageViewUrlSchema)
-        validate(sortUrl, sortUrlSchema)
-        validate(pageNoUrl, pageNoUrlSchema)
-        validate(pageSizeUrl, pageSizeUrlSchema)
+        validate(facetsParam, facetsParamSchema)
+        validate(pageViewParam, pageViewParamSchema)
+        validate(sortParam, sortParamSchema)
+        validate(pageNoParam, pageNoParamSchema)
+        validate(pageSizeParam, pageSizeParamSchema)
         validate(this.options.url, otherUrlConfigsSchema)
 }
 

@@ -605,7 +605,6 @@ window.unbxdSearch = new UnbxdSearch({
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
-        updateUrls: true,
         hashMode: false,
         allowExternalUrlParams: false,
         // browseQueryParam: 'pppp',
@@ -627,8 +626,7 @@ window.unbxdSearch = new UnbxdSearch({
             algo: "DEFAULT",
             keyReplacer: "pppp"
         },
-        pageViewUrl: {
-            addToUrl: false,
+        pageViewParam: {
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
             // keyReplacer: "view",
@@ -637,7 +635,7 @@ window.unbxdSearch = new UnbxdSearch({
                 "LIST": "LI@ST(list)"
             }
         },
-        sortUrl: { 
+        sortParam: { 
             addToUrl: true,
             algo: "DEFAULT", 
             // keyReplacer: "sortBy",
@@ -646,21 +644,21 @@ window.unbxdSearch = new UnbxdSearch({
             //     "price asc": "p-a"
             // }
         },
-        pageNoUrl: { 
+        pageNoParam: { 
             addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: 'p', 
             usePageNo: false // uses page no. when turned on.else , index
         },
-        pageSizeUrl: {
+        pageSizeParam: {
             addToUrl: true,
             algo: "DEFAULT",
             // keyReplacer: "count"
         },
-        facetsUrl: {
+        facetsParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
-            valuesSeperator: "@",
+            multiValueSeparator: "@",
             keyReplacer: {
                 "color_uFilter": "color",
                 "size_uFilter": "size",

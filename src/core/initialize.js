@@ -26,10 +26,10 @@ const initialize = function() {
     } = this.options.productView;
     if(ln > 0){     
         const {
-            [(this.options.url.pageViewUrl.algo === "KEY_VALUE_REPLACER") ? this.options.url.pageViewUrl.keyReplacer: "viewType"]: type
+            [(this.options.url.pageViewParam.algo === "KEY_VALUE_REPLACER") ? this.options.url.pageViewParam.keyReplacer: "viewType"]: type
         } = urlParams;
 
-        const viewType = this.getKeyByValue(this.options.url.pageViewUrl.valuesReplacer, decodeURIComponent(type || defaultViewType))
+        const viewType = this.getKeyByValue(this.options.url.pageViewParam.valuesReplacer, decodeURIComponent(type || defaultViewType))
         if(viewType) {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;

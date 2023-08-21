@@ -339,14 +339,14 @@ var urlUtils = {
     }
     return defaultRequestHeaders;
   },
-  getEachFacetValueEncodedFromStr: function getEachFacetValueEncodedFromStr(facetStr, valuesSeparator) {
-    var vals = facetStr.split(urlUtils.getValuesSeparatorFacets(valuesSeparator));
+  getEachFacetValueEncodedFromStr: function getEachFacetValueEncodedFromStr(facetStr, multiValueSeparator) {
+    var vals = facetStr.split(urlUtils.getmultiValueSeparatorFacets(multiValueSeparator));
     var newVals = "";
     vals.forEach(function (item, index) {
       if (index === 0) {
         newVals += encodeURIComponent(item);
       } else {
-        newVals += urlUtils.getValuesSeparatorFacets(valuesSeparator) + encodeURIComponent(item);
+        newVals += urlUtils.getmultiValueSeparatorFacets(multiValueSeparator) + encodeURIComponent(item);
       }
     });
     return newVals;
@@ -354,25 +354,25 @@ var urlUtils = {
   isTextFilterStr: function isTextFilterStr(item) {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$so = _this$options$url2.sortUrl,
-      sortUrl = _this$options$url2$so === void 0 ? {} : _this$options$url2$so,
-      _this$options$url2$pa = _this$options$url2.pageViewUrl,
-      pageViewUrl = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
-      _this$options$url2$pa2 = _this$options$url2.pageSizeUrl,
-      pageSizeUrl = _this$options$url2$pa2 === void 0 ? {} : _this$options$url2$pa2,
-      _this$options$url2$pa3 = _this$options$url2.pageNoUrl,
-      pageNoUrl = _this$options$url2$pa3 === void 0 ? {} : _this$options$url2$pa3;
-    var sortStr = sortUrl.algo === "KEY_VALUE_REPLACER" ? sortUrl.keyReplacer : "sort";
-    var viewStr = pageViewUrl.algo === "KEY_VALUE_REPLACER" ? pageViewUrl.keyReplacer : "viewType";
-    var pageSizeStr = pageSizeUrl.algo === "KEY_VALUE_REPLACER" ? pageSizeUrl.keyReplacer : "rows";
-    var pageNoStr = pageNoUrl.algo === "KEY_VALUE_REPLACER" ? pageNoUrl.keyReplacer : pageNoUrl.usePageNo ? "page" : "start";
+      _this$options$url2$so = _this$options$url2.sortParam,
+      sortParam = _this$options$url2$so === void 0 ? {} : _this$options$url2$so,
+      _this$options$url2$pa = _this$options$url2.pageViewParam,
+      pageViewParam = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa2 = _this$options$url2.pageSizeParam,
+      pageSizeParam = _this$options$url2$pa2 === void 0 ? {} : _this$options$url2$pa2,
+      _this$options$url2$pa3 = _this$options$url2.pageNoParam,
+      pageNoParam = _this$options$url2$pa3 === void 0 ? {} : _this$options$url2$pa3;
+    var sortStr = sortParam.algo === "KEY_VALUE_REPLACER" ? sortParam.keyReplacer : "sort";
+    var viewStr = pageViewParam.algo === "KEY_VALUE_REPLACER" ? pageViewParam.keyReplacer : "viewType";
+    var pageSizeStr = pageSizeParam.algo === "KEY_VALUE_REPLACER" ? pageSizeParam.keyReplacer : "rows";
+    var pageNoStr = pageNoParam.algo === "KEY_VALUE_REPLACER" ? pageNoParam.keyReplacer : pageNoParam.usePageNo ? "page" : "start";
     if ([this.getSearchQueryParam(), this.getBrowseQueryParam(), viewStr, sortStr, pageSizeStr, pageNoStr, "count"].includes(item)) {
       return true;
     } else {
       return false;
     }
   },
-  getValuesSeparatorFacets: function getValuesSeparatorFacets(valuesSeperator) {
+  getmultiValueSeparatorFacets: function getmultiValueSeparatorFacets(valuesSeperator) {
     var allowedValues = ["&", "~", "^", ",", "-", "_", ":", ";", "|", "$", "@", '~'];
     return allowedValues.includes(valuesSeperator) ? valuesSeperator : ",";
   },
@@ -407,22 +407,22 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       var _ref = this.options || {},
         _ref$url = _ref.url,
         _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-        _ref$url2$facetsUrl = _ref$url2.facetsUrl,
-        facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
-        _ref$url2$pageSizeUrl = _ref$url2.pageSizeUrl,
-        pageSizeUrl = _ref$url2$pageSizeUrl === void 0 ? {} : _ref$url2$pageSizeUrl,
-        _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
-        pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl,
-        _ref$url2$sortUrl = _ref$url2.sortUrl,
-        sortUrl = _ref$url2$sortUrl === void 0 ? {} : _ref$url2$sortUrl;
+        _ref$url2$facetsParam = _ref$url2.facetsParam,
+        facetsParam = _ref$url2$facetsParam === void 0 ? {} : _ref$url2$facetsParam,
+        _ref$url2$pageSizeParam = _ref$url2.pageSizeParam,
+        pageSizeParam = _ref$url2$pageSizeParam === void 0 ? {} : _ref$url2$pageSizeParam,
+        _ref$url2$pageNoParam = _ref$url2.pageNoParam,
+        pageNoParam = _ref$url2$pageNoParam === void 0 ? {} : _ref$url2$pageNoParam,
+        _ref$url2$sortParam = _ref$url2.sortParam,
+        sortParam = _ref$url2$sortParam === void 0 ? {} : _ref$url2$sortParam;
       var q = urlParts[this.getSearchQueryParam()],
-        filter = urlParts[facetsUrl.algo === "KEY_VALUE_REPLACER" ? facetsUrl.filterReplacer : "filter"],
-        pageValue = urlParts[pageNoUrl.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(pageNoUrl.keyReplacer) : pageNoUrl.usePageNo ? "page" : "start"],
-        rowsValue = urlParts[pageSizeUrl.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(pageSizeUrl.keyReplacer) : pageNoUrl.usePageNo ? "count" : "rows"],
-        sort = urlParts[sortUrl.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(sortUrl.keyReplacer) : "sort"];
+        filter = urlParts[facetsParam.algo === "KEY_VALUE_REPLACER" ? facetsParam.filterReplacer : "filter"],
+        pageValue = urlParts[pageNoParam.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(pageNoParam.keyReplacer) : pageNoParam.usePageNo ? "page" : "start"],
+        rowsValue = urlParts[pageSizeParam.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(pageSizeParam.keyReplacer) : pageNoParam.usePageNo ? "count" : "rows"],
+        sort = urlParts[sortParam.algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(sortParam.keyReplacer) : "sort"];
 
       // let page = 1, start = 0;
-      // if(pageNoUrl.usePageNo){
+      // if(pageNoParam.usePageNo){
       //     page = pageValue
       // } else {
       //     start = pageValue
@@ -433,14 +433,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         this.state.userInput = utils_urlUtils.decodeQueryParam(q);
       }
 
-      // if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr){
+      // if (facetsParam.algo === "KEY_VALUE_REPLACER" && !facetsParam.showFilterStr){
       //     let paramArr = q.split("&")
       //     if (paramArr.length > 1) {
       //         filter = paramArr[1]
       //     }
       // }
 
-      if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr) {
+      if (facetsParam.algo === "KEY_VALUE_REPLACER" && !facetsParam.showFilterStr) {
         var filtersStr = [];
         Object.keys(urlParts).forEach(function (item, index) {
           if (!utils_urlUtils.isTextFilterStr.bind(_this)(decodeURIComponent(item))) {
@@ -456,16 +456,16 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       var facets = this.getFilterFromParams(filter);
       this.state.rangeFacet = facets.rangeFacet;
       this.state.selectedFacets = facets.selectedFilters;
-      this.state.selectedSort = sort ? sortUrl.algo === "KEY_VALUE_REPLACER" ? this.getKeyByValue(sortUrl.valueReplacer, decodeURIComponent(sort)) : decodeURIComponent(sort) : "";
+      this.state.selectedSort = sort ? sortParam.algo === "KEY_VALUE_REPLACER" ? this.getKeyByValue(sortParam.valueReplacer, decodeURIComponent(sort)) : decodeURIComponent(sort) : "";
       if (!rowsValue) {
         rowsValue = Number(this.options.pagesize.pageSize);
       }
-      if (pageNoUrl.usePageNo) {
+      if (pageNoParam.usePageNo) {
         this.state.startPageNo = pageValue ? Number((pageValue - 1) * rowsValue) : 0;
       } else {
         this.state.startPageNo = pageValue ? Number(pageValue) : 0;
       }
-      // if(pageNoUrl.usePageNo){
+      // if(pageNoParam.usePageNo){
       //     this.state.startPageNo = page? (page-1)* count : 0;
       // } else {
       //     this.state.startPageNo = start? start : 0;
@@ -474,15 +474,15 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       this.state.pageSize = rowsValue;
       // this.state.pageSize = rowsValue ? Number(rowsValue) : this.options.pagesize.pageSize;
 
-      // if(pageNoUrl.usePageNo){
+      // if(pageNoParam.usePageNo){
       //     this.state.pageSize = count ? Number(count) : this.options.pagesize.pageSize;
       // } else {
       //     this.state.pageSize = rows ? Number(rows) : this.options.pagesize.pageSize;
       // }
 
       // -------
-      // if (this.options.url.pageSizeUrl.addToUrl && this.options.url.pageSizeUrl.customize){
-      //     this.state.pageSize = urlParts[this.options.url.pageSizeUrl.keyReplacer] ? Number(urlParts[this.options.url.pageSizeUrl.keyReplacer]) : this.options.pagesize.pageSize;
+      // if (this.options.url.pageSizeParam.addToUrl && this.options.url.pageSizeParam.customize){
+      //     this.state.pageSize = urlParts[this.options.url.pageSizeParam.keyReplacer] ? Number(urlParts[this.options.url.pageSizeParam.keyReplacer]) : this.options.pagesize.pageSize;
       // }else{
       //     this.state.pageSize = urlParts.rows ? Number(urlParts.rows) : this.options.pagesize.pageSize;
       // }
@@ -544,11 +544,11 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
 /* harmony default export */ var getQueryParamsWhenCustomUrl = (function () {
   var newQ = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
   var _ref = this.options.url || {},
-    _ref$facetsUrl = _ref.facetsUrl,
-    _ref$facetsUrl2 = _ref$facetsUrl === void 0 ? {} : _ref$facetsUrl,
-    showFilterStr = _ref$facetsUrl2.showFilterStr,
-    _ref$facetsUrl3 = _ref.facetsUrl,
-    facetsUrl = _ref$facetsUrl3 === void 0 ? {} : _ref$facetsUrl3,
+    _ref$facetsParam = _ref.facetsParam,
+    _ref$facetsParam2 = _ref$facetsParam === void 0 ? {} : _ref$facetsParam,
+    showFilterStr = _ref$facetsParam2.showFilterStr,
+    _ref$facetsParam3 = _ref.facetsParam,
+    facetsParam = _ref$facetsParam3 === void 0 ? {} : _ref$facetsParam3,
     queryParamSeparator = _ref.queryParamSeparator;
   if (!showFilterStr) {
     var q = newQ ? newQ : this.getHashMode() ? location.hash : location.search;
@@ -559,7 +559,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       // item = item);
       if (item.indexOf('=') > 0) {
         var splitItem = "";
-        if (facetsUrl.algo === "HASH" && item.split('=')[0] === "filter") {
+        if (facetsParam.algo === "HASH" && item.split('=')[0] === "filter") {
           splitItem = item.split('filter=');
           params["filter"] = splitItem[1];
         } else {
@@ -647,11 +647,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 /* harmony default export */ var facetsToWebUrlString = (function () {
   try {
     var _ref = this.options.url || {},
-      _ref$facetsUrl = _ref.facetsUrl,
-      facetsUrl = _ref$facetsUrl === void 0 ? {} : _ref$facetsUrl,
+      _ref$facetsParam = _ref.facetsParam,
+      facetsParam = _ref$facetsParam === void 0 ? {} : _ref$facetsParam,
       queryParamSeparator = _ref.queryParamSeparator;
-    var _facetsUrl$algo = facetsUrl.algo,
-      algo = _facetsUrl$algo === void 0 ? "DEFAULT" : _facetsUrl$algo;
+    var _facetsParam$algo = facetsParam.algo,
+      algo = _facetsParam$algo === void 0 ? "DEFAULT" : _facetsParam$algo;
     if (algo === "KEY_VALUE_REPLACER") {
       var facetUrl = "";
       var selectedFacets = this.state.selectedFacets;
@@ -659,7 +659,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var keys = Object.keys(selectedFacets);
       var remainingKeys = [];
       var orderedFacets = [];
-      facetsUrl.facetsOrderInUrl.forEach(function (facet) {
+      facetsParam.facetsOrderInUrl.forEach(function (facet) {
         if (keys.includes(facet)) {
           orderedFacets.push(facet);
         }
@@ -668,11 +668,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return !orderedFacets.includes(item);
       });
       orderedFacets = [].concat(_toConsumableArray(orderedFacets), _toConsumableArray(remainingKeys));
-      var showFilterStr = facetsUrl.showFilterStr,
-        filterReplacer = facetsUrl.filterReplacer,
-        keyReplacer = facetsUrl.keyReplacer,
-        valuesSeparator = facetsUrl.valuesSeparator,
-        valueReplacer = facetsUrl.valueReplacer;
+      var showFilterStr = facetsParam.showFilterStr,
+        filterReplacer = facetsParam.filterReplacer,
+        keyReplacer = facetsParam.keyReplacer,
+        multiValueSeparator = facetsParam.multiValueSeparator,
+        valueReplacer = facetsParam.valueReplacer;
       orderedFacets.forEach(function (key, indexKey) {
         var facet = selectedFacets[key];
         var replacedKey = "";
@@ -701,7 +701,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
           if (index === 0) {
             facetUrl += "".concat(encodeURIComponent(replacedName));
           } else {
-            facetUrl += "".concat(utils_urlUtils.getValuesSeparatorFacets(valuesSeparator)).concat(encodeURIComponent(replacedName));
+            facetUrl += "".concat(utils_urlUtils.getmultiValueSeparatorFacets(multiValueSeparator)).concat(encodeURIComponent(replacedName));
           }
         });
       });
@@ -716,7 +716,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         var facet = _selectedFacets[key];
         /** Remove unnecessary &filter from url */
         if (facet.length) {
-          _facetUrl += facetsUrl.algo === "HASH" ? _facetUrl !== "" ? utils_urlUtils.getQueryParamSeparator(queryParamSeparator) : "" : "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "filter=");
+          _facetUrl += facetsParam.algo === "HASH" ? _facetUrl !== "" ? utils_urlUtils.getQueryParamSeparator(queryParamSeparator) : "" : "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "filter=");
         }
         facet.forEach(function (item, index) {
           var name = item.name,
@@ -805,22 +805,22 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   }
 });
 ;
-// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getPageSizeUrlString.js
-/* harmony default export */ var getPageSizeUrlString = (function () {
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getpageSizeParamString.js
+/* harmony default export */ var getpageSizeParamString = (function () {
   var api = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
   try {
     var _ref = this.options || {},
       _ref$url = _ref.url,
       _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-      _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
-      pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl;
-    if (!api && pageNoUrl.usePageNo) {
+      _ref$url2$pageNoParam = _ref$url2.pageNoParam,
+      pageNoParam = _ref$url2$pageNoParam === void 0 ? {} : _ref$url2$pageNoParam;
+    if (!api && pageNoParam.usePageNo) {
       return "&count=".concat(this.state.pageSize);
     } else {
       return "&rows=".concat(this.state.pageSize);
     }
   } catch (err) {
-    this.onError("getPageSizeUrlString.js", err);
+    this.onError("getpageSizeParamString.js", err);
   }
 });
 ;
@@ -831,10 +831,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var _ref = this.options || {},
       _ref$url = _ref.url,
       _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-      _ref$url2$pageSizeUrl = _ref$url2.pageSizeUrl,
-      _ref$url2$pageSizeUrl2 = _ref$url2$pageSizeUrl === void 0 ? {} : _ref$url2$pageSizeUrl,
-      algo = _ref$url2$pageSizeUrl2.algo,
-      keyReplacer = _ref$url2$pageSizeUrl2.keyReplacer,
+      _ref$url2$pageSizeParam = _ref$url2.pageSizeParam,
+      _ref$url2$pageSizeParam2 = _ref$url2$pageSizeParam === void 0 ? {} : _ref$url2$pageSizeParam,
+      algo = _ref$url2$pageSizeParam2.algo,
+      keyReplacer = _ref$url2$pageSizeParam2.keyReplacer,
       queryParamSeparator = _ref$url2.queryParamSeparator;
     return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(algo === "KEY_VALUE_REPLACER" ? encodeURIComponent(keyReplacer) : "rows", "=").concat(this.state.pageSize);
   } catch (err) {
@@ -849,9 +849,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     var _ref = this.options || {},
       _ref$url = _ref.url,
       _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-      _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
-      pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl;
-    if (!api && pageNoUrl.usePageNo) {
+      _ref$url2$pageNoParam = _ref$url2.pageNoParam,
+      pageNoParam = _ref$url2$pageNoParam === void 0 ? {} : _ref$url2$pageNoParam;
+    if (!api && pageNoParam.usePageNo) {
       return "&page=" + (Math.floor(this.state.startPageNo / this.state.pageSize) + 1);
     } else {
       return "&start=" + this.state.startPageNo;
@@ -867,7 +867,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   try {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$pa = _this$options$url2.pageNoUrl,
+      _this$options$url2$pa = _this$options$url2.pageNoParam,
       _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
       algo = _this$options$url2$pa2.algo,
       usePageNo = _this$options$url2$pa2.usePageNo,
@@ -897,16 +897,16 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       productType = _this$options.productType,
       _this$options$url = _this$options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$fa = _this$options$url2.facetsUrl,
-      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
-      _this$options$url2$so = _this$options$url2.sortUrl,
-      sortUrl = _this$options$url2$so === void 0 ? {} : _this$options$url2$so,
-      _this$options$url2$pa = _this$options$url2.pageSizeUrl,
-      pageSizeUrl = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
-      _this$options$url2$pa2 = _this$options$url2.pageNoUrl,
-      pageNoUrl = _this$options$url2$pa2 === void 0 ? {} : _this$options$url2$pa2,
-      _this$options$url2$pa3 = _this$options$url2.pageViewUrl,
-      pageViewUrl = _this$options$url2$pa3 === void 0 ? {} : _this$options$url2$pa3,
+      _this$options$url2$fa = _this$options$url2.facetsParam,
+      facetsParam = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      _this$options$url2$so = _this$options$url2.sortParam,
+      sortParam = _this$options$url2$so === void 0 ? {} : _this$options$url2$so,
+      _this$options$url2$pa = _this$options$url2.pageSizeParam,
+      pageSizeParam = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa2 = _this$options$url2.pageNoParam,
+      pageNoParam = _this$options$url2$pa2 === void 0 ? {} : _this$options$url2$pa2,
+      _this$options$url2$pa3 = _this$options$url2.pageViewParam,
+      pageViewParam = _this$options$url2$pa3 === void 0 ? {} : _this$options$url2$pa3,
       _this$options$url2$br = _this$options$url2.browseQueryParam,
       browseQueryParam = _this$options$url2$br === void 0 ? {} : _this$options$url2$br,
       _this$options$url2$se = _this$options$url2.searchQueryParam,
@@ -929,29 +929,29 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.webUrl = baseUrl + _queryString + (searchQueryParam.addToUrl ? "".concat(this.getSearchQueryParam(), "=").concat(utils_urlUtils.encodeQueryParam(value)) : "");
       this.apiUrl = baseUrl + _queryString + 'q=' + utils_urlUtils.encodeQueryParam(value);
     }
-    var facetsUrlString = this.urlFlattenFacets();
+    var facetsParamString = this.urlFlattenFacets();
     var showVariantsStr = this.getShowVariantsStr();
     var variantAttributesStr = this.getVariantAttributesStr();
     var variantsCountStr = this.getVariantsCountStr();
     var variantsGroupByStr = this.getVariantsGroupByStr();
     var productAttributesStr = this.getProductAttributesStr() + this.getDefaultFiltersStr();
-    var sortStr = this.getSortUrlString();
+    var sortStr = this.getsortParamString();
     var spellCheckUrlString = this.getSpellCheckUrlString();
     var rangeFilterUrlStr = this.getRangeFilterStr();
     var categoryFilterStr = this.categoryFilterUrlStr();
     var ucParam = this.getUcParamUrlString();
     var fctmulty = this.options.facetMultiSelect ? "&facet.multiselect=true" : "&facet.multiselect=false";
     var facetV2 = "&facet.version=V2";
-    var apiUrl = this.apiUrl + categoryFilterStr + fctmulty + facetsUrlString + showVariantsStr + variantAttributesStr + variantsCountStr + variantsGroupByStr + productAttributesStr + sortStr + spellCheckUrlString + rangeFilterUrlStr + pagetype + this.getPageSizeStr(true) + this.getPageStartStr(true) + this.extraParamUrlString() + facetV2 + (ucParam ? ucParam : "");
+    var apiUrl = this.apiUrl + categoryFilterStr + fctmulty + facetsParamString + showVariantsStr + variantAttributesStr + variantsCountStr + variantsGroupByStr + productAttributesStr + sortStr + spellCheckUrlString + rangeFilterUrlStr + pagetype + this.getPageSizeStr(true) + this.getPageStartStr(true) + this.extraParamUrlString() + facetV2 + (ucParam ? ucParam : "");
     var getfacets = function getfacets() {
       var _ref = _this.options || {},
         _ref$url = _ref.url,
         _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-        _ref$url2$facetsUrl = _ref$url2.facetsUrl,
-        facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
+        _ref$url2$facetsParam = _ref$url2.facetsParam,
+        facetsParam = _ref$url2$facetsParam === void 0 ? {} : _ref$url2$facetsParam,
         queryParamSeparator = _ref$url2.queryParamSeparator;
-      if (facetsUrl.addToUrl) {
-        if (facetsUrl.algo === "HASH") {
+      if (facetsParam.addToUrl) {
+        if (facetsParam.algo === "HASH") {
           var filterStr = window.btoa(_this.categoryFilterWebUrlString() + _this.facetsToWebUrlString() + _this.getRangeFilterWebString());
           if (filterStr) {
             return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "filter=").concat(filterStr);
@@ -966,9 +966,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         return "";
       }
     };
-    var webUrl = this.webUrl + getfacets() + (sortUrl.addToUrl ? this.getSortWebUrlString() : "") + (
+    var webUrl = this.webUrl + getfacets() + (sortParam.addToUrl ? this.getSortWebUrlString() : "") + (
     // rangeFilterUrlStr +
-    pageSizeUrl.addToUrl ? this.getPageSizeWebUrlString() : "") + (pageNoUrl.addToUrl ? this.getPaginationStartWebUrlString() : "") + (pageViewUrl.addToUrl ? this.getViewTypeForWebUrl() : "");
+    pageSizeParam.addToUrl ? this.getPageSizeWebUrlString() : "") + (pageNoParam.addToUrl ? this.getPaginationStartWebUrlString() : "") + (pageViewParam.addToUrl ? this.getViewTypeForWebUrl() : "");
     this.state.currentApiUrl = apiUrl;
     this.state.currentWebUrl = webUrl;
     if (fetchApiUrl) {
@@ -1009,26 +1009,26 @@ function getRangeFilterWebString() {
   try {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$fa = _this$options$url2.facetsUrl,
-      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      _this$options$url2$fa = _this$options$url2.facetsParam,
+      facetsParam = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
       queryParamSeparator = _this$options$url2.queryParamSeparator;
-    if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+    if (facetsParam.algo === "KEY_VALUE_REPLACER") {
       var rangeFacet = this.state.rangeFacet;
       var keysMap = Object.keys(rangeFacet);
       var str = "";
       keysMap.forEach(function (item) {
-        str = "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(Object.keys(facetsUrl.keyReplacer).length > 0 && item in facetsUrl.keyReplacer ? facetsUrl.keyReplacer[item] : item, "=");
+        str = "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(Object.keys(facetsParam.keyReplacer).length > 0 && item in facetsParam.keyReplacer ? facetsParam.keyReplacer[item] : item, "=");
         var range = rangeFacet[item];
         range.forEach(function (r, index) {
           if (index === 0) {
-            str += "".concat(r.replace(/\[|\]/g, "").split(" TO ").join(utils_urlUtils.getRangeSeparator(facetsUrl.rangeSeparator)));
+            str += "".concat(r.replace(/\[|\]/g, "").split(" TO ").join(utils_urlUtils.getRangeSeparator(facetsParam.rangeSeparator)));
           } else {
-            str += "".concat(facetsUrl.valuesSeperator).concat(r.replace(/\[|\]/g, "").split(" TO ").join(utils_urlUtils.getRangeSeparator(facetsUrl.rangeSeparator)));
+            str += "".concat(facetsParam.valuesSeperator).concat(r.replace(/\[|\]/g, "").split(" TO ").join(utils_urlUtils.getRangeSeparator(facetsParam.rangeSeparator)));
           }
         });
       });
       return str;
-    } else if (facetsUrl.algo === "DEFAULT" || facetsUrl.algo === "HASH") {
+    } else if (facetsParam.algo === "DEFAULT" || facetsParam.algo === "HASH") {
       var _rangeFacet = this.state.rangeFacet;
       var _keysMap = Object.keys(_rangeFacet);
       var _str = "";
@@ -1036,7 +1036,7 @@ function getRangeFilterWebString() {
         var range = _rangeFacet[item];
         if (Array.isArray(range)) {
           if (range.length > 0) {
-            if (facetsUrl.algo === "HASH") {
+            if (facetsParam.algo === "HASH") {
               _str += "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(item, ":").concat(range.join(" OR ".concat(item, ":"))); //&price=[100 to 200] OR price=[200 to 300]
             } else {
               _str += "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "filter=").concat(item, ":").concat(range.join(" OR ".concat(item, ":"))); //filter=ptice=
@@ -1129,8 +1129,8 @@ function getRangeFilterWebString() {
   }
 });
 ;
-// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getSortUrlString.js
-/* harmony default export */ var getSortUrlString = (function () {
+// CONCATENATED MODULE: ../search-JS-core/src/modules/url/getsortParamString.js
+/* harmony default export */ var getsortParamString = (function () {
   try {
     var selectedSort = this.getSelectedSort();
     if (selectedSort) {
@@ -1138,7 +1138,7 @@ function getRangeFilterWebString() {
     }
     return "";
   } catch (err) {
-    this.onError("getSortUrlString.js", err);
+    this.onError("getsortParamString.js", err);
   }
 });
 ;
@@ -1151,15 +1151,15 @@ function getRangeFilterWebString() {
       var _ref = this.options || {},
         _ref$url = _ref.url,
         _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-        sortUrl = _ref$url2.sortUrl,
+        sortParam = _ref$url2.sortParam,
         queryParamSeparator = _ref$url2.queryParamSeparator,
         _ref$url3 = _ref.url,
         url = _ref$url3 === void 0 ? {} : _ref$url3;
-      if (url && sortUrl && sortUrl.algo === "KEY_VALUE_REPLACER") {
-        var _sortUrl$keyReplacer = sortUrl.keyReplacer,
-          keyReplacer = _sortUrl$keyReplacer === void 0 ? "sort" : _sortUrl$keyReplacer,
-          _sortUrl$valueReplace = sortUrl.valueReplacer,
-          valueReplacer = _sortUrl$valueReplace === void 0 ? {} : _sortUrl$valueReplace;
+      if (url && sortParam && sortParam.algo === "KEY_VALUE_REPLACER") {
+        var _sortParam$keyReplacer = sortParam.keyReplacer,
+          keyReplacer = _sortParam$keyReplacer === void 0 ? "sort" : _sortParam$keyReplacer,
+          _sortParam$valueReplace = sortParam.valueReplacer,
+          valueReplacer = _sortParam$valueReplace === void 0 ? {} : _sortParam$valueReplace;
         var replacedValue = selectedSort;
         if (Object.keys(valueReplacer).length > 0 && valueReplacer[selectedSort]) {
           replacedValue = valueReplacer[selectedSort];
@@ -1196,18 +1196,18 @@ function getStateFromUrl_typeof(obj) { "@babel/helpers - typeof"; return getStat
     var _ref = this.options || {},
       _ref$url = _ref.url,
       _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-      _ref$url2$facetsUrl = _ref$url2.facetsUrl,
-      facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
-      _ref$url2$pageSizeUrl = _ref$url2.pageSizeUrl,
-      pageSizeUrl = _ref$url2$pageSizeUrl === void 0 ? {} : _ref$url2$pageSizeUrl,
-      _ref$url2$pageNoUrl = _ref$url2.pageNoUrl,
-      pageNoUrl = _ref$url2$pageNoUrl === void 0 ? {} : _ref$url2$pageNoUrl,
-      _ref$url2$sortUrl = _ref$url2.sortUrl,
-      sortUrl = _ref$url2$sortUrl === void 0 ? {} : _ref$url2$sortUrl,
-      _ref$url2$pageViewUrl = _ref$url2.pageViewUrl,
-      pageViewUrl = _ref$url2$pageViewUrl === void 0 ? {} : _ref$url2$pageViewUrl;
+      _ref$url2$facetsParam = _ref$url2.facetsParam,
+      facetsParam = _ref$url2$facetsParam === void 0 ? {} : _ref$url2$facetsParam,
+      _ref$url2$pageSizeParam = _ref$url2.pageSizeParam,
+      pageSizeParam = _ref$url2$pageSizeParam === void 0 ? {} : _ref$url2$pageSizeParam,
+      _ref$url2$pageNoParam = _ref$url2.pageNoParam,
+      pageNoParam = _ref$url2$pageNoParam === void 0 ? {} : _ref$url2$pageNoParam,
+      _ref$url2$sortParam = _ref$url2.sortParam,
+      sortParam = _ref$url2$sortParam === void 0 ? {} : _ref$url2$sortParam,
+      _ref$url2$pageViewParam = _ref$url2.pageViewParam,
+      pageViewParam = _ref$url2$pageViewParam === void 0 ? {} : _ref$url2$pageViewParam;
     var urlParts = "";
-    if ((facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH") & !facetsUrl.showFilterStr) {
+    if ((facetsParam.algo === "KEY_VALUE_REPLACER" || facetsParam.algo === "HASH") & !facetsParam.showFilterStr) {
       urlParts = this.getQueryParamsWhenCustomUrl();
     } else {
       urlParts = this.getQueryParams();
@@ -1217,17 +1217,17 @@ function getStateFromUrl_typeof(obj) { "@babel/helpers - typeof"; return getStat
     if (getStateFromUrl_typeof(urlParts) === 'object') {
       var _urlParts = urlParts,
         q = _urlParts[this.getSearchQueryParam()],
-        filter = _urlParts[facetsUrl.algo === "KEY_VALUE_REPLACER" ? facetsUrl.filterReplacer : "filter"],
-        page = _urlParts[pageNoUrl.algo === "KEY_VALUE_REPLACER" ? pageNoUrl.keyReplacer : "page"],
-        start = _urlParts[pageSizeUrl.algo === "KEY_VALUE_REPLACER" ? pageSizeUrl.keyReplacer : "filter"],
-        sort = _urlParts[sortUrl.algo === "KEY_VALUE_REPLACER" ? sortUrl.keyReplacer : "sort"],
+        filter = _urlParts[facetsParam.algo === "KEY_VALUE_REPLACER" ? facetsParam.filterReplacer : "filter"],
+        page = _urlParts[pageNoParam.algo === "KEY_VALUE_REPLACER" ? pageNoParam.keyReplacer : "page"],
+        start = _urlParts[pageSizeParam.algo === "KEY_VALUE_REPLACER" ? pageSizeParam.keyReplacer : "filter"],
+        sort = _urlParts[sortParam.algo === "KEY_VALUE_REPLACER" ? sortParam.keyReplacer : "sort"],
         count = _urlParts.count,
         _urlParts$rows = _urlParts.rows,
         rows = _urlParts$rows === void 0 ? pageSize : _urlParts$rows;
       if (this.state.userInput !== q) {
         qState.userInput = q;
       }
-      if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr) {
+      if (facetsParam.algo === "KEY_VALUE_REPLACER" && !facetsParam.showFilterStr) {
         var filtersStr = [];
         Object.keys(urlParts).forEach(function (item) {
           if (!utils_urlUtils.isTextFilterStr.bind(_this)(item)) {
@@ -1244,7 +1244,7 @@ function getStateFromUrl_typeof(obj) { "@babel/helpers - typeof"; return getStat
       qState.rangeFacet = facets.rangeFacet;
       qState.selectedFacets = facets.selectedFilters;
       qState.selectedSort = sort ? sort : "";
-      if (pageNoUrl.usePageNo) {
+      if (pageNoParam.usePageNo) {
         qState.startPageNo = page ? (page - 1) * count : 0;
       } else {
         qState.startPageNo = start ? start : 0;
@@ -1279,17 +1279,17 @@ function getViewTypeForWebUrl() {
       _this$options$url = _this$options.url,
       url = _this$options$url === void 0 ? {} : _this$options$url,
       _this$options$url2 = _this$options.url,
-      _this$options$url2$pa = _this$options$url2.pageViewUrl,
-      pageViewUrl = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
+      _this$options$url2$pa = _this$options$url2.pageViewParam,
+      pageViewParam = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
       queryParamSeparator = _this$options$url2.queryParamSeparator;
-    if (url && pageViewUrl && pageViewUrl.algo === "KEY_VALUE_REPLACER") {
-      var _pageViewUrl$keyRepla = pageViewUrl.keyReplacer,
-        keyReplacer = _pageViewUrl$keyRepla === void 0 ? "viewType" : _pageViewUrl$keyRepla,
-        _pageViewUrl$valuesRe = pageViewUrl.valuesReplacer,
-        valuesReplacer = _pageViewUrl$valuesRe === void 0 ? {
+    if (url && pageViewParam && pageViewParam.algo === "KEY_VALUE_REPLACER") {
+      var _pageViewParam$keyRepla = pageViewParam.keyReplacer,
+        keyReplacer = _pageViewParam$keyRepla === void 0 ? "viewType" : _pageViewParam$keyRepla,
+        _pageViewParam$valuesRe = pageViewParam.valuesReplacer,
+        valuesReplacer = _pageViewParam$valuesRe === void 0 ? {
           "GRID": "GRID",
           "LIST": "LIST"
-        } : _pageViewUrl$valuesRe;
+        } : _pageViewParam$valuesRe;
       return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)).concat(encodeURIComponent(keyReplacer), "=").concat(productViewType === "GRID" ? encodeURIComponent(valuesReplacer["GRID"]) : encodeURIComponent(valuesReplacer["LIST"]));
     } else {
       return "".concat(utils_urlUtils.getQueryParamSeparator(queryParamSeparator), "viewType=").concat(productViewType === "GRID" ? "GRID" : "LIST");
@@ -1305,7 +1305,7 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return rea
 function _toPrimitive(input, hint) { if (readSortWebUrl_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (readSortWebUrl_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 /* harmony default export */ var readSortWebUrl = (function (newQ) {
   try {
-    var _this$options$url$sor = this.options.url.sortUrl,
+    var _this$options$url$sor = this.options.url.sortParam,
       _this$options$url$sor2 = _this$options$url$sor.algo,
       algo = _this$options$url$sor2 === void 0 ? "DEFAULT" : _this$options$url$sor2,
       _this$options$url$sor3 = _this$options$url$sor.keyReplacer,
@@ -1328,7 +1328,7 @@ function readPageViewWebUrl(newQ) {
   try {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$pa = _this$options$url2.pageViewUrl,
+      _this$options$url2$pa = _this$options$url2.pageViewParam,
       _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
       _this$options$url2$pa3 = _this$options$url2$pa2.algo,
       algo = _this$options$url2$pa3 === void 0 ? "DEFAULT" : _this$options$url2$pa3,
@@ -1365,7 +1365,7 @@ function readPageSizeWebUrl_toPropertyKey(arg) { var key = readPageSizeWebUrl_to
 function readPageSizeWebUrl_toPrimitive(input, hint) { if (readPageSizeWebUrl_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (readPageSizeWebUrl_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function readPageSizeWebUrl(newQ) {
   try {
-    var _this$options$url$pag = this.options.url.pageSizeUrl,
+    var _this$options$url$pag = this.options.url.pageSizeParam,
       _this$options$url$pag2 = _this$options$url$pag.algo,
       algo = _this$options$url$pag2 === void 0 ? "DEFAULT" : _this$options$url$pag2,
       keyReplacer = _this$options$url$pag.keyReplacer;
@@ -1395,10 +1395,10 @@ function readFacetsWebUrl(newQ) {
   try {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$fa = _this$options$url2.facetsUrl,
-      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      _this$options$url2$fa = _this$options$url2.facetsParam,
+      facetsParam = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
       queryParamSeparator = _this$options$url2.queryParamSeparator;
-    if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+    if (facetsParam.algo === "KEY_VALUE_REPLACER") {
       var q = newQ ? newQ : this.getHashMode() ? location.hash : location.search;
       var uri = this.getHashMode() ? q : q.substr(1);
       var splited = uri && uri.split(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)) || [];
@@ -1418,7 +1418,7 @@ function readFacetsWebUrl(newQ) {
         }
       });
       return filters;
-    } else if (facetsUrl.algo === "HASH") {
+    } else if (facetsParam.algo === "HASH") {
       var urlParts = this.readQueryParamsFromUrl(newQ);
       var urlObj = {};
       Object.keys(urlParts).forEach(function (key) {
@@ -1450,7 +1450,7 @@ function readPageNoWebUrl(newQ) {
   try {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$pa = _this$options$url2.pageNoUrl,
+      _this$options$url2$pa = _this$options$url2.pageNoParam,
       _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
       _this$options$url2$pa3 = _this$options$url2$pa2.algo,
       algo = _this$options$url2$pa3 === void 0 ? "DEFAULT" : _this$options$url2$pa3,
@@ -1480,8 +1480,8 @@ function readPageNoWebUrl(newQ) {
   try {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$fa = _this$options$url2.facetsUrl,
-      facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
+      _this$options$url2$fa = _this$options$url2.facetsParam,
+      facetsParam = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa,
       queryParamSeparator = _this$options$url2.queryParamSeparator,
       rangeFacets = _this$options$url2.rangeFacets;
     var q = newQ ? newQ : this.getHashMode() ? location.hash : location.search;
@@ -1492,9 +1492,9 @@ function readPageNoWebUrl(newQ) {
       // key = decodeURIComponent(key);
       var splitItemArr = key.startsWith('filter=') ? key.split("filter=")[1] : key.split("=");
       if (!utils_urlUtils.isTextFilterStr.bind(_this)(decodeURIComponent(splitItemArr[0]))) {
-        if (facetsUrl.algo === "HASH") {
+        if (facetsParam.algo === "HASH") {
           urlObj["filter"] = [splitItemArr];
-        } else if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+        } else if (facetsParam.algo === "KEY_VALUE_REPLACER") {
           if (Object.keys(urlObj).includes(splitItemArr[0])) {
             urlObj[splitItemArr[0]].push(decodeURIComponent(splitItemArr[1]));
           } else {
@@ -1644,14 +1644,14 @@ var methods = {
   getVariantsCountStr: getVariantsCountUrlString,
   getVariantsGroupByStr: getVariantsGroupByUrlString,
   getProductAttributesStr: getProductAttributesUrlString,
-  getPageSizeStr: getPageSizeUrlString,
+  getPageSizeStr: getpageSizeParamString,
   getPageStartStr: getPaginationStartUrlString,
   getNewUrlState: getNewUrlState,
   getRangeFilterStr: getRangeFilterString,
   getRangeFilterWebString: getRangeFilterWebString,
   categoryFilterUrlStr: categoryFilterUrlString,
   categoryFilterWebUrlString: categoryFilterWebUrlString,
-  getSortUrlString: getSortUrlString,
+  getsortParamString: getsortParamString,
   getSortWebUrlString: getSortWebUrlString,
   getSpellCheckUrlString: getSpellCheckUrlString,
   getBaseUrl: getBaseUrl,
@@ -2372,10 +2372,10 @@ var swatches_setSwatchMethods = function setSwatchMethods(prototype) {
   var filters = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   try {
     var _ref = this.options.url || {},
-      _ref$facetsUrl = _ref.facetsUrl,
-      facetsUrl = _ref$facetsUrl === void 0 ? {} : _ref$facetsUrl,
+      _ref$facetsParam = _ref.facetsParam,
+      facetsParam = _ref$facetsParam === void 0 ? {} : _ref$facetsParam,
       queryParamSeparator = _ref.queryParamSeparator;
-    if (facetsUrl.algo === "KEY_VALUE_REPLACER") {
+    if (facetsParam.algo === "KEY_VALUE_REPLACER") {
       var self = this;
       var selectedFilters = {};
       var rangeFacet = {};
@@ -2387,14 +2387,14 @@ var swatches_setSwatchMethods = function setSwatchMethods(prototype) {
         var index = arguments.length > 1 ? arguments[1] : undefined;
         var filterStrArr = filter.split("=");
         var fName = decodeURIComponent(filterStrArr[0]);
-        var actualFname = self.getKeyByValue(facetsUrl.keyReplacer, fName);
-        var isRange = facetsUrl.rangeFacets.includes(actualFname);
-        var filterStrValues = filterStrArr[1] && filterStrArr[1].split(utils_urlUtils.getValuesSeparatorFacets(facetsUrl.valuesSeparator));
+        var actualFname = self.getKeyByValue(facetsParam.keyReplacer, fName);
+        var isRange = facetsParam.rangeFacets.includes(actualFname);
+        var filterStrValues = filterStrArr[1] && filterStrArr[1].split(utils_urlUtils.getmultiValueSeparatorFacets(facetsParam.multiValueSeparator));
         filterStrValues && filterStrValues.length > 0 && filterStrValues.forEach(function (item, index) {
           var fVal = decodeURIComponent(item);
-          var actualFVal = facetsUrl.valueReplacer[actualFname] ? self.getKeyByValue(facetsUrl.valueReplacer[actualFname], fVal) : fVal;
+          var actualFVal = facetsParam.valueReplacer[actualFname] ? self.getKeyByValue(facetsParam.valueReplacer[actualFname], fVal) : fVal;
           if (isRange) {
-            var range = actualFVal.split(utils_urlUtils.getRangeSeparator(facetsUrl.rangeSeparator));
+            var range = actualFVal.split(utils_urlUtils.getRangeSeparator(facetsParam.rangeSeparator));
             var val = "[".concat(Number(range[0]), " TO ").concat(Number(range[1]), "]");
             if (rangeFacet[fName]) {
               rangeFacet[fName].push(val);
@@ -2438,7 +2438,7 @@ var swatches_setSwatchMethods = function setSwatchMethods(prototype) {
       var _self = this;
       var _selectedFilters = {};
       var _rangeFacet = {};
-      if (facetsUrl.algo === "HASH") {
+      if (facetsParam.algo === "HASH") {
         filters = window.atob(filters) ? window.atob(filters).split(utils_urlUtils.getQueryParamSeparator(queryParamSeparator)) : [];
       }
       if (typeof filters === "string") {
@@ -4244,8 +4244,8 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
       var _ref = this.options || {},
         _ref$url = _ref.url,
         _ref$url2 = _ref$url === void 0 ? {} : _ref$url,
-        _ref$url2$facetsUrl = _ref$url2.facetsUrl,
-        facetsUrl = _ref$url2$facetsUrl === void 0 ? {} : _ref$url2$facetsUrl,
+        _ref$url2$facetsParam = _ref$url2.facetsParam,
+        facetsParam = _ref$url2$facetsParam === void 0 ? {} : _ref$url2$facetsParam,
         queryParamSeparator = _ref$url2.queryParamSeparator,
         seoFriendlyUrl = _ref$url2.seoFriendlyUrl,
         _ref$url2$orderOfQuer = _ref$url2.orderOfQueryParams,
@@ -4282,29 +4282,29 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
                 str.push("start");
               } else if (urlObjKeys.includes("page")) {
                 str.push("page");
-              } else if (urlObjKeys.includes(_this.options.url.pageNoUrl.keyReplacer)) {
-                str.push(_this.options.url.pageNoUrl.keyReplacer);
+              } else if (urlObjKeys.includes(_this.options.url.pageNoParam.keyReplacer)) {
+                str.push(_this.options.url.pageNoParam.keyReplacer);
               }
               break;
             case "PAGE_SIZE":
               if (urlObjKeys.includes("rows")) {
                 str.push("rows");
-              } else if (urlObjKeys.includes(_this.options.url.pageSizeUrl.keyReplacer)) {
-                str.push(_this.options.url.pageSizeUrl.keyReplacer);
+              } else if (urlObjKeys.includes(_this.options.url.pageSizeParam.keyReplacer)) {
+                str.push(_this.options.url.pageSizeParam.keyReplacer);
               }
               break;
             case "SORT":
               if (urlObjKeys.includes("sort")) {
                 str.push("sort");
-              } else if (urlObjKeys.includes(_this.options.url.sortUrl.keyReplacer)) {
-                str.push(_this.options.url.sortUrl.keyReplacer);
+              } else if (urlObjKeys.includes(_this.options.url.sortParam.keyReplacer)) {
+                str.push(_this.options.url.sortParam.keyReplacer);
               }
               break;
             case "VIEW_TYPE":
               if (urlObjKeys.includes("viewType")) {
                 str.push("viewType");
-              } else if (urlObjKeys.includes(_this.options.url.pageViewUrl.keyReplacer)) {
-                str.push(_this.options.url.pageViewUrl.keyReplacer);
+              } else if (urlObjKeys.includes(_this.options.url.pageViewParam.keyReplacer)) {
+                str.push(_this.options.url.pageViewParam.keyReplacer);
               }
               break;
           }
@@ -4315,10 +4315,10 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
         var val = urlObj[key];
         var facetHashStr = "";
         val.forEach(function (item, itemIndex) {
-          if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
-            var item2 = utils_urlUtils.getEachFacetValueEncodedFromStr(item, utils_urlUtils.getValuesSeparatorFacets(facetsUrl.valuesSeparator));
+          if (facetsParam.algo === "KEY_VALUE_REPLACER" && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
+            var item2 = utils_urlUtils.getEachFacetValueEncodedFromStr(item, utils_urlUtils.getmultiValueSeparatorFacets(facetsParam.multiValueSeparator));
             urlStr = "".concat(urlStr).concat(key, "=").concat(item2);
-          } else if (facetsUrl.algo === "HASH" && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
+          } else if (facetsParam.algo === "HASH" && !utils_urlUtils.isTextFilterStr.bind(_this)(key)) {
             if (itemIndex === 0) {
               facetHashStr = item;
             } else {
@@ -4348,7 +4348,7 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
         _ref2$url2 = _ref2$url === void 0 ? {} : _ref2$url,
         queryParamSeparator = _ref2$url2.queryParamSeparator;
 
-      // if ((facetsUrl.addToUrl && (facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH")) || (sortUrl.addToUrl && (sortUrl.algo === "KEY_VALUE_REPLACER")) || (pageViewUrl.addToUrl && (pageViewUrl.algo === "KEY_VALUE_REPLACER")) || (pageNoUrl.addToUrl && (pageNoUrl.algo === "KEY_VALUE_REPLACER")) || (pageSizeUrl.addToUrl && (pageSizeUrl.algo === "KEY_VALUE_REPLACER"))) {
+      // if ((facetsParam.addToUrl && (facetsParam.algo === "KEY_VALUE_REPLACER" || facetsParam.algo === "HASH")) || (sortParam.addToUrl && (sortParam.algo === "KEY_VALUE_REPLACER")) || (pageViewParam.addToUrl && (pageViewParam.algo === "KEY_VALUE_REPLACER")) || (pageNoParam.addToUrl && (pageNoParam.algo === "KEY_VALUE_REPLACER")) || (pageSizeParam.addToUrl && (pageSizeParam.algo === "KEY_VALUE_REPLACER"))) {
       var urlObj = {};
       if (newQ.split("".concat(this.getSearchQueryParam(), "="))[1]) {
         urlObj[this.getSearchQueryParam()] = [newQ.split("".concat(this.getSearchQueryParam(), "="))[1].split(queryParamSeparator ? utils_urlUtils.getQueryParamSeparator(queryParamSeparator) : /\&\w+\-?\w+?=/ig)[0]];
@@ -4424,16 +4424,16 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
     // getUrlStr(newQ) {
     //     const {
     //         url: {
-    //             facetsUrl = {},
-    //             sortUrl = {},
-    //             pageViewUrl= {},
-    //             pageNoUrl={},
-    //             pageSizeUrl={},
+    //             facetsParam = {},
+    //             sortParam = {},
+    //             pageViewParam= {},
+    //             pageNoParam={},
+    //             pageSizeParam={},
     //             queryParamSeparator
     //         } = {}
     //     } = this.options || {};
 
-    //     if ((facetsUrl.addToUrl && (facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH")) || (sortUrl.addToUrl && (sortUrl.algo === "KEY_VALUE_REPLACER")) || (pageViewUrl.addToUrl && (pageViewUrl.algo === "KEY_VALUE_REPLACER")) || (pageNoUrl.addToUrl && (pageNoUrl.algo === "KEY_VALUE_REPLACER")) || (pageSizeUrl.addToUrl && (pageSizeUrl.algo === "KEY_VALUE_REPLACER"))){
+    //     if ((facetsParam.addToUrl && (facetsParam.algo === "KEY_VALUE_REPLACER" || facetsParam.algo === "HASH")) || (sortParam.addToUrl && (sortParam.algo === "KEY_VALUE_REPLACER")) || (pageViewParam.addToUrl && (pageViewParam.algo === "KEY_VALUE_REPLACER")) || (pageNoParam.addToUrl && (pageNoParam.algo === "KEY_VALUE_REPLACER")) || (pageSizeParam.addToUrl && (pageSizeParam.algo === "KEY_VALUE_REPLACER"))){
     //         let urlObj = {};
 
     //         if (newQ.split(`${this.getSearchQueryParam() }=`)[1]) {
@@ -4493,7 +4493,7 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
           key = _Object$entries$_i[0],
           value = _Object$entries$_i[1];
         if (key !== this.getSearchQueryParam() && urlParams[key].length && value !== "") {
-          if (!utils_urlUtils.isTextFilterStr.bind(this)(decodeURIComponent(key)) && this.options.url.facetsUrl.algo === "HASH") {
+          if (!utils_urlUtils.isTextFilterStr.bind(this)(decodeURIComponent(key)) && this.options.url.facetsParam.algo === "HASH") {
             urlObj[key] = [window.atob(urlParams[key])];
           } else {
             urlObj[key] = urlParams[key];
@@ -4622,9 +4622,9 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
       var urlParts = "";
       var _this$options$url = this.options.url,
         _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-        _this$options$url2$fa = _this$options$url2.facetsUrl,
-        facetsUrl = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa;
-      if ((facetsUrl.algo === "KEY_VALUE_REPLACER" || facetsUrl.algo === "HASH") && !facetsUrl.showFilterStr) {
+        _this$options$url2$fa = _this$options$url2.facetsParam,
+        facetsParam = _this$options$url2$fa === void 0 ? {} : _this$options$url2$fa;
+      if ((facetsParam.algo === "KEY_VALUE_REPLACER" || facetsParam.algo === "HASH") && !facetsParam.showFilterStr) {
         urlParts = this.getQueryParamsWhenCustomUrl();
       } else {
         urlParts = this.getQueryParams();
@@ -4638,8 +4638,8 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
       if (UnbxdSearch_typeof(urlParts) === 'object' && urlParts[queryParam]) {
         var _urlParts = urlParts,
           q = _urlParts[this.getSearchQueryParam()],
-          filter = _urlParts[facetsUrl.algo === "KEY_VALUE_REPLACER" ? facetsUrl.filterReplacer : "filter"];
-        if (facetsUrl.algo === "KEY_VALUE_REPLACER" && !facetsUrl.showFilterStr) {
+          filter = _urlParts[facetsParam.algo === "KEY_VALUE_REPLACER" ? facetsParam.filterReplacer : "filter"];
+        if (facetsParam.algo === "KEY_VALUE_REPLACER" && !facetsParam.showFilterStr) {
           var filtersStr = [];
           Object.keys(urlParts).forEach(function (item, index) {
             if (!utils_urlUtils.isTextFilterStr.bind(_this2)(decodeURIComponent(item))) {
@@ -4653,7 +4653,7 @@ var UnbxdSearch_UnbxdSearch = /*#__PURE__*/function () {
           filter = filtersStr;
         }
         var facetsNew = this.getFilterFromParams(filter);
-        this.state.selectedFacets = !this.options.url.facetsUrl.addToUrl ? this.state.selectedFacets : facetsNew.selectedFilters;
+        this.state.selectedFacets = !this.options.url.facetsParam.addToUrl ? this.state.selectedFacets : facetsNew.selectedFilters;
       }
     }
     /**
@@ -5414,7 +5414,7 @@ var options_options = {
     },
     orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"],
     queryParamSeparator: "&",
-    pageViewUrl: {
+    pageViewParam: {
       addToUrl: false,
       algo: "DEFAULT",
       keyReplacer: "viewType",
@@ -5423,31 +5423,31 @@ var options_options = {
         "LIST": "LIST"
       }
     },
-    sortUrl: {
+    sortParam: {
       addToUrl: true,
       algo: "DEFAULT",
       keyReplacer: "sort",
       valueReplacer: {}
     },
-    pageSizeUrl: {
+    pageSizeParam: {
       addToUrl: true,
       algo: "DEFAULT",
       keyReplacer: "rows"
     },
-    pageNoUrl: {
+    pageNoParam: {
       addToUrl: true,
       algo: "DEFAULT",
       keyReplacer: 'start',
       usePageNo: false
     },
-    facetsUrl: {
+    facetsParam: {
       addToUrl: true,
       algo: "DEFAULT",
       showFilterStr: false,
       //Not exposing this option for user yet , will always be false for now.
       filterReplacer: "filter",
       //Not exposing this option for user yet.
-      valuesSeparator: ",",
+      multiValueSeparator: ",",
       facetsOrderInUrl: [],
       valueReplacer: {},
       keyReplacer: {},
@@ -6214,7 +6214,7 @@ function renderProducts() {
         var productsPerPage = this.getProductsPerPage();
         var _this$options$url = this.options.url,
           _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-          _this$options$url2$pa = _this$options$url2.pageNoUrl,
+          _this$options$url2$pa = _this$options$url2.pageNoParam,
           _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
           _this$options$url2$pa3 = _this$options$url2$pa2.usePageNo,
           usePageNo = _this$options$url2$pa3 === void 0 ? false : _this$options$url2$pa3;
@@ -6337,7 +6337,7 @@ var onProductItemClick = function onProductItemClick(e) {
   if (product && elem.dataset.prank) {
     var _this$options$url = this.options.url,
       _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-      _this$options$url2$pa = _this$options$url2.pageNoUrl,
+      _this$options$url2$pa = _this$options$url2.pageNoParam,
       _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
       _this$options$url2$pa3 = _this$options$url2$pa2.usePageNo,
       usePageNo = _this$options$url2$pa3 === void 0 ? false : _this$options$url2$pa3;
@@ -6510,7 +6510,7 @@ var setUpInfiniteScroll = function setUpInfiniteScroll() {
     return new Promise(function (resolve, reject) {
       var _this$options$url = _this.options.url,
         _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-        _this$options$url2$pa = _this$options$url2.pageNoUrl,
+        _this$options$url2$pa = _this$options$url2.pageNoParam,
         _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
         _this$options$url2$pa3 = _this$options$url2$pa2.usePageNo,
         usePageNo = _this$options$url2$pa3 === void 0 ? false : _this$options$url2$pa3,
@@ -6736,14 +6736,14 @@ var getProductsPerPage = function getProductsPerPage() {
   var _this$options = this.options,
     _this$options$url = _this$options.url,
     _this$options$url2 = _this$options$url === void 0 ? {} : _this$options$url,
-    _this$options$url2$pa = _this$options$url2.pageSizeUrl,
+    _this$options$url2$pa = _this$options$url2.pageSizeParam,
     _this$options$url2$pa2 = _this$options$url2$pa === void 0 ? {} : _this$options$url2$pa,
     _this$options$url2$pa3 = _this$options$url2$pa2.keyReplacer,
     keyReplacer = _this$options$url2$pa3 === void 0 ? "" : _this$options$url2$pa3,
     addToUrl = _this$options$url2$pa2.addToUrl,
     _this$options$url2$pa4 = _this$options$url2$pa2.algo,
     algo = _this$options$url2$pa4 === void 0 ? "DEFAULT" : _this$options$url2$pa4,
-    _this$options$url2$pa5 = _this$options$url2.pageNoUrl,
+    _this$options$url2$pa5 = _this$options$url2.pageNoParam,
     _this$options$url2$pa6 = _this$options$url2$pa5 === void 0 ? {} : _this$options$url2$pa5,
     _this$options$url2$pa7 = _this$options$url2$pa6.usePageNo,
     usePageNo = _this$options$url2$pa7 === void 0 ? false : _this$options$url2$pa7,
@@ -6756,7 +6756,7 @@ var getProductsPerPage = function getProductsPerPage() {
     // let productsPerPage;
 
     // if (!customize) {
-    //     keyReplacer = this.options.url.pageSizeUrl.keyReplacer
+    //     keyReplacer = this.options.url.pageSizeParam.keyReplacer
     // }
 
     return Number(urlParams[algo === "KEY_VALUE_REPLACER" ? keyReplacer : "rows"]);
@@ -6779,7 +6779,7 @@ var getCurrentUrlPage = function getCurrentUrlPage() {
   var currentUrlPage;
   var _this$options$url3 = this.options.url,
     _this$options$url4 = _this$options$url3 === void 0 ? {} : _this$options$url3,
-    _this$options$url4$pa = _this$options$url4.pageNoUrl,
+    _this$options$url4$pa = _this$options$url4.pageNoParam,
     _this$options$url4$pa2 = _this$options$url4$pa === void 0 ? {} : _this$options$url4$pa,
     _this$options$url4$pa3 = _this$options$url4$pa2.algo,
     algo = _this$options$url4$pa3 === void 0 ? "DEFAULT" : _this$options$url4$pa3,
@@ -6790,7 +6790,7 @@ var getCurrentUrlPage = function getCurrentUrlPage() {
     addToUrl = _this$options$url4$pa2.addToUrl;
 
   // if (!customize) {
-  //     keyReplacer = this.options.url.pageNoUrl.keyReplacer
+  //     keyReplacer = this.options.url.pageNoParam.keyReplacer
   // }
 
   // if (usePageNo) {
@@ -6827,7 +6827,7 @@ var getCurrentUrlPage = function getCurrentUrlPage() {
 var setPageNoParam = function setPageNoParam(value) {
   var _this$options$url5 = this.options.url,
     _this$options$url6 = _this$options$url5 === void 0 ? {} : _this$options$url5,
-    _this$options$url6$pa = _this$options$url6.pageNoUrl,
+    _this$options$url6$pa = _this$options$url6.pageNoParam,
     _this$options$url6$pa2 = _this$options$url6$pa === void 0 ? {} : _this$options$url6$pa,
     algo = _this$options$url6$pa2.algo,
     _this$options$url6$pa3 = _this$options$url6$pa2.usePageNo,
@@ -7985,23 +7985,23 @@ var facetsSchema = {
     }
   }
 };
-var facetsUrlSchema = {
-  moduleName: "facetsUrl",
+var facetsParamSchema = {
+  moduleName: "facetsParam",
   config: {
     addToUrl: {
       required: false,
       datatype: "boolean"
     },
     algo: {
-      required: function required(facetsUrl) {
-        return facetsUrl.addToUrl;
+      required: function required(facetsParam) {
+        return facetsParam.addToUrl;
       },
       datatype: "string",
       allowedOptions: ["DEFAULT", "KEY_VALUE_REPLACER", "HASH"]
     },
-    valuesSeparator: {
-      required: function required(facetsUrl) {
-        return facetsUrl.algo === "KEY_VALUE_REPLACER";
+    multiValueSeparator: {
+      required: function required(facetsParam) {
+        return facetsParam.algo === "KEY_VALUE_REPLACER";
       },
       datatype: "string",
       allowedOptions: [",", "~"]
@@ -8009,33 +8009,33 @@ var facetsUrlSchema = {
     // facetKeyValueSeperator:{
     //     required: false,
     //     datatype: "string",
-    //     customValidations: (facetsUrl)=>{
+    //     customValidations: (facetsParam)=>{
     //         const allowedFacetKeyValueSeperator = ["::"];
-    //         if (!allowedFacetKeyValueSeperator.includes(facetsUrl.facetKeyValueSeperator)) {
-    //             console.error(`SDK Config error in facetsUrl: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
+    //         if (!allowedFacetKeyValueSeperator.includes(facetsParam.facetKeyValueSeperator)) {
+    //             console.error(`SDK Config error in facetsParam: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
     //         }
     //     }
     // },
     keyReplacer: {
       required: false,
       datatype: "object",
-      customValidations: function customValidations(facetsUrl) {
-        var vals = Object.values(facetsUrl.keyReplacer);
+      customValidations: function customValidations(facetsParam) {
+        var vals = Object.values(facetsParam.keyReplacer);
         if (new Set(vals).size !== vals.length) {
-          console.error("SDK Config error in facetsUrl: keysReplacer values should not be duplicate");
+          console.error("SDK Config error in facetsParam: keysReplacer values should not be duplicate");
         }
       }
     },
     valueReplacer: {
       required: false,
       datatype: "object",
-      customValidations: function customValidations(facetsUrl) {
-        var valueReplacer = facetsUrl.valueReplacer;
+      customValidations: function customValidations(facetsParam) {
+        var valueReplacer = facetsParam.valueReplacer;
         var vals = Object.values(valueReplacer);
         vals.forEach(function (item) {
           var arr = Object.values(item);
           if (new Set(arr).size !== arr.length) {
-            console.error("SDK Config error in facetsUrl: valueReplacer values should not be duplicate");
+            console.error("SDK Config error in facetsParam: valueReplacer values should not be duplicate");
           }
         });
       }
@@ -8045,22 +8045,22 @@ var facetsUrlSchema = {
       datatype: "array"
     },
     rangeFacets: {
-      required: function required(facetsUrl) {
-        return facetsUrl.algo === "KEY_VALUE_REPLACER";
+      required: function required(facetsParam) {
+        return facetsParam.algo === "KEY_VALUE_REPLACER";
       },
       datatype: "array"
     },
     rangeSeparator: {
-      required: function required(facetsUrl) {
-        return facetsUrl.algo === "KEY_VALUE_REPLACER";
+      required: function required(facetsParam) {
+        return facetsParam.algo === "KEY_VALUE_REPLACER";
       },
       datatype: "string",
       allowedOptions: ["-"]
     }
   }
 };
-var pageViewUrlSchema = {
-  moduleName: "pageViewUrl",
+var pageViewParamSchema = {
+  moduleName: "pageViewParam",
   config: {
     addToUrl: {
       required: false,
@@ -8073,12 +8073,12 @@ var pageViewUrlSchema = {
     valuesReplacer: {
       required: false,
       datatype: "object",
-      customValidations: function customValidations(pageViewUrl) {}
+      customValidations: function customValidations(pageViewParam) {}
     }
   }
 };
-var sortUrlSchema = {
-  moduleName: "sortUrl",
+var sortParamSchema = {
+  moduleName: "sortParam",
   config: {
     addToUrl: {
       required: false,
@@ -8091,12 +8091,12 @@ var sortUrlSchema = {
     valueReplacer: {
       required: false,
       datatype: "object",
-      customValidations: function customValidations(sortUrl) {}
+      customValidations: function customValidations(sortParam) {}
     }
   }
 };
-var pageNoUrlSchema = {
-  moduleName: "pageNoUrl",
+var pageNoParamSchema = {
+  moduleName: "pageNoParam",
   config: {
     addToUrl: {
       required: false,
@@ -8112,8 +8112,8 @@ var pageNoUrlSchema = {
     }
   }
 };
-var pageSizeUrlSchema = {
-  moduleName: "pageSizeUrl",
+var pageSizeParamSchema = {
+  moduleName: "pageSizeParam",
   config: {
     addToUrl: {
       required: false,
@@ -8133,21 +8133,21 @@ var otherUrlConfigsSchema = {
       datatype: "boolean",
       customValidations: function customValidations(urlConfigs) {
         if (!urlConfigs.seoFriendlyUrl) {
-          urlConfigs.pageViewUrl.algo = "DEFAULT";
-          urlConfigs.sortUrl.algo = "DEFAULT";
-          urlConfigs.pageSizeUrl.algo = "DEFAULT";
-          urlConfigs.pageNoUrl.algo = "DEFAULT";
-          urlConfigs.pageNoUrl.usePageNo = false;
-          urlConfigs.facetsUrl.algo = "DEFAULT";
+          urlConfigs.pageViewParam.algo = "DEFAULT";
+          urlConfigs.sortParam.algo = "DEFAULT";
+          urlConfigs.pageSizeParam.algo = "DEFAULT";
+          urlConfigs.pageNoParam.algo = "DEFAULT";
+          urlConfigs.pageNoParam.usePageNo = false;
+          urlConfigs.facetsParam.algo = "DEFAULT";
           urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
           urlConfigs.queryParamSeparator = "&";
         } else {
-          urlConfigs.pageViewUrl.algo = "KEY_VALUE_REPLACER";
-          urlConfigs.sortUrl.algo = "KEY_VALUE_REPLACER";
-          urlConfigs.pageSizeUrl.algo = "KEY_VALUE_REPLACER";
-          urlConfigs.pageNoUrl.algo = "KEY_VALUE_REPLACER";
-          urlConfigs.pageNoUrl.usePageNo = true;
-          urlConfigs.facetsUrl.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.pageViewParam.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.sortParam.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.pageSizeParam.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.pageNoParam.algo = "KEY_VALUE_REPLACER";
+          urlConfigs.pageNoParam.usePageNo = true;
+          urlConfigs.facetsParam.algo = "KEY_VALUE_REPLACER";
           urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
           urlConfigs.queryParamSeparator = "&";
         }
@@ -8225,11 +8225,11 @@ function validateConfigs() {
     products = _this$options.products,
     productView = _this$options.productView,
     url = _this$options.url;
-  var facetsUrl = url.facetsUrl,
-    pageViewUrl = url.pageViewUrl,
-    sortUrl = url.sortUrl,
-    pageSizeUrl = url.pageSizeUrl,
-    pageNoUrl = url.pageNoUrl;
+  var facetsParam = url.facetsParam,
+    pageViewParam = url.pageViewParam,
+    sortParam = url.sortParam,
+    pageSizeParam = url.pageSizeParam,
+    pageNoParam = url.pageNoParam;
   var validate = function validate() {
     var userConfig = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
     var schema = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -8295,11 +8295,11 @@ function validateConfigs() {
   validate(products, productsSchema);
   validate(productView, productViewSchema);
   validate(breadcrumb, breadcrumbSchema);
-  validate(facetsUrl, facetsUrlSchema);
-  validate(pageViewUrl, pageViewUrlSchema);
-  validate(sortUrl, sortUrlSchema);
-  validate(pageNoUrl, pageNoUrlSchema);
-  validate(pageSizeUrl, pageSizeUrlSchema);
+  validate(facetsParam, facetsParamSchema);
+  validate(pageViewParam, pageViewParamSchema);
+  validate(sortParam, sortParamSchema);
+  validate(pageNoParam, pageNoParamSchema);
+  validate(pageSizeParam, pageSizeParamSchema);
   validate(this.options.url, otherUrlConfigsSchema);
 }
 /* harmony default export */ var core_validateConfigs = (validateConfigs);
@@ -8326,8 +8326,8 @@ var initialize_initialize = function initialize() {
     defaultViewType = _this$options$product.defaultViewType,
     enabled = _this$options$product.enabled;
   if (ln > 0) {
-    var type = urlParams[this.options.url.pageViewUrl.algo === "KEY_VALUE_REPLACER" ? this.options.url.pageViewUrl.keyReplacer : "viewType"];
-    var viewType = this.getKeyByValue(this.options.url.pageViewUrl.valuesReplacer, decodeURIComponent(type || defaultViewType));
+    var type = urlParams[this.options.url.pageViewParam.algo === "KEY_VALUE_REPLACER" ? this.options.url.pageViewParam.keyReplacer : "viewType"];
+    var viewType = this.getKeyByValue(this.options.url.pageViewParam.valuesReplacer, decodeURIComponent(type || defaultViewType));
     if (viewType) {
       this.viewState.productViewType = viewType;
       this.options.extraParams.viewType = viewType;

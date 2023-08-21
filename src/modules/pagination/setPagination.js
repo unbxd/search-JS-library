@@ -10,12 +10,12 @@ import {
 const getProductsPerPage = function () {
     let {
         url: {
-            pageSizeUrl: {
+            pageSizeParam: {
                 keyReplacer = "",
                 addToUrl,
                 algo = "DEFAULT"
             } = {},
-            pageNoUrl: {
+            pageNoParam: {
                 usePageNo = false,
             } = {}
         } = {},
@@ -32,7 +32,7 @@ const getProductsPerPage = function () {
 
 
         // if (!customize) {
-        //     keyReplacer = this.options.url.pageSizeUrl.keyReplacer
+        //     keyReplacer = this.options.url.pageSizeParam.keyReplacer
         // }
 
         return Number(urlParams[((algo === "KEY_VALUE_REPLACER") ? keyReplacer : "rows")])
@@ -55,7 +55,7 @@ const getCurrentUrlPage = function () {
     let currentUrlPage;
     let {
         url: {
-            pageNoUrl: {
+            pageNoParam: {
                 algo = "DEFAULT",
                 usePageNo = false,
                 keyReplacer = "",
@@ -65,7 +65,7 @@ const getCurrentUrlPage = function () {
     } = this.options;
 
     // if (!customize) {
-    //     keyReplacer = this.options.url.pageNoUrl.keyReplacer
+    //     keyReplacer = this.options.url.pageNoParam.keyReplacer
     // }
 
     // if (usePageNo) {
@@ -98,7 +98,7 @@ const getCurrentUrlPage = function () {
 const setPageNoParam = function (value) {
     const {
         url: {
-            pageNoUrl: {
+            pageNoParam: {
                 algo,
                 usePageNo = false,
                 keyReplacer,

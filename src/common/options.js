@@ -151,7 +151,7 @@ const options = {
 
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
         queryParamSeparator: "&",
-        pageViewUrl: {
+        pageViewParam: {
             addToUrl: false,
             algo: "DEFAULT",
             keyReplacer: "viewType",
@@ -160,29 +160,29 @@ const options = {
                 "LIST": "LIST"
             }
         },
-        sortUrl: {
+        sortParam: {
             addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: "sort",
             valueReplacer: {}
         },
-        pageSizeUrl: {
+        pageSizeParam: {
             addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: "rows"
         },
-        pageNoUrl: {
+        pageNoParam: {
             addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: 'start',
             usePageNo: false 
         },
-        facetsUrl: {
+        facetsParam: {
             addToUrl: true,
             algo: "DEFAULT",
             showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
             filterReplacer: "filter", //Not exposing this option for user yet.
-            valuesSeparator: ",",
+            multiValueSeparator: ",",
             facetsOrderInUrl: [],
             valueReplacer: {},
             keyReplacer: {},

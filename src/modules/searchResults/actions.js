@@ -36,7 +36,7 @@ const onProductItemClick = function (e) {
     if (product && elem.dataset.prank) {
         const {
             url: {
-                pageNoUrl: {
+                pageNoParam: {
                     usePageNo = false,
                 } = {},
             } = {}

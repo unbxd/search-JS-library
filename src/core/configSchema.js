@@ -559,23 +559,23 @@ export const facetsSchema = {
     }
 }
 
-export const facetsUrlSchema = {
-    moduleName: "facetsUrl",
+export const facetsParamSchema = {
+    moduleName: "facetsParam",
     config: {
         addToUrl: {
             required: false,
             datatype: "boolean"
         },
         algo: {
-            required: (facetsUrl)=>{
-                return facetsUrl.addToUrl
+            required: (facetsParam)=>{
+                return facetsParam.addToUrl
             },
             datatype: "string",
             allowedOptions: ["DEFAULT","KEY_VALUE_REPLACER","HASH"]
         },
-        valuesSeparator:{
-            required: (facetsUrl)=>{
-                return facetsUrl.algo === "KEY_VALUE_REPLACER"
+        multiValueSeparator:{
+            required: (facetsParam)=>{
+                return facetsParam.algo === "KEY_VALUE_REPLACER"
             },
             datatype: "string",
             allowedOptions: [",","~"]
@@ -583,33 +583,33 @@ export const facetsUrlSchema = {
         // facetKeyValueSeperator:{
         //     required: false,
         //     datatype: "string",
-        //     customValidations: (facetsUrl)=>{
+        //     customValidations: (facetsParam)=>{
         //         const allowedFacetKeyValueSeperator = ["::"];
-        //         if (!allowedFacetKeyValueSeperator.includes(facetsUrl.facetKeyValueSeperator)) {
-        //             console.error(`SDK Config error in facetsUrl: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
+        //         if (!allowedFacetKeyValueSeperator.includes(facetsParam.facetKeyValueSeperator)) {
+        //             console.error(`SDK Config error in facetsParam: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
         //         }
         //     }
         // },
         keyReplacer: {
             required: false,
             datatype: "object",
-            customValidations: (facetsUrl)=>{
-                const vals = Object.values(facetsUrl.keyReplacer);
+            customValidations: (facetsParam)=>{
+                const vals = Object.values(facetsParam.keyReplacer);
                 if (new Set(vals).size !== vals.length){
-                    console.error(`SDK Config error in facetsUrl: keysReplacer values should not be duplicate`);
+                    console.error(`SDK Config error in facetsParam: keysReplacer values should not be duplicate`);
                 }
             }
         },
         valueReplacer: {
             required: false,
             datatype: "object",
-            customValidations: (facetsUrl)=>{
-                const valueReplacer = facetsUrl.valueReplacer;
+            customValidations: (facetsParam)=>{
+                const valueReplacer = facetsParam.valueReplacer;
                 const vals = Object.values(valueReplacer);
                 vals.forEach(item=>{
                     let arr = Object.values(item);
                     if (new Set(arr).size !== arr.length) {
-                        console.error(`SDK Config error in facetsUrl: valueReplacer values should not be duplicate`);
+                        console.error(`SDK Config error in facetsParam: valueReplacer values should not be duplicate`);
                     }
                 })
             }
@@ -619,14 +619,14 @@ export const facetsUrlSchema = {
             datatype: "array"
         },
         rangeFacets: {
-            required: (facetsUrl)=> {
-                return facetsUrl.algo === "KEY_VALUE_REPLACER"
+            required: (facetsParam)=> {
+                return facetsParam.algo === "KEY_VALUE_REPLACER"
             },
             datatype: "array"
         },
         rangeSeparator: {
-            required: (facetsUrl)=>{
-                return facetsUrl.algo === "KEY_VALUE_REPLACER"
+            required: (facetsParam)=>{
+                return facetsParam.algo === "KEY_VALUE_REPLACER"
             },
             datatype: "string",
             allowedOptions: ["-"]
@@ -634,8 +634,8 @@ export const facetsUrlSchema = {
     }
 }
 
-export const pageViewUrlSchema = {
-    moduleName : "pageViewUrl",
+export const pageViewParamSchema = {
+    moduleName : "pageViewParam",
     config: {
         addToUrl: {
             required:false,
@@ -648,15 +648,15 @@ export const pageViewUrlSchema = {
         valuesReplacer: {
             required: false,
             datatype: "object",
-            customValidations: (pageViewUrl)=>{
+            customValidations: (pageViewParam)=>{
                 
             }
         }
     }
 }
 
-export const sortUrlSchema ={
-    moduleName: "sortUrl",
+export const sortParamSchema ={
+    moduleName: "sortParam",
     config: {
         addToUrl: {
             required: false,
@@ -669,15 +669,15 @@ export const sortUrlSchema ={
         valueReplacer: {
             required: false,
             datatype: "object",
-            customValidations: (sortUrl)=>{
+            customValidations: (sortParam)=>{
                 
             }
         }
     }
 }
 
-export const pageNoUrlSchema = {
-    moduleName: "pageNoUrl",
+export const pageNoParamSchema = {
+    moduleName: "pageNoParam",
     config: {
         addToUrl: {
             required: false,
@@ -694,8 +694,8 @@ export const pageNoUrlSchema = {
     }
 }
 
-export const pageSizeUrlSchema = {
-    moduleName: "pageSizeUrl",
+export const pageSizeParamSchema = {
+    moduleName: "pageSizeParam",
     config: {
         addToUrl: {
             required: false,
@@ -716,21 +716,21 @@ export const otherUrlConfigsSchema = {
             datatype: "boolean",
             customValidations: (urlConfigs)=>{
                 if (!urlConfigs.seoFriendlyUrl){
-                    urlConfigs.pageViewUrl.algo = "DEFAULT";
-                    urlConfigs.sortUrl.algo = "DEFAULT";
-                    urlConfigs.pageSizeUrl.algo = "DEFAULT";
-                    urlConfigs.pageNoUrl.algo = "DEFAULT";
-                    urlConfigs.pageNoUrl.usePageNo = false;
-                    urlConfigs.facetsUrl.algo = "DEFAULT";
+                    urlConfigs.pageViewParam.algo = "DEFAULT";
+                    urlConfigs.sortParam.algo = "DEFAULT";
+                    urlConfigs.pageSizeParam.algo = "DEFAULT";
+                    urlConfigs.pageNoParam.algo = "DEFAULT";
+                    urlConfigs.pageNoParam.usePageNo = false;
+                    urlConfigs.facetsParam.algo = "DEFAULT";
                     urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
                     urlConfigs.queryParamSeparator = "&";
                 } else {
-                    urlConfigs.pageViewUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.sortUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageSizeUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageNoUrl.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageNoUrl.usePageNo = true;
-                    urlConfigs.facetsUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageViewParam.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.sortParam.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageSizeParam.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageNoParam.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageNoParam.usePageNo = true;
+                    urlConfigs.facetsParam.algo = "KEY_VALUE_REPLACER";
                     urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
                     urlConfigs.queryParamSeparator = "&";
                 }
