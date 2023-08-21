@@ -134,16 +134,26 @@ const options = {
         updateUrls: true,
         hashMode: false,
         allowExternalUrlParams: false,
-        browseQueryParam: 'p',
-        searchQueryParam: "q",
-        
         seoFriendlyUrl: false,
+        // browseQueryParam: 'p',
+        // searchQueryParam: "q",
+        searchQueryParam: {
+            addToUrl: true,
+            algo: "DEFAULT",
+            keyReplacer: "q"
+        },
+        browseQueryParam: {
+            addToUrl: true,
+            algo: "DEFAULT",
+            keyReplacer: "p"
+        },
+        
 
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
         queryParamSeparator: "&",
         pageViewUrl: {
             addToUrl: false,
-            algo: "KEY_VALUE_REPLACER",
+            algo: "DEFAULT",
             keyReplacer: "viewType",
             valuesReplacer: {
                 "GRID": "GRID",
@@ -152,27 +162,27 @@ const options = {
         },
         sortUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER",
+            algo: "DEFAULT",
             keyReplacer: "sort",
             valueReplacer: {}
         },
         pageSizeUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER",
+            algo: "DEFAULT",
             keyReplacer: "rows"
         },
         pageNoUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER",
+            algo: "DEFAULT",
             keyReplacer: 'start',
             usePageNo: false 
         },
         facetsUrl: {
             addToUrl: true,
-            algo: "KEY_VALUE_REPLACER",
+            algo: "DEFAULT",
             showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
             filterReplacer: "filter", //Not exposing this option for user yet.
-            valuesSeperator: ",",
+            valuesSeparator: ",",
             facetsOrderInUrl: [],
             valueReplacer: {},
             keyReplacer: {},

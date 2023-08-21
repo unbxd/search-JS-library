@@ -573,7 +573,7 @@ export const facetsUrlSchema = {
             datatype: "string",
             allowedOptions: ["DEFAULT","KEY_VALUE_REPLACER","HASH"]
         },
-        valuesSeperator:{
+        valuesSeparator:{
             required: (facetsUrl)=>{
                 return facetsUrl.algo === "KEY_VALUE_REPLACER"
             },
@@ -722,6 +722,15 @@ export const otherUrlConfigsSchema = {
                     urlConfigs.pageNoUrl.algo = "DEFAULT";
                     urlConfigs.pageNoUrl.usePageNo = false;
                     urlConfigs.facetsUrl.algo = "DEFAULT";
+                    urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
+                    urlConfigs.queryParamSeparator = "&";
+                } else {
+                    urlConfigs.pageViewUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.sortUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageSizeUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageNoUrl.algo = "KEY_VALUE_REPLACER";
+                    urlConfigs.pageNoUrl.usePageNo = true;
+                    urlConfigs.facetsUrl.algo = "KEY_VALUE_REPLACER";
                     urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
                     urlConfigs.queryParamSeparator = "&";
                 }

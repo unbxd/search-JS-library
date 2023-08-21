@@ -596,9 +596,9 @@ window.unbxdSearch = new UnbxdSearch({
 
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        // type: 'FIXED_PAGINATION',
-        type: 'INFINITE_SCROLL',
-        // el: document.querySelector('.unxPagination'),
+        type: 'FIXED_PAGINATION',
+        // type: 'INFINITE_SCROLL',
+        el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
         heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
@@ -608,15 +608,25 @@ window.unbxdSearch = new UnbxdSearch({
         updateUrls: true,
         hashMode: false,
         allowExternalUrlParams: false,
-        browseQueryParam: 'pppp',
-        searchQueryParam: "q",
+        // browseQueryParam: 'pppp',
+        // searchQueryParam: "q",
         
-        seoFriendlyUrl: true,
+        seoFriendlyUrl: false,
         // orderOfQueryParams: ["VIEW_TYPE","FILTERS"],
         // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
         queryParamSeparator: "&",
+        searchQueryParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            keyReplacer: "query"
+        },
+        browseQueryParam: {
+            addToUrl: false,
+            algo: "DEFAULT",
+            keyReplacer: "pppp"
+        },
         pageViewUrl: {
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
