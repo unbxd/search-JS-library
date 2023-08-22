@@ -90,8 +90,8 @@ url: {
 
 ### Usecases
 {: .d-inline-block }  
----
-#### **Usecase 1: Not added to URL**
+
+#### <font size="10">Usecase 1: Not added to URL</font>
 {: .d-inline-block }
 
 **Code:**
@@ -109,7 +109,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### **Usecase 2: Added to URL with selected algorithm as DEFAULT and page number is not used.**
+#### <font size="10">Usecase 2: Added to URL with selected algorithm as DEFAULT and page number is not used.</font>
 {: .d-inline-block }
 
 <!-- 1. `algo`: `DEFAULT` and `usePageNo`: `false`: -->
@@ -131,7 +131,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
 ---
-#### **Usecase 3: Added to URL with selected algorithm as DEFAULT and page number is used.**
+#### <font size="10">Usecase 3: Added to URL with selected algorithm as DEFAULT and page number is used.</font>
 {: .d-inline-block }
 
 <!-- 2. `algo`: `DEFAULT` and `usePageNo`: `true`: -->
@@ -153,7 +153,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
 ---
-#### **Usecase 4: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is not used.**
+#### <font size="10">Usecase 4: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is not used.</font>
 {: .d-inline-block }
 
 <!-- 3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`: -->
@@ -176,7 +176,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&page=0
 ```
 ---
-#### **Usecase 5: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is used.**
+#### <font size="10">Usecase 5: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is used.</font>
 {: .d-inline-block }
 
 **Code:**
