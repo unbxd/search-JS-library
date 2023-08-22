@@ -113,7 +113,7 @@ http://workbench-qa.unbxd.io/builder?q=*
 #### Usecase 2: Added to URL
 {: .d-inline-block }
 
-- `algo`: `DEAFULT` and `usePageNo`: `false`:
+1. `algo`: `DEAFULT` and `usePageNo`: `false`:
 
 **Code:**
 ```js
@@ -132,7 +132,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
 ----
-- `algo`: `DEAFULT` and `usePageNo`: `true`:
+
+2. `algo`: `DEAFULT` and `usePageNo`: `true`:
 
 **Code:**
 ```js
@@ -152,7 +153,8 @@ http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
 
 ----
-- `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
+
+3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
 
 **Code:**
 ```js
