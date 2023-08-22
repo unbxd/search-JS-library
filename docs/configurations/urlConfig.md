@@ -88,8 +88,8 @@ url: {
 
 
 
-### Usecases:  
-{: .d-inline-block }  
+### Usecases:
+{: .d-inline-block }
 <br>
 
 #### Usecase 1: Not added to URL
