@@ -728,15 +728,7 @@ export const otherUrlConfigsSchema = {
                     urlConfigs.facetsParam.algo = "DEFAULT";
                     urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
                     urlConfigs.queryParamSeparator = "&";
-                } else {
-                    urlConfigs.pageViewParam.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.sortParam.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageSizeParam.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageNoParam.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.pageNoParam.usePageNo = true;
-                    urlConfigs.facetsParam.algo = "KEY_VALUE_REPLACER";
-                    urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
-                }
+                } 
             }
         },
         

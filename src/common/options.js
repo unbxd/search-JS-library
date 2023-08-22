@@ -139,12 +139,12 @@ const options = {
         // searchQueryParam: "q",
         searchQueryParam: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "q"
         },
         browseQueryParam: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "p"
         },
         
@@ -153,7 +153,7 @@ const options = {
         queryParamSeparator: "&",
         pageViewParam: {
             addToUrl: false,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "viewType",
             valuesReplacer: {
                 "GRID": "GRID",
@@ -162,24 +162,24 @@ const options = {
         },
         sortParam: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "sort",
             valueReplacer: {}
         },
         pageSizeParam: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "rows"
         },
         pageNoParam: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: 'start',
             usePageNo: false 
         },
         facetsParam: {
             addToUrl: true,
-            algo: "DEFAULT",
+            algo: "KEY_VALUE_REPLACER",
             showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
             filterReplacer: "filter", //Not exposing this option for user yet.
             multiValueSeparator: ",",
