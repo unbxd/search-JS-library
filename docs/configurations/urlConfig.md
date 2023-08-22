@@ -91,6 +91,8 @@ url: {
 ### Usecases: 
 {: .d-inline-block }
 
+
+
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
 
@@ -109,10 +111,10 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 
-### Usecase 2: Added to URL
+#### Usecase 2: Added to URL
 {: .d-inline-block }
 
-1. `algo`: `DEAFULT` and `usePageNo`: `false`:
+- `algo`: `DEAFULT` and `usePageNo`: `false`:
 
 **Code:**
 ```js
@@ -131,7 +133,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
 
-2. `algo`: `DEAFULT` and `usePageNo`: `true`:
+- `algo`: `DEAFULT` and `usePageNo`: `true`:
 
 **Code:**
 ```js
@@ -151,7 +153,7 @@ http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
 
 
-3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
+- `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
 
 **Code:**
 ```js
