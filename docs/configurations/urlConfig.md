@@ -109,7 +109,7 @@ url: {
 ```
 http://workbench-qa.unbxd.io/builder?q=*
 ```
-
+---
 #### Usecase 2: Added to URL
 {: .d-inline-block }
 
@@ -131,7 +131,7 @@ url: {
 ```
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
-
+----
 - `algo`: `DEAFULT` and `usePageNo`: `true`:
 
 **Code:**
@@ -151,7 +151,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
 
-
+----
 - `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
 
 **Code:**
