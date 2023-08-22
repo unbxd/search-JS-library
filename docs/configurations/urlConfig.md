@@ -67,7 +67,7 @@ url: {
 }
 ```
 
-### Key Terminology:
+### Key Terminology
 {: .d-inline-block }
 
 1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
@@ -76,7 +76,7 @@ url: {
 4. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
 
 
-### Configurations Table:
+### Configurations Table
 {: .d-inline-block }
 
 | Config      | DataType | Default Value | Other Values        |
@@ -88,10 +88,8 @@ url: {
 
 
 
-### Usecases:
+### Usecases<br>
 {: .d-inline-block }
-<br>
-
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
 
@@ -110,68 +108,97 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### Usecase 2: Added to URL
+#### Usecase 2: Added to URL with selected algorithm as DEFAULT and page number is not used.
 {: .d-inline-block }
 
-1. `algo`: `DEAFULT` and `usePageNo`: `false`:
+<!-- 1. `algo`: `DEFAULT` and `usePageNo`: `false`: -->
 
-    **Code:**
-    ```js
-    url: {
-        // other URL configurations...
-        pageNoParam: { 
-           addToUrl: true,
-           algo: "DEFAULT", 
-           usePageNo: false
-       }
-    }
-    ```
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+       usePageNo: false
+   }
+}
+```
 
-    **URL:**
-    ```
-    http://workbench-qa.unbxd.io/builder?q=*&start=0
-    ```
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&start=0
+```
 <br>
 
-2. `algo`: `DEAFULT` and `usePageNo`: `true`:
+#### Usecase 3: Added to URL with selected algorithm as DEFAULT and page number is used.
+{: .d-inline-block }
 
-    **Code:**
-    ```js
-    url: {
-        // other URL configurations...
-        pageNoParam: { 
-           addToUrl: true,
-           algo: "DEFAULT", 
-           usePageNo: true
-       }
-    }
-    ```
+<!-- 2. `algo`: `DEFAULT` and `usePageNo`: `true`: -->
 
-    **URL:**
-    ```
-    http://workbench-qa.unbxd.io/builder?q=*&start=1
-    ```
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+       usePageNo: true
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&start=1
+```
 <br>
 
-3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
+#### Usecase 4: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is not used.
+{: .d-inline-block }
 
-    **Code:**
-    ```js
-    url: {
-        // other URL configurations...
-        pageNoParam: { 
-           addToUrl: true,
-           algo: "KEY_VALUE_REPLACER", 
-           keyReplacer: "page",
-           usePageNo: true
-       }
-    }
-    ```
+<!-- 3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`: -->
 
-    **URL:**
-    ```
-    http://workbench-qa.unbxd.io/builder?q=*&page=1
-    ```
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "page",
+       usePageNo: false
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&page=0
+```
+<br>
+
+#### Usecase 4: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is used.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "page",
+       usePageNo: true
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&page=1
+```
+<br>
 
 ---
 
@@ -554,9 +581,6 @@ url:{
 }
 ```
 
-
-
----
 
 ### Configurations Table
 {: .d-inline-block }
