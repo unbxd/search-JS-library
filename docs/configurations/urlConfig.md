@@ -10,7 +10,7 @@ nav_order: 18
 
 This feature ensures both data persistence and readability within the Unbxd SDK's URL structure, making it easier than ever to optimize the presentation of products to your users.
 
-# Table of contents
+# of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -76,7 +76,7 @@ url: {
 4. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
 
 
-### Configurations Table
+### Configurations
 {: .d-inline-block }
 
 | Config Name     | Data Type | Default Value | Other Values        |
@@ -110,7 +110,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as DEFAULT and page number is not used.
+#### Usecase 2: Added to URL with selected algorithm as `DEFAULT` and page number is not used.
 {: .d-inline-block }
 
 **Code:**
@@ -130,7 +130,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as DEFAULT and page number is used.
+#### Usecase 3: Added to URL with selected algorithm as `DEFAULT` and page number is used.
 {: .d-inline-block }
 
 **Code:**
@@ -150,7 +150,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
 ---
-#### Usecase 4: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is not used.
+#### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and page number is not used.
 {: .d-inline-block }
 
 **Code:**
@@ -171,7 +171,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&page=0
 ```
 ---
-#### Usecase 5: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is used.
+#### Usecase 5: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and page number is used.
 {: .d-inline-block }
 
 **Code:**
@@ -209,15 +209,84 @@ url:{
 }
 ```
 
-### Configurations Table
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+2. `usePageNo`: Indicates whether to use page numbers in URL, instead of indices.
+3. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
+
+
+### Configurations
 {: .d-inline-block }
 
 | Config      | DataType | Default Value | Other Values        |
-|:-----------:|:--------:|:-------------:|:-------------------:|
-| `addToUrl`    | boolean  | `true`          | `false`               |
-| `algo`        | string   | `DEFAULT`       | `KEY_VALUE_REPLACER`  |
-| `keyReplacer` | string   | `rows`         |                     |
+|:-----------:|:--------:|:-------------:|-------------------|
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`               |
+| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `rows`         | Examples: `rows`, `products`                    |
 
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+#### Usecase 1: Not added to URL
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageSizeParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*
+```
+---
+#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageSizeParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&rows=12
+```
+---
+#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "products"
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&products=12
+```
 ---
 
 ## sortParam
@@ -240,7 +309,7 @@ url:{
 }
 ```
 
-### Configurations Table
+### Configurations
 {: .d-inline-block }
 
 | Config        | DataType | Default Value                                        | Other Values        |
@@ -273,7 +342,7 @@ url:{
 }
 ```
 
-### Configurations Table
+### Configurations
 {: .d-inline-block }
 
 | Config        | DataType | Default Value                                        | Other Values        |
