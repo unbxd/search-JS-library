@@ -352,7 +352,17 @@ url:{
     <td>`valueReplacer`</td>
     <td>object</td>
     <td>No default; uses the provided sorting values as keys</td>
-    <td>Example: ```js<br>valueReplacer: {<br>    "price desc": "price desc",<br>    "price asc": "price asc"<br>}<br>```<br></td>
+    <td>Example: 
+    
+        ```js
+        valueReplacer: {
+            "price desc": "price desc",
+            "price asc": "price asc"
+            }
+        ```
+
+    </td>
+
   </tr>
 </tbody>
 </table>
