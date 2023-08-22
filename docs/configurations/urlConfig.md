@@ -91,7 +91,7 @@ url: {
 ### Usecases: 
 {: .d-inline-block }
 
-
+\
 
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
@@ -106,7 +106,7 @@ url: {
 }
 ```
 
-**URL**
+**URL:**
 ```
 http://workbench-qa.unbxd.io/builder?q=*
 ```
@@ -128,7 +128,7 @@ url: {
 }
 ```
 
-**URL**
+**URL:**
 ```
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
@@ -147,7 +147,7 @@ url: {
 }
 ```
 
-**URL**
+**URL:**
 ```
 http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
@@ -168,7 +168,7 @@ url: {
 }
 ```
 
-**URL**
+**URL:**
 ```
 http://workbench-qa.unbxd.io/builder?q=*&page=1
 ```
