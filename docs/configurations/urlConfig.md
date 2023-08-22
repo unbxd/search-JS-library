@@ -353,14 +353,14 @@ url:{
     <td>object</td>
     <td>No default; uses the provided sorting values as keys</td>
     <td>Example: 
-    
+
         ```js
         valueReplacer: {
             "price desc": "price desc",
             "price asc": "price asc"
             }
         ```
-
+        
     </td>
 
   </tr>
