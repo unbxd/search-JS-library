@@ -79,16 +79,16 @@ url: {
 ### Configurations Table
 {: .d-inline-block }
 
-| Config      | DataType | Default Value | Other Values        |
+| Config Name     | Data Type | Default Value | Other Values        |
 |:-----------:|:--------:|:-------------:|:-------------------:|
-| `addToUrl`    | boolean  | `true`          | `false`               |
-| `usePageNo`   | boolean  | `false`         | `true`                |
-| `algo`        | string   | `DEFAULT`       | `KEY_VALUE_REPLACER`  |
-| `keyReplacer` | string   | `start`         |                     |
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`               |
+| `usePageNo`   | boolean  | `false`         | Allowed Values: `false`, `true`                |
+| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `start`         | Examples: `start`, `pageNumber`                    |
 
 
 
-### Usecases  
+### Usecases <br>
 {: .d-inline-block }  
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
