@@ -320,52 +320,19 @@ url:{
 ### Configurations
 {: .d-inline-block }
 
-<table>
-<thead>
-  <tr>
-    <th>Config Name<br></th>
-    <th>Data Type</th>
-    <th>Default Value</th>
-    <th>Other Values</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>`addToUrl`<br></td>
-    <td>boolean</td>
-    <td>`true`</td>
-    <td>Allowed Values: `true`, `false`</td>
-  </tr>
-  <tr>
-    <td>`algo`</td>
-    <td>string</td>
-    <td>`DEFAULT`</td>
-    <td>Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`</td>
-  </tr>
-  <tr>
-    <td>`keyReplacer`</td>
-    <td>string</td>
-    <td>`sortBy`</td>
-    <td>Examples: `sortBy`, `order`</td>
-  </tr>
-  <tr>
-    <td>`valueReplacer`</td>
-    <td>object</td>
-    <td>No default; uses the provided sorting values as keys</td>
-    <td>Example: 
+| Config        | DataType | Default Value                                        | Other Values        |
+|:-------------:|:--------:|:----------------------------------------------------:|-------------------|
+| `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`               |
+| `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
+| `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                                                  |
 
-        ```js
-        valueReplacer: {
-            "price desc": "price desc",
-            "price asc": "price asc"
-            }
-        ```
-        
-    </td>
-
-  </tr>
-</tbody>
-</table>
+<!-- Example: ```js
+    valueReplacer: {
+    "price desc": "price desc",
+    "price asc": "price asc"
+}
+``` -->
 
 
 ---
