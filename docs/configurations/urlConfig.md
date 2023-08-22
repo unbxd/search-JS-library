@@ -72,10 +72,10 @@ url: {
 
 | Config      | DataType | Default Value | Other Values        |
 |:-----------:|:--------:|:-------------:|:-------------------:|
-| addToUrl    | boolean  | true          | false               |
-| usePageNo   | boolean  | false         | true                |
-| algo        | string   | DEFAULT       | KEY_VALUE_REPLACER: |
-| keyReplacer | string   | start         |                     |
+| `addToUrl`    | boolean  | `true`          | `false`               |
+| `usePageNo`   | boolean  | `false`         | `true`                |
+| `algo`        | string   | `DEFAULT`       | `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `start`         |                     |
 
 ---
 
@@ -161,7 +161,7 @@ The keyReplacer option comes into play only when the algo is set to `KEY_VALUE_R
 
 ```js
 keyReplacer: 'start'
-``` -->
+``` 
 
 #### Scenarios
 {: .no_toc }
@@ -169,7 +169,7 @@ keyReplacer: 'start'
 Users have the liberty to select any string of their choice as the key name for for displaying pagination data in the URL.
 
 ---
-
+-->
 
 
 
@@ -199,7 +199,19 @@ url:{
 }
 ```
 
-### addToUrl
+
+### Configurations Table
+{: .d-inline-block }
+
+| Config      | DataType | Default Value | Other Values        |
+|:-----------:|:--------:|:-------------:|:-------------------:|
+| `addToUrl`    | boolean  | `true`          | `false`               |
+| `algo`        | string   | `DEFAULT`       | `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `rows`         |                     |
+
+---
+
+<!-- ### addToUrl
 {: .d-inline-block }
 
 Boolean
@@ -266,7 +278,7 @@ keyReplacer: 'rows'
 
 Stick with 'rows' (default) or select a descriptive string as the key name for displaying page size data in the URL.
 
----
+--- -->
 
 
 
@@ -304,7 +316,22 @@ url:{
 }
 ```
 
-### addToUrl
+
+### Configurations Table
+{: .d-inline-block }
+
+| Config        | DataType | Default Value                                        | Other Values        |
+|:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
+| `addToUrl`      | boolean  | `true`                                                 | `false`               |
+| `algo`          | string   | `DEFAULT`                                              | `KEY_VALUE_REPLACER`: |
+| `keyReplacer`   | string   | `sortBy`                                               |                       |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                       |
+
+
+---
+
+
+<!-- ### addToUrl
 {: .d-inline-block }
 
 Boolean
@@ -394,7 +421,7 @@ No default; uses the provided sorting values as keys
 
 Define key-value pairs to customize how sorting values are represented in the URL. Special characters are encoded automatically.
 
----
+--- -->
 
 
 
@@ -431,6 +458,21 @@ url:{
 }
 ```
 
+
+### Configurations Table
+{: .d-inline-block }
+
+| Config        | DataType | Default Value                                        | Other Values        |
+|:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
+| `addToUrl`      | boolean  | `true`                                                 | `false`               |
+| `algo`          | string   | `DEFAULT`                                              | `KEY_VALUE_REPLACER`: |
+| `keyReplacer`   | string   | `viewType`                                             |                       |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                       |
+
+
+---
+
+<!-- 
 ### addToUrl
 {: .d-inline-block }
 
@@ -521,4 +563,4 @@ No default; uses the provided product view values as keys
 
 Define key-value pairs to customize how product view values are represented in the URL.
 
----
+--- -->
