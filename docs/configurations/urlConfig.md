@@ -213,7 +213,7 @@ url:{
 {: .d-inline-block }
 
 1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
-2. `usePageNo`: Indicates whether to use page numbers in URL, instead of indices.
+2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
 3. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
 
 
@@ -309,15 +309,28 @@ url:{
 }
 ```
 
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+3. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
+4. `valueReplacer`: Used to replace specific values in the URL, enabling better communication with the user. 
+
 ### Configurations
 {: .d-inline-block }
 
 | Config        | DataType | Default Value                                        | Other Values        |
-|:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
-| `addToUrl`      | boolean  | `true`                                                 | `false`               |
-| `algo`          | string   | `DEFAULT`                                              | `KEY_VALUE_REPLACER`: |
-| `keyReplacer`   | string   | `sortBy`                                               |                       |
-| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                       |
+|:-------------:|:--------:|:----------------------------------------------------:|-------------------|
+| `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`               |
+| `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
+| `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Example: ```js
+valueReplacer: {
+    "price desc": "price desc",
+    "price asc": "price asc"
+}
+```                      |
 
 
 ---
