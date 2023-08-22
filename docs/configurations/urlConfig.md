@@ -80,7 +80,7 @@ url: {
 {: .d-inline-block }
 
 | Config Name     | Data Type | Default Value | Other Values        |
-|:-----------:|:--------:|:-------------:|-------------------|
+|:-----------:|:--------:|:-------------:|:-------------------:|
 | `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`               |
 | `usePageNo`   | boolean  | `false`         | Allowed Values: `false`, `true`                |
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
