@@ -334,6 +334,69 @@ url:{
 }
 ``` -->
 
+### Usecases
+{: .d-inline-block }  
+<br>
+
+#### Usecase 1: Not added to URL
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    sortParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*
+```
+---
+#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    sortParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&sort=price%20desc
+```
+---
+#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer `.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    sortParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "order",
+       valueReplacer: {
+            "price desc": "desc"
+        }
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&order=desc
+```
 
 ---
 
