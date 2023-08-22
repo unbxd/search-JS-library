@@ -51,14 +51,14 @@ In summary, SEO-friendly URLs are a fundamental aspect of successful e-commerce 
 
 # Configurations
 
-## pageNoUrl
-The `pageNoUrl` configuration defines how pagination data is managed in the URL for the Unbxd search SDK. It consists of the following options:
+## pageNoParam
+The `pageNoParam` configuration defines how pagination data is managed in the URL for the Unbxd search SDK. It consists of the following options:
 
 **Sample Code**
 ```js
 url: {
     // other URL configurations...
-    pageNoUrl: { 
+    pageNoParam: { 
        addToUrl: true,
        algo: "KEY_VALUE_REPLACER", 
        keyReplacer: 'start', 
@@ -171,14 +171,14 @@ Users have the liberty to select any string of their choice as the key name for 
 
 
 
-## pageSizeUrl
-The `pageSizeUrl` configuration allows you to control the number of products fetched in each API call within the Unbxd search SDK. This feature is particularly useful in tailoring the browsing experience for users by determining how many products are displayed on a single page. The configuration consists of the following options:
+## pageSizeParam
+The `pageSizeParam` configuration allows you to control the number of products fetched in each API call within the Unbxd search SDK. This feature is particularly useful in tailoring the browsing experience for users by determining how many products are displayed on a single page. The configuration consists of the following options:
 
 **Sample Code**
 ```js
 url:{
     // other URL configurations...
-    pageSizeUrl: {
+    pageSizeParam: {
         addToUrl: true,
         algo: "KEY_VALUE_REPLACER",
         keyReplacer: "count"
@@ -271,15 +271,15 @@ Stick with 'rows' (default) or select a descriptive string as the key name for d
 
 
 
-## sortUrl
+## sortParam
 
-In this `sortUrl` configuration, sorting preferences are managed effectively by tailoring the URL structure according to user selections. By configuring the `sortUrl` options, you ensure both flexibility and user-friendly sorting experiences on your e-commerce site.
+In this `sortParam` configuration, sorting preferences are managed effectively by tailoring the URL structure according to user selections. By configuring the `sortParam` options, you ensure both flexibility and user-friendly sorting experiences on your e-commerce site.
 
 **Sample Code**
 ```js
 url:{
     // other URL configurations...
-    sortUrl: { 
+    sortParam: { 
         addToUrl: true,
         algo: "KEY_VALUE_REPLACER", 
         keyReplacer: "sortBy",
@@ -398,15 +398,15 @@ Define key-value pairs to customize how sorting values are represented in the UR
 
 
 
-## pageViewUrl
+## pageViewParam
 
-In this configuration, product view preferences are effectively managed by tailoring the URL structure according to user selections. By configuring the `pageViewUrl` options, you ensure an enhanced browsing experience for users on your e-commerce site, allowing them to choose between list view and grid view as per their preference.
+In this configuration, product view preferences are effectively managed by tailoring the URL structure according to user selections. By configuring the `pageViewParam` options, you ensure an enhanced browsing experience for users on your e-commerce site, allowing them to choose between list view and grid view as per their preference.
 
 **Sample Code**
 ```js
 url:{
     // other URL configurations...
-    pageViewUrl: { 
+    pageViewParam: { 
         addToUrl: true,
         algo: "KEY_VALUE_REPLACER", 
         keyReplacer: "viewType", 
