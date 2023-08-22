@@ -88,8 +88,9 @@ url: {
 
 
 
-### Usecases:<br>
+### Usecases:
 {: .d-inline-block }
+<br>
 
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
@@ -130,6 +131,7 @@ http://workbench-qa.unbxd.io/builder?q=*
     ```
     http://workbench-qa.unbxd.io/builder?q=*&start=0
     ```
+<br>
 
 2. `algo`: `DEAFULT` and `usePageNo`: `true`:
 
@@ -149,6 +151,7 @@ http://workbench-qa.unbxd.io/builder?q=*
     ```
     http://workbench-qa.unbxd.io/builder?q=*&start=1
     ```
+<br>
 
 3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
 
