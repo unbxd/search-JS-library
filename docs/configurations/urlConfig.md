@@ -88,8 +88,10 @@ url: {
 
 
 
-### Usecases<br>
+### Usecases<
 {: .d-inline-block }
+
+---
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
 
@@ -129,8 +131,7 @@ url: {
 ```
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
-<br>
-
+---
 #### Usecase 3: Added to URL with selected algorithm as DEFAULT and page number is used.
 {: .d-inline-block }
 
@@ -152,8 +153,7 @@ url: {
 ```
 http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
-<br>
-
+---
 #### Usecase 4: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is not used.
 {: .d-inline-block }
 
@@ -176,9 +176,8 @@ url: {
 ```
 http://workbench-qa.unbxd.io/builder?q=*&page=0
 ```
-<br>
-
-#### Usecase 4: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is used.
+---
+#### Usecase 5: Added to URL with selected algorithm as KEY_VALUE_REPLACER and page number is used.
 {: .d-inline-block }
 
 **Code:**
@@ -198,7 +197,6 @@ url: {
 ```
 http://workbench-qa.unbxd.io/builder?q=*&page=1
 ```
-<br>
 
 ---
 
