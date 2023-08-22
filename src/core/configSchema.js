@@ -1,6 +1,6 @@
-import constantValues from "../../../search-JS-core/src/constants/constantValues";
+import allowedSeparators from "../common/constants/allowedSeparators";
 
-const { ALLOWED_VALUE_SEPARATORS } = constantValues
+const { ALLOWED_VALUE_SEPARATORS, ALLOWED_RANGE_SEPARATORS ,ALLOWED_QUERY_PARAM_SEPARATORS  } = allowedSeparators
 
 export const paginationSchema = {
     moduleName: 'pagination',
@@ -633,7 +633,7 @@ export const facetsParamSchema = {
                 return facetsParam.algo === "KEY_VALUE_REPLACER"
             },
             datatype: "string",
-            allowedOptions: ["-"]
+            allowedOptions: ALLOWED_RANGE_SEPARATORS
         }
     }
 }
@@ -731,6 +731,12 @@ export const otherUrlConfigsSchema = {
                 } 
             }
         },
+        
+        queryParamSeparator: {
+            required: true,
+            datatype: "string",
+            allowedOptions: ALLOWED_QUERY_PARAM_SEPARATORS
+        }
         
     }
 }
