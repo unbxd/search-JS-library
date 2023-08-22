@@ -67,6 +67,19 @@ url: {
 }
 ```
 
+### Configurations Table
+{: .d-inline-block }
+
+| Config      | DataType | Default Value | Other Values        |
+|:-----------:|:--------:|:-------------:|:-------------------:|
+| addToUrl    | boolean  | true          | false               |
+| usePageNo   | boolean  | false         | true                |
+| algo        | string   | DEFAULT       | KEY_VALUE_REPLACER: |
+| keyReplacer | string   | start         |                     |
+
+---
+
+<!-- 
 ### addToUrl
 {: .d-inline-block }
 
@@ -148,7 +161,7 @@ The keyReplacer option comes into play only when the algo is set to `KEY_VALUE_R
 
 ```js
 keyReplacer: 'start'
-```
+``` -->
 
 #### Scenarios
 {: .no_toc }
