@@ -67,6 +67,15 @@ url: {
 }
 ```
 
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+2. `usePageNo`: Indicates whether to use page numbers in URL, instead of indices.
+3. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+4. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
+
+
 ### Configurations Table
 {: .d-inline-block }
 
@@ -458,6 +467,9 @@ url:{
 }
 ```
 
+
+
+---
 
 ### Configurations Table
 {: .d-inline-block }
