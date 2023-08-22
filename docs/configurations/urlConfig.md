@@ -88,9 +88,8 @@ url: {
 
 
 
-### Usecases:
+### Usecases:<br>
 {: .d-inline-block }
-<br>
 
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
@@ -115,64 +114,62 @@ http://workbench-qa.unbxd.io/builder?q=*
 
 1. `algo`: `DEAFULT` and `usePageNo`: `false`:
 
-**Code:**
-```js
-url: {
-    // other URL configurations...
-    pageNoParam: { 
-       addToUrl: true,
-       algo: "DEFAULT", 
-       usePageNo: false
-   }
-}
-```
+    **Code:**
+    ```js
+    url: {
+        // other URL configurations...
+        pageNoParam: { 
+           addToUrl: true,
+           algo: "DEFAULT", 
+           usePageNo: false
+       }
+    }
+    ```
 
-**URL:**
-```
-http://workbench-qa.unbxd.io/builder?q=*&start=0
-```
-----
+    **URL:**
+    ```
+    http://workbench-qa.unbxd.io/builder?q=*&start=0
+    ```
 
 2. `algo`: `DEAFULT` and `usePageNo`: `true`:
 
-**Code:**
-```js
-url: {
-    // other URL configurations...
-    pageNoParam: { 
-       addToUrl: true,
-       algo: "DEFAULT", 
-       usePageNo: true
-   }
-}
-```
+    **Code:**
+    ```js
+    url: {
+        // other URL configurations...
+        pageNoParam: { 
+           addToUrl: true,
+           algo: "DEFAULT", 
+           usePageNo: true
+       }
+    }
+    ```
 
-**URL:**
-```
-http://workbench-qa.unbxd.io/builder?q=*&start=1
-```
-
-----
+    **URL:**
+    ```
+    http://workbench-qa.unbxd.io/builder?q=*&start=1
+    ```
 
 3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
 
-**Code:**
-```js
-url: {
-    // other URL configurations...
-    pageNoParam: { 
-       addToUrl: true,
-       algo: "KEY_VALUE_REPLACER", 
-       keyReplacer: "page",
-       usePageNo: true
-   }
-}
-```
+    **Code:**
+    ```js
+    url: {
+        // other URL configurations...
+        pageNoParam: { 
+           addToUrl: true,
+           algo: "KEY_VALUE_REPLACER", 
+           keyReplacer: "page",
+           usePageNo: true
+       }
+    }
+    ```
 
-**URL:**
-```
-http://workbench-qa.unbxd.io/builder?q=*&page=1
-```
+    **URL:**
+    ```
+    http://workbench-qa.unbxd.io/builder?q=*&page=1
+    ```
+
 ---
 
 <!-- 
