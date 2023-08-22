@@ -89,7 +89,7 @@ url: {
 
 
 ### Usecases  
-{: .d-inline-block }<br>
+{: .d-inline-block }  
 #### Usecase 1: Not added to URL
 {: .d-inline-block }
 
