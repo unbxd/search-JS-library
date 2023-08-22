@@ -54,7 +54,7 @@ In summary, SEO-friendly URLs are a fundamental aspect of successful e-commerce 
 ## pageNoParam
 The `pageNoParam` configuration defines how pagination data is managed in the URL for the Unbxd search SDK. It consists of the following options:
 
-**Sample Code**
+**Sample Code:**
 ```js
 url: {
     // other URL configurations...
@@ -67,7 +67,7 @@ url: {
 }
 ```
 
-### Key Terminology
+### Key Terminology:
 {: .d-inline-block }
 
 1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
@@ -76,7 +76,7 @@ url: {
 4. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
 
 
-### Configurations Table
+### Configurations Table:
 {: .d-inline-block }
 
 | Config      | DataType | Default Value | Other Values        |
@@ -86,6 +86,90 @@ url: {
 | `algo`        | string   | `DEFAULT`       | `KEY_VALUE_REPLACER`  |
 | `keyReplacer` | string   | `start`         |                     |
 
+
+
+### Usecases: 
+{: .d-inline-block }
+
+#### Usecase 1: Not added to URL
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL**
+```
+http://workbench-qa.unbxd.io/builder?q=*
+```
+
+### Usecase 2: Added to URL
+{: .d-inline-block }
+
+1. `algo`: `DEAFULT` and `usePageNo`: `false`:
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+       usePageNo: false
+   }
+}
+```
+
+**URL**
+```
+http://workbench-qa.unbxd.io/builder?q=*&start=0
+```
+
+2. `algo`: `DEAFULT` and `usePageNo`: `true`:
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+       usePageNo: true
+   }
+}
+```
+
+**URL**
+```
+http://workbench-qa.unbxd.io/builder?q=*&start=1
+```
+
+
+3. `algo`: `KEY_VALUE_REPLACER` and `usePageNo`: `true`:
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageNoParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "page",
+       usePageNo: true
+   }
+}
+```
+
+**URL**
+```
+http://workbench-qa.unbxd.io/builder?q=*&page=1
+```
 ---
 
 <!-- 
