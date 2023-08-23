@@ -432,7 +432,7 @@ url:{
 {: .d-inline-block }
 
 | Config        | DataType | Default Value                                        | Other Values        |
-|:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
+|:-------------:|:--------:|:----------------------------------------------------:|-------------------|
 | `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                 |
 | `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
 | `keyReplacer`   | string   | `viewType`                                             | Examples: `viewType`, `pageView`                |
