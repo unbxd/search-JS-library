@@ -548,6 +548,7 @@ url:{
 7. `rangeFacets`: This is a `required` field if you have range facets. Declare all the range facets by passing them in this array.
 8. `rangeSeparator`: This is the separator between the range . For eg : 12-20 has "-" as the rangeSeparator.
 
+
 ### Configurations
 {: .d-inline-block }
 
@@ -561,7 +562,17 @@ url:{
 | `facetsOrderInUrl`| array   | No default - empty array| For eg: ["color_uFilter","size_uFilter","gender_uFilter"] |
 | `rangeFacets`| array   | No default- empty array|  For eg: ["price", "salePrice"] | 
 | `rangeSeparator`| string   |  "-"  | Allowed Values: ["-"]|
----
+
+
+### Configurations
+{: .d-inline-block }
+
+| Config        | DataType | Default Value                                        | Other Values        |
+|:-------------:|:--------:|:----------------------------------------------------:|-------------------|
+| `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                 |
+| `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`,`HASH` |
+| `multiValueSeparator`   | string   | `,`                                             | Allowed Values:[] |
+
 
 ### Usecases
 {: .d-inline-block }  
