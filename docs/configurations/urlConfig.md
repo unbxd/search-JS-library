@@ -554,12 +554,108 @@ url:{
 | Config        | DataType | Default Value                                        | Other Values        |
 |:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
 | `addToUrl`     | boolean  | `true`                                                 | Allowed Values: `true` ,`false`|
-| `algo`         | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`,`HASH` |
+| `algo`         | string   | `DEFAULT`                                            | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`,`HASH` |
 | `multiValueSeparator`  | string   | `,` | Allowed Values:[] |
 | `keyReplacer`|  object  | No default : empty object |  For eg: { "color_uFilter": "color" , "size_uFilter": "size"} |
 | `valueReplacer`| object   | No default : emoty object| For eg: {"size_uFilter": { "xs": "extra-small"}}|
 | `facetsOrderInUrl`| array   | No default : empty array| For eg: ["color_uFilter","size_uFilter","gender_uFilter"]                      |
 | `rangeFacets`| array   | No default: empty array|  For eg: ["price", "salePrice"] | 
 | `rangeSeparator`| string   |  "-"  | Allowed Values: ["-"]|
+---
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+#### Usecase 1: Not added to URL
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*
+```
+---
+#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: false,
+       algo: "DEFAULT"
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&filter=color_uFilter%3A%22Black%22%20OR%20color_uFilter%3A%22Blue%22&filter=size_uFilter%3A%22XS%22
+```
+---
+#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and no other configs passed.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: false,
+       algo: "KEY_VALUE_REPLACER"
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&color_uFilter=Black&size_uFilter=XS&gender_uFilter=men&price=0-300,300-600
+```
+---
+#### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and other configs passed.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: false,
+       algo: "KEY_VALUE_REPLACER",
+       multiValueSeparator: "~",
+       keyReplacer: {
+        "colour_uFilter" : "color",
+        "size_uFilter" : "size"
+       },
+       valueReplacer: {
+        "colour_uFilter": {
+            "Black" : "blk"
+        },
+        "size_uFilter" : {
+            "XS": "extra-small"
+        }
+       },
+       facetsOrderInUrl :["size_uFilter", "color_uFilter"],
+       rangeFacets: ["price"],
+       rangeSeparator: "-"
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&size=extra-small&color=blk&price=0-300~300-600&start=0&rows=12&viewT=g
+```
 ---
 
