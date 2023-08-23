@@ -720,11 +720,32 @@ export const otherUrlConfigsSchema = {
             datatype: "boolean",
             customValidations: (urlConfigs)=>{
                 if (!urlConfigs.seoFriendlyUrl){
+                    urlConfigs.searchQueryParam.addToUrl = true;
+                    urlConfigs.searchQueryParam.algo = "DEFAULT";
+                    urlConfigs.searchQueryParam.keyReplacer = "q";
+                    
+                    urlConfigs.browseQueryParam.addToUrl = true;
+                    urlConfigs.browseQueryParam.algo = "DEFAULT";
+                    urlConfigs.browseQueryParam.keyReplacer = "p";
+                    
+                    urlConfigs.pageViewParam.addToUrl = false;
                     urlConfigs.pageViewParam.algo = "DEFAULT";
+                    urlConfigs.pageViewParam.keyReplacer = "viewType";
+                    
+                    urlConfigs.sortParam.addToUrl = true;
                     urlConfigs.sortParam.algo = "DEFAULT";
+                    urlConfigs.sortParam.keyReplacer = "sort";
+                    
+                    urlConfigs.pageSizeParam.addToUrl = true;
                     urlConfigs.pageSizeParam.algo = "DEFAULT";
+                    urlConfigs.pageSizeParam.keyReplacer = "rows";
+                    
+                    urlConfigs.pageNoParam.addToUrl = true;
                     urlConfigs.pageNoParam.algo = "DEFAULT";
                     urlConfigs.pageNoParam.usePageNo = false;
+                    urlConfigs.pageNoParam.keyReplacer = "start";
+                    
+                    urlConfigs.facetsParam.addToUrl = true;
                     urlConfigs.facetsParam.algo = "DEFAULT";
                     urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
                     urlConfigs.queryParamSeparator = "&";
