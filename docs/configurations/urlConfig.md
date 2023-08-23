@@ -502,3 +502,62 @@ url: {
 ```
 http://workbench-qa.unbxd.io/builder?q=*&pageView=G
 ```
+---
+
+## facetsParam
+
+facetsParam configurations gives user the flexibility to customize how he/she wants the selected facets string to look in the url.
+This configuration is only available when the `seoFriendlyUrl` flag is turned on.
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+     facetsParam: {
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER",
+        multiValueSeparator: ",",
+        keyReplacer: {
+                "color_uFilter": "color",
+                "size_uFilter": "size"
+        },
+        valueReplacer: {
+                "color_uFilter": {
+                    "Multi_color": "multi",
+                },
+                "size_uFilter": {
+                    "xs": "extra-small"
+                }
+        },
+        facetsOrderInUrl: ["size","color_uFilter"],
+        rangeFacets: ["price"],
+        rangeSeparator: "-"
+    }
+}
+```
+
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: Boolean config which when turned on enables user to display all the selected facets in the url . Turn it off when facets are not to be displayed in the url.
+2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER , HASH . Different type of algo provides different kind of customization for the facets string in  the url. 
+3. `multiValueSeparator`: String option to provide a character that will separate the multiple values selected for a facet in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+4. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
+
+
+### Configurations
+{: .d-inline-block }
+
+| Config        | DataType | Default Value                                        | Other Values        |
+|:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
+| `addToUrl`     | boolean  | `true`                                                 | Allowed Values: `true` ,`false`|
+| `algo`         | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`: |
+| `multiValueSeparator`  | string   | `&`                                             | Allowed Values:[]     |
+| `keyReplacer`| object   | No default; uses the provided sorting values as keys   |                       |
+| `valueReplacer`| object   | No default; uses the provided sorting values as keys   |                       |
+| `facetsOrderInUrl`| object   | No default; uses the provided sorting values as keys   |                       |
+| `rangeFacets`| object   | No default; uses the provided sorting values as keys   |                       |
+| `rangeSeparator`| object   | No default; uses the provided sorting values as keys   |                       |
+
+
+---
