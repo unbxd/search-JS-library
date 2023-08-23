@@ -325,7 +325,7 @@ url:{
 | `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                  |
 | `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
-| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                                                  |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Example: <pre>valueReplacer: {<br>&nbsp; "price desc": "price desc",<br>&nbsp;"price asc": "price asc"<br>}</pre>                                                 |
 
 <!-- Example: ```js
     valueReplacer: {
