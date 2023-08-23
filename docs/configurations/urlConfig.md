@@ -375,7 +375,7 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&sort=price%20desc
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer `.
+#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
 {: .d-inline-block }
 
 **Code:**
@@ -420,15 +420,85 @@ url:{
 }
 ```
 
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+3. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
+4. `valueReplacer`: Used to replace specific values in the URL, enabling better communication with the user. 
+
 ### Configurations
 {: .d-inline-block }
 
 | Config        | DataType | Default Value                                        | Other Values        |
 |:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
-| `addToUrl`      | boolean  | `true`                                                 | `false`               |
-| `algo`          | string   | `DEFAULT`                                              | `KEY_VALUE_REPLACER`: |
-| `keyReplacer`   | string   | `viewType`                                             |                       |
+| `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                 |
+| `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
+| `keyReplacer`   | string   | `viewType`                                             | Examples: `viewType`, `pageView`                |
 | `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                       |
 
 
+### Usecases
+{: .d-inline-block }  
+<br>
+
+#### Usecase 1: Not added to URL
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageViewParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*
+```
 ---
+#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageViewParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&viewType=GRID
+```
+---
+#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    pageViewParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "pageView",
+       valueReplacer: {
+            "GRID": "G"
+        }
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&pageView=G
+```
