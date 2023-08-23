@@ -553,13 +553,13 @@ url:{
 
 | Config        | DataType | Default Value                                        | Other Values        |
 |:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
-| `addToUrl`     | boolean  | `true`                                                 | Allowed Values: `true` ,`false`|
-| `algo`         | string   | `DEFAULT`                                            | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`,`HASH` |
+| `addToUrl`     | boolean  | `true`                                               | Allowed Values: `true` ,`false`|
+| `algo`         | string   | `DEFAULT` | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`,`HASH` |
 | `multiValueSeparator`  | string   | `,` | Allowed Values:[] |
-| `keyReplacer`|  object  | No default : empty object |  For eg: { "color_uFilter": "color" , "size_uFilter": "size"} |
-| `valueReplacer`| object   | No default : emoty object| For eg: {"size_uFilter": { "xs": "extra-small"}}|
-| `facetsOrderInUrl`| array   | No default : empty array| For eg: ["color_uFilter","size_uFilter","gender_uFilter"]                      |
-| `rangeFacets`| array   | No default: empty array|  For eg: ["price", "salePrice"] | 
+| `keyReplacer`|  object  | No default - empty object |  For eg: { "color_uFilter": "color" , "size_uFilter": "size"} |
+| `valueReplacer`| object   | No default - emoty object| For eg: {"size_uFilter": { "xs": "extra-small"}}|
+| `facetsOrderInUrl`| array   | No default - empty array| For eg: ["color_uFilter","size_uFilter","gender_uFilter"] |
+| `rangeFacets`| array   | No default- empty array|  For eg: ["price", "salePrice"] | 
 | `rangeSeparator`| string   |  "-"  | Allowed Values: ["-"]|
 ---
 
@@ -573,6 +573,7 @@ url:{
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl : true
     // other URL configurations...
     facetsParam: { 
        addToUrl: false
@@ -591,9 +592,10 @@ http://workbench-qa.unbxd.io/builder?q=*
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl : true
     // other URL configurations...
     facetsParam: { 
-       addToUrl: false,
+       addToUrl: true,
        algo: "DEFAULT"
    }
 }
@@ -610,9 +612,10 @@ http://workbench-qa.unbxd.io/builder?q=*&filter=color_uFilter%3A%22Black%22%20OR
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl : true
     // other URL configurations...
     facetsParam: { 
-       addToUrl: false,
+       addToUrl: true,
        algo: "KEY_VALUE_REPLACER"
    }
 }
@@ -629,9 +632,10 @@ http://workbench-qa.unbxd.io/builder?q=*&color_uFilter=Black&size_uFilter=XS&gen
 **Code:**
 ```js
 url: {
+    seoFriendlyUrl : true
     // other URL configurations...
     facetsParam: { 
-       addToUrl: false,
+       addToUrl: true,
        algo: "KEY_VALUE_REPLACER",
        multiValueSeparator: "~",
        keyReplacer: {
