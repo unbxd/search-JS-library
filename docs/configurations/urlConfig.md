@@ -540,7 +540,7 @@ url:{
 {: .d-inline-block }
 
 1. `addToUrl`: Boolean config which when turned on enables user to display all the selected facets in the url . Turn it off when facets are not to be displayed in the url.
-2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER , HASH . Different type of algo provides different kind of customization for the facets string in  the url. 
+2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER . Different type of algo provides different kind of customization for the facets string in  the url. 
 3. `multiValueSeparator`: String option to provide a character that will separate the multiple values selected for a facet in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
 4. `keyReplacer`: Using this config user can replace the facet actual names with some custom names in the url which are more readable.For eg : colour_uFilter which is the actual name of the filter can be replaced with color instead which is more readable .
 5. `valueReplacer`: Using this config user can replacer the facet actual values with some custom values in the url .
@@ -555,7 +555,7 @@ url:{
 | Config        | DataType | Default Value                                        | Other Values        |
 |:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
 | `addToUrl`     | boolean  | `true`                                               | Allowed Values: `true` ,`false`|
-| `algo`         | string   | `DEFAULT` | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`,`HASH` |
+| `algo`         | string   | `DEFAULT` | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER` |
 | `multiValueSeparator`  | string   | `,` | Allowed Values:[] |
 | `keyReplacer`|  object  | No default - empty object |  For eg: { "color_uFilter": "color" , "size_uFilter": "size"} |
 | `valueReplacer`| object   | No default - emoty object| For eg: {"size_uFilter": { "xs": "extra-small"}}|
@@ -670,7 +670,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&size=extra-small&color=blk&price=0-300~300-600&start=0&rows=12&viewT=g
+http://workbench-qa.unbxd.io/builder?q=*&size=extra-small&color=blk&price=0-300~300-600
 ```
 ---
 
