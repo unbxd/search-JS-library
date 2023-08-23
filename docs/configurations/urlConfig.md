@@ -542,8 +542,11 @@ url:{
 1. `addToUrl`: Boolean config which when turned on enables user to display all the selected facets in the url . Turn it off when facets are not to be displayed in the url.
 2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER , HASH . Different type of algo provides different kind of customization for the facets string in  the url. 
 3. `multiValueSeparator`: String option to provide a character that will separate the multiple values selected for a facet in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
-4. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
-
+4. `keyReplacer`: Using this config user can replace the facet actual names with some custom names in the url which are more readable.For eg : colour_uFilter which is the actual name of the filter can be replaced with color instead which is more readable .
+5. `valueReplacer`: Using this config user can replacer the facet actual values with some custom values in the url .
+6. `facetsOrderInUrl`: This config orders the facets among facets string in the url .
+7. `rangeFacets`: This is a `required` field if you have range facets. Declare all the range facets by passing them in this array.
+8. `rangeSeparator`: This is the separator between the range . For eg : 12-20 has "-" as the rangeSeparator.
 
 ### Configurations
 {: .d-inline-block }
@@ -551,13 +554,12 @@ url:{
 | Config        | DataType | Default Value                                        | Other Values        |
 |:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
 | `addToUrl`     | boolean  | `true`                                                 | Allowed Values: `true` ,`false`|
-| `algo`         | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`: |
-| `multiValueSeparator`  | string   | `&`                                             | Allowed Values:[]     |
-| `keyReplacer`| object   | No default; uses the provided sorting values as keys   |                       |
-| `valueReplacer`| object   | No default; uses the provided sorting values as keys   |                       |
-| `facetsOrderInUrl`| object   | No default; uses the provided sorting values as keys   |                       |
-| `rangeFacets`| object   | No default; uses the provided sorting values as keys   |                       |
-| `rangeSeparator`| object   | No default; uses the provided sorting values as keys   |                       |
-
-
+| `algo`         | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER`,`HASH` |
+| `multiValueSeparator`  | string   | `,` | Allowed Values:[] |
+| `keyReplacer`|  object  | No default : empty object |  For eg: { "color_uFilter": "color" , "size_uFilter": "size"} |
+| `valueReplacer`| object   | No default : emoty object| For eg: {"size_uFilter": { "xs": "extra-small"}}|
+| `facetsOrderInUrl`| array   | No default : empty array| For eg: ["color_uFilter","size_uFilter","gender_uFilter"]                      |
+| `rangeFacets`| array   | No default: empty array|  For eg: ["price", "salePrice"] | 
+| `rangeSeparator`| string   |  "-"  | Allowed Values: ["-"]|
 ---
+
