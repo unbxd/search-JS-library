@@ -70,10 +70,10 @@ url: {
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `usePageNo`: Indicates whether to use page numbers in URL, instead of indices.
 3. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-4. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
+4. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
 
 
 ### Configurations
@@ -81,9 +81,9 @@ url: {
 
 | Config Name     | Data Type | Default Value | Other Values        |
 |:-----------:|:--------:|:-------------:|-------------------|
-| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`               |
-| `usePageNo`   | boolean  | `false`         | Allowed Values: `false`, `true`                |
-| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`                    |
+| `usePageNo`   | boolean  | `false`         | Allowed Values: `false`, `true`                    |
+| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`    |
 | `keyReplacer` | string   | `start`         | Examples: `start`, `pageNumber`                    |
 
 
@@ -212,9 +212,9 @@ url:{
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
 
 
 ### Configurations
@@ -312,18 +312,18 @@ url:{
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
-4. `valueReplacer`: Used to replace specific values in the URL, enabling better communication with the user. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+4. `valueReplacer`: A config which allows to change the way the selected value is represented in the URL.
 
 ### Configurations
 {: .d-inline-block }
 
 | Config        | DataType | Default Value                                        | Other Values        |
 |:-------------:|:--------:|:----------------------------------------------------:|-------------------|
-| `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`               |
-| `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
+| `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                  |
+| `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
 | `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                                                  |
 
@@ -423,10 +423,10 @@ url:{
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A parameter that allows users to append custom data or parameters to the URL, enabling tailored interactions with the user.
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
 2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
-3. `keyReplacer`: Used to replace specific keys in the URL, enabling better communication with the user.
-4. `valueReplacer`: Used to replace specific values in the URL, enabling better communication with the user. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+4. `valueReplacer`: A config which allows to change the way the selected value is represented in the URL.
 
 ### Configurations
 {: .d-inline-block }
