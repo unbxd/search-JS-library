@@ -316,7 +316,7 @@ This will be the default query param for the search api to provide the query inf
 ```js
 searchQueryParam: "q"
 ```
-	
+
 ## Scenarios
 {: .no_toc }
 
