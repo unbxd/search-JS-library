@@ -190,8 +190,202 @@ queryParamSeparator: "&"
 The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`, `":"`, `";"`, `"|"`, `"$"`, `"@"`
 
 {: .important }
-> If the value given by the user is not an allowed value, it default value will be selected.
+> If the value given by the user is not an allowed value, the default value will be selected.
 
+---
+
+## browseQueryParam
+{: .d-inline-block}
+
+This will be the default query param for the search api to provide category information like category path or category id. 
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+    browseQueryParam: {
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER",
+        keyReplacer: "browse"
+    }
+}
+```
+
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
+2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+
+
+### Configurations
+{: .d-inline-block }
+
+| Config      | DataType | Default Value | Other Values        |
+|:-----------:|:--------:|:-------------:|-------------------|
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`                  |
+| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `p`             | Examples: `p`, `browse`                          |
+
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+### Usecase 1: Hide Browse Query Param from URL.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    browseQueryParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+www.example.com/washingMachine
+```
+---
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    browseQueryParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+   }
+}
+```
+
+**URL:**
+```
+www.example.com/washingMachine?p=categoryPath%253A%2522LAUNDRY%253EWASHING%2520MACHINES%2522
+```
+---
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    browseQueryParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "browse"
+   }
+}
+```
+
+**URL:**
+```
+www.example.com/washingMachine?browse=categoryPath%253A%2522LAUNDRY%253EWASHING%2520MACHINES%2522
+```
+---
+
+## searchQueryParam
+{: .d-inline-block}
+
+This will be the default query param for the search api to provide the query information. 
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+    searchQueryParam: {
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER",
+        keyReplacer: "query"
+    }
+}
+```
+
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
+2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+
+
+### Configurations
+{: .d-inline-block }
+
+| Config      | DataType | Default Value | Other Values        |
+|:-----------:|:--------:|:-------------:|-------------------|
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`                  |
+| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `q`             | Examples: `q`, `query`                           |
+
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+### Usecase 1: Hide Search Query Param from URL.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    searchQueryParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?
+```
+---
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    searchQueryParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?q=black+jeans
+```
+---
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    searchQueryParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "query"
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?query=black+jeans
+```
 ---
 ## pageNoParam
 The `pageNoParam` configuration defines how pagination data is managed in the URL for the Unbxd search SDK. It consists of the following options:
@@ -249,7 +443,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?q=*
 ```
 ---
 ### Usecase 2: URL containing product index as Page Number with `algo = "DEFAULT"`.
@@ -269,7 +463,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&start=0
+www.example.com?q=*&start=0
 ```
 ---
 ### Usecase 3: URL containing page numbers with `algo = "DEFAULT"`.
@@ -289,7 +483,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&start=1
+www.example.com?q=*&start=1
 ```
 ---
 ### Usecase 4: URL containing product index as Page Number with `algo = "KEY_VALUE_REPLACER"`.
@@ -310,7 +504,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&page=0
+www.example.com?q=*&page=0
 ```
 ---
 ### Usecase 5: URL containing page numbers with `algo = "KEY_VALUE_REPLACER"`.
@@ -331,7 +525,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&page=1
+www.example.com?q=*&page=1
 ```
 
 ---
@@ -388,7 +582,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?q=*
 ```
 ---
 ### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
@@ -407,7 +601,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&rows=12
+www.example.com?q=*&rows=12
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
@@ -427,7 +621,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&products=12
+www.example.com?q=*&products=12
 ```
 ---
 
@@ -489,7 +683,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?q=*
 ```
 ---
 ### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
@@ -508,7 +702,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&sort=price%20desc
+www.example.com?q=*&sort=price%20desc
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
@@ -531,7 +725,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&order=desc
+www.example.com?q=*&order=desc
 ```
 
 ---
@@ -594,7 +788,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?q=*
 ```
 ---
 ### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
@@ -613,7 +807,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&viewType=GRID
+www.example.com?q=*&viewType=GRID
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
@@ -636,5 +830,5 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&pageView=G
+www.example.com?q=*&pageView=G
 ```
