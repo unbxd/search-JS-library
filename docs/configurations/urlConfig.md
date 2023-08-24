@@ -10,7 +10,12 @@ nav_order: 18
 
 This feature ensures both data persistence and readability within the Unbxd SDK's URL structure, making it easier than ever to optimize the presentation of products to your users.
 
-# of contents
+
+{: .important }
+> This set of configurations is not present in versions `2.0.39` and before.  
+
+
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -51,6 +56,317 @@ In summary, SEO-friendly URLs are a fundamental aspect of successful e-commerce 
 
 # Configurations
 
+## hashMode
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+In Single Page Applications (SPAs), hash mode refers to the use of the "#" symbol in the URL to indicate the current state or location of the application. Instead of using traditional URLs that include a path and query parameters, SPAs use a single base URL and append a hash fragment to the end of the URL to represent different states or views within the application.
+
+For example, a traditional URL for an e-commerce website might be "www.example.com/products/?category=shoes" while in Hash mode it could be "www.example.com/products/#category=shoes"
+
+<!-- The use of the "#" symbol in the URL, known as a hash fragment, tells the browser that everything after the "#" is not a part of the actual path of the website, but rather a reference to a specific state or view within the SPA. This allows the SPA to handle routing and navigation internally, without requiring a full page reload from the server.
+
+Hash mode is also useful for SEO purposes as it does not refresh the page and search engines read the portion before "#" as the page URL and can index the page.
+
+In summary, Hash mode in Single Page Applications (SPAs) is a technique used to handle routing and navigation within the application using the "#" symbol in the URL to indicate the current state or location. This allows for a more seamless user experience and makes it easier for the SPA to handle routing internally, without requiring a full page reload from the server. -->
+The search sdk adds some information to the url as params, based on the user actions, and in case of page reload scenarios, the data is read from the url.
+
+Turn this flag on if you want the URL update to happen as hash param instead of using query params.
+
+**Default Value**
+{: .no_toc }
+
+```js
+hashMode: false
+```
+
+**Scenarios**
+{: .no_toc }
+
+1. true - url params will be updated as hash params
+2. false - url params will be updated as query params
+
+---
+## allowExternalUrlParams
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn this flag on if you want to retain the external url params in the **browser**, that do not get added by the unbxd sdk.
+
+**Default Value**
+{: .no_toc }
+
+```js
+allowExternalUrlParams: false
+```
+
+**Scenarios**
+{: .no_toc }
+
+1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
+2. false - External params will be dropped from the browser url by the unbxd search sdk
+
+---
+
+## seoFriendlyUrl
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+This configuration focuses on optimizing website URLs for search engine optimization (SEO) purposes. It involves structuring URLs in a user-readable and descriptive manner, often incorporating relevant keywords and avoiding unnecessary characters. By using this configuration, websites can improve their search engine rankings and enhance user experience by presenting clear and meaningful URLs.
+
+**Default Value**
+{: .no_toc }
+
+```js
+seoFriendlyUrl: false
+```
+
+**Scenarios**
+{: .no_toc }
+
+1. true - The URLs will be well-structured, keyword-rich which enhances SEO by improving readability and search engine ranking.
+2. false - URLs will not be optimised, potentially impacting SEO and user experience due to less descriptive and organized URL structures.
+
+---
+
+## orderOfQueryParams
+{: .d-inline-block }
+
+Array
+{: .label }
+
+This configuration manages the arrangement of query parameters in URLs. It enforces a consistent order for query parameters across the website, enhancing URL uniformity and potentially improving caching efficiency. By maintaining a standardized parameter order, URL comparability is simplified and caching systems can recognize identical URLs more effectively.
+
+**Default Value**
+
+```js
+orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"]
+```
+
+---
+
+## queryParamSeparator
+{: .d-inline-block }
+
+String
+{: .label }
+
+This setting defines the delimiter used to separate individual query parameters within a URL. It allows customization of the character used to distinguish between distinct parameters, influencing how URLs are parsed and processed. 
+
+**Default Value**
+
+```js
+queryParamSeparator: "&"
+```
+
+**Allowed Values**
+
+The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`, `":"`, `";"`, `"|"`, `"$"`, `"@"`
+
+{: .important }
+> If the value given by the user is not an allowed value, the default value will be selected.
+
+---
+
+## browseQueryParam
+{: .d-inline-block}
+
+This will be the default query param for the search api to provide category information like category path or category id. 
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+    browseQueryParam: {
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER",
+        keyReplacer: "browse"
+    }
+}
+```
+
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
+2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+
+
+### Configurations
+{: .d-inline-block }
+
+| Config      | DataType | Default Value | Other Values        |
+|:-----------:|:--------:|:-------------:|-------------------|
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`                  |
+| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `p`             | Examples: `p`, `browse`                          |
+
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+### Usecase 1: Hide Browse Query Param from URL.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    browseQueryParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+www.example.com/washingMachine
+```
+---
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    browseQueryParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+   }
+}
+```
+
+**URL:**
+```
+www.example.com/washingMachine?p=categoryPath%253A%2522LAUNDRY%253EWASHING%2520MACHINES%2522
+```
+---
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    browseQueryParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "browse"
+   }
+}
+```
+
+**URL:**
+```
+www.example.com/washingMachine?browse=categoryPath%253A%2522LAUNDRY%253EWASHING%2520MACHINES%2522
+```
+---
+
+## searchQueryParam
+{: .d-inline-block}
+
+This will be the default query param for the search api to provide the query information. 
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+    searchQueryParam: {
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER",
+        keyReplacer: "query"
+    }
+}
+```
+
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: A config that allows users to append this parameter to the URL.
+2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+
+
+### Configurations
+{: .d-inline-block }
+
+| Config      | DataType | Default Value | Other Values        |
+|:-----------:|:--------:|:-------------:|-------------------|
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`                  |
+| `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
+| `keyReplacer` | string   | `q`             | Examples: `q`, `query`                           |
+
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+### Usecase 1: Hide Search Query Param from URL.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    searchQueryParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?
+```
+---
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    searchQueryParam: { 
+       addToUrl: true,
+       algo: "DEFAULT", 
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?q=black+jeans
+```
+---
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+{: .no_toc  }
+
+**Code:**
+```js
+url: {
+    // other URL configurations...
+    searchQueryParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER", 
+       keyReplacer: "query"
+   }
+}
+```
+
+**URL:**
+```
+www.example.com?query=black+jeans
+```
+---
 ## pageNoParam
 The `pageNoParam` configuration defines how pagination data is managed in the URL for the Unbxd search SDK. It consists of the following options:
 
@@ -92,8 +408,8 @@ url: {
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Page Number from URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -107,11 +423,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT` and page number is not used.
-{: .d-inline-block }
+### Usecase 2: URL containing product index as Page Number with `algo = "DEFAULT"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -127,11 +443,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&start=0
+www.example.com?start=0
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `DEFAULT` and page number is used.
-{: .d-inline-block }
+### Usecase 3: URL containing page numbers with `algo = "DEFAULT"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -147,11 +463,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&start=1
+www.example.com?start=1
 ```
 ---
-#### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and page number is not used.
-{: .d-inline-block }
+### Usecase 4: URL containing product index as Page Number with `algo = "KEY_VALUE_REPLACER"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -168,11 +484,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&page=0
+www.example.com?page=0
 ```
 ---
-#### Usecase 5: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and page number is used.
-{: .d-inline-block }
+### Usecase 5: URL containing page numbers with `algo = "KEY_VALUE_REPLACER"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -189,7 +505,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&page=1
+www.example.com?page=1
 ```
 
 ---
@@ -222,17 +538,17 @@ url:{
 
 | Config      | DataType | Default Value | Other Values        |
 |:-----------:|:--------:|:-------------:|-------------------|
-| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`               |
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`                  |
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
-| `keyReplacer` | string   | `rows`         | Examples: `rows`, `products`                    |
+| `keyReplacer` | string   | `rows`          | Examples: `rows`, `products`                     |
 
 
 ### Usecases
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Page Size from URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -246,11 +562,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
-{: .d-inline-block }
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -265,11 +581,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&rows=12
+www.example.com?rows=12
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
-{: .d-inline-block }
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -285,7 +601,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&products=12
+www.example.com?products=12
 ```
 ---
 
@@ -325,21 +641,15 @@ url:{
 | `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                  |
 | `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
-| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                                          |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Examples: `valueReplacer: { "price desc": "price desc", "price asc": "price asc" }`                                        |
 
-<!-- Example: ```js
-    valueReplacer: {
-    "price desc": "price desc",
-    "price asc": "price asc"
-}
-``` -->
 
 ### Usecases
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Sort in URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -353,11 +663,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
-{: .d-inline-block }
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -372,11 +682,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&sort=price%20desc
+www.example.com?sort=price%20desc
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
-{: .d-inline-block }
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -395,7 +705,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&order=desc
+www.example.com?order=desc
 ```
 
 ---
@@ -436,15 +746,15 @@ url:{
 | `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                 |
 | `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
 | `keyReplacer`   | string   | `viewType`                                             | Examples: `viewType`, `pageView`                |
-| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                       |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Example: `valuesReplacer: { "GRID": "G", "LIST": "L" }`                      |
 
 
 ### Usecases
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Page View in URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -458,11 +768,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
-{: .d-inline-block }
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -477,11 +787,11 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&viewType=GRID
+www.example.com?viewType=GRID
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
-{: .d-inline-block }
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -500,7 +810,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&pageView=G
+www.example.com?pageView=G
 ```
 ---
 
@@ -664,4 +974,168 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&size=extra-small&color=blk&price=0-300~300-600
 ```
 ---
+---
+
+## facetsParam
+
+facetsParam configurations gives user the flexibility to customize how he/she wants the selected facets string to look in the url.
+This configuration is only available when the `seoFriendlyUrl` flag is turned on.
+
+**Sample Code**
+```js
+url:{
+    // other URL configurations...
+     facetsParam: {
+        addToUrl: true,
+        algo: "KEY_VALUE_REPLACER",
+        multiValueSeparator: ",",
+        keyReplacer: {
+                "color_uFilter": "color",
+                "size_uFilter": "size"
+        },
+        valueReplacer: {
+                "color_uFilter": {
+                    "Multi_color": "multi",
+                },
+                "size_uFilter": {
+                    "xs": "extra-small"
+                }
+        },
+        facetsOrderInUrl: ["size","color_uFilter"],
+        rangeFacets: ["price"],
+        rangeSeparator: "-"
+    }
+}
+```
+
+### Key Terminology
+{: .d-inline-block }
+
+1. `addToUrl`: Boolean config which when turned on enables user to display all the selected facets in the url . Turn it off when facets are not to be displayed in the url.
+2. `algo`: Option for user to switch between different customization modes / algos provided eg : DEFAULT , KEY_VALUE_REPLACER . Different type of algo provides different kind of customization for the facets string in  the url. 
+3. `multiValueSeparator`: String option to provide a character that will separate the multiple values selected for a facet in the url. This config is applicable only when `algo: "KEY_VALUE_REPLACER"`.
+4. `keyReplacer`: Using this config user can replace the facet actual names with some custom names in the url which are more readable.For eg : colour_uFilter which is the actual name of the filter can be replaced with color instead which is more readable .
+5. `valueReplacer`: Using this config user can replacer the facet actual values with some custom values in the url .
+6. `facetsOrderInUrl`: This config orders the facets among facets string in the url .
+7. `rangeFacets`: This is a `required` field if you have range facets. Declare all the range facets by passing them in this array.
+8. `rangeSeparator`: This is the separator between the range . For eg : 12-20 has "-" as the rangeSeparator.
+
+
+### Configurations
+{: .d-inline-block }
+
+| Config        | DataType | Default Value                                        | Other Values        |
+|:-------------:|:--------:|:----------------------------------------------------:|:-------------------:|
+| `addToUrl`     | boolean  | `true`                                               | Allowed Values: `true` ,`false`|
+| `algo`         | string   | `DEFAULT` | Allowed Values: `DEFAULT` ,`KEY_VALUE_REPLACER` |
+| `multiValueSeparator`  | string   | `,` | Allowed Values:["&", "~", "^", ",", "-", "_", ":", ";", "|", "$", "@"] |
+| `keyReplacer`|  object  | No default - empty object |  For eg: { "color_uFilter": "color" , "size_uFilter": "size"} |
+| `valueReplacer`| object   | No default - emoty object| For eg: {"size_uFilter": { "xs": "extra-small"}}|
+| `facetsOrderInUrl`| array   | No default - empty array| For eg: ["color_uFilter","size_uFilter","gender_uFilter"] |
+| `rangeFacets`| array   | No default- empty array|  For eg: ["price", "salePrice"] | 
+| `rangeSeparator`| string   |  "-"  | Allowed Values: ["-"]|
+
+---
+
+### Usecases
+{: .d-inline-block }  
+<br>
+
+#### Usecase 1: Not added to URL
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: false
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*
+```
+---
+#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: true,
+       algo: "DEFAULT"
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&filter=color_uFilter%3A%22Black%22%20OR%20color_uFilter%3A%22Blue%22&filter=size_uFilter%3A%22XS%22
+```
+---
+#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and no other configs passed.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER"
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&color_uFilter=Black&size_uFilter=XS&gender_uFilter=men&price=0-300,300-600
+```
+---
+#### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and other configs passed.
+{: .d-inline-block }
+
+**Code:**
+```js
+url: {
+    seoFriendlyUrl : true
+    // other URL configurations...
+    facetsParam: { 
+       addToUrl: true,
+       algo: "KEY_VALUE_REPLACER",
+       multiValueSeparator: "~",
+       keyReplacer: {
+        "colour_uFilter" : "color",
+        "size_uFilter" : "size"
+       },
+       valueReplacer: {
+        "colour_uFilter": {
+            "Black" : "blk"
+        },
+        "size_uFilter" : {
+            "XS": "extra-small"
+        }
+       },
+       facetsOrderInUrl :["size_uFilter", "color_uFilter"],
+       rangeFacets: ["price"],
+       rangeSeparator: "-"
+   }
+}
+```
+
+**URL:**
+```
+http://workbench-qa.unbxd.io/builder?q=*&size=extra-small&color=blk&price=0-300~300-600
+```
+---
+
+
 
