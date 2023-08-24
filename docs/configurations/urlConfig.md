@@ -10,6 +10,11 @@ nav_order: 18
 
 This feature ensures both data persistence and readability within the Unbxd SDK's URL structure, making it easier than ever to optimize the presentation of products to your users.
 
+
+{: .warning } 
+> This set of configurations is not present in versions **<`2.0.39`** and before.
+
+
 # Table of contents
 {: .no_toc .text-delta }
 

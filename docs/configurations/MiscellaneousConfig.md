@@ -73,6 +73,9 @@ hashMode: false
 1. true - url params will be updated as hash params
 2. false - url params will be updated as query params
 
+{: .warning } 
+> From SDK version: **`2.0.40`**, this configuration will be a part of `URL`.
+
 ---
 # updateUrls
 {: .d-inline-block }
@@ -259,7 +262,6 @@ searchEndPoint:“https://search.unbxd.io”
 searchEndPoint:"https://wingman-argocd.unbxd.io/"	
 ```
 
----
 <!-- This feature is not used, and not adopted. There is no clarity.
 
 # searchPath
@@ -325,4 +327,3 @@ This could be any valid string which would contain the query data that user has 
 {: .warning } 
 > From SDK version: **`2.0.40`**, this configuration will be a part of `URL`.
 
-EOF
