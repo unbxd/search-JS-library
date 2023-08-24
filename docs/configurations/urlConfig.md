@@ -10,7 +10,7 @@ nav_order: 18
 
 This feature ensures both data persistence and readability within the Unbxd SDK's URL structure, making it easier than ever to optimize the presentation of products to your users.
 
-# of contents
+# Table of contents
 {: .no_toc .text-delta }
 
 1. TOC
@@ -92,8 +92,8 @@ url: {
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Page Number from URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -110,8 +110,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT` and page number is not used.
-{: .d-inline-block }
+### Usecase 2: URL containing product index as Page Number with `algo = "DEFAULT"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -130,8 +130,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=0
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `DEFAULT` and page number is used.
-{: .d-inline-block }
+### Usecase 3: URL containing page numbers with `algo = "DEFAULT"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -150,8 +150,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&start=1
 ```
 ---
-#### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and page number is not used.
-{: .d-inline-block }
+### Usecase 4: URL containing product index as Page Number with `algo = "KEY_VALUE_REPLACER"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -171,8 +171,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&page=0
 ```
 ---
-#### Usecase 5: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and page number is used.
-{: .d-inline-block }
+### Usecase 5: URL containing page numbers with `algo = "KEY_VALUE_REPLACER"`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -222,17 +222,17 @@ url:{
 
 | Config      | DataType | Default Value | Other Values        |
 |:-----------:|:--------:|:-------------:|-------------------|
-| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`               |
+| `addToUrl`    | boolean  | `true`          | Allowed Values: `true`, `false`                  |
 | `algo`        | string   | `DEFAULT`       | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
-| `keyReplacer` | string   | `rows`         | Examples: `rows`, `products`                    |
+| `keyReplacer` | string   | `rows`          | Examples: `rows`, `products`                     |
 
 
 ### Usecases
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Page Size from URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -249,8 +249,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
-{: .d-inline-block }
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -268,8 +268,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&rows=12
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
-{: .d-inline-block }
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -325,21 +325,15 @@ url:{
 | `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                  |
 | `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER`  |
 | `keyReplacer`   | string   | `sortBy`                                               | Examples: `sortBy`, `order`                      |
-| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                                          |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Examples: `valueReplacer: { "price desc": "price desc", "price asc": "price asc" }`                                        |
 
-<!-- Example: ```js
-    valueReplacer: {
-    "price desc": "price desc",
-    "price asc": "price asc"
-}
-``` -->
 
 ### Usecases
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Sort in URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -356,8 +350,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
-{: .d-inline-block }
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -375,8 +369,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&sort=price%20desc
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
-{: .d-inline-block }
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -436,15 +430,15 @@ url:{
 | `addToUrl`      | boolean  | `true`                                                 | Allowed Values: `true`, `false`                 |
 | `algo`          | string   | `DEFAULT`                                              | Allowed Values: `DEFAULT`, `KEY_VALUE_REPLACER` |
 | `keyReplacer`   | string   | `viewType`                                             | Examples: `viewType`, `pageView`                |
-| `valueReplacer` | object   | No default; uses the provided sorting values as keys   |                       |
+| `valueReplacer` | object   | No default; uses the provided sorting values as keys   | Example: `valuesReplacer: { "GRID": "G", "LIST": "L" }`                      |
 
 
 ### Usecases
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Not added to URL
-{: .d-inline-block }
+### Usecase 1: Hide Page View in URL.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -461,8 +455,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
-{: .d-inline-block }
+### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
+{: .no_toc  }
 
 **Code:**
 ```js
@@ -480,8 +474,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&viewType=GRID
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
-{: .d-inline-block }
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
+{: .no_toc  }
 
 **Code:**
 ```js
