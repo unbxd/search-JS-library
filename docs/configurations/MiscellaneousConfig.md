@@ -74,7 +74,7 @@ hashMode: false
 2. false - url params will be updated as query params
 
 {: .warning } 
-> From SDK version: **`2.0.40`**, this configuration will be a part of `URL`.
+> From SDK version: `2.0.40`, this configuration will be a part of `URL`.
 
 ---
 # updateUrls
@@ -102,7 +102,7 @@ updateUrls: true
 2. false - user action information will not be added to the url
 
 {: .warning } 
-> From SDK version: **`2.1.0`**, this configuration will be scrapped.
+> From SDK version: `2.1.0`, this configuration will be scrapped.
 
 ---
 # actionBtnClass
@@ -169,7 +169,7 @@ allowExternalUrlParams: false
 2. false - External params will be dropped from the browser url by the unbxd search sdk
 
 {: .warning } 
-> From SDK version: **`2.0.40`**, this configuration will be a part of `URL`.
+> From SDK version: `2.0.40`, this configuration will be a part of `URL`.
 
 ---
 # extraParams
@@ -301,7 +301,7 @@ browseQueryParam: "p"
 2. p: If we are providing the **category path** to the search api.
 
 {: .warning } 
-> From SDK version: **`2.0.40`**, this configuration will be a part of `URL`.
+> From SDK version: `2.0.40`, this configuration will be a part of `URL`.
 
 ---
 # searchQueryParam
@@ -325,5 +325,5 @@ searchQueryParam: "q"
 This could be any valid string which would contain the query data that user has searched for like `q` or `query`.
 
 {: .warning } 
-> From SDK version: **`2.0.40`**, this configuration will be a part of `URL`.
+> From SDK version: `2.0.40`, this configuration will be a part of `URL`.
 

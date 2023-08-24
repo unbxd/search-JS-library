@@ -12,7 +12,7 @@ This feature ensures both data persistence and readability within the Unbxd SDK'
 
 
 {: .important }
-> This set of configurations is not present in versions **`< 2.0.39`** and before.  
+> This set of configurations is not present in versions `2.0.39` and before.  
 
 
 # Table of contents
@@ -423,7 +423,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*
+www.example.com?
 ```
 ---
 ### Usecase 2: URL containing product index as Page Number with `algo = "DEFAULT"`.
@@ -443,7 +443,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&start=0
+www.example.com?start=0
 ```
 ---
 ### Usecase 3: URL containing page numbers with `algo = "DEFAULT"`.
@@ -463,7 +463,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&start=1
+www.example.com?start=1
 ```
 ---
 ### Usecase 4: URL containing product index as Page Number with `algo = "KEY_VALUE_REPLACER"`.
@@ -484,7 +484,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&page=0
+www.example.com?page=0
 ```
 ---
 ### Usecase 5: URL containing page numbers with `algo = "KEY_VALUE_REPLACER"`.
@@ -505,7 +505,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&page=1
+www.example.com?page=1
 ```
 
 ---
@@ -562,7 +562,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*
+www.example.com?
 ```
 ---
 ### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
@@ -581,7 +581,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&rows=12
+www.example.com?rows=12
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER`.
@@ -601,7 +601,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&products=12
+www.example.com?products=12
 ```
 ---
 
@@ -663,7 +663,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*
+www.example.com?
 ```
 ---
 ### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
@@ -682,7 +682,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&sort=price%20desc
+www.example.com?sort=price%20desc
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
@@ -705,7 +705,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&order=desc
+www.example.com?order=desc
 ```
 
 ---
@@ -768,7 +768,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*
+www.example.com?
 ```
 ---
 ### Usecase 2: Added to URL with selected algorithm as `DEFAULT`.
@@ -787,7 +787,7 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&viewType=GRID
+www.example.com?viewType=GRID
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and values are given for `keyReplacer` and `valueReplacer`.
@@ -810,5 +810,5 @@ url: {
 
 **URL:**
 ```
-www.example.com?q=*&pageView=G
+www.example.com?pageView=G
 ```
