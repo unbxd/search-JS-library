@@ -51,31 +51,6 @@ In summary, SEO-friendly URLs are a fundamental aspect of successful e-commerce 
 
 # Configurations
 
-## updateUrls
-{: .d-inline-block }
-
-Boolean
-{: .label }
-
-If you prefer for the URLs to remain unchanged when any search parameters are altered, set this configuration option to false.
-
-{: .important }
-> Note: If this is set to false, the page reload will lose any user action data like selected facets, selected sort values, etc
-
-**Default Value**
-{: .no_toc }
-
-```js
-updateUrls: true
-```
-
-**Scenarios**
-{: .no_toc }
-
-1. true - user action information will be added to the url
-2. false - user action information will not be added to the url
-
----
 ## hashMode
 {: .d-inline-block }
 

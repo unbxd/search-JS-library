@@ -98,6 +98,9 @@ updateUrls: true
 1. true - user action information will be added to the url
 2. false - user action information will not be added to the url
 
+{: .warning } 
+> From SDk version: `2.1.0`, this configuration will be scrapped.
+
 ---
 # actionBtnClass
 {: .d-inline-block }
@@ -161,6 +164,9 @@ allowExternalUrlParams: false
 
 1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
 2. false - External params will be dropped from the browser url by the unbxd search sdk
+
+{: .warning } 
+> From SDk version: `2.0.40`, this configuration will be a part of `URL`.
 
 ---
 # extraParams
@@ -292,6 +298,9 @@ browseQueryParam: "p"
 1. p-id: If we are providing the **category path id** to the search api.
 2. p: If we are providing the **category path** to the search api.
 
+{: .warning } 
+> From SDk version: `2.0.40`, this configuration will be a part of `URL`.
+
 ---
 # searchQueryParam
 {: .d-inline-block }
@@ -312,5 +321,8 @@ searchQueryParam: "q"
 {: .no_toc }
 
 This could be any valid string which would contain the query data that user has searched for like `q` or `query`.
+
+{: .warning } 
+> From SDk version: `2.0.40`, this configuration will be a part of `URL`.
 
 EOF
