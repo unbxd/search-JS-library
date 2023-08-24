@@ -131,6 +131,65 @@ allowExternalUrlParams: false
 2. false - External params will be dropped from the browser url by the unbxd search sdk
 
 ---
+
+## seoFriendlyUrl
+
+Boolean
+{: .label }
+
+This configuration focuses on optimizing website URLs for search engine optimization (SEO) purposes. It involves structuring URLs in a user-readable and descriptive manner, often incorporating relevant keywords and avoiding unnecessary characters. By using this configuration, websites can improve their search engine rankings and enhance user experience by presenting clear and meaningful URLs.
+
+**Default Value**
+{: .no_toc }
+
+```js
+seoFriendlyUrl: false
+```
+
+**Scenarios**
+{: .no_toc }
+
+1. true - The URLs will be well-structured, keyword-rich which enhances SEO by improving readability and search engine ranking.
+2. false - URLs will not be optimised, potentially impacting SEO and user experience due to less descriptive and organized URL structures.
+
+---
+
+## orderOfQueryParams
+
+Array
+{: .label }
+
+This configuration manages the arrangement of query parameters in URLs. It enforces a consistent order for query parameters across the website, enhancing URL uniformity and potentially improving caching efficiency. By maintaining a standardized parameter order, URL comparability is simplified and caching systems can recognize identical URLs more effectively.
+
+**Default Value**
+
+```js
+orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"]
+```
+
+---
+
+## queryParamSeparator
+
+String
+{: .label }
+
+This setting defines the delimiter used to separate individual query parameters within a URL. It allows customization of the character used to distinguish between distinct parameters, influencing how URLs are parsed and processed. 
+
+**Default Value**
+
+```js
+queryParamSeparator: "&"
+```
+
+**Allowed Values**
+
+The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`, `":"`, `";"`, `"|"`, `"$"`, `"@"`
+
+{: .important }
+> If the value given by the user is not an allowed value, it default value will be selected.
+
+---
 ## pageNoParam
 The `pageNoParam` configuration defines how pagination data is managed in the URL for the Unbxd search SDK. It consists of the following options:
 
