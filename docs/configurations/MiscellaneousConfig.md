@@ -102,7 +102,7 @@ updateUrls: true
 2. false - user action information will not be added to the url
 
 {: .warning } 
-> From SDK version: `**2.1.0**`, this configuration will be scrapped.
+> From SDK version: **`2.1.0`**, this configuration will be scrapped.
 
 ---
 # actionBtnClass
