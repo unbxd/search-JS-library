@@ -133,6 +133,7 @@ allowExternalUrlParams: false
 ---
 
 ## seoFriendlyUrl
+{: .d-inline-block }
 
 Boolean
 {: .label }
@@ -155,6 +156,7 @@ seoFriendlyUrl: false
 ---
 
 ## orderOfQueryParams
+{: .d-inline-block }
 
 Array
 {: .label }
@@ -170,6 +172,7 @@ orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VI
 ---
 
 ## queryParamSeparator
+{: .d-inline-block }
 
 String
 {: .label }
