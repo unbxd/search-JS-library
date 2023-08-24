@@ -326,3 +326,4 @@ This could be any valid string which would contain the query data that user has 
 > From SDK version: `**2.0.40**`, this configuration will be a part of `URL`.
 
 EOF
+
