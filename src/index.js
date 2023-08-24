@@ -55,7 +55,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         const urlParams = this.getQueryParams();
         let {
-            viewType
+            [this.getPageViewParam()]: viewType
         } = urlParams || {};
         if(this.viewState.lastAction === "viewType") {
             viewType = this.viewState.productViewType;
@@ -71,7 +71,7 @@ class UnbxdSearch extends UnbxdSearchCore {
             this.options.extraParams.viewType = viewType;
         }
         if(this.viewState.productViewType !== viewType ){
-            this.viewState.productViewType = viewType;
+            this.viewState.productViewType = this.getKeyByValue(this.options.url.pageViewParam.valuesReplacer , decodeURIComponent(viewType))
             this.options.extraParams.viewType = viewType;
         }
         if(type === beforeApiCall) { 
