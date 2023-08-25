@@ -72,6 +72,9 @@ const options = {
     browseQueryParam: 'p',
     defaultFilters: {}, //or object with keys
     allowExternalUrlParams: false,
+    url: {
+        seoFriendlyUrl: false
+    },
     noResults: {
         template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },
@@ -131,47 +134,6 @@ const options = {
         },
         events: {}
     },
-    
-    url: {
-        pageViewUrl: {
-            addToUrl: true, // show in url
-            customize: false,// customize
-            pageViewKeyReplacer: "viewType",
-            pageViewValueReplacer: {
-                "GRID": "GRID",
-                "LIST": "LIST"
-            }
-        },
-        sortUrl: {
-            addToUrl : true,
-            customize: false,
-            keyReplacer: "sort", 
-            valueReplacer: {} //{
-                            // "price desc": "pd",
-                            // "price asc": "pa"
-                            // }
-        },
-        pageSizeUrl: {
-            addToUrl: true,
-            customize: false,
-            pageSizeKeyReplacer: "rows"
-        },
-        pageNoUrl: {
-            addToUrl : false,
-            customize: true,
-            usepageNumber: true, //false = index
-        },
-        facetsUrl: {
-            addToUrl: true,
-            customize: false,
-            // filterReplacer: "filterss",
-            // keyValueSeparator: ":",
-            // valueSeparator: ",",
-            // whiteSpaceSeparatorInValue: "-"
-        }
-        
-    },
-
     sort: {
         enabled: true,
         el: null,

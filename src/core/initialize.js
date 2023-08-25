@@ -26,10 +26,9 @@ const initialize = function() {
     } = this.options.productView;
     if(ln > 0){     
         const {
-            [this.options.url.pageViewUrl.pageViewKeyReplacer]: type
+            viewType,
         } = urlParams;
 
-        const viewType =  getKeyByValue(this.options.url.pageViewUrl.pageViewValueReplacer, type);
         if(viewType) {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;

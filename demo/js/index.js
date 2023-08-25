@@ -34,6 +34,8 @@ let routeTemplate = `
             <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
             <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
             <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing Machines</button>
+            <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention Micro Ovens</button>
+            <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">BASES & BEDHEADS</button>
         </nav>
 			</div>
 		</div>
@@ -197,6 +199,8 @@ const routes = {
     '/men': routeTemplate,
     '/women': routeTemplate,
     '/washingMachine': routeTemplate,
+    '/kitchen-and-cooking/microwaves/convection-microwave-ovens-0': routeTemplate,
+    '/furniture-and-bedding/bedroom-furniture/bases-bedheads': routeTemplate,
 };
 
 const rootDiv = document.getElementById('root');
@@ -333,6 +337,17 @@ let performRouteActions = () => {
             page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
         };
         unbxdSearch.options.productType = "CATEGORY";
+    
+    } else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
+        window.UnbxdAnalyticsConf = {
+            page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"'
+        };
+        unbxdSearch.options.productType = "CATEGORY";
+    } else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
+        window.UnbxdAnalyticsConf = {
+            page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"'
+        };
+        unbxdSearch.options.productType = "CATEGORY";
     } else {
         window.UnbxdAnalyticsConf = {};
         unbxdSearch.options.productType = "SEARCH";
@@ -388,16 +403,26 @@ if (location.pathname === "/men") {
         page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
     };
     productType = "CATEGORY";
+} else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
+    window.UnbxdAnalyticsConf = {
+        page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"'
+    };
+    productType = "CATEGORY";
+} else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
+    window.UnbxdAnalyticsConf = {
+        page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"'
+    };
+    productType = "CATEGORY";
 } else {
     window.UnbxdAnalyticsConf = {};
     productType = "SEARCH";
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
-    apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     updateUrls: true,
-    hashMode: true,
+    hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
@@ -409,6 +434,9 @@ window.unbxdSearch = new UnbxdSearch({
     //     onPaginate: function (data) { console.log(data, "data") }
     // },
     allowExternalUrlParams: false,
+    url: {
+        seoFriendlyUrl: false
+    },
     setCategoryId: function (param, self) {
         const {
             level,
@@ -564,66 +592,13 @@ window.unbxdSearch = new UnbxdSearch({
     
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        type: 'INFINITE_SCROLL',
-        // el: document.querySelector('.unxPagination'),
-        usePageAndCount: true,
-        heightDiffToTriggerNextPage: 100,
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+        // type: 'INFINITE_SCROLL',
+        type: 'FIXED_PAGINATION',
+        el: document.querySelector('.unxPagination'),
+        // usePageAndCount: false,
+        // heightDiffToTriggerNextPage: 100,
+        // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
-    },
-    url: {
-        // updateUrls,
-        //hashMode
-        // allowExternalParamsInUrl
-        // searchQueryParam,
-        // browserQueryparam,
-        
-       pageViewUrl: { //pageview
-            addToUrl: false, // show in url/addToUrl
-            customize: false, //customize
-            pageViewKeyReplacer: "viewTT",
-            pageViewValueReplacer : {
-                "GRID": "GRI",
-                "LIST": "LIS"
-            }
-       },
-       sortUrl: {
-           addToUrl: false,
-           customize: false,
-           keyReplacer: "sortBy",
-           valueReplacer: {
-               "price desc": "pd",
-               "price asc": "pa"
-           }
-       },
-        pageSizeUrl: {
-            addToUrl: false,
-            customize: false,
-            // pageSizeKeyReplacer: "sss"
-        },
-        facetsUrl: {
-            addToUrl: true,
-            customize:true,
-            filterReplacer: "filtersssssss",  // filter prefix
-            valuesSeparator: ",", 
-            keyAndValueSeparator: "::", 
-            keysReplacer: { //key replace
-                "manufacturer_uFilter": "manuFilter"
-            },
-            valueReplacer: {
-                "manufacturer_uFilter": {
-                    "Eversleep": "EV",
-                    "Comfort Sleep": "CS"
-                },
-                "rmsColourfin_uFilter":{
-                    "BLACK": "black",
-                    "BLUE": "blue",
-                    "BRASS": "brass"
-                }
-            },
-            // categoryfilterReplacer: "category-handle",
-            showFilterStr: true //add filter prefix
-        }
     },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
