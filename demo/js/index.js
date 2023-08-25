@@ -704,12 +704,3 @@ window.unbxdSearch = new UnbxdSearch({
 
 
 window.unbxdSearch.getResults('*')
-
-
-// window.unbxdSearch.updateConfig({
-//     hashMode:true,
-//     productView: {
-//         el: document.getElementById("productViewTypeContainer"),
-//         defaultViewType: "LIST"
-//     },
-// })

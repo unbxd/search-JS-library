@@ -783,18 +783,12 @@ export const othersSchema = {
         unbxdAnalytics: {
             datatype: "boolean"
         },
-        // hashMode: {
-        //     datatype: "boolean"
-        // },
         actionBtnClass: {
             datatype: "string"
         },
         actionChangeClass: {
             datatype: "string"
         },
-        // allowExternalUrlParams: {
-        //     datatype: "boolean"
-        // },
         extraParams: {
             datatype: "object"
         },
@@ -804,11 +798,5 @@ export const othersSchema = {
         searchEndPoint: {
             datatype: "string"
         },
-        // browseQueryParam: {
-        //     datatype: "string"
-        // },
-        // searchQueryParam: {
-        //     datatype: "string"
-        // }
     }
 }
