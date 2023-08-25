@@ -954,7 +954,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*
+www.example.com?q=*
 ```
 ---
 ### Usecase 2: Default Usecase.
@@ -974,7 +974,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&filter=color_uFilter%3A%22Black%22%20OR%20color_uFilter%3A%22Blue%22&filter=size_uFilter%3A%22XS%22
+www.example.com?q=*&filter=color_uFilter%3A%22Black%22%20OR%20color_uFilter%3A%22Blue%22&filter=size_uFilter%3A%22XS%22
 ```
 ---
 ### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and no other configs passed.
@@ -994,7 +994,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&color_uFilter=Black&size_uFilter=XS&gender_uFilter=men&price=0-300,300-600
+www.example.com?q=*&color_uFilter=Black&size_uFilter=XS&gender_uFilter=men&price=0-300,300-600
 ```
 ---
 ### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and other configs passed.
@@ -1030,7 +1030,7 @@ url: {
 
 **URL:**
 ```
-http://workbench-qa.unbxd.io/builder?q=*&size=extra-small&color=blk&price=0-300~300-600
+www.example.com?q=*&size=extra-small&color=blk&price=0-300~300-600
 ```
 ---
 
