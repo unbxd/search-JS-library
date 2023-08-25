@@ -1,5 +1,6 @@
-import renderBannerUI from '../modules/banners/setbannerMethods';
+import renderBannerUI from '../modules/banners/renderBannerUI';
 import setFacets from '../modules/facets/setFacetMethods';
+import setProductsMethods from '../modules/products/setProductsMethods';
 import setSearch from '../modules/searchResults/setSearch';
 import setProductViewType from '../modules/productViewType/setProductViewType';
 import setPagination from '../modules/pagination/setPagination';
@@ -171,6 +172,7 @@ const setMethods = (UnbxdSearch) => {
     setInput(prototype);
     setProductViewType(prototype);
     setFacets(prototype);
+    setProductsMethods(prototype)
     setSearch(prototype);
     setPagination(prototype);
     setSort(prototype);

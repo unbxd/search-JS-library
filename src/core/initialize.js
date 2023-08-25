@@ -3,8 +3,12 @@
 import unxSelectors from '../common/constants/selectors';
 import reRender from './reRender';
 import bindEvents from './bindEvents';
+import validateConfigs from './validateConfigs';
+import { getKeyByValue } from '../common/utils';
 
 const initialize = function() {
+    this.validateConfigs = validateConfigs.bind(this);
+    this.validateConfigs();
     this.createLayout();
     this.unxSelectors = unxSelectors;
     this.renderDidYouMean.bind(this);
@@ -12,6 +16,7 @@ const initialize = function() {
     this.options.products.onProductClick.bind(this);
     this.reRender = reRender.bind(this);
     this.bindEvents = bindEvents.bind(this);
+  
     this.bindEvents();
     const urlParams = this.getQueryParams();
     const ln = Object.keys(urlParams).length;
@@ -19,13 +24,15 @@ const initialize = function() {
         defaultViewType,
         enabled
     } = this.options.productView;
-    if(ln > 0){
+    if(ln > 0){     
         const {
-            viewType
+            viewType,
         } = urlParams;
+
         if(viewType) {
             this.viewState.productViewType = viewType;
             this.options.extraParams.viewType = viewType;
+            this.state.productViewType = viewType
         }
     } else {
         this.options.extraParams.viewType = defaultViewType;

@@ -1,12 +1,12 @@
 function sortAction(e) {
-    const elem = e.target;
+    const elem = e.target ;
     this.viewState.lastDidYouMean = "";
     const selected = (this.options.sort.action === "click") ? elem:elem.options[elem.selectedIndex];
     const dataSet = selected.dataset;    
     const {
         action,
         value
-    } = elem.dataset;
+    } = elem.dataset ;
     const sortVal = elem.value || value || "" ;
     const {
         changeSort

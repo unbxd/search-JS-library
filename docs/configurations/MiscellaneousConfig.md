@@ -2,7 +2,7 @@
 layout: default
 title: Others
 parent: Configurations
-nav_order: 17
+nav_order: 18
 ---
 
 # Others
@@ -73,6 +73,9 @@ hashMode: false
 1. true - url params will be updated as hash params
 2. false - url params will be updated as query params
 
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`. Please check [here](./urlConfig.md) for more details. 
+
 ---
 # updateUrls
 {: .d-inline-block }
@@ -97,6 +100,9 @@ updateUrls: true
 
 1. true - user action information will be added to the url
 2. false - user action information will not be added to the url
+
+{: .warning } 
+> From SDK version: `2.1.0`, this configuration will be deprecated.
 
 ---
 # actionBtnClass
@@ -161,6 +167,9 @@ allowExternalUrlParams: false
 
 1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
 2. false - External params will be dropped from the browser url by the unbxd search sdk
+
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`. Please check [here](./urlConfig.md) for more details.
 
 ---
 # extraParams
@@ -253,7 +262,6 @@ searchEndPoint:“https://search.unbxd.io”
 searchEndPoint:"https://wingman-argocd.unbxd.io/"	
 ```
 
----
 <!-- This feature is not used, and not adopted. There is no clarity.
 
 # searchPath
@@ -292,6 +300,9 @@ browseQueryParam: "p"
 1. p-id: If we are providing the **category path id** to the search api.
 2. p: If we are providing the **category path** to the search api.
 
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`. Please check [here](./urlConfig.md) for more details.
+
 ---
 # searchQueryParam
 {: .d-inline-block }
@@ -307,9 +318,12 @@ This will be the default query param for the search api to provide the query inf
 ```js
 searchQueryParam: "q"
 ```
-	
+
 ## Scenarios
 {: .no_toc }
 
 This could be any valid string which would contain the query data that user has searched for like `q` or `query`.
+
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`.Please check [here](./urlConfig.md) for more details.
 

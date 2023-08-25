@@ -1,4 +1,4 @@
-import didYouMeanUI from "../modules/didYouMean/spellCheckView";
+import didYouMeanUI from "../modules/didYouMean/didYouMeanUI";
 import {
     selectedFacetUI,
     facetUIElem,
@@ -6,19 +6,19 @@ import {
     selectedFacetItemTemplateUI
 } from "../modules/facets/ui";
 import productTemplate from '../modules/searchResults/ui';
-import paginationUI from "../modules/pagination/paginationView";
+import paginationView from "../modules/pagination/paginationView";
 import {
     renderRangeFacets
 } from "../modules/facets/renderRangeFacets";
-import multiLevelFacetUI from "../modules/facets/renderBucketedSearch";
-import breadCrumbsUI from "../modules/breadcrumbs/breadcrumbsView";
+import multiLevelFacetUI from "../modules/facets/multiLevelFacetUI";
+import breadCrumbsUI from "../modules/breadcrumbs/breadCrumbsUI";
 import {
     sortOptions,
     sortTemplate
 } from "../modules/sort";
-import renderProductViewType from '../modules/productViewType';
-import bannerTemplateUI from '../modules/banners';
-import pageSizeUi from '../modules/pageSize/pageSizeView';
+import renderProductViewType from '../modules/productViewType/renderProductViewType';
+import bannerTemplateUI from '../modules/banners/bannerTemplateUI';
+import pageSizeUi from '../modules/pageSize/pageSizeUi';
 import swatchTemplate from "../modules/swatches/ui";
 
 const options = {
@@ -70,7 +70,8 @@ const options = {
     },
     searchQueryParam: "q",
     browseQueryParam: 'p',
-    defaultFilters: null, //or object with keys
+    defaultFilters: {}, //or object with keys
+    allowExternalUrlParams: false,
     noResults: {
         template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },
@@ -130,7 +131,6 @@ const options = {
         },
         events: {}
     },
-
     sort: {
         enabled: true,
         el: null,
@@ -175,7 +175,7 @@ const options = {
         selectedFacetsEl: null,
         selectedFacetTemplate: selectedFacetUI,
         selectedFacetItemTemplate: selectedFacetItemTemplateUI,
-
+        selectedFacetConfig: {},
         clearAllText: "Clear All",
 
         rangeTemplate: renderRangeFacets,
@@ -219,7 +219,7 @@ const options = {
     pagination: {
         enabled: true,
         el: null,
-        template: paginationUI,
+        template: paginationView,
         pageClass: "UNX-page-items",
         selectedPageClass: "UNX-selected-page-item",
         type: 'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
