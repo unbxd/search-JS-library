@@ -938,8 +938,8 @@ url:{
 {: .d-inline-block }  
 <br>
 
-#### Usecase 1: Hide facets in the url.
-{: .d-inline-block }
+### Usecase 1: Hide facets in the url.
+{: .d-inline-block .no_toc  }
 
 **Code:**
 ```js
@@ -957,8 +957,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*
 ```
 ---
-#### Usecase 2: Default Usecase.
-{: .d-inline-block }
+### Usecase 2: Default Usecase.
+{: .d-inline-block .no_toc  }
 
 **Code:**
 ```js
@@ -977,8 +977,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&filter=color_uFilter%3A%22Black%22%20OR%20color_uFilter%3A%22Blue%22&filter=size_uFilter%3A%22XS%22
 ```
 ---
-#### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and no other configs passed.
-{: .d-inline-block }
+### Usecase 3: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and no other configs passed.
+{: .d-inline-block .no_toc  }
 
 **Code:**
 ```js
@@ -997,8 +997,8 @@ url: {
 http://workbench-qa.unbxd.io/builder?q=*&color_uFilter=Black&size_uFilter=XS&gender_uFilter=men&price=0-300,300-600
 ```
 ---
-#### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and other configs passed.
-{: .d-inline-block }
+### Usecase 4: Added to URL with selected algorithm as `KEY_VALUE_REPLACER` and other configs passed.
+{: .d-inline-block .no_toc }
 
 **Code:**
 ```js
