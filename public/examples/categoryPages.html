@@ -122,7 +122,7 @@ UnbxdSearch.prototype.setUrl = function(reload) {
         facetStr += this.getPageStartStr()
     }
     facetStr += `&viewType=${productViewType}`;
-    const q = `q=${userInput}${facetStr}${this.getSortUrlString()}`;
+    const q = `q=${userInput}${facetStr}${this.getsortParamString()}`;
     this.state.urlState = q;
     const isPath = location.pathname.includes(searchPath);
     if(hashMode) {

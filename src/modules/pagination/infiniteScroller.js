@@ -1,6 +1,19 @@
 const setUpInfiniteScroll = function () {
     try{
         return new Promise((resolve, reject) => {
+
+            const {
+                url: {
+                    pageNoParam: {
+                        // customize = false,
+                        usePageNo = false,
+                        keyReplacer = "",
+                        addToUrl
+                    } = {},
+                } = {}
+            } = this.options;
+
+
                 this.resetObservers = () => {
                     this.observer.disconnect();
                     this.preLoaderObserver.disconnect();
@@ -38,10 +51,10 @@ const setUpInfiniteScroll = function () {
     
                             // Update the current page number in the URL if necessary
                             if (currentPage !== currentUrlPage) {
-                                if (self.options.pagination.usePageAndCount) {
-                                    this.replaceParamInUrl('page', currentPage);
+                                if (usePageNo) {
+                                    this.setPageNoParam(currentPage);
                                 } else {
-                                    this.replaceParamInUrl('start', (currentPage - 1) * productsPerPage);
+                                    this.setPageNoParam((currentPage - 1) * productsPerPage);
                                 }
                             }
                         }

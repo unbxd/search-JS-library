@@ -1,3 +1,7 @@
+import allowedSeparators from "../common/constants/allowedSeparators";
+
+const { ALLOWED_VALUE_SEPARATORS, ALLOWED_RANGE_SEPARATORS ,ALLOWED_QUERY_PARAM_SEPARATORS  } = allowedSeparators
+
 export const paginationSchema = {
     moduleName: 'pagination',
     config: {
@@ -559,6 +563,205 @@ export const facetsSchema = {
     }
 }
 
+export const facetsParamSchema = {
+    moduleName: "facetsParam",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        algo: {
+            required: (facetsParam)=>{
+                return facetsParam.addToUrl
+            },
+            datatype: "string",
+            allowedOptions: ["DEFAULT","KEY_VALUE_REPLACER","HASH"]
+        },
+        multiValueSeparator:{
+            required: (facetsParam)=>{
+                return facetsParam.algo === "KEY_VALUE_REPLACER"
+            },
+            datatype: "string",
+            allowedOptions: ALLOWED_VALUE_SEPARATORS
+        },
+        // facetKeyValueSeperator:{
+        //     required: false,
+        //     datatype: "string",
+        //     customValidations: (facetsParam)=>{
+        //         const allowedFacetKeyValueSeperator = ["::"];
+        //         if (!allowedFacetKeyValueSeperator.includes(facetsParam.facetKeyValueSeperator)) {
+        //             console.error(`SDK Config error in facetsParam: facetKeyValueSeperator should not be following value ${allowedFacetKeyValueSeperator}`);
+        //         }
+        //     }
+        // },
+        keyReplacer: {
+            required: false,
+            datatype: "object",
+            customValidations: (facetsParam)=>{
+                const vals = Object.values(facetsParam.keyReplacer);
+                if (new Set(vals).size !== vals.length){
+                    console.error(`SDK Config error in facetsParam: keysReplacer values should not be duplicate`);
+                }
+            }
+        },
+        valueReplacer: {
+            required: false,
+            datatype: "object",
+            customValidations: (facetsParam)=>{
+                const valueReplacer = facetsParam.valueReplacer;
+                const vals = Object.values(valueReplacer);
+                vals.forEach(item=>{
+                    let arr = Object.values(item);
+                    if (new Set(arr).size !== arr.length) {
+                        console.error(`SDK Config error in facetsParam: valueReplacer values should not be duplicate`);
+                    }
+                })
+            }
+        },
+        facetsOrderInUrl: {
+            required: false,
+            datatype: "array"
+        },
+        rangeFacets: {
+            required: (facetsParam)=> {
+                return facetsParam.algo === "KEY_VALUE_REPLACER"
+            },
+            datatype: "array"
+        },
+        rangeSeparator: {
+            required: (facetsParam)=>{
+                return facetsParam.algo === "KEY_VALUE_REPLACER"
+            },
+            datatype: "string",
+            allowedOptions: ALLOWED_RANGE_SEPARATORS
+        }
+    }
+}
+
+export const pageViewParamSchema = {
+    moduleName : "pageViewParam",
+    config: {
+        addToUrl: {
+            required:false,
+            datatype: "boolean"
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        },
+        valuesReplacer: {
+            required: false,
+            datatype: "object",
+            customValidations: (pageViewParam)=>{
+                
+            }
+        }
+    }
+}
+
+export const sortParamSchema ={
+    moduleName: "sortParam",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        },
+        valueReplacer: {
+            required: false,
+            datatype: "object",
+            customValidations: (sortParam)=>{
+                
+            }
+        }
+    }
+}
+
+export const pageNoParamSchema = {
+    moduleName: "pageNoParam",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        },
+        usePageNo: {
+            required: false,
+            datatype: "boolean"
+        }
+    }
+}
+
+export const pageSizeParamSchema = {
+    moduleName: "pageSizeParam",
+    config: {
+        addToUrl: {
+            required: false,
+            datatype: "boolean"
+        },
+        keyReplacer: {
+            required: false,
+            datatype: "string"
+        }
+    }
+}
+
+export const otherUrlConfigsSchema = {
+    moduleName: "url",
+    config: {
+        seoFriendlyUrl: {
+            required: false,
+            datatype: "boolean",
+            customValidations: (urlConfigs)=>{
+                if (!urlConfigs.seoFriendlyUrl){
+                    urlConfigs.searchQueryParam.addToUrl = true;
+                    urlConfigs.searchQueryParam.algo = "DEFAULT";
+                    urlConfigs.searchQueryParam.keyReplacer = "q";
+                    
+                    urlConfigs.browseQueryParam.addToUrl = true;
+                    urlConfigs.browseQueryParam.algo = "DEFAULT";
+                    urlConfigs.browseQueryParam.keyReplacer = "p";
+                    
+                    urlConfigs.pageViewParam.addToUrl = false;
+                    urlConfigs.pageViewParam.algo = "DEFAULT";
+                    urlConfigs.pageViewParam.keyReplacer = "viewType";
+                    
+                    urlConfigs.sortParam.addToUrl = true;
+                    urlConfigs.sortParam.algo = "DEFAULT";
+                    urlConfigs.sortParam.keyReplacer = "sort";
+                    
+                    urlConfigs.pageSizeParam.addToUrl = true;
+                    urlConfigs.pageSizeParam.algo = "DEFAULT";
+                    urlConfigs.pageSizeParam.keyReplacer = "rows";
+                    
+                    urlConfigs.pageNoParam.addToUrl = true;
+                    urlConfigs.pageNoParam.algo = "DEFAULT";
+                    urlConfigs.pageNoParam.usePageNo = false;
+                    urlConfigs.pageNoParam.keyReplacer = "start";
+                    
+                    urlConfigs.facetsParam.addToUrl = true;
+                    urlConfigs.facetsParam.algo = "DEFAULT";
+                    urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
+                    urlConfigs.queryParamSeparator = "&";
+                } 
+            }
+        },
+        
+        queryParamSeparator: {
+            required: true,
+            datatype: "string",
+            allowedOptions: ALLOWED_QUERY_PARAM_SEPARATORS
+        }
+        
+    }
+}
+
 export const othersSchema = {
     moduleName: "Others",
     config: {
@@ -580,20 +783,11 @@ export const othersSchema = {
         unbxdAnalytics: {
             datatype: "boolean"
         },
-        hashMode: {
-            datatype: "boolean"
-        },
-        updateUrls: {
-            datatype: "boolean"
-        },
         actionBtnClass: {
             datatype: "string"
         },
         actionChangeClass: {
             datatype: "string"
-        },
-        allowExternalUrlParams: {
-            datatype: "boolean"
         },
         extraParams: {
             datatype: "object"
@@ -604,11 +798,5 @@ export const othersSchema = {
         searchEndPoint: {
             datatype: "string"
         },
-        browseQueryParam: {
-            datatype: "string"
-        },
-        searchQueryParam: {
-            datatype: "string"
-        }
     }
 }
