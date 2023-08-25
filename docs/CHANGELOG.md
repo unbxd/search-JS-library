@@ -17,6 +17,28 @@ nav_order: 8
 
 
 ---
+# v2.1.0
+
+- **Release Date**: 25th Aug, 2023
+- **Core SDK Version**: v0.5.0
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.0/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.0/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- We are thrilled to announce a long awaited significant enhancement to our Vanilla JS Search SDK that is set to revolutionize the way we navigate the online retail landscapes: the SEO friendly URLs in Vanilla JS SDK.
+    -     Seamlessly customize query & browse parameters, page sizes, facets, sorting, and page views
+    -     Welcome flexibility in choosing page numbers over product indices
+    -     Say goodbye to old-fashioned, confusing URLs
+    -     Replace facet keys and values as per your conventions
+    -     Use custom characters for separating multi-value fields
+    -     Backward compatibility to ensure a smooth transition
+
+Please click [here](docs/configurations/urlConfig) for the detailed documentation on SEO friendly URls
+
+
+
+
+---
 # v2.0.40
 
 - **Release Date**: 11th Aug, 2023
