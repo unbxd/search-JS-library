@@ -57,13 +57,6 @@ const setUpInfiniteScroll = function () {
                                     this.setPageNoParam((currentPage - 1) * productsPerPage);
                                 }
                             }
-                            // if (currentPage !== currentUrlPage) {
-                            //     if (self.options.pagination.usePageAndCount) {
-                            //         this.setPageNoParam('page', currentPage);
-                            //     } else {
-                            //         this.setPageNoParam('start', (currentPage - 1) * productsPerPage);
-                            //     }
-                            // }
                         }
                     });
                 }, {

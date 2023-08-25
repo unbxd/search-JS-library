@@ -136,8 +136,6 @@ const options = {
         hashMode: false,
         allowExternalUrlParams: false,
         seoFriendlyUrl: false,
-        // browseQueryParam: 'p',
-        // searchQueryParam: "q",
         searchQueryParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
@@ -148,8 +146,6 @@ const options = {
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: "p"
         },
-        
-
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
         queryParamSeparator: "&",
         pageViewParam: {
