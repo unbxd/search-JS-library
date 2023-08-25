@@ -413,34 +413,14 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    //betts
-    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
-    apiKey: "b1b5f033416fbf18f301aee3dab41934",
     
-    //hsn
-    // siteKey: "hsn-com700091495001458",
-    // apiKey: "c85ec9e6c53e6522f2d0f88c4a214717",
-    
-    //demo
-    // siteKey: "demo-unbxd700181503576558",
-    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    
-    // siteKey: "ss-unbxd-gcp-prod-pneusratte17211685113377",
-    // apiKey: "3349bd70f91d09aef9ceb6967c41ea6f",
-    
-    // updateUrls: true,
-    // hashMode: false,
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+  
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
     unbxdAnalytics: true,
-    // pagination: {
-    //     type: 'INFINITE_SCROLL',
-    //     infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
-    //     // el: document.querySelector("#clickScrollContainer"),
-    //     onPaginate: function (data) { console.log(data, "data") }
-    // },
-    // allowExternalUrlParams: false,
     setCategoryId: function (param, self) {
         const {
             level,
@@ -607,12 +587,7 @@ window.unbxdSearch = new UnbxdSearch({
     url: {
         hashMode: false,
         allowExternalUrlParams: false,
-        // browseQueryParam: 'pppp',
-        // searchQueryParam: "q",
-        
         seoFriendlyUrl: true,
-        // orderOfQueryParams: ["VIEW_TYPE","FILTERS"],
-        // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
         queryParamSeparator: "~",
@@ -629,7 +604,7 @@ window.unbxdSearch = new UnbxdSearch({
         pageViewParam: {
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
-            // keyReplacer: "view",
+            keyReplacer: "view",
             valuesReplacer: {
                 "GRID": "GRID",
                 "LIST": "LI@ST(list)"
@@ -638,11 +613,11 @@ window.unbxdSearch = new UnbxdSearch({
         sortParam: { 
             addToUrl: true,
             algo: "DEFAULT", 
-            // keyReplacer: "sortBy",
-            // valueReplacer: {
-            //     "price desc": "p&d",
-            //     "price asc": "p-a"
-            // }
+            keyReplacer: "sortBy",
+            valueReplacer: {
+                "price desc": "p&d",
+                "price asc": "p-a"
+            }
         },
         pageNoParam: { 
             addToUrl: true,
@@ -653,7 +628,7 @@ window.unbxdSearch = new UnbxdSearch({
         pageSizeParam: {
             addToUrl: true,
             algo: "DEFAULT",
-            // keyReplacer: "count"
+            keyReplacer: "count"
         },
         facetsParam: {
             addToUrl: true,
