@@ -17,7 +17,7 @@ nav_order: 8
 
 
 ---
-# v2.1.0
+# v2.1.0: SEO Friendly URLs
 
 - **Release Date**: 25th Aug, 2023
 - **Core SDK Version**: v0.5.0
@@ -33,7 +33,7 @@ nav_order: 8
     -     Use custom characters for separating multi-value fields
     -     Backward compatibility to ensure a smooth transition
 
-Please click [here](docs/configurations/urlConfig) for the detailed documentation on SEO friendly URls
+Please click [here](configurations/urlConfig) for the detailed documentation on SEO friendly URls
 
 
 
