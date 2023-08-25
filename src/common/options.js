@@ -28,6 +28,7 @@ const options = {
     siteKey: "demo-spanish-unbxd809051588861207",
     apiKey: "f19768e22b49909798bc2411fa3dd963",
     searchPath: "",
+    searchTrigger: 'click',
     searchEndPoint: "https://search.unbxd.io/",
     products: {
         el: null,
@@ -35,6 +36,7 @@ const options = {
         productItemClass: "product-item", // to find out product
         productType: "SEARCH",
         gridCount: 1,
+        searchTrigger: 'click',
         onProductClick: function (product, e) {
         },
         productAttributes: [
@@ -68,18 +70,12 @@ const options = {
         events: {}
 
     },
-    searchQueryParam: "q",
-    browseQueryParam: 'p',
     defaultFilters: {}, //or object with keys
-    allowExternalUrlParams: false,
-    url: {
-        seoFriendlyUrl: false
-    },
     noResults: {
         template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
     },
-    onEvent: (state,type) => {
-       
+    onEvent: (state, type) => {
+
     },
     startPageNo: 0,
     productView: {
@@ -134,6 +130,68 @@ const options = {
         },
         events: {}
     },
+
+    url: {
+        updateUrls: true,
+        hashMode: false,
+        allowExternalUrlParams: false,
+        seoFriendlyUrl: false,
+        // browseQueryParam: 'p',
+        // searchQueryParam: "q",
+        searchQueryParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            keyReplacer: "q"
+        },
+        browseQueryParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            keyReplacer: "p"
+        },
+        
+
+        orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
+        queryParamSeparator: "&",
+        pageViewParam: {
+            addToUrl: false,
+            algo: "KEY_VALUE_REPLACER",
+            keyReplacer: "viewType",
+            valuesReplacer: {
+                "GRID": "GRID",
+                "LIST": "LIST"
+            }
+        },
+        sortParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            keyReplacer: "sort",
+            valueReplacer: {}
+        },
+        pageSizeParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            keyReplacer: "rows"
+        },
+        pageNoParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            keyReplacer: 'start',
+            usePageNo: false 
+        },
+        facetsParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
+            filterReplacer: "filter", //Not exposing this option for user yet.
+            multiValueSeparator: ",",
+            facetsOrderInUrl: [],
+            valueReplacer: {},
+            keyReplacer: {},
+            rangeSeparator: "-"
+        }
+
+    },
+
     sort: {
         enabled: true,
         el: null,
@@ -274,30 +332,29 @@ const options = {
         template: swatchTemplate
     },
     unbxdAnalytics: false,
-    hashMode: false,
-    updateUrls: true,
+    // hashMode: false,
     actionBtnClass: "UNX-action-item",
     actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
     },
-    onQueryRedirect:(self, redirect, urlBeforeRedirect)=> {
-        if(redirect) {
+    onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
+        if (redirect) {
             const {
                 value,
                 type
             } = redirect;
-            if(type === "url") {
+            if (type === "url") {
                 /** If opening in same tab */
-                if(history.state && history.state.replace) {
-                    history.replaceState(null,"",urlBeforeRedirect);
+                if (history.state && history.state.replace) {
+                    history.replaceState(null, "", urlBeforeRedirect);
                 }
-                
-                location.href =  value;  
+
+                location.href = value;
 
                 /** If opening redirect in new tab (rare scenario), 
                  * then browser back + history push on search should be handled by client 
                  * (especially switching betsween category to search page scenarios)
-                 * Note: This is not recommended */                                                       
+                 * Note: This is not recommended */
             }
             return false;
         }
@@ -305,14 +362,14 @@ const options = {
     onBackFromRedirect: (hashMode) => {
         let urlSearchParam = new URLSearchParams(hashMode ? location.hash.substring(1) : location.search);
         let backFromRedirect = urlSearchParam.get("redirected");
-        if(backFromRedirect) {
+        if (backFromRedirect) {
             history.go(-1);
         }
     },
-    onNoUnbxdKeyRouting:() => {
+    onNoUnbxdKeyRouting: () => {
         history.go();
     },
-    setRoutingStrategies:(locationParam, newUrl, productType, isUnbxdKey, replace) => {
+    setRoutingStrategies: (locationParam, newUrl, productType, isUnbxdKey, replace) => {
         if (locationParam === newUrl) {
             return;
         } else if (productType === "CATEGORY") {

@@ -1,5 +1,5 @@
-// import UnbxdSearchCore from "../../search-JS-core/src/index";
-import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+import UnbxdSearchCore from "../../search-JS-core/src/index";
+// import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
 import options from './common/options';
@@ -38,7 +38,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.cssList = cssClasses;
         this.testIds = testIds;
         this.updateConfig();
-        this.options.onBackFromRedirect(this.options.hashMode);
+        this.options.onBackFromRedirect(this.getHashMode());
         this.options.onEvent(this, 'initialised');
     }
     callBack(state,type) {
@@ -55,7 +55,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         } = this.events;
         const urlParams = this.getQueryParams();
         let {
-            viewType
+            [this.getPageViewParam()]: viewType
         } = urlParams || {};
         if(this.viewState.lastAction === "viewType") {
             viewType = this.viewState.productViewType;
@@ -71,7 +71,7 @@ class UnbxdSearch extends UnbxdSearchCore {
             this.options.extraParams.viewType = viewType;
         }
         if(this.viewState.productViewType !== viewType ){
-            this.viewState.productViewType = viewType;
+            this.viewState.productViewType = this.getKeyByValue(this.options.url.pageViewParam.valuesReplacer , decodeURIComponent(viewType))
             this.options.extraParams.viewType = viewType;
         }
         if(type === beforeApiCall) { 

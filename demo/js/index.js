@@ -95,14 +95,8 @@ let routeTemplate = `
 						</div>
 						<div id="bannerContainer"></div>
 						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
-                        <div
-									id=""
-									class="UNX-change-pagination-wrap unxPagination"
-								></div>
-						<div
-							id=""
-							class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination"
-						></div>
+                        <div id="" class="UNX-change-pagination-wrap unxPagination" ></div>
+						<div id="" class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination" ></div>
 					</div>
 				</div>
 				<div class="UNX-loader-container" id="loaderEl"></div>
@@ -419,10 +413,23 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    updateUrls: true,
-    hashMode: false,
+    //betts
+    siteKey: "ss-unbxd-betta-pre-prod35741675334517",
+    apiKey: "b1b5f033416fbf18f301aee3dab41934",
+    
+    //hsn
+    // siteKey: "hsn-com700091495001458",
+    // apiKey: "c85ec9e6c53e6522f2d0f88c4a214717",
+    
+    //demo
+    // siteKey: "demo-unbxd700181503576558",
+    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    
+    // siteKey: "ss-unbxd-gcp-prod-pneusratte17211685113377",
+    // apiKey: "3349bd70f91d09aef9ceb6967c41ea6f",
+    
+    // updateUrls: true,
+    // hashMode: false,
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
@@ -433,10 +440,7 @@ window.unbxdSearch = new UnbxdSearch({
     //     // el: document.querySelector("#clickScrollContainer"),
     //     onPaginate: function (data) { console.log(data, "data") }
     // },
-    allowExternalUrlParams: false,
-    url: {
-        seoFriendlyUrl: false
-    },
+    // allowExternalUrlParams: false,
     setCategoryId: function (param, self) {
         const {
             level,
@@ -471,7 +475,7 @@ window.unbxdSearch = new UnbxdSearch({
         onProductClick: function (product, e) {
             localStorage.setItem('unx_product_clicked', product.uniqueId);
             window.location.href = 'https://www.google.com';
-    }
+        }
     },
     spellCheck: {
         enabled: true,
@@ -489,7 +493,7 @@ window.unbxdSearch = new UnbxdSearch({
         facetsEl: document.getElementById("facetsWrapper"),
         selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         selectedFacetClass: "UNX-selected-facet-btn",
-        facetTemplate: function(facetInfo, facets, isExpanded,facetSearchTxt, facet){
+        facetTemplate: function (facetInfo, facets, isExpanded, facetSearchTxt, facet) {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const params = Object.fromEntries(urlSearchParams.entries());
             var name = facetInfo.displayName;
@@ -497,74 +501,74 @@ window.unbxdSearch = new UnbxdSearch({
             // var isSelected = (facetInfo.isSelected) ? 'is-expanded' : '';
             var searchStr = window.location.search || '';
             var isSelected = searchStr.includes(facetInfo.facetName) ? 'is-expanded' : '';
-            
-              return[`<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
+
+            return [ `<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
                     <span aria-label="Filter: ${filterField}" role="text" class="facets__filters-label">${name}</span>
                      <ul data-search-facet-container="" class="facets__filters-values facets__filters-values--size list-reset js-filter-values UNX_facet_open ${isSelected}">
                       ${facets}
                     </ul>
                     </div>                 
                     `].join('');
-                  },
-        facetItemTemplate : function(facet, value, facetSearchTxt){
-              const {
+        },
+        facetItemTemplate: function (facet, value, facetSearchTxt) {
+            const {
                 facetName,
                 isSelected,
                 multiLevelFacetSelectorClass,
                 displayName
-                } = facet;
-              const {
+            } = facet;
+            const {
                 name,
                 count,
                 dataId
-                } = value;
-              let {
+            } = value;
+            let {
                 facetClass,
                 selectedFacetClass
-                } = this.options.facet;
-              const {
+            } = this.options.facet;
+            const {
                 UNX_uFilter
-                  } = this.testIds;
-  
-               let action =  "changeFacet";
-                      let selectedFacet = 'disable';
-                      let liCss = '';
-                      let hightlighted = '';
-                      if(isSelected) {
-                          selectedFacet = 'checked';
-                          hightlighted = 'highlight';
-                          facetClass += ` ${selectedFacetClass} `
-                          action = "deleteFacetValue";
-                          liCss = (isSelected) ? 'selected' : '';
-                      }
-            return [`<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
+            } = this.testIds;
+
+            let action = "changeFacet";
+            let selectedFacet = 'disable';
+            let liCss = '';
+            let hightlighted = '';
+            if (isSelected) {
+                selectedFacet = 'checked';
+                hightlighted = 'highlight';
+                facetClass += ` ${selectedFacetClass} `
+                action = "deleteFacetValue";
+                liCss = (isSelected) ? 'selected' : '';
+            }
+            return [ `<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
                 <label data-search-facet-label="${name}" data-id="${dataId}" class="facet-checkbox facet-checkbox-${displayName} UNX-change-facet ${facetClass} " data-facet-action="${action}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-handler-init="true">
                   <input data-search-facet-input="" ${selectedFacet} class="js-filter-checkbox" type="checkbox" value="${name}">
                 <span class="${hightlighted}">${name} (${count})</span>
                 </label>
-                </li>`].join(''); 
-              },
-        selectedFacetTemplate: function(selections, facet, selectedFacetsConfig) {
-          const {
-              clearAllText,
-              clearFacetsSelectorClass
-          } = facet;
-          const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
+                </li>`].join('');
+        },
+        selectedFacetTemplate: function (selections, facet, selectedFacetsConfig) {
+            const {
+                clearAllText,
+                clearFacetsSelectorClass
+            } = facet;
+            const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
 
-          if(selections.length > 0) {
-            return [`<div class="collection__active-filters UNX-facets-selections">`,
-                      `${selections}`,
-                    `</div>`].join('');
-          } else {
-              return ``;
-          }
-      },
-        selectedFacetItemTemplate:function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig){
+            if (selections.length > 0) {
+                return [ `<div class="collection__active-filters UNX-facets-selections">`,
+                    `${selections}`,
+                    `</div>` ].join('');
+            } else {
+                return ``;
+            }
+        },
+        selectedFacetItemTemplate: function (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
             const {
                 facetName,
                 facetType
             } = selectedFacet;
-            const  {
+            const {
                 name,
                 count,
                 dataId
@@ -578,27 +582,104 @@ window.unbxdSearch = new UnbxdSearch({
                 UNX_uFilter
             } = this.testIds;
             let action = "deleteSelectedFacetValue";
-          
+
             const css = ` ${facetClass} ${selectedFacetClass} `;
-            
-            return [`<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
+
+            return [ `<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
                      data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" data-handler-init="true">${name}
                      <i class="collection__active-filters-icon icon icon--close-blue" 
                      data-facet-action="${action}" data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" >
                      </i> </a>`].join('');
         },
-      },
+    },
 
-    
+
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        // type: 'INFINITE_SCROLL',
         type: 'FIXED_PAGINATION',
+        // type: 'INFINITE_SCROLL',
         el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
-        // heightDiffToTriggerNextPage: 100,
-        // infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
+        heightDiffToTriggerNextPage: 100,
+        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
+    },
+    url: {
+        hashMode: false,
+        allowExternalUrlParams: false,
+        // browseQueryParam: 'pppp',
+        // searchQueryParam: "q",
+        
+        seoFriendlyUrl: true,
+        // orderOfQueryParams: ["VIEW_TYPE","FILTERS"],
+        // orderOfQueryParams: ["PAGE_SIZE","SORT","FILTERS","SEARCH_QUERY","BROWSE_QUERY","VIEW_TYPE","PAGE_NUMBER"],
+        orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
+        
+        queryParamSeparator: "~",
+        searchQueryParam: {
+            addToUrl: true,
+            algo: "DEFAULT",
+            keyReplacer: "query"
+        },
+        browseQueryParam: {
+            addToUrl: false,
+            algo: "DEFAULT",
+            keyReplacer: "pppp"
+        },
+        pageViewParam: {
+            addToUrl: false,
+            algo: "KEY_VALUE_REPLACER",
+            // keyReplacer: "view",
+            valuesReplacer: {
+                "GRID": "GRID",
+                "LIST": "LI@ST(list)"
+            }
+        },
+        sortParam: { 
+            addToUrl: true,
+            algo: "DEFAULT", 
+            // keyReplacer: "sortBy",
+            // valueReplacer: {
+            //     "price desc": "p&d",
+            //     "price asc": "p-a"
+            // }
+        },
+        pageNoParam: { 
+            addToUrl: true,
+            algo: "DEFAULT",
+            keyReplacer: 'p', 
+            usePageNo: false // uses page no. when turned on.else , index
+        },
+        pageSizeParam: {
+            addToUrl: true,
+            algo: "DEFAULT",
+            // keyReplacer: "count"
+        },
+        facetsParam: {
+            addToUrl: true,
+            algo: "KEY_VALUE_REPLACER",
+            multiValueSeparator: "@",
+            keyReplacer: {
+                "color_uFilter": "color",
+                "size_uFilter": "size",
+                "gender_uFilter": "gender",
+                "occasion_uFilter": "occasion",
+                "fit_uFilter": "fit",
+                "type_uFilter":"type"
+            },
+            valueReplacer: {
+                "color_uFilter": {
+                    "Multi": "multi",
+                    "White": "whitee"
+                },
+                "occasion_uFilter": {
+                    "Wear to Work": "Wear-to-work"
+                }
+            },
+            facetsOrderInUrl: ["gender_uFilter","color_uFilter","price","category-filter"],
+            rangeFacets: ["price"],
+            rangeSeparator: "-"
+        }
     },
     breadcrumb: {
         el: document.getElementById("breadcrumpContainer")
@@ -644,5 +725,16 @@ window.unbxdSearch = new UnbxdSearch({
     onEvent: unbxdCallbackEcma
 });
 
+
+
+
 window.unbxdSearch.getResults('*')
 
+
+// window.unbxdSearch.updateConfig({
+//     hashMode:true,
+//     productView: {
+//         el: document.getElementById("productViewTypeContainer"),
+//         defaultViewType: "LIST"
+//     },
+// })

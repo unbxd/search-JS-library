@@ -22,8 +22,8 @@ const paginationUI = function (paginationData, pagination) {
     if(numberOfProducts <= productsLn) {
         return ``;
     }
-    let nextBtn = `<button class="UNX-next-btn UNX-page-next ${pageClass}" data-page-action="next">></button>`;
-    let prevBtn = `<button class="UNX-prev-btn UNX-page-prev ${pageClass}" data-page-action="prev"><</button>`;
+    let nextBtn = `<button class="UNX-next-btn UNX-page-next ${pageClass}" data-page-no="${(currentPage)*rows}" data-page-action="next">></button>`;
+    let prevBtn = `<button class="UNX-prev-btn UNX-page-prev ${pageClass}" data-page-no="${(currentPage-2)*rows}" data-page-action="prev"><</button>`;
     let pageNumbers = ``;
     let pages = noOfPages < pageLimit ? noOfPages:pageLimit;
     let startPoint=1;
