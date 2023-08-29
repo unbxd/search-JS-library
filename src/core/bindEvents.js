@@ -17,6 +17,7 @@ function bindEvents() {
         breadcrumb,
         selectedFacets
     } = this.options;
+    console.log(this.options ,"dffdfdfd")
     if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;

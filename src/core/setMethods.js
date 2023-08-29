@@ -34,6 +34,7 @@ const updateConfig = function(config){
     const {
         options
     } = this;
+    console.log("should hit 2 here")
     this.setConfig(options, config);
     this.initialize();
 }
@@ -154,6 +155,7 @@ const setMethods = (UnbxdSearch) => {
     const {
         prototype
     } = UnbxdSearch;
+    console.log(prototype,"in set methods search1")
     prototype.renderBannerUI = renderBannerUI;
     prototype.setSearchWidget = setSearchWidget;
     prototype.setFacetWidget = setFacetWidget;

@@ -37,7 +37,7 @@ function validateConfigs () {
         productView,
         url
     } = this.options
-    
+        console.log(loader,"loader",loaderSchema)
     const {
         facetsParam,
         pageViewParam,

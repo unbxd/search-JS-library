@@ -356,6 +356,7 @@ let searchButtonEl = document.getElementById("searchBtn");
 let searchBoxEl = document.getElementById("unbxdInput");
 
 searchButtonEl.addEventListener("click", () => {
+    console.log("hithitiht")
     if (unbxdSearch.options.productType !== 'SEARCH') {
         window.UnbxdAnalyticsConf = {};
         unbxdSearch.options.productType = 'SEARCH';
