@@ -30,10 +30,7 @@ let routeTemplate = `
 				<div class="UNX-head-wrapper">
 					<div class="UNX-selected-actions">
 						<div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
-						<div
-							class="UNX-selected-facet-wrapper"
-							id="selectedFacetWrapper"
-						></div>
+						
 					</div>
 				</div>
 				<div class="UNX-product-results">
@@ -85,6 +82,10 @@ let routeTemplate = `
 							</div>
 						</div>
 						<div id="bannerContainer"></div>
+                        <div
+							class="UNX-selected-facet-wrapper"
+							id="selectedFacetWrapper"
+						></div>
 						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
                         <div id="" class="UNX-change-pagination-wrap unxPagination" ></div>
 						<div id="" class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination" ></div>
