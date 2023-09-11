@@ -9,17 +9,18 @@
     <!--required frame works should be loaded here-->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
         rel="stylesheet" />
-
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.2/nouislider.css"
         integrity="sha512-30YMvFlZRwPH3TcDlPWZofkzGwIwDAKshEue1qWet2yWEQ4Y/X+WnV1aTuNldE3Hbpcl5Zz4PxoXJKMMQvBHGQ=="
         crossorigin="anonymous" />
+        <!-- <link rel="stylesheet" type="text/css" href="./unbxdStyles.css" media=”screen” /> -->
     <style>
         *,
 body {
     font-family: "Poppins", "Nunito Sans", "Barlow", "Helvetica Neue", "Helvetica", "Roboto",
         "sans-serif";
     margin: 0;
+    /* background-color: black; */
 }
 
 .UNX-hidden {
@@ -49,9 +50,21 @@ body {
     background: #fff;
 }
 
+.UNX-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links {
+    border: none;
+    background: none;
+    color:#687175;
+    
+}
+
 .UNX-head {
     color: #a7b5bd;
-
     font-size: 16px;
     letter-spacing: 0;
     line-height: 30px;
@@ -64,15 +77,40 @@ body {
 }
 
 .UNX-header-logo {
-    background: url("/components/icons/sprite.svg") -511px -959px;
-    width: 128px;
-    height: 33px;
+    background-image: url(./defaultLogo.png);
+    /* width: 128px;
+    height: 33px; */
     display: inline-block;
     margin-left: 15px;
 }
 
 .search-preview {
     background: #ffffff;
+}
+
+.row-1 {
+   display: flex; 
+}
+
+.search-preview .UNX-sort-wrapper{
+    padding-left: 0px;
+    color: black
+}
+
+.search-preview .UNX-sort-item{
+    color: black;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+}
+
+.search-preview .UNX-sort-header{
+    color: black
+}
+
+.search-preview .UNX-pagesize {
+    border-radius: 7px;
+    border: 1px solid #ccc;
+    color: black;
 }
 
 .UNX-nav {
@@ -123,19 +161,13 @@ body {
 }
 
 
-.UNX-search-btn {
-    background-color: transparent;
-    color: rgb(185, 185, 185);
-    left: 0px;
-    border-color: transparent;
-}
 
 .UNX-no-result {
     display: flex;
     align-items: center;
 }
 
-.UNX-result-header {
+.search-preview .UNX-result-header {
     padding: 0;
     margin-bottom: 16px;
 }
@@ -158,7 +190,7 @@ body {
     width: 100%;
 }
 
-.UNX-facet-wrapper {
+.search-preview .UNX-facet-wrapper {
     width: 262px;
     height: min-content;
     padding: 0px 24px;
@@ -177,7 +209,7 @@ body {
     text-transform: capitalize;
 }
 
-.UNX-filter-header {
+.search-preview .UNX-filter-header {
     color: #666666;
     font-family: "Poppins", "Nunito Sans";
     font-size: 16px;
@@ -188,6 +220,16 @@ body {
     margin-left: 0;
     padding: 0;
     margin-top: 15px;
+}
+
+.facets__filters-values {
+    padding-left: 0;
+    list-style: none;
+}
+
+.facets__filters-values .UNX-range-wrapper .UNX-facets-block{
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .UNX-facet-item-d {
@@ -335,6 +377,54 @@ body {
     padding: 0px 12px;
 }
 
+.UNX-list-card .UNX-product-title{
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #333;
+    font-family: "Nunito Sans";
+    display: -webkit-box;
+    height: 32px;
+    width: 100%;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.42px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+}
+
+.UNX-list-card .UNX-description {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #666;
+    display: -webkit-box;
+    font-size: 13px;
+    height: 32px;
+    letter-spacing: 0.42px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 10px 0 0 0;
+}
+
+.UNX-list-card .UNX-product-number{
+    border-radius: 10px;
+    margin-top: 5px;
+    padding: 0px 5px;
+    margin-left: 5px;
+    background: #fff;
+    border: 1px solid #b4b4b4;
+    color: #666;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    font-weight: 400;
+}
+
 .UNX-price-row {
     display: flex;
     justify-content: space-between;
@@ -373,7 +463,8 @@ body {
 }
 
 .UNX-list-card {
-    border-bottom: solid 1px #cccccc;
+    border: solid 1px #cccccc;
+    width: 100%
 }
 
 .UNX-selected-product-view {
@@ -468,7 +559,7 @@ body {
     margin-right: 0px;
 }
 
-.UNX-result-wrapper {
+.search-preview .UNX-result-wrapper {
     grid-template-columns: 19% 19% 19% 19% 19%;
     grid-column-gap: 1%;
     grid-auto-rows: min-content;
@@ -777,11 +868,12 @@ body {
 }
 
 .UNX-search-btn {
-    background-image: url("/components/icons/icons.svg");
+    background-image: url("./icons.svg") -62px -612px;
     background-size: auto;
-    height: 40px;
-    width: 50px;
-    background-position: 0px -59px;
+    height: 25px;
+    width: 25px;
+    color: rgb(185, 185, 185);
+    border-color: transparent;
 }
 
 .UNX-pagination-block .UNX-page-prev,
@@ -942,6 +1034,12 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
     width: 100%;
 }
 
+.search-preview .UNX-results-container{
+    position: relative;
+    width: 97%;
+    margin: 0 auto;
+}
+
 .UNX-list-card .UNX-favourite {
     top: 70%;
 }
@@ -951,7 +1049,7 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
     padding: 0 20px;
 }
 
-.UNX-product-list {
+.search-preview .UNX-product-list {
     display: block;
     width: calc(100% - 262px);
     /* height: 1000px; */
@@ -1071,9 +1169,9 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
     right: 0px;
 }
 
-.UNX-list-card .UNX-images-block {
+.search-preview .UNX-list-card .UNX-images-block {
     width: 20%;
-    height: 200px;
+    height: auto;
 }
 
 .UNX-list-card .UNX-price-row {
@@ -1172,12 +1270,12 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
     height: 100%;
 }
 
-.UNX-list-card .UNX-img-block {
-    height: 200px;
+.search-preview .UNX-list-card .UNX-img-block {
+    height: auto;
     max-width: 100%;
     display: block;
     margin: auto;
-        object-fit: contain;
+    object-fit: contain;
 }
 
 .choices__placeholder {
@@ -1319,7 +1417,7 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
 
 
 @media only screen and (max-width: 768px) {
-    .UNX-result-wrapper {
+    .search-preview .UNX-result-wrapper {
          grid-template-columns: 48% 48%;
     grid-column-gap: 2%;
     }
@@ -1329,7 +1427,7 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1203px){
-    .UNX-result-wrapper {
+    .search-preview .UNX-result-wrapper {
          grid-template-columns: 32% 32% 32% ;
     grid-column-gap: 2%;
     }
@@ -1339,14 +1437,14 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
 }
 
 @media only screen and (min-width: 1204px) and (max-width: 1600px){
-    .UNX-result-wrapper {
+    .search-preview .UNX-result-wrapper {
          grid-template-columns: 23% 23% 23% 23%;
-    grid-column-gap: 2%;
+        grid-column-gap: 2%;
     }
 }
 
 @media only screen and (min-width: 1600px) {
-    .UNX-result-wrapper {
+    .search-preview .UNX-result-wrapper {
         grid-template-columns: 19% 19% 19% 19% 19%;
         grid-column-gap: 1%;
     }
@@ -1373,7 +1471,8 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
     }
 
     .UNX-header-inner .UNX-input-wrapper {
-        width: 50%;
+        position: relative;
+        width: 80%;
     }
 
     .UNX-head-wrapper {
@@ -1611,8 +1710,8 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
     justify-content: space-between;
 }
 
-.UNX-img-block {
-max-width: 100%;
+.search-preview .UNX-img-block {
+    max-width: 100%;
     height: auto;
 }
 
