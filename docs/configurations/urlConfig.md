@@ -118,7 +118,7 @@ allowExternalUrlParams: false
 Boolean
 {: .label }
 
-This configuration focuses on optimizing website URLs for search engine optimization (SEO) purposes. It involves structuring URLs in a user-readable and descriptive manner, often incorporating relevant keywords and avoiding unnecessary characters. By using this configuration, websites can improve their search engine rankings and enhance user experience by presenting clear and meaningful URLs. This boolean is set to false by default to maintain backward compatibility.
+This configuration focuses on optimizing website URLs for search engine optimization (SEO) purposes. It involves structuring URLs in a user-readable and descriptive manner, often incorporating relevant keywords and avoiding unnecessary characters. By using this configuration, websites can improve their search engine rankings and enhance user experience by presenting clear and meaningful URLs. **This boolean is set to false by default to maintain backward compatibility**.
 
 **Default Value**
 {: .no_toc }
