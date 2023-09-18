@@ -761,6 +761,16 @@ export const otherUrlConfigsSchema = {
         
     }
 }
+//adding schema for visual search and image box
+export const visualSearchSchema = {
+    moduleName: "visualSearch",
+    config: {}
+}
+
+export const imageBoxSchema = {
+    moduleName: "imageBox",
+    config: {}
+}
 
 export const othersSchema = {
     moduleName: "Others",

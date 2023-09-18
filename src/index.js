@@ -17,8 +17,6 @@ import setConfig from './core/setConfig';
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
         super(props);
-        console.log(props , "searchhit1")
-        console.log(options,events,actions,cssClasses,testIds,"optionconfig search")
     this.viewState = {
             productViewType: this.state.productViewType || options.productView.defaultViewType,
             isInfiniteStarted:false,
@@ -100,7 +98,6 @@ class UnbxdSearch extends UnbxdSearchCore {
         }
     }
     delegate(delgationElem,evt,elem,fn){
-        console.log(delgationElem,evt,elem,fn,"in delegate")
         return delegate(delgationElem,evt,elem,fn);
     }
 }

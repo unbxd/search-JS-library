@@ -1,7 +1,7 @@
 function renderBannerUI(){
     try{
         let banners = this.getBanners() || [];
-        console.log("hithtithhtithi hereer 1111111")
+
         const {
             banner = {}
         } = this.options;

@@ -9,7 +9,7 @@ const setConfig = function(options = {}, props = {}) {
         productView
     } = props;
 
-    if(facet) {
+        if(facet) {
         this.options.facetMultilevel = (facet.facetMultilevel) ? facet.facetMultilevel:options.facet.facetMultilevel;
         this.options.facetMultiSelect = (typeof(facet.facetMultiSelect) === "boolean" ) ? facet.facetMultiSelect : options.facet.facetMultiSelect;
         this.options.facetDepth = (facet.facetDepth) ? facet.facetDepth : options.facet.facetDepth;
@@ -31,6 +31,6 @@ const setConfig = function(options = {}, props = {}) {
         this.options.productView.productViewType = this.viewState.productViewType;
         this.state.productViewType = this.viewState.productViewType;;
     }
-    
+    // to set imagebox attribute
 }
 export default setConfig;

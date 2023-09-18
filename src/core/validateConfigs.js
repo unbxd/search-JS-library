@@ -37,7 +37,8 @@ function validateConfigs () {
         productView,
         url
     } = this.options
-        console.log(loader,"loader",loaderSchema)
+   // console.log(pagination,"loader",paginationSchema)
+  //  console.log(this.options,"loader",othersSchema)
     const {
         facetsParam,
         pageViewParam,
@@ -47,8 +48,9 @@ function validateConfigs () {
     } = url
 
     const validate = (userConfig = {}, schema = {}) => {
+       // console.log(userConfig, schema)
         const { moduleName = "", config = {} } = schema;
-
+        
         Object.keys(config).map(key => {
             let { datatype, required = false, allowedOptions = [], customValidations = null } = config[key];
 

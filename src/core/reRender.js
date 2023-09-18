@@ -8,7 +8,9 @@ const reRender = function () {
         loader,
         breadcrumb,
         productView,
-        facet
+        facet,
+        visualSearch,
+        visualSearchRequest
     } = this.options;
     const {
         beforeRender,
@@ -31,7 +33,7 @@ const reRender = function () {
         productViewType
     } = this.viewState;
 
-    if (productType === "SEARCH" && searchBoxEl) {
+    if (productType === "SEARCH" && searchBoxEl && !visualSearchRequest) {
         searchBoxEl.value = this.state.userInput;
     }
 
@@ -60,6 +62,10 @@ const reRender = function () {
     } else {
         this.renderProducts();
         
+    }
+    
+    if(visualSearchRequest){
+        this.renderImageBoundingBox();
     }
     this.renderFacets();
     this.renderSelectedFacets();

@@ -2,9 +2,11 @@
 
 const createLayout = function () {
     this.searchResultsWrapper = this.createtSearchWrapper();
+    //this.visualSearchResultsWrapper = this.createVisualSearchResultWrapper();
     this.bannerWrapper = this.createBannerWrapper();
     this.breadcrumbWrapper = this.createBreadcrumbWrapper();
     this.pageSizeWrapper = this.createPageSizeWrapper();
+    this.imageBoxWrapper = this.createImageBoxWrapper(); 
     this.productViewTypeWrapper = this.createProductViewTypeWrapper()
     this.paginationWrappers = [];
     this.facetWrappers = [];
@@ -45,7 +47,8 @@ const createLayout = function () {
         pagesize,
         pagination,
         productView,
-        selectedFacets
+        selectedFacets,
+        visualSearch
     } = this.options;
     const {
         facetsEl
@@ -115,6 +118,13 @@ const createLayout = function () {
         if (banner.enabled) {
             banner.template.bind(this);
             banner.el.appendChild(this.bannerWrapper);
+        }
+    }
+    if(visualSearch && visualSearch.enabled){
+        if(visualSearch.imageBox && visualSearch.imageBox.el){
+        visualSearch.imageBox.el.innerHTML= ``;
+        //check for pagination and innerhtml 
+        visualSearch.imageBox.el.appendChild(this.imageBoxWrapper);
         }
     }
 

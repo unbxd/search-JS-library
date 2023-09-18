@@ -1,6 +1,6 @@
-const setInputValue = function(e) {
+const setImageValue = function(e) {
     try{
-        let val = this.options.searchBoxEl.value ;
+        let val = this.options.visualSearch.uploadConfig.input.value ;
         if (!val.replace(/\s/g, '').length) {
             return false;
         }
@@ -9,22 +9,20 @@ const setInputValue = function(e) {
         if (val) {
             this.resetAll();
             this.changeInput(val, this.events.changeInput);
-            this.options.products.productType = "SEARCH";
-            this.options.visualSearchRequest = false
+            this.options.visualSearchRequest = true
             this.viewState.loadedFromSuggestion = false;
             this.state.selectedSort = "";
             this.setPageStart(0);
             this.resetViewState();
             this.getResults();
-
         } else {
             this.searchResultsWrapper.innerHTML = null;
         }
     }catch(err){
-        this.onError("input > setInputValue.js",err)
+        this.onError("input > setImageValue.js",err)
     }
     
 }
 export {
-    setInputValue as default
+    setImageValue as default
 }

@@ -1,4 +1,5 @@
 import renderBannerUI from '../modules/banners/renderBannerUI';
+import renderImageBoundingBox from "../modules/visualSearchInput/renderImageBoundingBox"
 import setFacets from '../modules/facets/setFacetMethods';
 import setProductsMethods from '../modules/products/setProductsMethods';
 import setSearch from '../modules/searchResults/setSearch';
@@ -6,6 +7,7 @@ import setProductViewType from '../modules/productViewType/setProductViewType';
 import setPagination from '../modules/pagination/setPagination';
 import setSort from '../modules/sort/setSort';
 import setInput from '../modules/input/setInput';
+import setImage from "../modules/visualSearchInput/setImage"
 import setSpellCheck from '../modules/didYouMean/setSpellCheck';
 import setBreadCrumbs from '../modules/breadcrumbs/setBreadcrumbs';
 import setSwatches from '../modules/swatches/setSwatches';
@@ -34,7 +36,7 @@ const updateConfig = function(config){
     const {
         options
     } = this;
-    console.log("should hit 2 here")
+
     this.setConfig(options, config);
     this.initialize();
 }
@@ -155,9 +157,10 @@ const setMethods = (UnbxdSearch) => {
     const {
         prototype
     } = UnbxdSearch;
-    console.log(prototype,"in set methods search1")
+
     prototype.renderBannerUI = renderBannerUI;
     prototype.setSearchWidget = setSearchWidget;
+    prototype.renderImageBoundingBox = renderImageBoundingBox;
     prototype.setFacetWidget = setFacetWidget;
     prototype.updateConfig = updateConfig;
     prototype.createLayout = createLayout;
@@ -172,6 +175,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.createFacetsLayout = createFacetsLayout;
     setComponentWrappers(prototype)
     setInput(prototype);
+    setImage(prototype);
     setProductViewType(prototype);
     setFacets(prototype);
     setProductsMethods(prototype);

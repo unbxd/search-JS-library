@@ -7,6 +7,7 @@ const renderPageSize = function() {
         const {
             pagesize = {}
         } = this.options;
+        
         let selected = pagesize.pageSize;
         const qParams = this.getQueryParams() || {};
         if (qParams) {

@@ -1,5 +1,6 @@
 
 import createtSearchWrapper from "./createSearchWrapper";
+import createImageBoxWrapper from "./createImageBoxWrapper";
 import createFacetWrapper from "./createFacetWrapper";
 import createBannerWrapper from "./createBannerWrapper";
 import createBreadcrumbWrapper from "./createBreadcrumbWrapper";
@@ -13,6 +14,7 @@ import createProductViewTypeWrapper from "./createProductViewTypeWrapper";
 const setComponentWrappers = (prototype) => {
     prototype = Object.assign(prototype,{
         createtSearchWrapper,
+        createImageBoxWrapper,
         createFacetWrapper,
         createBannerWrapper,
         createBreadcrumbWrapper,
@@ -28,6 +30,7 @@ const setComponentWrappers = (prototype) => {
 export {
     setComponentWrappers as default,
     createtSearchWrapper,
+    createImageBoxWrapper,
     createFacetWrapper,
     createBannerWrapper,
     createBreadcrumbWrapper,

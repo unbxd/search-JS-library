@@ -1,7 +1,7 @@
 const findChangedFacet = function(e) {
     const elem = e.target;
     this.viewState.lastDidYouMean = "";
-    console.log(findChangedFacet)
+
     const selected = (this.options.facet.facetAction === "click") ? elem:elem.options[elem.selectedIndex];
 
     const dataSet = selected.dataset;

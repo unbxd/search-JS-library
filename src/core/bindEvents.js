@@ -15,9 +15,34 @@ function bindEvents() {
         actionChangeClass,
         actionBtnClass,
         breadcrumb,
-        selectedFacets
+        selectedFacets,
+        visualSearch
     } = this.options;
-    console.log(this.options ,"dffdfdfd")
+    if(visualSearch && visualSearch.enabled){
+        const config = visualSearch.uploadConfig;
+        if(config && config.input){
+            config.input.addEventListener("keydown", (e) => {
+                const val = e.target.value;
+                if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+                    if (val !== "") {
+                        this.setImageValue.bind(this)();
+                    }
+                }
+            });
+        }
+        if (config && config.el) {
+            config.button.addEventListener(visualSearch.trigger, this.setImageValue.bind(this));
+        }
+        this.imageContainer = visualSearch.imageBox.el;
+        if(this.imageContainer){
+        this.delegate(
+            this.imageContainer,
+            "click",
+            `.center-dot`,
+            this.onBoundingBoxClick.bind(this)
+        );
+        }
+    }
     if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;
@@ -60,6 +85,13 @@ function bindEvents() {
         `.${products.productItemClass}`,
         this.onProductItemClick.bind(this)
     );
+    //check for this event
+    // this.delegate(
+    //     this.visualSearchResultsWrapper,
+    //     "click",
+    //     `.${products.productItemClass}`,
+    //     this.onProductItemClick.bind(this)
+    // );
     if (sort.el) {
         this.sortWrappers.forEach(wrapper => {
             this.delegate(wrapper, sort.action, `.${sort.sortClass}`, this.sortAction.bind(this));

@@ -16,7 +16,7 @@ const initialize = function() {
     this.options.products.onProductClick.bind(this);
     this.reRender = reRender.bind(this);
     this.bindEvents = bindEvents.bind(this);
-  
+
     this.bindEvents();
     const urlParams = this.getQueryParams();
     const ln = Object.keys(urlParams).length;

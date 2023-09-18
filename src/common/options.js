@@ -29,7 +29,7 @@ const options = {
     apiKey: "f19768e22b49909798bc2411fa3dd963",
     searchPath: "",
     searchTrigger: 'click',
-    searchEndPoint: "https://search.unbxd.io/",
+    searchEndPoint: "https://fb734f3f-4286-49f5-98eb-9726caab59ad.mock.pstmn.io/",
     products: {
         el: null,
         template: productTemplate,
@@ -332,6 +332,8 @@ const options = {
     actionBtnClass: "UNX-action-item",
     actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
+    },
+    visualSearch : {
     },
     onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
         if (redirect) {

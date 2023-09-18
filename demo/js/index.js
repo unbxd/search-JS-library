@@ -16,6 +16,7 @@ let routeTemplate = `
 					<a href="" class="disabled"> Health & Beauty </a>
 					<a href="" class="disabled"> Watches </a>
 				</nav>
+                <i id="unbxdvsicon" class="fa fa-camera" onclick="openModal()"></i>
 				<div class="UNX-right-header">
 					<div id="autoSuggestInput" class="UNX-input-wrapper">
 						<input
@@ -52,6 +53,7 @@ let routeTemplate = `
 				</div>
 				<div class="UNX-product-results">
 					<div class="UNX-facet-wrapper">
+                    <div id ="imageContainer" class= "UNX-Image-box-Wrapper"> <img id="ImageboxWrapper" style ="width:100%" src= "https://img.tatacliq.com/images/i9/437Wx649H/MP000000016065338_437Wx649H_202301140748251.jpeg"/></div>
 						<h2 class="UNX-filter-header">Filter By</h2>
 						<div class="UNX-fxd-facet">
 							<div
@@ -184,6 +186,15 @@ let routeTemplate = `
 				</div>
 			</div>
 		</div>
+        <div id="myModal">
+            <div class="modal-content">
+              <span class="close" id="modalclose" onclick="closeModal()">&times;</span>
+              <h2>Upload a Image</h2>
+              <input type="file" id="fileInput">
+              <input type="text" id="userInfo" placeholder="Image URL">
+              <button id = "visualsearchbutton">Submit</button>
+            </div>
+          </div>
 `;
 
 
@@ -243,7 +254,7 @@ const checkRangeTemplate = function (range, selectedRange, facet) {
         } = item;
         const isSelected = this.isSelectedRange(facetName, item);
         const btnCss = (isSelected) ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}` : `${facetClass}`;
-        valueUI += [ `<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
+        valueUI += [`<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
         `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
         `<span class="UNX-facet-count">(${from.count})</span>`,
             `</button>`
@@ -257,7 +268,7 @@ const checkRangeTemplate = function (range, selectedRange, facet) {
         }
         clearBtn = `<button class="UNX-default-btn UNX-facet-clear  ${facetClass}" data-action="clearRangeFacets">${clearButtonText}</button>`;
     }
-    return [ `<div class="UNX-range-wrapper">`,
+    return [`<div class="UNX-range-wrapper">`,
         valueUI,
         `<div class="UNX-price-action-row">`,
         applyBtn, clearBtn,
@@ -267,7 +278,6 @@ const checkRangeTemplate = function (range, selectedRange, facet) {
 }
 
 const unbxdCallbackEcma = function (instance, type, data) {
-    console.log(type, data, 'type,data');
     if (type === "AFTER_RENDER") {
         if (localStorage.getItem('unx_product_clicked') && document.getElementById(localStorage.getItem('unx_product_clicked'))) {
             document.getElementById(localStorage.getItem('unx_product_clicked')).scrollIntoView()
@@ -331,7 +341,6 @@ let performRouteActions = () => {
             page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
         };
         unbxdSearch.options.productType = "CATEGORY";
-    
     } else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
         window.UnbxdAnalyticsConf = {
             page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"'
@@ -354,9 +363,52 @@ window.addEventListener('popstate', () => {
 
 let searchButtonEl = document.getElementById("searchBtn");
 let searchBoxEl = document.getElementById("unbxdInput");
+let camerabutton = document.getElementById("unbxdvsicon");
+let vssearchmodal = document.getElementById("myModal");
+let modalclose = document.getElementById("modalclose");
+const fileInput = document.getElementById('fileInput');
+const userInfo = document.getElementById('userInfo');
+const uploadUrlButton = document.getElementById('visualsearchbutton');
+const visualSearchResultContainer = document.getElementById("visualSearchResultContainer")
+const image = document.getElementById('ImageboxWrapper');
+const imageContainer = document.getElementById('imageContainer');
+
+const boundingBoxes = [
+    { x1: 89, y1: 60, x2: 180, y2: 20 }, // Example bounding box 1
+    { x1: 60, y1: 20, x2: 150, y2: 80 }, // Example bounding box 2
+    // Add more bounding boxes as needed
+  ];
+
+boundingBoxes.forEach((box, index) => {
+const boundingBoxElement = document.createElement('div');
+boundingBoxElement.className = 'bounding-box';
+boundingBoxElement.style.top = `${box.y1}px`;
+boundingBoxElement.style.left = `${box.x1}px`;
+boundingBoxElement.style.width = `${box.x2 - box.x1}px`;
+boundingBoxElement.style.height = `${box.y2 - box.y1}px`;
+boundingBoxElement.onclick = () => handleBoundingBoxClick(index + 1);
+imageContainer.appendChild(boundingBoxElement);
+ 
+
+const centerX = box.x1 + (box.x2 - box.x1) / 2;
+const centerY = box.y1 + (box.y2 - box.y1) / 2;
+
+  // Create the center dot element
+const centerDot = document.createElement('div');
+centerDot.className = 'center-dot';
+centerDot.style.left = `${centerX}px`;
+centerDot.style.top = `${centerY}px`;
+
+// Add the center dot to the image container
+imageContainer.appendChild(centerDot);
+});
+
+function handleBoundingBoxClick(boxId) {
+    alert(`Clicked on bounding box ${boxId}`);
+    // You can perform any action here when a bounding box is clicked
+  }
 
 searchButtonEl.addEventListener("click", () => {
-    console.log("hithitiht")
     if (unbxdSearch.options.productType !== 'SEARCH') {
         window.UnbxdAnalyticsConf = {};
         unbxdSearch.options.productType = 'SEARCH';
@@ -365,6 +417,40 @@ searchButtonEl.addEventListener("click", () => {
         }, "", "/search?")
     }
 });
+
+uploadUrlButton.addEventListener("click", (e) => {
+    const userInfo = document.getElementById('userInfo').value
+    if (userInfo) {
+        //console.log('User Info:', userInfo , unbxdSearch);
+        vssearchmodal.style.display = "none";
+        //visualSearchResultContainer.style.display = "block";
+    }
+})
+
+userInfo.addEventListener("keydown", (e) => {
+    const val = e.target.value;
+    if (e.key === "Enter") {
+        if (val !== "") {
+            //console.log('User Info:', val); 
+            vssearchmodal.style.display = "none";
+            //visualSearchResultContainer.style.display = "block";
+        }
+    }
+
+})
+
+camerabutton.addEventListener("click", () => {
+    if (vssearchmodal) {
+        vssearchmodal.style.display = "block";
+    }
+})
+
+
+modalclose.addEventListener("click", () => {
+    if (vssearchmodal) {
+        vssearchmodal.style.display = "none";
+    }
+})
 
 searchBoxEl.addEventListener("keydown", (e) => {
     const val = e.target.value;
@@ -414,14 +500,36 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-  
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
     unbxdAnalytics: true,
+    visualSearch: {
+        enabled: true,
+
+        iconEl: document.getElementById("unbxdvsicon"),
+        resultEl: document.getElementById("visualSearchResultContainer"),
+        trigger: "click",
+        uploadConfig: {
+            button: document.getElementById('visualsearchbutton'),
+            input: document.getElementById('userInfo'),
+            el: document.getElementById('fileInput'),
+        },
+        imageBox: {
+            el: document.getElementById("imageContainer"),
+            boxClass: "UNX-pagesize",
+            selectedBoxClass: "UNX-selected-bounding-box",
+            action: "click",
+            // template: function () { },
+            productDotClass: "center-dot",
+            collapseOnScroll: true,
+            boundingproductClass: "bounding-box",
+            selectedBoundingProductClass: "UNX - selected - bounding - product"
+        }
+
+    },
     setCategoryId: function (param, self) {
         const {
             level,
@@ -483,7 +591,7 @@ window.unbxdSearch = new UnbxdSearch({
             var searchStr = window.location.search || '';
             var isSelected = searchStr.includes(facetInfo.facetName) ? 'is-expanded' : '';
 
-            return [ `<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
+            return [`<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
                     <span aria-label="Filter: ${filterField}" role="text" class="facets__filters-label">${name}</span>
                      <ul data-search-facet-container="" class="facets__filters-values facets__filters-values--size list-reset js-filter-values UNX_facet_open ${isSelected}">
                       ${facets}
@@ -522,7 +630,7 @@ window.unbxdSearch = new UnbxdSearch({
                 action = "deleteFacetValue";
                 liCss = (isSelected) ? 'selected' : '';
             }
-            return [ `<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
+            return [`<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
                 <label data-search-facet-label="${name}" data-id="${dataId}" class="facet-checkbox facet-checkbox-${displayName} UNX-change-facet ${facetClass} " data-facet-action="${action}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-handler-init="true">
                   <input data-search-facet-input="" ${selectedFacet} class="js-filter-checkbox" type="checkbox" value="${name}">
                 <span class="${hightlighted}">${name} (${count})</span>
@@ -537,9 +645,9 @@ window.unbxdSearch = new UnbxdSearch({
             const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
 
             if (selections.length > 0) {
-                return [ `<div class="collection__active-filters UNX-facets-selections">`,
+                return [`<div class="collection__active-filters UNX-facets-selections">`,
                     `${selections}`,
-                    `</div>` ].join('');
+                    `</div>`].join('');
             } else {
                 return ``;
             }
@@ -566,7 +674,7 @@ window.unbxdSearch = new UnbxdSearch({
 
             const css = ` ${facetClass} ${selectedFacetClass} `;
 
-            return [ `<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
+            return [`<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
                      data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" data-handler-init="true">${name}
                      <i class="collection__active-filters-icon icon icon--close-blue" 
                      data-facet-action="${action}" data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" >
@@ -589,9 +697,13 @@ window.unbxdSearch = new UnbxdSearch({
         hashMode: false,
         allowExternalUrlParams: false,
         seoFriendlyUrl: true,
-        orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
-        
-        queryParamSeparator: "~",
+        orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"], //defaults.
+        visuaSearchQueryParam: {
+            addToUrl: true,
+            algo: "DEFAULT",
+            keyReplacer: "query"
+        },
+        queryParamSeparator: "&",
         searchQueryParam: {
             addToUrl: true,
             algo: "DEFAULT",
@@ -611,19 +723,19 @@ window.unbxdSearch = new UnbxdSearch({
                 "LIST": "LI@ST(list)"
             }
         },
-        sortParam: { 
+        sortParam: {
             addToUrl: true,
-            algo: "DEFAULT", 
+            algo: "DEFAULT",
             keyReplacer: "sortBy",
             valueReplacer: {
                 "price desc": "p&d",
                 "price asc": "p-a"
             }
         },
-        pageNoParam: { 
+        pageNoParam: {
             addToUrl: true,
             algo: "DEFAULT",
-            keyReplacer: 'p', 
+            keyReplacer: 'p',
             usePageNo: false // uses page no. when turned on.else , index
         },
         pageSizeParam: {
@@ -641,7 +753,7 @@ window.unbxdSearch = new UnbxdSearch({
                 "gender_uFilter": "gender",
                 "occasion_uFilter": "occasion",
                 "fit_uFilter": "fit",
-                "type_uFilter":"type"
+                "type_uFilter": "type"
             },
             valueReplacer: {
                 "color_uFilter": {
@@ -652,7 +764,7 @@ window.unbxdSearch = new UnbxdSearch({
                     "Wear to Work": "Wear-to-work"
                 }
             },
-            facetsOrderInUrl: ["gender_uFilter","color_uFilter","price","category-filter"],
+            facetsOrderInUrl: ["gender_uFilter", "color_uFilter", "price", "category-filter"],
             rangeFacets: ["price"],
             rangeSeparator: "-"
         }
@@ -668,7 +780,7 @@ window.unbxdSearch = new UnbxdSearch({
     sort: {
         enabled: true,
         el: document.getElementById("sortWrapper"),
-        options: [ {
+        options: [{
             value: "price desc",
             text: "Price High to Low"
         },
@@ -704,4 +816,4 @@ window.unbxdSearch = new UnbxdSearch({
 
 
 
-window.unbxdSearch.getResults('*')
+// window.unbxdSearch.getResults('*')
