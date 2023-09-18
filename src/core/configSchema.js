@@ -618,10 +618,6 @@ export const facetsParamSchema = {
                 })
             }
         },
-        facetsOrderInUrl: {
-            required: false,
-            datatype: "array"
-        },
         rangeFacets: {
             required: (facetsParam)=> {
                 return facetsParam.algo === "KEY_VALUE_REPLACER"
