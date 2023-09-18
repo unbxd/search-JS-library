@@ -30,6 +30,7 @@ const options = {
     searchPath: "",
     searchTrigger: 'click',
     searchEndPoint: "https://fb734f3f-4286-49f5-98eb-9726caab59ad.mock.pstmn.io/",
+
     products: {
         el: null,
         template: productTemplate,
@@ -333,7 +334,29 @@ const options = {
     actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
     },
-    visualSearch : {
+    visualSearch: {
+        enabled: true,
+
+        iconEl: document.getElementById("unbxdvsicon"),
+        resultEl: document.getElementById("visualSearchResultContainer"),
+        trigger: "click",
+        uploadConfig: {
+            button: document.getElementById('visualsearchbutton'),
+            input: document.getElementById('userInfo'),
+            el: document.getElementById('fileInput'),
+        },
+        imageBox: {
+            el: document.getElementById("imageContainer"),
+            boxClass: "UNX-pagesize",
+            selectedBoxClass: "UNX-selected-bounding-box",
+            action: "click",
+            // template: function () { },
+            productDotClass: "center-dot",
+            collapseOnScroll: true,
+            boundingproductClass: "bounding-box",
+            selectedBoundingProductClass: "UNX - selected - bounding - product"
+        }
+
     },
     onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
         if (redirect) {

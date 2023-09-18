@@ -18,7 +18,8 @@ import {
     pageNoParamSchema,
     pageSizeParamSchema,
     sortParamSchema,
-    otherUrlConfigsSchema
+    otherUrlConfigsSchema,
+    visualSearchSchema
 } from "./configSchema";
 
 function validateConfigs () {
@@ -35,7 +36,7 @@ function validateConfigs () {
         pagesize,
         products,
         productView,
-        url
+        url,visualSearch
     } = this.options
    // console.log(pagination,"loader",paginationSchema)
   //  console.log(this.options,"loader",othersSchema)
@@ -113,6 +114,7 @@ function validateConfigs () {
         validate(sortParam, sortParamSchema)
         validate(pageNoParam, pageNoParamSchema)
         validate(pageSizeParam, pageSizeParamSchema)
+        validate(visualSearchSchema,visualSearch)
         validate(this.options.url, otherUrlConfigsSchema)
 }
 
