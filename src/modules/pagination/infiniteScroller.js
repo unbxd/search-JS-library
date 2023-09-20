@@ -12,13 +12,14 @@ const setUpInfiniteScroll = function () {
                     } = {},
                 } = {}
             } = this.options;
-
+            
+            const paginationType = this.getPaginationType();
 
                 this.resetObservers = () => {
                     this.observer.disconnect();
                     this.preLoaderObserver.disconnect();
                         this.preLoaderObserver.observe(preLoader);
-                        if(this.options.pagination.type === 'INFINITE_SCROLL'){
+                    if (paginationType === 'INFINITE_SCROLL'){
                             this.postLoaderObserver.disconnect();
                             this.postLoaderObserver.observe(postLoader);
                         }
@@ -27,9 +28,9 @@ const setUpInfiniteScroll = function () {
                 }
     
                 let productsContainer = window;
-                if(this.options.pagination.type === "INFINITE_SCROLL"){
+            if (paginationType === "INFINITE_SCROLL"){
                     productsContainer = this.options.pagination.infiniteScrollTriggerEl
-                } else  if(this.options.pagination.type === "CLICK_N_SCROLL"){
+            } else if (paginationType === "CLICK_N_SCROLL"){
                     productsContainer = this.options.products.el
                 }
                 const postLoader = document.querySelector('.UNX-post-loader');
@@ -101,7 +102,7 @@ const setUpInfiniteScroll = function () {
                 });
     
                 this.preLoaderObserver.observe(preLoader);
-                if(this.options.pagination.type === 'INFINITE_SCROLL'){
+            if (paginationType === 'INFINITE_SCROLL'){
                     this.postLoaderObserver.observe(postLoader);
                 }
                 this.observer.observe(productsContainer, { childList: true, subtree: true });

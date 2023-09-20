@@ -10,6 +10,9 @@ const reRender = function () {
         productView,
         facet
     } = this.options;
+    
+    const paginationType = this.getPaginationType();
+    
     const {
         beforeRender,
         beforeNoResultRender,
@@ -82,7 +85,7 @@ const reRender = function () {
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
     }
 
-    if (pagination.type !== "INFINITE_SCROLL") {
+    if (paginationType !== "INFINITE_SCROLL") {
         paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });

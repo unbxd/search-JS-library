@@ -148,6 +148,7 @@ const options = {
         },   
         orderOfQueryParams: [],
         queryParamSeparator: "&",
+        keyValueSeparator: "=",
         pageViewParam: {
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
