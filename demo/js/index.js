@@ -1,10 +1,12 @@
 import UnbxdSearch from "../../src/index";
 // import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
+import def from "./defaultLogo.png"
+import "./unbxdStyles.css"
 
 let routeTemplate = `
 <div class="UNX-header">
 			<div class="UNX-header-inner">
-				<div class="UNX-header-logo"></div>
+				<img src=${def} class="UNX-header-logo"></img>
 				<nav id="categoryLinks" class="UNX-nav UNX-naviagtion-wrap">
 					<button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
                     <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
