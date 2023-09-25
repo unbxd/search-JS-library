@@ -71,13 +71,25 @@ module.exports = {
           loader: 'html-loader'
         },
         {
-          test: /\.s?css$/,
+          test: /\.(scss|css)$/,
+          exclude: /node_modules/,
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
             'sass-loader'
           ]
-        }
+        },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 5000,
+            },
+          },
+        ],
+      },
     ]
   }
 };
