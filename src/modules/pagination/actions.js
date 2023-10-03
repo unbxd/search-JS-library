@@ -13,7 +13,6 @@ function renderNewResults(action) {
     try {
         const pageInfo = this.getPaginationInfo() || {};
         const {
-            pagination,
             onEvent
         } = this.options;
         const {

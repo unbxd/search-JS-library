@@ -2,9 +2,6 @@ import FixedPaginationView from "./paginationUI";
 import ClickToScrollView from "./clickNScrollView";
 
 export default function(pageData, pagination = this.options.pagination) {
-    const {
-        type
-    } = pagination;
     const paginationType = this.getPaginationType();
     if (paginationType === "CLICK_N_SCROLL") {
         return ClickToScrollView.bind(this)(pageData, pagination)
