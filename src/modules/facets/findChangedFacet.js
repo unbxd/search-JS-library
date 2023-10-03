@@ -175,7 +175,7 @@ const findChangedFacet = function(e) {
                     name:end
                 }
             });
-        };
+        }
         if(!already) {
             this.setRangeFacet({
                 start:start,
@@ -201,7 +201,7 @@ const findChangedFacet = function(e) {
     if(action === "clearRangeFacets") {
         this.state.rangeFacet = [];
         this.renderFacets();
-        if(isSelections.length > 0) {;
+        if(isSelections.length > 0) {
             this.applyRangeFacet();
         }
     }

@@ -31,4 +31,4 @@ export default function(swatchData={}, swatches={},product={}) {
         btnList:btnList,
         imgList:imgsUI,
     };
-};
+}

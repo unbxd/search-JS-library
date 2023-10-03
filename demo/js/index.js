@@ -408,8 +408,10 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    // siteKey: "demo-unbxd700181503576558",
+    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "ss-unbxd-betta-prod35741656525409",
+    apiKey: "aed56fa947d16c170c4b66a8e558ec49",
   
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
@@ -570,8 +572,8 @@ window.unbxdSearch = new UnbxdSearch({
 
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        type: 'FIXED_PAGINATION',
-        // type: 'INFINITE_SCROLL',
+        // type: 'FIXED_PAGINATION',
+        type: 'INFINITE_SCROLL',
         el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
         heightDiffToTriggerNextPage: 100,

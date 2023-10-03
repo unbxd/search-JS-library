@@ -40,7 +40,7 @@ export default function(product,idx,swatchUI,productViewType,products ){
     if(imgList) {
         imagesUI = imgList; 
     }
-    return [`<div id="${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,,
+    return [`<div id="${uniqueId}" data-id="${uniqueId}" data-prank="${idx}" data-item="product" class="UNX-product-col ${cardType} ${productItemClass}">`,
     `<h3 class="UNX-product-number">${Math.floor(idx)}</h3>`,            
     `<div class="UNX-images-block">${imagesUI}</div>`,
                 `<div class="UNX-product-content">`,
@@ -50,4 +50,4 @@ export default function(product,idx,swatchUI,productViewType,products ){
                     `<div class="UNX-price-row">${priceUI} ${strikeUi}</div>`,
                 `</div>`,
             `</div>`].join('')
-};
+}

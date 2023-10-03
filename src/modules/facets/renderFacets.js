@@ -5,8 +5,7 @@ export default function(){
         } = this.options;
         const {
             defaultOpen,
-            applyMultipleFilters,
-            isCollapsible
+            applyMultipleFilters            
         } = facet;
         const {
             expandedFacets,
@@ -15,7 +14,6 @@ export default function(){
         if (lastAction === "updatedRangeSlider" && applyMultipleFilters) {
             return false;
         }
-        const self = this;
         const allFacets = this.getAllFacets() || [];
         const { facetWrappers = [] } = this;
         const selectedFacets = this.getSelectedFacets() || {};
@@ -51,4 +49,4 @@ export default function(){
         this.onError("Facets > renderFacets.js",err)
     }
     
-};
+}

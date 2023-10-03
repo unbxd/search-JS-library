@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import renderDidYouMean from './renderDidYouMean';
 const setSuggestion = function(e) {
     const txt = this.getSpellCheckSuggested() || [];

@@ -1,14 +1,12 @@
 const setUpInfiniteScroll = function () {
     try{
-        return new Promise((resolve, reject) => {
+        return new Promise(() => {
 
             const {
                 url: {
                     pageNoParam: {
                         // customize = false,
-                        usePageNo = false,
-                        keyReplacer = "",
-                        addToUrl
+                        usePageNo = false
                     } = {},
                 } = {}
             } = this.options;
@@ -36,7 +34,6 @@ const setUpInfiniteScroll = function () {
                 const preLoader = document.querySelector('.UNX-pre-loader');
                
                 this.individualProductObserver = new IntersectionObserver(entries => {
-                    const self = this;
                     entries.forEach(entry => {
                         // Check if the product item is fully in view
                         if (entry.isIntersecting) {
@@ -85,7 +82,7 @@ const setUpInfiniteScroll = function () {
                 });
     
                 // create an observer instance
-                this.observer = new MutationObserver((mutationsList, observer) => {
+                this.observer = new MutationObserver((mutationsList) => {
                     for (let mutation of mutationsList) {
                         if (mutation.type === 'childList') {
                             const self = this;
