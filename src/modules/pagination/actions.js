@@ -9,7 +9,7 @@ const triggerNextPage = (context, next, action) => {
         value: next
     });
 };
-function renderNewResults(action, currentPage) {
+function renderNewResults(action) {
     try {
         const pageInfo = this.getPaginationInfo() || {};
         const {
@@ -18,8 +18,6 @@ function renderNewResults(action, currentPage) {
         } = this.options;
         const {
             start,
-            productsLn,
-            numberOfProducts,
             rows,
             isNext,
             isPrev
@@ -80,7 +78,7 @@ function renderNewResults(action, currentPage) {
     catch (err) {
             this.onError("Pagination > renderNewResults", err);
         }
-    };
+    }
     function paginationAction(e) {
         const {
             pageAction,

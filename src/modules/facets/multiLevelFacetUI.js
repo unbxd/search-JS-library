@@ -25,7 +25,6 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
     }
     const {
         level,
-        displayName,
         values,
         filterField
     } = facet;

@@ -13,5 +13,5 @@ export default function(pageData, pagination = this.options.pagination) {
         return FixedPaginationView.bind(this)(pageData, pagination)
     }
     return ``;
-};
+}
 

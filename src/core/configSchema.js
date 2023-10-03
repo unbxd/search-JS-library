@@ -647,10 +647,7 @@ export const pageViewParamSchema = {
         },
         valuesReplacer: {
             required: false,
-            datatype: "object",
-            customValidations: (pageViewParam)=>{
-                
-            }
+            datatype: "object"
         }
     }
 }
@@ -668,10 +665,7 @@ export const sortParamSchema ={
         },
         valueReplacer: {
             required: false,
-            datatype: "object",
-            customValidations: (sortParam)=>{
-                
-            }
+            datatype: "object"
         }
     }
 }

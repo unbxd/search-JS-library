@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
+
 import renderSwatchBtns from './renderSwatchBtns';
 const setSwatches = (prototype) => {
-    prototype = Object.assign(prototype,{
+    prototype = Object.assign(prototype, {
         renderSwatchBtns
     })
 }

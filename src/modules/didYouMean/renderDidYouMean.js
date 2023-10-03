@@ -1,4 +1,4 @@
-const renderDidYouMean = function (suggestion) {
+const renderDidYouMean = function () {
     try{
         let {
             userInput = ""
@@ -9,7 +9,6 @@ const renderDidYouMean = function (suggestion) {
             type
         } = this.options.pagination;
         const {
-            spellCheck,
             enabled
         } = this.options.spellCheck;
         const {

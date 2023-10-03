@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import sortAction from './sortAction';
 import renderSort from './renderSort';
 
