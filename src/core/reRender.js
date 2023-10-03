@@ -7,8 +7,7 @@ const reRender = function () {
         searchBoxEl,
         loader,
         breadcrumb,
-        productView,
-        facet
+        productView
     } = this.options;
     const {
         beforeRender,
@@ -27,8 +26,7 @@ const reRender = function () {
     const query = this.getSearchQuery();
     const noResultCss = "UNX-no-results-wrap";
     const {
-        lastAction,
-        productViewType
+        lastAction
     } = this.viewState;
 
     if (productType === "SEARCH" && searchBoxEl) {

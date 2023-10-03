@@ -54,4 +54,4 @@ export default function() {
         this.onError("facets > renderSelectedFacets.js",err)
     }
     
-};
+}

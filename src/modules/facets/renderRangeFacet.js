@@ -27,4 +27,4 @@ export default function(rangeFacet={}, isExpanded) {
         this.onError("facets > renderRangeFacet.js", err)
     }
    
-};
+}

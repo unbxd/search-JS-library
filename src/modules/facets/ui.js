@@ -1,5 +1,5 @@
 
-function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem,facetConfig,selectedFacetsConfig){
+function selectedFacetItemTemplateUI (selectedFacet,selectedFacetItem){
     const {
         facetName,
         facetType
@@ -83,7 +83,6 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
     const {
         displayName,
         facetName,
-        multiLevelField,
         facetType,
         values
     } = facetObj;
@@ -106,10 +105,7 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
         actionBtnClass,
         actionChangeClass
     } = this.options;
-    const {
-        openBtn,
-        closeBtn
-    } = this.cssList;
+   
     let viewMoreUi = ``;
     let viewMoreCss=``;
     const selected = this.getSelectedFacets()[facetName];

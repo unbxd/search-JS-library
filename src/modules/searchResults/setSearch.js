@@ -19,6 +19,7 @@ const mapProductAttrs = function(product) {
     return product;
 };
 
+/* eslint-disable no-unused-vars */
 const setSearch = (prototype) => {
     prototype = Object.assign(prototype,{
         renderSearch,
@@ -27,6 +28,7 @@ const setSearch = (prototype) => {
         mapProductAttrs
     })
 };
+/* eslint-disable no-unused-vars */
 
 export {
     setSearch as default,
