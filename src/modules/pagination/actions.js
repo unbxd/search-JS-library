@@ -13,7 +13,6 @@ function renderNewResults(action) {
     try {
         const pageInfo = this.getPaginationInfo() || {};
         const {
-            pagination,
             onEvent
         } = this.options;
         const {
@@ -25,8 +24,9 @@ function renderNewResults(action) {
 
         let currentUrlPage = this.getCurrentUrlPage();
         let productsPerPage = this.getProductsPerPage();
+        const paginationType = this.getPaginationType();
 
-        if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
+        if (paginationType === "INFINITE_SCROLL" || paginationType === "CLICK_N_SCROLL") {
             if (action === this.actions.next) {
                 if (isNext) {
                     this.viewState.isInfiniteStarted = true;

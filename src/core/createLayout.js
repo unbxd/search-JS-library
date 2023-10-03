@@ -54,6 +54,8 @@ const createLayout = function () {
         spellCheck
     } = this.options;
     const { el: spellCheckEl } = spellCheck;
+    
+    const paginationType = this.getPaginationType();
 
     if (spellCheckEl) {
         let els = spellCheckEl;
@@ -121,19 +123,19 @@ const createLayout = function () {
     if(products.el){
         products.el.innerHTML=``;
 
-        if(pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL"){
+        if (paginationType === "INFINITE_SCROLL" || paginationType === "CLICK_N_SCROLL"){
             const preLoader = document.createElement('div');
             preLoader.classList.add('UNX-pre-loader');
-            preLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+            preLoader.style.height = this.getHeightDiffToTriggerNextPage() + 'px';
             products.el.appendChild(preLoader);
         }
 
         products.el.appendChild(this.searchResultsWrapper);
 
-        if(pagination.type === "INFINITE_SCROLL" ){
+        if (paginationType === "INFINITE_SCROLL" ){
             const postLoader = document.createElement('div');
             postLoader.classList.add('UNX-post-loader');
-            postLoader.style.height = this.options.pagination.heightDiffToTriggerNextPage + 'px';
+            postLoader.style.height = this.getHeightDiffToTriggerNextPage() + 'px';
             products.el.appendChild(postLoader);
         }
 

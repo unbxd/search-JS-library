@@ -146,9 +146,10 @@ const options = {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: "p"
-        },
-        orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
+        },   
+        orderOfQueryParams: [],
         queryParamSeparator: "&",
+        keyValueSeparator: "=",
         pageViewParam: {
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
@@ -181,7 +182,6 @@ const options = {
             showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
             filterReplacer: "filter", //Not exposing this option for user yet.
             multiValueSeparator: ",",
-            facetsOrderInUrl: [],
             valueReplacer: {},
             keyReplacer: {},
             rangeSeparator: "-"
