@@ -379,11 +379,12 @@ Any valid HTML selector can be used to select the trigger
 Number
 {: .label }
 
-`heightDiffToTriggerNextPage` is a parameter that is used when the type is set to INFINITE_SCROLL. It specifies the distance from the bottom of the page (measured in pixels) that needs to be reached before the next page of content is loaded.
+`heightDiffToTriggerNextPage` is a parameter that is used when the type is set to INFINITE_SCROLL. It specifies the distance from the bottom of the page (measured in pixels) that needs to be reached before the next page of content is loaded. 
 
-For example, if `heightDiffToTriggerNextPage` is set to 100, this means that when the user scrolls to within 100 pixels of the bottom of the page, the next page of content will be loaded. This parameter allows for control over when the next page is loaded and can be adjusted depending on the desired user experience and the amount of content that is being loaded.
+For example, if `heightDiffToTriggerNextPage` is set to 100, this means that when the user scrolls to within 100 pixels of the bottom of the page, the next page of content will be loaded. This parameter allows for control over when the next page is loaded and can be adjusted depending on the desired user experience and the amount of content that is being loaded. In case of infinite scroll pagination, two elements with classnames `pre-loader` and `post-loader` are added before and after products container, whose height is set to `heightDiffToTriggerNextPage` in pixels. 
 
-Note: Setting the `heightDiffToTriggerNextPage` number to very high (>300 or >400) would trigger the next/previous page APIs more often than required and would lead to crashing the application. 
+Note:
+- Setting the `heightDiffToTriggerNextPage` number to very high (>300 or >400) would trigger the next/previous page APIs more often than required and would lead to crashing the application. Any value set more than 1000 will get capped at 1000.
 
 
 
