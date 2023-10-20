@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import renderPagination from './renderPagination';
 import setUpInfiniteScroll from './infiniteScroller';
@@ -14,9 +15,6 @@ const getProductsPerPage = function () {
                 keyReplacer = "",
                 addToUrl,
                 algo = "DEFAULT"
-            } = {},
-            pageNoParam: {
-                usePageNo = false,
             } = {}
         } = {},
         pagesize: {

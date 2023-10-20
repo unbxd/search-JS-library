@@ -1,6 +1,6 @@
 
 const trackSearch = function(value){
-    Unbxd.track(
+    window.Unbxd.track(
         "search",
         { 
             "query" : value
@@ -13,7 +13,7 @@ const trackProductClick = function(value){
         sku,
         prank
     } = value;
-    Unbxd.track(
+    window.Unbxd.track(
         "click",
         { 
             "pid" : uniqueId || sku ,
@@ -47,17 +47,17 @@ const trackImpression = function(){
         obj['pids_list'] = pids;
         if(productType ==="SEARCH") {
             obj['query'] = query;
-            Unbxd.track('search_impression',obj);  
+            window.Unbxd.track('search_impression',obj);  
         } else if(productType ==="CATEGORY" || productType ==="BROWSE") {
             if(window.UnbxdAnalyticsConf){
                 obj['page'] = window.UnbxdAnalyticsConf.page || "";
                 obj['page_type'] = window.UnbxdAnalyticsConf.page_type || "";
             }
-            Unbxd.track('browse_impression',obj);  
+            window.Unbxd.track('browse_impression',obj);  
         }
     }
 }
-const trackFacetClick = function(state,type){
+const trackFacetClick = function(){
     const textFacets = this.getSelectedFacets();
     const rangeFacets = this.state.rangeFacet;
     const categoryField = this.state.categoryFilter;
@@ -87,12 +87,12 @@ const trackFacetClick = function(state,type){
         facetArr[category] = original;
     })
     const query = this.getSearchQuery();
-    Unbxd.track('facets', {'query':query,'facets':facetArr});
+    window.Unbxd.track('facets', {'query':query,'facets':facetArr});
 }
-const trackCategoryPageLoad = function(instance,type) {
+const trackCategoryPageLoad = function() {
     if(window.UnbxdAnalyticsConf){
         //window.UnbxdAnalyticsConf["page_type"] ="CATEGORY_PATH";
-        Unbxd.track("categoryPage", window.UnbxdAnalyticsConf);
+        window.Unbxd.track("categoryPage", window.UnbxdAnalyticsConf);
     }
 }
 const getCallbackActions = function(state,type) {
@@ -107,23 +107,24 @@ const getCallbackActions = function(state,type) {
         switch(type) {
             case 'CHANGE_INPUT':
                 this.trackSearch(state);
-            break;
+                break;
             case 'click':
                 this.trackProductClick(state);
-            break;
+                break;
             case 'AFTER_API_CALL':
                 this.trackImpression();
-            break;
+                break;
             case 'facetClick':
                 this.trackFacetClick(state,type);
+                break;
             case 'categoryPage':
                 this.trackCategoryPageLoad(state,type);
-            break;
+                break;
         }
     }
 }
 
-
+/* eslint-disable no-unused-vars */
 const setAnalytics = (prototype) => {
     prototype = Object.assign(prototype,{
         trackSearch,
@@ -134,6 +135,7 @@ const setAnalytics = (prototype) => {
         trackCategoryPageLoad
     })
 }
+/* eslint-disable no-unused-vars */
 
 export {
     setAnalytics as default,

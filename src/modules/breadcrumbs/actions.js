@@ -1,5 +1,5 @@
-function onBreadCrumbClick(e){
-};
+function onBreadCrumbClick(){
+}
 function renderBreadCrumbs() {
     try{
         let selectedCategories = this.getSelectedMultilevelFacet() || [];

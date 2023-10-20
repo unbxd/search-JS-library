@@ -18,7 +18,7 @@ export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, 
         } = facet;
         let selected = false;
         if (values.length > 0) {
-            valuesUI = values.map((value = {}, index) => {
+            valuesUI = values.map((value = {}) => {
                 const { dataId } = value;
                 facetItem.isSelected = selectedFacet.some((facet) => {
                     return facet.dataId === dataId;
@@ -44,4 +44,4 @@ export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, 
         this.onError("facets > renderTextFacet.js", err);
     }
     
-};
+}

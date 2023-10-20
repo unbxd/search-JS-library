@@ -64,8 +64,7 @@ const extraActions = function(e) {
         const {
             facetAction,
             facetName,
-            action,
-            id
+            action
         } = dataset;
         const {
             facetElementMap

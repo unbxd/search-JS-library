@@ -9,17 +9,14 @@ const triggerNextPage = (context, next, action) => {
         value: next
     });
 };
-function renderNewResults(action, currentPage) {
+function renderNewResults(action) {
     try {
         const pageInfo = this.getPaginationInfo() || {};
         const {
-            pagination,
             onEvent
         } = this.options;
         const {
             start,
-            productsLn,
-            numberOfProducts,
             rows,
             isNext,
             isPrev
@@ -27,6 +24,7 @@ function renderNewResults(action, currentPage) {
 
         let currentUrlPage = this.getCurrentUrlPage();
         let productsPerPage = this.getProductsPerPage();
+        const paginationType = this.getPaginationType();
 
         if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
             // if (action === this.actions.next) {

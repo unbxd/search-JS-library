@@ -1,20 +1,18 @@
 import UnbxdSearch from "../../src/index";
 // import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
+import def from "./defaultLogo.png"
+import "./unbxdStyles.css"
 
 let routeTemplate = `
 <div class="UNX-header">
 			<div class="UNX-header-inner">
-				<div class="UNX-logo">
-					<a href="/" class="UNX-header-logo">
-						<span class="UNX-square"></span>
-					</a>
-				</div>
-				<nav class="UNX-nav">
-					<a href="" class="disabled"> Home </a>
-					<a href="" class="disabled"> Clothing </a>
-					<a href="" class="disabled"> Electronics </a>
-					<a href="" class="disabled"> Health & Beauty </a>
-					<a href="" class="disabled"> Watches </a>
+				<img src=${def} class="UNX-header-logo"></img>
+				<nav id="categoryLinks" class="UNX-nav UNX-naviagtion-wrap">
+					<button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
+                    <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
+                    <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing machines</button>
+                    <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention micro ovens</button>
+                    <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">Bases and bedheads</button>
 				</nav>
 				<div class="UNX-right-header">
 					<div id="autoSuggestInput" class="UNX-input-wrapper">
@@ -24,19 +22,9 @@ let routeTemplate = `
 							class="UNX-input"
 							autocomplete="off"
 						/>
-						<button id="searchBtn" class="fa fa-search UNX-search-btn"></button>
-						<div class="UNX-pd-parent">
-							<div class="UNX-preview-debugger UNX-query"></div>
-						</div>
+						<button id="searchBtn" class="UNX-search-btn"></button>
 					</div>
 				</div>
-                <nav id="categoryLinks" class="UNX-naviagtion-wrap">
-            <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
-            <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
-            <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing Machines</button>
-            <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention Micro Ovens</button>
-            <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">BASES & BEDHEADS</button>
-        </nav>
 			</div>
 		</div>
 		<div class="search-preview">
@@ -44,10 +32,7 @@ let routeTemplate = `
 				<div class="UNX-head-wrapper">
 					<div class="UNX-selected-actions">
 						<div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
-						<div
-							class="UNX-selected-facet-wrapper"
-							id="selectedFacetWrapper"
-						></div>
+						
 					</div>
 				</div>
 				<div class="UNX-product-results">
@@ -83,9 +68,14 @@ let routeTemplate = `
 					<div class="UNX-product-list">
 						<div id="didYouMeanWrapper"></div>
 						<div class="UNX-result-header">
-							<div class="UNX-sort-wrapper" id="sortWrapper"></div>
+                            <div class="row-1">
+                            <div class="UNX-sort-wrapper" id="sortWrapper"></div>
+                            <div class="UNX-change-products" id="changeNoOfProducts"></div>
+                            </div>
+                            
+							
 							<div class="UNX-result-right">
-								<div class="UNX-change-products" id="changeNoOfProducts"></div>
+								
 								
 								<div
 									class="UNX-product-type-block"
@@ -94,6 +84,10 @@ let routeTemplate = `
 							</div>
 						</div>
 						<div id="bannerContainer"></div>
+                        <div
+							class="UNX-selected-facet-wrapper"
+							id="selectedFacetWrapper"
+						></div>
 						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
                         <div id="" class="UNX-change-pagination-wrap unxPagination" ></div>
 						<div id="" class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination" ></div>
