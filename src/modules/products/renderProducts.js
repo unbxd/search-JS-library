@@ -1,4 +1,4 @@
-export default function renderProducts({ action }) {
+export default function renderProducts() {
     try {
         const {
             productViewType
@@ -12,7 +12,7 @@ export default function renderProducts({ action }) {
         const {
             noResultLoaded,
             isInfiniteStarted,
-            lastAction
+            // lastAction
         } = this.viewState;
 
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" : "UNX-grid-block";

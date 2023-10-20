@@ -41,7 +41,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.onBackFromRedirect(this.getHashMode());
         this.options.onEvent(this, 'initialised');
     }
-    callBack(state,type, others = {}) {
+    callBack(state,type) {
         this.getCallbackActions(state,type);
         const {
             onEvent,
@@ -86,7 +86,7 @@ class UnbxdSearch extends UnbxdSearchCore {
             if(this.state.products.length > 0) {
                 this.viewState.noResultLoaded = false;
             }
-            this.reRender(others);
+            this.reRender();
         }
         if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) {
             onEvent(this,'added_facet');

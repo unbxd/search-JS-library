@@ -22,11 +22,11 @@ function renderNewResults(action) {
             isPrev
         } = pageInfo;
 
-        let currentUrlPage = this.getCurrentUrlPage();
-        let productsPerPage = this.getProductsPerPage();
-        const paginationType = this.getPaginationType();
+        // let currentUrlPage = this.getCurrentUrlPage();
+        // let productsPerPage = this.getProductsPerPage();
+        // const paginationType = this.getPaginationType();
 
-        if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
+        if (this.options.pagination.type === "INFINITE_SCROLL" || this.options.pagination.type === "CLICK_N_SCROLL") {
             // if (action === this.actions.next) {
             //     if (isNext) {
             //         this.viewState.isInfiniteStarted = true;
@@ -77,7 +77,8 @@ function renderNewResults(action) {
     catch (err) {
         this.onError("Pagination > renderNewResults", err);
     }
-};
+}
+
 function paginationAction(e) {
     const {
         pageAction,
