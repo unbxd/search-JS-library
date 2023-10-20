@@ -1,5 +1,5 @@
-// import UnbxdSearchCore from "../../search-JS-core/src/index";
-import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+import UnbxdSearchCore from "../../search-JS-core/src/index";
+// import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
 import styles from '../styles/index.scss';
 import delegate from "./modules/utils/delegate";
 import options from './common/options';
@@ -41,7 +41,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.options.onBackFromRedirect(this.getHashMode());
         this.options.onEvent(this, 'initialised');
     }
-    callBack(state,type) {
+    callBack(state,type, others = {}) {
         this.getCallbackActions(state,type);
         const {
             onEvent,
@@ -62,9 +62,10 @@ class UnbxdSearch extends UnbxdSearchCore {
             this.options.extraParams.viewType = viewType;
             this.viewState.lastAction = "";
         }
-        if(this.viewState.lastAction != "pagination" && this.viewState.lastAction != "prev_page_loaded" && this.viewState.lastAction != "next_page_loaded") {
-            this.viewState.isInfiniteStarted = false;
-        }
+        // if(this.viewState.lastAction != "pagination" && this.viewState.lastAction != "prev_page_loaded" && this.viewState.lastAction != "next_page_loaded") {
+        // if(this.viewState.lastAction != "pagination") {
+        //     this.viewState.isInfiniteStarted = false;
+        // }
         if(!viewType) {
             viewType = this.viewState.productViewType || productView.defaultViewType;
             this.viewState.productViewType = viewType;
@@ -85,7 +86,7 @@ class UnbxdSearch extends UnbxdSearchCore {
             if(this.state.products.length > 0) {
                 this.viewState.noResultLoaded = false;
             }
-            this.reRender();
+            this.reRender(others);
         }
         if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) {
             onEvent(this,'added_facet');

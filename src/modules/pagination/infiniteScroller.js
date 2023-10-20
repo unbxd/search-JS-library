@@ -1,3 +1,24 @@
+// const getFirstPrank = (context) => {
+//     if (context.searchResultsWrapper.children.length === 0) {
+//       return null;
+//     }
+  
+//     const firstPrank = parseInt(context.searchResultsWrapper.children[0].dataset.prank, 10);
+//     return firstPrank;
+//   }
+
+  const getLastPrank = (context) => {
+    if (context.searchResultsWrapper.children.length === 0) {
+      return null;
+    }
+  
+    const lastPrank = parseInt(context.searchResultsWrapper.children[context.searchResultsWrapper.children.length - 1].dataset.prank, 10);
+    return lastPrank;
+  }
+  
+
+  
+
 const setUpInfiniteScroll = function () {
     try{
         return new Promise((resolve, reject) => {
@@ -48,26 +69,51 @@ const setUpInfiniteScroll = function () {
                             
                             // Calculate the page number that the visible product belongs to
                             const currentPage = Math.ceil(productIndex / productsPerPage);
-    
+                            console.log('******before update*****')
                             // Update the current page number in the URL if necessary
                             if (currentPage !== currentUrlPage) {
+                                console.log('----update -------')
                                 if (usePageNo) {
                                     this.setPageNoParam(currentPage);
                                 } else {
                                     this.setPageNoParam((currentPage - 1) * productsPerPage);
                                 }
+
+                                const bufferPages = 1;
+                                const minPage = currentPage - bufferPages;
+                                const maxPage = currentPage + bufferPages;
+                                const minPrank = (minPage - 2) * productsPerPage;
+                                const maxPrank = (maxPage + 1 )* productsPerPage;
+
+                                const productItems = document.querySelectorAll('.product-item'); 
+                                productItems.forEach((productItem) => {
+                                  const itemPrank = parseInt(productItem.dataset.prank, 10);
+                                //   const itemPage = parseInt(productItem.dataset.prank, 10);
+                                //   if (itemPage < minPage || itemPage > maxPage) {
+                                  if (itemPrank <= minPrank || itemPrank > maxPrank) {
+                                    productItem.remove();
+                                  }
+                                });
+
                             }
                         }
                     });
                 }, {
-                    threshold: [ 1 ]
+                    threshold: [ 0, 0.5, 0.75, 1 ]
                 });
     
                 this.preLoaderObserver = new IntersectionObserver(entries => {
                     let currentUrlPage = this.getCurrentUrlPage();
                     entries.forEach(entry => {
                         if (entry.isIntersecting && currentUrlPage > 1 && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
-                            this.renderNewResults('prev');
+                            let productsPerPage = this.getProductsPerPage();
+                            // this.renderNewResults('prev');
+                        //     const firstPrank = getFirstPrank(this);
+                        // console.log('firstPrank', firstPrank)
+                        this.viewState.isInfiniteStarted = true;
+                        const prevPrank = parseInt((currentUrlPage - 2) * productsPerPage, 10)
+                        this.setPageStart(prevPrank);
+                        this.getResults("", true, 'prev');
                         }
                     });
                 }, {
@@ -77,7 +123,15 @@ const setUpInfiniteScroll = function () {
     
                 this.postLoaderObserver = new IntersectionObserver(entries => {
                     if (entries[ 0 ].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
-                        this.renderNewResults('next');
+                        // this.renderNewResults('next');
+                        // // akshay left here
+                        // this.setPageStart((currentUrlPage - 1) * productsPerPage)
+                        // this.getResults("", true, action);
+                        this.viewState.isInfiniteStarted = true;
+                        const lastPrank = getLastPrank(this);
+                        console.log('lastPrank', lastPrank)
+                        this.setPageStart(lastPrank);
+                        this.getResults("", true, 'next');
                     }
                 }, {
                     threshold: 0,

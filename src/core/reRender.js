@@ -1,4 +1,4 @@
-const reRender = function () {
+const reRender = function (others = {}) {
     const {
         onEvent,
         spellCheck,
@@ -58,7 +58,7 @@ const reRender = function () {
         }
         onEvent(this, afterNoResultRender);
     } else {
-        this.renderProducts();
+        this.renderProducts(others);
         
     }
     this.renderFacets();

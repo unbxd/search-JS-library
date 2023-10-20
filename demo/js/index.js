@@ -416,7 +416,9 @@ window.unbxdSearch = new UnbxdSearch({
     
     siteKey: "demo-unbxd700181503576558",
     apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-  
+    // onError: function(err) {
+    //     console.error('onError', err)
+    // },
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
@@ -576,10 +578,12 @@ window.unbxdSearch = new UnbxdSearch({
 
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        type: 'FIXED_PAGINATION',
-        // type: 'INFINITE_SCROLL',
-        el: document.querySelector('.unxPagination'),
+        // type: 'FIXED_PAGINATION',
+        type: 'INFINITE_SCROLL',
+        // el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
+        virtualization: true,
+        noOfBufferPages: 1,
         heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
@@ -590,7 +594,7 @@ window.unbxdSearch = new UnbxdSearch({
         seoFriendlyUrl: true,
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
-        queryParamSeparator: "~",
+        queryParamSeparator: "&",
         searchQueryParam: {
             addToUrl: true,
             algo: "DEFAULT",
@@ -623,7 +627,7 @@ window.unbxdSearch = new UnbxdSearch({
             addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: 'p', 
-            usePageNo: false // uses page no. when turned on.else , index
+            usePageNo: true // uses page no. when turned on.else , index
         },
         pageSizeParam: {
             addToUrl: true,
@@ -661,7 +665,9 @@ window.unbxdSearch = new UnbxdSearch({
     },
     pagesize: {
         enabled: true,
-        el: document.getElementById("changeNoOfProducts")
+        el: document.getElementById("changeNoOfProducts"),
+        pageSize: 10,
+        options: [10, 20, 30, 40]
     },
 
     sort: {
