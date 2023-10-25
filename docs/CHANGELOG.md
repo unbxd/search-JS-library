@@ -154,7 +154,7 @@ url: {
 - Initialization of variables in entire code .
 - Addition of try catch blocks in render methods for proper error handling.
 - Simplified filename and function names.
-- Validating the user configuration for its dataytype, mandatory check , and specific custom valiadtions for values .
+- Validating the user configuration for its datatype, mandatory check, and specific custom validations for config values.
 
 --- 
 # v2.0.34
