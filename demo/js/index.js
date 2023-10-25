@@ -697,7 +697,7 @@ window.unbxdSearch = new UnbxdSearch({
         }
     },
     extraParams: {
-        abcd: function(){
+        test: function(){
             return new Date().getMilliseconds()
         }
     },
