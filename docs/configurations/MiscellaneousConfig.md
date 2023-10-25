@@ -178,7 +178,7 @@ allowExternalUrlParams: false
 Object
 {: .label }
 
-Any additional parameters you want to send in the search API call. 
+The extraParams object is a versatile feature in our code to send any additional parameters in the search API call. It allows you to use static key-value pairs or dynamic functions returning the values in string formats, enabling real-time adjustments of data like segmentation, currencies, languages, etc. in your API requests. This flexibility enhances your Unbxd search API integration, making it more responsive and adaptable to your specific application needs.
 
 ## Default Value
 {: .no_toc }
