@@ -191,14 +191,16 @@ Any additional parameters you want to send in the search API call.
 {: .no_toc }
 
 1. 
-In case of dynamic values, a global function must be written to return the value on client end, and the same can be used as part of extraParams. 
+In case of dynamic values, a function can be written to return the value in a string format on the client end. 
 
 ```js
-window.isSale = function() {
-    /** Custom logic based on dynamic conditions **/
-    return true;
-}
-{ "version":"V2", "uc_param": window.isSale() }
+{
+	"version":"V2",
+	"uc_param": function() {
+	    /** Custom logic based on dynamic conditions **/
+	    return "value";
+	}
+ }
 ```
 
 {: .warning } 
