@@ -204,7 +204,7 @@ In case of dynamic values, a function can be written to return the value in a st
 ```
 
 {: .warning } 
-> Note: Please make sure that **version V2** is not overwritten in the custom implementation of externalParams.
+> Note: Please make sure that **version: V2** is not overwritten in the custom implementation of `extraParams`.
 
 ---
 
