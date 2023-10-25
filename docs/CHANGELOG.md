@@ -17,6 +17,19 @@ nav_order: 8
 
 
 ---
+# v2.1.1: Dynamic Extra Params
+
+- **Release Date**: 25th Oct, 2023
+- **Core SDK Version**: v0.5.1
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.1/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.1/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- In this release, we've enhanced the `extraParams` object used in our config. Previously, this object allowed you to send static key-value pairs to the Unbxd search API. However, we've now introduced the ability to use functions as values. This means that you can dynamically generate and send values to the API with each request. For example, you can now send different segmentation details, currencies, or languages in the request, ensuring that your API interactions are more adaptable and responsive to the specific context and requirements of your application. 
+
+
+
+---
 # v2.1.0: SEO Friendly URLs
 
 - **Release Date**: 25th Aug, 2023
