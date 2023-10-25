@@ -696,6 +696,11 @@ window.unbxdSearch = new UnbxdSearch({
             swatchColors: "color"
         }
     },
+    extraParams: {
+        abcd: function(){
+            return new Date().getMilliseconds()
+        }
+    },
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
 });
