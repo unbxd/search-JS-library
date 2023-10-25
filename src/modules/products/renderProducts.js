@@ -15,6 +15,12 @@ export default function renderProducts() {
             // lastAction
         } = this.viewState;
 
+        const {
+            products: {
+                productItemClass
+            } = {}
+        } = this.options;
+
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" : "UNX-grid-block";
         searchResultsWrapper.classList.remove("UNX-list-block");
         searchResultsWrapper.classList.remove("UNX-grid-block");
@@ -30,7 +36,7 @@ export default function renderProducts() {
             } else {
                 let currentUrlPage = this.getCurrentUrlPage();
                 let productsPerPage = this.getProductsPerPage();
-                const listItems = searchResultsWrapper.querySelectorAll('.product-item');
+                const listItems = searchResultsWrapper.querySelectorAll(`.${productItemClass}`);
 
                 const {
                     url: {
@@ -82,22 +88,24 @@ export default function renderProducts() {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.insertBefore(newElement, insertPoint);
                     });
-                    document.querySelector(`.product-item[data-prank="${start + productsPerPage + 1}"]`).scrollIntoView();
-                    if (usePageNo) {
-                        this.setPageNoParam(currentUrlPage);
-                    } else {
-                        this.setPageNoParam((currentUrlPage + 1) * productsPerPage);
+                    if(document.querySelector(`.${productItemClass}[data-prank="${start + productsPerPage + 1}"]`)){
+                        document.querySelector(`.${productItemClass}[data-prank="${start + productsPerPage + 1}"]`).scrollIntoView();
                     }
+                    // if (usePageNo) {
+                    //     this.setPageNoParam(currentUrlPage);
+                    // } else {
+                    //     this.setPageNoParam((currentUrlPage + 1) * productsPerPage);
+                    // }
                 } else {
                     // If no insertPoint found, append new elements to the end
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.appendChild(newElement);
                     });
-                    if (usePageNo) {
-                        this.setPageNoParam(currentUrlPage - 1);
-                    } else {
-                        this.setPageNoParam((currentUrlPage - 2) * productsPerPage);
-                    }
+                    // if (usePageNo) {
+                    //     this.setPageNoParam(currentUrlPage - 1);
+                    // } else {
+                    //     this.setPageNoParam((currentUrlPage - 2) * productsPerPage);
+                    // }
                 }
 
 
@@ -123,7 +131,7 @@ export default function renderProducts() {
                 // if (action === "prev" && lastAction === "prev_page_loaded") {
                 //     // lastAction = ""
                 //     searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
-                //     document.querySelector(`.product-item[data-prank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
+                //     document.querySelector(`.${productItemClass}[data-prank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
                 //     // if (usePageNo) {
                 //     //     this.setPageNoParam(currentUrlPage + 1);
                 //     // } else {
