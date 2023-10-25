@@ -27,6 +27,7 @@ nav_order: 8
 {: .no_toc}
 - In this release, we've enhanced the `extraParams` object used in our config. Previously, this object allowed you to send static key-value pairs to the Unbxd search API. However, we've now introduced the ability to use functions as values. This means that you can dynamically generate and send values to the API with each request. For example, you can now send different segmentation details, currencies, or languages in the request, ensuring that your API interactions are more adaptable and responsive to the specific context and requirements of your application. 
 
+Please click [here](configurations/MiscellaneousConfig) for the more details on the extra params.
 
 
 ---
