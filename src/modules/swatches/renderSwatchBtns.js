@@ -10,7 +10,5 @@ function renderSwatchBtns(product={}) {
         this.onError("Swatches > renderSwatchBtns",err)
     }
 
-};
+}
 export default renderSwatchBtns;
-
-

@@ -1,4 +1,4 @@
-const setInputValue = function(e) {
+const setInputValue = function() {
     try{
         let val = this.options.searchBoxEl.value ;
         if (!val.replace(/\s/g, '').length) {

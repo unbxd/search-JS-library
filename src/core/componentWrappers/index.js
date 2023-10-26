@@ -10,6 +10,7 @@ import createSpellCheckWrapper from "./createSpellCheckWrapper";
 import createPaginationWrapper from "./createPaginationWrapper";
 import createProductViewTypeWrapper from "./createProductViewTypeWrapper";
 
+/* eslint-disable no-unused-vars */
 const setComponentWrappers = (prototype) => {
     prototype = Object.assign(prototype,{
         createtSearchWrapper,
@@ -24,6 +25,7 @@ const setComponentWrappers = (prototype) => {
         createProductViewTypeWrapper
     })
 };
+/* eslint-disable no-unused-vars */
 
 export {
     setComponentWrappers as default,

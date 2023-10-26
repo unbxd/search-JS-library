@@ -1,24 +1,23 @@
 const setUpInfiniteScroll = function () {
     try{
-        return new Promise((resolve, reject) => {
+        return new Promise(() => {
 
             const {
                 url: {
                     pageNoParam: {
                         // customize = false,
-                        usePageNo = false,
-                        keyReplacer = "",
-                        addToUrl
+                        usePageNo = false
                     } = {},
                 } = {}
             } = this.options;
-
+            
+            const paginationType = this.getPaginationType();
 
                 this.resetObservers = () => {
                     this.observer.disconnect();
                     this.preLoaderObserver.disconnect();
                         this.preLoaderObserver.observe(preLoader);
-                        if(this.options.pagination.type === 'INFINITE_SCROLL'){
+                    if (paginationType === 'INFINITE_SCROLL'){
                             this.postLoaderObserver.disconnect();
                             this.postLoaderObserver.observe(postLoader);
                         }
@@ -27,16 +26,15 @@ const setUpInfiniteScroll = function () {
                 }
     
                 let productsContainer = window;
-                if(this.options.pagination.type === "INFINITE_SCROLL"){
+            if (paginationType === "INFINITE_SCROLL"){
                     productsContainer = this.options.pagination.infiniteScrollTriggerEl
-                } else  if(this.options.pagination.type === "CLICK_N_SCROLL"){
+            } else if (paginationType === "CLICK_N_SCROLL"){
                     productsContainer = this.options.products.el
                 }
                 const postLoader = document.querySelector('.UNX-post-loader');
                 const preLoader = document.querySelector('.UNX-pre-loader');
                
                 this.individualProductObserver = new IntersectionObserver(entries => {
-                    const self = this;
                     entries.forEach(entry => {
                         // Check if the product item is fully in view
                         if (entry.isIntersecting) {
@@ -85,7 +83,7 @@ const setUpInfiniteScroll = function () {
                 });
     
                 // create an observer instance
-                this.observer = new MutationObserver((mutationsList, observer) => {
+                this.observer = new MutationObserver((mutationsList) => {
                     for (let mutation of mutationsList) {
                         if (mutation.type === 'childList') {
                             const self = this;
@@ -101,7 +99,7 @@ const setUpInfiniteScroll = function () {
                 });
     
                 this.preLoaderObserver.observe(preLoader);
-                if(this.options.pagination.type === 'INFINITE_SCROLL'){
+            if (paginationType === 'INFINITE_SCROLL'){
                     this.postLoaderObserver.observe(postLoader);
                 }
                 this.observer.observe(productsContainer, { childList: true, subtree: true });

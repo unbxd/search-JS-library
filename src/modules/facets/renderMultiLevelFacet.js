@@ -28,4 +28,4 @@ export default function(bucketedFacet = {}, isExpanded) {
         this.onError("facets > renderMultiLevelFacet.js",err)
     }
     
-};
+}

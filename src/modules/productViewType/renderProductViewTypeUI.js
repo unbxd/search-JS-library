@@ -19,5 +19,5 @@ function renderProductViewTypeUI(){
         this.onError("ProductViewType > renderProductViewTypeUI",err);
     }
 
-};
+}
 export default renderProductViewTypeUI;

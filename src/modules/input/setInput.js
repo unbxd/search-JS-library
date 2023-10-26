@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import setInputValue from './setInputValue';
 
 const setInput = (prototype) => {

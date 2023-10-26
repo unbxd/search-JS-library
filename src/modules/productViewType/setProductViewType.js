@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import renderProductViewTypeUI from './renderProductViewTypeUI';
 import {
