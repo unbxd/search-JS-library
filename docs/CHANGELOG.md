@@ -17,7 +17,7 @@ nav_order: 8
 
 
 ---
-# v2.1.1: Dynamic Extra Params
+# v2.1.1 - Dynamic Extra Params
 
 - **Release Date**: 25th Oct, 2023
 - **Core SDK Version**: v0.5.1
@@ -31,7 +31,7 @@ Please click [here](configurations/MiscellaneousConfig) for the more details on 
 
 
 ---
-# v2.1.0: SEO Friendly URLs
+# v2.1.0 - SEO Friendly URLs
 
 - **Release Date**: 25th Aug, 2023
 - **Core SDK Version**: v0.5.0
