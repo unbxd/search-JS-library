@@ -408,8 +408,10 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "ss-unbxd-betta-prod35741656525409",
+    apiKey: "aed56fa947d16c170c4b66a8e558ec49",
+    // siteKey: "demo-unbxd700181503576558",
+    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     // onError: function(err) {
     //     console.error('onError', err)
     // },
@@ -696,11 +698,11 @@ window.unbxdSearch = new UnbxdSearch({
             swatchColors: "color"
         }
     },
-    extraParams: {
-        abcd: function(){
-            return new Date().getMilliseconds()
-        }
-    },
+    // extraParams: {
+    //     // test: function(){
+    //     //     return new Date().getMilliseconds()
+    //     // }
+    // },
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma
 });
