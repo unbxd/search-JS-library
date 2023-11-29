@@ -633,7 +633,7 @@ window.unbxdSearch = new UnbxdSearch({
         facetsParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
-            multiValueSeparator: "@",
+            multiValueSeparator: ",",
             keyReplacer: {
                 "color_uFilter": "color",
                 "size_uFilter": "size",
