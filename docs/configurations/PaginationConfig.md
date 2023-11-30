@@ -383,8 +383,6 @@ Number
 
 For example, if `heightDiffToTriggerNextPage` is set to 100, this means that when the user scrolls to within 100 pixels of the bottom of the page, the next page of content will be loaded. This parameter allows for control over when the next page is loaded and can be adjusted depending on the desired user experience and the amount of content that is being loaded.
 
-
-
 ### Default Value
 {: .no_toc }
 
@@ -395,6 +393,31 @@ heightDiffToTriggerNextPage: 100
 ### Scenarios
 {: .no_toc }
 Any positive integer can be passed to `heightDiffToTriggerNextPage`
+
+
+---
+
+## virtualization
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+In our e-commerce product listing environment, we introduce the concept of product virtualization, providing a dynamic approach to managing the display of products on a webpage. Within this system, there is a parameter called bufferPages, represented as an integer. When set to 1, the SDK employs prefetching, ensuring that one page of products is maintained ahead and behind the currently displayed page.
+
+By introducing virtualization and providing the flexibility to choose between virtualization and full product rendering, our system aims to keep the DOM lightweight, ensuring a faster and more efficient browsing experience, especially on mobile devices. This design mitigates the common issue of page slowdown caused by continuously fetching and populating more products as users scroll through the listing.
+
+### Default Value
+{: .no_toc }
+
+```js
+virtualization: true
+```
+
+### Scenarios
+{: .no_toc }
+- **true:** When the flag is set to true, only virtualization occurs. This means that only the products belonging to the current page and the buffer pages before and after the current page are rendered on the DOM (Document Object Model). This significantly reduces the number of products loaded onto the page, optimizing performance and memory consumption in the user's browser.
+- **false:** Conversely, if the virtualization flag is set to false, all products are loaded onto the DOM as-is. This approach allows for a more traditional rendering of all products, which might be beneficial in certain scenarios.
 
 ---
 
