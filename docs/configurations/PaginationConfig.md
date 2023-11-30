@@ -105,7 +105,7 @@ Required
 {: .no_toc }
 
 ```js
-enabled: false
+enabled: true
 ```
 
 ### Scenarios
@@ -379,9 +379,14 @@ Any valid HTML selector can be used to select the trigger
 Number
 {: .label }
 
-`heightDiffToTriggerNextPage` is a parameter that is used when the type is set to INFINITE_SCROLL. It specifies the distance from the bottom of the page (measured in pixels) that needs to be reached before the next page of content is loaded.
+`heightDiffToTriggerNextPage` is a parameter that is used when the type is set to INFINITE_SCROLL. It specifies the distance from the bottom of the page (measured in pixels) that needs to be reached before the next page of content is loaded. 
 
-For example, if `heightDiffToTriggerNextPage` is set to 100, this means that when the user scrolls to within 100 pixels of the bottom of the page, the next page of content will be loaded. This parameter allows for control over when the next page is loaded and can be adjusted depending on the desired user experience and the amount of content that is being loaded.
+For example, if `heightDiffToTriggerNextPage` is set to 100, this means that when the user scrolls to within 100 pixels of the bottom of the page, the next page of content will be loaded. This parameter allows for control over when the next page is loaded and can be adjusted depending on the desired user experience and the amount of content that is being loaded. In case of infinite scroll pagination, two elements with classnames `pre-loader` and `post-loader` are added before and after products container, whose height is set to `heightDiffToTriggerNextPage` in pixels. 
+
+Note:
+- Setting the `heightDiffToTriggerNextPage` number to very high (>300 or >400) would trigger the next/previous page APIs more often than required and would lead to crashing the application. Any value set more than 1000 will get capped at 1000.
+
+
 
 ### Default Value
 {: .no_toc }
@@ -394,8 +399,8 @@ heightDiffToTriggerNextPage: 100
 {: .no_toc }
 Any positive integer can be passed to `heightDiffToTriggerNextPage`
 
-
 ---
+
 
 ## virtualization
 {: .d-inline-block }
@@ -406,6 +411,15 @@ Boolean
 In our e-commerce product listing environment, we introduce the concept of product virtualization, providing a dynamic approach to managing the display of products on a webpage. Within this system, there is a parameter called bufferPages, represented as an integer. When set to 1, the SDK employs prefetching, ensuring that one page of products is maintained ahead and behind the currently displayed page.
 
 By introducing virtualization and providing the flexibility to choose between virtualization and full product rendering, our system aims to keep the DOM lightweight, ensuring a faster and more efficient browsing experience, especially on mobile devices. This design mitigates the common issue of page slowdown caused by continuously fetching and populating more products as users scroll through the listing.
+
+**Performance Benefits:**
+
+1) **Optimized DOM:** Virtualization keeps the Document Object Model lightweight, leading to faster load times and reduced memory usage in the browser.
+
+2) **Efficient Scrolling:** By fetching only the necessary products as users scroll, the system prevents the common issue of page slowdown caused by excessive product loading.
+
+{: .important }
+> Note: The virtualization feature is available only for the Infinite Scroll pagination and in the SDK versions v2.1.2 and beyond.
 
 ### Default Value
 {: .no_toc }
@@ -418,6 +432,33 @@ virtualization: true
 {: .no_toc }
 - **true:** When the flag is set to true, only virtualization occurs. This means that only the products belonging to the current page and the buffer pages before and after the current page are rendered on the DOM (Document Object Model). This significantly reduces the number of products loaded onto the page, optimizing performance and memory consumption in the user's browser.
 - **false:** Conversely, if the virtualization flag is set to false, all products are loaded onto the DOM as-is. This approach allows for a more traditional rendering of all products, which might be beneficial in certain scenarios.
+
+
+
+---
+
+## bufferPages
+{: .d-inline-block }
+
+Number
+{: .label }
+
+The introduction of the bufferPages parameter allows for intelligent prefetching. When set to 1, the SDK employs prefetching, ensuring that one page of products is maintained ahead and behind the currently displayed page.
+
+{: .important }
+> Note: The bufferPages feature is available only for the Infinite scroll pagination and in the SDK versions v2.1.2 and beyond.
+
+
+### Default Value
+{: .no_toc }
+
+```js
+bufferPages: 1
+```
+
+### Scenarios
+{: .no_toc }
+Any positive integer can be set here.
 
 ---
 

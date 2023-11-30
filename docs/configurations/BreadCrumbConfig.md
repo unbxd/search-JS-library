@@ -37,7 +37,7 @@ To render the breadcrumb component, set the “breadcrumb” config object.
 To render the breadcrumbs on the search results page, you can use the `breadcrumbs` config object to configure the various options.
 
 ```js
-breadcrumbs: {
+breadcrumb: {
     //Below configurations should be added here.
 }
 ```

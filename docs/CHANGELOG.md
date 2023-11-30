@@ -17,7 +17,7 @@ nav_order: 8
 
 
 ---
-# v2.1.2 - Virtualization in Infinite Scroll
+# v2.1.2 - Product Virtualization
 
 - **Release Date**: 30th Oct, 2023
 - **Core SDK Version**: v0.5.3
@@ -25,19 +25,21 @@ nav_order: 8
 
 ## 🚀 Features
 {: .no_toc}
-- In this release, we are excited to introduce a powerful enhancement to our e-commerce product listing environment — Product Virtualization. This feature is designed to revolutionize the way products are displayed on webpages, offering improved performance and a more responsive user experience. Please click [here](configurations/PaginationConfig.md#virtualization) to know more about configurations for virtualization.
-- Introducing Debug Mode for enhanced integration and debugging. This captures configuration and coding errors in real-time, aiding developers during integration.
-
+- In this release, we are excited to introduce a powerful enhancement to our e-commerce product listing environment — Product Virtualization. This feature is designed to revolutionize the way products are displayed on webpages, offering improved performance and a more responsive user experience. Please click [here](configurations/PaginationConfig.md#virtualization) to know more about virtualization.
+- Within this virtualization system, there is a parameter called `bufferPages`, represented as an integer. When set to 1, the SDK employs prefetching, ensuring that one page of products is maintained ahead and behind the currently displayed page. Please click [here](configurations/PaginationConfig.md#bufferpages) to know more about bufferPages.
+- Introducing Debug Mode for enhanced integration and debugging. This captures configuration and coding errors in real-time, aiding developers during integration. Please click [here](configurations/MiscellaneousConfig.md#debugmode) to know more about debugmode.
 
 
 ## 🐛 Bug Fixes
 {: .no_toc}
 - Resolved issue causing random product loading and duplication during infinite scroll, ensuring correct product order and improving user experience.
+- Fix in reading facet value with special characters as multi value separators. When the facet's multiValueSeparator is configured with some special characters like "|" and copy paste the URL from browser to any notes or social media, the "|" used to get encoded to "%7c". When these links are clicked from these social media sites, it used to navigate to the URL with "%7c" in it and SDK failed to recognize the same.
 
 
 ## 🧰 Maintenance
 {: .no_toc}
 - Added ESLint for comprehensive code analysis. This enforces coding style rules, identifies potential bugs, and improves code readability.
+- Fix in github actions to run on release tag.
 
 Please click [here](configurations/MiscellaneousConfig) for the more details on the extra params.
 
