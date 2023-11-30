@@ -1,7 +1,13 @@
 name: searchJsLibrary
+
 on:
     pull_request:
     push:
+    workflow_dispatch:
+    release:
+      types: [published, edited]
+
+      
 env:
     CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
@@ -11,9 +17,19 @@ env:
     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 defaults:
     run:
         shell: bash
+
 jobs:
     test:
         name: Test 🧪
@@ -39,10 +55,46 @@ jobs:
             - name: Run Test
               run: yarn test
 
+    build-documentation-site:
+      name: Build Documentation
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+        - name: Setup Ruby
+          uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa 
+          with:
+            ruby-version: '3.0' 
+            bundler-cache: true 
+            cache-version: 0 
+        - name: Setup Pages
+          id: pages
+          uses: actions/configure-pages@v2
+        - name: Build with Jekyll
+          run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+          env:
+            JEKYLL_ENV: production
+        - name: Upload artifact
+          uses: actions/upload-pages-artifact@v1
+
+    deploy-documentation-site:
+      name: Deploy Documentation
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      needs: build-documentation-site
+      runs-on: ubuntu-latest
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      steps:
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v1
+
     release:
-        name: Release
+        name: Release To Prod
         needs: test
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: startsWith(github.ref, 'refs/tags/v')
         runs-on: ubuntu-latest
         steps:
             - name: Pre-reqs
@@ -51,7 +103,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v2
               with:
-                  node-version: 14.15.0
+                  node-version: 16.14.0
 
             - name: Check Cache
               uses: actions/cache@v2
@@ -79,13 +131,14 @@ jobs:
             - name: Print version
               run: echo ${{ steps.extract_version.outputs.version }}
 
-            - name: Run aws cp command
+            - name: Upload JS file to AWS
               id: aws-upload
               env:
                 AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
                 DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
               run: |
                 aws s3 cp public/dist/js/vanillaSearch.js s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000'
+                aws s3 cp public/dist/css/vanillaSearch.min.css s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.css --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000'
 
             - name: Publish package
               uses: JS-DevTools/npm-publish@v1

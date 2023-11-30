@@ -66,8 +66,6 @@ const setRangeSlider = function(value = {}) {
     this.setRangeFacet(value)
     const {
         facetName,
-        start,
-        end
     } = value;
     this.getCallbackActions({
         facetName,
@@ -96,7 +94,7 @@ const checkFacets = function() {
 }
 
 
-
+/* eslint-disable no-unused-vars */
 const setFacets = (prototype) => {
     prototype = Object.assign(prototype,{
         findChangedFacet,
@@ -115,6 +113,7 @@ const setFacets = (prototype) => {
         setRangeSlider
     })
 };
+/* eslint-disable no-unused-vars */
 
 export {
     setFacets as default,

@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import didYouMeanUI from "../modules/didYouMean/didYouMeanUI";
 import {
     selectedFacetUI,
@@ -145,9 +146,10 @@ const options = {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: "p"
-        },
-        orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"],
+        },   
+        orderOfQueryParams: [],
         queryParamSeparator: "&",
+        keyValueSeparator: "=",
         pageViewParam: {
             addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
@@ -180,7 +182,6 @@ const options = {
             showFilterStr: false, //Not exposing this option for user yet , will always be false for now.
             filterReplacer: "filter", //Not exposing this option for user yet.
             multiValueSeparator: ",",
-            facetsOrderInUrl: [],
             valueReplacer: {},
             keyReplacer: {},
             rangeSeparator: "-"
@@ -281,7 +282,9 @@ const options = {
         selectedPageClass: "UNX-selected-page-item",
         type: 'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
         infiniteScrollTriggerEl: window, //if paginationType = INFINITE_SCROLL
-        heightDiffToTriggerNextPage: 100, //if paginationType = INFINITE_SCROLL,    
+        heightDiffToTriggerNextPage: 100, //if paginationType = INFINITE_SCROLL,   
+        virtualization: true, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,   
+        bufferPages: 1, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,   
         onPaginate: function (paginationInfo) { },
         action: 'click',
         pageLimit: 6,
@@ -382,7 +385,8 @@ const options = {
                 history.pushState(null, "", newUrl);
             }
         }
-    }
+    },
+    debugMode: true
     // searchQueryParam:null
 };
 export default options;

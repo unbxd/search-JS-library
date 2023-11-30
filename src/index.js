@@ -1,6 +1,6 @@
-// import UnbxdSearchCore from "../../search-JS-core/src/index";
-import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
-import styles from '../styles/index.scss';
+import UnbxdSearchCore from "../../search-JS-core/src/index";
+// import UnbxdSearchCore from "@unbxd-ui/unbxd-search-core";
+import styles from '../styles/index.scss'; /* eslint-disable-line no-unused-vars */
 import delegate from "./modules/utils/delegate";
 import options from './common/options';
 import setMethods from './core/setMethods';
@@ -61,9 +61,6 @@ class UnbxdSearch extends UnbxdSearchCore {
             viewType = this.viewState.productViewType;
             this.options.extraParams.viewType = viewType;
             this.viewState.lastAction = "";
-        }
-        if(this.viewState.lastAction != "pagination" && this.viewState.lastAction != "prev_page_loaded" && this.viewState.lastAction != "next_page_loaded") {
-            this.viewState.isInfiniteStarted = false;
         }
         if(!viewType) {
             viewType = this.viewState.productViewType || productView.defaultViewType;

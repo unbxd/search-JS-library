@@ -2,7 +2,7 @@
 layout: default
 title: Others
 parent: Configurations
-nav_order: 17
+nav_order: 18
 ---
 
 # Others
@@ -73,6 +73,9 @@ hashMode: false
 1. true - url params will be updated as hash params
 2. false - url params will be updated as query params
 
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`. Please check [here](./urlConfig.md) for more details. 
+
 ---
 # updateUrls
 {: .d-inline-block }
@@ -97,6 +100,9 @@ updateUrls: true
 
 1. true - user action information will be added to the url
 2. false - user action information will not be added to the url
+
+{: .warning } 
+> From SDK version: `2.1.0`, this configuration will be deprecated.
 
 ---
 # actionBtnClass
@@ -162,6 +168,9 @@ allowExternalUrlParams: false
 1. true - External params will be retained in the browser url, so that they can be consumed by the rest of the client ecosystem.
 2. false - External params will be dropped from the browser url by the unbxd search sdk
 
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`. Please check [here](./urlConfig.md) for more details.
+
 ---
 # extraParams
 {: .d-inline-block }
@@ -169,7 +178,7 @@ allowExternalUrlParams: false
 Object
 {: .label }
 
-Any additional parameters you want to send in the search API call. 
+The extraParams object is a versatile feature in our code to send any additional parameters in the search API call. It allows you to use static key-value pairs or dynamic functions returning the values in string formats, enabling real-time adjustments of data like segmentation, currencies, languages, etc. in your API requests. This flexibility enhances your Unbxd search API integration, making it more responsive and adaptable to your specific application needs.
 
 ## Default Value
 {: .no_toc }
@@ -182,18 +191,48 @@ Any additional parameters you want to send in the search API call.
 {: .no_toc }
 
 1. 
-In case of dynamic values, a global function must be written to return the value on client end, and the same can be used as part of extraParams. 
+In case of dynamic values, a function can be written to return the value in a string format on the client end. 
 
 ```js
-window.isSale = function() {
-    /** Custom logic based on dynamic conditions **/
-    return true;
-}
-{ "version":"V2", "uc_param": window.isSale() }
+{
+	"version":"V2",
+	"uc_param": function() {
+	    /** Custom logic based on dynamic conditions **/
+	    return "value";
+	}
+ }
 ```
 
 {: .warning } 
-> Note: Please make sure that **version V2** is not overwritten in the custom implementation of externalParams.
+> Note: Please make sure that **version: V2** is not overwritten in the custom implementation of `extraParams`.
+
+---
+
+# debugMode
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+In our ongoing commitment to providing a seamless integration and debugging experience, we are pleased to introduce the Debug Mode feature. Debug Mode serves as a valuable tool for developers by capturing configuration or coding errors directly in the browser's development console during the integration or debugging process.
+
+Enabling Debug Mode allows for real-time identification and logging of issues that may arise from misconfigurations or errors within the SDK code. This functionality aids developers in swiftly diagnosing and rectifying issues, facilitating a smoother integration process and expediting debugging efforts.
+
+To leverage the benefits of Debug Mode, developers can easily toggle the feature on/off as needed, ensuring a customizable and efficient debugging experience.
+
+{: .important }
+> Note: The debugMode is available only in the version v2.1.2 and beyond.
+
+## Default Value
+{: .no_toc }
+```js
+debugMode: true
+```
+
+## Scenarios
+{: .no_toc }
+- **true**: Console logs configuration and coding errors in real-time, aiding developers during integration.
+- **false**: Doesn't not console any errors.
 
 ---
 
@@ -207,7 +246,7 @@ This is used to set a default filter condition for all search queries and catego
 
 ## Default Value
 {: .no_toc }
-null
+{}
 
 ## Scenarios
 {: .no_toc }
@@ -253,7 +292,6 @@ searchEndPoint:“https://search.unbxd.io”
 searchEndPoint:"https://wingman-argocd.unbxd.io/"	
 ```
 
----
 <!-- This feature is not used, and not adopted. There is no clarity.
 
 # searchPath
@@ -291,4 +329,31 @@ browseQueryParam: "p"
 
 1. p-id: If we are providing the **category path id** to the search api.
 2. p: If we are providing the **category path** to the search api.
+
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`. Please check [here](./urlConfig.md) for more details.
+
+---
+# searchQueryParam
+{: .d-inline-block }
+
+String
+{: .label }
+
+This will be the default query param for the search api to provide the query information. 
+
+## Default Value
+{: .no_toc }
+
+```js
+searchQueryParam: "q"
+```
+
+## Scenarios
+{: .no_toc }
+
+This could be any valid string which would contain the query data that user has searched for like `q` or `query`.
+
+{: .warning } 
+> From SDK version: `v2.1.0`, this configuration will be a part of `URL`.Please check [here](./urlConfig.md) for more details.
 

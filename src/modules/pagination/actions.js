@@ -2,60 +2,35 @@ const triggerNextPage = (context, next, action) => {
     if (context.options.pagination.type === "FIXED_PAGINATION") {
         context.viewState.lastAction = "pagination";
         context.setPageStart(next);
-        // context.viewState.start = next;
     }
     context.getResults("", true, action);
     context.options.onEvent(context, context.events.pageNext, {
         value: next
     });
 };
-function renderNewResults(action, currentPage) {
+function renderNewResults(action) {
     try {
         const pageInfo = this.getPaginationInfo() || {};
         const {
-            pagination,
             onEvent
         } = this.options;
         const {
             start,
-            productsLn,
-            numberOfProducts,
             rows,
             isNext,
             isPrev
         } = pageInfo;
 
-        let currentUrlPage = this.getCurrentUrlPage();
-        let productsPerPage = this.getProductsPerPage();
-
-        if (pagination.type === "INFINITE_SCROLL" || pagination.type === "CLICK_N_SCROLL") {
+        if (this.options.pagination.type === "CLICK_N_SCROLL") {
             if (action === this.actions.next) {
                 if (isNext) {
                     this.viewState.isInfiniteStarted = true;
-                    currentUrlPage++;
-                    this.setPageStart((currentUrlPage - 1) * productsPerPage)
-                    // this.viewState.start = (currentUrlPage - 1) * productsPerPage
-                    this.viewState.lastAction = "next_page_loaded";
+                    const lastPrank = this.getLastPrank();
+                    this.setPageStart(lastPrank);
                     triggerNextPage(this, null, action);
+
                 }
             }
-            if (action === this.actions.prev) {
-                if (isPrev) {
-                    this.viewState.isInfiniteStarted = true;
-                    currentUrlPage--;
-                    this.setPageStart((currentUrlPage - 1) * productsPerPage)
-                    // this.viewState.start = (currentUrlPage - 1) * productsPerPage
-                    this.viewState.lastAction = "prev_page_loaded";
-                    triggerNextPage(this, null, action);
-                }
-                if (action === this.actions.prev) {
-                    const prev = start - rows;
-                    if (isPrev) {
-                        this.viewState.isInfiniteStarted = true;
-                        triggerNextPage(this, prev, action);
-                    }
-                }
-            } 
         } else {
             if (action === this.actions.next) {
                 const next = start + rows;
@@ -73,30 +48,29 @@ function renderNewResults(action, currentPage) {
                     });
                 }
             }
-
         }
     }
     catch (err) {
-            this.onError("Pagination > renderNewResults", err);
-        }
-    };
-    function paginationAction(e) {
-        const {
-            pageAction,
-            pageNo
-        } = e.target.dataset;
-        this.checkFacets();
-        this.viewState.lastDidYouMean = "";
-        if (pageAction === 'paginate') {
-            this.viewState.lastAction = "pagination";
-            this.setPageStart(pageNo);
-            // this.viewState.start = pageNo;
-            this.getResults();
-        } else {
-            this.renderNewResults(pageAction);
-        }
+        this.onError("Pagination > renderNewResults", err);
     }
-    export {
-        renderNewResults,
-        paginationAction
-    };
+}
+
+function paginationAction(e) {
+    const {
+        pageAction,
+        pageNo
+    } = e.target.dataset;
+    this.checkFacets();
+    this.viewState.lastDidYouMean = "";
+    if (pageAction === 'paginate') {
+        this.viewState.lastAction = "pagination";
+        this.setPageStart(pageNo);
+        this.getResults();
+    } else {
+        this.renderNewResults(pageAction);
+    }
+}
+export {
+    renderNewResults,
+    paginationAction
+};

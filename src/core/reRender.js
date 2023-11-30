@@ -7,9 +7,11 @@ const reRender = function () {
         searchBoxEl,
         loader,
         breadcrumb,
-        productView,
-        facet
+        productView
     } = this.options;
+    
+    const paginationType = this.getPaginationType();
+    
     const {
         beforeRender,
         beforeNoResultRender,
@@ -27,8 +29,7 @@ const reRender = function () {
     const query = this.getSearchQuery();
     const noResultCss = "UNX-no-results-wrap";
     const {
-        lastAction,
-        productViewType
+        lastAction
     } = this.viewState;
 
     if (productType === "SEARCH" && searchBoxEl) {
@@ -82,7 +83,7 @@ const reRender = function () {
         pagination.onPaginate.bind(this)(this.getPaginationInfo());
     }
 
-    if (pagination.type !== "INFINITE_SCROLL") {
+    if (paginationType !== "INFINITE_SCROLL") {
         paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });

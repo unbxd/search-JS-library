@@ -8,7 +8,6 @@ const events = {
     deleteFacet:"DELETE_FACET",
     facetClick:"FACETS_CLICK",
     deleteFacetValue:"DELETE_FACET_VALUE",
-    deleteFacet:"DELETE_FACET",
     clearSort:"CLEAR_SORT",
     changeSort:"CHANGE_SORT",
     pageNext:"PAGE_NEXT",

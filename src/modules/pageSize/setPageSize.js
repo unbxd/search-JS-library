@@ -24,6 +24,7 @@ const renderPageSize = function() {
     }
     
 }
+/* eslint-disable no-unused-vars */
 const setPageSize = (prototype) => {
     prototype = Object.assign(prototype,{
         pageSizeUi,
@@ -31,6 +32,7 @@ const setPageSize = (prototype) => {
         renderPageSize
     })
 }
+/* eslint-disable no-unused-vars */
 export {
     setPageSize as default,
     renderPageSize,
