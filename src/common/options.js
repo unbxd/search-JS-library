@@ -385,7 +385,8 @@ const options = {
                 history.pushState(null, "", newUrl);
             }
         }
-    }
+    },
+    debugMode: true
     // searchQueryParam:null
 };
 export default options;

@@ -26,7 +26,6 @@ function renderNewResults(action) {
                 if (isNext) {
                     this.viewState.isInfiniteStarted = true;
                     const lastPrank = this.getLastPrank();
-                    console.log('lastPrank', lastPrank)
                     this.setPageStart(lastPrank);
                     triggerNextPage(this, null, action);
 

@@ -106,7 +106,6 @@ const setUpInfiniteScroll = function () {
                 if (entries[ 0 ].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
                     this.viewState.isInfiniteStarted = true;
                     const lastPrank = this.getLastPrank();
-                    console.log('lastPrank', lastPrank)
                     this.setPageStart(lastPrank);
                     this.getResults("", true, 'next');
                 }
