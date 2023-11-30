@@ -284,7 +284,7 @@ const options = {
         infiniteScrollTriggerEl: window, //if paginationType = INFINITE_SCROLL
         heightDiffToTriggerNextPage: 100, //if paginationType = INFINITE_SCROLL,   
         virtualization: true, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,   
-        noOfBufferPages: 1, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,   
+        bufferPages: 1, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,   
         onPaginate: function (paginationInfo) { },
         action: 'click',
         pageLimit: 6,
@@ -385,7 +385,8 @@ const options = {
                 history.pushState(null, "", newUrl);
             }
         }
-    }
+    },
+    debugMode: true
     // searchQueryParam:null
 };
 export default options;

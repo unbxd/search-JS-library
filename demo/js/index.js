@@ -576,8 +576,8 @@ window.unbxdSearch = new UnbxdSearch({
         type: 'INFINITE_SCROLL',
         // el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
-        virtualization: true,
-        noOfBufferPages: 1,
+        virtualization: false,
+        bufferPages: 1,
         heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
@@ -621,7 +621,7 @@ window.unbxdSearch = new UnbxdSearch({
             addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: 'p', 
-            usePageNo: true // uses page no. when turned on.else , index
+            usePageNo: false // uses page no. when turned on.else , index
         },
         pageSizeParam: {
             addToUrl: true,
@@ -631,7 +631,7 @@ window.unbxdSearch = new UnbxdSearch({
         facetsParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
-            multiValueSeparator: "@",
+            multiValueSeparator: ",",
             keyReplacer: {
                 "color_uFilter": "color",
                 "size_uFilter": "size",
@@ -696,8 +696,14 @@ window.unbxdSearch = new UnbxdSearch({
             swatchColors: "color"
         }
     },
+    // extraParams: {
+    //     // test: function(){
+    //     //     return new Date().getMilliseconds()
+    //     // }
+    // },
     onAction: function (e, ctx) { },
-    onEvent: unbxdCallbackEcma
+    onEvent: unbxdCallbackEcma,
+    debugMode: true
 });
 
 

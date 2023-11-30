@@ -58,7 +58,7 @@ When the “enabled” flag is turned on, the spellcheck feature will be active,
 ### Default Value
 {: .no_toc }
 ```js
-enabled: false
+enabled: true
 ```
 
 ### Scenarios
