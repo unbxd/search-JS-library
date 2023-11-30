@@ -408,11 +408,11 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     
-    // siteKey: "demo-unbxd700181503576558",
-    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    siteKey: "ss-unbxd-betta-prod35741656525409",
-    apiKey: "aed56fa947d16c170c4b66a8e558ec49",
-  
+    siteKey: "demo-unbxd700181503576558",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    // onError: function(err) {
+    //     console.error('onError', err)
+    // },
     searchBoxEl: document.getElementById("unbxdInput"),
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
@@ -574,8 +574,10 @@ window.unbxdSearch = new UnbxdSearch({
         // type: 'CLICK_N_SCROLL',
         // type: 'FIXED_PAGINATION',
         type: 'INFINITE_SCROLL',
-        el: document.querySelector('.unxPagination'),
+        // el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
+        virtualization: false,
+        bufferPages: 1,
         heightDiffToTriggerNextPage: 100,
         infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
         onPaginate: function (data) { console.log(data, "data") }
@@ -586,7 +588,7 @@ window.unbxdSearch = new UnbxdSearch({
         seoFriendlyUrl: true,
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
-        queryParamSeparator: "~",
+        queryParamSeparator: "&",
         searchQueryParam: {
             addToUrl: true,
             algo: "DEFAULT",
@@ -629,7 +631,7 @@ window.unbxdSearch = new UnbxdSearch({
         facetsParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
-            multiValueSeparator: "@",
+            multiValueSeparator: ",",
             keyReplacer: {
                 "color_uFilter": "color",
                 "size_uFilter": "size",
@@ -657,7 +659,9 @@ window.unbxdSearch = new UnbxdSearch({
     },
     pagesize: {
         enabled: true,
-        el: document.getElementById("changeNoOfProducts")
+        el: document.getElementById("changeNoOfProducts"),
+        pageSize: 10,
+        options: [10, 20, 30, 40]
     },
 
     sort: {
@@ -692,8 +696,14 @@ window.unbxdSearch = new UnbxdSearch({
             swatchColors: "color"
         }
     },
+    // extraParams: {
+    //     // test: function(){
+    //     //     return new Date().getMilliseconds()
+    //     // }
+    // },
     onAction: function (e, ctx) { },
-    onEvent: unbxdCallbackEcma
+    onEvent: unbxdCallbackEcma,
+    debugMode: true
 });
 
 

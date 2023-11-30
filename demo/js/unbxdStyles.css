@@ -1286,9 +1286,9 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
   white-space: normal;
 }
 
-.UNX-list-card .UNX-img-wrapper {
+/* .UNX-list-card .UNX-img-wrapper {
   height: 100%;
-}
+} */
 
 .search-preview .UNX-list-card .UNX-img-block {
   height: auto;
@@ -1736,6 +1736,7 @@ left: 0 !important;
 .search-preview .UNX-img-block {
   max-width: 100%;
   height: auto;
+  min-height: 250px;
 }
 
 .UNX-change-products {

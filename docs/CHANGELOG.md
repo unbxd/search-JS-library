@@ -17,6 +17,93 @@ nav_order: 8
 
 
 ---
+# v2.1.2 - Product Virtualization
+
+- **Release Date**: 30th Oct, 2023
+- **Core SDK Version**: v0.5.3
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.2/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.2/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- In this release, we are excited to introduce a powerful enhancement to our e-commerce product listing environment — Product Virtualization. This feature is designed to revolutionize the way products are displayed on webpages, offering improved performance and a more responsive user experience. Please click [here](configurations/PaginationConfig.md#virtualization) to know more about virtualization.
+- Within this virtualization system, there is a parameter called `bufferPages`, represented as an integer. When set to 1, the SDK employs prefetching, ensuring that one page of products is maintained ahead and behind the currently displayed page. Please click [here](configurations/PaginationConfig.md#bufferpages) to know more about bufferPages.
+- Introducing Debug Mode for enhanced integration and debugging. This captures configuration and coding errors in real-time, aiding developers during integration. Please click [here](configurations/MiscellaneousConfig.md#debugmode) to know more about debugmode.
+
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Resolved issue causing random product loading and duplication during infinite scroll, ensuring correct product order and improving user experience.
+- Fix in reading facet value with special characters as multi value separators. When the facet's multiValueSeparator is configured with some special characters like "|" and copy paste the URL from browser to any notes or social media, the "|" used to get encoded to "%7c". When these links are clicked from these social media sites, it used to navigate to the URL with "%7c" in it and SDK failed to recognize the same.
+
+
+## 🧰 Maintenance
+{: .no_toc}
+- Added ESLint for comprehensive code analysis. This enforces coding style rules, identifies potential bugs, and improves code readability.
+- Fix in github actions to run on release tag.
+
+Please click [here](configurations/MiscellaneousConfig) for the more details on the extra params.
+
+
+---
+# v2.1.1 - Dynamic Extra Params
+
+- **Release Date**: 25th Oct, 2023
+- **Core SDK Version**: v0.5.1
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.1/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.1/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- In this release, we've enhanced the `extraParams` object used in our config. Previously, this object allowed you to send static key-value pairs to the Unbxd search API. However, we've now introduced the ability to use functions as values. This means that you can dynamically generate and send values to the API with each request. For example, you can now send different segmentation details, currencies, or languages in the request, ensuring that your API interactions are more adaptable and responsive to the specific context and requirements of your application. 
+
+Please click [here](configurations/MiscellaneousConfig) for the more details on the extra params.
+
+
+---
+# v2.1.0 - SEO Friendly URLs
+
+- **Release Date**: 25th Aug, 2023
+- **Core SDK Version**: v0.5.0
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.0/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.0/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- We are thrilled to announce a long awaited significant enhancement to our Vanilla JS Search SDK that is set to revolutionize the way we navigate the online retail landscapes: the SEO friendly URLs in Vanilla JS SDK.
+    -     Seamlessly customize query & browse parameters, page sizes, facets, sorting, and page views
+    -     Welcome flexibility in choosing page numbers over product indices
+    -     Say goodbye to old-fashioned, confusing URLs
+    -     Replace facet keys and values as per your conventions
+    -     Use custom characters for separating multi-value fields
+    -     Backward compatibility to ensure a smooth transition
+
+Please click [here](configurations/urlConfig) for the detailed documentation on SEO friendly URls
+
+
+
+
+---
+# v2.0.40
+
+- **Release Date**: 11th Aug, 2023
+- **Core SDK Version**: v0.4.35
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.40/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.40/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- **Introducing SEO friendly URLs for Category pages**: A seo friendly category URLs can now be achieved with Unbxd Search SDK by configuring the below code. When `seoFriendlyUrl` is set to `true`, the extra category related data (p=<categoryPath>) will not be appended in the URL. The configuration for same is here. By default, `seoFriendlyUrl` will be set to `false`.
+```js
+///other configurations at root level
+url: {
+    seoFriendlyUrl: true
+}
+```
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- There was an issue with the facet selection when there is a single or double apostrophe in the facet names. This issue has been fixed.
+
+
+
+---
 # v2.0.39
 
 - **Release Date**: 26th July, 2023
@@ -95,7 +182,7 @@ nav_order: 8
 - Initialization of variables in entire code .
 - Addition of try catch blocks in render methods for proper error handling.
 - Simplified filename and function names.
-- Validating the user configuration for its dataytype, mandatory check , and specific custom valiadtions for values .
+- Validating the user configuration for its datatype, mandatory check, and specific custom validations for config values.
 
 --- 
 # v2.0.34
