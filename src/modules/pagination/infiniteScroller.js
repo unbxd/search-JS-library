@@ -2,7 +2,7 @@ const setUpInfiniteScroll = function () {
     try {
         return new Promise(() => {
 
-            const {
+            let {
                 url: {
                     pageNoParam: {
                         usePageNo = false
@@ -58,6 +58,7 @@ const setUpInfiniteScroll = function () {
                             }
 
                             if (virtualization) {
+                                if(bufferPages < 0) bufferPages = 0;
                                 const minPage = currentPage - bufferPages;
                                 const maxPage = currentPage + bufferPages;
                                 const minPrank = (minPage - 2) * productsPerPage;

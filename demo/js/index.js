@@ -572,9 +572,9 @@ window.unbxdSearch = new UnbxdSearch({
 
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        // type: 'FIXED_PAGINATION',
-        type: 'INFINITE_SCROLL',
-        // el: document.querySelector('.unxPagination'),
+        type: 'FIXED_PAGINATION',
+        // type: 'INFINITE_SCROLL',
+        el: document.querySelector('.unxPagination'),
         // usePageAndCount: false,
         virtualization: false,
         bufferPages: 1,
@@ -583,15 +583,15 @@ window.unbxdSearch = new UnbxdSearch({
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
-        hashMode: false,
+        hashMode: true,
         allowExternalUrlParams: false,
         seoFriendlyUrl: true,
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
         queryParamSeparator: "&",
         searchQueryParam: {
-            addToUrl: true,
-            algo: "DEFAULT",
+            addToUrl: false,
+            algo: "KEY_VALUE_REPLACER",
             keyReplacer: "query"
         },
         browseQueryParam: {
@@ -609,7 +609,7 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         sortParam: { 
-            addToUrl: true,
+            addToUrl: false,
             algo: "DEFAULT", 
             keyReplacer: "sortBy",
             valueReplacer: {
@@ -618,18 +618,18 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         pageNoParam: { 
-            addToUrl: true,
+            addToUrl: false,
             algo: "DEFAULT",
             keyReplacer: 'p', 
             usePageNo: false // uses page no. when turned on.else , index
         },
         pageSizeParam: {
-            addToUrl: true,
+            addToUrl: false,
             algo: "DEFAULT",
             keyReplacer: "count"
         },
         facetsParam: {
-            addToUrl: true,
+            addToUrl: false,
             algo: "KEY_VALUE_REPLACER",
             multiValueSeparator: ",",
             keyReplacer: {
