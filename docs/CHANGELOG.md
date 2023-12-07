@@ -41,6 +41,8 @@ nav_order: 8
 {: .no_toc}
 - Added ESLint for comprehensive code analysis. This enforces coding style rules, identifies potential bugs, and improves code readability.
 - Fix in github actions to run on release tag.
+- Removed dependency on node-sass completely 
+- Upgraded the node version to 16.14.0
 
 Please click [here](configurations/MiscellaneousConfig) for the more details on the extra params.
 
