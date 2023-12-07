@@ -583,14 +583,14 @@ window.unbxdSearch = new UnbxdSearch({
         onPaginate: function (data) { console.log(data, "data") }
     },
     url: {
-        hashMode: true,
+        hashMode: false,
         allowExternalUrlParams: false,
         seoFriendlyUrl: true,
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
         
         queryParamSeparator: "&",
         searchQueryParam: {
-            addToUrl: false,
+            addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: "query"
         },
