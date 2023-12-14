@@ -190,7 +190,7 @@ The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`
 ## browseQueryParam
 {: .d-inline-block}
 
-This will be the default query param for the search api to provide category information like category path or category id. 
+This will be the default query param for the browse api to provide category information like category path or category id. 
 
 {: .note }
 > `seoFriendlyUrl` must be **true** for this to work.
