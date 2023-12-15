@@ -6,7 +6,9 @@ const setInputValue = function(e) {
         }
         this.options.productType = "SEARCH";
         val = (val.indexOf("#") === 0) ? val.replace("#", "") : val;
+        const wrapper = document.getElementById('imageWrapper')
         if (val) {
+            wrapper.style.display = 'none';
             this.resetAll();
             this.changeInput(val, this.events.changeInput);
             this.options.products.productType = "SEARCH";
