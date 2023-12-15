@@ -4,6 +4,10 @@ on:
     pull_request:
     push:
     workflow_dispatch:
+    release:
+      types: [published, edited]
+
+      
 env:
     CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
@@ -37,7 +41,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v2
               with:
-                  node-version: 14.15.0
+                  node-version: 16.14.0
 
             - name: Check Cache
               uses: actions/cache@v2
@@ -99,7 +103,7 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v2
               with:
-                  node-version: 14.15.0
+                  node-version: 16.14.0
 
             - name: Check Cache
               uses: actions/cache@v2
@@ -134,13 +138,6 @@ jobs:
                 DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
               run: |
                 aws s3 cp public/dist/js/vanillaSearch.js s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.js --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000'
-            
-            - name: Upload CSS file to AWS
-              id: aws-upload
-              env:
-                AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
-                DEPLOY_ENV: ${{ steps.infer_env.outputs.DEPLOY_ENV }}
-              run: |
                 aws s3 cp public/dist/css/vanillaSearch.min.css s3://unbxd/search-sdk/v${{ steps.extract_version.outputs.version }}/vanillaSearch.min.css --grants read=uri=http://acs.amazonaws.com/groups/global/AllUsers --cache-control 'public,max-age=2592000'
 
             - name: Publish package

@@ -1,7 +1,7 @@
 
 const renderSearch =  function() {
     try {
-        const searchResults = this.getSearchResults();
+        const {response: searchResults} = this.getResponseObj();
         if (!searchResults) {
             return ``;
         }
@@ -19,7 +19,7 @@ const renderSearch =  function() {
             productViewType
         } = this.viewState;
         let productsUI = ``;
-        const idx = Number(this.state.startPageNo);
+        const idx = searchResults.start;
         let swatchUI = ``;
         if (productViewType === "GRID" && gridCount && gridCount > 1) {
             products.forEach((product, index) => {

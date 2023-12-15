@@ -91,7 +91,7 @@ const createLayout = function () {
         });
     }
     if (facet.selectedFacetsEl) {
-        console.error(`selectedFacetsEl option is deprecated from v2.0.2, please use selectedFacets option to configure selected facets elements and template`)
+        // console.error(`selectedFacetsEl option is deprecated from v2.0.2, please use selectedFacets option to configure selected facets elements and template`)
         facet.selectedFacetsEl.innerHTML = ``;
         facet.selectedFacetsEl.appendChild(getSelectedFacetsWrappers());
     } else {

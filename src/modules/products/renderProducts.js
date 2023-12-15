@@ -1,5 +1,5 @@
-export default function renderProducts(){
-    try{
+export default function renderProducts() {
+    try {
         const {
             productViewType
         } = this.viewState
@@ -12,10 +12,13 @@ export default function renderProducts(){
         const {
             noResultLoaded,
             isInfiniteStarted,
-            lastAction
         } = this.viewState;
 
-        
+        const {
+            products: {
+                productItemClass
+            } = {}
+        } = this.options;
 
         const viewCss = (productViewType === "LIST") ? "UNX-list-block" : "UNX-grid-block";
         searchResultsWrapper.classList.remove("UNX-list-block");
@@ -28,48 +31,61 @@ export default function renderProducts(){
             if (noResultLoaded) {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
-                window.scrollTo(0,0)
-                
+                window.scrollTo(0, 0)
             } else {
-
-                let currentUrlPage = this.getCurrentUrlPage();
                 let productsPerPage = this.getProductsPerPage();
+                const listItems = searchResultsWrapper.querySelectorAll(`.${productItemClass}`);
 
-                const {
-                    url: {
-                        pageNoParam: {
-                            usePageNo = false,
-                            
-                        } = {},
-                    } = {}
-                } = this.options;
 
-                    
-                if (lastAction === "prev_page_loaded") {
-                   
-                    searchResultsWrapper.insertAdjacentHTML('afterbegin', this.renderSearch());
-                    document.querySelector(`.product-item[data-prank="${(currentUrlPage * productsPerPage) + 1}"]`).scrollIntoView()
-                    if (usePageNo) {
-                        this.setPageNoParam(currentUrlPage + 1);
-                    } else {
-                        this.setPageNoParam((currentUrlPage ) * productsPerPage);
+                const tempContainer = document.createElement('div');
+                tempContainer.innerHTML = this.renderSearch();
+
+                const newElements = Array.from(tempContainer.children);
+
+                const { response: { start = 0 } } = this.getResponseObj();
+
+                let insertPoint = null;
+                const existingPranks = new Set();
+
+                listItems.forEach(item => {
+                    const currentPrank = parseInt(item.dataset.prank, 10);
+                    existingPranks.add(currentPrank);
+                });
+                for (let i = 0; i < listItems.length; i++) {
+                    const currentItem = listItems[ i ];
+                    const currentPrank = parseInt(currentItem.dataset.prank, 10);
+
+                    if (currentPrank > start) {
+                        insertPoint = currentItem;
+                        break;
                     }
-                   
+                }
+
+                const newElementsToInsert = newElements.filter(newElement => {
+                    const newElementPrank = parseInt(newElement.dataset.prank, 10);
+                    return !existingPranks.has(newElementPrank);
+                });
+
+                if (insertPoint) {
+                    newElementsToInsert.forEach(newElement => {
+                        searchResultsWrapper.insertBefore(newElement, insertPoint);
+                    });
+                    const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start + productsPerPage + 1}"]`);
+                    if(scrollToProduct){
+                        scrollToProduct.scrollIntoView();
+                    }
                 } else {
-                    searchResultsWrapper.insertAdjacentHTML('beforeend', this.renderSearch());
-                    if (usePageNo) {
-                        this.setPageNoParam( currentUrlPage - 1);
-                    } else {
-                        this.setPageNoParam( (currentUrlPage - 2) * productsPerPage);
-                    }
+                    newElementsToInsert.forEach(newElement => {
+                        searchResultsWrapper.appendChild(newElement);
+                    });
                 }
             }
         } else {
             searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
-            window.scrollTo(0,0)
+            window.scrollTo(0, 0)
         }
-    }catch(err){
-        this.onError("renderProducts.js",err)
+    } catch (err) {
+        this.onError("renderProducts.js", err)
     }
 }

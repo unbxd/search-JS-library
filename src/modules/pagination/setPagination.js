@@ -25,14 +25,15 @@ const getProductsPerPage = function () {
 
     if (addToUrl) {
         const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
-        return Number(urlParams[((algo === "KEY_VALUE_REPLACER") ? keyReplacer : "rows")])
+        return Number(urlParams[ ((algo === "KEY_VALUE_REPLACER") ? keyReplacer : "rows") ])
     } else {
         return this.state.pageSize || pageSize;
     }
 }
 
 const getCurrentUrlPage = function () {
-    const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+
+    let currentUrlPage;
     let {
         url: {
             pageNoParam: {
@@ -44,15 +45,29 @@ const getCurrentUrlPage = function () {
         } = {}
     } = this.options;
 
-    if (addToUrl) {
-        const pageNo = Number(urlParams[(algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start"]);
-        return usePageNo ? Number(pageNo) : Number((pageNo / getProductsPerPage.call(this)) + 1)
-    } else if (usePageNo) {
-        if (!this.viewState[ 'page' ]) { this.viewState[ 'page' ] = 1; }
+    if (usePageNo) {
+        if (!this.viewState[ 'page' ]) {
+            if (addToUrl) {
+                const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+                const pageNo = Number(urlParams[ (algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start" ]);
+                this.viewState[ 'page' ] = Number(pageNo);
+            } else {
+                this.viewState[ 'page' ] = 1;
+            }
+        }
         return this.viewState[ 'page' ]
+
     } else {
-        if (!this.viewState[ 'start' ]) { this.viewState[ 'start' ] = 0; }
-        return Number(((this.viewState[ 'start' ]) / this.state.pageSize) + 1);
+        if (!this.viewState[ 'start' ]) {
+            if (addToUrl) {
+                const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+                const pageNo = Number(urlParams[ (algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? "page" : "start" ]);
+                this.viewState[ 'start' ] = Number((pageNo / getProductsPerPage.call(this)) + 1)
+            } else {
+                this.viewState[ 'start' ] = 1;
+            }
+        }
+        return this.viewState[ 'start' ]
     }
 }
 
@@ -68,16 +83,36 @@ const setPageNoParam = function (value) {
         } = {}
     } = this.options;
 
-    if (addToUrl) {
+    const i = value;
+
+    this.viewState[ usePageNo ? 'page' : 'start' ] = Number(value);
+
+    addToUrl && setTimeout(() => {
         const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
-        urlParams[((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start')] = [value];
+        urlParams[ ((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start') ] = [ i ];
         history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
-    } else if (usePageNo) {
-        this.viewState[ 'page' ] = value;
-    } else {
-        this.viewState[ 'start' ] = value;
+    }, 0)
+
+}
+
+const getFirstPrank = function () {
+    const products = this.searchResultsWrapper.children;
+    if (products.length === 0) {
+        return null;
     }
 
+    const firstPrank = parseInt(products[ 0 ].dataset.prank, 10);
+    return firstPrank;
+}
+
+const getLastPrank = function () {
+    const products = this.searchResultsWrapper.children;
+    if (products.length === 0) {
+        return null;
+    }
+
+    const lastPrank = parseInt(products[ products.length - 1 ].dataset.prank, 10);
+    return lastPrank;
 }
 
 const setPagination = (prototype) => {
@@ -88,7 +123,9 @@ const setPagination = (prototype) => {
         setUpInfiniteScroll,
         getProductsPerPage,
         getCurrentUrlPage,
-        setPageNoParam
+        setPageNoParam,
+        getFirstPrank,
+        getLastPrank
     })
 }
 
