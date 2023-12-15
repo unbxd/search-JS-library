@@ -4,6 +4,7 @@ import createFacetWrapper from "./createFacetWrapper";
 import createBannerWrapper from "./createBannerWrapper";
 import createBreadcrumbWrapper from "./createBreadcrumbWrapper";
 import createPageSizeWrapper from "./createPageSizeWrapper";
+import createImageBoxWrapper from "./createImageBoxWrapper";
 import createSortWrapper from "./createSortWrapper";
 import createSelectedFacetWrapper from "./createSelectedFacetWrapper";
 import createSpellCheckWrapper from "./createSpellCheckWrapper";
@@ -18,6 +19,7 @@ const setComponentWrappers = (prototype) => {
         createBannerWrapper,
         createBreadcrumbWrapper,
         createPageSizeWrapper,
+        createImageBoxWrapper,
         createSortWrapper,
         createSelectedFacetWrapper,
         createSpellCheckWrapper,
@@ -34,6 +36,7 @@ export {
     createBannerWrapper,
     createBreadcrumbWrapper,
     createPageSizeWrapper,
+    createImageBoxWrapper,
     createSortWrapper,
     createSelectedFacetWrapper,
     createSpellCheckWrapper,

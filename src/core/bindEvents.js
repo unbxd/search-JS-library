@@ -15,8 +15,59 @@ function bindEvents() {
         actionChangeClass,
         actionBtnClass,
         breadcrumb,
-        selectedFacets
+        selectedFacets,
+        visualSearch
     } = this.options;
+    if(visualSearch && visualSearch.enabled){
+        const config = visualSearch.uploadConfig;
+        if(config && config.input){
+            config.input.addEventListener("keydown", (e) => {
+                const val = e.target.value;
+                if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+                    if (val !== "") {
+                        this.setImageValue.bind(this)();
+                    }
+                }
+            });
+        }
+        if(config && config.el){
+            config.el.addEventListener("change" , this.uploadImageFile.bind(this))
+        }
+        if (config && config.button) {
+            config.button.addEventListener(visualSearch.trigger, this.setImageValue.bind(this));
+        }
+
+        this.imageContainer = visualSearch.imageBox.el;
+
+        if(this.imageContainer){
+        this.delegate(
+            this.imageContainer,
+            "click",
+            `.center-dot`,
+            this.onBoundingBoxClick.bind(this)
+        );
+        this.delegate(
+            this.imageContainer,
+            "click",
+            `.cropped-image-wrapper`,
+            this.onBoundingBoxClick.bind(this)
+        );
+        window.addEventListener("scroll", ()=> {
+       //     console.log("htthtu8htuhtthu8htuhtu8thtuhthuth")
+       if (window.scrollY > 500 && !this.state.screenstate) {
+            this.renderScreens.bind(this)();
+       }
+        });
+        
+            this.delegate(
+                this.imageContainer,
+                "click",
+                `#downbutton`,
+                this.downbuttonclick.bind(this)
+            );
+    }
+
+    }
     if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;

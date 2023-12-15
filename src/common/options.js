@@ -30,7 +30,8 @@ const options = {
     apiKey: "f19768e22b49909798bc2411fa3dd963",
     searchPath: "",
     searchTrigger: 'click',
-    searchEndPoint: "https://search.unbxd.io/",
+    searchEndPoint: "https://unxdev-platform.unbxd.io/",
+    visualSearchEndpoint:"https://unxdev-platform.unbxd.io",
     products: {
         el: null,
         template: productTemplate,
@@ -335,6 +336,29 @@ const options = {
     actionBtnClass: "UNX-action-item",
     actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
+    },
+    visualSearch: {
+        enabled: true,
+
+        iconEl: document.getElementById("unbxdvsicon"),
+        resultEl: document.getElementById("visualSearchResultContainer"),
+        trigger: "click",
+        uploadConfig: {
+            button: document.getElementById('visualsearchbutton'),
+            input: document.getElementById('userInfo'),
+            el: document.getElementById('fileInput'),
+        },
+        imageBox: {
+            el: document.getElementById("imageContainer"),
+            boxClass: "UNX-pagesize",
+            selectedBoxClass: "UNX-selected-bounding-box",
+            action: "click",
+            // template: function () { },
+            productDotClass: "center-dot",
+            collapseOnScroll: true,
+            boundingproductClass: "bounding-box",
+            selectedBoundingProductClass: "UNX - selected - bounding - product"
+        }
     },
     onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
         if (redirect) {

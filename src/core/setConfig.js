@@ -5,7 +5,8 @@ const setConfig = function(options = {}, props = {}) {
         facet,
         swatches,
         products,
-        productView
+        productView,
+        visualSearch
     } = props;
 
     if(facet) {
@@ -30,6 +31,10 @@ const setConfig = function(options = {}, props = {}) {
         this.options.productView.productViewType = this.viewState.productViewType;
         this.state.productViewType = this.viewState.productViewType;
     }
+    if(visualSearch){
+        this.options.visualSearchenabled = (visualSearch && visualSearch.enabled) ? visualSearch.enabled :options.visualSearch.enabled;
+    }
+    // to set imagebox attribute
     
 }
 export default setConfig;

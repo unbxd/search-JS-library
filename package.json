@@ -19,8 +19,7 @@
         "upload-s3": "node s3Upload.js",
         "build:dev": "webpack ---config ./webpack/webpack.dev.build.js",
         "test": "webpack ---config ./webpack/webpack.dev.build.js",
-        "prepare": "husky install",
-        "pre-commit": "lint-staged"
+        "prepare": "husky install"
     },
     "devDependencies": {
         "@babel/core": "^7.10.5",

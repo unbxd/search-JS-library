@@ -5,6 +5,8 @@ import setSearch from '../modules/searchResults/setSearch';
 import setProductViewType from '../modules/productViewType/setProductViewType';
 import setPagination from '../modules/pagination/setPagination';
 import setSort from '../modules/sort/setSort';
+import setImage from "../modules/visualSearchInput/setImage"
+
 import setInput from '../modules/input/setInput';
 import setSpellCheck from '../modules/didYouMean/setSpellCheck';
 import setBreadCrumbs from '../modules/breadcrumbs/setBreadcrumbs';
@@ -157,6 +159,7 @@ const setMethods = (UnbxdSearch) => {
     prototype.setSearchWidget = setSearchWidget;
     prototype.setFacetWidget = setFacetWidget;
     prototype.updateConfig = updateConfig;
+    prototype.setImage = setImage;
     prototype.createLayout = createLayout;
     prototype.initialize = initialize;
     prototype.extraActions = extraActions;

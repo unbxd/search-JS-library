@@ -1,18 +1,22 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import UnbxdSearch from "../../src/index";
 // import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
-import def from "./defaultLogo.png"
-import "./unbxdStyles.css"
 
 let routeTemplate = `
 <div class="UNX-header">
 			<div class="UNX-header-inner">
-				<img src=${def} class="UNX-header-logo"></img>
-				<nav id="categoryLinks" class="UNX-nav UNX-naviagtion-wrap">
-					<button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
-                    <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
-                    <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing machines</button>
-                    <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention micro ovens</button>
-                    <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">Bases and bedheads</button>
+				<div class="UNX-logo">
+					<a href="/" class="UNX-header-logo">
+						<span class="UNX-square"></span>
+					</a>
+				</div>
+				<nav class="UNX-nav">
+					<a href="" class="disabled"> Home </a>
+					<a href="" class="disabled"> Clothing </a>
+					<a href="" class="disabled"> Electronics </a>
+					<a href="" class="disabled"> Health & Beauty </a>
+					<a href="" class="disabled"> Watches </a>
 				</nav>
 				<div class="UNX-right-header">
 					<div id="autoSuggestInput" class="UNX-input-wrapper">
@@ -22,9 +26,21 @@ let routeTemplate = `
 							class="UNX-input"
 							autocomplete="off"
 						/>
-						<button id="searchBtn" class="UNX-search-btn"></button>
+                        <i id="unbxdvsicon" class="fa fa-camera" onclick="openModal()" style="
+                        position: relative;
+                    "></i>                        <i id="searchBtn" class="fa fa-search"></i>
+						<div class="UNX-pd-parent">
+							<div class="UNX-preview-debugger UNX-query"></div>
+						</div>
 					</div>
 				</div>
+                <!--       <nav id="categoryLinks" class="UNX-naviagtion-wrap">
+        //     <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</a>
+        //     <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
+        //     <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing Machines</button>
+        //     <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention Micro Ovens</button>
+        //     <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">BASES & BEDHEADS</button>
+        // </nav> -->
 			</div>
 		</div>
 		<div class="search-preview">
@@ -32,11 +48,16 @@ let routeTemplate = `
 				<div class="UNX-head-wrapper">
 					<div class="UNX-selected-actions">
 						<div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
-						
+						<div
+							class="UNX-selected-facet-wrapper"
+							id="selectedFacetWrapper"
+						></div>
 					</div>
 				</div>
 				<div class="UNX-product-results">
 					<div class="UNX-facet-wrapper">
+    <div id="imageContainer" class="UNX-Image-box-Wrapper">
+</div>
 						<h2 class="UNX-filter-header">Filter By</h2>
 						<div class="UNX-fxd-facet">
 							<div
@@ -68,14 +89,9 @@ let routeTemplate = `
 					<div class="UNX-product-list">
 						<div id="didYouMeanWrapper"></div>
 						<div class="UNX-result-header">
-                            <div class="row-1">
-                            <div class="UNX-sort-wrapper" id="sortWrapper"></div>
-                            <div class="UNX-change-products" id="changeNoOfProducts"></div>
-                            </div>
-                            
-							
+							<div class="UNX-sort-wrapper" id="sortWrapper"></div>
 							<div class="UNX-result-right">
-								
+								<div class="UNX-change-products" id="changeNoOfProducts"></div>
 								
 								<div
 									class="UNX-product-type-block"
@@ -84,10 +100,6 @@ let routeTemplate = `
 							</div>
 						</div>
 						<div id="bannerContainer"></div>
-                        <div
-							class="UNX-selected-facet-wrapper"
-							id="selectedFacetWrapper"
-						></div>
 						<div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
                         <div id="" class="UNX-change-pagination-wrap unxPagination" ></div>
 						<div id="" class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination" ></div>
@@ -178,10 +190,20 @@ let routeTemplate = `
 				</div>
 			</div>
 		</div>
+        <div id="myModal">
+            <div class="modal-content">
+              <span class="close" id="modalclose" onclick="closeModal()">&times;</span>
+              <h2>Upload a Image</h2>
+              <input type="file" id="fileInput">
+              <input type="text" id="userInfo" placeholder="Image URL">
+              <button id = "visualsearchbutton">Submit</button>
+            </div>
+          </div>
 `;
 
 
 const routes = {
+    '/visual-search-demo/index.html' : routeTemplate,
     '/': routeTemplate,
     '/search': routeTemplate,
     '/men': routeTemplate,
@@ -192,7 +214,7 @@ const routes = {
 };
 
 const rootDiv = document.getElementById('root');
-rootDiv.innerHTML = routes[ window.location.pathname ];
+rootDiv.innerHTML = routes[window.location.pathname];
 
 const setCategory = function (e) {
     const el = e.target;
@@ -210,8 +232,8 @@ const setCategory = function (e) {
 
 };
 
-const navElem = document.getElementById("categoryLinks");
-navElem.addEventListener("click", setCategory);
+//const navElem = document.getElementById("categoryLinks");
+//navElem.addEventListener("click", setCategory);
 
 
 const checkRangeTemplate = function (range, selectedRange, facet) {
@@ -348,6 +370,20 @@ window.addEventListener('popstate', () => {
 
 let searchButtonEl = document.getElementById("searchBtn");
 let searchBoxEl = document.getElementById("unbxdInput");
+let camerabutton = document.getElementById("unbxdvsicon");
+let vssearchmodal = document.getElementById("myModal");
+//console.log("/visual-search-demo/index.htm",vssearchmodal)
+let modalclose = document.getElementById("modalclose");
+const fileInput = document.getElementById('fileInput');
+const userInfo = document.getElementById('userInfo');
+const uploadUrlButton = document.getElementById('visualsearchbutton');
+const visualSearchResultContainer = document.getElementById("visualSearchResultContainer")
+const image = document.getElementById('ImageboxWrapper');
+const imageContainer = document.getElementById('imageContainer');
+const secondaryImages = document.getElementById('secondary')
+const wrapper = document.getElementById('imageWrapper')
+const downbutton = document.getElementById("closebutton");
+const imagebox = document.getElementById("image-box")
 
 searchButtonEl.addEventListener("click", () => {
     if (unbxdSearch.options.productType !== 'SEARCH') {
@@ -358,6 +394,40 @@ searchButtonEl.addEventListener("click", () => {
         }, "", "/search?")
     }
 });
+
+uploadUrlButton.addEventListener("click", (e) => {
+    const userInfo = document.getElementById('userInfo').value
+    if (userInfo) {
+        //console.log('User Info:', userInfo , unbxdSearch);
+        vssearchmodal.style.display = "none";
+        //visualSearchResultContainer.style.display = "block";
+    }
+})
+
+userInfo.addEventListener("keydown", (e) => {
+    const val = e.target.value;
+    if (e.key === "Enter") {
+        if (val !== "") {
+            //console.log('User Info:', val); 
+            vssearchmodal.style.display = "none";
+            //visualSearchResultContainer.style.display = "block";
+        }
+    }
+
+})
+
+camerabutton.addEventListener("click", () => {
+    if (vssearchmodal) {
+        vssearchmodal.style.display = "block";
+    }
+})
+
+
+modalclose.addEventListener("click", () => {
+    if (vssearchmodal) {
+        vssearchmodal.style.display = "none";
+    }
+})
 
 searchBoxEl.addEventListener("keydown", (e) => {
     const val = e.target.value;
@@ -408,8 +478,8 @@ if (location.pathname === "/men") {
 
 window.unbxdSearch = new UnbxdSearch({
     
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "stage_express_com-u1456154339513",
+    apiKey: "fb853e3332f2645fac9d71dc63e09ec2",
     // onError: function(err) {
     //     console.error('onError', err)
     // },
@@ -417,6 +487,29 @@ window.unbxdSearch = new UnbxdSearch({
     searchTrigger: "click",
     searchButtonEl: document.getElementById("searchBtn"),
     unbxdAnalytics: true,
+    visualSearch: {
+        enabled: true,
+
+        iconEl: document.getElementById("unbxdvsicon"),
+        resultEl: document.getElementById("visualSearchResultContainer"),
+        trigger: "click",
+        uploadConfig: {
+            button: document.getElementById('visualsearchbutton'),
+            input: document.getElementById('userInfo'),
+            el: document.getElementById('fileInput'),
+        },
+        imageBox: {
+            el: document.getElementById("imageContainer"),
+            boxClass: "UNX-pagesize",
+            selectedBoxClass: "UNX-selected-bounding-box",
+            action: "click",
+            // template: function () { },
+            productDotClass: "center-dot",
+            collapseOnScroll: true,
+            boundingproductClass: "bounding-box",
+            selectedBoundingProductClass: "UNX - selected - bounding - product"
+        },
+    },
     setCategoryId: function (param, self) {
         const {
             level,
@@ -587,7 +680,11 @@ window.unbxdSearch = new UnbxdSearch({
         allowExternalUrlParams: false,
         seoFriendlyUrl: true,
         orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
-        
+        visuaSearchQueryParam: {
+            addToUrl: true,
+            algo: "DEFAULT",
+            keyReplacer: "query"
+        },
         queryParamSeparator: "&",
         searchQueryParam: {
             addToUrl: true,
@@ -709,4 +806,4 @@ window.unbxdSearch = new UnbxdSearch({
 
 
 
-window.unbxdSearch.getResults('*')
+//window.unbxdSearch.getResults('*')

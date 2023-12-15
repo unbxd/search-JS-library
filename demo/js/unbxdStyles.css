@@ -893,7 +893,8 @@
   color: rgb(185, 185, 185);
   border-color: transparent;
   background-color:transparent ;
-  top: 10px
+  top: 10px;
+  left : -55px;
 }
 
 .UNX-pagination-block .UNX-page-prev,

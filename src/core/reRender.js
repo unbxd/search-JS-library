@@ -7,8 +7,10 @@ const reRender = function () {
         searchBoxEl,
         loader,
         breadcrumb,
-        productView
+        productView,
+        visualSearchRequest
     } = this.options;
+ 
     
     const paginationType = this.getPaginationType();
     
@@ -61,6 +63,11 @@ const reRender = function () {
     } else {
         this.renderProducts();
         
+    }
+    if(visualSearchRequest){
+        this.renderScreens();
+        //this.renderCroppedImages()
+
     }
     this.renderFacets();
     this.renderSelectedFacets();
