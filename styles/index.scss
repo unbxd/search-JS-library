@@ -1,3 +1,7 @@
+:root {
+  --viewMoreHeight: 100px;
+}
+
 .UNX-header *,
 .UNX-results-container * {
   box-sizing: border-box;
@@ -667,7 +671,7 @@ button.UNX-page-next {
   overflow-y:auto;
 }
 .UNX-view-more {
-  height: 100px;
+  height: var(--viewMoreHeight);
 }
 .UNX-accordian-open .UNX-facets-all {
   max-height: inherit;
