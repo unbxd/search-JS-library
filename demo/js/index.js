@@ -445,7 +445,7 @@ window.unbxdSearch = new UnbxdSearch({
             window.UnbxdAnalyticsConf.page = "categoryPath:\"" + page + "\"";
         }
     },
-    products: {
+    products: { 
         el: document.getElementById("searchResultsWrapper"),
         productType: productType,
         onProductClick: function (product, e) {
@@ -466,6 +466,8 @@ window.unbxdSearch = new UnbxdSearch({
     facet: {
         isCollapsible: true,
         defaultOpen: "NONE",
+        viewMoreLimit: 2,
+        enableViewMore: true,
         facetsEl: document.getElementById("facetsWrapper"),
         selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
         selectedFacetClass: "UNX-selected-facet-btn",
@@ -595,12 +597,12 @@ window.unbxdSearch = new UnbxdSearch({
             keyReplacer: "query"
         },
         browseQueryParam: {
-            addToUrl: false,
+            addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: "pppp"
         },
         pageViewParam: {
-            addToUrl: false,
+            addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: "view",
             valuesReplacer: {
@@ -609,7 +611,7 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         sortParam: { 
-            addToUrl: false,
+            addToUrl: true,
             algo: "DEFAULT", 
             keyReplacer: "sortBy",
             valueReplacer: {
@@ -618,18 +620,18 @@ window.unbxdSearch = new UnbxdSearch({
             }
         },
         pageNoParam: { 
-            addToUrl: false,
+            addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: 'p', 
-            usePageNo: false // uses page no. when turned on.else , index
+            usePageNo: true // uses page no. when turned on.else , index
         },
         pageSizeParam: {
-            addToUrl: false,
+            addToUrl: true,
             algo: "DEFAULT",
             keyReplacer: "count"
         },
         facetsParam: {
-            addToUrl: false,
+            addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             multiValueSeparator: ",",
             keyReplacer: {
@@ -703,7 +705,8 @@ window.unbxdSearch = new UnbxdSearch({
     // },
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma,
-    debugMode: true
+    debugMode: true,
+    browseQueryParam: 'p-id'
 });
 
 

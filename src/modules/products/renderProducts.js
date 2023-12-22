@@ -1,5 +1,5 @@
 export default function renderProducts() {
-    try {
+    try {        
         const {
             productViewType
         } = this.viewState
@@ -7,7 +7,7 @@ export default function renderProducts() {
         const {
             searchResultsWrapper
         } = this;
-        const noResultCss = "UNX-no-resultss-wrap";
+        const noResultCss = "UNX-no-results-wrap";
 
         const {
             noResultLoaded,

@@ -17,6 +17,23 @@ nav_order: 8
 
 
 ---
+# v2.1.3
+
+- **Release Date**: 22nd Dec, 2023
+- **Core SDK Version**: v0.5.5
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.3/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.3/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- A new configurations available to customize the browse query parameter as categoryPath (`p`) or categoryPathId(`p-id`)in the search API request. Please check [here](configurations/MiscellaneousConfig#browsequeryparam)
+
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Some selected facets were being cleared on page refresh when SEO configs were partially using DEFAULT and KEY_VALUE_REPLACER algorithms.
+
+
+---
 # v2.1.2 - Product Virtualization
 
 - **Release Date**: 7th Dec, 2023
