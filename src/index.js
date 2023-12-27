@@ -37,6 +37,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.actions = actions;
         this.cssList = cssClasses;
         this.testIds = testIds;
+        this.options.onEvent(this, 'before_initialised');
         this.updateConfig();
         this.options.onBackFromRedirect(this.getHashMode());
         this.options.onEvent(this, 'initialised');
