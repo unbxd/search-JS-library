@@ -15,6 +15,24 @@ nav_order: 8
 1. TOC
 {:toc}
 
+---
+# v2.1.4
+
+- **Release Date**: 28th Dec, 2023
+- **Core SDK Version**: v0.5.6
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.4/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.4/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- A newevent available for handling cases before updating the config & initialising
+  before_initialised
+
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- Edge case for null data handled in deepClone in core js
+
+
 
 ---
 # v2.1.3
