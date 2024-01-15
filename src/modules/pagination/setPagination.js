@@ -96,7 +96,9 @@ const setPageNoParam = function (value) {
 }
 
 const getFirstPrank = function () {
-    const products = this.searchResultsWrapper.children;
+    debugger
+    // const products = this.searchResultsWrapper.children;
+    const products = document.getElementsByClassName("product-item");
     if (products.length === 0) {
         return null;
     }
@@ -106,7 +108,8 @@ const getFirstPrank = function () {
 }
 
 const getLastPrank = function () {
-    const products = this.searchResultsWrapper.children;
+    // const products = this.searchResultsWrapper.children;
+    const products = document.getElementsByClassName("product-item");
     if (products.length === 0) {
         return null;
     }

@@ -184,7 +184,8 @@ const options = {
             multiValueSeparator: ",",
             valueReplacer: {},
             keyReplacer: {},
-            rangeSeparator: "-"
+            rangeSeparator: "-",
+            rangeFacets: []
         }
 
     },
@@ -256,8 +257,8 @@ const options = {
         applyMultipleFilters: false,
         applyButtonText: "Apply",
         clearButtonText: "clear",
-
-
+        actionBtnClass: "UNX-action-item",
+        actionChangeClass: "UNX-action-change",
         isCollapsible: true,
         isSearchable: true,
         searchPlaceHolder: "Search Filter",
@@ -332,8 +333,8 @@ const options = {
     },
     unbxdAnalytics: false,
     // hashMode: false,
-    actionBtnClass: "UNX-action-item",
-    actionChangeClass: "UNX-action-change",
+    // actionBtnClass: "UNX-action-item",
+    // actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
     },
     onQueryRedirect: (self, redirect, urlBeforeRedirect) => {

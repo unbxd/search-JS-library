@@ -12,11 +12,15 @@ function bindEvents() {
         pagesize,
         spellCheck,
         searchBoxEl,
-        actionChangeClass,
-        actionBtnClass,
         breadcrumb,
         selectedFacets
     } = this.options;
+    
+    const {
+        actionBtnClass,
+        actionChangeClass
+    } = facet || {};
+    
     if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;
@@ -40,9 +44,9 @@ function bindEvents() {
     if (facet.facetsEl) {
         this.facetWrappers.forEach(wrapper => {
             this.delegate(wrapper, facet.facetAction, `.${facet.facetClass}`, this.findChangedFacet.bind(this));
-            this.delegate(wrapper, 'change', '.' + actionChangeClass, this.extraActionsChange.bind(this));
-            this.delegate(wrapper, 'keyup', '.' + actionChangeClass, this.extraActionsChange.bind(this));
-            this.delegate(wrapper, 'click', '.' + actionBtnClass, this.extraActions.bind(this));
+            this.delegate(wrapper, 'change', '.' + (this.options.actionChangeClass  || actionChangeClass), this.extraActionsChange.bind(this));
+            this.delegate(wrapper, 'keyup', '.' + (this.options.actionChangeClass || actionChangeClass), this.extraActionsChange.bind(this));
+            this.delegate(wrapper, 'click', '.' + (this.options.actionBtnClass || actionBtnClass), this.extraActions.bind(this));
         });
     }
     if (searchButtonEl) {

@@ -1,5 +1,6 @@
 export default function renderProducts() {
-    try {        
+    try {       
+        debugger; 
         const {
             productViewType
         } = this.viewState
@@ -8,6 +9,7 @@ export default function renderProducts() {
             searchResultsWrapper
         } = this;
         const noResultCss = "UNX-no-results-wrap";
+        const noResultsBlock = searchResultsWrapper.getElementsByClassName('UNX-no-results')[0];
 
         const {
             noResultLoaded,
@@ -25,6 +27,9 @@ export default function renderProducts() {
         searchResultsWrapper.classList.remove("UNX-grid-block");
         searchResultsWrapper.classList.add(viewCss);
         searchResultsWrapper.classList.remove(noResultCss);
+        if (noResultsBlock){
+            noResultsBlock.remove();
+        }
         searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
             this.viewState.isInfiniteStarted = false;

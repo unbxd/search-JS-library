@@ -96,15 +96,15 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
         enableViewMore,
         viewMoreText,
         viewMoreLimit,
-
+        actionBtnClass,
+        actionChangeClass,
         applyButtonText,
         clearButtonText,
-
     } = facet;
-    const {
-        actionBtnClass,
-        actionChangeClass
-    } = this.options;
+    // const {
+    //     actionBtnClass,
+    //     actionChangeClass
+    // } = this.options;
    
     let viewMoreUi = ``;
     let viewMoreCss=``;
@@ -114,7 +114,7 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
         viewMoreCss="UNX-view-more";
         let docRoot = document.querySelector(":root");
         docRoot.style.setProperty('--viewMoreHeight', `${32*viewMoreLimit}px`);
-        viewMoreUi = `<div class="UNX-view-more-row "><button class="${actionBtnClass}" data-facet-name="${facetName}" data-action="viewMore" data-id="${viewMoreText[0]}">${viewMoreText[0]}</button></div>`;
+        viewMoreUi = `<div class="UNX-view-more-row "><button class="${this.options.actionBtnClass || actionBtnClass}" data-facet-name="${facetName}" data-action="viewMore" data-id="${viewMoreText[0]}">${viewMoreText[0]}</button></div>`;
     }
     let clearUI = ``;
     let applyBtn = ``;
@@ -128,13 +128,13 @@ function facetUIElem (facetObj, children, isExpanded,facetSearchTxt, facet) {
     let searchInput = ``;
     if(isCollapsible){
         if(isExpanded) {
-            collapsibleUI = `<div class="UNX-facet-header ${actionBtnClass} UNX-facet-open"  data-facet-name="${facetName}" data-facet-action="facetClose"> <h3>${displayName}</h3> </div>`;
+            collapsibleUI = `<div class="UNX-facet-header ${this.options.actionBtnClass || actionBtnClass} UNX-facet-open"  data-facet-name="${facetName}" data-facet-action="facetClose"> <h3>${displayName}</h3> </div>`;
         } else {
-            collapsibleUI = `<div class="UNX-facet-header ${actionBtnClass} UNX-facet-close"  data-facet-name="${facetName}" data-facet-action="facetOpen"> <h3>${displayName}</h3></div>`;
+            collapsibleUI = `<div class="UNX-facet-header ${this.options.actionBtnClass || actionBtnClass} UNX-facet-close"  data-facet-name="${facetName}" data-facet-action="facetOpen"> <h3>${displayName}</h3></div>`;
         }
     }
     if(isSearchable && facetSearchTxt !== null) {
-        searchInput =`<div class="UNX-searchable-facets"><label class="UNX-hidden" for="${facetName}_searchBox">${searchPlaceHolder}</label><input  id="${facetName}_searchBox" name="${facetName}_searchBox" data-test-id="${this.testIds.UNX_searchFacets}" class="UNX-facet-search ${actionChangeClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
+        searchInput = `<div class="UNX-searchable-facets"><label class="UNX-hidden" for="${facetName}_searchBox">${searchPlaceHolder}</label><input  id="${facetName}_searchBox" name="${facetName}_searchBox" data-test-id="${this.testIds.UNX_searchFacets}" class="UNX-facet-search ${actionChangeClass || this.options.actionBtnClass}" value="${facetSearchTxt}"  data-facet-name="${facetName}" data-facet-action="searchFacets" type="text" placeholder="${searchPlaceHolder}"/></div>`
     }
     return [`<div class="UNX-text-facet-wrap">`,
                 collapsibleUI,
