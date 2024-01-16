@@ -1,6 +1,5 @@
 export default function renderProducts() {
-    try {       
-        debugger; 
+    try {
         const {
             productViewType
         } = this.viewState
