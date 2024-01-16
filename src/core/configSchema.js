@@ -241,56 +241,58 @@ export const spellCheckSchema = {
 
 export const productsSchema = {
     moduleName: "products",
-    el: {
-        required: true,
-        datatype: "element"
-    },
-    productType: {
-        required: true,
-        datatype: "string",
-        allowedOptions: ["SEARCH", "CATEGORY"]
-    },
-    template: {
-        required: true,
-        datatype: "function"
-    },
-    productAttributes: {
-        required: true,
-        datatype: "array",
-        customValidations: (products) => {
-            if (products.productAttributes.length === 0) {
-                console.error(`SDK Config error in products: productAttributes should be an empty array`)
+    config: {
+        el: {
+            required: true,
+            datatype: "element"
+        },
+        productType: {
+            required: true,
+            datatype: "string",
+            allowedOptions: ["SEARCH", "CATEGORY"]
+        },
+        template: {
+            required: true,
+            datatype: "function"
+        },
+        productAttributes: {
+            required: true,
+            datatype: "array",
+            customValidations: (products) => {
+                if (products.productAttributes.length === 0) {
+                    console.error(`SDK Config error in products: productAttributes should be an empty array`)
+                }
             }
-        }
-    },
-    attributesMap: {
-        required: true,
-        datatype: "object",
-        customValidations: (products) => {
-            if (Object.keys(products.attributesMap).length === 0) {
-                console.error(`SDK Config error in products: attributesMap should be an empty object`)
+        },
+        attributesMap: {
+            required: true,
+            datatype: "object",
+            customValidations: (products) => {
+                if (Object.keys(products.attributesMap).length === 0) {
+                    console.error(`SDK Config error in products: attributesMap should be an empty object`)
+                }
             }
+        },
+        gridCount: {
+            datatype: "number"
+        },
+        productItemClass: {
+            required: true,
+            datatype: "string"
+        },
+        onProductClick: {
+            datatype: "function"
+        },
+        defaultImage: {
+            datatype: "string"
+        },
+        tagName: {
+            datatype: "string"
+        },
+        htmlAttributes: {
+            datatype: "object"
         }
-    },
-    gridCount: {
-        datatype: "number"
-    },
-    productItemClass: {
-        datatype: "string"
-    },
-    onProductClick: {
-        datatype: "function"
-    },
-    defaultImage: {
-        datatype: "string"
-    },
-    tagName: {
-        datatype: "string"
-    },
-    htmlAttributes: {
-        datatype: "object"
     }
-
 }
 
 export const pageSizeSchema = {
@@ -518,6 +520,12 @@ export const facetsSchema = {
             required: function (facet) {
                 return facet.facetsEl && facet.applyMultipleFilters
             },
+            datatype: "string"
+        },
+        actionBtnClass: {
+            datatype: "string"
+        },
+        actionChangeClass: {
             datatype: "string"
         },
         isCollapsible: {
@@ -772,12 +780,6 @@ export const othersSchema = {
         },
         unbxdAnalytics: {
             datatype: "boolean"
-        },
-        actionBtnClass: {
-            datatype: "string"
-        },
-        actionChangeClass: {
-            datatype: "string"
         },
         extraParams: {
             datatype: "object"
