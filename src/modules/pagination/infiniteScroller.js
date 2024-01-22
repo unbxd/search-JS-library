@@ -104,11 +104,11 @@ const setUpInfiniteScroll = function () {
             });
 
             this.postLoaderObserver = new IntersectionObserver(entries => {
-                if (entries[ 0 ].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
+                const lastPrank = this.getLastPrank();
+                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted && lastPrank < this.state.responseObj.response.numberOfProducts) {
                     this.viewState.isInfiniteStarted = true;
-                    const lastPrank = this.getLastPrank();
-                    this.setPageStart(lastPrank);
-                    this.getResults("", true, 'next');
+                        this.setPageStart(lastPrank);
+                        this.getResults("", true, 'next');
                 }
             }, {
                 threshold: 0,

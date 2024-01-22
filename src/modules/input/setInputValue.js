@@ -1,6 +1,6 @@
 const setInputValue = function() {
     try{
-        let val = this.options.searchBoxEl.value ;
+        let val = this.options.searchBoxEl.value === "" ? "*": this.options.searchBoxEl.value ;
         if (!val.replace(/\s/g, '').length) {
             return false;
         }

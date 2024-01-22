@@ -311,13 +311,23 @@ export const pageSizeSchema = {
                 if(!pagesize.options.includes(pagesize.pageSize)){
                     console.error(`SDK Config error in pagesize: pageSize should be among options`)
                 }
+                if(pagesize.pageSize < 0){
+                    console.error("SDK Config error in pagesize: pageSize cannot be a negative value")
+                }
             }
         },
         options: {
             required: function (pagesize) {
-                return pagesize.enabled
+                return pagesize.enabled;
             },
-            datatype: "array"
+            datatype: "array",
+            customValidations: (pagesize)=>{
+                const isNegative = pagesize.options.some(item=>item<0);
+
+                if (isNegative){
+                    console.error(`SDK Config error in pagesize: options cannot contain negative values.`);
+                }
+            }
         },
         pageSizeClass: {
             datatype: "string"
