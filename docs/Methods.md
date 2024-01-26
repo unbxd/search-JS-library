@@ -235,16 +235,13 @@ unbxdSearch.setRangeSlider({
 ```
 ---
 ## getCategoryId
-Use this config function to return category id for a particular category page
-### Default value
+Use this config function to return category path or category path id for a particular category page. The value returned by this function is used to set the categoryPath or categoryPathId data in the state on page refresh. 
+### Sample 
 {: .no_toc }
 ```js
-unbxdSearch.setRangeSlider({
-    "start":0,
-    "end":573,
-    "facetName":"price",
-    "gap": 200
-    })
+getCategoryId: function() {
+    return window.UnbxdAnalyticsConf.page // example
+}
 ```
 ---
 ## setCategoryId
