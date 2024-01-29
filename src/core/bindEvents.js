@@ -23,7 +23,6 @@ function bindEvents() {
     
     if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
-            debugger
             const val = e.target.value;
             if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
                 // if (val !== "") {

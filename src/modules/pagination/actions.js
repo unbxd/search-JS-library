@@ -18,9 +18,10 @@ function renderNewResults(action) {
             start,
             rows,
             isNext,
-            isPrev
+            isPrev,
+            noOfPages
         } = pageInfo;
-
+        
         if (this.options.pagination.type === "CLICK_N_SCROLL") {
             if (action === this.actions.next) {
                 if (isNext) {
@@ -46,6 +47,22 @@ function renderNewResults(action) {
                     onEvent(this, this.events.pagePrev, {
                         value: prev
                     });
+                }
+            }
+            
+            if(action === "firstPage"){
+                const firstPage =  0;
+                if(isPrev){
+                    this.viewState.lastAction = "pagination";
+                    triggerNextPage(this, firstPage);
+                }
+            }
+            
+            if(action === "lastPage"){
+                const lastPage = (noOfPages - 1) * rows;
+                if(isNext){
+                    this.viewState.lastAction = "pagination";
+                    triggerNextPage(this, lastPage);
                 }
             }
         }
