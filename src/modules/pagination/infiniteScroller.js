@@ -104,8 +104,9 @@ const setUpInfiniteScroll = function () {
             });
 
             this.postLoaderObserver = new IntersectionObserver(entries => {
+                const { numberOfProducts } = this.getPaginationInfo() || {};
                 const lastPrank = this.getLastPrank();
-                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted && lastPrank < this.state.responseObj.response.numberOfProducts) {
+                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted && lastPrank < numberOfProducts) {
                     this.viewState.isInfiniteStarted = true;
                         this.setPageStart(lastPrank);
                         this.getResults("", true, 'next');
