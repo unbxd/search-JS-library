@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 function renderSort(){
     try{
         const results = this.getSearchResults();
@@ -16,7 +18,7 @@ function renderSort(){
         });
     }
     catch(err){
-        this.onError("Sort > renderSort",err);
+        this.onError("Sort > renderSort",err,libEvents.runtimeError);
     }
 
 }

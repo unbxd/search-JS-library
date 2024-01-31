@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 const setInputValue = function() {
     try{
         let val = this.options.searchBoxEl.value === "" ? "*": this.options.searchBoxEl.value ;
@@ -20,7 +22,7 @@ const setInputValue = function() {
             this.searchResultsWrapper.innerHTML = null;
         }
     }catch(err){
-        this.onError("input > setInputValue.js",err)
+        this.onError("input > setInputValue.js",err,libEvents.runtimeError);
     }
     
 }

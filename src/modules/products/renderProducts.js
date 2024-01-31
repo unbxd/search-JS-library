@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 export default function renderProducts() {
     try {
         const {
@@ -87,9 +89,9 @@ export default function renderProducts() {
         } else {
             searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
         }
     } catch (err) {
-        this.onError("renderProducts.js", err)
+        this.onError("renderProducts.js", err,libEvents.runtimeError);
     }
 }

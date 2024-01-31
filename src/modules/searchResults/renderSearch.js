@@ -1,3 +1,4 @@
+import libEvents from "../../../../search-JS-core/src/constants";
 
 const renderSearch =  function() {
     try {
@@ -54,7 +55,7 @@ const renderSearch =  function() {
         return productsUI;
     }
     catch(err){
-        this.options.onError("searchResults > renderSearch", err)
+        this.options.onError("searchResults > renderSearch", err,libEvents.runtimeError)
     }
 }
 export default renderSearch
