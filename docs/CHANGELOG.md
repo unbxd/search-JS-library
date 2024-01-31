@@ -24,8 +24,7 @@ nav_order: 8
 
 ## 🚀 Features
 {: .no_toc}
-- A newevent available for handling cases before updating the config & initialising
-  before_initialised
+- A newevent available for handling cases before updating the config & initialising before_initialised
 
 
 ## 🐛 Bug Fixes
