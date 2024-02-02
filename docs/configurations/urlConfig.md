@@ -130,11 +130,11 @@ seoFriendlyUrl: false
 **Scenarios**
 {: .no_toc }
 
-1. true - Making the flag to true enables the user to have more configs for customizing the format of their urls. See below eg.
+1. true - Making the flag to true enables the user to have more configs using which more customizations can be made to the format of the urls.
 2. false - Making this flag to false will follow the default format as given by the Unbxd . No further customizations can be made to the url .
 
 {: .note }
-> When `seoFriendlyUrl` is `true`, some default configurations gets applied withing seo urls config. For eg : The `algo` for all configs in seo urls becomes `KEY_VALUE_REPLACER` (if not passed otherwise ) when `seoFriendlyUrl` is true . Refer to the default values for the behaviour after turning `seoFriendlyUrl` to true. 
+> When `seoFriendlyUrl` is `true`, some default configurations gets applied within seo urls config. For eg : The `algo` for all configs in seo urls becomes `KEY_VALUE_REPLACER` (if not passed otherwise ) when `seoFriendlyUrl` is true . Refer to the default values for the behaviour after turning `seoFriendlyUrl` to true. 
 
 ---
 
