@@ -235,5 +235,3 @@ banner: {
     count:1
 }
 ```
-## Usecase 2: Banners With HTML
-## Usecase 3: Banners With Images
