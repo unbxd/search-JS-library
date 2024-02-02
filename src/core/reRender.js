@@ -7,7 +7,9 @@ const reRender = function () {
         searchBoxEl,
         loader,
         breadcrumb,
-        productView
+        productView,
+        noResults,
+        products
     } = this.options;
     
     const paginationType = this.getPaginationType();
@@ -52,8 +54,16 @@ const reRender = function () {
         }
         onEvent(this, beforeNoResultRender);
         this.viewState.noResultLoaded = true;
-        searchResultsWrapper.classList.add(noResultCss);
-        searchResultsWrapper.innerHTML = this.renderNoResults(query);
+        
+        if(this.options.noResults.el) {
+            noResults.el.classList.add(noResultCss)
+            searchResultsWrapper.innerHTML = "";
+            noResults.el.innerHTML = this.renderNoResults(query);
+           
+        }else{
+            searchResultsWrapper.classList.add(noResultCss);
+            searchResultsWrapper.innerHTML = this.renderNoResults(query);
+        }
         if (!qParams.filter) {
             this.renderFacets();
         }
