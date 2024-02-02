@@ -269,8 +269,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 
 # UseCases
-## Usecase 1
-1. GRID: when viewTypes is equal to GRID.
+## Usecase 1 : Grid view
+1. When viewType is equal to GRID.
 
 [![](../assets/GRID.png)](../assets/GRID.png)
 
@@ -315,7 +315,7 @@ productView : {
    }
 ```
 
-## Usecase 2
+## Usecase 2: List view
 1. LIST: when viewTypes is equal to LIST.
 
 [![](../assets/LIST.png)](../assets/LIST.png)
