@@ -636,4 +636,4 @@ pagination: {
 
 ## FAQs
 
-1.[What is list view and grid view in product listing page?](../Faqs)
+[1.What is list view and grid view in product listing page?](../Faqs#pagination-related-queries)
