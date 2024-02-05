@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Integrate with sample unbxd feed or your site
+title: Integrate with sample unbxd feed / your site
 nav_order: 2
 parent: Getting Started
 ---
