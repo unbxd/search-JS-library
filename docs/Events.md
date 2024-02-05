@@ -253,7 +253,7 @@ onEvent: function(instance, "PAGESIZE_CHANGE", {
 ```
 ---
 ## CONFIG_ERROR
-This event is captured when any config error is occurred .
+This event is captured when any config error has occurred .
 
 ### Arguments
 {: .no_toc }
@@ -270,7 +270,7 @@ onEvent: function(instance, "CONFIG_ERROR", {
 ```
 ---
 ## RUNTIME_ERROR
-This event is captured when any runtime error is occurred .
+This event is captured when any runtime error has occurred .
 
 ### Arguments
 {: .no_toc }

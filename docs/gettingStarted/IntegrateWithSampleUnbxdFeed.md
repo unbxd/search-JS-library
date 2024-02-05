@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Integrate with sample unbxd feed 
+title: Integrate with sample unbxd feed or your site
 nav_order: 2
 parent: Getting Started
 ---
@@ -29,16 +29,29 @@ Customize the search config used for invoking the sdk, to see the data related t
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
     ```
+
 2. Provide **attributesMap** inside **products** object.
-        ```js
-        
-        attributesMap: {
-        "unxTitle": "title",
-        "unxImageUrl": "imageURL",
-        "unxPrice": "price",
-        "unxDescription":"short_desc"
-        };
-        ```
+
+```
+attributesMap: {
+    "unxTitle": "title",
+    "unxImageUrl": "imageURL",
+    "unxPrice": "price",
+    "unxDescription":"short_desc"
+};
+```
+
+{: .note }
+> For any other site (Other then demo site) use their respective mappings of the fields like below :
+```
+attributesMap: {
+    "unxTitle": "<<title attribute>>",
+    "unxImageUrl": "<<image url attribute>>",
+    "unxPrice": "<<price attribute>>",
+    "unxDescription":"<<description attribute>>"
+};
+
+```
 3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
         ```js
         
