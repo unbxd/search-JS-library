@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Release Notes
+title: Changelog
 nav_order: 8
 ---
 

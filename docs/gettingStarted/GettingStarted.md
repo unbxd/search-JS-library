@@ -17,52 +17,328 @@ permalink: docs/gettingStarted
 1. TOC
 {:toc}
 
-# Introduction
+# Prerequisite
+Please complete the self serve FTU flow along with the dimensions mapping for fields like title, imageUrl, price, and categoryPath. 
+More information can be found [here](./../prerequisites)
 
-Unbxd Javascript Search SDK is a software development kit that allows e-commerce websites to easily integrate with Unbxd’s search and product discovery platform. It provides an easy-to-use JavaScript API that can be used to configure, initiate, and customize search requests, including:
+{: .important }
+> Note: The config attributes mentioned below are from the **sample apparel feed** downloaded via the csv upload flow. You will find instructions below to follow if any other feed is being used .
 
-1. Setting the API and Site Key
-2. Initating the search
-3. Retrieving the autocomplete suggestions
-4. Tracking various search and product events
+# Integration Instructions
+Customize the search config used for invoking the sdk, to see the data related to your sitekey.
 
-To use Unbxd Javascript Search SDK it would typically be integrated on the e-commerce website, specifically on the search bar, the product listing and product detail pages, and other related areas, where search and product discovery functionality is required.
+1. Change **siteKey** and **apiKey**.
 
-It's important to note that the nomenclature and the elements present on the e-commerce page may vary across different website, but the Unbxd Javascript Search SDK can be integrated in any e-commerce website.
+```js
+    siteKey: "<<site key>>",
+    apiKey: "<<api key>>"
+```
 
-Please checkout how you can [setup](docs/gettingStarted/quickIntegration)
-This documentation has multiple ways of exploring/integrating with the Unbxd Search library.
-1. [Explore demo code](docs/gettingStarted/ExploreDemoCode.html)
-2. [Integrate with a sample unbxd feed](docs/gettingStarted/IntegrateWithSampleUnbxdFeed.html)
-3. [Integrate with actual feed](docs/gettingStarted/IntegrateWithYourSiteDetails.html)
+2. Provide **attributesMap** inside **products** object.
 
-For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
+```js
+attributesMap: {
+    "unxTitle": "title",
+    "unxImageUrl": "imageURL",
+    "unxPrice": "price",
+    "unxDescription":"short_desc"
+};
+```
+
+For any other site (other than demo) , use respective mappings . eg :
+
+```js
+attributesMap: {
+    "unxTitle": "<<title attribute>>",
+    "unxImageUrl": "<<image url attribute>>",
+    "unxPrice": "<<price attribute>>",
+    "unxDescription":"<<description attribute>>"
+};
+
+```
+
+
+3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
+
+```js
+    productAttributes: [
+        "title",
+        "imageURL",
+        "price",
+        "short_desc"
+    ]
+```
+        
+For any other site (other than demo) , use respective fields . eg :
+
+```js
+productAttributes: [
+    "<<title attribute>>",
+    "<<image url attribute>>",
+    "<<price attribute>>",
+    "<<description attribute>>"
+    ]
+```
+
+4. Add the correct **query selectors** based on your website, in the config.
+
+5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well <br/>
+    /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed from backend **/
+
+        **Example:**
+
+        ```js
+        
+        if (location.pathname === "/<<categoryPage1>>") {
+            window.UnbxdAnalyticsConf = {
+                page: "categoryPath:categoryPath1",
+                page_type: 'BOOLEAN'
+            };
+            productType = "CATEGORY";
+        } else if (location.pathname === "/<<categoryPage2>>") {
+            window.UnbxdAnalyticsConf = {
+                page: "categoryPath:categoryPath2",
+                page_type: 'BOOLEAN'
+            };
+            productType = "CATEGORY";
+        } else {
+            window.UnbxdAnalyticsConf = {};
+            productType = "SEARCH";
+        }
+        
+        ```
+        
+     OR
+
+    Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+    Also set **browseQueryParam** in the config accordingly.
+            
+    **Example:**
+
+    ```js
+    if (location.pathname === "/<<categoryPage1>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPathId:categoryId1",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else if (location.pathname === "/<<categoryPage2>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPathId:categoryId2",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else {
+        window.UnbxdAnalyticsConf = {};
+        productType = "SEARCH";
+    }
+    ```
+
+    ```js
+    browseQueryParam: "p-id"
+    ```
+
+    {: .important }
+    > For further help with category pages configuration, please contact the feed support team. 
+
+6. Set the correct **productType** in the products config, i.e. "SEARCH" for search  results page, or "CATEGORY" for category pages.
+
+    **Example:**
+
+    ```js
+        products: {
+            productType: "<<SEARCH/CATEGORY>>"
+        }
+    ```
+
+7. If it is a staging sitekey, set the correct search end point. For eg :
+
+    ```js
+        searchEndPoint: "https://wingman-argocd.unbxd.io/"
+    ```
+
+# Sample configuration with the unbxd demo sitekey feed
+
+{: .warning }
+> Note: All Element selectors must change as per your website. All attributes must change as per the sample feed data. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes
+
+<!-- ```js
+window.unbxdSearch = new UnbxdSearch({
+siteKey: "<<sitekey>>",
+apiKey: "<<apikey>>",
+updateUrls: true,
+searchBoxEl: document.getElementById("unbxdInput"),
+searchTrigger: "click",
+searchButtonEl: document.getElementById("searchBtn"),
+unbxdAnalytics: true,
+pagination: {
+    type: "FIXED_PAGINATION",
+    el: document.querySelector("#clickScrollContainer"),
+    onPaginate: function (data) {
+    console.log(data, "data");
+    },
+},
+allowExternalUrlParams: true,
+hashMode: true,
+products: {
+    el: document.getElementById("searchResultsWrapper"),
+    productType: "SEARCH",
+    onProductClick: function (product, e) {
+    history.pushState(null, null, `${product.variants[0].productUrl}`);
+    },
+    productAttributes: ["title","imageURL","price","short_desc"],
+    attributesMap: {
+        "unxTitle": "title",
+        "unxImageUrl": "imageURL",
+        "unxPrice": "price",
+        "unxDescription":"short_desc"
+    }
+},
+spellCheck: {
+    enabled: true,
+    el: document.getElementById("didYouMeanWrapper")
+},
+noResults: {
+    el: document.getElementById("noResultWrapper")
+},
+selectedFacets: {
+    el: document.getElementById("selectedFacetWrapper")
+},
+facet: {
+    facetsEl: document.getElementById("facetsWrapper"),
+    applyMultipleFilters: false,
+    defaultOpen: "FIRST",
+    onFacetLoad: function (facets) {
+    const self = this;
+    const { facet } = this.options;
+    const { rangeWidgetConfig } = facet;
+    facets.forEach((facetItem) => {
+        const { facetType, facetName, gap } = facetItem;
+        const { prefix } = rangeWidgetConfig;
+
+        if (facetType === "range") {
+        const rangeId = `${facetName}_slider`;
+        const sliderElem = document.getElementById(rangeId);
+        let { end, gap, max, min, start } = facetItem;
+        const selectedValues = sliderElem.dataset;
+        if (selectedValues) {
+            (start = Number(selectedValues.x)),
+            (end = Number(selectedValues.y));
+        }
+        this[rangeId] = noUiSlider.create(sliderElem, {
+            start: [start, end],
+            tooltips: [
+            {
+                to: function (value) {
+                return `${prefix} ${Math.round(value)}`;
+                }
+            },
+            {
+                to: function (value) {
+                return `${prefix} ${Math.round(value)}`;
+                }
+            }
+            ],
+            connect: true,
+            range: {
+            min: 0,
+            max: max
+            },
+            format: {
+            to: function (value) {
+                return Math.round(value);
+            },
+            from: function (value) {
+                return Math.round(value);
+            }
+            },
+            padding: 0,
+            margin: 0
+        });
+        this[rangeId].on("set", function (data) {
+            const newData = {
+            start: data[0],
+            end: data[1],
+            facetName,
+            gap
+            };
+            self.setRangeSlider(newData);
+        });
+        }
+    });
+    },
+    isCollapsible: true,
+    isSearchable: true,
+    enableViewMore: false,
+    rangeTemplate: function (range, selectedRange, facet) {
+    const { facetName, start, end } = range;
+    let min = start;
+    let max = end;
+    if (selectedRange.length > 0) {
+        const sel = selectedRange[0].replace(/[^\w\s]/gi, "").split(" TO ");
+        min = sel[0];
+        max = sel[1];
+    }
+    const rangId = `${facetName}_slider`;
+    return [
+        `<div id="${facetName}"  data-id="${facetName}" class=" UNX-range-slider-wrap">`,
+        `<div class="UNX-value-container UNX-range-value-block" ></div>`,
+        `<div id="${rangId}" data-x="${min}" data-y="${max}" class="UNX-range-slider-wrapper"></div>`,
+        `</div>`,
+        `<div>`,
+        `</div>`
+    ].join("");
+    }
+},
+breadcrumb: {
+    el: document.getElementById("breadcrumpContainer")
+},
+pagesize: {
+    el: document.getElementById("changeNoOfProducts")
+},
+
+sort: {
+    el: document.getElementById("sortWrapper"),
+    options: [
+    {
+        value: "price desc",
+        text: "Price High to Low"
+    },
+    {
+        value: "price asc",
+        text: " Price Low to High"
+    }
+    ]
+},
+loader: {
+    el: document.getElementById("loaderEl")
+},
+productView: {
+    el: document.getElementById("productViewTypeContainer"),
+    defaultViewType: "GRID"
+},
+banner: {
+    el: document.getElementById("bannerContainer"),
+    count: 1
+},
+swatches: {
+    enabled: true,
+    attributesMap: {
+    swatchList: "color",
+    swatchImgs: "unbxd_color_mapping",
+    swatchColors: "color"
+    }
+},
+onEvent: function (instance, type, data) {
+    console.log(type, data, "type,data");
+}
+});
+``` -->
 
 # Understanding The Page
 
-An e-commerce page typically includes a variety of different elements and components, each with its own specific nomenclature. These elements include, but are not limited to:
-
-1. The header, which typically includes the logo, main navigation, and search bar.
-2. The product listing, which is the area of the page where products are displayed.
-3. The product details page, which is the page that is shown when a user clicks on a product from the product listing.
-4. The cart, which is where users can view and manage the items they've added to their cart.
-5. The checkout, which is where users can review their cart, enter shipping and payment information, and complete their purchase.
-
 Before we delve into the next set of configs, let’s first understand the most common sections present in a search results page or category landing page.  
-A search results page or a category landing page is made up of the following set of sections:
-
-1.  Products list section
-    1.  View type could be grid or list view
-    2.  Sort by widget
-    3.  Pagination widget with no. of products per page control
-    4.  Pagination could be an infinite scroll or page number based
-    5.  Number of results loaded on a page
-2.  Facets section
-3.  Spell check / search results message section
-4.  Merchandising banners section  
       
 Here is a graphical representation of the various sections on a search results page:
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/graphical-rep-in-sdk.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/graphical-rep-in-sdk.png)
-
-In the following sections, we will discuss how to configure and render each of these features with the Unbxd Search JS Library.
