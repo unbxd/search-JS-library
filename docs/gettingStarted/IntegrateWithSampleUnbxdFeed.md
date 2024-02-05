@@ -31,6 +31,7 @@ Customize the search config used for invoking the sdk, to see the data related t
     ```
 2. Provide **attributesMap** inside **products** object.
         ```js
+        
         attributesMap: {
         "unxTitle": "title",
         "unxImageUrl": "imageURL",
@@ -40,6 +41,7 @@ Customize the search config used for invoking the sdk, to see the data related t
         ```
 3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
         ```js
+        
         productAttributes: ["title","imageURL","price","short_desc"]
         ```
 4. Add the correct **query selectors** based on your website, in the config.
