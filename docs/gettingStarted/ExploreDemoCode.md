@@ -21,7 +21,7 @@ The latest unbxd search sdk is integrated with the same.
 The demo data is of fashion vertical.
 
 {: .important }
-> Note: We are using the Unbxd demo sitekey here. If you want to use your custom site details, go to [Integrate with your site](./integratewithyoursitedetails.html)
+> Note: We are using the Unbxd demo sitekey here. If you want to use your custom site details, go to [Integrate with your site](./IntegrateWithYourSiteDetails.html)
 
 1. Create an account & sign in to [https://codesandbox.io](https://codesandbox.io)(**Optional**, but **recommended**, so as to get unlimited free codesandboxes)
 2. Hit [demo code url](https://codesandbox.io/s/vanilla-sandbox-demo-ezmi0v) in browser.
