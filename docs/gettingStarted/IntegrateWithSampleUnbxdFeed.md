@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: default
 title: Integrate with sample feed / your site
 nav_order: 2
@@ -154,7 +154,7 @@ productAttributes: [
 # Sample configuration with the unbxd demo sitekey feed
 
 {: .warning }
-> Note: All Element selectors must change as per your website. All attributes must change as per the sample feed data. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes
+> Note: All Element selectors must change as per your website. All attributes must change as per the sample feed data. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes -->
 
 <!-- ```js
 window.unbxdSearch = new UnbxdSearch({
