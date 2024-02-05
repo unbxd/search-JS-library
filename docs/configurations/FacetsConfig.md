@@ -1039,6 +1039,9 @@ actionBtnClass:"UNX-action-item"
 
 It is used to bind 'click' event to a facet wrapper element
 
+{: .warning } 
+> Note: Please note this config is available as part of facet config from sdk version ```2.1.5```. Versions below this it is available as a seperate config here.
+
 ---
 # actionChangeClass
 {: .d-inline-block }
@@ -1060,6 +1063,8 @@ actionChangeClass:"UNX-action-change"
 
 It is used to bind 'change' or 'keyup' event to a facet wrapper element
 
+{: .warning } 
+> Note: Please note this config is available as part of facet config from sdk version ```2.1.5```. Versions below this it is available as a seperate config here.
 ---
 
 # UseCases
