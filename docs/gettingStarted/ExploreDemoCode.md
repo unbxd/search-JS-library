@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: default
 title: Explore Demo Code
 nav_order: 1
@@ -59,4 +59,4 @@ Run the webpack server:<br/>
 [Download Node](3https://nodejs.org/en/download/)<br/>
 [Setup nvm](https://nodesource.com/blog/installing-node-js-tutorial-using-nvm-on-mac-os-x-and-ubuntu/)<br/>
 
-
+ -->

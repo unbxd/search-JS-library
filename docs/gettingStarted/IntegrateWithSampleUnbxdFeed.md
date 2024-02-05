@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Integrate with sample unbxd feed / your site
+title: Integrate with sample feed / your site
 nav_order: 2
 parent: Getting Started
 ---
@@ -104,10 +104,10 @@ productAttributes: [
         
      OR
 
-Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
-Also set **browseQueryParam** in the config accordingly.
+    Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+    Also set **browseQueryParam** in the config accordingly.
             
-**Example:**
+    **Example:**
 
     ```js
     if (location.pathname === "/<<categoryPage1>>") {
@@ -132,24 +132,24 @@ Also set **browseQueryParam** in the config accordingly.
     browseQueryParam: "p-id"
     ```
 
-{: .important }
-> For further help with category pages configuration, please contact the feed support team. 
+    {: .important }
+    > For further help with category pages configuration, please contact the feed support team. 
 
 6. Set the correct **productType** in the products config, i.e. "SEARCH" for search  results page, or "CATEGORY" for category pages.
 
-**Example:**
+    **Example:**
 
-```js
-    products: {
-        productType: "<<SEARCH/CATEGORY>>"
-    }
-```
+    ```js
+        products: {
+            productType: "<<SEARCH/CATEGORY>>"
+        }
+    ```
 
 7. If it is a staging sitekey, set the correct search end point. For eg :
 
-```js
-    searchEndPoint: "https://wingman-argocd.unbxd.io/"
-```
+    ```js
+        searchEndPoint: "https://wingman-argocd.unbxd.io/"
+    ```
 
 # Sample configuration with the unbxd demo sitekey feed
 
