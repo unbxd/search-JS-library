@@ -32,9 +32,9 @@ It's important to note that the nomenclature and the elements present on the e-c
 
 Please checkout how you can [setup](docs/gettingStarted/quickIntegration)
 This documentation has multiple ways of exploring/integrating with the Unbxd Search library.
-1. [Explore demo code](docs/gettingStarted/exploredemocode)
-2. [Integrate with a sample unbxd feed](docs/gettingStarted/integratewithsampleunbxdfeed)
-3. [Integrate with actual feed](docs/gettingStarted/integratewithyoursitedetails)
+1. [Explore demo code](docs/gettingStarted/ExploreDemoCode.html)
+2. [Integrate with a sample unbxd feed](docs/gettingStarted/IntegrateWithSampleUnbxdFeed.html)
+3. [Integrate with actual feed](docs/gettingStarted/IntegrateWithYourSiteDetails.html)
 
 For any issue that you face during integration or need updates on the changes, follow these tips, raise issues, or track log changes. 
 
