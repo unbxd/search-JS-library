@@ -16,23 +16,21 @@ Please complete the self serve FTU flow along with the dimensions mapping for fi
 More information can be found [here](./../prerequisites)
 
 {: .important }
-> Note: The config attributes mentioned below are from the **sample apparel feed** downloaded via the csv upload flow. These will change if another feed is used
+> Note: The config attributes mentioned below are from the **sample apparel feed** downloaded via the csv upload flow. You will find instructions below to follow if any other feed is being used .
 
 # Integration Instructions
-
-
-
 Customize the search config used for invoking the sdk, to see the data related to your sitekey.
 
 1. Change **siteKey** and **apiKey**.
-    ```js
+
+```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
-    ```
+```
 
 2. Provide **attributesMap** inside **products** object.
 
-```
+```js
 attributesMap: {
     "unxTitle": "title",
     "unxImageUrl": "imageURL",
@@ -41,7 +39,8 @@ attributesMap: {
 };
 ```
 
-{: .note }
+For any other site (other than demo) , use respective mappings . eg :
+
 ```js
 attributesMap: {
     "unxTitle": "<<title attribute>>",
@@ -56,7 +55,12 @@ attributesMap: {
 3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
 
 ```js
-    productAttributes: ["title","imageURL","price","short_desc"]
+    productAttributes: [
+        "title",
+        "imageURL",
+        "price",
+        "short_desc"
+    ]
 ```
         
 For any other site (other than demo) , use respective fields . eg :
@@ -141,7 +145,7 @@ Also set **browseQueryParam** in the config accordingly.
     }
 ```
 
-7. If it is a staging sitekey, set the correct search end point.
+7. If it is a staging sitekey, set the correct search end point. For eg :
 
 ```js
     searchEndPoint: "https://wingman-argocd.unbxd.io/"
