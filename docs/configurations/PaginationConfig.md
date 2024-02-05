@@ -634,7 +634,7 @@ pagination: {
 }
 ```
 
-### FAQs
+# FAQs
 
 [1.What is list view and grid view in product listing page?](../Faqs#pagination-related-queries)
 [2.What is the best pagination method for my website?](../Faqs#what-is-the-best-pagination-method-for-my-website)

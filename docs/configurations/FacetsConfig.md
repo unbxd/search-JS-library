@@ -1854,7 +1854,7 @@ facet:{
 }
 ```
 
-### FAQs
+# FAQs
 
 [1.How to enable and make use of the faceted search functionality provided by the SDK?](../Faqs#how-to-enable-and-make-use-of-the-faceted-search-functionality-provided-by-the-sdk)
 [2.What are facets and how do they work with the Unbxd Search SDK?](../Faqs#what-are-facets-and-how-do-they-work-with-the-unbxd-search-sdk)
