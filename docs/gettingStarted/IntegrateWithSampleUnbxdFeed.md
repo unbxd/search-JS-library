@@ -42,8 +42,7 @@ attributesMap: {
 ```
 
 {: .note }
-> For any other site (Other then demo site) use their respective mappings of the fields like below :
-```
+```js
 attributesMap: {
     "unxTitle": "<<title attribute>>",
     "unxImageUrl": "<<image url attribute>>",
@@ -52,19 +51,33 @@ attributesMap: {
 };
 
 ```
+
+
 3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
         ```js
-        
         productAttributes: ["title","imageURL","price","short_desc"]
         ```
+        
+For any other site (other than demo) , use respective fields . eg :
+
+```js
+productAttributes: [
+    "<<title attribute>>",
+    "<<image url attribute>>",
+    "<<price attribute>>",
+    "<<description attribute>>"
+    ]
+```
+
 4. Add the correct **query selectors** based on your website, in the config.
+
 5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well <br/>
     /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed from backend **/
 
         **Example:**
-        {: .no_toc }
 
         ```js
+        
         if (location.pathname === "/<<categoryPage1>>") {
             window.UnbxdAnalyticsConf = {
                 page: "categoryPath:categoryPath1",
@@ -81,6 +94,7 @@ attributesMap: {
             window.UnbxdAnalyticsConf = {};
             productType = "SEARCH";
         }
+        
         ```
 
 6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
