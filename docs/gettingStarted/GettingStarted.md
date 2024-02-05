@@ -37,12 +37,12 @@ Customize the search config used for invoking the sdk, to see the data related t
 2. Provide **attributesMap** inside **products** object. This mapping is as per the demo site , this must change according to the site being used .
 
 ```js
-attributesMap: {
-    "unxTitle": "title",
-    "unxImageUrl": "imageURL",
-    "unxPrice": "price",
-    "unxDescription":"short_desc"
-};
+    attributesMap: {
+        "unxTitle": "title",
+        "unxImageUrl": "imageURL",
+        "unxPrice": "price",
+        "unxDescription":"short_desc"
+    };
 ```
 
 3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky. These fields are as per the demo site , this must change according to the site being used .
@@ -63,35 +63,34 @@ attributesMap: {
 
 **Example:**
 
-        ```js
+```js  
+    if (location.pathname === "/<<categoryPage1>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPath:categoryPath1",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else if (location.pathname === "/<<categoryPage2>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPath:categoryPath2",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else {
+        window.UnbxdAnalyticsConf = {};
+        productType = "SEARCH";
+    }
         
-        if (location.pathname === "/<<categoryPage1>>") {
-            window.UnbxdAnalyticsConf = {
-                page: "categoryPath:categoryPath1",
-                page_type: 'BOOLEAN'
-            };
-            productType = "CATEGORY";
-        } else if (location.pathname === "/<<categoryPage2>>") {
-            window.UnbxdAnalyticsConf = {
-                page: "categoryPath:categoryPath2",
-                page_type: 'BOOLEAN'
-            };
-            productType = "CATEGORY";
-        } else {
-            window.UnbxdAnalyticsConf = {};
-            productType = "SEARCH";
-        }
+ ```
         
-        ```
-        
-        OR
+OR
 
-        Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
-        Also set **browseQueryParam** in the config accordingly.
+    Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+    Also set **browseQueryParam** in the config accordingly.
             
     **Example:**
 
-    ```js
+```js
     if (location.pathname === "/<<categoryPage1>>") {
         window.UnbxdAnalyticsConf = {
             page: "categoryPathId:categoryId1",
@@ -108,30 +107,30 @@ attributesMap: {
         window.UnbxdAnalyticsConf = {};
         productType = "SEARCH";
     }
-    ```
+```
 
-    ```js
+```js
     browseQueryParam: "p-id"
-    ```
+```
 
-    {: .important }
-    > For further help with category pages configuration, please contact the feed support team. 
+{: .important }
+> For further help with category pages configuration, please contact the feed support team. 
 
 6. Set the correct **productType** in the products config, i.e. "SEARCH" for search  results page, or "CATEGORY" for category pages.
 
-    **Example:**
+**Example:**
 
-    ```js
-        products: {
-            productType: "<<SEARCH/CATEGORY>>"
-        }
-    ```
+```js
+    products: {
+        productType: "<<SEARCH/CATEGORY>>"
+    }
+```
 
 7. If it is a staging sitekey, set the correct search end point. For eg :
 
-    ```js
-        searchEndPoint: "https://wingman-argocd.unbxd.io/"
-    ```
+```js
+    searchEndPoint: "https://wingman-argocd.unbxd.io/"
+```
 
 # Sample configuration with the unbxd demo sitekey feed
 
@@ -423,12 +422,7 @@ window.unbxdSearch = new UnbxdSearch({
             swatchImgs: "unbxd_color_mapping",
             swatchColors: "color"
         }
-    },
-    // extraParams: {
-    //     // test: function(){
-    //     //     return new Date().getMilliseconds()
-    //     // }
-    // },
+    }
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma,
     debugMode: true,
