@@ -295,14 +295,15 @@ setCategoryId: function(param, self) {
 Use this config function for adding any custom code based on an **event type** supported by the sdk. More about events in this [page](./Events.html) .
 ### arguments
 {: .no_toc }
-1. `type`: Name of the event, state: Event state metadata  
-2. `instance`: js instance
+1. `type`: Name of the event, state: Event state metadata for eg: configError , afterApiCall, afterRender etc.
+2. `instance`: This takes in the context i.e. js instance .
+3. `payload`: This is an object where any data can be sent .
 
 ### Default value
 {: .no_toc }
 
 ```js
-onEvent: function(type,instance){
+onEvent: function(instance, type ,{payload}){
     //Custom code here
 }
 ```
