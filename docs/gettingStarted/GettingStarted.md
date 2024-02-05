@@ -27,14 +27,14 @@ More information can be found [here](./../prerequisites)
 # Integration Instructions
 Customize the search config used for invoking the sdk, to see the data related to your sitekey.
 
-1. Change **siteKey** and **apiKey**.
+1. Change **siteKey** and **apiKey**
 
 ```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
 ```
 
-2. Provide **attributesMap** inside **products** object. This mapping is as per the demo site , this must change according to the site being used .
+2. Provide **attributesMap** inside **products** object. This mapping is as per the demo site , this must change according to the site being used
 
 ```js
     attributesMap: {
@@ -45,7 +45,7 @@ Customize the search config used for invoking the sdk, to see the data related t
     };
 ```
 
-3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky. These fields are as per the demo site , this must change according to the site being used .
+3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky. These fields are as per the demo site , this must change according to the site being used 
 
 ```js
     productAttributes: [
@@ -81,14 +81,14 @@ Customize the search config used for invoking the sdk, to see the data related t
         productType = "SEARCH";
     }
         
- ```
+```
         
 OR
 
-    Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
-    Also set **browseQueryParam** in the config accordingly.
-            
-    **Example:**
+Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+Also set **browseQueryParam** in the config accordingly.
+        
+**Example:**
 
 ```js
     if (location.pathname === "/<<categoryPage1>>") {
