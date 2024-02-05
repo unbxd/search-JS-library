@@ -251,3 +251,54 @@ onEvent: function(instance, "PAGESIZE_CHANGE", {
     /** Custom code here */
 }
 ```
+---
+## CONFIG_ERROR
+This event is captured when any config error is occurred .
+
+### Arguments
+{: .no_toc }
+1.  `payload`: Any payload can be sent here .
+
+### Example usage
+{: .no_toc }
+```js
+onEvent: function(instance, "CONFIG_ERROR", {
+    payload
+}) {
+    /** Custom code here */
+}
+```
+---
+## RUNTIME_ERROR
+This event is captured when any runtime error is occurred .
+
+### Arguments
+{: .no_toc }
+1.  `payload`: Any payload can be sent here .
+
+### Example usage
+{: .no_toc }
+```js
+onEvent: function(instance, "RUNTIME_ERROR", {
+    payload
+}) {
+    /** Custom code here */
+}
+```
+---
+## FETCH_ERROR
+This event is captured when any error is occurred after an api call.
+
+### Arguments
+{: .no_toc }
+1.  `payload`: Any payload can be sent here .
+
+### Example usage
+{: .no_toc }
+```js
+onEvent: function(instance, "FETCH_ERROR", {
+    payload
+}) {
+    /** Custom code here */
+}
+```

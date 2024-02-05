@@ -212,7 +212,8 @@ url:{
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A config that allows users to append this parameter to the URL. Turning this to false will remove the browseQueryParam from the url and on refresh the state cannot be maintained .
+1. `addToUrl`: A config that allows users to decide whether they want to append this parameter to the URL
+ or not. Turning this to false will remove the browseQueryParam from the url and on refresh the state cannot be maintained .
 2. `algo`: This has two options to choose from `DEFAULT` and `KEY_VALUE_REPLACER`. Applying DEFAULT option gives a default format (as given by Unbxd) for the browseQueryParam . Applying KEY_VALUE_REPLACER as the choosen algo enables user to choose further configurations to customize the browseQueryParam.
 3. `keyReplacer`: Passing keyReplacer will use this value as browseQueryParam instead of the default value (`p`) in the url . This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
@@ -315,8 +316,9 @@ url:{
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A config that allows users to append this parameter to the URL. Turning this to false will remove the searchQueryParam from the url and on refresh the state will not be maintained.
-2. `algo`: This has two options to choose from `DEFAULT` and `KEY_VALUE_REPLACER`. Applying DEFAULT option gives a default format (as given by Unbxd) for the searchQueryParam . Applying KEY_VALUE_REPLACER as the choosen algo enables user to choose further configurations to customize the searchQueryParam.. 
+1. `addToUrl`: A config that allows users to decide whether they want to append this parameter to the URL
+ or not . Turning this to false will remove the searchQueryParam from the url and on refresh the state will not be maintained.
+2. `algo`: This has two options to choose from `DEFAULT` and `KEY_VALUE_REPLACER`. Applying DEFAULT option gives a default format (as given by Unbxd) for the searchQueryParam . Applying KEY_VALUE_REPLACER as the choosen algo enables user to choose further configurations to customize the searchQueryParam. 
 3. `keyReplacer`: Passing keyReplacer will use this value as browseQueryParam instead of the default value (`q`) in the url . This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 
@@ -418,10 +420,11 @@ url: {
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A config that allows users to append this parameter to the URL.
-2. `usePageNo`: Indicates whether to use page numbers in URL, instead of indices.
-3. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. This config is applicable when `algo = KEY_VALUE_REPLACER`.
-4. `keyReplacer`: A config which allows to change the way this config is represented in the URL. 
+1. `addToUrl`: A config that allows users to decide whether they want to append this parameter to the URL
+ or not. When turned off the page number will not be added to the url .
+2. `usePageNo`: Indicates whether to use page numbers in URL, instead of indices.This config is applicable when `algo = KEY_VALUE_REPLACER` else the page number will be indices only.
+3. `algo`: This has two options to choose from `DEFAULT` and `KEY_VALUE_REPLACER`. Applying DEFAULT option gives a default format (as given by Unbxd) for the page number . Applying KEY_VALUE_REPLACER as the choosen algo enables user to choose further configurations to customize the  page number param.
+4. `keyReplacer`: Passing keyReplacer will use this value as page number param instead of the default value (`start`) in the url . This config is applicable when `algo = KEY_VALUE_REPLACER`. 
 
 
 ### Configurations
@@ -568,8 +571,9 @@ url:{
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A config that allows users to append this parameter to the URL.
-2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+1. `addToUrl`: A config that allows users to decide whether they want to append this parameter to the URL
+ or not. When turned off the page number will not be added to the url .
+2. `algo`: This has two options to choose from `DEFAULT` and `KEY_VALUE_REPLACER`. Applying DEFAULT option gives a default format (as given by Unbxd) for the page size param . Applying KEY_VALUE_REPLACER as the choosen algo enables user to choose further configurations to customize the  page size param. 
 3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 
@@ -675,10 +679,11 @@ url:{
 ### Key Terminology
 {: .d-inline-block }
 
-1. `addToUrl`: A config that allows users to append this parameter to the URL.
-2. `algo`: Short for algorithm, this parameter lets users choose a specific computational method or process to apply. 
+1. `addToUrl`:  A config that allows users to decide whether they want to append this parameter to the URL
+ or not. When turned off the sort will not be added to the url.
+2. `algo`: This has two options to choose from `DEFAULT` and `KEY_VALUE_REPLACER`. Applying DEFAULT option gives a default format (as given by Unbxd) for the sort param . Applying KEY_VALUE_REPLACER as the choosen algo enables user to choose further configurations to customize the  sort param. 
 3. `keyReplacer`: A config which allows to change the way this config is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
-4. `valueReplacer`: A config which allows to change the way the selected value is represented in the URL. This config is applicable when `algo = KEY_VALUE_REPLACER`.
+4. `valueReplacer`: Using this configuration , the actual value of the options for sort can be replaced. This config is applicable when `algo = KEY_VALUE_REPLACER`.
 
 ### Configurations
 {: .d-inline-block }
@@ -748,7 +753,7 @@ url: {
        keyReplacer: "order",
        valueReplacer: {
             "price desc": "desc"
-        }
+    }
    }
 }
 ```
