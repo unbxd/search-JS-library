@@ -235,3 +235,7 @@ banner: {
     count:1
 }
 ```
+
+### FAQs
+[1.Can the Unbxd Search SDK be used to display banners on my e-commerce website?](../Faqs#can-the-unbxd-search-sdk-be-used-to-display-banners-on-my-e-commerce-website)
+[2.Can I use the SDK to personalize the banners?](../Faqs#can-i-use-the-sdk-to-personalize-the-banners)

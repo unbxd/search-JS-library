@@ -67,19 +67,8 @@ Boolean
 String
 {: .label }
 
-CSS class name to add to any facet wrapper elements on which you want to trigger **click** event.
-
-## Default Value
-{: .no_toc }
-
-```js
-actionBtnClass:"UNX-action-item"
-```
-
-## Scenarios
-{: .no_toc }
-
-It is used to bind 'click' event to a facet wrapper element
+{: .warning } 
+> Note: Please note this config has been moved as part of [facet config]() from sdk version ```2.1.5```.
 
 ---
 # actionChangeClass
@@ -88,19 +77,8 @@ It is used to bind 'click' event to a facet wrapper element
 String
 {: .label }
 
-CSS class name to be added to any facet wrapper elements on which you want to trigger **change**, or **keyup** event.
-
-## Default Value
-{: .no_toc }
-
-```js
-actionChangeClass:"UNX-action-change"
-```
-
-## Scenarios
-{: .no_toc }
-
-It is used to bind 'change' or 'keyup' event to a facet wrapper element
+{: .warning } 
+> Note: Please note this config has been moved as part of [facet config]() from sdk version ```2.1.5```.
 
 ---
 # allowExternalUrlParams

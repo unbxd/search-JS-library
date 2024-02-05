@@ -262,3 +262,9 @@ spellCheck:{
     },
 }
 ```
+
+
+### FAQs
+
+[1.Does Unbxd provide spell-checking functionality?](../Faqs#does-unbxd-provide-spell-checking-functionality)
+[2.Can I customize the spell-checking functionality in the Unbxd Search SDK?](../Faqs#can-i-customize-the-spell-checking-functionality-in-the-unbxd-search-sdk)
