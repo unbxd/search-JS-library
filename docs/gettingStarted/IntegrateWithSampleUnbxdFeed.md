@@ -54,9 +54,10 @@ attributesMap: {
 
 
 3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
-        ```js
-        productAttributes: ["title","imageURL","price","short_desc"]
-        ```
+
+```js
+    productAttributes: ["title","imageURL","price","short_desc"]
+```
         
 For any other site (other than demo) , use respective fields . eg :
 
@@ -96,22 +97,55 @@ productAttributes: [
         }
         
         ```
+        
+     OR
 
-6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
+Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+Also set **browseQueryParam** in the config accordingly.
+            
+**Example:**
 
-        **Example:**
-        {: .no_toc }
+    ```js
+    if (location.pathname === "/<<categoryPage1>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPathId:categoryId1",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else if (location.pathname === "/<<categoryPage2>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPathId:categoryId2",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else {
+        window.UnbxdAnalyticsConf = {};
+        productType = "SEARCH";
+    }
+    ```
 
-        ```js
-        products: {
-            productType: "<<SEARCH/CATEGORY>>"
-        }
-        ```
-7. If it is a staging sitekey, set the correct search end point
-        ```js
-        searchEndPoint: "https://wingman-argocd.unbxd.io/"
-        ```
+    ```js
+    browseQueryParam: "p-id"
+    ```
 
+{: .important }
+> For further help with category pages configuration, please contact the feed support team. 
+
+6. Set the correct **productType** in the products config, i.e. "SEARCH" for search  results page, or "CATEGORY" for category pages.
+
+**Example:**
+
+```js
+    products: {
+        productType: "<<SEARCH/CATEGORY>>"
+    }
+```
+
+7. If it is a staging sitekey, set the correct search end point.
+
+```js
+    searchEndPoint: "https://wingman-argocd.unbxd.io/"
+```
 
 # Sample configuration with the unbxd demo sitekey feed
 
