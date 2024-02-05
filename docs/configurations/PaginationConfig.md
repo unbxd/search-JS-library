@@ -637,3 +637,8 @@ pagination: {
 ## FAQs
 
 [1.What is list view and grid view in product listing page?](../Faqs#pagination-related-queries)
+[2.What is the best pagination method for my website?](../Faqs#what-is-the-best-pagination-method-for-my-website)
+[3.What are the advantages and disadvantages of Fixed Pagination](../Faqs#what-are-the-advantages-and-disadvantages-of-fixed-pagination)
+[4.What are the advantages and disadvantages of Infinite Scroll Pagination]()
+[5.What are the advantages and disadvantages of Click & Scroll pagination (with load more button)]
+[6.Can I customize the appearance of the pagination controls?]
