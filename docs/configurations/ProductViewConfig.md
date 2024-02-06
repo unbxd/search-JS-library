@@ -331,4 +331,4 @@ productView:{
 
 # FAQs
 
-[1.What is list view and grid view in product listing page?](../Faqs#what-is-list-view-and-grid-view-in-product-listing-page)
+1. [What is list view and grid view in product listing page?](../Faqs#what-is-list-view-and-grid-view-in-product-listing-page)

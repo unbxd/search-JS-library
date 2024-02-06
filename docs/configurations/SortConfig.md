@@ -429,6 +429,6 @@ sort: {
 ```
 
 # FAQs
-[1.How do I allow users to sort the search results on my website?](../Faqs#how-do-i-allow-users-to-sort-the-search-results-on-my-website)
-[2.Can I set a default sorting criteria for the search results?](../Faqs#can-i-set-a-default-sorting-criteria-for-the-search-results)
-[3.How does the Unbxd handle multiple sorting criteria?](../Faqs#how-does-the-unbxd-handle-multiple-sorting-criteria)
+1. [How do I allow users to sort the search results on my website?](../Faqs#how-do-i-allow-users-to-sort-the-search-results-on-my-website)
+2. [Can I set a default sorting criteria for the search results?](../Faqs#can-i-set-a-default-sorting-criteria-for-the-search-results)
+3. [How does the Unbxd handle multiple sorting criteria?](../Faqs#how-does-the-unbxd-handle-multiple-sorting-criteria)
