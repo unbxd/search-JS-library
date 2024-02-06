@@ -115,7 +115,9 @@ In case of dynamic values, a function can be written to return the value in a st
 	"uc_param": function() {
 	    /** Custom logic based on dynamic conditions **/
 	    return "value";
-	}
+	},
+	"segment": "region_id:101,Custome_type:Gold",
+	"location": window.location
  }
 ```
 

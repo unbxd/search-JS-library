@@ -122,13 +122,13 @@ enabled: true
 String
 {: .label }
 
-There are 3 types of pagination that can be used in e-commerce:
+There are 3 types of pagination that can be used:
 
-Page Numbers: In this type of pagination, a set of numbered pages are provided at the bottom of the page, allowing the user to navigate to specific pages. This method is best for desktop devices as it allows for easy navigation through a large number of products. Pass `type: “FIXED_PAGINATION”` to use this tpe of pagination.
+Fixed pagination : In this type of pagination, a set of numbered pages are provided at the bottom of the page, allowing the user to navigate to specific pages. This method is best for desktop devices as it allows for easy navigation through a large number of products. Pass `type: “FIXED_PAGINATION”` to use this tpe of pagination. See example [here](#usecase-1-fixed-pagination)
 
 Infinite Scrolling: In this type of pagination, new items are automatically loaded as the user scrolls to the bottom of the page, allowing the user to seamlessly scroll through all the products. This method is best for mobile devices as it allows for a continuous browsing experience. Pass `type: “INFINITE_SCROLL”` to use this tpe of pagination.
 
-Load More Button: In this type of pagination, a “Load More” button is provided at the bottom of the page, which when clicked, loads additional products. This method is easy to implement and can be used for both desktop and mobile devices. Pass `type: “CLICK_N_SCROLL”` to use this tpe of pagination.
+CLick and scroll: In this type of pagination, a “Load More” button is provided at the bottom of the page, which when clicked, loads additional products. This method is easy to implement and can be used for both desktop and mobile devices. Pass `type: “CLICK_N_SCROLL”` to use this tpe of pagination.
 
 
 ### Default Value
