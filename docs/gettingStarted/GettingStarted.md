@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Getting Started
-nav_order: 3
+nav_order: 4
 has_children: false
 permalink: docs/gettingStarted
 ---
@@ -441,7 +441,7 @@ Here is a graphical representation of the various sections on a search results p
 
 # FAQs
 
-1. [What types of search queries can the Unbxd SDK handle?](../Faqs#what-types-of-search-queries-can-the-unbxd-sdk-handle)
+1. [What types of search queries can the Unbxd SDK handle?](./Faqs#what-types-of-search-queries-can-the-unbxd-sdk-handle)
 2. [How does the SDK handle product discovery?](../Faqs#how-does-the-sdk-handle-product-discovery)
 3. [Can the SDK be integrated with other e-commerce platforms?](../Faqs#can-the-sdk-be-integrated-with-other-e-commerce-platforms)
 4. [How is the search index maintained and updated?](../Faqs#how-is-the-search-index-maintained-and-updated)

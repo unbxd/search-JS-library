@@ -286,7 +286,12 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
+# Data-actions
 
+1. changeSort
+2. clearSort
+
+---
 # Usecases
 ## Usecase 1: Sorting with dropdowns
 

@@ -376,6 +376,11 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
+# Data-actions
+
+1. changeSwatch
+
+---
 
 # UseCases
 ## Usecase 1: Default Example

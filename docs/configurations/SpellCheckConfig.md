@@ -214,6 +214,10 @@ htmlAttributes: { class:"UNX-spellcheck-wrapper" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
+
+# Data-actions
+1. getSuggestion
+---
 # Usecases
 ## Usecase 1: Default example
 Sample “spellCheck” config

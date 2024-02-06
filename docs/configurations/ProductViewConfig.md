@@ -266,8 +266,11 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
+# Data-actions
 
+1.viewType
 
+---
 # UseCases
 ## Usecase 1 : Grid view
 1. When viewType is equal to GRID.

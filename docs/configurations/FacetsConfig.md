@@ -1067,6 +1067,29 @@ It is used to bind 'change' or 'keyup' event to a facet wrapper element
 > Note: Please note this config is available as part of facet config from sdk version ```2.1.5```. Versions below this it is available as a seperate config here.
 ---
 
+# Data-actions
+
+1. viewLess
+2. viewMore
+3. clearCategoryFilter
+4. setRange
+5. applyRange
+6. clearRangeFacets
+7. searchFacets
+8. clearCategoryFilter
+9. setCategoryFilter
+10. changeFacet
+11. facetOpen
+12. facetClose
+13. deleteSelectedFacetValue
+14. deleteFacetValue
+15. deleteFacet
+16. applyFacets
+17. clearAllFacets
+18. deleteSelectedRange
+19. updatedRangeSlider
+20. clearPriceRange
+
 # UseCases
 
 ## Usecase 1 : Default Example

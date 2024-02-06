@@ -526,6 +526,18 @@ htmlAttributes: { class:"UNX-banner-block" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
+
+## Data-actions
+
+1. prev
+2. next
+3. pagination
+4. firstPage
+5. lastPage
+6. paginate
+
+
+---
 # UseCases
 ## Usecase 1: Fixed Pagination
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
@@ -641,4 +653,4 @@ pagination: {
 3. [What are the advantages and disadvantages of Fixed Pagination](../Faqs#what-are-the-advantages-and-disadvantages-of-fixed-pagination)
 4. [What are the advantages and disadvantages of Infinite Scroll Pagination](#what-are-the-advantages-and-disadvantages-of-infinite-scroll-pagination)
 5. [What are the advantages and disadvantages of Click & Scroll pagination (with load more button)](../Faqs#what-are-the-advantages-and-disadvantages-of-click--scroll-pagination-with-load-more-button)
-6. [Can I customize the appearance of the pagination controls?](../Faqs#can-i-customize-the-appearance-of-the-pagination-controls)
+6.[Can I customize the appearance of the pagination controls?](../Faqs#can-i-customize-the-appearance-of-the-pagination-controls)
