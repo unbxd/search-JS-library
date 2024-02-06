@@ -446,3 +446,6 @@ Here is a graphical representation of the various sections on a search results p
 3. [Can the SDK be integrated with other e-commerce platforms?](../Faqs#can-the-sdk-be-integrated-with-other-e-commerce-platforms)
 4. [How is the search index maintained and updated?](../Faqs#how-is-the-search-index-maintained-and-updated)
 5. [Does the SDK provide analytics and reporting?](../Faqs#does-the-sdk-provide-analytics-and-reporting)
+6. [How to determine the version of the Unbxd JS SDK used in an e-commerce site?](../Faqs#how-to-determine-the-version-of-the-unbxd-js-sdk-used-in-an-e-commerce-site)
+7. [How do I configure the SDK on my website?](../Faqs#how-do-i-configure-the-sdk-on-my-website)
+8. [How can I test the SDK before deploying to production?](../Faqs#how-can-i-test-the-sdk-before-deploying-to-production)
