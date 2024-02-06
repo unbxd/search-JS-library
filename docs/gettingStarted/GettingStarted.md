@@ -441,8 +441,8 @@ Here is a graphical representation of the various sections on a search results p
 
 # FAQs
 
-[1.What types of search queries can the Unbxd SDK handle?](../Faqs#what-types-of-search-queries-can-the-unbxd-sdk-handle)
-[2.How does the SDK handle product discovery?](../Faqs#how-does-the-sdk-handle-product-discovery)
-[3.Can the SDK be integrated with other e-commerce platforms?](../Faqs#can-the-sdk-be-integrated-with-other-e-commerce-platforms)
-[4.How is the search index maintained and updated?](../Faqs#how-is-the-search-index-maintained-and-updated)
-[5.Does the SDK provide analytics and reporting?](../Faqs)#does-the-sdk-provide-analytics-and-reporting
+1. [What types of search queries can the Unbxd SDK handle?](../Faqs#what-types-of-search-queries-can-the-unbxd-sdk-handle)
+2. [How does the SDK handle product discovery?](../Faqs#how-does-the-sdk-handle-product-discovery)
+3. [Can the SDK be integrated with other e-commerce platforms?](../Faqs#can-the-sdk-be-integrated-with-other-e-commerce-platforms)
+4. [How is the search index maintained and updated?](../Faqs#how-is-the-search-index-maintained-and-updated)
+5. [Does the SDK provide analytics and reporting?](../Faqs)#does-the-sdk-provide-analytics-and-reporting
