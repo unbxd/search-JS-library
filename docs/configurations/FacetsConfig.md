@@ -1856,9 +1856,9 @@ facet:{
 
 # FAQs
 
-[1.How to enable and make use of the faceted search functionality provided by the SDK?](../Faqs#how-to-enable-and-make-use-of-the-faceted-search-functionality-provided-by-the-sdk)
-[2.What are facets and how do they work with the Unbxd Search SDK?](../Faqs#what-are-facets-and-how-do-they-work-with-the-unbxd-search-sdk)
-[3.How can I customize the facets that are displayed on my website?](../Faqs#how-can-i-customize-the-facets-that-are-displayed-on-my-website)
-[4.Can I limit the number of facets that are displayed to the user?](../Faqs#can-i-limit-the-number-of-facets-that-are-displayed-to-the-user)
-[5.How does the Unbxd Search SDK handle multi-select facets?](../Faqs#how-does-the-unbxd-search-sdk-handle-multi-select-facets)
-[6.Can I track the performance of my facets?](../Faqs#can-i-track-the-performance-of-my-facets)
+> [1.How to enable and make use of the faceted search functionality provided by the SDK?](../Faqs#how-to-enable-and-make-use-of-the-faceted-search-functionality-provided-by-the-sdk)
+> [2.What are facets and how do they work with the Unbxd Search SDK?](../Faqs#what-are-facets-and-how-do-they-work-with-the-unbxd-search-sdk)
+> [3.How can I customize the facets that are displayed on my website?](../Faqs#how-can-i-customize-the-facets-that-are-displayed-on-my-website)
+> [4.Can I limit the number of facets that are displayed to the user?](../Faqs#can-i-limit-the-number-of-facets-that-are-displayed-to-the-user)
+> [5.How does the Unbxd Search SDK handle multi-select facets?](../Faqs#how-does-the-unbxd-search-sdk-handle-multi-select-facets)
+> [6.Can I track the performance of my facets?](../Faqs#can-i-track-the-performance-of-my-facets)
