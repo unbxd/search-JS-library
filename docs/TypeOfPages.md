@@ -11,7 +11,15 @@ Unbxd is a provider of e-commerce search and product discovery solutions. Two ty
 ## Search Results Pages (SRPs)
 These pages display results relevant to the user's search query. Unbxd's technology enhances these pages by providing accurate and relevant search results, often incorporating features like autocomplete, spell check, and semantic search to improve the user experience.
 
+The url for this page is usually of following structure 
+```js
+https://your-domain/search?q=car&rows=12*start=0
+```
+
 ## Category Pages
 These pages organize products into specific categories or collections. Unbxd optimizes category pages by helping retailers showcase products effectively within each category, potentially incorporating features like faceted navigation, sorting options, and personalized recommendations to help users find what they're looking for more easily.
 
-These pages are fundamental components of an e-commerce website's user experience, and Unbxd's solutions aim to optimize them for increased engagement, conversion, and customer satisfaction.
+The url for this page is usually of following strucutre
+```js
+https://your-domain/Categories/Computers-and-Accessories/Ink-and-Toner
+```
