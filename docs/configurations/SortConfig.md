@@ -288,8 +288,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 # Data-actions
 
-1. changeSort
-2. clearSort
+1. changeSort - This is needed on the sort wrapper to identify the sort ha been changed.
+2. clearSort -
 
 ---
 # Usecases

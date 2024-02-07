@@ -1069,26 +1069,26 @@ It is used to bind 'change' or 'keyup' event to a facet wrapper element
 
 # Data-actions
 
-1. viewLess
-2. viewMore
-3. clearCategoryFilter
-4. setRange
-5. applyRange
-6. clearRangeFacets
-7. searchFacets
-8. clearCategoryFilter
-9. setCategoryFilter
-10. changeFacet
-11. facetOpen
-12. facetClose
+1. viewLess - When enableViewMore is true ,this action is needed on the element which on click will show less facet values.
+2. viewMore - When enableViewMore is true , this action is needed on the element which on click will show all facet values.
+3. clearCategoryFilter -
+4. setRange - Action is needed on the facet values which are range facet.
+5. applyRange - Action is needed on the element which on click will select multiple range facet values at once . (when applyMultipleFilters is true.)
+6. clearRangeFacets - 
+7. searchFacets - Action is needed on the element in which we need to search for the facet values.
+8. clearCategoryFilter - Action is needed on the element which on click will remove the selected category filter.
+9. setCategoryFilter - Action is needed on the category facet values .
+10. changeFacet - Action is needed on the facet values which are either text facets
+11. facetOpen - Action is needed on the element which on click will expand the facets dropdown.
+12. facetClose - Action is needed on the element which on click will collapse the facets dropdown.
 13. deleteSelectedFacetValue
-14. deleteFacetValue
-15. deleteFacet
-16. applyFacets
-17. clearAllFacets
-18. deleteSelectedRange
-19. updatedRangeSlider
-20. clearPriceRange
+14. deleteFacetValue -
+15. applyFacets - Action is needed on the button which on click will apply the facets (When applyMultipleFilters is true.)
+16. deleteFacet - Action is needed on the button which on click will at once remove all the selected facet values for that one facet . (When applyMultipleFilters is true.)
+17. clearAllFacets - Action is needed on the element which on click removes all the selected facets .
+18. deleteSelectedRange - 
+19. updatedRangeSlider - 
+20. clearPriceRange -
 
 # UseCases
 
