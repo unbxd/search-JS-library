@@ -1067,28 +1067,37 @@ It is used to bind 'change' or 'keyup' event to a facet wrapper element
 > Note: Please note this config is available as part of facet config from sdk version ```2.1.5```. Versions below this it is available as a seperate config here.
 ---
 
-# Data-actions
+# Data actions
+
+## data-action 
+The actions defined below needs to be passed as a `data-action` attribute.
 
 1. viewLess - When enableViewMore is true ,this action is needed on the element which on click will show less facet values.
 2. viewMore - When enableViewMore is true , this action is needed on the element which on click will show all facet values.
-3. clearCategoryFilter -
-4. setRange - Action is needed on the facet values which are range facet.
-5. applyRange - Action is needed on the element which on click will select multiple range facet values at once . (when applyMultipleFilters is true.)
-6. clearRangeFacets - 
-7. searchFacets - Action is needed on the element in which we need to search for the facet values.
-8. clearCategoryFilter - Action is needed on the element which on click will remove the selected category filter.
-9. setCategoryFilter - Action is needed on the category facet values .
-10. changeFacet - Action is needed on the facet values which are either text facets
-11. facetOpen - Action is needed on the element which on click will expand the facets dropdown.
-12. facetClose - Action is needed on the element which on click will collapse the facets dropdown.
-13. deleteSelectedFacetValue - 
-14. deleteFacetValue -
-15. applyFacets - Action is needed on the button which on click will apply the facets (When applyMultipleFilters is true.)
-16. deleteFacet - Action is needed on the button which on click will at once remove all the selected facet values for that one facet . (When applyMultipleFilters is true.)
-17. clearAllFacets - Action is needed on the element which on click removes all the selected facets .
-18. deleteSelectedRange - 
-19. updatedRangeSlider - 
-20. clearPriceRange -
+3. setRange - Action is needed on the facet values which are range facet.
+4. applyRange - Action is needed on the element which on click will select multiple range facet values at once . (when applyMultipleFilters is true.)
+5. setCategoryFilter - Action is needed on the category facet values .
+6. clearCategoryFilter - Action is needed on the element which on click will remove the selected category filter.
+
+## facet-action
+The actions defined below needs to be passed as a `data-facet-action` attribute.
+
+1. searchFacets - Action is needed on the element in which we need to search for the facet values.
+2. changeFacet - Action is needed on the facet values which are either text facets.
+3. facetOpen - Action is needed on the element which on click will expand the facets dropdown.
+4. facetClose - Action is needed on the element which on click will collapse the facets dropdown.
+5. applyFacets - Action is needed on the button which on click will apply the facets (When applyMultipleFilters is true.)
+6. deleteSelectedRange - Action is needed on the element (selected facet) , where on click it should remove the selected range .
+7. deleteFacet - Action is needed on the button which on click will at once remove all the selected facet values for that one facet .
+8. deleteFacetValue - Action is needed on the facet values element , when it needs to be delselected.
+9. deleteSelectedFacetValue -  Action is needed on the element (selected facet) which on click will remove that selected facet.
+10. clearAllFacets - Action is needed on the element which on click removes all the selected facets .
+
+
+
+12. updatedRangeSlider - 
+18. clearPriceRange -
+19. clearRangeFacets - Action is needed on the element which on click removes all selected range facets.
 
 # UseCases
 

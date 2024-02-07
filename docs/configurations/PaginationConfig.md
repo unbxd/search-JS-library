@@ -529,8 +529,10 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
 
-# Data-actions
+# Data actions
 
+## data-page-action
+Actions below are needed to be set as ``
 1. prev - This action is needed on the button on click of which it triggers an api call for previous page.
 2. next - This action is needed on the button on click of which it triggers an api call for next page. 
 3. firstPage - This action is needed on the button on click of which it triggers an api call for the very first page.
