@@ -249,6 +249,8 @@ template: function (paginationData, pagination) {
 
 ```
 
+**Note:** For the preloader and postloader , position needs to be made absolute , z-index to be -1 . Height of these will be set using what you provide in heightDiffToTriggerNextPage.
+
 ### Scenarios
 {: .no_toc }
 For additional information on custom scenarios, please refer to the [use cases section](#usecases) located below.

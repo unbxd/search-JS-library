@@ -1081,7 +1081,7 @@ It is used to bind 'change' or 'keyup' event to a facet wrapper element
 10. changeFacet - Action is needed on the facet values which are either text facets
 11. facetOpen - Action is needed on the element which on click will expand the facets dropdown.
 12. facetClose - Action is needed on the element which on click will collapse the facets dropdown.
-13. deleteSelectedFacetValue
+13. deleteSelectedFacetValue - 
 14. deleteFacetValue -
 15. applyFacets - Action is needed on the button which on click will apply the facets (When applyMultipleFilters is true.)
 16. deleteFacet - Action is needed on the button which on click will at once remove all the selected facet values for that one facet . (When applyMultipleFilters is true.)
