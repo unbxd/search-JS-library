@@ -268,7 +268,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 # Data-actions
 
-1.viewType
+1. LIST - Action is needed on the list button / element , clicking on which would change to list view. 
+2. GRID - Action is needed on the grid button / element , clicking on which would change to grid view.
 
 ---
 # UseCases

@@ -527,14 +527,13 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
 
-## Data-actions
+# Data-actions
 
-1. prev
-2. next
-3. pagination
-4. firstPage
-5. lastPage
-6. paginate
+1. prev - This action is needed on the button on click of which it triggers an api call for previous page.
+2. next - This action is needed on the button on click of which it triggers an api call for next page. 
+3. firstPage - This action is needed on the button on click of which it triggers an api call for the very first page.
+4. lastPage - This action is needed on the button on click of which it triggers an api call for the last page.
+5. paginate - This action is needed on page number buttons.(In case of fixed pagination)
 
 
 ---
