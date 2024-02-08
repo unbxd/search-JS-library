@@ -1078,6 +1078,7 @@ The actions defined below needs to be passed as a `data-action` attribute.
 4. applyRange - Action is needed on the element which on click will select multiple range facet values at once . (when applyMultipleFilters is true.)
 5. setCategoryFilter - Action is needed on the category facet values .
 6. clearCategoryFilter - Action is needed on the element which on click will remove the selected category filter.
+7. clearRangeFacets - Action is needed on the element which on click removes all selected range facets.
 
 ## facet-action
 The actions defined below needs to be passed as a `data-facet-action` attribute.
@@ -1093,11 +1094,9 @@ The actions defined below needs to be passed as a `data-facet-action` attribute.
 9. deleteSelectedFacetValue -  Action is needed on the element (selected facet) which on click will remove that selected facet.
 10. clearAllFacets - Action is needed on the element which on click removes all the selected facets .
 
+13. updatedRangeSlider - 
+14. clearPriceRange -
 
-
-12. updatedRangeSlider - 
-18. clearPriceRange -
-19. clearRangeFacets - Action is needed on the element which on click removes all selected range facets.
 
 # UseCases
 
