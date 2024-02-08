@@ -257,7 +257,7 @@ This event is captured when any config error has occurred .
 
 ### Arguments
 {: .no_toc }
-1.  `payload`: Any payload can be sent here .
+1.  `payload`: error object will be sent here by the sdk.
 
 ### Example usage
 {: .no_toc }
@@ -274,7 +274,7 @@ This event is captured when any runtime error has occurred .
 
 ### Arguments
 {: .no_toc }
-1.  `payload`: Any payload can be sent here .
+1.  `payload`: error object will be sent here by the sdk.
 
 ### Example usage
 {: .no_toc }

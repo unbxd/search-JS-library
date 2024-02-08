@@ -62,11 +62,6 @@ This is the unique Site Key assigned by Unbxd to every site created in the conso
 ```js
 siteKey:NA	
 ```
-### Scenarios
-{: .no_toc }
-```js
-siteKey:"ss-unbxd-gcp-Gardner-White-STG8241646781056"
-```
 
 ---
 ## apiKey	
@@ -83,12 +78,6 @@ This is the unique API Key assigned to every site created in the console dashboa
 apiKey:NA
 ```
 
-
-### Scenarios
-{: .no_toc }
-```js
-apiKey:"e2082aeb3a7f0ac8955c879daf7673e8"
-```
 
 # FAQs
 1. [How do I get an API key and Site key to use with the SDK?](../Faqs#how-do-i-get-an-api-key-and-site-key-to-use-with-the-sdk)

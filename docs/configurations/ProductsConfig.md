@@ -381,7 +381,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 ## data-action
 Actions mentioned below needs to be added as `data-action` attribute.
 
-1. changeSwatch - Action that is needed on the element when a swatch is clicked.
+1. `changeSwatch` - Action that is needed on the element when a swatch is clicked.
 
 ---
 

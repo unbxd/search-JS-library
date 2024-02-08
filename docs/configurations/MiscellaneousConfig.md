@@ -245,12 +245,12 @@ browseQueryParam: "p"
 ## Scenarios
 {: .no_toc }
 
-1. p-id: If we are providing the **category path id** to the search api.
+1. `p-id`: If we are providing the **category path id** to the search api.
 ```
 	p-id: categoryPathId:"4"
 ```
 
-2. p: If we are providing the **category path** to the search api.
+2. `p`: If we are providing the **category path** to the search api.
 ```
 	p: categoryPath:"Computers & Accessories>Ink & Toner"
 ```

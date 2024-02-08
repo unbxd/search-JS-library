@@ -1,6 +1,6 @@
 ---
 layout: default
-title: How To Contribute
+title: How to contribute
 nav_order: 11
 ---
 

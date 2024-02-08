@@ -216,7 +216,8 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 ---
 
 # Data-actions
-1. getSuggestion
+1. `getSuggestion` -
+
 ---
 # Usecases
 ## Usecase 1: Default example
