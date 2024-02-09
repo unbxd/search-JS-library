@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Events
-nav_order: 6
+nav_order: 7
 ---
 
 # Events
@@ -247,6 +247,57 @@ Fired on click of any of the page size options
 ```js
 onEvent: function(instance, "PAGESIZE_CHANGE", {
     count:val
+}) {
+    /** Custom code here */
+}
+```
+---
+## CONFIG_ERROR
+This event is captured when any config error has occurred .
+
+### Arguments
+{: .no_toc }
+1.  `payload`: error object will be sent here by the sdk.
+
+### Example usage
+{: .no_toc }
+```js
+onEvent: function(instance, "CONFIG_ERROR", {
+    payload
+}) {
+    /** Custom code here */
+}
+```
+---
+## RUNTIME_ERROR
+This event is captured when any runtime error has occurred .
+
+### Arguments
+{: .no_toc }
+1.  `payload`: error object will be sent here by the sdk.
+
+### Example usage
+{: .no_toc }
+```js
+onEvent: function(instance, "RUNTIME_ERROR", {
+    payload
+}) {
+    /** Custom code here */
+}
+```
+---
+## FETCH_ERROR
+This event is captured when any error is occurred after an api call.
+
+### Arguments
+{: .no_toc }
+1.  `payload`: Any payload can be sent here .
+
+### Example usage
+{: .no_toc }
+```js
+onEvent: function(instance, "FETCH_ERROR", {
+    payload
 }) {
     /** Custom code here */
 }

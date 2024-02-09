@@ -1019,6 +1019,82 @@ htmlAttributes: { class:”UNX-facets-results-block” }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
+# actionBtnClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+CSS class name to add to any facet wrapper elements on which you want to trigger **click** event.
+
+## Default Value
+{: .no_toc }
+
+```js
+actionBtnClass:"UNX-action-item"
+```
+
+## Scenarios
+{: .no_toc }
+
+It is used to bind 'click' event to a facet wrapper element
+
+{: .warning } 
+> Note: Please note this config is available as part of facet config from sdk version ```2.1.5```. Versions below this it is available as a seperate config here.
+
+---
+# actionChangeClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+CSS class name to be added to any facet wrapper elements on which you want to trigger **change**, or **keyup** event.
+
+## Default Value
+{: .no_toc }
+
+```js
+actionChangeClass:"UNX-action-change"
+```
+
+## Scenarios
+{: .no_toc }
+
+It is used to bind 'change' or 'keyup' event to a facet wrapper element
+
+{: .warning } 
+> Note: Please note this config is available as part of facet config from sdk version ```2.1.5```. Versions below this it is available as a seperate config here.
+---
+
+# Data actions
+
+## data-action 
+The actions defined below needs to be passed as a `data-action` attribute.
+
+1. `viewLess` - When enableViewMore is true ,this action is needed on the element which on click will show less facet values.
+2. `viewMore` - When enableViewMore is true , this action is needed on the element which on click will show all facet values.
+3. `setRange` - Action is needed on the facet values which are range facet.
+4. `applyRange` - Action is needed on the element which on click will select multiple range facet values at once . (when applyMultipleFilters is true.)
+5. `setCategoryFilter` - Action is needed on the category facet values .
+6. `clearCategoryFilter` - Action is needed on the element which on click will remove the selected category filter.
+7. `clearRangeFacets` - Action is needed on the element which on click removes all selected range facets.
+
+## facet-action
+The actions defined below needs to be passed as a `data-facet-action` attribute.
+
+1. `searchFacets` - Action is needed on the element in which we need to search for the facet values.
+2. `changeFacet` - Action is needed on the facet values which are either text facets.
+3. `facetOpen` - Action is needed on the element which on click will expand the facets dropdown.
+4. `facetClose` - Action is needed on the element which on click will collapse the facets dropdown.
+5. `applyFacets` - Action is needed on the button which on click will apply the facets (When applyMultipleFilters is true.)
+6. `deleteSelectedRange` - Action is needed on the element (selected facet) , where on click it should remove the selected range .
+7. `deleteFacet` - Action is needed on the button which on click will at once remove all the selected facet values for that one facet .
+8. `deleteFacetValue` - Action is needed on the facet values element , when it needs to be delselected.
+9. `deleteSelectedFacetValue` -  Action is needed on the element (selected facet) which on click will remove that selected facet.
+10. `clearAllFacets` - Action is needed on the element which on click removes all the selected facets .
+12. `clearPriceRange` - This action removes a particular range facet from the state and gets new results.
+
 
 # UseCases
 
@@ -1806,3 +1882,12 @@ facet:{
     }
 }
 ```
+
+# FAQs
+
+1. [How to enable and make use of the faceted search functionality provided by the SDK?](../Faqs#how-to-enable-and-make-use-of-the-faceted-search-functionality-provided-by-the-sdk)
+2. [What are facets and how do they work with the Unbxd Search SDK?](../Faqs#what-are-facets-and-how-do-they-work-with-the-unbxd-search-sdk)
+3. [How can I customize the facets that are displayed on my website?](../Faqs#how-can-i-customize-the-facets-that-are-displayed-on-my-website)
+4. [Can I limit the number of facets that are displayed to the user?](../Faqs#can-i-limit-the-number-of-facets-that-are-displayed-to-the-user)
+5. [How does the Unbxd Search SDK handle multi-select facets?](../Faqs#how-does-the-unbxd-search-sdk-handle-multi-select-facets)
+6. [Can I track the performance of my facets?](../Faqs#can-i-track-the-performance-of-my-facets)

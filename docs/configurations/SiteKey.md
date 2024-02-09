@@ -62,11 +62,6 @@ This is the unique Site Key assigned by Unbxd to every site created in the conso
 ```js
 siteKey:NA	
 ```
-### Scenarios
-{: .no_toc }
-```js
-siteKey:"ss-unbxd-gcp-Gardner-White-STG8241646781056"
-```
 
 ---
 ## apiKey	
@@ -84,10 +79,8 @@ apiKey:NA
 ```
 
 
-### Scenarios
-{: .no_toc }
-```js
-apiKey:"e2082aeb3a7f0ac8955c879daf7673e8"
-```
-
-  
+# FAQs
+1. [How do I get an API key and Site key to use with the SDK?](../Faqs#how-do-i-get-an-api-key-and-site-key-to-use-with-the-sdk)
+2. [How to determine the version of the Unbxd JS SDK used in an e-commerce site?](../Faqs#how-to-determine-the-version-of-the-unbxd-js-sdk-used-in-an-e-commerce-site)
+3. [How do I configure the SDK on my website?](../Faqs#how-do-i-configure-the-sdk-on-my-website)
+4. [How can I test the SDK before deploying to production?](../Faqs#how-can-i-test-the-sdk-before-deploying-to-production)

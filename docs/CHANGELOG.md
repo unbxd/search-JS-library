@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Release Notes
-nav_order: 8
+title: Change log
+nav_order: 9
 ---
 
 # Changelog

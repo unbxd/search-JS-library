@@ -60,4 +60,7 @@ If you need assistance or are looking for technical help, please search this doc
 
 
 # Stay up to date
-Please refer to the [changelog](docs/CHANGELOG.md) to stay informed about the most recent releases and bug fixes, and to track the history of changes.
+Please refer to the [changelog](docs/CHANGELOG) to stay informed about the most recent releases and bug fixes, and to track the history of changes.
+
+# Follow these best practices
+Please refer and follow these [Best practices](docs/BestPractices) to have performant usuage of sdk .

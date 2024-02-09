@@ -1,6 +1,6 @@
----
+<!-- ---
 layout: default
-title: Integrate with sample unbxd feed 
+title: Integrate with sample feed / your site
 nav_order: 2
 parent: Getting Started
 ---
@@ -16,40 +16,73 @@ Please complete the self serve FTU flow along with the dimensions mapping for fi
 More information can be found [here](./../prerequisites)
 
 {: .important }
-> Note: The config attributes mentioned below are from the **sample apparel feed** downloaded via the csv upload flow. These will change if another feed is used
+> Note: The config attributes mentioned below are from the **sample apparel feed** downloaded via the csv upload flow. You will find instructions below to follow if any other feed is being used .
 
 # Integration Instructions
-
-
-
 Customize the search config used for invoking the sdk, to see the data related to your sitekey.
 
 1. Change **siteKey** and **apiKey**.
-    ```js
+
+```js
     siteKey: "<<site key>>",
     apiKey: "<<api key>>"
-    ```
+```
+
 2. Provide **attributesMap** inside **products** object.
-        ```js
-        attributesMap: {
-        "unxTitle": "title",
-        "unxImageUrl": "imageURL",
-        "unxPrice": "price",
-        "unxDescription":"short_desc"
-        };
-        ```
+
+```js
+attributesMap: {
+    "unxTitle": "title",
+    "unxImageUrl": "imageURL",
+    "unxPrice": "price",
+    "unxDescription":"short_desc"
+};
+```
+
+For any other site (other than demo) , use respective mappings . eg :
+
+```js
+attributesMap: {
+    "unxTitle": "<<title attribute>>",
+    "unxImageUrl": "<<image url attribute>>",
+    "unxPrice": "<<price attribute>>",
+    "unxDescription":"<<description attribute>>"
+};
+
+```
+
+
 3. Provide **product attributes** inside **products** object to be returned from the search api. If this is not provided, all fields related to the product will be returned, which in turn makes the api unnecessarily bulky.
-        ```js
-        productAttributes: ["title","imageURL","price","short_desc"]
-        ```
+
+```js
+    productAttributes: [
+        "title",
+        "imageURL",
+        "price",
+        "short_desc"
+    ]
+```
+        
+For any other site (other than demo) , use respective fields . eg :
+
+```js
+productAttributes: [
+    "<<title attribute>>",
+    "<<image url attribute>>",
+    "<<price attribute>>",
+    "<<description attribute>>"
+    ]
+```
+
 4. Add the correct **query selectors** based on your website, in the config.
+
 5. Configure the correct category path for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**, and the page_type as well <br/>
     /** todo: modify apparel feed in phoenix and check for cateogory api, once feed upload api is fixed from backend **/
 
         **Example:**
-        {: .no_toc }
 
         ```js
+        
         if (location.pathname === "/<<categoryPage1>>") {
             window.UnbxdAnalyticsConf = {
                 page: "categoryPath:categoryPath1",
@@ -66,28 +99,62 @@ Customize the search config used for invoking the sdk, to see the data related t
             window.UnbxdAnalyticsConf = {};
             productType = "SEARCH";
         }
+        
         ```
+        
+     OR
 
-6. Set the correct **productType** in the products config, i.e. "SEARCH" for search    results page, or "CATEGORY" for category pages.
+    Configure the correct **category id** and page_type for the **UnbxdAnalyticsConf** window object for **category page click** or **category page load**.
+    Also set **browseQueryParam** in the config accordingly.
+            
+    **Example:**
 
-        **Example:**
-        {: .no_toc }
+    ```js
+    if (location.pathname === "/<<categoryPage1>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPathId:categoryId1",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else if (location.pathname === "/<<categoryPage2>>") {
+        window.UnbxdAnalyticsConf = {
+            page: "categoryPathId:categoryId2",
+            page_type: 'BOOLEAN'
+        };
+        productType = "CATEGORY";
+    } else {
+        window.UnbxdAnalyticsConf = {};
+        productType = "SEARCH";
+    }
+    ```
 
-        ```js
+    ```js
+    browseQueryParam: "p-id"
+    ```
+
+    {: .important }
+    > For further help with category pages configuration, please contact the feed support team. 
+
+6. Set the correct **productType** in the products config, i.e. "SEARCH" for search  results page, or "CATEGORY" for category pages.
+
+    **Example:**
+
+    ```js
         products: {
             productType: "<<SEARCH/CATEGORY>>"
         }
-        ```
-7. If it is a staging sitekey, set the correct search end point
-        ```js
-        searchEndPoint: "https://wingman-argocd.unbxd.io/"
-        ```
+    ```
 
+7. If it is a staging sitekey, set the correct search end point. For eg :
+
+    ```js
+        searchEndPoint: "https://wingman-argocd.unbxd.io/"
+    ```
 
 # Sample configuration with the unbxd demo sitekey feed
 
 {: .warning }
-> Note: All Element selectors must change as per your website. All attributes must change as per the sample feed data. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes
+> Note: All Element selectors must change as per your website. All attributes must change as per the sample feed data. Please refer the config from the **getConfig** function [here](https://codesandbox.io/s/ezmi0v?file=/src/js/config.js) and make the necessary changes -->
 
 <!-- ```js
 window.unbxdSearch = new UnbxdSearch({

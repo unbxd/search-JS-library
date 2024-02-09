@@ -266,11 +266,18 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
+# Data-actions
 
+## data-view-action
+Actions mentioned below needs to be added as `data-view-action`.
 
+1. `LIST` - Action is needed on the list button / element , clicking on which would change to list view. 
+2. `GRID` - Action is needed on the grid button / element , clicking on which would change to grid view.
+
+---
 # UseCases
-## Usecase 1
-1. GRID: when viewTypes is equal to GRID.
+## Usecase 1 : Grid view
+1. When viewType is equal to GRID.
 
 [![](../assets/GRID.png)](../assets/GRID.png)
 
@@ -315,7 +322,7 @@ productView : {
    }
 ```
 
-## Usecase 2
+## Usecase 2: List view
 1. LIST: when viewTypes is equal to LIST.
 
 [![](../assets/LIST.png)](../assets/LIST.png)
@@ -328,3 +335,7 @@ productView:{
      viewTypes: “LIST”,
 }
 ```
+
+# FAQs
+
+1. [What is list view and grid view in product listing page?](../Faqs#what-is-list-view-and-grid-view-in-product-listing-page)

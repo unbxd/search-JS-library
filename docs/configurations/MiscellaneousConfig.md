@@ -64,22 +64,8 @@ Boolean
 # actionBtnClass
 {: .d-inline-block }
 
-String
-{: .label }
-
-CSS class name to add to any facet wrapper elements on which you want to trigger **click** event.
-
-## Default Value
-{: .no_toc }
-
-```js
-actionBtnClass:"UNX-action-item"
-```
-
-## Scenarios
-{: .no_toc }
-
-It is used to bind 'click' event to a facet wrapper element
+{: .warning } 
+> Note: Please note this config has been moved as part of [facet config]() from sdk version ```2.1.5```.
 
 ---
 # actionChangeClass
@@ -88,19 +74,8 @@ It is used to bind 'click' event to a facet wrapper element
 String
 {: .label }
 
-CSS class name to be added to any facet wrapper elements on which you want to trigger **change**, or **keyup** event.
-
-## Default Value
-{: .no_toc }
-
-```js
-actionChangeClass:"UNX-action-change"
-```
-
-## Scenarios
-{: .no_toc }
-
-It is used to bind 'change' or 'keyup' event to a facet wrapper element
+{: .warning } 
+> Note: Please note this config has been moved as part of [facet config]() from sdk version ```2.1.5```.
 
 ---
 # allowExternalUrlParams
@@ -140,7 +115,9 @@ In case of dynamic values, a function can be written to return the value in a st
 	"uc_param": function() {
 	    /** Custom logic based on dynamic conditions **/
 	    return "value";
-	}
+	},
+	"segment": "region_id:101,Custome_type:Gold",
+	"location": window.location
  }
 ```
 
@@ -268,8 +245,15 @@ browseQueryParam: "p"
 ## Scenarios
 {: .no_toc }
 
-1. p-id: If we are providing the **category path id** to the search api.
-2. p: If we are providing the **category path** to the search api.
+1. `p-id`: If we are providing the **category path id** to the search api.
+```
+	p-id: categoryPathId:"4"
+```
+
+2. `p`: If we are providing the **category path** to the search api.
+```
+	p: categoryPath:"Computers & Accessories>Ink & Toner"
+```
 
 {: .important } 
 > Note: This particular config is only for customizing the browse query param sent in the search API and not the web URL which is documented [here](./urlConfig#browsequeryparam).

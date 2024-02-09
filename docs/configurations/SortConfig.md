@@ -286,7 +286,15 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 ---
 
+# Data-actions
 
+## data-action
+Actions mentioned below needs to be added as `data-action` attribute.
+
+1. `changeSort` - This is needed on the sort wrapper to identify the sort ha been changed.
+2. `clearSort` - This action resets the sort , and fetches products accordingly.
+
+---
 # Usecases
 ## Usecase 1: Sorting with dropdowns
 
@@ -427,3 +435,8 @@ sort: {
         }
     }
 ```
+
+# FAQs
+1. [How do I allow users to sort the search results on my website?](../Faqs#how-do-i-allow-users-to-sort-the-search-results-on-my-website)
+2. [Can I set a default sorting criteria for the search results?](../Faqs#can-i-set-a-default-sorting-criteria-for-the-search-results)
+3. [How does the Unbxd handle multiple sorting criteria?](../Faqs#how-does-the-unbxd-handle-multiple-sorting-criteria)

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Best Practices
-nav_order: 9
+nav_order: 10
 ---
 
 # Best Practices
@@ -14,7 +14,6 @@ nav_order: 9
 
 1. TOC
 {:toc}
-
 
 
 # Dos and Don'ts

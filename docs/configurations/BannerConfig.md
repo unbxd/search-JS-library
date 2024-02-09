@@ -235,5 +235,7 @@ banner: {
     count:1
 }
 ```
-## Usecase 2: Banners With HTML
-## Usecase 3: Banners With Images
+
+# FAQs
+1. [Can the Unbxd Search SDK be used to display banners on my e-commerce website?](../Faqs#can-the-unbxd-search-sdk-be-used-to-display-banners-on-my-e-commerce-website)
+2. [Can I use the SDK to personalize the banners?](../Faqs#can-i-use-the-sdk-to-personalize-the-banners)

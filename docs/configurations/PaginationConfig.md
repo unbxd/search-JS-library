@@ -122,13 +122,13 @@ enabled: true
 String
 {: .label }
 
-There are 3 types of pagination that can be used in e-commerce:
+There are 3 types of pagination that can be used:
 
-Page Numbers: In this type of pagination, a set of numbered pages are provided at the bottom of the page, allowing the user to navigate to specific pages. This method is best for desktop devices as it allows for easy navigation through a large number of products. Pass `type: “FIXED_PAGINATION”` to use this tpe of pagination.
+Fixed pagination : In this type of pagination, a set of numbered pages are provided at the bottom of the page, allowing the user to navigate to specific pages. This method is best for desktop devices as it allows for easy navigation through a large number of products. Pass `type: “FIXED_PAGINATION”` to use this tpe of pagination. See example [here](#usecase-1-fixed-pagination)
 
-Infinite Scrolling: In this type of pagination, new items are automatically loaded as the user scrolls to the bottom of the page, allowing the user to seamlessly scroll through all the products. This method is best for mobile devices as it allows for a continuous browsing experience. Pass `type: “INFINITE_SCROLL”` to use this tpe of pagination.
+Infinite Scrolling: In this type of pagination, new items are automatically loaded as the user scrolls to the bottom of the page, allowing the user to seamlessly scroll through all the products. This method is best for mobile devices as it allows for a continuous browsing experience. Pass `type: “INFINITE_SCROLL”` to use this tpe of pagination. See example [here](#usecase-2-click-and-scroll)
 
-Load More Button: In this type of pagination, a “Load More” button is provided at the bottom of the page, which when clicked, loads additional products. This method is easy to implement and can be used for both desktop and mobile devices. Pass `type: “CLICK_N_SCROLL”` to use this tpe of pagination.
+CLick and scroll: In this type of pagination, a “Load More” button is provided at the bottom of the page, which when clicked, loads additional products. This method is easy to implement and can be used for both desktop and mobile devices. Pass `type: “CLICK_N_SCROLL”` to use this tpe of pagination. See example [here](#usecase-3-infinite-scroll)
 
 
 ### Default Value
@@ -248,6 +248,8 @@ template: function (paginationData, pagination) {
 };
 
 ```
+
+**Note:** For the preloader and postloader , position needs to be made absolute , z-index to be -1 . Height of these will be set using what you provide in heightDiffToTriggerNextPage.
 
 ### Scenarios
 {: .no_toc }
@@ -526,6 +528,20 @@ htmlAttributes: { class:"UNX-banner-block" }
 Any valid html attribute can be passed as `key : value` pairs inside an object.
 
 --- 
+
+# Data actions
+
+## data-page-action
+Actions below are needed to be set as `data-page-action`.
+
+1. `prev` - This action is needed on the button on click of which it triggers an api call for previous page.
+2. `next` - This action is needed on the button on click of which it triggers an api call for next page. 
+3. `firstPage` - This action is needed on the button on click of which it triggers an api call for the very first page.
+4. `lastPage` - This action is needed on the button on click of which it triggers an api call for the last page.
+5. `paginate` - This action is needed on page number buttons.(In case of fixed pagination)
+
+
+---
 # UseCases
 ## Usecase 1: Fixed Pagination
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/traditional-pagination.png)
@@ -634,3 +650,11 @@ pagination: {
 }
 ```
 
+# FAQs
+
+1. [What is list view and grid view in product listing page?](../Faqs#pagination-related-queries)
+2. [What is the best pagination method for my website?](../Faqs#what-is-the-best-pagination-method-for-my-website)
+3. [What are the advantages and disadvantages of Fixed Pagination](../Faqs#what-are-the-advantages-and-disadvantages-of-fixed-pagination)
+4. [What are the advantages and disadvantages of Infinite Scroll Pagination](#what-are-the-advantages-and-disadvantages-of-infinite-scroll-pagination)
+5. [What are the advantages and disadvantages of Click & Scroll pagination (with load more button)](../Faqs#what-are-the-advantages-and-disadvantages-of-click--scroll-pagination-with-load-more-button)
+6.[Can I customize the appearance of the pagination controls?](../Faqs#can-i-customize-the-appearance-of-the-pagination-controls)
