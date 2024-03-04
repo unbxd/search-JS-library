@@ -34,7 +34,7 @@ export default function renderProducts() {
         searchResultsWrapper.classList.add(viewCss);
         // noResultCs
         if (noResults.el) {
-            noResultsBlock.remove();
+            noResultsBlock.innerHTML = "";
         }else{
             searchResultsWrapper.classList.remove(noResultCss);
         }
