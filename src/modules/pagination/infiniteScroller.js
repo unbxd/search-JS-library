@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 const setUpInfiniteScroll = function () {
     try {
         return new Promise(() => {
@@ -104,11 +106,12 @@ const setUpInfiniteScroll = function () {
             });
 
             this.postLoaderObserver = new IntersectionObserver(entries => {
-                if (entries[ 0 ].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
+                const { numberOfProducts } = this.getPaginationInfo() || {};
+                const lastPrank = this.getLastPrank();
+                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted && lastPrank < numberOfProducts) {
                     this.viewState.isInfiniteStarted = true;
-                    const lastPrank = this.getLastPrank();
-                    this.setPageStart(lastPrank);
-                    this.getResults("", true, 'next');
+                        this.setPageStart(lastPrank);
+                        this.getResults("", true, 'next');
                 }
             }, {
                 threshold: 0,
@@ -138,7 +141,7 @@ const setUpInfiniteScroll = function () {
             this.observer.observe(productsContainer, { childList: true, subtree: true });
         })
     } catch (err) {
-        this.onError('infiniteScroller.js', err)
+        this.onError('infiniteScroller.js', err,libEvents.runtimeError);
     }
 
 }

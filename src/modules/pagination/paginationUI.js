@@ -24,6 +24,10 @@ const paginationUI = function (paginationData, pagination) {
     }
     let nextBtn = `<button class="UNX-next-btn UNX-page-next ${pageClass}" data-page-no="${(currentPage)*rows}" data-page-action="next">></button>`;
     let prevBtn = `<button class="UNX-prev-btn UNX-page-prev ${pageClass}" data-page-no="${(currentPage-2)*rows}" data-page-action="prev"><</button>`;
+    
+    let firstPageBtn = `<button class="UNX-prev-btn UNX-page-next ${pageClass}"  data-page-action="firstPage"><<</button>`;
+    let lastPageBtn = `<button class="UNX-prev-btn UNX-page-prev ${pageClass}"  data-page-action="lastPage">>></button>`;
+    
     let pageNumbers = ``;
     let pages = noOfPages < pageLimit ? noOfPages:pageLimit;
     let startPoint=1;
@@ -55,9 +59,11 @@ const paginationUI = function (paginationData, pagination) {
         prevBtn = `<button disabled class="UNX-prev-btn UNX-page-prev"><</button>`;
     }
     return [`<div class="UNX-pagination-block">`,
+        firstPageBtn,
         prevBtn, 
         `<div class="UNX-page-no-block">${pageNumbers}</div>`,
         nextBtn,
+        lastPageBtn,
     `</div>`].join('');
 };
 export default paginationUI;

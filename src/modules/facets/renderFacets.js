@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 export default function(){
     try{
         const {
@@ -46,7 +48,7 @@ export default function(){
         this.options.facet.onFacetLoad.bind(this)(allFacets);
     }
     catch(err){
-        this.onError("Facets > renderFacets.js",err)
+        this.onError("Facets > renderFacets.js",err,libEvents.runtimeError);
     }
     
 }

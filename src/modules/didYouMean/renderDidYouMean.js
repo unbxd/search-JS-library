@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 const renderDidYouMean = function () {
     try{
         let {
@@ -47,7 +49,7 @@ const renderDidYouMean = function () {
         })
     }
     catch(err){
-        this.onError("didYouMean > renderDidYouMean.js",err)
+        this.onError("didYouMean > renderDidYouMean.js",err,libEvents.runtimeError);
     }
     
 }

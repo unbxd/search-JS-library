@@ -1,3 +1,4 @@
+import libEvents from '../../../../search-JS-core/src/constants';
 import {
     onClickPageSize
 } from './onClickPageSize';
@@ -20,7 +21,7 @@ const renderPageSize = function() {
         }
     }
     catch(err){
-        this.onError("Pagesize > renderPageSize",err)
+        this.onError("Pagesize > renderPageSize",err,libEvents.runtimeError)
     }
     
 }

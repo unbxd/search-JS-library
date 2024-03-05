@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 const renderProductViewType =  function(selectedViewType, productViewType={}) {
     try{
         const isDisabled = (this.getSearchResults()) ? false : true;
@@ -27,7 +29,7 @@ const renderProductViewType =  function(selectedViewType, productViewType={}) {
         }
         return `${listBtn} ${gridBtn}`
     }catch(err){
-        this.onError("productViewtype > renderProductViewType",err)
+        this.onError("productViewtype > renderProductViewType",err,libEvents.runtimeError)
     }
    
 

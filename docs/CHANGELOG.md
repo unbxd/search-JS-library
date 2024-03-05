@@ -16,6 +16,34 @@ nav_order: 9
 {:toc}
 
 ---
+# v2.1.5
+
+- **Release Date**: 5th Mar, 2024
+- **Core SDK Version**: v0.5.7
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.5/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.5/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- [onEvent]() now can be accessed when some error occurs , also will have access to the error payload.
+- New events introduced `CONFIG_ERROR` and `RUNTIME_ERROR` , so that these can be utilized inside the `onEvent`.
+- `actionBtnClass` and `actionChangeClass` are not moved inside the facet config .
+- Empty search box query now fires a call to "*".
+- Two new button have been introduced to go to the `first page` and `last page` in pagination component.
+
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- When on category page and going back everything , it was not going back to previous state and was rather removing everything from the url. 
+- Pagination start getting NAN issues.
+- `noResultWrapper` was getting appended to `searchResultsWrapper` , even when the noResultsWrapper present on the DOM.
+- `productItemClass` is now made mandatory. This will now be used to get the products from the DOM.
+- Category page url was getting double encoded.
+- No results container was not getting removed when we query for some query which has some results.
+- If last page encountered and has less products then pagesize , an api call with incorrect start (taking the index number of last product card) goes.
+- rangeFacets inside url has been initialized.
+
+
+---
 # v2.1.4
 
 - **Release Date**: 28th Dec, 2023

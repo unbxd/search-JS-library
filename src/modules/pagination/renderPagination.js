@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 const renderPagination = function () {
     try{
         const {
@@ -16,7 +18,7 @@ const renderPagination = function () {
         return paginationUI;
     }
     catch(err){
-        this.onError("Pagination > renderPagination.js",err)
+        this.onError("Pagination > renderPagination.js",err,libEvents.runtimeError);
     }
 
 }

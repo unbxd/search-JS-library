@@ -1,5 +1,7 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 export default function renderProducts() {
-    try {        
+    try {
         const {
             productViewType
         } = this.viewState
@@ -7,7 +9,13 @@ export default function renderProducts() {
         const {
             searchResultsWrapper
         } = this;
+        
+        const {
+            noResults
+        } = this.options;
+        
         const noResultCss = "UNX-no-results-wrap";
+        const noResultsBlock = noResults.el ? noResults.el : searchResultsWrapper.getElementsByClassName('UNX-no-results')[0];
 
         const {
             noResultLoaded,
@@ -24,7 +32,13 @@ export default function renderProducts() {
         searchResultsWrapper.classList.remove("UNX-list-block");
         searchResultsWrapper.classList.remove("UNX-grid-block");
         searchResultsWrapper.classList.add(viewCss);
-        searchResultsWrapper.classList.remove(noResultCss);
+        // noResultCs
+        if (noResults.el) {
+            noResultsBlock.innerHTML = "";
+        }else{
+            searchResultsWrapper.classList.remove(noResultCss);
+        }
+        
         searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
             this.viewState.isInfiniteStarted = false;
@@ -83,9 +97,9 @@ export default function renderProducts() {
         } else {
             searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
         }
     } catch (err) {
-        this.onError("renderProducts.js", err)
+        this.onError("renderProducts.js", err,libEvents.runtimeError);
     }
 }

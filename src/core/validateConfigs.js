@@ -1,3 +1,4 @@
+import libEvents from "../../../search-JS-core/src/constants";
 import { isNode, isElement, isNodeList } from "../common/utils";
 import {
     paginationSchema,
@@ -66,22 +67,22 @@ function validateConfigs () {
                             if (userConfig[key] === window) {
                                 return null
                             }
-                            this.onError(moduleName, `'${key}' is not a valid DOM selector`)
+                            this.onError(moduleName, `'${key}' is not a valid DOM selector`,libEvents.configError);
                         } 
                     } else if (datatype === "array" && !Array.isArray(userConfig[key])) {
-                        this.onError(moduleName, `'${key}' should be of ${datatype} datatype`)
+                        this.onError(moduleName, `'${key}' should be of ${datatype} datatype`, libEvents.configError)
                     }
                 } else {
-                    this.onError(moduleName, `'${key}' should be of ${datatype} datatype`)
+                    this.onError(moduleName, `'${key}' should be of ${datatype} datatype`, libEvents.configError)
                 }
             }
 
             if (required && !userConfig[key] && datatype !== "element") {
-                this.onError(moduleName, `'${key}' is required`)
+                this.onError(moduleName, `'${key}' is required`, libEvents.configError)
             }
 
             if (allowedOptions.length && !allowedOptions.includes(userConfig[key])) {
-                this.onError(moduleName, `Only ${allowedOptions.join(', ')} are allowed for '${key}'`)
+                this.onError(moduleName, `Only ${allowedOptions.join(', ')} are allowed for '${key}'`, libEvents.configError)
             }
             //Checking for custom validations if any .
             if (customValidations) {

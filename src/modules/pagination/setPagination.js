@@ -96,9 +96,9 @@ const setPageNoParam = function (value) {
 }
 
 const getFirstPrank = function () {
-    const products = this.searchResultsWrapper.children;
+    const products = document.getElementsByClassName(this.options.products.productItemClass || "product-item");
     if (products.length === 0) {
-        return null;
+        return 1; // making this return 1 instead of null as for the noProducts this fails.
     }
 
     const firstPrank = parseInt(products[ 0 ].dataset.prank, 10);
@@ -106,7 +106,7 @@ const getFirstPrank = function () {
 }
 
 const getLastPrank = function () {
-    const products = this.searchResultsWrapper.children;
+    const products = document.getElementsByClassName(this.options.products.productItemClass || "product-item");
     if (products.length === 0) {
         return null;
     }

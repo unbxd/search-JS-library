@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 const triggerNextPage = (context, next, action) => {
     if (context.options.pagination.type === "FIXED_PAGINATION") {
         context.viewState.lastAction = "pagination";
@@ -18,9 +20,10 @@ function renderNewResults(action) {
             start,
             rows,
             isNext,
-            isPrev
+            isPrev,
+            noOfPages
         } = pageInfo;
-
+        
         if (this.options.pagination.type === "CLICK_N_SCROLL") {
             if (action === this.actions.next) {
                 if (isNext) {
@@ -48,10 +51,26 @@ function renderNewResults(action) {
                     });
                 }
             }
+            
+            if(action === this.actions.firstPage){
+                const firstPage =  0;
+                if(isPrev){
+                    this.viewState.lastAction = "pagination";
+                    triggerNextPage(this, firstPage);
+                }
+            }
+            
+            if(action === this.action.lastPage){
+                const lastPage = (noOfPages - 1) * rows;
+                if(isNext){
+                    this.viewState.lastAction = "pagination";
+                    triggerNextPage(this, lastPage);
+                }
+            }
         }
     }
     catch (err) {
-        this.onError("Pagination > renderNewResults", err);
+        this.onError("Pagination > renderNewResults", err,libEvents.runtimeError);
     }
 }
 

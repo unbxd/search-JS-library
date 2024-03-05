@@ -12,18 +12,20 @@ function bindEvents() {
         pagesize,
         spellCheck,
         searchBoxEl,
-        actionChangeClass,
-        actionBtnClass,
         breadcrumb,
         selectedFacets
     } = this.options;
+    
+    const {
+        actionBtnClass,
+        actionChangeClass
+    } = facet || {};
+    
     if (searchBoxEl) {
         searchBoxEl.addEventListener("keydown", (e) => {
             const val = e.target.value;
             if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-                if (val !== "") {
                     this.setInputValue.bind(this)();
-                }
             }
         });
     }
@@ -40,9 +42,9 @@ function bindEvents() {
     if (facet.facetsEl) {
         this.facetWrappers.forEach(wrapper => {
             this.delegate(wrapper, facet.facetAction, `.${facet.facetClass}`, this.findChangedFacet.bind(this));
-            this.delegate(wrapper, 'change', '.' + actionChangeClass, this.extraActionsChange.bind(this));
-            this.delegate(wrapper, 'keyup', '.' + actionChangeClass, this.extraActionsChange.bind(this));
-            this.delegate(wrapper, 'click', '.' + actionBtnClass, this.extraActions.bind(this));
+            this.delegate(wrapper, 'change', '.' + (actionChangeClass), this.extraActionsChange.bind(this));
+            this.delegate(wrapper, 'keyup', '.' + (actionChangeClass), this.extraActionsChange.bind(this));
+            this.delegate(wrapper, 'click', '.' + (actionBtnClass), this.extraActions.bind(this));
         });
     }
     if (searchButtonEl) {
@@ -110,12 +112,6 @@ function bindEvents() {
     );
     if (!this.viewState.initialised) {
         window.addEventListener('popstate', this.onLocationChange.bind(this), false);
-        // if(this.options.hashMode) {
-        //     // window.addEventListener('hashchange',this.onLocationChange.bind(this),false);
-        //     window.onhashchange= this.onLocationChange.bind(this);
-        // } else {
-        //     window.addEventListener('popstate',this.onLocationChange.bind(this),false);
-        // }
         const urlParams = this.getQueryParams();
         const ln = Object.keys(urlParams).length;
         if (ln > 0) {

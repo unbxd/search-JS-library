@@ -1,3 +1,5 @@
+import libEvents from "../../../../search-JS-core/src/constants";
+
 export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, onlyValues) {
     try{
         let valuesUI = [];
@@ -41,7 +43,7 @@ export default function(facetItem,selectedFacet = [],isExpanded,facetSearchTxt, 
         }
         return `<div class="UNX-facet-item-d ${facetName} ${styles}">${facetUI}</div>`;
     }catch(err){
-        this.onError("facets > renderTextFacet.js", err);
+        this.onError("facets > renderTextFacet.js", err,libEvents.runtimeError);
     }
     
 }

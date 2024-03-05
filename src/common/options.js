@@ -184,7 +184,8 @@ const options = {
             multiValueSeparator: ",",
             valueReplacer: {},
             keyReplacer: {},
-            rangeSeparator: "-"
+            rangeSeparator: "-",
+            rangeFacets: []
         }
 
     },
@@ -256,8 +257,8 @@ const options = {
         applyMultipleFilters: false,
         applyButtonText: "Apply",
         clearButtonText: "clear",
-
-
+        actionBtnClass: "UNX-action-item",
+        actionChangeClass: "UNX-action-change",
         isCollapsible: true,
         isSearchable: true,
         searchPlaceHolder: "Search Filter",
@@ -331,9 +332,6 @@ const options = {
         template: swatchTemplate
     },
     unbxdAnalytics: false,
-    // hashMode: false,
-    actionBtnClass: "UNX-action-item",
-    actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
     },
     onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
@@ -369,21 +367,8 @@ const options = {
         history.go();
     },
     setRoutingStrategies: (locationParam, newUrl, productType, isUnbxdKey, replace) => {
-        if (locationParam === newUrl) {
-            return;
-        } else if (productType === "CATEGORY") {
-            /** Do not navigate to base category page  */
-            if (!isUnbxdKey) {
-                history.replaceState(null, "", newUrl);
-            } else {
-                history.pushState(null, "", newUrl);
-            }
-        } else {
-            if ((history.state && history.state.replace) || replace) {
-                history.replaceState(null, "", newUrl);
-            } else {
-                history.pushState(null, "", newUrl);
-            }
+        if (locationParam !== newUrl) {
+            history.pushState(null, "", newUrl);
         }
     },
     debugMode: true
