@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 const triggerNextPage = (context, next, action) => {
     if (context.options.pagination.type === "FIXED_PAGINATION") {
@@ -70,7 +70,7 @@ function renderNewResults(action) {
         }
     }
     catch (err) {
-        this.onError("Pagination > renderNewResults", err,libEvents.runtimeError);
+        this.onError("Pagination > renderNewResults", err, events.runtimeError);
     }
 }
 

@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 export default function(rangeFacet={}, isExpanded) {
     try{
@@ -26,7 +26,7 @@ export default function(rangeFacet={}, isExpanded) {
         }
         return `<div class="${facetName} UNX-facet-item-d range-facets-block ${styles}">${rangeUi}</div>`;
     }catch(err){
-        this.onError("facets > renderRangeFacet.js", err,libEvents.runtimeError);
+        this.onError("facets > renderRangeFacet.js", err, events.runtimeError);
     }
    
 }

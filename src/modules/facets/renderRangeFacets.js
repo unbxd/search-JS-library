@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 const renderRangeFacets = function(range, selectedRange, facet={}) {
     try{
@@ -42,7 +42,7 @@ const renderRangeFacets = function(range, selectedRange, facet={}) {
             `<div>`,
             `</div>`].join('')
     }catch(err){
-        this.onError("facets > renderRangeFacets.js",err,libEvents.runtimeError);
+        this.onError("facets > renderRangeFacets.js", err, events.runtimeError);
     }
     
 };

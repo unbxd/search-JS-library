@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 function renderSwatchBtns(product={}) {
     try{
@@ -9,7 +9,7 @@ function renderSwatchBtns(product={}) {
         return this.options.swatches.template.bind(this)(swatchData, swatches, product);
     }
     catch(err){
-        this.onError("Swatches > renderSwatchBtns",err,libEvents.runtimeError)
+        this.onError("Swatches > renderSwatchBtns", err, events.runtimeError)
     }
 
 }

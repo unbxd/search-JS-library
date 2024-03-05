@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 function onBreadCrumbClick(){
 }
@@ -20,7 +20,7 @@ function renderBreadCrumbs() {
         return ui;
     }
     catch(err){
-        this.onError("Breadcrumbs > actions.js",err,libEvents.runtimeError);
+        this.onError("Breadcrumbs > actions.js", err, events.runtimeError);
     }
     
 }

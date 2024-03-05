@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 function renderBannerUI(){
     try{
@@ -9,7 +9,7 @@ function renderBannerUI(){
         this.bannerWrapper.innerHTML = this.options.banner.template(banners, banner); 
     }
     catch (err) {
-        this.onError("Banners > renderBannerUI",err,libEvents.runtimeError)
+        this.onError("Banners > renderBannerUI", err, events.runtimeError)
     }
 
 }

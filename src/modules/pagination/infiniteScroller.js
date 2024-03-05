@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 const setUpInfiniteScroll = function () {
     try {
@@ -141,7 +141,7 @@ const setUpInfiniteScroll = function () {
             this.observer.observe(productsContainer, { childList: true, subtree: true });
         })
     } catch (err) {
-        this.onError('infiniteScroller.js', err,libEvents.runtimeError);
+        this.onError('infiniteScroller.js', err, events.runtimeError);
     }
 
 }

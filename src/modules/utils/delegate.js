@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 function delegate(el, evt, sel, handler) {
     try{
@@ -12,7 +12,7 @@ function delegate(el, evt, sel, handler) {
             }
         });
     }catch(err){
-        this.onError("delegate.js",err,libEvents.runtimeError);
+        this.onError("delegate.js", err, events.runtimeError);
     }
     
 }

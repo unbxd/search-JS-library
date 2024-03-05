@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 export default function(bucketedFacet = {}, isExpanded) {
     try{
@@ -27,7 +27,7 @@ export default function(bucketedFacet = {}, isExpanded) {
         return `<div class="${facetName} UNX-facet-item-d UNX-multilivel-facets-block UNX-multilevel-block ${styles}">${bucketedUi}</div>`;
     }
     catch(err){
-        this.onError("facets > renderMultiLevelFacet.js",err,libEvents.runtimeError)
+        this.onError("facets > renderMultiLevelFacet.js", err, events.runtimeError)
     }
     
 }

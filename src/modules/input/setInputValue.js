@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 const setInputValue = function() {
     try{
@@ -22,7 +22,7 @@ const setInputValue = function() {
             this.searchResultsWrapper.innerHTML = null;
         }
     }catch(err){
-        this.onError("input > setInputValue.js",err,libEvents.runtimeError);
+        this.onError("input > setInputValue.js",err,events.runtimeError);
     }
     
 }
