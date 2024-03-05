@@ -24,23 +24,22 @@ nav_order: 9
 
 ## 🚀 Features
 {: .no_toc}
-- [onEvent]() now can be accessed when some error occurs , also will have access to the error payload.
-- New events introduced `CONFIG_ERROR` and `RUNTIME_ERROR` , so that these can be utilized inside the `onEvent`.
-- `actionBtnClass` and `actionChangeClass` are not moved inside the facet config .
-- Empty search box query now fires a call to "*".
-- Two new button have been introduced to go to the `first page` and `last page` in pagination component.
+- onError method now triggers [onEvent](./Methods#onevent) method automatically when an error occurs, providing access to the error payload. Added support for two new events: "CONFIG_ERROR" and "RUNTIME_ERROR". These events are passed down to the "onEvent" method, allowing users to take appropriate actions based on the event type.
+- [actionBtnClass](./configurations/FacetsConfig#actionbtnclass) and [actionChangeClass](./configurations/FacetsConfig#actionchangeclass) configurations have been relocated inside the [facet](./configurations/FacetsConfig.md) config object under configurations. Passing of these in main/outer object has been deprecated from this release.
+- When the search box is empty and the enter key is pressed, it now triggers the api call with `*` as the query, instead of not triggering a call.
+- Introducing two new pagination actions - firstPage and lastPage . Users can activate these buttons by passing the appropriate [data-page-action](./configurations/PaginationConfig#data-page-action) as either `firstPage` or `lastPage` as documented in this [usecase here](./configurations/PaginationConfig#usecase-4).
 
 
 ## 🐛 Bug Fixes
 {: .no_toc}
-- When on category page and going back everything , it was not going back to previous state and was rather removing everything from the url. 
-- Pagination start getting NAN issues.
-- `noResultWrapper` was getting appended to `searchResultsWrapper` , even when the noResultsWrapper present on the DOM.
-- `productItemClass` is now made mandatory. This will now be used to get the products from the DOM.
-- Category page url was getting double encoded.
-- No results container was not getting removed when we query for some query which has some results.
-- If last page encountered and has less products then pagesize , an api call with incorrect start (taking the index number of last product card) goes.
-- rangeFacets inside url has been initialized.
+- Resolved problem where navigating back to the previous page state on category pages didn't function properly. Now, when users navigate through multiple levels of categories and want to return to the previous level, the SDK accurately retains the previous page state instead of removing everything from the URL. 
+- Resolved problem where characters in the Category page URL were being double encoded, resolving disruptions in navigation.
+- Improved handling of no results: Previously, the "noresults" block was appended to `searchResultsWrapper` regardless of the presence of `noResultsWrapper` in the DOM. With the recent fix, the "noresults" block will now be appended under "noResultsWrapper" if it exists in the DOM. If `noResultsWrapper` is not present, the `noresults` block will be appended to `searchResultsWrapper` as a fallback.
+- Fixed persistent display issue: Previously, the `no results` container remained visible alongside product cards even after querying for results. Now this removal of container from the DOM has been handled properly with this release.
+- Corrected the API call behavior when reaching the last page with fewer products than the page size, preventing incorrect start index assignment.
+- Initialized `rangeFacets` inside `url` config , which caused facets breaking issues when not explicitly passed by the user.
+- `productItemClass` is now made mandatory for retrieving products from the DOM. Directly getting the products under the container , in some cases calcuates incorrect `start`. 
+- When noResults page is reached , `start` was getting NAN .
 
 
 ---
