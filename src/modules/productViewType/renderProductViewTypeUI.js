@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 function renderProductViewTypeUI(){
     try {
@@ -18,7 +18,7 @@ function renderProductViewTypeUI(){
         }
         
     }catch(err){
-        this.onError("ProductViewType > renderProductViewTypeUI",err,libEvents.runtimeError);
+        this.onError("ProductViewType > renderProductViewTypeUI", err, events.runtimeError);
     }
 
 }

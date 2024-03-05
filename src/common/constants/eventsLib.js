@@ -15,7 +15,10 @@ const events = {
     changeInput:"CHANGE_INPUT",
     setCategoryFilter:"SET_CATEGORY_FILTER",
     deleteCategoryFilter:"DELETE_CATEGORY_FILTER",
-    pageSizeChange:"PAGESIZE_CHANGE"
+    pageSizeChange:"PAGESIZE_CHANGE",
+    configError: "CONFIG_ERROR",
+    runtimeError: "RUNTIME_ERROR"
+    
 };
 
 export default events;

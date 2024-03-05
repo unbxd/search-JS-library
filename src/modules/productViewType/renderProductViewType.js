@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 const renderProductViewType =  function(selectedViewType, productViewType={}) {
     try{
@@ -29,7 +29,7 @@ const renderProductViewType =  function(selectedViewType, productViewType={}) {
         }
         return `${listBtn} ${gridBtn}`
     }catch(err){
-        this.onError("productViewtype > renderProductViewType",err,libEvents.runtimeError)
+        this.onError("productViewtype > renderProductViewType", err, events.runtimeError)
     }
    
 

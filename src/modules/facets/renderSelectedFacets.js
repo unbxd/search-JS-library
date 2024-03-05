@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 export default function() {
     try{
@@ -53,7 +53,7 @@ export default function() {
             wrapper.innerHTML = selectedFacetTemp(selectedUi, facet, selectedFacets);
         })
     }catch(err){
-        this.onError("facets > renderSelectedFacets.js",err,libEvents.runtimeError);
+        this.onError("facets > renderSelectedFacets.js", err, events.runtimeError);
     }
     
 }

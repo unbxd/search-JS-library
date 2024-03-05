@@ -1,4 +1,4 @@
-import libEvents from "../../../../search-JS-core/src/constants";
+import { events } from "../../common/constants";
 
 export default function renderProducts() {
     try {
@@ -100,6 +100,6 @@ export default function renderProducts() {
             window.scrollTo(0, 0);
         }
     } catch (err) {
-        this.onError("renderProducts.js", err,libEvents.runtimeError);
+        this.onError("renderProducts.js", err, events.runtimeError);
     }
 }
