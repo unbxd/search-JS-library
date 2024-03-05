@@ -55,7 +55,7 @@ const reRender = function () {
         onEvent(this, beforeNoResultRender);
         this.viewState.noResultLoaded = true;
         
-        if(this.options.noResults.el) {
+        if(this.options.noResults?.el) {
             noResults.el.classList.add(noResultCss)
             searchResultsWrapper.innerHTML = "";
             noResults.el.innerHTML = this.renderNoResults(query);

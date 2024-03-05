@@ -6,6 +6,8 @@ const actions = {
     applyRange:"applyRange",
     prev:"prev",
     next:"next",
+    firstPage: "firstPage",
+    lastPage: "lastPage",
     clearSort:"clearSort",
     changeSort:"changeSort",
     deleteFacet:"deleteFacet",

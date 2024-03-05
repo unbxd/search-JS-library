@@ -332,9 +332,6 @@ const options = {
         template: swatchTemplate
     },
     unbxdAnalytics: false,
-    // hashMode: false,
-    // actionBtnClass: "UNX-action-item",
-    // actionChangeClass: "UNX-action-change",
     onAction: function (e, ctx) {
     },
     onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
@@ -370,9 +367,7 @@ const options = {
         history.go();
     },
     setRoutingStrategies: (locationParam, newUrl, productType, isUnbxdKey, replace) => {
-        if (locationParam === newUrl) {
-            return;
-        } else {
+        if (locationParam !== newUrl) {
             history.pushState(null, "", newUrl);
         }
     },

@@ -96,7 +96,6 @@ const setPageNoParam = function (value) {
 }
 
 const getFirstPrank = function () {
-    // const products = this.searchResultsWrapper.children;
     const products = document.getElementsByClassName(this.options.products.productItemClass || "product-item");
     if (products.length === 0) {
         return 1; // making this return 1 instead of null as for the noProducts this fails.
@@ -107,7 +106,6 @@ const getFirstPrank = function () {
 }
 
 const getLastPrank = function () {
-    // const products = this.searchResultsWrapper.children;
     const products = document.getElementsByClassName(this.options.products.productItemClass || "product-item");
     if (products.length === 0) {
         return null;

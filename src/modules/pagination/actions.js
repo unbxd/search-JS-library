@@ -52,7 +52,7 @@ function renderNewResults(action) {
                 }
             }
             
-            if(action === "firstPage"){
+            if(action === this.actions.firstPage){
                 const firstPage =  0;
                 if(isPrev){
                     this.viewState.lastAction = "pagination";
@@ -60,7 +60,7 @@ function renderNewResults(action) {
                 }
             }
             
-            if(action === "lastPage"){
+            if(action === this.action.lastPage){
                 const lastPage = (noOfPages - 1) * rows;
                 if(isNext){
                     this.viewState.lastAction = "pagination";

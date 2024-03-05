@@ -260,7 +260,7 @@ export const productsSchema = {
             datatype: "array",
             customValidations: (products) => {
                 if (products.productAttributes.length === 0) {
-                    console.error(`SDK Config error in products: productAttributes should be an empty array`)
+                    console.error(`SDK Config error in products: productAttributes should not be an empty array`)
                 }
             }
         },
@@ -269,7 +269,7 @@ export const productsSchema = {
             datatype: "object",
             customValidations: (products) => {
                 if (Object.keys(products.attributesMap).length === 0) {
-                    console.error(`SDK Config error in products: attributesMap should be an empty object`)
+                    console.error(`SDK Config error in products: attributesMap should not be an empty object`)
                 }
             }
         },
