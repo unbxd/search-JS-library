@@ -40,6 +40,7 @@ nav_order: 8
 - Category page url was getting double encoded.
 - No results container was not getting removed when we query for some query which has some results.
 - If last page encountered and has less products then pagesize , an api call with incorrect start (taking the index number of last product card) goes.
+- rangeFacets inside url has been initialized.
 
 
 ---
