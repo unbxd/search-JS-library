@@ -24,19 +24,19 @@ nav_order: 8
 
 ## 🚀 Features
 {: .no_toc}
-- onEvent now can be accessed when some error occurs , also will have access to the error payload.
-- New events introduced "CONFIG_ERROR" and "RUNTIME_ERROR" , so that these can be utilized inside the onEvent.
-- actionBtnClass and actionChangeClass are not moved inside the facet config .
-- Empty query now fires a call to "*".
-- Two new button have been introduced to go to the first page and last page in pagination component.
+- [onEvent]() now can be accessed when some error occurs , also will have access to the error payload.
+- New events introduced `CONFIG_ERROR` and `RUNTIME_ERROR` , so that these can be utilized inside the `onEvent`.
+- `actionBtnClass` and `actionChangeClass` are not moved inside the facet config .
+- Empty search box query now fires a call to "*".
+- Two new button have been introduced to go to the `first page` and `last page` in pagination component.
 
 
 ## 🐛 Bug Fixes
 {: .no_toc}
-- Routing issues while going back from category pages. 
+- When on category page and going back everything , it was not going back to previous state and was rather removing everything from the url. 
 - Pagination start getting NAN issues.
-- noResultWrapper was getting appended to searchResultsWrapper , even when the noResultsWrapper present on the DOM.
-- productItemClass is now made mandatory .
+- `noResultWrapper` was getting appended to `searchResultsWrapper` , even when the noResultsWrapper present on the DOM.
+- `productItemClass` is now made mandatory. This will now be used to get the products from the DOM.
 - Category page url was getting double encoded.
 - No results container was not getting removed when we query for some query which has some results.
 - If last page encountered and has less products then pagesize , an api call with incorrect start (taking the index number of last product card) goes.
