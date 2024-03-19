@@ -48,6 +48,10 @@ const didYouMeanUI =  function(query,suggestion,pages={}) {
         }
         qUi = `<p class="UNX-suggestion-p">Showing results for <strong>${newQuery}</strong> ${countUi}</p>`;
     }
+    if(window.unbxdImageSearch && window.unbxdImageSearch.isVisualSearchEnabled && window.unbxdImageSearch.isVisualSearchEnabled()){
+        let numberUi = `<p class="UNX-vs-number-of-products-text">   ${numberOfProducts} products found</p>`
+        qUi = `<h3 class="UNX-vs-results-text">Visual matches : ${numberUi}</h3>`;
+    }
     return  [`<div class="UNX-spellcheck-block">`,
             noUi,
             qUi,

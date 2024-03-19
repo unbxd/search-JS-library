@@ -73,7 +73,7 @@ const options = {
     },
     defaultFilters: {}, //or object with keys
     noResults: {
-        template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
+        template: function (query) { return `${window.unbxdImageSearch && window.unbxdImageSearch.isVisualSearchEnabled &&  window.unbxdImageSearch.isVisualSearchEnabled() ? `<div class="UNX-no-results">  No discernible products found </div>` : `<div class="UNX-no-results"> No Results found ${query} </div>`}` }
     },
     onEvent: (state, type) => {
 
