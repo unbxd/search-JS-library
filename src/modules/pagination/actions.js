@@ -60,7 +60,7 @@ function renderNewResults(action) {
                 }
             }
             
-            if(action === this.action.lastPage){
+            if(action === this.actions.lastPage){
                 const lastPage = (noOfPages - 1) * rows;
                 if(isNext){
                     this.viewState.lastAction = "pagination";

@@ -73,20 +73,35 @@ class UnbxdSearch extends UnbxdSearchCore {
             this.options.extraParams.viewType = viewType;
         }
         if(type === beforeApiCall) { 
-            onEvent(this,beforeApiCall);
+            try{
+                onEvent(this, beforeApiCall);
+            }catch(error){
+                this.onError("callback", error, events.runtimeError);
+            }
+            
             if(loader && loader.el) {
                 loader.el.innerHTML = loader.template(this);
             }
         }
         if(type === afterApiCall) { 
-            onEvent(this,afterApiCall);
+            try{
+                onEvent(this, afterApiCall);
+            }catch(error){
+                this.onError("callback", error, events.runtimeError);
+            }
+            
             if(this.state.products.length > 0) {
                 this.viewState.noResultLoaded = false;
             }
             this.reRender();
         }
         if((type === 'added_facet' || type === 'deleted_facet' ) && facet.applyMultipleFilters) {
-            onEvent(this,'added_facet');
+            try{
+                onEvent(this, 'added_facet');
+            }catch(error){
+                this.onError("callback", error, events.runtimeError);
+            }
+            
             this.renderFacets();
         }
         if(type === "FETCH_ERROR") {

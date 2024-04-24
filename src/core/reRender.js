@@ -1,3 +1,5 @@
+import { events } from "../common/constants";
+
 const reRender = function () {
     const {
         onEvent,
@@ -20,8 +22,13 @@ const reRender = function () {
         afterNoResultRender,
         afterRender
     } = this.events;
-
-    onEvent(this, beforeRender);
+    
+    try{
+        onEvent(this, beforeRender);
+    }catch(error){
+        this.onError("reRender", error, events.runtimeError);
+    }
+    
 
     if (loader.el) {
         loader.el.innerHTML = ``;
@@ -52,7 +59,12 @@ const reRender = function () {
         if (Object.keys(redirect).length) {
             return;
         }
-        onEvent(this, beforeNoResultRender);
+        try {
+            onEvent(this, beforeNoResultRender);
+        }catch(error){
+            this.onError("reRender", error, events.runtimeError);
+        }
+       
         this.viewState.noResultLoaded = true;
         
         if(this.options.noResults?.el) {
@@ -67,7 +79,13 @@ const reRender = function () {
         if (!qParams.filter) {
             this.renderFacets();
         }
-        onEvent(this, afterNoResultRender);
+        
+        try{
+            onEvent(this, afterNoResultRender);
+        }catch(error){
+            this.onError("reRender", error, events.runtimeError);
+        }
+       
     } else {
         this.renderProducts();
         
@@ -99,7 +117,12 @@ const reRender = function () {
         });
     } 
 
-    onEvent(this, afterRender);
+    try{
+        onEvent(this, afterRender);
+    }catch(error){
+        this.onError("reRender", error, events.runtimeError);
+    }
+   
 
 
 };
