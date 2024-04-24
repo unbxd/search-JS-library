@@ -16,6 +16,22 @@ nav_order: 9
 {:toc}
 
 ---
+
+# v2.1.6
+
+- **Release Date**: 24th Apr, 2024
+- **Core SDK Version**: v0.5.8
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.js)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+- Resolved issue regarding uc_param , where it was not being retained in the url on reload of the page.
+- Fixed a problem where the last page button in pagination was not directing to the last page. 
+- Implemented additional try-catch blocks for better debugging within UnbxdSearch methods.
+- Addressed an issue where, in the case of seoFriendlyUrl being true and a keyValueSeparator other than = being passed, the category string was not properly appended to the URL. This issue is resolved in this release.
+
+---
 # v2.1.5
 
 - **Release Date**: 5th Mar, 2024

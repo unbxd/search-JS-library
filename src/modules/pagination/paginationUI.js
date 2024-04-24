@@ -54,9 +54,11 @@ const paginationUI = function (paginationData, pagination) {
     }
     if(!isNext) {
         nextBtn = `<button disabled class="UNX-next-btn UNX-page-next">></button>`;
+        lastPageBtn = `<button disabled class="UNX-next-btn UNX-page-next">>></button>`
     }
     if(!isPrev) {
         prevBtn = `<button disabled class="UNX-prev-btn UNX-page-prev"><</button>`;
+        firstPageBtn = `<button disabled class="UNX-prev-btn UNX-page-next"><<</button>`;
     }
     return [`<div class="UNX-pagination-block">`,
         firstPageBtn,
