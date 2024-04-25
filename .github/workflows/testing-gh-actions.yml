@@ -1,6 +1,7 @@
 name: AWS Caller Identity
 
 on:
+  pull_request: 
   push:
     branches:
       - gh-actions-debug
