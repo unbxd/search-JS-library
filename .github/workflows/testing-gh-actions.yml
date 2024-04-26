@@ -11,8 +11,8 @@ jobs:
     name: Run AWS Command
     runs-on: ubuntu-latest
     env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.NEW_AWS_ACCESS_KEY }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.NEW_AWS_SECRET_KEY }}
       AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION}}
     steps:
       - name: Checkout Repository
@@ -26,6 +26,6 @@ jobs:
       - name: Run AWS Command
         run: aws sts get-caller-identity
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }} # Use the secret you have set up
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} # Use the secret you have set up
+          AWS_ACCESS_KEY_ID: ${{ secrets.NEW_AWS_ACCESS_KEY }} # Use the secret you have set up
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.NEW_AWS_SECRET_KEY }} # Use the secret you have set up
           AWS_DEFAULT_REGION: us-east-1  
