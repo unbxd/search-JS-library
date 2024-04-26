@@ -19,17 +19,18 @@ nav_order: 9
 
 # v2.1.6
 
-- **Release Date**: 24th Apr, 2024
+- **Release Date**: 26th Apr, 2024
 - **Core SDK Version**: v0.5.8
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.js)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
 
-- Resolved issue regarding uc_param , where it was not being retained in the url on reload of the page.
-- Fixed a problem where the last page button in pagination was not directing to the last page. 
+- The `uc_param` param was not being retained in the url on reloading the page.
+- Fixed a problem where the `last-page` pagination action/button was not directing to the last page. 
 - Implemented additional try-catch blocks for better debugging within UnbxdSearch methods.
-- Addressed an issue where, in the case of seoFriendlyUrl being true and a keyValueSeparator other than = being passed, the category string was not properly appended to the URL. This issue is resolved in this release.
+- Addressed an issue where, in the case of `seoFriendlyUrl` is true and a `keyValueSeparator` is other than `=`, the category string was not being appended to the URL.
+- Adding a fallback (`location.href`) for `history.pushState` in `setRoutingStrategy` to avoid same-origin issue in the google caching pages.
 
 ---
 # v2.1.5
