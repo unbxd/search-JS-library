@@ -368,7 +368,12 @@ const options = {
     },
     setRoutingStrategies: (locationParam, newUrl, productType, isUnbxdKey, replace) => {
         if (locationParam !== newUrl) {
-            history.pushState(null, "", newUrl);
+            try{
+                history.pushState(null, "", newUrl);
+            }catch(err){
+                console.error('Failed to update URL, falling back to window.location.href - ', error);
+                window.location.href = newUrl;
+            }
         }
     },
     debugMode: true
