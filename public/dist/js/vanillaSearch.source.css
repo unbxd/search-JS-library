@@ -1,7 +1,3 @@
-:root {
-  --viewMoreHeight: 100px;
-}
-
 .UNX-header *,
 .UNX-results-container * {
   -webkit-box-sizing: border-box;
@@ -883,7 +879,7 @@ button.UNX-page-next {
 }
 
 .UNX-view-more {
-  height: var(--viewMoreHeight);
+  height: 100px;
 }
 
 .UNX-accordian-open .UNX-facets-all {
