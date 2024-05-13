@@ -11,8 +11,9 @@ import {
     testIds
 }
  from './common/constants'
-
 import setConfig from './core/setConfig';
+
+const packageJson = require('../package.json');
 
 class UnbxdSearch extends UnbxdSearchCore {
     constructor(props) {
@@ -41,6 +42,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         this.updateConfig();
         this.options.onBackFromRedirect(this.getHashMode());
         this.options.onEvent(this, 'initialised');
+        this.sdkVersion = packageJson.version;
     }
     callBack(state,type) {
         this.getCallbackActions(state,type);
