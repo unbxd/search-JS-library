@@ -385,6 +385,8 @@ Number
 
 For example, if `heightDiffToTriggerNextPage` is set to 100, this means that when the user scrolls to within 100 pixels of the bottom of the page, the next page of content will be loaded. This parameter allows for control over when the next page is loaded and can be adjusted depending on the desired user experience and the amount of content that is being loaded. In case of infinite scroll pagination, two elements with classnames `pre-loader` and `post-loader` are added before and after products container, whose height is set to `heightDiffToTriggerNextPage` in pixels. 
 
+Please make sure the CSS for .UNX-pre-loader and .UNX-post-loader is containing position:absolute, width:100% and z-index: -1, to ensure these components are hidden.
+
 Note:
 - Setting the `heightDiffToTriggerNextPage` number to very high (>300 or >400) would trigger the next/previous page APIs more often than required and would lead to crashing the application. Any value set more than 1000 will get capped at 1000.
 

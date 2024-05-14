@@ -188,6 +188,34 @@ The allowed values for this configuration are: `"&"`, `"~"`, `"^"`, `","`, `"_"`
 
 ---
 
+## keyValueSeparator
+{: .d-inline-block }
+
+String
+{: .label }
+
+This setting allows users to define a custom separator symbol to be used between keys and values in a URL query string.
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
+
+**Default Value**
+
+```js
+seoFriendlyUrl: true, 
+keyValueSeparator: "="
+```
+
+**Allowed Values**
+
+The allowed values for this configuration are: `"="`, `":"`
+
+{: .important }
+> - If the value given by the user is not an allowed value, the default value (**=**) will be selected.
+
+
+---
+
 ## browseQueryParam
 {: .d-inline-block}
 

@@ -78,7 +78,7 @@ const setUpInfiniteScroll = function () {
                     }
                 });
             }, {
-                threshold: [ 0, 0.5, 0.75, 1 ]
+                threshold: [ 0.5, 0.75, 1 ]
             });
 
             this.preLoaderObserver = new IntersectionObserver(entries => {
