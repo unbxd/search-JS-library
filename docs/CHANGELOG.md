@@ -28,6 +28,7 @@ nav_order: 9
 - Resolved a major mouse back issue where users on `INFINITE_SCROLL` or `CLICK_N_SCROLL` were stuck in a loop of the same page number when attempting to navigate back. Now, when using infinite scroll or click and scroll, the page numbers are simply replaced in the history stack, preventing the creation of a new entry for simple scroll.
 - `setRoutingStrategies` is now removed from the options , and now is rather a prototype method.
 - Added `sdkVersion` to the prototype, providing an easier way to determine which version the user is on.
+- When `seoFriendlyUrl` was false , the `keyValueSeperator` was taking wrong values , this has been fixed in this release.
 
 ---
 
