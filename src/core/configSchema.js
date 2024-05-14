@@ -757,6 +757,7 @@ export const otherUrlConfigsSchema = {
                     urlConfigs.facetsParam.algo = "DEFAULT";
                     urlConfigs.orderOfQueryParams = ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"];
                     urlConfigs.queryParamSeparator = "&";
+                    urlConfigs.keyValueSeparator= "=";
                 } 
             }
         },
