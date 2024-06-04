@@ -1,4 +1,5 @@
 import { events } from "../../common/constants";
+import debounce from "../utils/debounce";
 
 const setUpInfiniteScroll = function () {
     try {
@@ -26,10 +27,10 @@ const setUpInfiniteScroll = function () {
                 this.observer.disconnect();
                 this.preLoaderObserver.disconnect();
                 this.preLoaderObserver.observe(preLoader);
-                if (paginationType === 'INFINITE_SCROLL') {
-                    this.postLoaderObserver.disconnect();
-                    this.postLoaderObserver.observe(postLoader);
-                }
+                // if (paginationType === 'INFINITE_SCROLL') {
+                //     this.postLoaderObserver.disconnect();
+                //     this.postLoaderObserver.observe(postLoader);
+                // }
                 this.observer.observe(productsContainer, { childList: true, subtree: true });
                 return;
             }
@@ -46,39 +47,42 @@ const setUpInfiniteScroll = function () {
             this.individualProductObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const productIndex = parseInt(entry.target.dataset.prank);
+                        debounce(()=>{
+                            const productIndex = parseInt(entry.target.dataset.prank);
 
-                        let currentUrlPage = this.getCurrentUrlPage();
-                        let productsPerPage = this.getProductsPerPage();
+                            let currentUrlPage = this.getCurrentUrlPage();
+                            let productsPerPage = this.getProductsPerPage();
 
-                        const currentPage = Math.ceil(productIndex / productsPerPage);
-                        if (currentPage !== currentUrlPage) {
-                            if (usePageNo) {
-                                this.setPageNoParam(currentPage);
-                            } else {
-                                this.setPageNoParam((currentPage - 1) * productsPerPage);
-                            }
+                            const currentPage = Math.ceil(productIndex / productsPerPage);
+                            if (currentPage !== currentUrlPage) {
+                                if (usePageNo) {
+                                    this.setPageNoParam(currentPage);
+                                } else {
+                                    this.setPageNoParam((currentPage - 1) * productsPerPage);
+                                }
 
-                            if (virtualization) {
-                                if(bufferPages < 0) bufferPages = 0;
-                                const minPage = currentPage - bufferPages;
-                                const maxPage = currentPage + bufferPages;
-                                const minPrank = (minPage - 2) * productsPerPage;
-                                const maxPrank = (maxPage + 1) * productsPerPage;
+                                if (virtualization) {
+                                    if(bufferPages < 0) bufferPages = 0;
+                                    const minPage = currentPage - bufferPages;
+                                    const maxPage = currentPage + bufferPages;
+                                    const minPrank = (minPage - 2) * productsPerPage;
+                                    const maxPrank = (maxPage + 1) * productsPerPage;
 
-                                const productItems = document.querySelectorAll(`.${productItemClass}`);
-                                productItems.forEach((productItem) => {
-                                    const itemPrank = parseInt(productItem.dataset.prank, 10);
-                                    if (itemPrank <= minPrank || itemPrank > maxPrank) {
-                                        productItem.remove();
-                                    }
-                                });
-                            }
-                        }
+                                    const productItems = document.querySelectorAll(`.${productItemClass}`);
+                                    productItems.forEach((productItem) => {
+                                        const itemPrank = parseInt(productItem.dataset.prank, 10);
+                                        if (itemPrank <= minPrank || itemPrank > maxPrank) {
+                                            productItem.remove();
+                                        }
+                                    });
+                                }
+                            } 
+                        },500)();
+                        
                     }
-                });
+                })
             }, {
-                threshold: [ 0.5, 0.75, 1 ]
+                threshold: [ 0.5, 1 ]
             });
 
             this.preLoaderObserver = new IntersectionObserver(entries => {
@@ -106,12 +110,16 @@ const setUpInfiniteScroll = function () {
             });
 
             this.postLoaderObserver = new IntersectionObserver(entries => {
-                const { numberOfProducts } = this.getPaginationInfo() || {};
-                const lastPrank = this.getLastPrank();
-                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted && lastPrank < numberOfProducts) {
-                    this.viewState.isInfiniteStarted = true;
+                
+                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted ) {
+                    const { numberOfProducts } = this.getPaginationInfo() || {};
+                    const lastPrank = this.getLastPrank();
+                    if (lastPrank < numberOfProducts){
+                        // this.postLoaderObserver.disconnect();//change - add this
+                        this.viewState.isInfiniteStarted = true;
                         this.setPageStart(lastPrank);
                         this.getResults("", true, 'next');
+                    }
                 }
             }, {
                 threshold: 0,
@@ -120,17 +128,22 @@ const setUpInfiniteScroll = function () {
 
             // create an observer instance
             this.observer = new MutationObserver((mutationsList) => {
+                let resetObservers = false
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList') {
                         const self = this;
                         mutation.addedNodes.forEach(function (node) {
                             if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains(`${productItemClass}`)) {
-                                self.individualProductObserver.observe(node)
+                                self.individualProductObserver.observe(node);
+                                resetObservers = true;
                             }
                         });
-
-                        this.resetObservers()
+                        
                     }
+                }
+                if (resetObservers){
+                    this.resetObservers()
+                    resetObservers = false
                 }
             });
 

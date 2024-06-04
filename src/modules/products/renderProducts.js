@@ -41,7 +41,7 @@ export default function renderProducts() {
         
         searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
-            this.viewState.isInfiniteStarted = false;
+            // this.viewState.isInfiniteStarted = false; //change - remove this
             if (noResultLoaded) {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
@@ -94,6 +94,14 @@ export default function renderProducts() {
                     });
                 }
             }
+            setTimeout(()=>{
+                this.viewState.isInfiniteStarted = false; //change - remove this  
+                // if (this.options.pagination.type === 'INFINITE_SCROLL') {
+                //     const postLoader = document.querySelector('.UNX-post-loader');
+                //     this.postLoaderObserver.disconnect();
+                //     this.postLoaderObserver.observe(postLoader);
+                // }
+            },0)
         } else {
             searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
