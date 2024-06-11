@@ -22,14 +22,14 @@ const setUpInfiniteScroll = function () {
             const paginationType = this.getPaginationType();
 
             this.resetObservers = () => {
-                this.observer.disconnect();
+                // this.observer.disconnect();
                 this.preLoaderObserver.disconnect();
                 this.preLoaderObserver.observe(preLoader);
-                if (paginationType === 'INFINITE_SCROLL') {
-                    this.postLoaderObserver.disconnect();
-                    this.postLoaderObserver.observe(postLoader);
-                }
-                this.observer.observe(productsContainer, { childList: true, subtree: true });
+                // if (paginationType === 'INFINITE_SCROLL') {
+                //     this.postLoaderObserver.disconnect();
+                //     this.postLoaderObserver.observe(postLoader);
+                // }
+                // this.observer.observe(productsContainer, { childList: true, subtree: true });
                 return;
             }
 
@@ -46,7 +46,6 @@ const setUpInfiniteScroll = function () {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         // debounce(()=>{
-                        
                             const productIndex = parseInt(entry.target.dataset.prank);
 
                             let currentUrlPage = this.getCurrentUrlPage();
@@ -91,20 +90,23 @@ const setUpInfiniteScroll = function () {
             this.preLoaderObserver = new IntersectionObserver(entries => {
                 let currentUrlPage = this.getCurrentUrlPage();
                 entries.forEach(entry => {
-                    const isPrevPagePresent = usePageNo ? currentUrlPage > 1 : this.getFirstPrank() !== 1;
-                    if (entry.isIntersecting && isPrevPagePresent && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
-                        let productsPerPage = this.getProductsPerPage();
-                        this.viewState.isInfiniteStarted = true;
-                        let prevPrank;
-                        if (usePageNo) {
-                            prevPrank = parseInt((currentUrlPage - 2) * productsPerPage, 10);
-                        } else {
-                            let startPrank = this.getFirstPrank() - productsPerPage - 1;
-                            if (startPrank <0) { startPrank = 0}
-                            prevPrank = parseInt(startPrank, 10);
+                    if (entry.isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
+                        const isPrevPagePresent = usePageNo ? currentUrlPage > 1 : this.getFirstPrank() !== 1;
+                        if(isPrevPagePresent){
+                            this.preLoaderObserver.disconnect()
+                            let productsPerPage = this.getProductsPerPage();
+                            this.viewState.isInfiniteStarted = true;
+                            let prevPrank;
+                            if (usePageNo) {
+                                prevPrank = parseInt((currentUrlPage - 2) * productsPerPage, 10);
+                            } else {
+                                let startPrank = this.getFirstPrank() - productsPerPage - 1;
+                                if (startPrank <0) { startPrank = 0}
+                                prevPrank = parseInt(startPrank, 10);
+                            }
+                            this.setPageStart(prevPrank);
+                            this.getResults("", true, 'prev');
                         }
-                        this.setPageStart(prevPrank);
-                        this.getResults("", true, 'prev');
                     }
                 });
             }, {
@@ -129,35 +131,36 @@ const setUpInfiniteScroll = function () {
             });
 
             // create an observer instance
-            this.observer = new MutationObserver((mutationsList) => {
-                let resetObservers = false
-                for (let mutation of mutationsList) {
-                    if (mutation.type === 'childList') {
-                        const self = this;
+            // this.observer = new MutationObserver((mutationsList) => {
+            //     let resetObservers = false
+            //     for (let mutation of mutationsList) {
+            //         if (mutation.type === 'childList') {
+            //             const self = this;
                         
-                        mutation.addedNodes.forEach(function (node) {
-                            if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains(`${productItemClass}`)) {
-                                self.individualProductObserver.observe(node);
-                                resetObservers = true;
-                            }
-                        });
+            //             mutation.addedNodes.forEach(function (node) {
+            //                 if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains(`${productItemClass}`)) {
+            //                     self.individualProductObserver.observe(node);
+            //                     resetObservers = true;
+            //                 }
+            //             });
                         
-                    }
-                }
-                if (resetObservers){
-                    debounce(()=>{
-                        this.resetObservers();
-                    },500)();
+            //         }
+            //     }
+            //     if (resetObservers){
+            //         debounce(()=>{
+            //             this.resetObservers();
+            //         },200)();
                     
-                    resetObservers = false
-                }
-            });
+            //         resetObservers = false
+            //     }
+            // });
 
             this.preLoaderObserver.observe(preLoader);
             if (paginationType === 'INFINITE_SCROLL') {
+                console.log('this.postLoaderObserver inside render products setTimeout')
                 this.postLoaderObserver.observe(postLoader);
             }
-            this.observer.observe(productsContainer, { childList: true, subtree: true });
+            // this.observer.observe(productsContainer, { childList: true, subtree: true });
         })
     } catch (err) {
         this.onError('infiniteScroller.js', err, events.runtimeError);

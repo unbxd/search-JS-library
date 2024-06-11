@@ -113,27 +113,49 @@ export default function renderProducts() {
                 if (insertPoint) {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.insertBefore(newElement, insertPoint);
+                        this.individualProductObserver.observe(newElement);
                     });
                     
                     const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start + productsPerPage + 1}"]`);
                     if(scrollToProduct){
                         scrollToProduct.scrollIntoView();
                     }
+                    // setTimeout(()=>{
+                    //     const preLoader = document.querySelector('.UNX-pre-loader');
+                    //     this.preLoaderObserver.observe(preLoader);
+                    // }, 0)
                 } else {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.appendChild(newElement);
+                        this.individualProductObserver.observe(newElement);
                     });
-                    const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start }"]`);
-                    if (scrollToProduct) {
-                        scrollToProduct.scrollIntoView();
-                    }
+                    // const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start }"]`);
+                    // if (scrollToProduct) {
+                    //     scrollToProduct.scrollIntoView();
+                    // }
+                    // setTimeout(()=>{
+                    //     const postLoader = document.querySelector('.UNX-post-loader');
+                    //     this.postLoaderObserver.observe(postLoader);
+                    // }, 0)
                 }
+
+                setTimeout(()=>{
+                    const preLoader = document.querySelector('.UNX-pre-loader');
+                        this.preLoaderObserver.observe(preLoader);
+                    const postLoader = document.querySelector('.UNX-post-loader');
+                    this.postLoaderObserver.observe(postLoader);
+                }, 0)
             }
+            // console.log('outside render products setTimeout');
+            this.viewState.isInfiniteStarted = false;
+
+
             setTimeout(()=>{
                 this.viewState.isInfiniteStarted = false; //change - remove this  
                 if (this.options.pagination.type === 'INFINITE_SCROLL') {
                     const postLoader = document.querySelector('.UNX-post-loader');
                     // this.postLoaderObserver.disconnect();
+                    console.log('this.postLoaderObserver inside render products setTimeout')
                     this.postLoaderObserver.observe(postLoader);
                 }
             },0)

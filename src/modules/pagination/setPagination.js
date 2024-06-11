@@ -92,9 +92,9 @@ const setPageNoParam = function (value) {
         if(addToUrl){
             const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
             urlParams[ ((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start') ] = [ i ];
-            debounce(()=>{
+            // debounce(()=>{
                 history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
-            },200)();
+            // },200)();
         }
         
     // }, 0)

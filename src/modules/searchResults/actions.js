@@ -34,6 +34,7 @@ const onProductItemClick = function (e) {
         product = this.getProductByPropValue(attributesMap.unxId, dataset.id);
     }
     if (product && elem.dataset.prank) {
+        console.log('product clicked prank', elem.dataset.prank)
         const {
             url: {
                 pageNoParam: {
@@ -45,8 +46,10 @@ const onProductItemClick = function (e) {
         product.prank = elem.dataset.prank;
         const pageNo = Math.ceil(Number(product.prank) / Number(this.getProductsPerPage()))
         if (usePageNo) {
+            console.log('setPageNoParam if', pageNo)
             this.setPageNoParam(pageNo);
         } else {
+            console.log('setPageNoParam else', pageNo)
             this.setPageNoParam(Number((pageNo - 1) * Number(this.getProductsPerPage())));
         }
     }
