@@ -21,17 +21,17 @@ const setUpInfiniteScroll = function () {
 
             const paginationType = this.getPaginationType();
 
-            this.resetObservers = () => {
-                // this.observer.disconnect();
-                this.preLoaderObserver.disconnect();
-                this.preLoaderObserver.observe(preLoader);
-                // if (paginationType === 'INFINITE_SCROLL') {
-                //     this.postLoaderObserver.disconnect();
-                //     this.postLoaderObserver.observe(postLoader);
-                // }
-                // this.observer.observe(productsContainer, { childList: true, subtree: true });
-                return;
-            }
+            // this.resetObservers = () => {
+            //     // this.observer.disconnect();
+            //     this.preLoaderObserver.disconnect();
+            //     this.preLoaderObserver.observe(preLoader);
+            //     // if (paginationType === 'INFINITE_SCROLL') {
+            //     //     this.postLoaderObserver.disconnect();
+            //     //     this.postLoaderObserver.observe(postLoader);
+            //     // }
+            //     // this.observer.observe(productsContainer, { childList: true, subtree: true });
+            //     return;
+            // }
 
             let productsContainer = window;
             if (paginationType === "INFINITE_SCROLL") {
@@ -84,7 +84,7 @@ const setUpInfiniteScroll = function () {
                     }
                 })
             }, {
-                threshold: [ 0.5 ]
+                threshold: [ 0.5, 0.75, 1 ]
             });
 
             this.preLoaderObserver = new IntersectionObserver(entries => {

@@ -9,20 +9,20 @@ export default function renderProducts() {
         const {
             searchResultsWrapper
         } = this;
-        
+
         let {
             pagination: {
                 virtualization = true,
                 bufferPages = 1,
             }
         } = this.options;
-        
+
         const {
             noResults
         } = this.options;
-        
+
         const noResultCss = "UNX-no-results-wrap";
-        const noResultsBlock = noResults.el ? noResults.el : searchResultsWrapper.getElementsByClassName('UNX-no-results')[0];
+        const noResultsBlock = noResults.el ? noResults.el : searchResultsWrapper.getElementsByClassName('UNX-no-results')[ 0 ];
 
         const {
             noResultLoaded,
@@ -42,15 +42,15 @@ export default function renderProducts() {
         // noResultCs
         if (noResults.el) {
             noResultsBlock.innerHTML = "";
-        }else{
+        } else {
             searchResultsWrapper.classList.remove(noResultCss);
         }
-        
+
         searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
             // this.viewState.isInfiniteStarted = false; //change - remove this
             this.postLoaderObserver.disconnect();
-            
+
             if (noResultLoaded) {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
@@ -88,18 +88,19 @@ export default function renderProducts() {
                     const newElementPrank = parseInt(newElement.dataset.prank, 10);
                     return !existingPranks.has(newElementPrank);
                 });
-                
-                
-                const productIndex = parseInt(newElementsToInsert[0].dataset.prank);
 
-                const currentPage = Math.ceil(productIndex / productsPerPage);
-                    
                 if (virtualization) {
-                    if (bufferPages < 0) bufferPages = 0;
+                    // const productIndex = parseInt(newElementsToInsert.length ? newElementsToInsert[ 0 ].dataset.prank : newElements[ 0 ].dataset.prank);
+                    // const currentPage = Math.ceil(productIndex / productsPerPage);
+                    const currentPage = this.getCurrentUrlPage();
+
+                    if (bufferPages < 1) bufferPages = 1;
                     const minPage = currentPage - bufferPages;
                     const maxPage = currentPage + bufferPages;
-                    const minPrank = (minPage - 2) * productsPerPage;
-                    const maxPrank = (maxPage + 1) * productsPerPage;
+                    const minPrank = (minPage - 1) * productsPerPage;
+                    const maxPrank = (maxPage ) * productsPerPage;
+                    console.log('minPrank', minPrank);
+                    console.log('maxPrank', maxPrank);
 
                     const productItems = document.querySelectorAll(`.${productItemClass}`);
                     productItems.forEach((productItem) => {
@@ -108,16 +109,16 @@ export default function renderProducts() {
                             productItem.remove();
                         }
                     });
-                }                
+                }
 
                 if (insertPoint) {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.insertBefore(newElement, insertPoint);
                         this.individualProductObserver.observe(newElement);
                     });
-                    
+
                     const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start + productsPerPage + 1}"]`);
-                    if(scrollToProduct){
+                    if (scrollToProduct) {
                         scrollToProduct.scrollIntoView();
                     }
                     // setTimeout(()=>{
@@ -139,26 +140,39 @@ export default function renderProducts() {
                     // }, 0)
                 }
 
-                setTimeout(()=>{
-                    const preLoader = document.querySelector('.UNX-pre-loader');
-                        this.preLoaderObserver.observe(preLoader);
-                    const postLoader = document.querySelector('.UNX-post-loader');
-                    this.postLoaderObserver.observe(postLoader);
-                }, 0)
+                // setTimeout(()=>{
+                //     this.preLoaderObserver.disconnect()
+                //     this.postLoaderObserver.disconnect();
+                //     const preLoader = document.querySelector('.UNX-pre-loader');
+                //     const postLoader = document.querySelector('.UNX-post-loader');
+                //     this.preLoaderObserver.observe(preLoader);
+                //     this.postLoaderObserver.observe(postLoader);
+                // }, 0)
             }
             // console.log('outside render products setTimeout');
             this.viewState.isInfiniteStarted = false;
 
 
-            setTimeout(()=>{
-                this.viewState.isInfiniteStarted = false; //change - remove this  
-                if (this.options.pagination.type === 'INFINITE_SCROLL') {
-                    const postLoader = document.querySelector('.UNX-post-loader');
-                    // this.postLoaderObserver.disconnect();
-                    console.log('this.postLoaderObserver inside render products setTimeout')
-                    this.postLoaderObserver.observe(postLoader);
-                }
-            },0)
+            // setTimeout(()=>{
+            //     this.preLoaderObserver.disconnect()
+            //     const preLoader = document.querySelector('.UNX-pre-loader');
+            //     this.preLoaderObserver.observe(preLoader);
+            //     if (this.options.pagination.type === 'INFINITE_SCROLL'){
+            //         this.postLoaderObserver.disconnect();
+            //         const postLoader = document.querySelector('.UNX-post-loader');
+            //         this.postLoaderObserver.observe(postLoader);
+            //     }
+            // }, 0)
+
+            // setTimeout(()=>{
+            //     this.viewState.isInfiniteStarted = false; //change - remove this  
+            //     if (this.options.pagination.type === 'INFINITE_SCROLL') {
+            //         const postLoader = document.querySelector('.UNX-post-loader');
+            //         // this.postLoaderObserver.disconnect();
+            //         console.log('this.postLoaderObserver inside render products setTimeout')
+            //         this.postLoaderObserver.observe(postLoader);
+            //     }
+            // },0)
         } else {
             searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
