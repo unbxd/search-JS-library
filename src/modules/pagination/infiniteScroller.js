@@ -12,8 +12,6 @@ const setUpInfiniteScroll = function () {
                     } = {},
                 } = {},
                 pagination: {
-                    virtualization = true,
-                    bufferPages = 1,
                     infiniteScrollTriggerEl
                 },
                 products: {
@@ -27,10 +25,10 @@ const setUpInfiniteScroll = function () {
                 this.observer.disconnect();
                 this.preLoaderObserver.disconnect();
                 this.preLoaderObserver.observe(preLoader);
-                // if (paginationType === 'INFINITE_SCROLL') {
-                //     this.postLoaderObserver.disconnect();
-                //     this.postLoaderObserver.observe(postLoader);
-                // }
+                if (paginationType === 'INFINITE_SCROLL') {
+                    this.postLoaderObserver.disconnect();
+                    this.postLoaderObserver.observe(postLoader);
+                }
                 this.observer.observe(productsContainer, { childList: true, subtree: true });
                 return;
             }
@@ -47,7 +45,8 @@ const setUpInfiniteScroll = function () {
             this.individualProductObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        debounce(()=>{
+                        // debounce(()=>{
+                        
                             const productIndex = parseInt(entry.target.dataset.prank);
 
                             let currentUrlPage = this.getCurrentUrlPage();
@@ -61,28 +60,32 @@ const setUpInfiniteScroll = function () {
                                     this.setPageNoParam((currentPage - 1) * productsPerPage);
                                 }
 
-                                if (virtualization) {
-                                    if(bufferPages < 0) bufferPages = 0;
-                                    const minPage = currentPage - bufferPages;
-                                    const maxPage = currentPage + bufferPages;
-                                    const minPrank = (minPage - 2) * productsPerPage;
-                                    const maxPrank = (maxPage + 1) * productsPerPage;
+                                // if (virtualization) {
+                                //     if(bufferPages < 0) bufferPages = 0;
+                                //     const minPage = currentPage - bufferPages;
+                                //     const maxPage = currentPage + bufferPages;
+                                //     const minPrank = (minPage - 2) * productsPerPage; 
+                                //     const maxPrank = (maxPage + 1) * productsPerPage;
 
-                                    const productItems = document.querySelectorAll(`.${productItemClass}`);
-                                    productItems.forEach((productItem) => {
-                                        const itemPrank = parseInt(productItem.dataset.prank, 10);
-                                        if (itemPrank <= minPrank || itemPrank > maxPrank) {
-                                            productItem.remove();
-                                        }
-                                    });
-                                }
+                                //     const productItems = document.querySelectorAll(`.${productItemClass}`);
+                                //     productItems.forEach((productItem) => {
+                                //         const itemPrank = parseInt(productItem.dataset.prank, 10);
+                                //         if (itemPrank <= minPrank || itemPrank > maxPrank) {
+                                //             productItem.remove();
+                                //             const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${productIndex-1}"]`);
+                                //             if (scrollToProduct) {
+                                //                 scrollToProduct.scrollIntoView();
+                                //             }
+                                //         }
+                                //     });
+                                // }
                             } 
-                        },500)();
+                        // },200)();
                         
                     }
                 })
             }, {
-                threshold: [ 0.5, 1 ]
+                threshold: [ 0.5 ]
             });
 
             this.preLoaderObserver = new IntersectionObserver(entries => {
@@ -110,12 +113,11 @@ const setUpInfiniteScroll = function () {
             });
 
             this.postLoaderObserver = new IntersectionObserver(entries => {
-                
                 if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted ) {
                     const { numberOfProducts } = this.getPaginationInfo() || {};
                     const lastPrank = this.getLastPrank();
                     if (lastPrank < numberOfProducts){
-                        // this.postLoaderObserver.disconnect();//change - add this
+                        this.postLoaderObserver.disconnect();//change - add this
                         this.viewState.isInfiniteStarted = true;
                         this.setPageStart(lastPrank);
                         this.getResults("", true, 'next');
@@ -132,6 +134,7 @@ const setUpInfiniteScroll = function () {
                 for (let mutation of mutationsList) {
                     if (mutation.type === 'childList') {
                         const self = this;
+                        
                         mutation.addedNodes.forEach(function (node) {
                             if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains(`${productItemClass}`)) {
                                 self.individualProductObserver.observe(node);
@@ -142,7 +145,10 @@ const setUpInfiniteScroll = function () {
                     }
                 }
                 if (resetObservers){
-                    this.resetObservers()
+                    debounce(()=>{
+                        this.resetObservers();
+                    },500)();
+                    
                     resetObservers = false
                 }
             });

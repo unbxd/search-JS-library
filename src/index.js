@@ -107,9 +107,15 @@ class UnbxdSearch extends UnbxdSearchCore {
             this.renderFacets();
         }
         if(type === "FETCH_ERROR") {
-            if(loader && loader.el) {
-                loader.el.innerHTML = ``;
+            try {
+                if (loader && loader.el) {
+                    loader.el.innerHTML = ``;
+                }
+                onEvent(this, 'FETCH_ERROR');
+            }catch (error){
+                this.onError("callback",error,events.fetchError);
             }
+            
         }
     }
     delegate(delgationElem,evt,elem,fn){

@@ -10,6 +10,13 @@ export default function renderProducts() {
             searchResultsWrapper
         } = this;
         
+        let {
+            pagination: {
+                virtualization = true,
+                bufferPages = 1,
+            }
+        } = this.options;
+        
         const {
             noResults
         } = this.options;
@@ -42,6 +49,8 @@ export default function renderProducts() {
         searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
             // this.viewState.isInfiniteStarted = false; //change - remove this
+            this.postLoaderObserver.disconnect();
+            
             if (noResultLoaded) {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
@@ -79,11 +88,33 @@ export default function renderProducts() {
                     const newElementPrank = parseInt(newElement.dataset.prank, 10);
                     return !existingPranks.has(newElementPrank);
                 });
+                
+                
+                const productIndex = parseInt(newElementsToInsert[0].dataset.prank);
+
+                const currentPage = Math.ceil(productIndex / productsPerPage);
+                    
+                if (virtualization) {
+                    if (bufferPages < 0) bufferPages = 0;
+                    const minPage = currentPage - bufferPages;
+                    const maxPage = currentPage + bufferPages;
+                    const minPrank = (minPage - 2) * productsPerPage;
+                    const maxPrank = (maxPage + 1) * productsPerPage;
+
+                    const productItems = document.querySelectorAll(`.${productItemClass}`);
+                    productItems.forEach((productItem) => {
+                        const itemPrank = parseInt(productItem.dataset.prank, 10);
+                        if (itemPrank <= minPrank || itemPrank > maxPrank) {
+                            productItem.remove();
+                        }
+                    });
+                }                
 
                 if (insertPoint) {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.insertBefore(newElement, insertPoint);
                     });
+                    
                     const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start + productsPerPage + 1}"]`);
                     if(scrollToProduct){
                         scrollToProduct.scrollIntoView();
@@ -92,15 +123,19 @@ export default function renderProducts() {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.appendChild(newElement);
                     });
+                    const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start }"]`);
+                    if (scrollToProduct) {
+                        scrollToProduct.scrollIntoView();
+                    }
                 }
             }
             setTimeout(()=>{
                 this.viewState.isInfiniteStarted = false; //change - remove this  
-                // if (this.options.pagination.type === 'INFINITE_SCROLL') {
-                //     const postLoader = document.querySelector('.UNX-post-loader');
-                //     this.postLoaderObserver.disconnect();
-                //     this.postLoaderObserver.observe(postLoader);
-                // }
+                if (this.options.pagination.type === 'INFINITE_SCROLL') {
+                    const postLoader = document.querySelector('.UNX-post-loader');
+                    // this.postLoaderObserver.disconnect();
+                    this.postLoaderObserver.observe(postLoader);
+                }
             },0)
         } else {
             searchResultsWrapper.innerHTML = "";

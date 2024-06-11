@@ -94,7 +94,7 @@ const setPageNoParam = function (value) {
             urlParams[ ((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start') ] = [ i ];
             debounce(()=>{
                 history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
-            },500)();
+            },200)();
         }
         
     // }, 0)
