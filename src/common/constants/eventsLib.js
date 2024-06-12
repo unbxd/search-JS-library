@@ -17,8 +17,8 @@ const events = {
     deleteCategoryFilter:"DELETE_CATEGORY_FILTER",
     pageSizeChange:"PAGESIZE_CHANGE",
     configError: "CONFIG_ERROR",
-    runtimeError: "RUNTIME_ERROR"
-    
+    runtimeError: "RUNTIME_ERROR",
+    fetchError: "FETCH_ERROR"
 };
 
 export default events;
