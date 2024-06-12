@@ -115,7 +115,18 @@ const reRender = function () {
         paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });
-    } 
+    } else {
+        setTimeout(() => {
+            this.preLoaderObserver.disconnect()
+            const preLoader = document.querySelector('.UNX-pre-loader');
+            this.preLoaderObserver.observe(preLoader);
+            if (this.options.pagination.type === 'INFINITE_SCROLL') {
+                this.postLoaderObserver.disconnect();
+                const postLoader = document.querySelector('.UNX-post-loader');
+                this.postLoaderObserver.observe(postLoader);
+            }
+        }, 0)
+    }
 
     try{
         onEvent(this, afterRender);

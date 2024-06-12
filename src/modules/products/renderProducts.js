@@ -9,13 +9,19 @@ export default function renderProducts() {
         const {
             searchResultsWrapper
         } = this;
-        
+
+        let {
+            pagination: {
+                type
+            }
+        } = this.options;
+
         const {
             noResults
         } = this.options;
-        
+
         const noResultCss = "UNX-no-results-wrap";
-        const noResultsBlock = noResults.el ? noResults.el : searchResultsWrapper.getElementsByClassName('UNX-no-results')[0];
+        const noResultsBlock = noResults.el ? noResults.el : searchResultsWrapper.getElementsByClassName('UNX-no-results')[ 0 ];
 
         const {
             noResultLoaded,
@@ -35,16 +41,21 @@ export default function renderProducts() {
         // noResultCs
         if (noResults.el) {
             noResultsBlock.innerHTML = "";
-        }else{
+        } else {
             searchResultsWrapper.classList.remove(noResultCss);
         }
         
         searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
-            this.viewState.isInfiniteStarted = false;
+            this.postLoaderObserver.disconnect();
+
             if (noResultLoaded) {
                 this.viewState.noResultLoaded = true;
                 searchResultsWrapper.innerHTML = this.renderSearch();
+                const newElements = Array.from(searchResultsWrapper.children);
+                newElements.forEach(newElement => {
+                    this.individualProductObserver.observe(newElement);
+                });
                 window.scrollTo(0, 0)
             } else {
                 let productsPerPage = this.getProductsPerPage();
@@ -83,21 +94,37 @@ export default function renderProducts() {
                 if (insertPoint) {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.insertBefore(newElement, insertPoint);
+                        this.individualProductObserver.observe(newElement);
                     });
+
                     const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start + productsPerPage + 1}"]`);
-                    if(scrollToProduct){
+                    if (scrollToProduct) {
                         scrollToProduct.scrollIntoView();
                     }
                 } else {
                     newElementsToInsert.forEach(newElement => {
                         searchResultsWrapper.appendChild(newElement);
+                        if (type === "INFINITE_SCROLL") {
+                            this.individualProductObserver.observe(newElement);
+                        }
                     });
+                    const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start }"]`);
+                    if (scrollToProduct) {
+                        scrollToProduct.scrollIntoView();
+                    }
                 }
             }
+            this.viewState.isInfiniteStarted = false;
         } else {
             searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
             window.scrollTo(0, 0);
+            if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL"){
+                const newElements = Array.from(searchResultsWrapper.children);
+                newElements.forEach(newElement => {
+                    this.individualProductObserver.observe(newElement);
+                });
+            }
         }
     } catch (err) {
         this.onError("renderProducts.js", err, events.runtimeError);

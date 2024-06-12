@@ -124,11 +124,11 @@ String
 
 There are 3 types of pagination that can be used:
 
-Fixed pagination : In this type of pagination, a set of numbered pages are provided at the bottom of the page, allowing the user to navigate to specific pages. This method is best for desktop devices as it allows for easy navigation through a large number of products. Pass `type: “FIXED_PAGINATION”` to use this tpe of pagination. See example [here](#usecase-1-fixed-pagination)
+**Fixed pagination** : In this type of pagination, a set of numbered pages are provided at the bottom of the page, allowing the user to navigate to specific pages. This method is best for desktop devices as it allows for easy navigation through a large number of products. Pass `type: “FIXED_PAGINATION”` to use this type of pagination. See example [here](#usecase-1-fixed-pagination)
 
-Infinite Scrolling: In this type of pagination, new items are automatically loaded as the user scrolls to the bottom of the page, allowing the user to seamlessly scroll through all the products. This method is best for mobile devices as it allows for a continuous browsing experience. Pass `type: “INFINITE_SCROLL”` to use this tpe of pagination. See example [here](#usecase-2-click-and-scroll)
+**Infinite Scrolling**: In this type of pagination, new items are automatically loaded as the user scrolls to the bottom of the page, allowing the user to seamlessly scroll through all the products. This method is best for mobile devices as it allows for a continuous browsing experience. Pass `type: “INFINITE_SCROLL”` to use this type of pagination. See example [here](#usecase-2-click-and-scroll)
 
-CLick and scroll: In this type of pagination, a “Load More” button is provided at the bottom of the page, which when clicked, loads additional products. This method is easy to implement and can be used for both desktop and mobile devices. Pass `type: “CLICK_N_SCROLL”` to use this tpe of pagination. See example [here](#usecase-3-infinite-scroll)
+**CLick and scroll**: In this type of pagination, a “Load More” button is provided at the bottom of the page, which when clicked, loads additional products. This method is easy to implement and can be used for both desktop and mobile devices. Pass `type: “CLICK_N_SCROLL”` to use this type of pagination. See example [here](#usecase-3-infinite-scroll)
 
 
 ### Default Value
@@ -541,6 +541,17 @@ Actions below are needed to be set as `data-page-action`.
 3. `firstPage` - This action is needed on the button on click of which it triggers an api call for the very first page.
 4. `lastPage` - This action is needed on the button on click of which it triggers an api call for the last page.
 5. `paginate` - This action is needed on page number buttons.(In case of fixed pagination)
+
+---
+# Things To Know for Infinite scroll
+
+1. Setting the heightDiffToTriggerNextPage number to very high (>300 or >400) would trigger the next/previous page APIs more often than required and would lead to crashing the application. Any value set more than 1000 will get capped at 1000.
+2. Please make sure the CSS for .UNX-pre-loader and .UNX-post-loader is containing position:absolute, width:100% and z-index: -1, to ensure these components are hidden.The parent container of .UNX-pre-loader and .UNX-post-loader should have `position:relative`.
+3. The height css for the postloader and preloader should not be modified . Instead pass it in `heightDiffToTriggerNextPage`
+4. Parent of pre-loader and post-loader needs to be top to bottom aligned.
+5. The height and width attributes should be specified for every product image. If these attributes are not set, it can cause content reflow issues. When the image hasn't loaded yet and the height is not defined, the content may not be positioned correctly, making the post-loader visible and resulting in multiple API calls being triggered simultaneously.
+
+**Note:** If the above mentioned points are not followed it can lead to multiple or no api calls.
 
 
 ---
