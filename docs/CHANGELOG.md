@@ -16,6 +16,18 @@ nav_order: 9
 {:toc}
 
 ---
+# v2.1.8
+
+- **Release Date**: 12th June, 2024
+- **Core SDK Version**: v0.5.9
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.8/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.8/vanillaSearch.min.js)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+- Fixed `FETCH_ERROR` event handling . The `FETCH_ERROR` event was previously not invoking the `onEvent` handler due to a bug. This has now been resolved, and the `onEvent` handler is correctly invoked for the `FETCH_ERROR` event. Users can now handle errors and perform desired tasks within the onEvent handler when a `FETCH_ERROR` occurs.This update ensures better error management and more reliable event handling within the SDK.
+
+---
 # v2.1.7
 
 - **Release Date**: 13th May, 2024
