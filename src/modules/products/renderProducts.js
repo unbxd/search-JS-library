@@ -89,27 +89,27 @@ export default function renderProducts() {
                     return !existingPranks.has(newElementPrank);
                 });
 
-                if (virtualization) {
-                    // const productIndex = parseInt(newElementsToInsert.length ? newElementsToInsert[ 0 ].dataset.prank : newElements[ 0 ].dataset.prank);
-                    // const currentPage = Math.ceil(productIndex / productsPerPage);
-                    const currentPage = this.getCurrentUrlPage();
+                // if (virtualization) {
+                //     // const productIndex = parseInt(newElementsToInsert.length ? newElementsToInsert[ 0 ].dataset.prank : newElements[ 0 ].dataset.prank);
+                //     // const currentPage = Math.ceil(productIndex / productsPerPage);
+                //     const currentPage = this.getCurrentUrlPage();
 
-                    if (bufferPages < 1) bufferPages = 1;
-                    const minPage = currentPage - bufferPages;
-                    const maxPage = currentPage + bufferPages;
-                    const minPrank = (minPage - 1) * productsPerPage;
-                    const maxPrank = (maxPage ) * productsPerPage;
-                    console.log('minPrank', minPrank);
-                    console.log('maxPrank', maxPrank);
+                //     if (bufferPages < 1) bufferPages = 1;
+                //     const minPage = currentPage - bufferPages;
+                //     const maxPage = currentPage + bufferPages;
+                //     const minPrank = (minPage - 1) * productsPerPage;
+                //     const maxPrank = (maxPage ) * productsPerPage;
+                //     console.log('minPrank', minPrank);
+                //     console.log('maxPrank', maxPrank);
 
-                    const productItems = document.querySelectorAll(`.${productItemClass}`);
-                    productItems.forEach((productItem) => {
-                        const itemPrank = parseInt(productItem.dataset.prank, 10);
-                        if (itemPrank <= minPrank || itemPrank > maxPrank) {
-                            productItem.remove();
-                        }
-                    });
-                }
+                //     const productItems = document.querySelectorAll(`.${productItemClass}`);
+                //     productItems.forEach((productItem) => {
+                //         const itemPrank = parseInt(productItem.dataset.prank, 10);
+                //         if (itemPrank <= minPrank || itemPrank > maxPrank) {
+                //             productItem.remove();
+                //         }
+                //     });
+                // }
 
                 if (insertPoint) {
                     newElementsToInsert.forEach(newElement => {
@@ -130,10 +130,10 @@ export default function renderProducts() {
                         searchResultsWrapper.appendChild(newElement);
                         this.individualProductObserver.observe(newElement);
                     });
-                    // const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start }"]`);
-                    // if (scrollToProduct) {
-                    //     scrollToProduct.scrollIntoView();
-                    // }
+                    const scrollToProduct = document.querySelector(`.${productItemClass}[data-prank="${start }"]`);
+                    if (scrollToProduct) {
+                        scrollToProduct.scrollIntoView();
+                    }
                     // setTimeout(()=>{
                     //     const postLoader = document.querySelector('.UNX-post-loader');
                     //     this.postLoaderObserver.observe(postLoader);
