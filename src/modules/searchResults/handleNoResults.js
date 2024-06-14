@@ -2,7 +2,6 @@ import { events } from "../../common/constants";
 
 function handleNoResults() {
     try {
-        debugger
         const {
             searchResultsWrapper
         } = this;

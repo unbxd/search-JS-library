@@ -144,7 +144,6 @@ export default function renderProducts() {
                 if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL"){
                     const newElements = Array.from(searchResultsWrapper.children);
                     newElements.forEach(newElement => {
-                        debugger
                         this.individualProductObserver.observe(newElement);
                     });
                 }
