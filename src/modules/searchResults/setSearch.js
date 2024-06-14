@@ -1,6 +1,8 @@
 import renderSearch from './renderSearch';
 import onProductItemClick from './actions';
 import renderNoResults from './renderNoResults';
+import handleNoResults from "./handleNoResults";
+
 const mapProductAttrs = function(product) {
     const {
         products
@@ -25,7 +27,8 @@ const setSearch = (prototype) => {
         renderSearch,
         onProductItemClick,
         renderNoResults,
-        mapProductAttrs
+        handleNoResults,
+        mapProductAttrs  
     })
 };
 /* eslint-disable no-unused-vars */

@@ -55,37 +55,7 @@ const reRender = function () {
     } = this;
     
     if (results && results.numberOfProducts === 0) {
-        let redirect = this.state.responseObj.redirect || {};
-        if (Object.keys(redirect).length) {
-            return;
-        }
-        try {
-            onEvent(this, beforeNoResultRender);
-        }catch(error){
-            this.onError("reRender", error, events.runtimeError);
-        }
-       
-        this.viewState.noResultLoaded = true;
-        
-        if(this.options.noResults?.el) {
-            noResults.el.classList.add(noResultCss)
-            searchResultsWrapper.innerHTML = "";
-            noResults.el.innerHTML = this.renderNoResults(query);
-           
-        }else{
-            searchResultsWrapper.classList.add(noResultCss);
-            searchResultsWrapper.innerHTML = this.renderNoResults(query);
-        }
-        if (!qParams.filter) {
-            this.renderFacets();
-        }
-        
-        try{
-            onEvent(this, afterNoResultRender);
-        }catch(error){
-            this.onError("reRender", error, events.runtimeError);
-        }
-       
+       this.handleNoResults();
     } else {
         this.renderProducts();
         
@@ -115,17 +85,6 @@ const reRender = function () {
         paginationWrappers.forEach((pagination) => {
             pagination.innerHTML = this.renderPagination();
         });
-    } else {
-        setTimeout(() => {
-            this.preLoaderObserver.disconnect()
-            const preLoader = document.querySelector('.UNX-pre-loader');
-            this.preLoaderObserver.observe(preLoader);
-            if (this.options.pagination.type === 'INFINITE_SCROLL') {
-                this.postLoaderObserver.disconnect();
-                const postLoader = document.querySelector('.UNX-post-loader');
-                this.postLoaderObserver.observe(postLoader);
-            }
-        }, 0)
     }
 
     try{

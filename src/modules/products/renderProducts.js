@@ -47,16 +47,28 @@ export default function renderProducts() {
         
         searchResultsWrapper.style.minHeight = '100vh'
         if (isInfiniteStarted) {
-            this.postLoaderObserver.disconnect();
 
-            if (noResultLoaded) {
+            const results = this.getSearchResults();
+            if(results && results.products?.length === 0){
                 this.viewState.noResultLoaded = true;
+            }
+            
+
+            if (this.viewState.noResultLoaded) {
                 searchResultsWrapper.innerHTML = this.renderSearch();
-                const newElements = Array.from(searchResultsWrapper.children);
-                newElements.forEach(newElement => {
-                    this.individualProductObserver.observe(newElement);
-                });
-                window.scrollTo(0, 0)
+                if (searchResultsWrapper.innerHTML !== ""){
+                    const newElements = Array.from(searchResultsWrapper.children);
+                    newElements.forEach(newElement => {
+                        this.individualProductObserver.observe(newElement);
+                    });
+                    window.scrollTo(0, 0)
+                    this.viewState.noResultLoaded = false;
+                } else {
+                    this.preLoaderObserver.disconnect()
+                    this.postLoaderObserver.disconnect();
+                    this.handleNoResults();
+                }
+                
             } else {
                 let productsPerPage = this.getProductsPerPage();
                 const listItems = searchResultsWrapper.querySelectorAll(`.${productItemClass}`);
@@ -112,18 +124,34 @@ export default function renderProducts() {
                     if (scrollToProduct) {
                         scrollToProduct.scrollIntoView();
                     }
+                    
+                }
+                this.preLoaderObserver.disconnect();
+                const preLoader = document.querySelector('.UNX-pre-loader');
+                this.preLoaderObserver.observe(preLoader);
+                if (this.options.pagination.type === 'INFINITE_SCROLL') {
+                    this.postLoaderObserver.disconnect();
+                    const postLoader = document.querySelector('.UNX-post-loader');
+                    this.postLoaderObserver.observe(postLoader);
                 }
             }
             this.viewState.isInfiniteStarted = false;
         } else {
             searchResultsWrapper.innerHTML = "";
             searchResultsWrapper.innerHTML = this.renderSearch();
-            window.scrollTo(0, 0);
-            if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL"){
-                const newElements = Array.from(searchResultsWrapper.children);
-                newElements.forEach(newElement => {
-                    this.individualProductObserver.observe(newElement);
-                });
+            if (searchResultsWrapper.innerHTML !== ""){
+                window.scrollTo(0, 0);
+                if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL"){
+                    const newElements = Array.from(searchResultsWrapper.children);
+                    newElements.forEach(newElement => {
+                        debugger
+                        this.individualProductObserver.observe(newElement);
+                    });
+                }
+            } else if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL") {
+                this.preLoaderObserver.disconnect();
+                this.postLoaderObserver.disconnect();
+                this.handleNoResults();
             }
         }
     } catch (err) {

@@ -30,7 +30,6 @@ const setUpInfiniteScroll = function () {
             const preLoader = document.querySelector('.UNX-pre-loader');
 
             this.individualProductObserver = new IntersectionObserver(entries => {
-                debugger
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                             const productIndex = parseInt(entry.target.dataset.prank);
