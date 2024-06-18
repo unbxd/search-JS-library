@@ -20,7 +20,7 @@ class UnbxdSearch extends UnbxdSearchCore {
         super(props);
     this.viewState = {
             productViewType: this.state.productViewType || options.productView.defaultViewType,
-            isInfiniteStarted:false,
+            isInfiniteStarted: (this.options?.pagination?.type === "INFINITE_SCROLL" || this.options?.pagination?.type === "CLICK_N_SCROLL")? true: false,
             lastAction:'',
             selectedRange:{},
             expandedFacets:{},
