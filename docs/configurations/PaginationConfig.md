@@ -406,7 +406,7 @@ Any positive integer can be passed to `heightDiffToTriggerNextPage`
 ---
 
 
-## virtualization
+<!-- ## virtualization
 {: .d-inline-block }
 
 Boolean
@@ -462,9 +462,8 @@ bufferPages: 1
 
 ### Scenarios
 {: .no_toc }
-Any positive integer can be set here.
+Any positive integer can be set here. -->
 
----
 
 ## action
 {: .d-inline-block }
