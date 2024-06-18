@@ -16,11 +16,28 @@ nav_order: 9
 {:toc}
 
 ---
+# v2.1.9
+
+- **Release Date**: 18th June, 2024
+- **Core SDK Version**: v0.5.10
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.9/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.9/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.9/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.9/vanillaSearch.min.css)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+1. Resolved an issue where clicking on a category filter did not move back to the previous level but instead stayed on the same level. This fix ensures that users can now correctly navigate back to the previous level, enhancing the usability of the category filtering system.
+2. Fixed a bug where scrolling down on the category page caused the URL to decode improperly. This decoding issue led to broken pages upon reload. The URL handling has been corrected to maintain proper encoding, ensuring that the page reloads correctly without breaking.
+3. Virtualisation has been removed from the sdk. This change may impact the rendering performance for long lists but was necessary to address certain user experience and technical issues. 
+4. Addressed an issue with infinite scrolling where reaching the bottom of the page triggered infinite API calls. This fix ensures that scrolling to the bottom now loads content as expected without causing excessive and repeated calls to the server, improving both performance and user experience.
+
+---
 # v2.1.8
 
 - **Release Date**: 12th June, 2024
 - **Core SDK Version**: v0.5.9
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.8/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.8/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.8/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.8/vanillaSearch.min.css)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -33,6 +50,7 @@ nav_order: 9
 - **Release Date**: 13th May, 2024
 - **Core SDK Version**: v0.5.9
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.7/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.7/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.7/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.7/vanillaSearch.min.css)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -49,6 +67,7 @@ nav_order: 9
 - **Release Date**: 26th Apr, 2024
 - **Core SDK Version**: v0.5.8
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.6/vanillaSearch.min.css)
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -65,6 +84,7 @@ nav_order: 9
 - **Release Date**: 5th Mar, 2024
 - **Core SDK Version**: v0.5.7
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.5/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.5/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.5/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.5/vanillaSearch.min.css)
 
 ## 🚀 Features
 {: .no_toc}
@@ -92,6 +112,7 @@ nav_order: 9
 - **Release Date**: 28th Dec, 2023
 - **Core SDK Version**: v0.5.6
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.4/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.4/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.4/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.4/vanillaSearch.min.css)
 
 ## 🚀 Features
 {: .no_toc}
@@ -110,6 +131,7 @@ nav_order: 9
 - **Release Date**: 22nd Dec, 2023
 - **Core SDK Version**: v0.5.5
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.3/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.3/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.3/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.3/vanillaSearch.min.css)
 
 ## 🚀 Features
 {: .no_toc}
@@ -127,6 +149,7 @@ nav_order: 9
 - **Release Date**: 7th Dec, 2023
 - **Core SDK Version**: v0.5.4
 - **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.2/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.2/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.2/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.2/vanillaSearch.min.css)
 
 ## 🚀 Features
 {: .no_toc}

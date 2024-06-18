@@ -84,14 +84,13 @@ const setPageNoParam = function (value) {
     } = this.options;
 
     const i = value;
-
     this.viewState[ usePageNo ? 'page' : 'start' ] = Number(value);
 
-    addToUrl && setTimeout(() => {
-        const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
-        urlParams[ ((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start') ] = [ i ];
-        history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
-    }, 0)
+        if(addToUrl){
+            const urlParams = this.readQueryParamsFromUrl(this.options.hashMode ? location.hash.slice(1) : location.search);
+            urlParams[ ((algo === "KEY_VALUE_REPLACER") ? keyReplacer : usePageNo ? 'page' : 'start') ] = [ i ];
+                history.replaceState(null, null, this.urlSearchParamsToStr(urlParams));
+        }
 
 }
 
