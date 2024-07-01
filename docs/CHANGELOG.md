@@ -17,6 +17,15 @@ nav_order: 8
 
 
 ---
+
+{: .note-title }
+> Important
+>
+> This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
+
+
+---
+
 # v2.1.1 - Dynamic Extra Params
 
 - **Release Date**: 25th Oct, 2023
