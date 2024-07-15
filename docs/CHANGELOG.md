@@ -15,6 +15,12 @@ nav_order: 9
 1. TOC
 {:toc}
 
+{: .note-title }
+> Important
+>
+> This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
+
+
 ---
 # v2.1.9
 
