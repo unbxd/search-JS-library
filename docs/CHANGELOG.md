@@ -20,6 +20,20 @@ nav_order: 9
 >
 > This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
 
+---
+# v2.1.10
+
+- **Release Date**: 22 Oct, 2024
+- **Core SDK Version**: v0.5.11
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.10/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.10/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.10/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.10/vanillaSearch.min.css)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+1. An issue where the UI would break when filter values contained double quotes (") , has been resolved in this release.
+2. Fixed an issue where, when `seoFriendlyUrl` was set to true and users replaced values, the facets' state was not being retained upon page reload.
+
 
 ---
 # v2.1.9
