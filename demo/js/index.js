@@ -1,7 +1,7 @@
 import UnbxdSearch from "../../src/index";
 // import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
-import def from "./defaultLogo.png"
-import "./unbxdStyles.css"
+import def from "./defaultLogo.png";
+import "./unbxdStyles.css";
 
 let routeTemplate = `
 <div class="UNX-header">
@@ -97,6 +97,7 @@ let routeTemplate = `
 				<div id="noResultWrapper"></div>
 				<div id="clickScrollContainer"></div>
 			</div>
+            <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
 			<div class="UNX-footer-main">
 				<div class="UNX-footer-container">
 					<div class="UNX-footer-features">
@@ -180,68 +181,50 @@ let routeTemplate = `
 		</div>
 `;
 
-
 const routes = {
-    '/': routeTemplate,
-    '/search': routeTemplate,
-    '/men': routeTemplate,
-    '/women': routeTemplate,
-    '/washingMachine': routeTemplate,
-    '/kitchen-and-cooking/microwaves/convection-microwave-ovens-0': routeTemplate,
-    '/furniture-and-bedding/bedroom-furniture/bases-bedheads': routeTemplate,
+    "/": routeTemplate,
+    "/search": routeTemplate,
+    "/men": routeTemplate,
+    "/women": routeTemplate,
+    "/washingMachine": routeTemplate,
+    "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0": routeTemplate,
+    "/furniture-and-bedding/bedroom-furniture/bases-bedheads": routeTemplate,
 };
 
-const rootDiv = document.getElementById('root');
-rootDiv.innerHTML = routes[ window.location.pathname ];
+const rootDiv = document.getElementById("root");
+rootDiv.innerHTML = routes[window.location.pathname];
 
 const setCategory = function (e) {
     const el = e.target;
-    const {
-        dataset
-    } = el;
+    const { dataset } = el;
     if (dataset && dataset.id) {
         window.history.pushState(null, null, dataset.path);
         // rootDiv.innerHTML = routes[el.pathname];
         window.UnbxdAnalyticsConf = {
-            page: dataset.id
+            page: dataset.id,
         };
         window.unbxdSearch.getCategoryPage();
     }
-
 };
 
 const navElem = document.getElementById("categoryLinks");
 navElem.addEventListener("click", setCategory);
 
-
 const checkRangeTemplate = function (range, selectedRange, facet) {
-    const {
-        displayName,
-        facetName,
-        values,
-        gap
-    } = range;
+    const { displayName, facetName, values, gap } = range;
     let valueUI = ``;
-    const {
-        facetClass,
-        selectedFacetClass,
-        applyMultipleFilters,
-        applyButtonText,
-        clearButtonText,
-    } = facet;
+    const { facetClass, selectedFacetClass, applyMultipleFilters, applyButtonText, clearButtonText } = facet;
     const selected = selectedRange.length > 0 ? true : false;
-    values.forEach(item => {
-        const {
-            from,
-            end
-        } = item;
+    values.forEach((item) => {
+        const { from, end } = item;
         const isSelected = this.isSelectedRange(facetName, item);
-        const btnCss = (isSelected) ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}` : `${facetClass}`;
-        valueUI += [ `<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
-        `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
-        `<span class="UNX-facet-count">(${from.count})</span>`,
-            `</button>`
-        ].join('');
+        const btnCss = isSelected ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}` : `${facetClass}`;
+        valueUI += [
+            `<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
+            `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
+            `<span class="UNX-facet-count">(${from.count})</span>`,
+            `</button>`,
+        ].join("");
     });
     let clearBtn = ``;
     let applyBtn = ``;
@@ -251,24 +234,18 @@ const checkRangeTemplate = function (range, selectedRange, facet) {
         }
         clearBtn = `<button class="UNX-default-btn UNX-facet-clear  ${facetClass}" data-action="clearRangeFacets">${clearButtonText}</button>`;
     }
-    return [ `<div class="UNX-range-wrapper">`,
-        valueUI,
-        `<div class="UNX-price-action-row">`,
-        applyBtn, clearBtn,
-        `<div>`,
-        `</div>`
-    ].join('')
-}
+    return [`<div class="UNX-range-wrapper">`, valueUI, `<div class="UNX-price-action-row">`, applyBtn, clearBtn, `<div>`, `</div>`].join("");
+};
 
 const unbxdCallbackEcma = function (instance, type, data) {
-    console.log(type, data, 'type,data');
+    console.log(type, data, "type,data");
     if (type === "AFTER_RENDER") {
-        if (localStorage.getItem('unx_product_clicked') && document.getElementById(localStorage.getItem('unx_product_clicked'))) {
-            document.getElementById(localStorage.getItem('unx_product_clicked')).scrollIntoView()
-            localStorage.removeItem('unx_product_clicked');
+        if (localStorage.getItem("unx_product_clicked") && document.getElementById(localStorage.getItem("unx_product_clicked"))) {
+            document.getElementById(localStorage.getItem("unx_product_clicked")).scrollIntoView();
+            localStorage.removeItem("unx_product_clicked");
         }
     }
-}
+};
 
 let showFacet = false;
 window.resizeTimer = null;
@@ -285,9 +262,7 @@ const checkMobile = () => {
 
 const toggleMobileFacets = (e) => {
     showFacet = !showFacet;
-    const {
-        action
-    } = e.target.dataset;
+    const { action } = e.target.dataset;
     if (action === "applyFacets") {
         window.unbxdSearch.setPageStart(0);
         window.unbxdSearch.getResults();
@@ -298,107 +273,118 @@ const toggleMobileFacets = (e) => {
         window.unbxdSearch.getResults();
     }
     if (showFacet) {
-        facetBlock.classList.add("UNX-show-facets")
+        facetBlock.classList.add("UNX-show-facets");
     } else {
-        facetBlock.classList.remove("UNX-show-facets")
+        facetBlock.classList.remove("UNX-show-facets");
     }
-}
+};
 
 const btnEls = document.querySelectorAll(".UNX-facet-trigger");
-btnEls.forEach(item => {
-    item.addEventListener("click", toggleMobileFacets)
+btnEls.forEach((item) => {
+    item.addEventListener("click", toggleMobileFacets);
 });
 
 let performRouteActions = () => {
     if (location.pathname === "/men") {
         window.UnbxdAnalyticsConf = {
-            page: "categoryPath:cat700001"
+            page: "categoryPath:cat700001",
         };
         unbxdSearch.options.productType = "CATEGORY";
     } else if (location.pathname === "/women") {
         window.UnbxdAnalyticsConf = {
-            page: "categoryPath:cat120002"
+            page: "categoryPath:cat120002",
         };
         unbxdSearch.options.productType = "CATEGORY";
     } else if (location.pathname === "/washingMachine") {
         window.UnbxdAnalyticsConf = {
-            page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
+            page: 'categoryPath:"LAUNDRY>WASHING MACHINES"',
         };
         unbxdSearch.options.productType = "CATEGORY";
-    
     } else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
         window.UnbxdAnalyticsConf = {
-            page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"'
+            page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"',
         };
         unbxdSearch.options.productType = "CATEGORY";
     } else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
         window.UnbxdAnalyticsConf = {
-            page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"'
+            page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"',
         };
         unbxdSearch.options.productType = "CATEGORY";
     } else {
         window.UnbxdAnalyticsConf = {};
         unbxdSearch.options.productType = "SEARCH";
     }
-}
+};
 
-window.addEventListener('popstate', () => {
+window.addEventListener("popstate", () => {
     performRouteActions();
 });
 
-let searchButtonEl = document.getElementById("searchBtn");
-let searchBoxEl = document.getElementById("unbxdInput");
+let searchButtonEl = document.querySelectorAll("#searchBtn");
+let searchBoxEl = document.querySelectorAll("#unbxdInput");
 
-searchButtonEl.addEventListener("click", () => {
-    if (unbxdSearch.options.productType !== 'SEARCH') {
-        window.UnbxdAnalyticsConf = {};
-        unbxdSearch.options.productType = 'SEARCH';
-        window.history.pushState({
-            replace: true
-        }, "", "/search?")
-    }
+Array.from(searchButtonEl).map((searchButton) => {
+    searchButton.addEventListener("click", () => {
+        if (unbxdSearch.options.productType !== "SEARCH") {
+            window.UnbxdAnalyticsConf = {};
+            unbxdSearch.options.productType = "SEARCH";
+            window.history.pushState(
+                {
+                    replace: true,
+                },
+                "",
+                "/search?"
+            );
+        }
+    });
 });
 
-searchBoxEl.addEventListener("keydown", (e) => {
-    const val = e.target.value;
-    if (e.key === "Enter") {
-        if (val !== "") {
-            if (unbxdSearch.options.productType !== 'SEARCH') {
-                window.UnbxdAnalyticsConf = {};
-                unbxdSearch.options.productType = 'SEARCH';
-                window.history.pushState({
-                    replace: true
-                }, "", "/search?")
+Array.from(searchBoxEl).map((searchBox) => {
+    searchBox.addEventListener("keydown", (e) => {
+        const val = e.target.value;
+        if (e.key === "Enter") {
+            if (val !== "") {
+                if (unbxdSearch.options.productType !== "SEARCH") {
+                    window.UnbxdAnalyticsConf = {};
+                    unbxdSearch.options.productType = "SEARCH";
+                    window.history.pushState(
+                        {
+                            replace: true,
+                        },
+                        "",
+                        "/search?"
+                    );
+                }
             }
         }
-    }
+    });
 });
 
 let productType = "";
 
 if (location.pathname === "/men") {
     window.UnbxdAnalyticsConf = {
-        page: "categoryPath:cat700001"
+        page: "categoryPath:cat700001",
     };
     productType = "CATEGORY";
 } else if (location.pathname === "/women") {
     window.UnbxdAnalyticsConf = {
-        page: "categoryPath:cat120002"
+        page: "categoryPath:cat120002",
     };
     productType = "CATEGORY";
 } else if (location.pathname === "/washingMachine") {
     window.UnbxdAnalyticsConf = {
-        page: 'categoryPath:"LAUNDRY>WASHING MACHINES"'
+        page: 'categoryPath:"LAUNDRY>WASHING MACHINES"',
     };
     productType = "CATEGORY";
 } else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
     window.UnbxdAnalyticsConf = {
-        page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"'
+        page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"',
     };
     productType = "CATEGORY";
 } else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
     window.UnbxdAnalyticsConf = {
-        page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"'
+        page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"',
     };
     productType = "CATEGORY";
 } else {
@@ -407,32 +393,25 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    
-    siteKey: "demo-unbxd700181503576558",
-    apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+    siteKey: "ss-unbxd-Wakefit-Prod32951646727583",
+    apiKey: "bdd920f4d3e81b8a52f547047fcaaf66",
+    // siteKey: "demo-unbxd700181503576558",
+    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
     // onError: function(err) {
     //     console.error('onError', err)
     // },
-    searchBoxEl: document.getElementById("unbxdInput"),
+    searchBoxEl: document.querySelectorAll("#unbxdInput"),
     searchTrigger: "click",
-    searchButtonEl: document.getElementById("searchBtn"),
+    searchButtonEl: document.querySelectorAll("#searchBtn"),
     unbxdAnalytics: true,
     setCategoryId: function (param, self) {
-        const {
-            level,
-            parent,
-            name,
-            action
-        } = param;
+        const { level, parent, name, action } = param;
         let page = ``;
         let pathArr = [];
         const l = Number(level);
         const breadCrumbs = self.getBreadCrumbsList("categoryPath");
         breadCrumbs.forEach((element, i) => {
-            const {
-                level,
-                value
-            } = element;
+            const { level, value } = element;
             if (l > Number(level) || Number(level) === 1) {
                 pathArr.push(value);
             }
@@ -442,26 +421,26 @@ window.unbxdSearch = new UnbxdSearch({
         }
         page = pathArr.join(">");
         if (window.UnbxdAnalyticsConf) {
-            window.UnbxdAnalyticsConf.page = "categoryPath:\"" + page + "\"";
+            window.UnbxdAnalyticsConf.page = 'categoryPath:"' + page + '"';
         }
     },
-    products: { 
-        el: document.getElementById("searchResultsWrapper"),
+    products: {
+        el: document.querySelectorAll("#searchResultsWrapper"),
         productType: productType,
         onProductClick: function (product, e) {
-            localStorage.setItem('unx_product_clicked', product.uniqueId);
-            window.location.href = 'https://www.google.com';
-        }
+            localStorage.setItem("unx_product_clicked", product.uniqueId);
+            window.location.href = "https://www.google.com";
+        },
     },
     spellCheck: {
         enabled: true,
-        el: document.getElementById("didYouMeanWrapper")
+        el: document.getElementById("didYouMeanWrapper"),
     },
     noResults: {
-        el: document.getElementById("noResultWrapper")
+        el: document.getElementById("noResultWrapper"),
     },
     selectedFacets: {
-        el: document.getElementById("selectedFacetWrapper")
+        el: document.getElementById("selectedFacetWrapper"),
     },
     facet: {
         isCollapsible: true,
@@ -477,226 +456,202 @@ window.unbxdSearch = new UnbxdSearch({
             var name = facetInfo.displayName;
             var filterField = facetInfo.filterField;
             // var isSelected = (facetInfo.isSelected) ? 'is-expanded' : '';
-            var searchStr = window.location.search || '';
-            var isSelected = searchStr.includes(facetInfo.facetName) ? 'is-expanded' : '';
+            var searchStr = window.location.search || "";
+            var isSelected = searchStr.includes(facetInfo.facetName) ? "is-expanded" : "";
 
-            return [ `<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
+            return [
+                `<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
                     <span aria-label="Filter: ${filterField}" role="text" class="facets__filters-label">${name}</span>
                      <ul data-search-facet-container="" class="facets__filters-values facets__filters-values--size list-reset js-filter-values UNX_facet_open ${isSelected}">
                       ${facets}
                     </ul>
                     </div>                 
-                    `].join('');
+                    `,
+            ].join("");
         },
         facetItemTemplate: function (facet, value, facetSearchTxt) {
-            const {
-                facetName,
-                isSelected,
-                multiLevelFacetSelectorClass,
-                displayName
-            } = facet;
-            const {
-                name,
-                count,
-                dataId
-            } = value;
-            let {
-                facetClass,
-                selectedFacetClass
-            } = this.options.facet;
-            const {
-                UNX_uFilter
-            } = this.testIds;
+            const { facetName, isSelected, multiLevelFacetSelectorClass, displayName } = facet;
+            const { name, count, dataId } = value;
+            let { facetClass, selectedFacetClass } = this.options.facet;
+            const { UNX_uFilter } = this.testIds;
 
             let action = "changeFacet";
-            let selectedFacet = 'disable';
-            let liCss = '';
-            let hightlighted = '';
+            let selectedFacet = "disable";
+            let liCss = "";
+            let hightlighted = "";
             if (isSelected) {
-                selectedFacet = 'checked';
-                hightlighted = 'highlight';
-                facetClass += ` ${selectedFacetClass} `
+                selectedFacet = "checked";
+                hightlighted = "highlight";
+                facetClass += ` ${selectedFacetClass} `;
                 action = "deleteFacetValue";
-                liCss = (isSelected) ? 'selected' : '';
+                liCss = isSelected ? "selected" : "";
             }
-            return [ `<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
+            return [
+                `<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
                 <label data-search-facet-label="${name}" data-id="${dataId}" class="facet-checkbox facet-checkbox-${displayName} UNX-change-facet ${facetClass} " data-facet-action="${action}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-handler-init="true">
                   <input data-search-facet-input="" ${selectedFacet} class="js-filter-checkbox" type="checkbox" value="${name}">
                 <span class="${hightlighted}">${name} (${count})</span>
                 </label>
-                </li>`].join('');
+                </li>`,
+            ].join("");
         },
         selectedFacetTemplate: function (selections, facet, selectedFacetsConfig) {
-            const {
-                clearAllText,
-                clearFacetsSelectorClass
-            } = facet;
-            const selectedFClass = (this.selectedFacetClass) ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
+            const { clearAllText, clearFacetsSelectorClass } = facet;
+            const selectedFClass = this.selectedFacetClass ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
 
             if (selections.length > 0) {
-                return [ `<div class="collection__active-filters UNX-facets-selections">`,
-                    `${selections}`,
-                    `</div>` ].join('');
+                return [`<div class="collection__active-filters UNX-facets-selections">`, `${selections}`, `</div>`].join("");
             } else {
                 return ``;
             }
         },
         selectedFacetItemTemplate: function (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
-            const {
-                facetName,
-                facetType
-            } = selectedFacet;
-            const {
-                name,
-                count,
-                dataId
-            } = selectedFacetItem;
-            const {
-                facetClass,
-                selectedFacetClass,
-                removeFacetsSelectorClass
-            } = this.options.facet;
-            const {
-                UNX_uFilter
-            } = this.testIds;
+            const { facetName, facetType } = selectedFacet;
+            const { name, count, dataId } = selectedFacetItem;
+            const { facetClass, selectedFacetClass, removeFacetsSelectorClass } = this.options.facet;
+            const { UNX_uFilter } = this.testIds;
             let action = "deleteSelectedFacetValue";
 
             const css = ` ${facetClass} ${selectedFacetClass} `;
 
-            return [ `<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
+            return [
+                `<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
                      data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" data-handler-init="true">${name}
                      <i class="collection__active-filters-icon icon icon--close-blue" 
                      data-facet-action="${action}" data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" >
-                     </i> </a>`].join('');
+                     </i> </a>`,
+            ].join("");
         },
     },
 
-
     pagination: {
         // type: 'CLICK_N_SCROLL',
-        type: 'FIXED_PAGINATION',
+        type: "FIXED_PAGINATION",
         // type: 'INFINITE_SCROLL',
-        el: document.querySelector('.unxPagination'),
+        el: document.querySelectorAll(".unxPagination"),
         // usePageAndCount: false,
         virtualization: false,
         bufferPages: 1,
         heightDiffToTriggerNextPage: 100,
-        infiniteScrollTriggerEl: document.getElementById('searchResultsWrapper'),
-        onPaginate: function (data) { console.log(data, "data") }
+        infiniteScrollTriggerEl: document.getElementById("searchResultsWrapper"),
+        onPaginate: function (data) {
+            console.log(data, "data");
+        },
     },
     url: {
         hashMode: false,
         allowExternalUrlParams: false,
         seoFriendlyUrl: true,
-        orderOfQueryParams: ["QUERY",  "FILTERS", "PAGE_NUMBER" ,"PAGE_SIZE","SORT","VIEW_TYPE"], //defaults.
-        
+        orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"], //defaults.
+
         queryParamSeparator: "&",
         searchQueryParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
-            keyReplacer: "query"
+            keyReplacer: "query",
         },
         browseQueryParam: {
             addToUrl: true,
             algo: "DEFAULT",
-            keyReplacer: "pppp"
+            keyReplacer: "pppp",
         },
         pageViewParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             keyReplacer: "view",
             valuesReplacer: {
-                "GRID": "GRID",
-                "LIST": "LI@ST(list)"
-            }
+                GRID: "GRID",
+                LIST: "LI@ST(list)",
+            },
         },
-        sortParam: { 
+        sortParam: {
             addToUrl: true,
-            algo: "DEFAULT", 
+            algo: "DEFAULT",
             keyReplacer: "sortBy",
             valueReplacer: {
                 "price desc": "p&d",
-                "price asc": "p-a"
-            }
+                "price asc": "p-a",
+            },
         },
-        pageNoParam: { 
+        pageNoParam: {
             addToUrl: true,
             algo: "DEFAULT",
-            keyReplacer: 'p', 
-            usePageNo: true // uses page no. when turned on.else , index
+            keyReplacer: "p",
+            usePageNo: true, // uses page no. when turned on.else , index
         },
         pageSizeParam: {
             addToUrl: true,
             algo: "DEFAULT",
-            keyReplacer: "count"
+            keyReplacer: "count",
         },
         facetsParam: {
             addToUrl: true,
             algo: "KEY_VALUE_REPLACER",
             multiValueSeparator: ",",
             keyReplacer: {
-                "color_uFilter": "color",
-                "size_uFilter": "size",
-                "gender_uFilter": "gender",
-                "occasion_uFilter": "occasion",
-                "fit_uFilter": "fit",
-                "type_uFilter":"type"
+                color_uFilter: "color",
+                size_uFilter: "size",
+                gender_uFilter: "gender",
+                occasion_uFilter: "occasion",
+                fit_uFilter: "fit",
+                type_uFilter: "type",
             },
             valueReplacer: {
-                "color_uFilter": {
-                    "Multi": "multi",
-                    "White": "whitee"
+                color_uFilter: {
+                    Multi: "multi",
+                    White: "whitee",
                 },
-                "occasion_uFilter": {
-                    "Wear to Work": "Wear-to-work"
-                }
+                occasion_uFilter: {
+                    "Wear to Work": "Wear-to-work",
+                },
             },
-            facetsOrderInUrl: ["gender_uFilter","color_uFilter","price","category-filter"],
+            facetsOrderInUrl: ["gender_uFilter", "color_uFilter", "price", "category-filter"],
             rangeFacets: ["price"],
-            rangeSeparator: "-"
-        }
+            rangeSeparator: "-",
+        },
     },
     breadcrumb: {
-        el: document.getElementById("breadcrumpContainer")
+        el: document.querySelectorAll("#breadcrumpContainer"),
     },
     pagesize: {
         enabled: true,
-        el: document.getElementById("changeNoOfProducts"),
+        el: document.querySelectorAll("#changeNoOfProducts"),
         pageSize: 10,
-        options: [10, 20, 30, 40]
+        options: [10, 20, 30, 40],
     },
 
     sort: {
         enabled: true,
-        el: document.getElementById("sortWrapper"),
-        options: [ {
-            value: "price desc",
-            text: "Price High to Low"
-        },
-        {
-            value: "price asc",
-            text: " Price Low to High"
-        }
-        ]
+        el: document.querySelectorAll("#sortWrapper"),
+        options: [
+            {
+                value: "price desc",
+                text: "Price High to Low",
+            },
+            {
+                value: "price asc",
+                text: " Price Low to High",
+            },
+        ],
     },
     loader: {
-        el: document.getElementById("loaderEl")
+        el: document.getElementById("loaderEl"),
     },
     productView: {
-        el: document.getElementById("productViewTypeContainer"),
-        defaultViewType: "GRID"
+        el: document.querySelectorAll("#productViewTypeContainer"),
+        defaultViewType: "GRID",
     },
     banner: {
         el: document.getElementById("bannerContainer"),
-        count: 1
+        count: 1,
     },
     swatches: {
         enabled: true,
         attributesMap: {
             swatchList: "color",
             swatchImgs: "unbxd_color_mapping",
-            swatchColors: "color"
-        }
+            swatchColors: "color",
+        },
     },
     // extraParams: {
     //     // test: function(){
@@ -706,10 +661,7 @@ window.unbxdSearch = new UnbxdSearch({
     onAction: function (e, ctx) { },
     onEvent: unbxdCallbackEcma,
     debugMode: true,
-    browseQueryParam: 'p-id'
+    browseQueryParam: "p-id",
 });
 
-
-
-
-window.unbxdSearch.getResults('*')
+window.unbxdSearch.getResults("*");

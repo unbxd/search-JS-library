@@ -1,8 +1,11 @@
 import { events } from "../../common/constants";
 
-const setInputValue = function() {
-    try{
-        let val = this.options.searchBoxEl.value === "" ? "*": this.options.searchBoxEl.value ;
+const setInputValue = function (el) {
+    try {
+        let val = ""
+        if (el) {
+            val = el.value === "" ? "*" : el.value;
+        } else val = this.options.searchBoxEl.value === "" ? "*" : this.options.searchBoxEl.value;
         if (!val.replace(/\s/g, '').length) {
             return false;
         }
@@ -21,10 +24,10 @@ const setInputValue = function() {
         } else {
             this.searchResultsWrapper.innerHTML = null;
         }
-    }catch(err){
-        this.onError("input > setInputValue.js",err,events.runtimeError);
+    } catch (err) {
+        this.onError("input > setInputValue.js", err, events.runtimeError);
     }
-    
+
 }
 export {
     setInputValue as default

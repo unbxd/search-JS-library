@@ -1,25 +1,21 @@
 import { events } from "../../common/constants";
 
-function handleNoResults() {
+function handleNoResults(searchResultsWrapper) {
     try {
-        const {
-            searchResultsWrapper
-        } = this;
-        
         const {
             onEvent,
             noResults
         } = this.options;
-        
+
         const {
             beforeNoResultRender,
             afterNoResultRender,
         } = this.events;
-        
+
         const qParams = this.getQueryParams() || {};
         const query = this.getSearchQuery();
         const noResultCss = "UNX-no-results-wrap";
-        
+
         let redirect = this.state.responseObj.redirect || {};
         if (Object.keys(redirect).length) {
             return;

@@ -1,6 +1,6 @@
 import { events } from "../../common/constants";
 
-function renderProductViewTypeUI(){
+function renderProductViewTypeUI(productViewTypeWrapper) {
     try {
         const {
             productView = {}
@@ -11,13 +11,13 @@ function renderProductViewTypeUI(){
             } = this.viewState;
             const results = this.getSearchResults();
             if (results && results.numberOfProducts === 0) {
-                this.productViewTypeWrapper.innerHTML = ``;
+                productViewTypeWrapper.innerHTML = ``;
             } else {
-                this.productViewTypeWrapper.innerHTML = this.options.productView.template.bind(this)(productViewType, productView);
+                productViewTypeWrapper.innerHTML = this.options.productView.template.bind(this)(productViewType, productView);
             }
         }
-        
-    }catch(err){
+
+    } catch (err) {
         this.onError("ProductViewType > renderProductViewTypeUI", err, events.runtimeError);
     }
 

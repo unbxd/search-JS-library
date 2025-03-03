@@ -1,7 +1,7 @@
 import { events } from "../../common/constants";
 
-const renderPagination = function () {
-    try{
+const renderPagination = function (wrapper) {
+    try {
         const {
             pagination = {}
         } = this.options;
@@ -15,9 +15,9 @@ const renderPagination = function () {
                 paginationUI = pagination.template.bind(this)(pageInfo, pagination);
             }
         }
-        return paginationUI;
+        wrapper.innerHTML = paginationUI;
     }
-    catch(err){
+    catch (err) {
         this.onError("Pagination > renderPagination.js", err, events.runtimeError);
     }
 
