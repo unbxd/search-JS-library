@@ -97,7 +97,9 @@ let routeTemplate = `
 				<div id="noResultWrapper"></div>
 				<div id="clickScrollContainer"></div>
 			</div>
-            <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
+            <div style="height: 400px; width: 400px; position: relative;">
+                <div class="UNX-loader-container" id="loaderEl"></div>
+            </div>
 			<div class="UNX-footer-main">
 				<div class="UNX-footer-container">
 					<div class="UNX-footer-features">
@@ -182,69 +184,69 @@ let routeTemplate = `
 `;
 
 const routes = {
-    "/": routeTemplate,
-    "/search": routeTemplate,
-    "/men": routeTemplate,
-    "/women": routeTemplate,
-    "/washingMachine": routeTemplate,
-    "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0": routeTemplate,
-    "/furniture-and-bedding/bedroom-furniture/bases-bedheads": routeTemplate,
+	"/": routeTemplate,
+	"/search": routeTemplate,
+	"/men": routeTemplate,
+	"/women": routeTemplate,
+	"/washingMachine": routeTemplate,
+	"/kitchen-and-cooking/microwaves/convection-microwave-ovens-0": routeTemplate,
+	"/furniture-and-bedding/bedroom-furniture/bases-bedheads": routeTemplate,
 };
 
 const rootDiv = document.getElementById("root");
 rootDiv.innerHTML = routes[window.location.pathname];
 
-const setCategory = function (e) {
-    const el = e.target;
-    const { dataset } = el;
-    if (dataset && dataset.id) {
-        window.history.pushState(null, null, dataset.path);
-        // rootDiv.innerHTML = routes[el.pathname];
-        window.UnbxdAnalyticsConf = {
-            page: dataset.id,
-        };
-        window.unbxdSearch.getCategoryPage();
-    }
+const setCategory = function(e) {
+	const el = e.target;
+	const { dataset } = el;
+	if (dataset && dataset.id) {
+		window.history.pushState(null, null, dataset.path);
+		// rootDiv.innerHTML = routes[el.pathname];
+		window.UnbxdAnalyticsConf = {
+			page: dataset.id,
+		};
+		window.unbxdSearch.getCategoryPage();
+	}
 };
 
 const navElem = document.getElementById("categoryLinks");
 navElem.addEventListener("click", setCategory);
 
-const checkRangeTemplate = function (range, selectedRange, facet) {
-    const { displayName, facetName, values, gap } = range;
-    let valueUI = ``;
-    const { facetClass, selectedFacetClass, applyMultipleFilters, applyButtonText, clearButtonText } = facet;
-    const selected = selectedRange.length > 0 ? true : false;
-    values.forEach((item) => {
-        const { from, end } = item;
-        const isSelected = this.isSelectedRange(facetName, item);
-        const btnCss = isSelected ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}` : `${facetClass}`;
-        valueUI += [
-            `<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
-            `<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
-            `<span class="UNX-facet-count">(${from.count})</span>`,
-            `</button>`,
-        ].join("");
-    });
-    let clearBtn = ``;
-    let applyBtn = ``;
-    if (selected) {
-        if (applyMultipleFilters) {
-            applyBtn = `<button class="UNX-default-btn ${facetClass} UNX-facet-primary" data-action="applyRange"> ${applyButtonText}</button>`;
-        }
-        clearBtn = `<button class="UNX-default-btn UNX-facet-clear  ${facetClass}" data-action="clearRangeFacets">${clearButtonText}</button>`;
-    }
-    return [`<div class="UNX-range-wrapper">`, valueUI, `<div class="UNX-price-action-row">`, applyBtn, clearBtn, `<div>`, `</div>`].join("");
+const checkRangeTemplate = function(range, selectedRange, facet) {
+	const { displayName, facetName, values, gap } = range;
+	let valueUI = ``;
+	const { facetClass, selectedFacetClass, applyMultipleFilters, applyButtonText, clearButtonText } = facet;
+	const selected = selectedRange.length > 0 ? true : false;
+	values.forEach((item) => {
+		const { from, end } = item;
+		const isSelected = this.isSelectedRange(facetName, item);
+		const btnCss = isSelected ? `UNX-selected-facet-btn ${facetClass} ${selectedFacetClass}` : `${facetClass}`;
+		valueUI += [
+			`<button class="${btnCss} UNX-range-facet UNX-change-facet" data-action="setRange" data-facet-name="${facetName}" data-start="${from.dataId}" data-end="${end.dataId}" >`,
+			`<span class="UNX-facet-text">${from.name}  -  ${end.name}</span>`,
+			`<span class="UNX-facet-count">(${from.count})</span>`,
+			`</button>`,
+		].join("");
+	});
+	let clearBtn = ``;
+	let applyBtn = ``;
+	if (selected) {
+		if (applyMultipleFilters) {
+			applyBtn = `<button class="UNX-default-btn ${facetClass} UNX-facet-primary" data-action="applyRange"> ${applyButtonText}</button>`;
+		}
+		clearBtn = `<button class="UNX-default-btn UNX-facet-clear  ${facetClass}" data-action="clearRangeFacets">${clearButtonText}</button>`;
+	}
+	return [`<div class="UNX-range-wrapper">`, valueUI, `<div class="UNX-price-action-row">`, applyBtn, clearBtn, `<div>`, `</div>`].join("");
 };
 
-const unbxdCallbackEcma = function (instance, type, data) {
-    console.log(type, data, "type,data");
-    if (type === "AFTER_RENDER") {
-        if (localStorage.getItem("unx_product_clicked") && document.getElementById(localStorage.getItem("unx_product_clicked"))) {
-            document.getElementById(localStorage.getItem("unx_product_clicked")).scrollIntoView();
-            localStorage.removeItem("unx_product_clicked");
-        }
-    }
+const unbxdCallbackEcma = function(instance, type, data) {
+	console.log(type, data, "type,data");
+	if (type === "AFTER_RENDER") {
+		if (localStorage.getItem("unx_product_clicked") && document.getElementById(localStorage.getItem("unx_product_clicked"))) {
+			document.getElementById(localStorage.getItem("unx_product_clicked")).scrollIntoView();
+			localStorage.removeItem("unx_product_clicked");
+		}
+	}
 };
 
 let showFacet = false;
@@ -253,415 +255,415 @@ window.resizeTimer = null;
 const facetBlock = document.querySelector(".UNX-fxd-facet");
 
 const checkMobile = () => {
-    const w = window.innerWidth;
-    if (w < 980) {
-        return true;
-    }
-    return false;
+	const w = window.innerWidth;
+	if (w < 980) {
+		return true;
+	}
+	return false;
 };
 
 const toggleMobileFacets = (e) => {
-    showFacet = !showFacet;
-    const { action } = e.target.dataset;
-    if (action === "applyFacets") {
-        window.unbxdSearch.setPageStart(0);
-        window.unbxdSearch.getResults();
-    }
-    if (action === "clearFacets") {
-        window.unbxdSearch.clearAllFacets();
-        window.unbxdSearch.setPageStart(0);
-        window.unbxdSearch.getResults();
-    }
-    if (showFacet) {
-        facetBlock.classList.add("UNX-show-facets");
-    } else {
-        facetBlock.classList.remove("UNX-show-facets");
-    }
+	showFacet = !showFacet;
+	const { action } = e.target.dataset;
+	if (action === "applyFacets") {
+		window.unbxdSearch.setPageStart(0);
+		window.unbxdSearch.getResults();
+	}
+	if (action === "clearFacets") {
+		window.unbxdSearch.clearAllFacets();
+		window.unbxdSearch.setPageStart(0);
+		window.unbxdSearch.getResults();
+	}
+	if (showFacet) {
+		facetBlock.classList.add("UNX-show-facets");
+	} else {
+		facetBlock.classList.remove("UNX-show-facets");
+	}
 };
 
 const btnEls = document.querySelectorAll(".UNX-facet-trigger");
 btnEls.forEach((item) => {
-    item.addEventListener("click", toggleMobileFacets);
+	item.addEventListener("click", toggleMobileFacets);
 });
 
 let performRouteActions = () => {
-    if (location.pathname === "/men") {
-        window.UnbxdAnalyticsConf = {
-            page: "categoryPath:cat700001",
-        };
-        unbxdSearch.options.productType = "CATEGORY";
-    } else if (location.pathname === "/women") {
-        window.UnbxdAnalyticsConf = {
-            page: "categoryPath:cat120002",
-        };
-        unbxdSearch.options.productType = "CATEGORY";
-    } else if (location.pathname === "/washingMachine") {
-        window.UnbxdAnalyticsConf = {
-            page: 'categoryPath:"LAUNDRY>WASHING MACHINES"',
-        };
-        unbxdSearch.options.productType = "CATEGORY";
-    } else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
-        window.UnbxdAnalyticsConf = {
-            page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"',
-        };
-        unbxdSearch.options.productType = "CATEGORY";
-    } else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
-        window.UnbxdAnalyticsConf = {
-            page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"',
-        };
-        unbxdSearch.options.productType = "CATEGORY";
-    } else {
-        window.UnbxdAnalyticsConf = {};
-        unbxdSearch.options.productType = "SEARCH";
-    }
+	if (location.pathname === "/men") {
+		window.UnbxdAnalyticsConf = {
+			page: "categoryPath:cat700001",
+		};
+		unbxdSearch.options.productType = "CATEGORY";
+	} else if (location.pathname === "/women") {
+		window.UnbxdAnalyticsConf = {
+			page: "categoryPath:cat120002",
+		};
+		unbxdSearch.options.productType = "CATEGORY";
+	} else if (location.pathname === "/washingMachine") {
+		window.UnbxdAnalyticsConf = {
+			page: 'categoryPath:"LAUNDRY>WASHING MACHINES"',
+		};
+		unbxdSearch.options.productType = "CATEGORY";
+	} else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
+		window.UnbxdAnalyticsConf = {
+			page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"',
+		};
+		unbxdSearch.options.productType = "CATEGORY";
+	} else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
+		window.UnbxdAnalyticsConf = {
+			page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"',
+		};
+		unbxdSearch.options.productType = "CATEGORY";
+	} else {
+		window.UnbxdAnalyticsConf = {};
+		unbxdSearch.options.productType = "SEARCH";
+	}
 };
 
 window.addEventListener("popstate", () => {
-    performRouteActions();
+	performRouteActions();
 });
 
 let searchButtonEl = document.querySelectorAll("#searchBtn");
 let searchBoxEl = document.querySelectorAll("#unbxdInput");
 
 Array.from(searchButtonEl).map((searchButton) => {
-    searchButton.addEventListener("click", () => {
-        if (unbxdSearch.options.productType !== "SEARCH") {
-            window.UnbxdAnalyticsConf = {};
-            unbxdSearch.options.productType = "SEARCH";
-            window.history.pushState(
-                {
-                    replace: true,
-                },
-                "",
-                "/search?"
-            );
-        }
-    });
+	searchButton.addEventListener("click", () => {
+		if (unbxdSearch.options.productType !== "SEARCH") {
+			window.UnbxdAnalyticsConf = {};
+			unbxdSearch.options.productType = "SEARCH";
+			window.history.pushState(
+				{
+					replace: true,
+				},
+				"",
+				"/search?"
+			);
+		}
+	});
 });
 
 Array.from(searchBoxEl).map((searchBox) => {
-    searchBox.addEventListener("keydown", (e) => {
-        const val = e.target.value;
-        if (e.key === "Enter") {
-            if (val !== "") {
-                if (unbxdSearch.options.productType !== "SEARCH") {
-                    window.UnbxdAnalyticsConf = {};
-                    unbxdSearch.options.productType = "SEARCH";
-                    window.history.pushState(
-                        {
-                            replace: true,
-                        },
-                        "",
-                        "/search?"
-                    );
-                }
-            }
-        }
-    });
+	searchBox.addEventListener("keydown", (e) => {
+		const val = e.target.value;
+		if (e.key === "Enter") {
+			if (val !== "") {
+				if (unbxdSearch.options.productType !== "SEARCH") {
+					window.UnbxdAnalyticsConf = {};
+					unbxdSearch.options.productType = "SEARCH";
+					window.history.pushState(
+						{
+							replace: true,
+						},
+						"",
+						"/search?"
+					);
+				}
+			}
+		}
+	});
 });
 
 let productType = "";
 
 if (location.pathname === "/men") {
-    window.UnbxdAnalyticsConf = {
-        page: "categoryPath:cat700001",
-    };
-    productType = "CATEGORY";
+	window.UnbxdAnalyticsConf = {
+		page: "categoryPath:cat700001",
+	};
+	productType = "CATEGORY";
 } else if (location.pathname === "/women") {
-    window.UnbxdAnalyticsConf = {
-        page: "categoryPath:cat120002",
-    };
-    productType = "CATEGORY";
+	window.UnbxdAnalyticsConf = {
+		page: "categoryPath:cat120002",
+	};
+	productType = "CATEGORY";
 } else if (location.pathname === "/washingMachine") {
-    window.UnbxdAnalyticsConf = {
-        page: 'categoryPath:"LAUNDRY>WASHING MACHINES"',
-    };
-    productType = "CATEGORY";
+	window.UnbxdAnalyticsConf = {
+		page: 'categoryPath:"LAUNDRY>WASHING MACHINES"',
+	};
+	productType = "CATEGORY";
 } else if (location.pathname === "/kitchen-and-cooking/microwaves/convection-microwave-ovens-0") {
-    window.UnbxdAnalyticsConf = {
-        page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"',
-    };
-    productType = "CATEGORY";
+	window.UnbxdAnalyticsConf = {
+		page: 'categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"',
+	};
+	productType = "CATEGORY";
 } else if (location.pathname === "/furniture-and-bedding/bedroom-furniture/bases-bedheads") {
-    window.UnbxdAnalyticsConf = {
-        page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"',
-    };
-    productType = "CATEGORY";
+	window.UnbxdAnalyticsConf = {
+		page: 'categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"',
+	};
+	productType = "CATEGORY";
 } else {
-    window.UnbxdAnalyticsConf = {};
-    productType = "SEARCH";
+	window.UnbxdAnalyticsConf = {};
+	productType = "SEARCH";
 }
 
 window.unbxdSearch = new UnbxdSearch({
-    siteKey: "ss-unbxd-Wakefit-Prod32951646727583",
-    apiKey: "bdd920f4d3e81b8a52f547047fcaaf66",
-    // siteKey: "demo-unbxd700181503576558",
-    // apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
-    // onError: function(err) {
-    //     console.error('onError', err)
-    // },
-    searchBoxEl: document.querySelectorAll("#unbxdInput"),
-    searchTrigger: "click",
-    searchButtonEl: document.querySelectorAll("#searchBtn"),
-    unbxdAnalytics: true,
-    setCategoryId: function (param, self) {
-        const { level, parent, name, action } = param;
-        let page = ``;
-        let pathArr = [];
-        const l = Number(level);
-        const breadCrumbs = self.getBreadCrumbsList("categoryPath");
-        breadCrumbs.forEach((element, i) => {
-            const { level, value } = element;
-            if (l > Number(level) || Number(level) === 1) {
-                pathArr.push(value);
-            }
-        });
-        if (action !== "clearCategoryFilter") {
-            pathArr.push(decodeURIComponent(name));
-        }
-        page = pathArr.join(">");
-        if (window.UnbxdAnalyticsConf) {
-            window.UnbxdAnalyticsConf.page = 'categoryPath:"' + page + '"';
-        }
-    },
-    products: {
-        el: document.querySelectorAll("#searchResultsWrapper"),
-        productType: productType,
-        onProductClick: function (product, e) {
-            localStorage.setItem("unx_product_clicked", product.uniqueId);
-            window.location.href = "https://www.google.com";
-        },
-    },
-    spellCheck: {
-        enabled: true,
-        el: document.getElementById("didYouMeanWrapper"),
-    },
-    noResults: {
-        el: document.getElementById("noResultWrapper"),
-    },
-    selectedFacets: {
-        el: document.getElementById("selectedFacetWrapper"),
-    },
-    facet: {
-        isCollapsible: true,
-        defaultOpen: "NONE",
-        viewMoreLimit: 2,
-        enableViewMore: true,
-        facetsEl: document.getElementById("facetsWrapper"),
-        selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
-        selectedFacetClass: "UNX-selected-facet-btn",
-        facetTemplate: function (facetInfo, facets, isExpanded, facetSearchTxt, facet) {
-            const urlSearchParams = new URLSearchParams(window.location.search);
-            const params = Object.fromEntries(urlSearchParams.entries());
-            var name = facetInfo.displayName;
-            var filterField = facetInfo.filterField;
-            // var isSelected = (facetInfo.isSelected) ? 'is-expanded' : '';
-            var searchStr = window.location.search || "";
-            var isSelected = searchStr.includes(facetInfo.facetName) ? "is-expanded" : "";
+	siteKey: "ss-unbxd-Wakefit-Prod32951646727583",
+	apiKey: "bdd920f4d3e81b8a52f547047fcaaf66",
+	// siteKey: "demo-unbxd700181503576558",
+	// apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+	// onError: function(err) {
+	//     console.error('onError', err)
+	// },
+	searchBoxEl: document.querySelectorAll("#unbxdInput"),
+	searchTrigger: "click",
+	searchButtonEl: document.querySelectorAll("#searchBtn"),
+	unbxdAnalytics: true,
+	setCategoryId: function(param, self) {
+		const { level, parent, name, action } = param;
+		let page = ``;
+		let pathArr = [];
+		const l = Number(level);
+		const breadCrumbs = self.getBreadCrumbsList("categoryPath");
+		breadCrumbs.forEach((element, i) => {
+			const { level, value } = element;
+			if (l > Number(level) || Number(level) === 1) {
+				pathArr.push(value);
+			}
+		});
+		if (action !== "clearCategoryFilter") {
+			pathArr.push(decodeURIComponent(name));
+		}
+		page = pathArr.join(">");
+		if (window.UnbxdAnalyticsConf) {
+			window.UnbxdAnalyticsConf.page = 'categoryPath:"' + page + '"';
+		}
+	},
+	products: {
+		el: document.querySelectorAll("#searchResultsWrapper"),
+		productType: productType,
+		onProductClick: function(product, e) {
+			localStorage.setItem("unx_product_clicked", product.uniqueId);
+			window.location.href = "https://www.google.com";
+		},
+	},
+	spellCheck: {
+		enabled: true,
+		el: document.querySelectorAll("#didYouMeanWrapper"),
+	},
+	noResults: {
+		el: document.getElementById("noResultWrapper"),
+	},
+	selectedFacets: {
+		el: document.getElementById("selectedFacetWrapper"),
+	},
+	facet: {
+		isCollapsible: true,
+		defaultOpen: "NONE",
+		viewMoreLimit: 2,
+		enableViewMore: true,
+		facetsEl: document.getElementById("facetsWrapper"),
+		selectedFacetsEl: document.getElementById("selectedFacetWrapper"),
+		selectedFacetClass: "UNX-selected-facet-btn",
+		facetTemplate: function(facetInfo, facets, isExpanded, facetSearchTxt, facet) {
+			const urlSearchParams = new URLSearchParams(window.location.search);
+			const params = Object.fromEntries(urlSearchParams.entries());
+			var name = facetInfo.displayName;
+			var filterField = facetInfo.filterField;
+			// var isSelected = (facetInfo.isSelected) ? 'is-expanded' : '';
+			var searchStr = window.location.search || "";
+			var isSelected = searchStr.includes(facetInfo.facetName) ? "is-expanded" : "";
 
-            return [
-                `<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
+			return [
+				`<div id="${facetInfo.facetName}" class="facets__filters facets__filters--size js-filter-expand UNX_facet_open ${isSelected}">
                     <span aria-label="Filter: ${filterField}" role="text" class="facets__filters-label">${name}</span>
                      <ul data-search-facet-container="" class="facets__filters-values facets__filters-values--size list-reset js-filter-values UNX_facet_open ${isSelected}">
                       ${facets}
                     </ul>
                     </div>                 
                     `,
-            ].join("");
-        },
-        facetItemTemplate: function (facet, value, facetSearchTxt) {
-            const { facetName, isSelected, multiLevelFacetSelectorClass, displayName } = facet;
-            const { name, count, dataId } = value;
-            let { facetClass, selectedFacetClass } = this.options.facet;
-            const { UNX_uFilter } = this.testIds;
+			].join("");
+		},
+		facetItemTemplate: function(facet, value, facetSearchTxt) {
+			const { facetName, isSelected, multiLevelFacetSelectorClass, displayName } = facet;
+			const { name, count, dataId } = value;
+			let { facetClass, selectedFacetClass } = this.options.facet;
+			const { UNX_uFilter } = this.testIds;
 
-            let action = "changeFacet";
-            let selectedFacet = "disable";
-            let liCss = "";
-            let hightlighted = "";
-            if (isSelected) {
-                selectedFacet = "checked";
-                hightlighted = "highlight";
-                facetClass += ` ${selectedFacetClass} `;
-                action = "deleteFacetValue";
-                liCss = isSelected ? "selected" : "";
-            }
-            return [
-                `<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
+			let action = "changeFacet";
+			let selectedFacet = "disable";
+			let liCss = "";
+			let hightlighted = "";
+			if (isSelected) {
+				selectedFacet = "checked";
+				hightlighted = "highlight";
+				facetClass += ` ${selectedFacetClass} `;
+				action = "deleteFacetValue";
+				liCss = isSelected ? "selected" : "";
+			}
+			return [
+				`<li class="facets__item facets__item--comfort level js-filter-item js-filter-item-${displayName} count-${count} ${liCss} ${facetName}" data-search-facet-value="${dataId}">
                 <label data-search-facet-label="${name}" data-id="${dataId}" class="facet-checkbox facet-checkbox-${displayName} UNX-change-facet ${facetClass} " data-facet-action="${action}" data-test-id="${UNX_uFilter}" data-facet-name="${facetName}" data-handler-init="true">
                   <input data-search-facet-input="" ${selectedFacet} class="js-filter-checkbox" type="checkbox" value="${name}">
                 <span class="${hightlighted}">${name} (${count})</span>
                 </label>
                 </li>`,
-            ].join("");
-        },
-        selectedFacetTemplate: function (selections, facet, selectedFacetsConfig) {
-            const { clearAllText, clearFacetsSelectorClass } = facet;
-            const selectedFClass = this.selectedFacetClass ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
+			].join("");
+		},
+		selectedFacetTemplate: function(selections, facet, selectedFacetsConfig) {
+			const { clearAllText, clearFacetsSelectorClass } = facet;
+			const selectedFClass = this.selectedFacetClass ? this.selectedFacetClass : selectedFacetsConfig.selectedFacetClass;
 
-            if (selections.length > 0) {
-                return [`<div class="collection__active-filters UNX-facets-selections">`, `${selections}`, `</div>`].join("");
-            } else {
-                return ``;
-            }
-        },
-        selectedFacetItemTemplate: function (selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
-            const { facetName, facetType } = selectedFacet;
-            const { name, count, dataId } = selectedFacetItem;
-            const { facetClass, selectedFacetClass, removeFacetsSelectorClass } = this.options.facet;
-            const { UNX_uFilter } = this.testIds;
-            let action = "deleteSelectedFacetValue";
+			if (selections.length > 0) {
+				return [`<div class="collection__active-filters UNX-facets-selections">`, `${selections}`, `</div>`].join("");
+			} else {
+				return ``;
+			}
+		},
+		selectedFacetItemTemplate: function(selectedFacet, selectedFacetItem, facetConfig, selectedFacetsConfig) {
+			const { facetName, facetType } = selectedFacet;
+			const { name, count, dataId } = selectedFacetItem;
+			const { facetClass, selectedFacetClass, removeFacetsSelectorClass } = this.options.facet;
+			const { UNX_uFilter } = this.testIds;
+			let action = "deleteSelectedFacetValue";
 
-            const css = ` ${facetClass} ${selectedFacetClass} `;
+			const css = ` ${facetClass} ${selectedFacetClass} `;
 
-            return [
-                `<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
+			return [
+				`<a data-test-id="${UNX_uFilter}" class="collection__active-filters-btn btn btn--tertiary search-facet-display-name search-facet-remove-only ${css}" data-facet-name-value="metaf_${facetName}" data-facet-action="${action}" 
                      data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" data-handler-init="true">${name}
                      <i class="collection__active-filters-icon icon icon--close-blue" 
                      data-facet-action="${action}" data-facet-name="${facetName}" data-facet-value="${facetName}" data-id="${dataId}" >
                      </i> </a>`,
-            ].join("");
-        },
-    },
+			].join("");
+		},
+	},
 
-    pagination: {
-        // type: 'CLICK_N_SCROLL',
-        type: "FIXED_PAGINATION",
-        // type: 'INFINITE_SCROLL',
-        el: document.querySelectorAll(".unxPagination"),
-        // usePageAndCount: false,
-        virtualization: false,
-        bufferPages: 1,
-        heightDiffToTriggerNextPage: 100,
-        infiniteScrollTriggerEl: document.getElementById("searchResultsWrapper"),
-        onPaginate: function (data) {
-            console.log(data, "data");
-        },
-    },
-    url: {
-        hashMode: false,
-        allowExternalUrlParams: false,
-        seoFriendlyUrl: true,
-        orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"], //defaults.
+	pagination: {
+		// type: 'CLICK_N_SCROLL',
+		type: "FIXED_PAGINATION",
+		// type: 'INFINITE_SCROLL',
+		el: document.querySelectorAll(".unxPagination"),
+		// usePageAndCount: false,
+		virtualization: false,
+		bufferPages: 1,
+		heightDiffToTriggerNextPage: 100,
+		infiniteScrollTriggerEl: document.getElementById("searchResultsWrapper"),
+		onPaginate: function(data) {
+			console.log(data, "data");
+		},
+	},
+	url: {
+		hashMode: false,
+		allowExternalUrlParams: false,
+		seoFriendlyUrl: true,
+		orderOfQueryParams: ["QUERY", "FILTERS", "PAGE_NUMBER", "PAGE_SIZE", "SORT", "VIEW_TYPE"], //defaults.
 
-        queryParamSeparator: "&",
-        searchQueryParam: {
-            addToUrl: true,
-            algo: "KEY_VALUE_REPLACER",
-            keyReplacer: "query",
-        },
-        browseQueryParam: {
-            addToUrl: true,
-            algo: "DEFAULT",
-            keyReplacer: "pppp",
-        },
-        pageViewParam: {
-            addToUrl: true,
-            algo: "KEY_VALUE_REPLACER",
-            keyReplacer: "view",
-            valuesReplacer: {
-                GRID: "GRID",
-                LIST: "LI@ST(list)",
-            },
-        },
-        sortParam: {
-            addToUrl: true,
-            algo: "DEFAULT",
-            keyReplacer: "sortBy",
-            valueReplacer: {
-                "price desc": "p&d",
-                "price asc": "p-a",
-            },
-        },
-        pageNoParam: {
-            addToUrl: true,
-            algo: "DEFAULT",
-            keyReplacer: "p",
-            usePageNo: true, // uses page no. when turned on.else , index
-        },
-        pageSizeParam: {
-            addToUrl: true,
-            algo: "DEFAULT",
-            keyReplacer: "count",
-        },
-        facetsParam: {
-            addToUrl: true,
-            algo: "KEY_VALUE_REPLACER",
-            multiValueSeparator: ",",
-            keyReplacer: {
-                color_uFilter: "color",
-                size_uFilter: "size",
-                gender_uFilter: "gender",
-                occasion_uFilter: "occasion",
-                fit_uFilter: "fit",
-                type_uFilter: "type",
-            },
-            valueReplacer: {
-                color_uFilter: {
-                    Multi: "multi",
-                    White: "whitee",
-                },
-                occasion_uFilter: {
-                    "Wear to Work": "Wear-to-work",
-                },
-            },
-            facetsOrderInUrl: ["gender_uFilter", "color_uFilter", "price", "category-filter"],
-            rangeFacets: ["price"],
-            rangeSeparator: "-",
-        },
-    },
-    breadcrumb: {
-        el: document.querySelectorAll("#breadcrumpContainer"),
-    },
-    pagesize: {
-        enabled: true,
-        el: document.querySelectorAll("#changeNoOfProducts"),
-        pageSize: 10,
-        options: [10, 20, 30, 40],
-    },
+		queryParamSeparator: "&",
+		searchQueryParam: {
+			addToUrl: true,
+			algo: "KEY_VALUE_REPLACER",
+			keyReplacer: "query",
+		},
+		browseQueryParam: {
+			addToUrl: true,
+			algo: "DEFAULT",
+			keyReplacer: "pppp",
+		},
+		pageViewParam: {
+			addToUrl: true,
+			algo: "KEY_VALUE_REPLACER",
+			keyReplacer: "view",
+			valuesReplacer: {
+				GRID: "GRID",
+				LIST: "LI@ST(list)",
+			},
+		},
+		sortParam: {
+			addToUrl: true,
+			algo: "DEFAULT",
+			keyReplacer: "sortBy",
+			valueReplacer: {
+				"price desc": "p&d",
+				"price asc": "p-a",
+			},
+		},
+		pageNoParam: {
+			addToUrl: true,
+			algo: "DEFAULT",
+			keyReplacer: "p",
+			usePageNo: true, // uses page no. when turned on.else , index
+		},
+		pageSizeParam: {
+			addToUrl: true,
+			algo: "DEFAULT",
+			keyReplacer: "count",
+		},
+		facetsParam: {
+			addToUrl: true,
+			algo: "KEY_VALUE_REPLACER",
+			multiValueSeparator: ",",
+			keyReplacer: {
+				color_uFilter: "color",
+				size_uFilter: "size",
+				gender_uFilter: "gender",
+				occasion_uFilter: "occasion",
+				fit_uFilter: "fit",
+				type_uFilter: "type",
+			},
+			valueReplacer: {
+				color_uFilter: {
+					Multi: "multi",
+					White: "whitee",
+				},
+				occasion_uFilter: {
+					"Wear to Work": "Wear-to-work",
+				},
+			},
+			facetsOrderInUrl: ["gender_uFilter", "color_uFilter", "price", "category-filter"],
+			rangeFacets: ["price"],
+			rangeSeparator: "-",
+		},
+	},
+	breadcrumb: {
+		el: document.querySelectorAll("#breadcrumpContainer"),
+	},
+	pagesize: {
+		enabled: true,
+		el: document.querySelectorAll("#changeNoOfProducts"),
+		pageSize: 10,
+		options: [10, 20, 30, 40],
+	},
 
-    sort: {
-        enabled: true,
-        el: document.querySelectorAll("#sortWrapper"),
-        options: [
-            {
-                value: "price desc",
-                text: "Price High to Low",
-            },
-            {
-                value: "price asc",
-                text: " Price Low to High",
-            },
-        ],
-    },
-    loader: {
-        el: document.getElementById("loaderEl"),
-    },
-    productView: {
-        el: document.querySelectorAll("#productViewTypeContainer"),
-        defaultViewType: "GRID",
-    },
-    banner: {
-        el: document.getElementById("bannerContainer"),
-        count: 1,
-    },
-    swatches: {
-        enabled: true,
-        attributesMap: {
-            swatchList: "color",
-            swatchImgs: "unbxd_color_mapping",
-            swatchColors: "color",
-        },
-    },
-    // extraParams: {
-    //     // test: function(){
-    //     //     return new Date().getMilliseconds()
-    //     // }
-    // },
-    onAction: function (e, ctx) { },
-    onEvent: unbxdCallbackEcma,
-    debugMode: true,
-    browseQueryParam: "p-id",
+	sort: {
+		enabled: true,
+		el: document.querySelectorAll("#sortWrapper"),
+		options: [
+			{
+				value: "price desc",
+				text: "Price High to Low",
+			},
+			{
+				value: "price asc",
+				text: " Price Low to High",
+			},
+		],
+	},
+	loader: {
+		el: document.querySelectorAll("#loaderEl"),
+	},
+	productView: {
+		el: document.querySelectorAll("#productViewTypeContainer"),
+		defaultViewType: "GRID",
+	},
+	banner: {
+		el: document.getElementById("bannerContainer"),
+		count: 1,
+	},
+	swatches: {
+		enabled: true,
+		attributesMap: {
+			swatchList: "color",
+			swatchImgs: "unbxd_color_mapping",
+			swatchColors: "color",
+		},
+	},
+	// extraParams: {
+	//     // test: function(){
+	//     //     return new Date().getMilliseconds()
+	//     // }
+	// },
+	onAction: function(e, ctx) {},
+	onEvent: unbxdCallbackEcma,
+	debugMode: true,
+	browseQueryParam: "p-id",
 });
 
 window.unbxdSearch.getResults("*");
