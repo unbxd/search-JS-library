@@ -1,25 +1,11 @@
 import { events } from "../common/constants";
 
 const reRender = function() {
-	const {
-		onEvent,
-		spellCheck,
-		pagination,
-		productType,
-		searchBoxEl,
-		loader,
-		breadcrumb,
-		productView,
-		noResults,
-		products,
-		pagesize,
-		sort,
-		banner,
-	} = this.options;
+	const { onEvent, spellCheck, pagination, productType, searchBoxEl, loader, breadcrumb, productView, pagesize, sort, banner } = this.options;
 
 	const paginationType = this.getPaginationType();
 
-	const { beforeRender, beforeNoResultRender, afterNoResultRender, afterRender } = this.events;
+	const { beforeRender, afterRender } = this.events;
 
 	try {
 		onEvent(this, beforeRender);
@@ -31,9 +17,6 @@ const reRender = function() {
 		loader.el.innerHTML = ``;
 	}
 	const results = this.getSearchResults();
-	const qParams = this.getQueryParams() || {};
-	const query = this.getSearchQuery();
-	const noResultCss = "UNX-no-results-wrap";
 	const { lastAction } = this.viewState;
 
 	if (productType === "SEARCH" && searchBoxEl) {
@@ -61,97 +44,92 @@ const reRender = function() {
 		productViewTypeWrappers,
 		spellCheckWrappers,
 		bannerWrappers,
+		facetWrappers,
+		selectedFacetWrappers,
 	} = this;
 
-	const productsEl = products.el;
-
+	// TODO: discuss how to handle return etc.
+	// TODO: we need to purify the HTML
 	if (results && results.numberOfProducts === 0) {
-		if (productsEl instanceof NodeList) {
-			Array.from(productsEl).map((el, index) => {
-				this.handleNoResults(searchResultsWrappers[index]);
-			});
-		} else this.handleNoResults(searchResultsWrappers[0]);
-	} else {
-		if (productsEl instanceof NodeList) {
-			Array.from(productsEl).map((el, index) => {
-				this.renderProducts(searchResultsWrappers[index]);
-			});
-		} else this.renderProducts(searchResultsWrappers[0]);
-	}
-
-	this.renderFacets();
-	this.renderSelectedFacets();
-
-	const pageSizeEl = pagesize.el;
-	if (pageSizeEl instanceof NodeList) {
-		Array.from(pageSizeEl).map((el, index) => {
-			this.renderPageSize(pageSizeWrappers[index]);
+		searchResultsWrappers.forEach((wrapper) => {
+			this.renderNoResults(wrapper);
 		});
 	} else {
-		this.renderPageSize(pageSizeWrappers[0]);
-	}
-
-	const sortEl = sort.el;
-	if (sortEl instanceof NodeList) {
-		Array.from(sortEl).map((el, index) => {
-			this.renderSort(sortWrappers[index]);
+		searchResultsWrappers.forEach((wrapper) => {
+			this.renderProducts(wrapper);
 		});
-	} else {
-		this.renderSort(sortWrappers[0]);
 	}
 
-	const productViewEl = productView.el;
-	if (productView.enabled && productViewEl) {
-		if (productViewEl instanceof NodeList) {
-			Array.from(productViewEl).map((el, index) => {
-				this.renderProductViewTypeUI(productViewTypeWrappers[index]);
-			});
-		} else {
-			this.renderProductViewTypeUI(productViewTypeWrappers[0]);
-		}
-	}
+	// TODO: we need to purify the HTML
+	const facetsTemplate = this.renderFacets();
+	facetWrappers.forEach((wrapper) => {
+		wrapper.innerHTML = facetsTemplate;
+	});
 
-	const breadcrumbEl = breadcrumb.el;
-	if (breadcrumb.enabled && breadcrumbEl) {
-		if (breadcrumbEl instanceof NodeList) {
-			Array.from(breadcrumbEl).map((el, index) => {
-				this.renderBreadCrumbs(breadcrumbWrappers[index]);
-			});
-		} else {
-			this.renderBreadCrumbs(breadcrumbWrappers[0]);
-		}
-	}
+	// TODO: we need to purify the HTML
+	const selectedFacetsTemplate = this.renderSelectedFacets();
+	selectedFacetWrappers.forEach((wrapper) => {
+		wrapper.innerHTML = selectedFacetsTemplate;
+	});
 
-	const spellCheckEl = spellCheck.el;
-	if (spellCheck.enabled && spellCheckEl) {
-		if (spellCheckEl instanceof NodeList) {
-			Array.from(spellCheckEl).map((el, index) => {
-				this.renderDidYouMean(spellCheckWrappers[index]);
-			});
-		} else {
-			this.renderDidYouMean(spellCheckWrappers[0]);
-		}
-	}
-
-	const bannersEl = banner.el;
-	if (bannersEl.enabled && bannersEl) {
-		if (bannersEl instanceof NodeList) {
-			Array.from(bannersEl).map((el, index) => {
-				this.renderBannerUI(bannerWrappers[index]);
-			});
-		} else {
-			this.renderBannerUI(bannerWrappers[0]);
-		}
-	}
-
-	if (lastAction === "pagination") {
-		pagination.onPaginate.bind(this)(this.getPaginationInfo());
-	}
-
-	if (paginationType !== "INFINITE_SCROLL") {
-		paginationWrappers.forEach((wrapper) => {
-			this.renderPagination(wrapper);
+	// TODO: we need to purify the HTML
+	if (pagesize.enabled) {
+		const pageSizeTemplate = this.renderPageSize();
+		pageSizeWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = pageSizeTemplate;
 		});
+	}
+
+	// TODO: we need to purify the HTML
+	if (sort.enabled) {
+		const sortTemplate = this.renderSort();
+		sortWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = sortTemplate;
+		});
+	}
+
+	// TODO: we need to purify the HTML
+	if (productView.enabled) {
+		const productViewTemplate = this.renderProductViewTypeUI();
+		productViewTypeWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = productViewTemplate;
+		});
+	}
+
+	// TODO: we need to purify the HTML
+	if (breadcrumb.enabled) {
+		const breadcrumbTemplate = this.renderBreadCrumbs();
+		breadcrumbWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = breadcrumbTemplate;
+		});
+	}
+
+	// TODO: we need to purify the HTML
+	if (spellCheck.enabled) {
+		const spellCheckTemplate = this.renderDidYouMean();
+		spellCheckWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = spellCheckTemplate;
+		});
+	}
+
+	// TODO: we need to purify the HTML
+	if (banner.enabled) {
+		const bannerTemplate = this.renderBannerUI();
+		bannerWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = bannerTemplate;
+		});
+	}
+
+	// TODO: we need to purify the HTML
+	if (pagination.enabled) {
+		if (lastAction === "pagination") {
+			pagination.onPaginate.bind(this)(this.getPaginationInfo());
+		}
+		if (paginationType !== "INFINITE_SCROLL") {
+			paginationWrappers.forEach((wrapper) => {
+				wrapper.innerHTML = this.renderPagination();
+			});
+		}
 	}
 
 	try {

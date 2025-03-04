@@ -1,10 +1,10 @@
 import { events } from "../../common/constants";
 
-function renderBannerUI(wrapper) {
+function renderBannerUI() {
 	try {
 		let banners = this.getBanners() || [];
 		const { banner = {} } = this.options;
-		wrapper.innerHTML = this.options.banner.template(banners, banner);
+		return this.options.banner.template(banners, banner);
 	} catch (err) {
 		this.onError("Banners > renderBannerUI", err, events.runtimeError);
 	}

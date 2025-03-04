@@ -1,6 +1,6 @@
 import { events } from "../../common/constants";
 
-const renderDidYouMean = function(wrapper) {
+const renderDidYouMean = function() {
 	try {
 		let { userInput = "" } = this.state;
 		const pages = this.getPaginationInfo() || {};
@@ -30,7 +30,7 @@ const renderDidYouMean = function(wrapper) {
 		if (!enabled && sugString) {
 			ui = this.options.spellCheck.template.bind(this)(sugString, userInput, pages);
 		}
-		wrapper.innerHTML = ui;
+		return ui;
 	} catch (err) {
 		this.onError("didYouMean > renderDidYouMean.js", err, events.runtimeError);
 	}

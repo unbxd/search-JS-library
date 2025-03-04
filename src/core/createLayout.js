@@ -73,11 +73,6 @@ const createBannerWrappers = function() {
 };
 
 const createLayout = function() {
-	// this.searchResultsWrapper = this.createSearchWrapper();
-	// this.bannerWrapper = this.createBannerWrapper();
-	// this.breadcrumbWrappers = this.createBreadcrumbWrapper();
-	// this.pageSizeWrapper = this.createPageSizeWrapper();
-	// this.productViewTypeWrapper = this.createProductViewTypeWrapper();
 	this.searchResultsWrappers = [];
 	this.pageSizeWrappers = [];
 	this.bannerWrappers = [];
@@ -90,7 +85,6 @@ const createLayout = function() {
 	this.spellCheckWrappers = [];
 
 	const { facet, breadcrumb, banner, sort, products, pagesize, pagination, productView, selectedFacets, spellCheck } = this.options;
-	const { facetsEl } = facet;
 
 	const paginationType = this.getPaginationType();
 
@@ -107,15 +101,33 @@ const createLayout = function() {
 		}
 	}
 
+	const { facetsEl } = facet;
 	if (facetsEl) {
-		let els = facetsEl;
-		if (!facetsEl.length) {
-			els = [facetsEl];
+		if (facetsEl instanceof NodeList) {
+			facetsEl.forEach((el) => {
+				el.innerHTML = ``;
+				el.appendChild(createFacetWrappers.bind(this)());
+			});
+		} else {
+			facetsEl.innerHTML = ``;
+			facetsEl.appendChild(createFacetWrappers.bind(this)());
 		}
-		els.forEach((facetEl) => {
-			facetEl.innerHTML = ``;
-			facetEl.appendChild(createFacetWrappers.bind(this)());
+	}
+
+	const selectedFacetsEl = facet.selectedFacetsEl;
+	if (selectedFacetsEl) {
+		selectedFacetsEl.forEach((el) => {
+			el.innerHTML = ``;
+			el.appendChild(createSelectedFacetsWrappers.bind(this)());
 		});
+	} else {
+		const { el: selectedFacetsElems } = selectedFacets;
+		if (selectedFacets.enabled && selectedFacetsElems) {
+			selectedFacetsElems.forEach((el) => {
+				el.innerHTML = ``;
+				el.appendChild(createSelectedFacetsWrappers.bind(this)());
+			});
+		}
 	}
 
 	const sortEl = sort.el;
@@ -126,24 +138,6 @@ const createLayout = function() {
 				el.appendChild(createSortElementWrappers.bind(this)());
 			});
 		} else sortEl.appendChild(createSortElementWrappers.bind(this)());
-	}
-
-	if (facet.selectedFacetsEl) {
-		// console.error(`selectedFacetsEl option is deprecated from v2.0.2, please use selectedFacets option to configure selected facets elements and template`)
-		facet.selectedFacetsEl.innerHTML = ``;
-		facet.selectedFacetsEl.appendChild(createSelectedFacetsWrappers.bind(this)());
-	} else {
-		const { el: selectedFacetsElems } = selectedFacets;
-		if (selectedFacets.enabled && selectedFacetsElems) {
-			let els = selectedFacetsElems;
-			if (!selectedFacetsElems.length) {
-				els = [selectedFacetsElems];
-			}
-			els.forEach((el) => {
-				el.innerHTML = ``;
-				el.appendChild(createSelectedFacetsWrappers.bind(this)());
-			});
-		}
 	}
 
 	const breadcrumbEl = breadcrumb.el;
@@ -170,11 +164,6 @@ const createLayout = function() {
 			bannersEl.innerHTML = ``;
 			bannersEl.appendChild(createBannerWrappers.bind(this)());
 		}
-		// banner.el.innerHTML = ``;
-		// if (banner.enabled) {
-		// 	banner.template.bind(this);
-		// 	banner.el.appendChild(this.bannerWrapper);
-		// }
 	}
 
 	if (products.el) {
