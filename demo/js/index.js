@@ -3,16 +3,15 @@ import UnbxdSearch from "../../src/index";
 import def from "./defaultLogo.png";
 import "./unbxdStyles.css";
 
-let routeTemplate = `
-<div class="UNX-header">
+let routeTemplate = `<div class="UNX-header">
     <div class="UNX-header-inner">
-        <img src="${def}" class="UNX-header-logo" />
-        <nav id="categoryLinks" class="UNX-nav UNX-navigation-wrap">
+        <img src=${def} class="UNX-header-logo"></img>
+        <nav id="categoryLinks" class="UNX-nav UNX-naviagtion-wrap">
             <button data-id="categoryPath:cat700001" class="nav-links" data-path="/men">Men</button>
             <button data-id="categoryPath:cat120002" class="nav-links" data-path="/women">Women</button>
-            <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing Machines</button>
-            <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convection Microwave Ovens</button>
-            <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">Bases and Bedheads</button>
+            <button data-id='categoryPath:"LAUNDRY>WASHING MACHINES"' class="nav-links" data-path="/washingMachine">Washing machines</button>
+            <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention micro ovens</button>
+            <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">Bases and bedheads</button>
         </nav>
         <div class="UNX-right-header">
             <div id="autoSuggestInput" class="UNX-input-wrapper">
@@ -22,12 +21,11 @@ let routeTemplate = `
         </div>
     </div>
 </div>
-
 <div class="search-preview">
     <div class="UNX-results-container">
         <div class="UNX-head-wrapper">
             <div class="UNX-selected-actions">
-                <div class="UNX-bread-wrapper" id="breadcrumbContainer"></div>
+                <div class="UNX-bread-wrapper" id="breadcrumpContainer"></div>
             </div>
         </div>
         <div class="UNX-product-results">
@@ -59,12 +57,12 @@ let routeTemplate = `
                 <div id="bannerContainer"></div>
                 <div class="UNX-selected-facet-wrapper" id="selectedFacetWrapper"></div>
                 <div class="UNX-product-wrapper" id="searchResultsWrapper"></div>
-                <div class="UNX-change-pagination-wrap unxPagination"></div>
-                <div class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination"></div>
+				<div id="noResultWrapper"></div>
+                <div id="" class="UNX-change-pagination-wrap unxPagination"></div>
+                <div id="" class="UNX-change-pagination-wrap UNX-m-page unxLoadMorePagination"></div>
             </div>
         </div>
         <div class="UNX-loader-container" id="loaderEl"></div>
-        <div id="noResultWrapper"></div>
         <div id="clickScrollContainer"></div>
     </div>
     <div class="UNX-footer-main">
@@ -119,6 +117,22 @@ let routeTemplate = `
                     <a href="#">Contact Us</a>
                     <a href="#">About Us</a>
                     <a href="#">Press</a>
+                </div>
+            </div>
+            <div class="UNX-footer-info-column">
+                <h6 class="UNX-footer-info-head">Registered Office Address</h6>
+                <div class="UNX-link-wrapper">
+                    <a href="#">Company</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+            <div class="UNX-footer-info-column">
+                <h6 class="UNX-footer-info-head">Keep in Touch</h6>
+                <div class="UNX-link-wrapper UNX-keep-touch">
+                    <a class="UNX-link-icon UNX-icons UNX-icon-linkedin" href="#"></a>
+                    <a class="UNX-link-icon UNX-icons UNX-icon-twitter" href="#"></a>
+                    <a class="UNX-link-icon UNX-icons UNX-icon-youtube" href="#"></a>
                 </div>
             </div>
         </div>
@@ -563,6 +577,25 @@ window.unbxdSearch = new UnbxdSearch({
 		el: document.querySelectorAll("#changeNoOfProducts"),
 		pageSize: 10,
 		options: [10, 20, 30, 40],
+		template: function(selected, pagesize) {
+			const { UNX_pagesize } = this.testIds;
+			let ui = `<label class="UNX-hidden" for="unxPageSize">Sort By</label><select aria-labelledby="unxPageSize" id="unxPageSize" aria-label="unxPageSize" name="unxPageSize" class="UNX-select-pagesize ${pagesize.pageSizeClass}">`;
+			pagesize.options.forEach((opt, i) => {
+				const tId = `data-test-id="${UNX_pagesize}${i + 1}"`;
+				if (selected == opt) {
+					ui += `<option selected ${tId} class="${pagesize.selectedPageSizeClass}" id="${opt}">${opt}</option>`;
+				} else {
+					ui += `<option ${tId} id="${opt}">${opt}</option>`;
+				}
+			});
+			ui += `</select>`;
+			return `<div class="UNX-pagesize-block">
+				${ui}
+				<script>
+					alert("Page Size")
+				</script>
+			</div>`;
+		},
 	},
 
 	sort: {

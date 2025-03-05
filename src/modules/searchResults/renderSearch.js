@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
 
 const renderSearch = function() {
@@ -23,7 +24,9 @@ const renderSearch = function() {
 				const pRank = index + idx + 1;
 				const mappedProduct = this.mapProductAttrs(product);
 				if (swatches.enabled) {
-					swatchUI = this.renderSwatchBtns(product);
+					const swatchTemplate = this.renderSwatchBtns(product);
+					const sanitizedSwatchHTML = DOMPurify.sanitize(swatchTemplate);
+					swatchUI = sanitizedSwatchHTML;
 				}
 				productsUI += self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, this.options.products);
 				if (row === gridCount - 1) {
@@ -36,7 +39,9 @@ const renderSearch = function() {
 					const pRank = index + idx + 1;
 					const mappedProduct = this.mapProductAttrs(product);
 					if (swatches.enabled) {
-						swatchUI = this.renderSwatchBtns(product);
+						const swatchTemplate = this.renderSwatchBtns(product);
+						const sanitizedSwatchHTML = DOMPurify.sanitize(swatchTemplate);
+						swatchUI = sanitizedSwatchHTML;
 					}
 					return self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, this.options.products);
 				})

@@ -1,7 +1,9 @@
+import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
 
-function handleNoResults(searchResultsWrapper) {
+function handleNoResults() {
 	try {
+		const { facetWrappers } = this;
 		const { onEvent, noResults } = this.options;
 
 		const { beforeNoResultRender, afterNoResultRender } = this.events;
@@ -22,16 +24,22 @@ function handleNoResults(searchResultsWrapper) {
 
 		this.viewState.noResultLoaded = true;
 
+		let noResultsHTML = "";
 		if (this.options.noResults?.el) {
 			noResults.el.classList.add(noResultCss);
-			searchResultsWrapper.innerHTML = "";
-			noResults.el.innerHTML = this.renderNoResults(query);
+			noResultsHTML = this.renderNoResults(query);
 		} else {
-			searchResultsWrapper.classList.add(noResultCss);
-			searchResultsWrapper.innerHTML = this.renderNoResults(query);
+			noResultsHTML = `<div class="${noResultCss}">${this.renderNoResults(query)}</div>`;
 		}
 		if (!qParams.filter) {
-			this.renderFacets();
+			const facetsTemplate = this.renderFacets();
+			const sanitizedFacetsHTML = DOMPurify.sanitize(facetsTemplate);
+			if (sanitizedFacetsHTML !== facetsTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
+			facetWrappers.forEach((wrapper) => {
+				wrapper.innerHTML = sanitizedFacetsHTML;
+			});
 		}
 
 		try {
@@ -39,6 +47,8 @@ function handleNoResults(searchResultsWrapper) {
 		} catch (error) {
 			this.onError("reRender", error, events.runtimeError);
 		}
+
+		return noResultsHTML;
 	} catch (err) {
 		this.onError("searchresults > handleNoResults", err, events.runtimeError);
 	}

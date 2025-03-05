@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
 
 export default function() {
@@ -22,15 +23,21 @@ export default function() {
 			const isExpanded = this.isExpandedFacet(facetName);
 			const facetSearchTxt = this.getSearchFacetsText(facetName) || "";
 			const selectedFacet = selectedFacets[facetName];
+			let facetTypeUI = ``;
 			if (facetType === "text") {
-				facetsUI += this.renderTextFacet(facetItem, selectedFacet, isExpanded, facetSearchTxt);
+				facetTypeUI += this.renderTextFacet(facetItem, selectedFacet, isExpanded, facetSearchTxt);
 			}
 			if (facetType === "range") {
-				facetsUI += this.renderRangeFacet(facetItem, isExpanded, "");
+				facetTypeUI += this.renderRangeFacet(facetItem, isExpanded, "");
 			}
 			if (facetType === "category") {
-				facetsUI += this.renderMultiLevelFacet(facetItem, isExpanded, facetSearchTxt);
+				facetTypeUI += this.renderMultiLevelFacet(facetItem, isExpanded, facetSearchTxt);
 			}
+			const sanitizedFacetTypeUI = DOMPurify.sanitize(facetTypeUI);
+			if (sanitizedFacetTypeUI !== facetTypeUI) {
+				// TODO: we can add onEvent here if required.
+			}
+			facetsUI += sanitizedFacetTypeUI;
 			this.viewState.facetElementMap[facetName] = facetName;
 		});
 		this.options.facet.onFacetLoad.bind(this)(allFacets);

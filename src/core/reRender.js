@@ -1,4 +1,11 @@
+import DOMPurify from "dompurify";
 import { events } from "../common/constants";
+
+/*
+	TODO:  multiple renders
+	- the render functions for different modules have been called in multiple places
+	- need to modify the code in all the places
+*/
 
 const reRender = function() {
 	const { onEvent, spellCheck, pagination, productType, searchBoxEl, loader, breadcrumb, productView, pagesize, sort, banner } = this.options;
@@ -37,6 +44,7 @@ const reRender = function() {
 
 	const {
 		searchResultsWrappers,
+		noResultsWrappers,
 		paginationWrappers,
 		breadcrumbWrappers,
 		pageSizeWrappers,
@@ -48,11 +56,14 @@ const reRender = function() {
 		selectedFacetWrappers,
 	} = this;
 
-	// TODO: discuss how to handle return etc.
-	// TODO: we need to purify the HTML
 	if (results && results.numberOfProducts === 0) {
-		searchResultsWrappers.forEach((wrapper) => {
-			this.renderNoResults(wrapper);
+		const noResultsHTML = this.handleNoResults();
+		const sanitizedNoResultsHTML = DOMPurify.sanitize(noResultsHTML);
+		if (sanitizedNoResultsHTML !== noResultsHTML) {
+			// TODO: we can add onEvent here if required.
+		}
+		noResultsWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = sanitizedNoResultsHTML;
 		});
 	} else {
 		searchResultsWrappers.forEach((wrapper) => {
@@ -60,74 +71,102 @@ const reRender = function() {
 		});
 	}
 
-	// TODO: we need to purify the HTML
 	const facetsTemplate = this.renderFacets();
+	const sanitizedFacetsHTML = DOMPurify.sanitize(facetsTemplate);
+	if (sanitizedFacetsHTML !== facetsTemplate) {
+		// TODO: we can add onEvent here if required.
+	}
 	facetWrappers.forEach((wrapper) => {
-		wrapper.innerHTML = facetsTemplate;
+		wrapper.innerHTML = sanitizedFacetsHTML;
 	});
 
-	// TODO: we need to purify the HTML
 	const selectedFacetsTemplate = this.renderSelectedFacets();
+	const sanitizedSelectedFacetsHTML = DOMPurify.sanitize(selectedFacetsTemplate);
+	if (sanitizedSelectedFacetsHTML !== selectedFacetsTemplate) {
+		// TODO: we can add onEvent here if required.
+	}
 	selectedFacetWrappers.forEach((wrapper) => {
-		wrapper.innerHTML = selectedFacetsTemplate;
+		wrapper.innerHTML = sanitizedSelectedFacetsHTML;
 	});
 
-	// TODO: we need to purify the HTML
 	if (pagesize.enabled) {
 		const pageSizeTemplate = this.renderPageSize();
+		const sanitizedPageSizeHTML = DOMPurify.sanitize(pageSizeTemplate);
+		if (sanitizedPageSizeHTML !== pageSizeTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 		pageSizeWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = pageSizeTemplate;
+			wrapper.innerHTML = sanitizedPageSizeHTML;
 		});
 	}
 
-	// TODO: we need to purify the HTML
 	if (sort.enabled) {
 		const sortTemplate = this.renderSort();
+		const sanitizedSortHTML = DOMPurify.sanitize(sortTemplate);
+		if (sanitizedSortHTML !== sortTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 		sortWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sortTemplate;
+			wrapper.innerHTML = sanitizedSortHTML;
 		});
 	}
 
-	// TODO: we need to purify the HTML
 	if (productView.enabled) {
 		const productViewTemplate = this.renderProductViewTypeUI();
+		const sanitizedProductViewHTML = DOMPurify.sanitize(productViewTemplate);
+		if (sanitizedProductViewHTML !== productViewTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 		productViewTypeWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = productViewTemplate;
+			wrapper.innerHTML = sanitizedProductViewHTML;
 		});
 	}
 
-	// TODO: we need to purify the HTML
 	if (breadcrumb.enabled) {
 		const breadcrumbTemplate = this.renderBreadCrumbs();
+		const sanitizedBreadcrumbHTML = DOMPurify.sanitize(breadcrumbTemplate);
+		if (sanitizedBreadcrumbHTML !== breadcrumbTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 		breadcrumbWrappers.forEach((wrapper) => {
 			wrapper.innerHTML = breadcrumbTemplate;
 		});
 	}
 
-	// TODO: we need to purify the HTML
 	if (spellCheck.enabled) {
 		const spellCheckTemplate = this.renderDidYouMean();
+		const sanitizedSpellCheckHTML = DOMPurify.sanitize(spellCheckTemplate);
+		if (sanitizedSpellCheckHTML !== spellCheckTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 		spellCheckWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = spellCheckTemplate;
+			wrapper.innerHTML = sanitizedSpellCheckHTML;
 		});
 	}
 
-	// TODO: we need to purify the HTML
 	if (banner.enabled) {
 		const bannerTemplate = this.renderBannerUI();
+		const sanitizedBannerHTML = DOMPurify.sanitize(bannerTemplate);
+		if (sanitizedBannerHTML !== bannerTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 		bannerWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = bannerTemplate;
+			wrapper.innerHTML = sanitizedBannerHTML;
 		});
 	}
 
-	// TODO: we need to purify the HTML
 	if (pagination.enabled) {
 		if (lastAction === "pagination") {
 			pagination.onPaginate.bind(this)(this.getPaginationInfo());
 		}
 		if (paginationType !== "INFINITE_SCROLL") {
+			const paginationTemplate = this.renderPagination();
+			const sanitizedPaginationHTML = DOMPurify.sanitize(paginationTemplate);
+			if (sanitizedPaginationHTML !== paginationTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 			paginationWrappers.forEach((wrapper) => {
-				wrapper.innerHTML = this.renderPagination();
+				wrapper.innerHTML = sanitizedPaginationHTML;
 			});
 		}
 	}

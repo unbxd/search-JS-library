@@ -73,6 +73,7 @@ const createBannerWrappers = function() {
 };
 
 const createLayout = function() {
+	this.noResultsWrappers = [];
 	this.searchResultsWrappers = [];
 	this.pageSizeWrappers = [];
 	this.bannerWrappers = [];
@@ -84,7 +85,7 @@ const createLayout = function() {
 	this.selectedFacetWrappers = [];
 	this.spellCheckWrappers = [];
 
-	const { facet, breadcrumb, banner, sort, products, pagesize, pagination, productView, selectedFacets, spellCheck } = this.options;
+	const { facet, breadcrumb, banner, sort, products, pagesize, pagination, productView, selectedFacets, spellCheck, noResults } = this.options;
 
 	const paginationType = this.getPaginationType();
 
@@ -177,6 +178,19 @@ const createLayout = function() {
 			const newSearchWrapper = this.createSearchWrapper();
 			this.searchResultsWrappers.push(newSearchWrapper);
 			createProductLayout.bind(this)(products.el, pagination.type, this.searchResultsWrappers[0]);
+		}
+	}
+
+	const noResultsEl = noResults.el;
+	if (noResultsEl) {
+		if (noResultsEl instanceof NodeList) {
+			noResultsEl.forEach((el) => {
+				el.innerHTML = ``;
+				this.noResultsWrappers.push(el);
+			});
+		} else {
+			noResultsEl.innerHTML = ``;
+			this.noResultsWrappers.push(noResultsEl);
 		}
 	}
 

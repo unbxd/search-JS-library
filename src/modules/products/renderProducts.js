@@ -1,3 +1,4 @@
+import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
 
 export default function renderProducts(searchResultsWrapper) {
@@ -36,7 +37,9 @@ export default function renderProducts(searchResultsWrapper) {
 			}
 
 			if (this.viewState.noResultLoaded) {
-				searchResultsWrapper.innerHTML = this.renderSearch();
+				const resultsHTML = this.renderSearch();
+				const sanitizedResultsHTML = DOMPurify.sanitize(resultsHTML);
+				searchResultsWrapper.innerHTML = sanitizedResultsHTML;
 				if (searchResultsWrapper.innerHTML !== "") {
 					const newElements = Array.from(searchResultsWrapper.children);
 					newElements.forEach((newElement) => {
@@ -53,8 +56,10 @@ export default function renderProducts(searchResultsWrapper) {
 				let productsPerPage = this.getProductsPerPage();
 				const listItems = searchResultsWrapper.querySelectorAll(`.${productItemClass}`);
 
+				const resultsHTML = this.renderSearch();
+				const sanitizedResultsHTML = DOMPurify.sanitize(resultsHTML);
 				const tempContainer = document.createElement("div");
-				tempContainer.innerHTML = this.renderSearch();
+				tempContainer.innerHTML = sanitizedResultsHTML;
 
 				const newElements = Array.from(tempContainer.children);
 
@@ -118,7 +123,9 @@ export default function renderProducts(searchResultsWrapper) {
 			this.viewState.isInfiniteStarted = false;
 		} else {
 			searchResultsWrapper.innerHTML = "";
-			searchResultsWrapper.innerHTML = this.renderSearch();
+			const resultsHTML = this.renderSearch();
+			const sanitizedResultsHTML = DOMPurify.sanitize(resultsHTML);
+			searchResultsWrapper.innerHTML = sanitizedResultsHTML;
 			if (searchResultsWrapper.innerHTML !== "") {
 				window.scrollTo(0, 0);
 				if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL") {
