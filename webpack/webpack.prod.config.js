@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 
+
 module.exports = {
 	entry: {
 		vanillaSearch: Path.resolve(__dirname, "../src/index.js"),
@@ -31,9 +32,10 @@ module.exports = {
 		}),
 		new CompressionPlugin({
 			algorithm: "gzip",
-			filename(pathData) {
-				const { dir, name, ext } = pathData;
-				return ext === ".css" ? `${dir}${name}.min.css` : `${name}.min.js`;
+			filename(pathData){
+        const parsed = Path.parse(pathData.filename);
+        const { dir, name, ext } = parsed;
+				return ext === ".css" ? `${dir}/${name}.min.css` : `${name}.min.js`;
 			},
 		}),
 		// new S3Plugin({
