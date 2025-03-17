@@ -15,6 +15,9 @@ import swatchTemplate from "../modules/swatches/ui";
 
 const options = {
 	productId: "uniqueId",
+	sanitizeHtml: false, 
+	sanitizeHtmlElements: [],
+	sanitizeHtmlAttributes: null,
 	searchBoxEl: null,
 	searchButtonEl: null,
 	siteKey: "demo-spanish-unbxd809051588861207",

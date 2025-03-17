@@ -1,5 +1,5 @@
-import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
+import { sanitizeHTML } from "../../common/utils";
 
 const renderSearch = function() {
 	try {
@@ -9,7 +9,7 @@ const renderSearch = function() {
 		}
 		const { products } = searchResults;
 		const self = this;
-		const { swatches } = this.options;
+		const { swatches, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 		const { gridCount } = this.options.products;
 		const { productViewType } = this.viewState;
 		let productsUI = ``;
@@ -24,9 +24,12 @@ const renderSearch = function() {
 				const pRank = index + idx + 1;
 				const mappedProduct = this.mapProductAttrs(product);
 				if (swatches.enabled) {
-					const swatchTemplate = this.renderSwatchBtns(product);
-					const sanitizedSwatchHTML = DOMPurify.sanitize(swatchTemplate);
-					swatchUI = sanitizedSwatchHTML;
+					let swatchTemplate = this.renderSwatchBtns(product);
+					if(sanitizeHtml) {
+						const sanitizedSwatchHTML = sanitizeHTML(swatchTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+						swatchTemplate = sanitizedSwatchHTML
+					}
+					swatchUI = swatchTemplate;
 				}
 				productsUI += self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, this.options.products);
 				if (row === gridCount - 1) {
@@ -39,9 +42,12 @@ const renderSearch = function() {
 					const pRank = index + idx + 1;
 					const mappedProduct = this.mapProductAttrs(product);
 					if (swatches.enabled) {
-						const swatchTemplate = this.renderSwatchBtns(product);
-						const sanitizedSwatchHTML = DOMPurify.sanitize(swatchTemplate);
-						swatchUI = sanitizedSwatchHTML;
+						let swatchTemplate = this.renderSwatchBtns(product);
+						if(sanitizeHtml) {
+							const sanitizedSwatchHTML = sanitizeHTML(swatchTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+							swatchTemplate = sanitizedSwatchHTML
+						}
+						swatchUI = swatchTemplate;
 					}
 					return self.options.products.template.bind(self)(mappedProduct, pRank, swatchUI, productViewType, this.options.products);
 				})

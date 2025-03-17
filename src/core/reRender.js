@@ -1,5 +1,5 @@
-import DOMPurify from "dompurify";
 import { events } from "../common/constants";
+import { sanitizeHTML } from "../common/utils";
 
 /*
 	TODO:  multiple renders
@@ -8,7 +8,7 @@ import { events } from "../common/constants";
 */
 
 const reRender = function() {
-	const { onEvent, spellCheck, pagination, productType, searchBoxEl, loader, breadcrumb, productView, pagesize, sort, banner } = this.options;
+	const { onEvent, spellCheck, pagination, productType, searchBoxEl, loader, breadcrumb, productView, pagesize, sort, banner, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 
 	const paginationType = this.getPaginationType();
 
@@ -57,13 +57,16 @@ const reRender = function() {
 	} = this;
 
 	if (results && results.numberOfProducts === 0) {
-		const noResultsHTML = this.handleNoResults();
-		const sanitizedNoResultsHTML = DOMPurify.sanitize(noResultsHTML);
-		if (sanitizedNoResultsHTML !== noResultsHTML) {
-			// TODO: we can add onEvent here if required.
+		let noResultsHTML = this.handleNoResults();
+		if(sanitizeHtml) {
+			const sanitizedNoResultsHTML = sanitizeHTML(noResultsHTML, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			noResultsHTML = sanitizedNoResultsHTML
+			if (sanitizedNoResultsHTML !== noResultsHTML) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		noResultsWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedNoResultsHTML;
+			wrapper.innerHTML = noResultsHTML;
 		});
 	} else {
 		searchResultsWrappers.forEach((wrapper) => {
@@ -71,62 +74,80 @@ const reRender = function() {
 		});
 	}
 
-	const facetsTemplate = this.renderFacets();
-	const sanitizedFacetsHTML = DOMPurify.sanitize(facetsTemplate);
-	if (sanitizedFacetsHTML !== facetsTemplate) {
-		// TODO: we can add onEvent here if required.
+	let facetsTemplate = this.renderFacets();
+	if(sanitizeHtml) {
+		const sanitizedFacetsHTML = sanitizeHTML(facetsTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+		facetsTemplate = sanitizedFacetsHTML
+		if (sanitizedFacetsHTML !== facetsTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 	}
 	facetWrappers.forEach((wrapper) => {
-		wrapper.innerHTML = sanitizedFacetsHTML;
+		wrapper.innerHTML = facetsTemplate;
 	});
 
-	const selectedFacetsTemplate = this.renderSelectedFacets();
-	const sanitizedSelectedFacetsHTML = DOMPurify.sanitize(selectedFacetsTemplate);
-	if (sanitizedSelectedFacetsHTML !== selectedFacetsTemplate) {
-		// TODO: we can add onEvent here if required.
+	let selectedFacetsTemplate = this.renderSelectedFacets();
+	if(sanitizeHtml) {
+		const sanitizedSelectedFacetsHTML = sanitizeHTML(selectedFacetsTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+		selectedFacetsTemplate = sanitizedSelectedFacetsHTML
+		if (sanitizedSelectedFacetsHTML !== selectedFacetsTemplate) {
+			// TODO: we can add onEvent here if required.
+		}
 	}
 	selectedFacetWrappers.forEach((wrapper) => {
-		wrapper.innerHTML = sanitizedSelectedFacetsHTML;
+		wrapper.innerHTML = selectedFacetsTemplate;
 	});
 
 	if (pagesize.enabled) {
-		const pageSizeTemplate = this.renderPageSize();
-		const sanitizedPageSizeHTML = DOMPurify.sanitize(pageSizeTemplate);
-		if (sanitizedPageSizeHTML !== pageSizeTemplate) {
-			// TODO: we can add onEvent here if required.
+		let pageSizeTemplate = this.renderPageSize();
+		if(sanitizeHtml) {
+			const sanitizedPageSizeHTML = sanitizeHTML(pageSizeTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			pageSizeTemplate = sanitizedPageSizeHTML
+			if (sanitizedPageSizeHTML !== pageSizeTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		pageSizeWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedPageSizeHTML;
+			wrapper.innerHTML = pageSizeTemplate;
 		});
 	}
 
 	if (sort.enabled) {
-		const sortTemplate = this.renderSort();
-		const sanitizedSortHTML = DOMPurify.sanitize(sortTemplate);
-		if (sanitizedSortHTML !== sortTemplate) {
-			// TODO: we can add onEvent here if required.
+		let sortTemplate = this.renderSort();
+		if(sanitizeHtml) {
+			const sanitizedSortHTML = sanitizeHTML(sortTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			sortTemplate = sanitizedSortHTML
+			if (sanitizedSortHTML !== sortTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		sortWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedSortHTML;
+			wrapper.innerHTML = sortTemplate;
 		});
 	}
 
 	if (productView.enabled) {
-		const productViewTemplate = this.renderProductViewTypeUI();
-		const sanitizedProductViewHTML = DOMPurify.sanitize(productViewTemplate);
-		if (sanitizedProductViewHTML !== productViewTemplate) {
-			// TODO: we can add onEvent here if required.
+		let productViewTemplate = this.renderProductViewTypeUI();
+		if(sanitizeHtml){
+			const sanitizedProductViewHTML = sanitizeHTML(productViewTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			productViewTemplate = sanitizedProductViewHTML
+			if (sanitizedProductViewHTML !== productViewTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		productViewTypeWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedProductViewHTML;
+			wrapper.innerHTML = productViewTemplate;
 		});
 	}
 
 	if (breadcrumb.enabled) {
-		const breadcrumbTemplate = this.renderBreadCrumbs();
-		const sanitizedBreadcrumbHTML = DOMPurify.sanitize(breadcrumbTemplate);
-		if (sanitizedBreadcrumbHTML !== breadcrumbTemplate) {
-			// TODO: we can add onEvent here if required.
+		let breadcrumbTemplate = this.renderBreadCrumbs();
+		if(sanitizeHtml) {
+			const sanitizedBreadcrumbHTML = sanitizeHTML(breadcrumbTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			breadcrumbTemplate = sanitizedBreadcrumbHTML
+			if (sanitizedBreadcrumbHTML !== breadcrumbTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		breadcrumbWrappers.forEach((wrapper) => {
 			wrapper.innerHTML = breadcrumbTemplate;
@@ -134,24 +155,30 @@ const reRender = function() {
 	}
 
 	if (spellCheck.enabled) {
-		const spellCheckTemplate = this.renderDidYouMean();
-		const sanitizedSpellCheckHTML = DOMPurify.sanitize(spellCheckTemplate);
-		if (sanitizedSpellCheckHTML !== spellCheckTemplate) {
-			// TODO: we can add onEvent here if required.
+		let spellCheckTemplate = this.renderDidYouMean();
+		if(sanitizeHtml){
+			const sanitizedSpellCheckHTML = sanitizeHTML(spellCheckTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			spellCheckTemplate = sanitizedSpellCheckHTML
+			if (sanitizedSpellCheckHTML !== spellCheckTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		spellCheckWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedSpellCheckHTML;
+			wrapper.innerHTML = spellCheckTemplate;
 		});
 	}
 
 	if (banner.enabled) {
-		const bannerTemplate = this.renderBannerUI();
-		const sanitizedBannerHTML = DOMPurify.sanitize(bannerTemplate);
-		if (sanitizedBannerHTML !== bannerTemplate) {
-			// TODO: we can add onEvent here if required.
+		let bannerTemplate = this.renderBannerUI();
+		if(sanitizeHtml) {
+			const sanitizedBannerHTML = sanitizeHTML(bannerTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			bannerTemplate = sanitizedBannerHTML
+			if (sanitizedBannerHTML !== bannerTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		bannerWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedBannerHTML;
+			wrapper.innerHTML = bannerTemplate;
 		});
 	}
 
@@ -160,13 +187,16 @@ const reRender = function() {
 			pagination.onPaginate.bind(this)(this.getPaginationInfo());
 		}
 		if (paginationType !== "INFINITE_SCROLL") {
-			const paginationTemplate = this.renderPagination();
-			const sanitizedPaginationHTML = DOMPurify.sanitize(paginationTemplate);
-			if (sanitizedPaginationHTML !== paginationTemplate) {
-				// TODO: we can add onEvent here if required.
+			let paginationTemplate = this.renderPagination();
+			if(sanitizeHtml) {
+				const sanitizedPaginationHTML = sanitizeHTML(paginationTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+				paginationTemplate = sanitizedPaginationHTML
+				if (sanitizedPaginationHTML !== paginationTemplate) {
+					// TODO: we can add onEvent here if required.
+				}
 			}
 			paginationWrappers.forEach((wrapper) => {
-				wrapper.innerHTML = sanitizedPaginationHTML;
+				wrapper.innerHTML = paginationTemplate;
 			});
 		}
 	}

@@ -1,10 +1,10 @@
-import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
+import { sanitizeHTML } from "../../common/utils";
 
 export default function() {
 	try {
 		let facetsUI = ``;
-		const { facet = {} } = this.options;
+		const { facet = {}, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 		const { defaultOpen, applyMultipleFilters } = facet;
 		const { expandedFacets, lastAction } = this.viewState;
 		if (lastAction === "updatedRangeSlider" && applyMultipleFilters) {
@@ -33,11 +33,14 @@ export default function() {
 			if (facetType === "category") {
 				facetTypeUI += this.renderMultiLevelFacet(facetItem, isExpanded, facetSearchTxt);
 			}
-			const sanitizedFacetTypeUI = DOMPurify.sanitize(facetTypeUI);
-			if (sanitizedFacetTypeUI !== facetTypeUI) {
-				// TODO: we can add onEvent here if required.
+			if(sanitizeHtml) {
+				const sanitizedFacetTypeUI = sanitizeHTML(facetTypeUI, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+				facetTypeUI = sanitizedFacetTypeUI
+				if (sanitizedFacetTypeUI !== facetTypeUI) {
+					// TODO: we can add onEvent here if required.
+				}
 			}
-			facetsUI += sanitizedFacetTypeUI;
+			facetsUI += facetTypeUI;
 			this.viewState.facetElementMap[facetName] = facetName;
 		});
 		this.options.facet.onFacetLoad.bind(this)(allFacets);

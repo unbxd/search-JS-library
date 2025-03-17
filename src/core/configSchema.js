@@ -782,6 +782,16 @@ export const othersSchema = {
             required: true,
             datatype: "string"
         },
+        sanitizeHtml: {
+            required: true,
+            datatype: "boolean"
+        }, 
+        sanitizeHtmlElements: {
+            datatype: "array"
+        },
+        sanitizeHtmlAttributes: {
+            datatype: "array"
+        },
         searchBoxEl: {
             required: true,
             datatype: "element"

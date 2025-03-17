@@ -1,12 +1,13 @@
-import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
+import { sanitizeHTML } from "../../common/utils";
 
 export default function renderProducts(searchResultsWrapper) {
 	try {
 		const { productViewType } = this.viewState;
 
-		let {
+		const {
 			pagination: { type },
+			sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes
 		} = this.options;
 
 		const { noResults } = this.options;
@@ -37,9 +38,12 @@ export default function renderProducts(searchResultsWrapper) {
 			}
 
 			if (this.viewState.noResultLoaded) {
-				const resultsHTML = this.renderSearch();
-				const sanitizedResultsHTML = DOMPurify.sanitize(resultsHTML);
-				searchResultsWrapper.innerHTML = sanitizedResultsHTML;
+				let resultsHTML = this.renderSearch();
+				if(sanitizeHtml) {
+					const sanitizedResultsHTML = sanitizeHTML(resultsHTML, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+					resultsHTML = sanitizedResultsHTML
+				}
+				searchResultsWrapper.innerHTML = resultsHTML;
 				if (searchResultsWrapper.innerHTML !== "") {
 					const newElements = Array.from(searchResultsWrapper.children);
 					newElements.forEach((newElement) => {
@@ -56,10 +60,13 @@ export default function renderProducts(searchResultsWrapper) {
 				let productsPerPage = this.getProductsPerPage();
 				const listItems = searchResultsWrapper.querySelectorAll(`.${productItemClass}`);
 
-				const resultsHTML = this.renderSearch();
-				const sanitizedResultsHTML = DOMPurify.sanitize(resultsHTML);
+				let resultsHTML = this.renderSearch();
+				if(sanitizeHtml) {
+					const sanitizedResultsHTML = sanitizeHTML(resultsHTML, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+					resultsHTML = sanitizedResultsHTML
+				}
 				const tempContainer = document.createElement("div");
-				tempContainer.innerHTML = sanitizedResultsHTML;
+				tempContainer.innerHTML = resultsHTML;
 
 				const newElements = Array.from(tempContainer.children);
 
@@ -123,9 +130,12 @@ export default function renderProducts(searchResultsWrapper) {
 			this.viewState.isInfiniteStarted = false;
 		} else {
 			searchResultsWrapper.innerHTML = "";
-			const resultsHTML = this.renderSearch();
-			const sanitizedResultsHTML = DOMPurify.sanitize(resultsHTML);
-			searchResultsWrapper.innerHTML = sanitizedResultsHTML;
+			let resultsHTML = this.renderSearch();
+			if(sanitizeHtml) {
+				const sanitizedResultsHTML = sanitizeHTML(resultsHTML, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+				resultsHTML = sanitizedResultsHTML
+			}
+			searchResultsWrapper.innerHTML = resultsHTML;
 			if (searchResultsWrapper.innerHTML !== "") {
 				window.scrollTo(0, 0);
 				if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL") {
