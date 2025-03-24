@@ -1,6 +1,7 @@
 /* @import "./sprite.svg";      */
-       
-*,body {
+
+*,
+body {
   font-family: "Poppins", "Nunito Sans", "Barlow", "Helvetica Neue", "Helvetica", "Roboto",
     "sans-serif";
   margin: 0;
@@ -62,8 +63,8 @@
 
 .UNX-header-logo {
   /* background-image: url(./defaultLogo.png); */
-    width: 165px;
-      height: 43px;
+  width: 165px;
+  height: 43px;
   display: inline-block;
   margin-left: 15px;
 }
@@ -572,7 +573,7 @@
 .UNX-pagination-block .UNX-page-prev,
 .UNX-pagination-block .UNX-page-next {
   width: 24px;
-  background: rgb(228,228,228);
+  background: rgb(228, 228, 228);
   color: #b1b1b1;
 }
 
@@ -827,14 +828,16 @@
   height: 50px;
   width: 50px;
   background-image: url("./sprite.svg");
-  background-position: -661px -1511px;;
+  background-position: -661px -1511px;
+  ;
 }
 
 .UNX-icon-return {
   height: 50px;
   width: 50px;
   background-image: url("./sprite.svg");
-  background-position: -610px -1511px;;
+  background-position: -610px -1511px;
+  ;
 }
 
 .UNX-grid-btn {
@@ -885,14 +888,15 @@
 }
 
 .UNX-search-btn {
-  background-image: url("./sprite.svg") ;
-  background-position:  -218px -217px;;
+  background-image: url("./sprite.svg");
+  background-position: -218px -217px;
+  ;
   background-size: auto;
   height: 40px;
   width: 40px;
   color: rgb(185, 185, 185);
   border-color: transparent;
-  background-color:transparent ;
+  background-color: transparent;
   top: 10px
 }
 

@@ -1,6 +1,6 @@
 import UnbxdSearch from '../../src/index';
 
-const setCategory = function(e) {
+const setCategory = function (e) {
 	const el = e.target;
 	const { dataset } = el;
 	if (dataset && dataset.id) {
@@ -13,7 +13,7 @@ const setCategory = function(e) {
 const navElem = document.getElementById('categoryLinks');
 navElem.addEventListener('click', setCategory);
 
-const checkRangeTemplate = function(range, selectedRange, facet) {
+const checkRangeTemplate = function (range, selectedRange, facet) {
 	const { displayName, facetName, values, gap } = range;
 	let valueUI = ``;
 	const { facetClass, selectedFacetClass, applyMultipleFilters, applyButtonText, clearButtonText } = facet;
@@ -48,7 +48,7 @@ const checkRangeTemplate = function(range, selectedRange, facet) {
 	].join('');
 };
 
-const unbxdCallbackEcma = function(instance, type, data) {
+const unbxdCallbackEcma = function (instance, type, data) {
 	console.log(type, data, 'type,data');
 };
 
@@ -87,73 +87,73 @@ btnEls.forEach(item => {
 	item.addEventListener('click', toggleMobileFacets);
 });
 /*UnbxdSearch.prototype.setUrl = function(reload) {
-    const {
-        productType,
-        hashMode,
-        searchPath,
-        onQueryRedirect
-    } = this.options;
-    const {
-        userInput,
-        urlLoad,
-        isHistory,
-        responseObj = {},
-        startPageNo
-    } = this.state;
-    const {
-        productViewType
-    } = this.viewState;
-    const {
-        redirect
-    } = responseObj;
-    if(typeof onQueryRedirect === "function") {
-        onQueryRedirect(this, redirect);
-    }
-    let facetStr = ``;
-    facetStr += this.urlFlattenFacets();
-    facetStr += this.getRangeFilterStr();
-    facetStr += this.categoryFilterUrlStr();
-    if(startPageNo > 0) {
-        facetStr += this.getPageStartStr()
-    }
-    facetStr += `&viewType=${productViewType}`;
-    const q = `q=${userInput}${facetStr}${this.getSortUrlString()}`;
-    this.state.urlState = q;
-    const isPath = location.pathname.includes(searchPath);
-    if(hashMode) {
-        const newQ = `#${q}`;
-        if(isPath && (newQ !== location.hash)) {
-            location.hash = q;
-        }
-    } else {
-        if(isHistory && !urlLoad && isPath){
-            const newQ  = `?${q}`;
-            if(decodeURI(newQ) !== decodeURI(location.search)) {
-                window.history.pushState(q, null, newQ);
-                this.state.urlLoad = false;
-            }
-        }
-        if(reload && isPath){
-            location.search = q;
-        }
-    }
+	const {
+		productType,
+		hashMode,
+		searchPath,
+		onQueryRedirect
+	} = this.options;
+	const {
+		userInput,
+		urlLoad,
+		isHistory,
+		responseObj = {},
+		startPageNo
+	} = this.state;
+	const {
+		productViewType
+	} = this.viewState;
+	const {
+		redirect
+	} = responseObj;
+	if(typeof onQueryRedirect === "function") {
+		onQueryRedirect(this, redirect);
+	}
+	let facetStr = ``;
+	facetStr += this.urlFlattenFacets();
+	facetStr += this.getRangeFilterStr();
+	facetStr += this.categoryFilterUrlStr();
+	if(startPageNo > 0) {
+		facetStr += this.getPageStartStr()
+	}
+	facetStr += `&viewType=${productViewType}`;
+	const q = `q=${userInput}${facetStr}${this.getSortUrlString()}`;
+	this.state.urlState = q;
+	const isPath = location.pathname.includes(searchPath);
+	if(hashMode) {
+		const newQ = `#${q}`;
+		if(isPath && (newQ !== location.hash)) {
+			location.hash = q;
+		}
+	} else {
+		if(isHistory && !urlLoad && isPath){
+			const newQ  = `?${q}`;
+			if(decodeURI(newQ) !== decodeURI(location.search)) {
+				window.history.pushState(q, null, newQ);
+				this.state.urlLoad = false;
+			}
+		}
+		if(reload && isPath){
+			location.search = q;
+		}
+	}
 }
 extraParams: {
-        "facet.multilevel": "categoryPath",
-        "f.categoryPath.displayName": "Category",
-        "f.categoryPath.facetName": "Category"
-    }
+		"facet.multilevel": "categoryPath",
+		"f.categoryPath.displayName": "Category",
+		"f.categoryPath.facetName": "Category"
+	}
 */
 window.unbxdSearch = new UnbxdSearch({
 	siteKey: 'Stage-m2-ddecor12231625734093',
 	apiKey: '4b5b1d98dc62968d6ebf3bdc94b0eccc',
-	searchBoxEl: document.getElementById('unbxdInput'),
+	searchBoxEl: document.querySelectorAll('#unbxdInput'),
 	searchTrigger: 'click',
-	searchButtonEl: document.getElementById('searchBtn'),
+	searchButtonEl: document.querySelectorAll('#searchBtn'),
 	products: {
-		el: document.getElementById('searchResultsWrapper'),
+		el: document.querySelectorAll('#searchResultsWrapper'),
 		productType: 'SEARCH',
-		productClick: function(product, e) {
+		productClick: function (product, e) {
 			console.log(product, 'product,index', e);
 		},
 	},
@@ -166,7 +166,7 @@ window.unbxdSearch = new UnbxdSearch({
 	},
 	facet: {
 		facetsEl: document.getElementById('facetsWrapper'),
-		facetTemplate: function(facetObj, children, isExpanded, facetSearchTxt, facet) {
+		facetTemplate: function (facetObj, children, isExpanded, facetSearchTxt, facet) {
 			const { displayName, facetName, multiLevelField, facetType, values } = facetObj;
 			const {
 				facetClass,
@@ -225,7 +225,7 @@ window.unbxdSearch = new UnbxdSearch({
 				`</div>`,
 			].join('');
 		},
-		facetItemTemplate: function(facet, value, facetSearchTxt) {
+		facetItemTemplate: function (facet, value, facetSearchTxt) {
 			const { facetName, isSelected } = facet;
 			const { name, count, dataId } = value;
 			let { facetClass, selectedFacetClass } = this.options.facet;

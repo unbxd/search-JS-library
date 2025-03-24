@@ -1,95 +1,70 @@
-const Path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  entry: {
-    app: Path.resolve(__dirname, '../demo/js/index.js'),
-    unbxdSearch: Path.resolve(__dirname, '../src/index.js')
-  },
-  mode:'development',
-  devtool: 'inline-source-map',
-  target: "web",
-  watch:true,
-  output: {
-    path: Path.join(__dirname, '../public'),
-    filename: 'js/[name].js',
-    sourceMapFilename: '[file].map',
-    publicPath: "/"
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "common",
-            chunks: "all"}
-      }
-  }
-  },
-  plugins: [
-    new webpack.LoaderOptionsPlugin({
-      debug: true
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css'
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template:Path.resolve(__dirname, '../demo/index.html'),
-      chunks: ['common','app'],
-      path: Path.resolve(__dirname, '../public'),
-      filename: "index.html"
-    })
-    ],
-  resolve: {
-    alias: {
-      '~': Path.resolve(__dirname, '../src')
-    }
-  },
-  devServer: {
-    contentBase: Path.join(__dirname, '../src'),
-    port: 9000,
-    watchContentBase: true,
-    historyApiFallback: true
-  },
-  module: {
-    rules: [
-        {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: {
-              loader: "babel-loader"
-            }
-        },
-        {
-          test: /\.html$/,
-          loader: 'html-loader'
-        },
-        {
-          test: /\.(scss|css)$/,
-          exclude: /node_modules/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader',
-            'sass-loader'
-          ]
-        },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 5000,
-            },
-          },
-        ],
-      },
-    ]
-  }
+	mode: "development",
+	entry: {
+		app: path.resolve(__dirname, "../demo/js/index.js"),
+		unbxdSearch: path.resolve(__dirname, "../src/index.js"),
+	},
+	output: {
+		path: path.resolve(__dirname, "../public"),
+		filename: "[name].[contenthash].js",
+		clean: true,
+		sourceMapFilename: "[file].map",
+		publicPath: "/",
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+					loader: "babel-loader",
+					options: {
+						presets: ["@babel/preset-env"],
+					},
+				},
+			},
+			{
+				test: /\.scss$/,
+				use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+			},
+			{
+				test: /\.css$/i,
+				use: ["style-loader", "css-loader"], // Add loaders for CSS
+			},
+			{
+				test: /\.(png|jpg|gif|svg)$/,
+				type: "asset/resource",
+			},
+		],
+	},
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: path.resolve(__dirname, "../demo/index.html"),
+			chunks: ["common", "app"],
+			path: path.resolve(__dirname, "../public"),
+			filename: "index.html",
+		}),
+		new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
+	],
+	optimization: {
+		minimize: true,
+		minimizer: [new TerserPlugin(), new CssMinimizerPlugin()],
+	},
+	devServer: {
+		static: path.join(__dirname, "dist"),
+		compress: true,
+		hot: true,
+		open: true,
+		port: 9000,
+		historyApiFallback: true,
+	},
+	resolve: {
+		extensions: [".js", ".scss"],
+	},
 };
