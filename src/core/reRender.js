@@ -6,6 +6,7 @@ import { sanitizeHTML } from "../common/utils";
 	- the render functions for different modules have been called in multiple places
 	- need to modify the code in all the places
 */
+// TODO: Need to do URL related sanitizations
 
 const reRender = function() {
 	const { onEvent, spellCheck, pagination, productType, searchBoxEl, loader, breadcrumb, productView, pagesize, sort, banner, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
