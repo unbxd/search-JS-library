@@ -1,3 +1,5 @@
+import DOMPurify from "dompurify";
+
 //Returns true if it is a DOM node
 export const isNode = (o)=> {
     return (
@@ -25,3 +27,18 @@ export const isNodeList = (nodelist)=>{
 export const getKeyByValue = (object, value) => {
     return Object.keys(object).find(key => object[key] === value) || value;
 }
+
+export const sanitizeHTML = (template, { sanitizeHtmlElements, sanitizeHtmlAttributes }) => {
+    const config = {};
+
+    if (Array.isArray(sanitizeHtmlElements) && sanitizeHtmlElements.length > 0) {
+        config.ALLOWED_TAGS = sanitizeHtmlElements;
+    }
+
+    if (Array.isArray(sanitizeHtmlAttributes) && sanitizeHtmlAttributes.length > 0) {
+        config.ALLOWED_ATTR = sanitizeHtmlAttributes;
+    }
+
+    return DOMPurify.sanitize(template, config);
+};
+
