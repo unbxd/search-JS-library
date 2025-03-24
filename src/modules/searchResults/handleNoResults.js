@@ -1,10 +1,10 @@
-import DOMPurify from "dompurify";
 import { events } from "../../common/constants";
+import { sanitizeHTML } from "../../common/utils";
 
 function handleNoResults() {
 	try {
 		const { facetWrappers } = this;
-		const { onEvent, noResults } = this.options;
+		const { onEvent, noResults, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 
 		const { beforeNoResultRender, afterNoResultRender } = this.events;
 
@@ -32,13 +32,16 @@ function handleNoResults() {
 			noResultsHTML = `<div class="${noResultCss}">${this.renderNoResults(query)}</div>`;
 		}
 		if (!qParams.filter) {
-			const facetsTemplate = this.renderFacets();
-			const sanitizedFacetsHTML = DOMPurify.sanitize(facetsTemplate);
-			if (sanitizedFacetsHTML !== facetsTemplate) {
-				// TODO: we can add onEvent here if required.
+			let facetsTemplate = this.renderFacets();
+			if(sanitizeHtml) {
+				const sanitizedFacetsHTML = sanitizeHTML(facetsTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+				facetsTemplate = sanitizedFacetsHTML
+				if (sanitizedFacetsHTML !== facetsTemplate) {
+					// TODO: we can add onEvent here if required.
+				}
 			}
 			facetWrappers.forEach((wrapper) => {
-				wrapper.innerHTML = sanitizedFacetsHTML;
+				wrapper.innerHTML = facetsTemplate;
 			});
 		}
 

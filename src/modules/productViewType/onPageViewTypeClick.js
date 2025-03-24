@@ -1,5 +1,5 @@
-import DOMPurify from "dompurify";
 import extend from "../utils/extend";
+import { sanitizeHTML } from "../../common/utils";
 
 function onPageViewTypeClick(e) {
 	const elem = e.target;
@@ -13,7 +13,7 @@ function onPageViewTypeClick(e) {
 	this.checkFacets();
 	if (productViewType !== viewAction) {
 		this.viewState.productViewType = viewAction;
-		const { extraParams = {} } = this.options;
+		const { extraParams = {}, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 		this.options.extraParams = extend(true, {}, extraParams, {
 			viewType: viewAction,
 		});
@@ -22,13 +22,16 @@ function onPageViewTypeClick(e) {
 		this.viewState.lastAction = "viewType";
 		this.setUrl(false);
 
-		const productViewTemplate = this.renderProductViewTypeUI();
-		const sanitizedProductViewHTML = DOMPurify.sanitize(productViewTemplate);
-		if (sanitizedProductViewHTML !== productViewTemplate) {
-			// TODO: we can add onEvent here if required.
+		let productViewTemplate = this.renderProductViewTypeUI();
+		if(sanitizeHtml) {
+			const sanitizedProductViewHTML = sanitizeHTML(productViewTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			productViewTemplate = sanitizedProductViewHTML
+			if (sanitizedProductViewHTML !== productViewTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		productViewTypeWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedProductViewHTML;
+			wrapper.innerHTML = productViewTemplate;
 		});
 
 		searchResultsWrappers.forEach((wrapper) => {

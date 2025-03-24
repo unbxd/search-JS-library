@@ -13,6 +13,7 @@ let routeTemplate = `<div class="UNX-header">
             <button data-id='categoryPath:"KITCHEN & COOKING>MICROWAVES>CONVECTION MICROWAVE OVENS"' class="nav-links" data-path="/kitchen-and-cooking/microwaves/convection-microwave-ovens-0">Convention micro ovens</button>
             <button data-id='categoryPath:"FURNITURE ZONE>BEDROOM FURNITURE>BASES & BEDHEADS"' class="nav-links" data-path="/furniture-and-bedding/bedroom-furniture/bases-bedheads">Bases and bedheads</button>
         </nav>
+		<div onclick="window.UnbxdAnalyticsConf.page='categoryPath:\\'sofa set\\''; window.unbxdSearch.getCategoryPage();">sofa set</div>
         <div class="UNX-right-header">
             <div id="autoSuggestInput" class="UNX-input-wrapper">
                 <input id="unbxdInput" placeholder="Search here..." class="UNX-input" autocomplete="off" />
@@ -157,6 +158,11 @@ const routes = {
 const rootDiv = document.getElementById("root");
 rootDiv.innerHTML = routes[window.location.pathname];
 
+window.UnbxdAnalyticsConf = {
+	page: null,
+	page_type: "BOOLEAN",
+};
+
 const setCategory = function(e) {
 	const el = e.target;
 	const { dataset } = el;
@@ -246,6 +252,11 @@ const btnEls = document.querySelectorAll(".UNX-facet-trigger");
 btnEls.forEach((item) => {
 	item.addEventListener("click", toggleMobileFacets);
 });
+
+window.UnbxdAnalyticsConf = {
+	page: null,
+	page_type: "BOOLEAN",
+};
 
 let performRouteActions = () => {
 	if (location.pathname === "/men") {
@@ -359,6 +370,9 @@ window.unbxdSearch = new UnbxdSearch({
 	// onError: function(err) {
 	//     console.error('onError', err)
 	// },
+	sanitizeHtml: false,
+	sanitizeHtmlElements: ["div", "button", "img", "input", "title", "label", "ul", "li", "span", "select", "option", "a", "i"],
+	sanitizeHtmlAttributes: ['href', 'src', 'alt', 'title', 'class', 'id', 'style', "type"],
 	searchBoxEl: document.getElementById("unbxdInput"),
 	searchTrigger: "click",
 	searchButtonEl: document.getElementById("searchBtn"),
@@ -511,8 +525,8 @@ window.unbxdSearch = new UnbxdSearch({
 		},
 		browseQueryParam: {
 			addToUrl: true,
-			algo: "DEFAULT",
-			keyReplacer: "pppp",
+			algo: "KEY_VALUE_REPLACER",
+			keyReplacer: "category",
 		},
 		pageViewParam: {
 			addToUrl: true,

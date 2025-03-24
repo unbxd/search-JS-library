@@ -1,4 +1,4 @@
-import DOMPurify from "dompurify";
+import { sanitizeHTML } from "../../common/utils";
 
 const findChangedFacet = function(e) {
 	const elem = e.target;
@@ -11,7 +11,7 @@ const findChangedFacet = function(e) {
 	const selectedfacets = this.getSelectedFacets();
 	const ln = selectedfacets ? Object.keys(selectedfacets).length : 0;
 	const ql = Object.keys(qState.selectedFacets).length;
-	const { productType, facet } = this.options;
+	const { productType, facet, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 	const { applyMultipleFilters } = facet;
 	const { events, actions, facetWrappers } = this;
 	const ranges = this.state.rangeFacet[facetName];
@@ -199,13 +199,16 @@ const findChangedFacet = function(e) {
 	}
 	if (action === "clearRangeFacets") {
 		this.state.rangeFacet = [];
-		const facetsTemplate = this.renderFacets();
-		const sanitizedFacetsHTML = DOMPurify.sanitize(facetsTemplate);
-		if (sanitizedFacetsHTML !== facetsTemplate) {
-			// TODO: we can add onEvent here if required.
+		let facetsTemplate = this.renderFacets();
+		if(sanitizeHtml) {
+			const sanitizedFacetsHTML = sanitizeHTML(facetsTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			facetsTemplate = sanitizedFacetsHTML
+			if (sanitizedFacetsHTML !== facetsTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		facetWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedFacetsHTML;
+			wrapper.innerHTML = facetsTemplate;
 		});
 		if (isSelections.length > 0) {
 			this.applyRangeFacet();

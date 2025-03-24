@@ -2,7 +2,7 @@ import unxSelectors from "../common/constants/selectors";
 import reRender from "./reRender";
 import bindEvents from "./bindEvents";
 import validateConfigs from "./validateConfigs";
-import DOMPurify from "dompurify";
+import { sanitizeHTML } from "../common/utils";
 
 const initialize = function() {
 	this.validateConfigs = validateConfigs.bind(this);
@@ -31,15 +31,20 @@ const initialize = function() {
 	} else {
 		this.options.extraParams.viewType = defaultViewType;
 	}
+
 	// TODO: why is this here?
+	const {sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes} = this.options
 	if (enabled) {
-		const productViewTemplate = this.renderProductViewTypeUI();
-		const sanitizedProductViewHTML = DOMPurify.sanitize(productViewTemplate);
-		if (sanitizedProductViewHTML !== productViewTemplate) {
-			// TODO: we can add onEvent here if required.
+		let productViewTemplate = this.renderProductViewTypeUI();
+		if(sanitizeHtml) {
+			const sanitizedProductViewHTML = sanitizeHTML(productViewTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
+			productViewTemplate = sanitizedProductViewHTML
+			if (sanitizedProductViewHTML !== productViewTemplate) {
+				// TODO: we can add onEvent here if required.
+			}
 		}
 		productViewTypeWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = sanitizedProductViewHTML;
+			wrapper.innerHTML = productViewTemplate;
 		});
 	}
 };

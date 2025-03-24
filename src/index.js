@@ -8,7 +8,7 @@ import events from "./common/constants/eventsLib";
 import actions from "./common/constants/actions";
 import { cssClasses, testIds } from "./common/constants";
 import setConfig from "./core/setConfig";
-import DOMPurify from "dompurify";
+import { sanitizeHTML } from "./common/utils";
 
 const packageJson = require("../package.json");
 
@@ -43,7 +43,7 @@ class UnbxdSearch extends UnbxdSearchCore {
 	}
 	callBack(state, type) {
 		this.getCallbackActions(state, type);
-		const { onEvent, loader, facet, productView } = this.options;
+		const { onEvent, loader, facet, productView, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 		const { beforeApiCall, afterApiCall } = this.events;
 		const urlParams = this.getQueryParams();
 		let { [this.getPageViewParam()]: viewType } = urlParams || {};
@@ -69,12 +69,15 @@ class UnbxdSearch extends UnbxdSearchCore {
 			}
 
 			if (loader && loader.el) {
-				const loaderHTML = loader.template(this);
-				const sanitizedLoaderHTML = DOMPurify.sanitize(loaderHTML);
-				if (loader.el.innerHTML !== sanitizedLoaderHTML) {
-					// TODO: we can add onEvent here if required.
+				let loaderHTML = loader.template(this);
+				if(sanitizeHtml){
+					const sanitizedLoaderHTML = sanitizeHTML(loaderHTML, { sanitizeHtmlElements, sanitizeHtmlAttributes });
+					loaderHTML = sanitizedLoaderHTML
+					if (loader.el.innerHTML !== sanitizedLoaderHTML) {
+						// TODO: we can add onEvent here if required.
+					}
 				}
-				loader.el.innerHTML = sanitizedLoaderHTML;
+				loader.el.innerHTML = loaderHTML;
 			}
 		}
 		if (type === afterApiCall) {
@@ -97,13 +100,16 @@ class UnbxdSearch extends UnbxdSearchCore {
 			}
 
 			const { facetWrappers } = this;
-			const facetsTemplate = this.renderFacets();
-			const sanitizedFacetsHTML = DOMPurify.sanitize(facetsTemplate);
-			if (sanitizedFacetsHTML !== facetsTemplate) {
-				// TODO: we can add onEvent here if required.
+			let facetsTemplate = this.renderFacets();
+			if(sanitizeHtml) {
+				const sanitizedFacetsHTML = sanitizeHTML(facetsTemplate, { sanitizeHtmlElements, sanitizeHtmlAttributes });
+				facetsTemplate = sanitizedFacetsHTML
+				if (loader.el.innerHTML !== sanitizedFacetsHTML) {
+					// TODO: we can add onEvent here if required.
+				}
 			}
 			facetWrappers.forEach((wrapper) => {
-				wrapper.innerHTML = sanitizedFacetsHTML;
+				wrapper.innerHTML = facetsTemplate;
 			});
 		}
 		if (type === "FETCH_ERROR") {

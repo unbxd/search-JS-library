@@ -1,5 +1,3 @@
-import DOMPurify from "dompurify";
-
 import renderBannerUI from "../modules/banners/renderBannerUI";
 import setFacets from "../modules/facets/setFacetMethods";
 import setProductsMethods from "../modules/products/setProductsMethods";
@@ -17,6 +15,7 @@ import initialize from "../core/initialize";
 import createLayout from "./createLayout";
 import setComponentWrappers from "./componentWrappers";
 import createElement from "../modules/utils/createElement";
+import { sanitizeHTML } from "../common/utils";
 
 const setSearchWidget = function(config) {
 	const { products } = this.options;
@@ -35,7 +34,7 @@ const updateConfig = function(config) {
 };
 
 const extraActions = function(e) {
-	const { onAction } = this.options;
+	const { onAction, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
 	const { target } = e;
 	const { dataset } = target;
 	const { openFacet, closeFacet, openBtn, closeBtn, viewMore, viewLess } = this.cssList;
@@ -62,16 +61,24 @@ const extraActions = function(e) {
 		}
 		if (action === "viewMore") {
 			target.setAttribute("data-action", "viewLess");
-			const sanitizedText = DOMPurify.sanitize(viewMoreText[1]);
-			target.innerHTML = sanitizedText;
+			let text = viewMoreText[1]
+			if(sanitizeHtml){
+				const sanitizedText = sanitizeHTML(viewMoreText[1], { sanitizeHtmlElements, sanitizeHtmlAttributes });
+				text = sanitizedText
+			}
+			target.innerHTML = text;
 			const fcEl = fI.querySelector(`.${textFacetWrapper}`);
 			fcEl.classList.remove(viewMore);
 			fcEl.classList.add(viewLess);
 		}
 		if (action === "viewLess") {
 			target.setAttribute("data-action", "viewMore");
-			const sanitizedText = DOMPurify.sanitize(viewMoreText[0]);
-			target.innerHTML = sanitizedText;
+			let text = viewMoreText[0]
+			if(sanitizeHtml) {
+				const sanitizedText = sanitizeHTML(viewMoreText[0], { sanitizeHtmlElements, sanitizeHtmlAttributes });
+				text = sanitizedText
+			}
+			target.innerHTML = text;
 			const fcEl = fI.querySelector(`.${textFacetWrapper}`);
 			fcEl.classList.remove(viewLess);
 			fcEl.classList.add(viewMore);
