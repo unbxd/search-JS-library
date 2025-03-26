@@ -1,6 +1,6 @@
 title: Unbxd JS SDK Documentation
 description: A JavaScript library for building performant and quick search experiences with Unbxd.
-remote_theme:: just-the-docs
+theme: just-the-docs
 
 url: https://unbxd.github.io
 
