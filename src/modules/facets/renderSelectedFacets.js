@@ -1,6 +1,6 @@
 import { events } from "../../common/constants";
 
-export default function() {
+export default function () {
 	try {
 		const selectedFacetsInfo = this.getSelectedFacets() || {};
 		const selectedRanges = this.getSelectedRanges() || {};
@@ -12,14 +12,12 @@ export default function() {
 			const j = k[i];
 			const isCategoryFacet = this.isCategoryFacet(j);
 			const vals = selectedFacetsInfo[j] || [];
+			const facetInfo = this.getAFacetByName(j);
 			if (!isCategoryFacet) {
 				vals.forEach((item) => {
 					const { name, count, dataId } = item;
 					selectedUi += itemTemplate(
-						{
-							facetName: j,
-							facetType: "text",
-						},
+						facetInfo[0],
 						{
 							name: name,
 							dataId: dataId ? dataId : name,
@@ -34,13 +32,11 @@ export default function() {
 		let r = Object.keys(selectedRanges);
 		for (let j = 0; j < r.length; j++) {
 			const l = r[j];
+			const facetInfo = this.getAFacetByName(l);
 			const val = selectedRanges[l];
 			val.forEach((rEl) => {
 				selectedUi += itemTemplate(
-					{
-						facetName: l,
-						facetType: "range",
-					},
+					facetInfo[0],
 					{
 						name: rEl.replace(/[^\w\s]/gi, ""),
 						dataId: rEl,
