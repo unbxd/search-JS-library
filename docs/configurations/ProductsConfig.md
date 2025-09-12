@@ -483,7 +483,7 @@ products: {
 
 ## Usecase 2: With Default Image
 
-### User requirment
+### User requirement
 {: .no_toc }
 When an image url is mismapped or when an image is missing.
 By mistake, so you can add any image as default image.
@@ -529,7 +529,7 @@ onEvent: function(instance, type, state) {
 
 ## Usecase 4: With swatches
 
-## User requirment
+## User requirement
 {: .no_toc }
 Swatches are commonly used to display the available colors of a product, such as clothing or home decor, allowing the users to see a visual representation of the options before they purchase
 
@@ -667,9 +667,13 @@ Swatches are commonly used to display the available colors of a product, such as
 
 ## Usecase 5: With Product Badging
 
-## User requirment
+## User requirement
 {: .no_toc }
 Product badging is commonly used to highlight key attributes or promotions of a product, such as “New,” “Best Seller,” or “On Sale,” allowing users to quickly identify important information at a glance and make more informed purchasing decisions.
+
+## How to show product badges?
+{: .no_toc }
+To display product badges, you need to include the `badges_unx` field in the `productAttributes` array. Once added, this field becomes available as a property in the `product` object within the products template function, allowing you to customize how product badges are rendered.
 
 [![](../assets/product-badging.png)](../assets/product-badging.png)
 
