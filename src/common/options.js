@@ -1,29 +1,35 @@
 /* eslint-disable */
-
 import didYouMeanUI from "../modules/didYouMean/didYouMeanUI";
-import { selectedFacetUI, facetUIElem, facetItemUiElem, selectedFacetItemTemplateUI } from "../modules/facets/ui";
-import productTemplate from "../modules/searchResults/ui";
+import {
+	selectedFacetUI,
+	facetUIElem,
+	facetItemUiElem,
+	selectedFacetItemTemplateUI
+} from "../modules/facets/ui";
+import productTemplate from '../modules/searchResults/ui';
 import paginationView from "../modules/pagination/paginationView";
-import { renderRangeFacets } from "../modules/facets/renderRangeFacets";
+import {
+	renderRangeFacets
+} from "../modules/facets/renderRangeFacets";
 import multiLevelFacetUI from "../modules/facets/multiLevelFacetUI";
 import breadCrumbsUI from "../modules/breadcrumbs/breadCrumbsUI";
-import { sortOptions, sortTemplate } from "../modules/sort";
-import renderProductViewType from "../modules/productViewType/renderProductViewType";
-import bannerTemplateUI from "../modules/banners/bannerTemplateUI";
-import pageSizeUi from "../modules/pageSize/pageSizeUi";
+import {
+	sortOptions,
+	sortTemplate
+} from "../modules/sort";
+import renderProductViewType from '../modules/productViewType/renderProductViewType';
+import bannerTemplateUI from '../modules/banners/bannerTemplateUI';
+import pageSizeUi from '../modules/pageSize/pageSizeUi';
 import swatchTemplate from "../modules/swatches/ui";
 
 const options = {
 	productId: "uniqueId",
-	sanitizeHtml: false, 
-	sanitizeHtmlElements: [],
-	sanitizeHtmlAttributes: null,
 	searchBoxEl: null,
 	searchButtonEl: null,
 	siteKey: "demo-spanish-unbxd809051588861207",
 	apiKey: "f19768e22b49909798bc2411fa3dd963",
 	searchPath: "",
-	searchTrigger: "click",
+	searchTrigger: 'click',
 	searchEndPoint: "https://search.unbxd.io/",
 	products: {
 		el: null,
@@ -31,8 +37,9 @@ const options = {
 		productItemClass: "product-item", // to find out product
 		productType: "SEARCH",
 		gridCount: 1,
-		searchTrigger: "click",
-		onProductClick: function(product, e) {},
+		searchTrigger: 'click',
+		onProductClick: function (product, e) {
+		},
 		productAttributes: [
 			"title",
 			"uniqueId",
@@ -46,60 +53,59 @@ const options = {
 			"unbxd_color_mapping",
 			"colorName",
 			"color",
-			"productUrl",
+			"productUrl"
 		],
 		attributesMap: {
-			unxTitle: "title",
-			unxImageUrl: "imageUrl",
-			unxPrice: "salePrice",
-			unxStrikePrice: "displayPrice",
-			unxId: "uniqueId",
-			unxDescription: "productDescription",
+			'unxTitle': 'title',
+			'unxImageUrl': 'imageUrl',
+			'unxPrice': 'salePrice',
+			'unxStrikePrice': 'displayPrice',
+			'unxId': 'uniqueId',
+			'unxDescription': 'productDescription'
 		},
 		defaultImage: "https://libraries.unbxdapi.com/sdk-assets/defaultImage.svg",
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-search-results-block UNX-result-wrapper",
+			class: "UNX-search-results-block UNX-result-wrapper"
 		},
-		events: {},
+		events: {}
+
 	},
 	defaultFilters: {}, //or object with keys
 	noResults: {
-		template: function(query) {
-			return `<div class="UNX-no-results"> No Results found ${query} </div>`;
-		},
+		template: function (query) { return `<div class="UNX-no-results"> No Results found ${query} </div>` }
 	},
-	onEvent: (state, type) => {},
+	onEvent: (state, type) => {
+
+	},
 	startPageNo: 0,
 	productView: {
 		enabled: true,
 		el: null,
 		template: renderProductViewType,
-		action: "click", // CLICK or CHANGE
-		viewTypeClass: "UNX-product-view",
-		selectedViewTypeClass: "UNX-selected-product-view",
-		defaultViewType: "GRID",
+		action: 'click', // CLICK or CHANGE
+		viewTypeClass: 'UNX-product-view',
+		selectedViewTypeClass: 'UNX-selected-product-view',
+		defaultViewType: 'GRID',
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "product-view-container",
+			class: "product-view-container"
 		},
-		events: {},
+		events: {}
 	},
 
 	loader: {
-		template: function() {
-			return `<div class="UNX-loader">Loading search results....</div>`;
-		},
-		el: null,
+		template: function () { return `<div class="UNX-loader">Loading search results....</div>` },
+		el: null
 	},
 	variants: undefined,
 
 	extraParams: {
-		version: "V2",
+		"version": "V2",
 		/*"facet.multilevel":"categoryPath",
-        "f.categoryPath.displayName":"category",
-        "f.categoryPath.max.depth":"4",
-        "f.categoryPath.facet.limit":"100"*/
+		"f.categoryPath.displayName":"category",
+		"f.categoryPath.max.depth":"4",
+		"f.categoryPath.facet.limit":"100"*/
 	},
 
 	spellCheck: {
@@ -109,9 +115,9 @@ const options = {
 		selectorClass: "UNX-suggestion",
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-spellcheck-wrapper",
+			class: "UNX-spellcheck-wrapper"
 		},
-		events: {},
+		events: {}
 	},
 
 	breadcrumb: {
@@ -121,9 +127,9 @@ const options = {
 		template: breadCrumbsUI,
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-breadcrumbs-block",
+			class: "UNX-breadcrumbs-block"
 		},
-		events: {},
+		events: {}
 	},
 
 	url: {
@@ -134,12 +140,12 @@ const options = {
 		searchQueryParam: {
 			addToUrl: true,
 			algo: "KEY_VALUE_REPLACER",
-			keyReplacer: "q",
+			keyReplacer: "q"
 		},
 		browseQueryParam: {
 			addToUrl: true,
 			algo: "KEY_VALUE_REPLACER",
-			keyReplacer: "p",
+			keyReplacer: "p"
 		},
 		orderOfQueryParams: [],
 		queryParamSeparator: "&",
@@ -149,26 +155,26 @@ const options = {
 			algo: "KEY_VALUE_REPLACER",
 			keyReplacer: "viewType",
 			valuesReplacer: {
-				GRID: "GRID",
-				LIST: "LIST",
-			},
+				"GRID": "GRID",
+				"LIST": "LIST"
+			}
 		},
 		sortParam: {
 			addToUrl: true,
 			algo: "KEY_VALUE_REPLACER",
 			keyReplacer: "sort",
-			valueReplacer: {},
+			valueReplacer: {}
 		},
 		pageSizeParam: {
 			addToUrl: true,
 			algo: "KEY_VALUE_REPLACER",
-			keyReplacer: "rows",
+			keyReplacer: "rows"
 		},
 		pageNoParam: {
 			addToUrl: true,
 			algo: "KEY_VALUE_REPLACER",
-			keyReplacer: "start",
-			usePageNo: false,
+			keyReplacer: 'start',
+			usePageNo: false
 		},
 		facetsParam: {
 			addToUrl: true,
@@ -179,23 +185,24 @@ const options = {
 			valueReplacer: {},
 			keyReplacer: {},
 			rangeSeparator: "-",
-			rangeFacets: [],
-		},
+			rangeFacets: []
+		}
+
 	},
 
 	sort: {
 		enabled: true,
 		el: null,
-		selectedSortClass: "UNX-selected-sort",
-		sortClass: "UNX-sort-item",
+		selectedSortClass: 'UNX-selected-sort',
+		sortClass: 'UNX-sort-item',
 		template: sortTemplate,
 		options: sortOptions,
-		action: "change",
+		action: 'change',
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-sort-block-lb",
+			class: "UNX-sort-block-lb"
 		},
-		events: {},
+		events: {}
 	},
 	selectedFacets: {
 		enabled: true,
@@ -206,13 +213,14 @@ const options = {
 		clearAllText: "Clear All",
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-selected-facet-lb",
+			class: "UNX-selected-facet-lb"
 		},
 		events: {},
 		facetAction: "click",
-		clearFacetsSelectorClass: "UNX-clear-facet",
-		removeFacetsSelectorClass: "UNX-remove-facet",
+		clearFacetsSelectorClass: 'UNX-clear-facet',
+		removeFacetsSelectorClass: 'UNX-remove-facet',
 	},
+
 
 	facet: {
 		facetsEl: null,
@@ -231,19 +239,20 @@ const options = {
 
 		rangeTemplate: renderRangeFacets,
 		rangeWidgetConfig: {
-			minLabel: "",
-			maxLabel: "",
-			prefix: "$",
+			"minLabel": "",
+			"maxLabel": "",
+			"prefix": '$'
 		},
 
 		facetMultilevel: true,
-		facetMultilevelName: "Category",
-		multiLevelFacetSelectorClass: "UNX-multilevel-facet",
+		facetMultilevelName: 'Category',
+		multiLevelFacetSelectorClass: 'UNX-multilevel-facet',
 		multiLevelFacetTemplate: multiLevelFacetUI,
 		facetDepth: 4,
-		clearFacetsSelectorClass: "UNX-clear-facet",
-		removeFacetsSelectorClass: "UNX-remove-facet",
-		onFacetLoad: function(facets) {},
+		clearFacetsSelectorClass: 'UNX-clear-facet',
+		removeFacetsSelectorClass: 'UNX-remove-facet',
+		onFacetLoad: function (facets) {
+		},
 
 		applyMultipleFilters: false,
 		applyButtonText: "Apply",
@@ -261,9 +270,9 @@ const options = {
 
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-facets-results-block",
+			class: "UNX-facets-results-block"
 		},
-		events: {},
+		events: {}
 	},
 
 	pagination: {
@@ -272,17 +281,17 @@ const options = {
 		template: paginationView,
 		pageClass: "UNX-page-items",
 		selectedPageClass: "UNX-selected-page-item",
-		type: "CLICK_N_SCROLL", // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
+		type: 'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
 		infiniteScrollTriggerEl: window, //if paginationType = INFINITE_SCROLL
-		heightDiffToTriggerNextPage: 100, //if paginationType = INFINITE_SCROLL,
-		virtualization: true, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,
-		bufferPages: 1, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,
-		onPaginate: function(paginationInfo) {},
-		action: "click",
+		heightDiffToTriggerNextPage: 100, //if paginationType = INFINITE_SCROLL,   
+		virtualization: true, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,   
+		bufferPages: 1, //if paginationType = INFINITE_SCROLL or CLICK_N_SCROLL,   
+		onPaginate: function (paginationInfo) { },
+		action: 'click',
 		pageLimit: 6,
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-pagination-size-block",
+			class: "UNX-pagination-size-block"
 		},
 		events: {},
 	},
@@ -292,14 +301,14 @@ const options = {
 		options: [8, 12, 16, 20, 24],
 		pageSizeClass: "UNX-pagesize",
 		selectedPageSizeClass: "UNX-selected-pagesize",
-		action: "change",
+		action: 'change',
 		template: pageSizeUi,
 		el: null,
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-page-size-block",
+			class: "UNX-page-size-block"
 		},
-		events: {},
+		events: {}
 	},
 
 	banner: {
@@ -310,22 +319,27 @@ const options = {
 		openNewTab: false,
 		tagName: "DIV",
 		htmlAttributes: {
-			class: "UNX-banner-block",
+			class: "UNX-banner-block"
 		},
-		events: {},
+		events: {}
+
 	},
 
 	swatches: {
 		enabled: false,
 		attributesMap: {},
-		swatchClass: "UNX-swatch-btn",
-		template: swatchTemplate,
+		swatchClass: 'UNX-swatch-btn',
+		template: swatchTemplate
 	},
 	unbxdAnalytics: false,
-	onAction: function(e, ctx) {},
+	onAction: function (e, ctx) {
+	},
 	onQueryRedirect: (self, redirect, urlBeforeRedirect) => {
 		if (redirect) {
-			const { value, type } = redirect;
+			const {
+				value,
+				type
+			} = redirect;
 			if (type === "url") {
 				/** If opening in same tab */
 				if (history.state && history.state.replace) {
@@ -334,8 +348,8 @@ const options = {
 
 				location.href = value;
 
-				/** If opening redirect in new tab (rare scenario),
-				 * then browser back + history push on search should be handled by client
+				/** If opening redirect in new tab (rare scenario), 
+				 * then browser back + history push on search should be handled by client 
 				 * (especially switching betsween category to search page scenarios)
 				 * Note: This is not recommended */
 			}
@@ -352,7 +366,7 @@ const options = {
 	onNoUnbxdKeyRouting: () => {
 		history.go();
 	},
-	debugMode: true,
+	debugMode: true
 	// searchQueryParam:null
 };
 export default options;

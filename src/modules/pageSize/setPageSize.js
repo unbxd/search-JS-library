@@ -1,10 +1,13 @@
-import { events } from "../../common/constants";
-import { onClickPageSize } from "./onClickPageSize";
-import pageSizeUi from "./pageSizeUi";
-
-const renderPageSize = function() {
+import { events } from '../../common/constants';
+import {
+	onClickPageSize
+} from './onClickPageSize';
+import pageSizeUi from './pageSizeUi';
+const renderPageSize = function () {
 	try {
-		const { pagesize = {} } = this.options;
+		const {
+			pagesize = {}
+		} = this.options;
 		let selected = pagesize.pageSize;
 		const qParams = this.getQueryParams() || {};
 		if (qParams) {
@@ -12,23 +15,28 @@ const renderPageSize = function() {
 		}
 		const results = this.getSearchResults();
 		if (results && results.numberOfProducts === 0) {
-			return ``;
+			this.pageSizeWrapper.innerHTML = ``;
 		} else {
-			return this.options.pagesize.template.bind(this)(selected, pagesize);
+			this.pageSizeWrapper.innerHTML = this.options.pagesize.template.bind(this)(selected, pagesize);
 		}
-	} catch (err) {
-		this.onError("Pagesize > renderPageSize", err, events.runtimeError);
 	}
-};
+	catch (err) {
+		this.onError("Pagesize > renderPageSize", err, events.runtimeError)
+	}
 
+}
 /* eslint-disable no-unused-vars */
 const setPageSize = (prototype) => {
 	prototype = Object.assign(prototype, {
 		pageSizeUi,
 		onClickPageSize,
-		renderPageSize,
-	});
-};
-
+		renderPageSize
+	})
+}
 /* eslint-disable no-unused-vars */
-export { setPageSize as default, renderPageSize, pageSizeUi, onClickPageSize };
+export {
+	setPageSize as default,
+	renderPageSize,
+	pageSizeUi,
+	onClickPageSize
+};

@@ -1,25 +1,40 @@
 import { events } from "../../common/constants";
-import { sanitizeHTML } from "../../common/utils";
 
-export default function renderProducts(searchResultsWrapper) {
+export default function renderProducts() {
 	try {
-		const { productViewType } = this.viewState;
+		const {
+			productViewType
+		} = this.viewState
 
 		const {
-			pagination: { type },
-			sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes
+			searchResultsWrapper
+		} = this;
+
+		let {
+			pagination: {
+				type
+			}
 		} = this.options;
 
-		const { noResults } = this.options;
+		const {
+			noResults
+		} = this.options;
 
 		const noResultCss = "UNX-no-results-wrap";
-		const noResultsBlock = noResults.el ? noResults.el : searchResultsWrapper.getElementsByClassName("UNX-no-results")[0];
+		const noResultsBlock = noResults.el ? noResults.el : searchResultsWrapper.getElementsByClassName('UNX-no-results')[0];
 
-		const { isInfiniteStarted } = this.viewState;
+		const {
+			noResultLoaded,
+			isInfiniteStarted,
+		} = this.viewState;
 
-		const { products: { productItemClass } = {} } = this.options;
+		const {
+			products: {
+				productItemClass
+			} = {}
+		} = this.options;
 
-		const viewCss = productViewType === "LIST" ? "UNX-list-block" : "UNX-grid-block";
+		const viewCss = (productViewType === "LIST") ? "UNX-list-block" : "UNX-grid-block";
 		searchResultsWrapper.classList.remove("UNX-list-block");
 		searchResultsWrapper.classList.remove("UNX-grid-block");
 		searchResultsWrapper.classList.add(viewCss);
@@ -30,54 +45,46 @@ export default function renderProducts(searchResultsWrapper) {
 			searchResultsWrapper.classList.remove(noResultCss);
 		}
 
-		searchResultsWrapper.style.minHeight = "100vh";
+		searchResultsWrapper.style.minHeight = '100vh'
 		if (isInfiniteStarted) {
+
 			const results = this.getSearchResults();
 			if (results && results.products?.length === 0) {
 				this.viewState.noResultLoaded = true;
 			}
 
+
 			if (this.viewState.noResultLoaded) {
-				let resultsHTML = this.renderSearch();
-				if(sanitizeHtml) {
-					const sanitizedResultsHTML = sanitizeHTML(resultsHTML, {sanitizeHtmlElements, sanitizeHtmlAttributes});
-					resultsHTML = sanitizedResultsHTML
-				}
-				searchResultsWrapper.innerHTML = resultsHTML;
+				searchResultsWrapper.innerHTML = this.renderSearch();
 				if (searchResultsWrapper.innerHTML !== "") {
 					const newElements = Array.from(searchResultsWrapper.children);
-					newElements.forEach((newElement) => {
+					newElements.forEach(newElement => {
 						this.individualProductObserver.observe(newElement);
 					});
-					window.scrollTo(0, 0);
+					window.scrollTo(0, 0)
 					this.viewState.noResultLoaded = false;
 				} else {
-					this.preLoaderObserver.disconnect();
+					this.preLoaderObserver.disconnect()
 					this.postLoaderObserver.disconnect();
 					this.handleNoResults();
 				}
+
 			} else {
 				let productsPerPage = this.getProductsPerPage();
 				const listItems = searchResultsWrapper.querySelectorAll(`.${productItemClass}`);
 
-				let resultsHTML = this.renderSearch();
-				if(sanitizeHtml) {
-					const sanitizedResultsHTML = sanitizeHTML(resultsHTML, {sanitizeHtmlElements, sanitizeHtmlAttributes});
-					resultsHTML = sanitizedResultsHTML
-				}
-				const tempContainer = document.createElement("div");
-				tempContainer.innerHTML = resultsHTML;
+
+				const tempContainer = document.createElement('div');
+				tempContainer.innerHTML = this.renderSearch();
 
 				const newElements = Array.from(tempContainer.children);
 
-				const {
-					response: { start = 0 },
-				} = this.getResponseObj();
+				const { response: { start = 0 } } = this.getResponseObj();
 
 				let insertPoint = null;
 				const existingPranks = new Set();
 
-				listItems.forEach((item) => {
+				listItems.forEach(item => {
 					const currentPrank = parseInt(item.dataset.prank, 10);
 					existingPranks.add(currentPrank);
 				});
@@ -91,13 +98,13 @@ export default function renderProducts(searchResultsWrapper) {
 					}
 				}
 
-				const newElementsToInsert = newElements.filter((newElement) => {
+				const newElementsToInsert = newElements.filter(newElement => {
 					const newElementPrank = parseInt(newElement.dataset.prank, 10);
 					return !existingPranks.has(newElementPrank);
 				});
 
 				if (insertPoint) {
-					newElementsToInsert.forEach((newElement) => {
+					newElementsToInsert.forEach(newElement => {
 						searchResultsWrapper.insertBefore(newElement, insertPoint);
 						this.individualProductObserver.observe(newElement);
 					});
@@ -107,7 +114,7 @@ export default function renderProducts(searchResultsWrapper) {
 						scrollToProduct.scrollIntoView();
 					}
 				} else {
-					newElementsToInsert.forEach((newElement) => {
+					newElementsToInsert.forEach(newElement => {
 						searchResultsWrapper.appendChild(newElement);
 						if (type === "INFINITE_SCROLL") {
 							this.individualProductObserver.observe(newElement);
@@ -117,30 +124,26 @@ export default function renderProducts(searchResultsWrapper) {
 					if (scrollToProduct) {
 						scrollToProduct.scrollIntoView();
 					}
+
 				}
 				this.preLoaderObserver.disconnect();
-				const preLoader = document.querySelector(".UNX-pre-loader");
+				const preLoader = document.querySelector('.UNX-pre-loader');
 				this.preLoaderObserver.observe(preLoader);
-				if (this.options.pagination.type === "INFINITE_SCROLL") {
+				if (this.options.pagination.type === 'INFINITE_SCROLL') {
 					this.postLoaderObserver.disconnect();
-					const postLoader = document.querySelector(".UNX-post-loader");
+					const postLoader = document.querySelector('.UNX-post-loader');
 					this.postLoaderObserver.observe(postLoader);
 				}
 			}
 			this.viewState.isInfiniteStarted = false;
 		} else {
 			searchResultsWrapper.innerHTML = "";
-			let resultsHTML = this.renderSearch();
-			if(sanitizeHtml) {
-				const sanitizedResultsHTML = sanitizeHTML(resultsHTML, {sanitizeHtmlElements, sanitizeHtmlAttributes});
-				resultsHTML = sanitizedResultsHTML
-			}
-			searchResultsWrapper.innerHTML = resultsHTML;
+			searchResultsWrapper.innerHTML = this.renderSearch();
 			if (searchResultsWrapper.innerHTML !== "") {
 				window.scrollTo(0, 0);
 				if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL") {
 					const newElements = Array.from(searchResultsWrapper.children);
-					newElements.forEach((newElement) => {
+					newElements.forEach(newElement => {
 						this.individualProductObserver.observe(newElement);
 					});
 				}

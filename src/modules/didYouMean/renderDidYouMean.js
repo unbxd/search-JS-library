@@ -1,16 +1,30 @@
 import { events } from "../../common/constants";
 
-const renderDidYouMean = function() {
+const renderDidYouMean = function () {
 	try {
-		let { userInput = "" } = this.state;
+		let {
+			userInput = ""
+		} = this.state;
 		const pages = this.getPaginationInfo() || {};
 		const didYouMean = this.getDidYouMeanFromResponse() || [];
-		const { type } = this.options.pagination;
-		const { enabled } = this.options.spellCheck;
-		const { viewState } = this;
-		const { loadedFromSuggestion, lastDidYouMean } = viewState;
+		const {
+			type
+		} = this.options.pagination;
+		const {
+			enabled
+		} = this.options.spellCheck;
+		const {
+			viewState
+		} = this;
+		const {
+			loadedFromSuggestion,
+			lastDidYouMean
+		} = viewState;
 		if (type !== "FIXED_PAGINATION" && pages) {
-			const { start, productsLn } = pages;
+			const {
+				start,
+				productsLn
+			} = pages
 			pages.productsLn = productsLn + start;
 			pages.start = 0;
 		}
@@ -30,9 +44,13 @@ const renderDidYouMean = function() {
 		if (!enabled && sugString) {
 			ui = this.options.spellCheck.template.bind(this)(sugString, userInput, pages);
 		}
-		return ui;
-	} catch (err) {
+		this.spellCheckWrappers.forEach((wrapper) => {
+			wrapper.innerHTML = ui;
+		})
+	}
+	catch (err) {
 		this.onError("didYouMean > renderDidYouMean.js", err, events.runtimeError);
 	}
-};
+
+}
 export default renderDidYouMean;
