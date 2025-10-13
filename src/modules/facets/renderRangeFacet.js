@@ -1,7 +1,7 @@
 import { events } from "../../common/constants";
 
-export default function(rangeFacet={}, isExpanded) {
-    try{
+export default function (rangeFacet = {}, isExpanded) {
+    try {
         const {
             facetName
         } = rangeFacet;
@@ -25,8 +25,8 @@ export default function(rangeFacet={}, isExpanded) {
             styles = "";
         }
         return `<div class="${facetName} UNX-facet-item-d range-facets-block ${styles}">${rangeUi}</div>`;
-    }catch(err){
+    } catch (err) {
         this.onError("facets > renderRangeFacet.js", err, events.runtimeError);
     }
-   
+
 }

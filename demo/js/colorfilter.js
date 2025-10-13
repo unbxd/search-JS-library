@@ -147,11 +147,11 @@ extraParams: {
 window.unbxdSearch = new UnbxdSearch({
 	siteKey: 'Stage-m2-ddecor12231625734093',
 	apiKey: '4b5b1d98dc62968d6ebf3bdc94b0eccc',
-	searchBoxEl: document.querySelectorAll('#unbxdInput'),
+	searchBoxEl: document.getElementById('unbxdInput'),
 	searchTrigger: 'click',
-	searchButtonEl: document.querySelectorAll('#searchBtn'),
+	searchButtonEl: document.getElementById('searchBtn'),
 	products: {
-		el: document.querySelectorAll('#searchResultsWrapper'),
+		el: document.getElementById('searchResultsWrapper'),
 		productType: 'SEARCH',
 		productClick: function (product, e) {
 			console.log(product, 'product,index', e);
