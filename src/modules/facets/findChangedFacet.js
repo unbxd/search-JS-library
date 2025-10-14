@@ -1,19 +1,32 @@
-import { sanitizeHTML } from "../../common/utils";
-
-const findChangedFacet = function(e) {
+const findChangedFacet = function (e) {
 	const elem = e.target;
 	this.viewState.lastDidYouMean = "";
-	const selected = this.options.facet.facetAction === "click" ? elem : elem.options[elem.selectedIndex];
+	const selected = (this.options.facet.facetAction === "click") ? elem : elem.options[elem.selectedIndex];
 
 	const dataSet = selected.dataset;
-	const { facetName, facetAction, id, action, end, start } = dataSet;
+	const {
+		facetName,
+		facetAction,
+		id,
+		action,
+		end,
+		start
+	} = dataSet;
 	const qState = this.getStateFromUrl();
 	const selectedfacets = this.getSelectedFacets();
-	const ln = selectedfacets ? Object.keys(selectedfacets).length : 0;
+	const ln = (selectedfacets) ? Object.keys(selectedfacets).length : 0;
 	const ql = Object.keys(qState.selectedFacets).length;
-	const { productType, facet, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
-	const { applyMultipleFilters } = facet;
-	const { events, actions, facetWrappers } = this;
+	const {
+		productType,
+		facet
+	} = this.options;
+	const {
+		applyMultipleFilters
+	} = facet;
+	const {
+		events,
+		actions
+	} = this;
 	const ranges = this.state.rangeFacet[facetName];
 	const isSelections = Object.keys(qState.rangeFacet);
 	if (facetAction === actions.changeFacet) {
@@ -21,40 +34,35 @@ const findChangedFacet = function(e) {
 		const selectedOpt = {
 			selectedFacetName: facetName,
 			selectedFacetId: id,
-			facetData: selectedfacetInfo,
-		};
+			facetData: selectedfacetInfo
+		}
 		this.viewState.lastAction = "addedAFacet";
 		this.options.onEvent(this, events.facetClick, {
 			facetName,
-			facetData: selectedfacetInfo,
+			facetData: selectedfacetInfo
 		});
 		this.updateFacets(selectedOpt);
-		this.getCallbackActions(
-			{
-				facetName,
-				facetAction,
-				id,
-			},
-			"facetClick"
-		);
+		this.getCallbackActions({
+			facetName,
+			facetAction,
+			id
+		}, 'facetClick');
 	}
 	if (facetAction === "deleteSelectedFacetValue") {
 		if (this.findSelectedFacet(facetName)) {
 			this.viewState.lastAction = "deletedAfacet";
 			this.deleteAFacet.bind(this)(facetName, id);
 			this.options.onEvent(this, events.deleteFacetValue, {
-				facetName,
+				facetName
 			});
-			this.getCallbackActions(
-				{
-					facetName,
-					facetAction,
-					id,
-				},
-				"facetClick"
-			);
+			this.getCallbackActions({
+				facetName,
+				facetAction,
+				id
+			}, 'facetClick');
 			this.setPageStart(0);
 			this.getResults();
+
 		}
 	}
 
@@ -63,16 +71,13 @@ const findChangedFacet = function(e) {
 			this.viewState.lastAction = "deletedAfacet";
 			this.deleteAFacet.bind(this)(facetName, id);
 			this.options.onEvent(this, events.deleteFacetValue, {
-				facetName,
+				facetName
 			});
-			this.getCallbackActions(
-				{
-					facetName,
-					facetAction,
-					id,
-				},
-				"facetClick"
-			);
+			this.getCallbackActions({
+				facetName,
+				facetAction,
+				id
+			}, 'facetClick');
 			const fl = selectedfacets[facetName].length;
 			if (ql > 0 && ln === 1 && fl === 0 && applyMultipleFilters) {
 				this.setPageStart(0);
@@ -85,16 +90,13 @@ const findChangedFacet = function(e) {
 			this.viewState.lastAction = "deletedAfacet";
 			this.deleteAFacet.bind(this)(facetName);
 			this.options.onEvent(this, events.deleteFacet, {
-				facetName,
+				facetName
 			});
-			this.getCallbackActions(
-				{
-					facetName,
-					facetAction,
-					id,
-				},
-				"facetClick"
-			);
+			this.getCallbackActions({
+				facetName,
+				facetAction,
+				id
+			}, 'facetClick');
 			const isReload = qState.selectedFacets[facetName];
 			if (isReload) {
 				this.viewState.lastAction = "clearAFacet";
@@ -116,25 +118,26 @@ const findChangedFacet = function(e) {
 		this.getResults();
 	}
 	if (facetAction === "deleteSelectedRange") {
-		const { facetName, id } = dataSet;
-		const range = id.replace(/[^\w\s]/gi, "").split(" TO ");
+		const {
+			facetName,
+			id
+		} = dataSet;
+		const range = id.replace(/[^\w\s]/gi, '').split(" TO ");
 		this.setRangeFacet({
 			start: range[0],
 			end: range[1],
 			facetName,
-			applyMultiple: true,
+			applyMultiple: true
 		});
-		this.getCallbackActions(
-			{
-				facetName,
-				facetAction,
-				id,
-			},
-			"facetClick"
-		);
+		this.getCallbackActions({
+			facetName,
+			facetAction,
+			id
+		}, 'facetClick');
 
 		this.setPageStart(0);
 		this.getResults();
+
 	}
 
 	if (action === actions.setCategoryFilter) {
@@ -146,7 +149,7 @@ const findChangedFacet = function(e) {
 		}
 		this.setPageStart(0);
 		this.getResults();
-		this.getCallbackActions(dataSet, "facetClick");
+		this.getCallbackActions(dataSet, 'facetClick');
 	}
 	if (action === actions.clearCategoryFilter) {
 		if (productType === "SEARCH") {
@@ -157,19 +160,20 @@ const findChangedFacet = function(e) {
 		}
 		this.setPageStart(0);
 		this.getResults();
-		this.getCallbackActions(dataSet, "facetClick");
+		this.getCallbackActions(dataSet, 'facetClick');
 	}
 
+
 	if (action === "setRange") {
-		let already = false;
+		let already = false
 		if (ranges && ranges.length === 1 && isSelections.length > 0) {
 			already = this.isSelectedRange(facetName, {
 				from: {
-					name: start,
+					name: start
 				},
 				end: {
-					name: end,
-				},
+					name: end
+				}
 			});
 		}
 		if (!already) {
@@ -177,7 +181,7 @@ const findChangedFacet = function(e) {
 				start: start,
 				end: end,
 				facetName: facetName,
-				applyMultiple: true,
+				applyMultiple: true
 			});
 		}
 		if (already) {
@@ -188,28 +192,15 @@ const findChangedFacet = function(e) {
 			this.setPageStart(0);
 			this.applyRangeFacet();
 		}
-		this.getCallbackActions(
-			{
-				facetName,
-				facetAction,
-				id,
-			},
-			"facetClick"
-		);
+		this.getCallbackActions({
+			facetName,
+			facetAction,
+			id
+		}, 'facetClick');
 	}
 	if (action === "clearRangeFacets") {
 		this.state.rangeFacet = [];
-		let facetsTemplate = this.renderFacets();
-		if(sanitizeHtml) {
-			const sanitizedFacetsHTML = sanitizeHTML(facetsTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
-			facetsTemplate = sanitizedFacetsHTML
-			if (sanitizedFacetsHTML !== facetsTemplate) {
-				// TODO: we can add onEvent here if required.
-			}
-		}
-		facetWrappers.forEach((wrapper) => {
-			wrapper.innerHTML = facetsTemplate;
-		});
+		this.renderFacets();
 		if (isSelections.length > 0) {
 			this.applyRangeFacet();
 		}
@@ -217,30 +208,27 @@ const findChangedFacet = function(e) {
 	if (action === actions.applyRange) {
 		this.applyRangeFacet();
 		this.options.onEvent(this, action, {
-			facetName,
+			facetName
 		});
-		this.getCallbackActions(
-			{
-				facetName,
-			},
-			"facetClick"
-		);
+		this.getCallbackActions({
+			facetName
+		}, 'facetClick');
 	}
 	if (action === actions.clearPriceRange && facetName) {
 		this.clearARangeFacet(facetName);
 		this.getResults.bind(this)();
 		this.options.onEvent(this, action, {
-			facetName,
+			facetName
 		});
-		this.getCallbackActions(
-			{
-				facetName,
-			},
-			"facetClick"
-		);
+		this.getCallbackActions({
+			facetName
+		}, 'facetClick');
 	}
 	this.viewState.lastAction = action;
 	//this.renderFacets();
-};
+}
 
-export { findChangedFacet };
+
+export {
+	findChangedFacet
+}

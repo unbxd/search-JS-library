@@ -1,12 +1,20 @@
 import { events } from "../../common/constants";
-import { sanitizeHTML } from "../../common/utils";
 
 function handleNoResults() {
 	try {
-		const { facetWrappers } = this;
-		const { onEvent, noResults, sanitizeHtml, sanitizeHtmlElements, sanitizeHtmlAttributes } = this.options;
+		const {
+			searchResultsWrapper
+		} = this;
 
-		const { beforeNoResultRender, afterNoResultRender } = this.events;
+		const {
+			onEvent,
+			noResults
+		} = this.options;
+
+		const {
+			beforeNoResultRender,
+			afterNoResultRender,
+		} = this.events;
 
 		const qParams = this.getQueryParams() || {};
 		const query = this.getSearchQuery();
@@ -24,25 +32,17 @@ function handleNoResults() {
 
 		this.viewState.noResultLoaded = true;
 
-		let noResultsHTML = "";
 		if (this.options.noResults?.el) {
-			noResults.el.classList.add(noResultCss);
-			noResultsHTML = this.renderNoResults(query);
+			noResults.el.classList.add(noResultCss)
+			searchResultsWrapper.innerHTML = "";
+			noResults.el.innerHTML = this.renderNoResults(query);
+
 		} else {
-			noResultsHTML = `<div class="${noResultCss}">${this.renderNoResults(query)}</div>`;
+			searchResultsWrapper.classList.add(noResultCss);
+			searchResultsWrapper.innerHTML = this.renderNoResults(query);
 		}
 		if (!qParams.filter) {
-			let facetsTemplate = this.renderFacets();
-			if(sanitizeHtml) {
-				const sanitizedFacetsHTML = sanitizeHTML(facetsTemplate, {sanitizeHtmlElements, sanitizeHtmlAttributes});
-				facetsTemplate = sanitizedFacetsHTML
-				if (sanitizedFacetsHTML !== facetsTemplate) {
-					// TODO: we can add onEvent here if required.
-				}
-			}
-			facetWrappers.forEach((wrapper) => {
-				wrapper.innerHTML = facetsTemplate;
-			});
+			this.renderFacets();
 		}
 
 		try {
@@ -50,10 +50,9 @@ function handleNoResults() {
 		} catch (error) {
 			this.onError("reRender", error, events.runtimeError);
 		}
-
-		return noResultsHTML;
-	} catch (err) {
-		this.onError("searchresults > handleNoResults", err, events.runtimeError);
+	}
+	catch (err) {
+		this.onError("searchresults > handleNoResults", err, events.runtimeError)
 	}
 }
 

@@ -1,5 +1,5 @@
 
-import createSearchWrapper from "./createSearchWrapper";
+import createtSearchWrapper from "./createSearchWrapper";
 import createFacetWrapper from "./createFacetWrapper";
 import createBannerWrapper from "./createBannerWrapper";
 import createBreadcrumbWrapper from "./createBreadcrumbWrapper";
@@ -13,7 +13,7 @@ import createProductViewTypeWrapper from "./createProductViewTypeWrapper";
 /* eslint-disable no-unused-vars */
 const setComponentWrappers = (prototype) => {
     prototype = Object.assign(prototype, {
-        createSearchWrapper,
+        createtSearchWrapper,
         createFacetWrapper,
         createBannerWrapper,
         createBreadcrumbWrapper,
@@ -29,7 +29,7 @@ const setComponentWrappers = (prototype) => {
 
 export {
     setComponentWrappers as default,
-    createSearchWrapper,
+    createtSearchWrapper,
     createFacetWrapper,
     createBannerWrapper,
     createBreadcrumbWrapper,
