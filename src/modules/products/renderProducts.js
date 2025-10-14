@@ -127,11 +127,11 @@ export default function renderProducts() {
 
 				}
 				this.preLoaderObserver.disconnect();
-				const preLoader = document.querySelector(`.UNX-pre-loader.${this.options.pagination.preloaderClass}`);
+				const preLoader = document.querySelector(this.options.pagination.preloaderClass ? `.UNX-pre-loader.${this.options.pagination.preloaderClass}` : '.UNX-pre-loader');
 				this.preLoaderObserver.observe(preLoader);
 				if (this.options.pagination.type === 'INFINITE_SCROLL') {
 					this.postLoaderObserver.disconnect();
-					const postLoader = document.querySelector(`.UNX-post-loader.${this.options.pagination.postloaderClass}`);
+					const postLoader = document.querySelector(this.options.pagination.postloaderClass ? `.UNX-post-loader.${this.options.pagination.postloaderClass}` : '.UNX-post-loader');
 					this.postLoaderObserver.observe(postLoader);
 				}
 			}
