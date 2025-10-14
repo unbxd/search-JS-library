@@ -280,6 +280,8 @@ const options = {
 		el: null,
 		template: paginationView,
 		pageClass: "UNX-page-items",
+		preloaderClass: "",
+		postloaderClass: "",
 		selectedPageClass: "UNX-selected-page-item",
 		type: 'CLICK_N_SCROLL', // INFINITE_SCROLL or CLICK_N_SCROLL or FIXED_PAGINATION
 		infiniteScrollTriggerEl: window, //if paginationType = INFINITE_SCROLL

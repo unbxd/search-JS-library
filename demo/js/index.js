@@ -563,10 +563,12 @@ window.unbxdSearch = new UnbxdSearch({
 
 	pagination: {
 		// type: 'CLICK_N_SCROLL',
-		type: 'FIXED_PAGINATION',
-		// type: 'INFINITE_SCROLL',
+		// type: 'FIXED_PAGINATION',
+		type: 'INFINITE_SCROLL',
 		el: document.querySelector('.unxPagination'),
-		// usePageAndCount: false,
+		preloaderClass: "test-preloader-class",
+		postloaderClass: "test-postloader-class",
+		// usePageAndCount:	 false,
 		virtualization: false,
 		bufferPages: 1,
 		heightDiffToTriggerNextPage: 100,

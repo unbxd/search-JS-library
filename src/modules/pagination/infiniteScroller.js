@@ -26,29 +26,29 @@ const setUpInfiniteScroll = function () {
             } else if (paginationType === "CLICK_N_SCROLL") {
                 productsContainer = this.options.products.el
             }
-            const postLoader = document.querySelector('.UNX-post-loader');
-            const preLoader = document.querySelector('.UNX-pre-loader');
+            const postLoader = document.querySelector(`.UNX-post-loader.${this.options.pagination.postloaderClass}`);
+            const preLoader = document.querySelector(`.UNX-pre-loader.${this.options.pagination.preloaderClass}`);
 
             this.individualProductObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                            const productIndex = parseInt(entry.target.dataset.prank);
+                        const productIndex = parseInt(entry.target.dataset.prank);
 
-                            let currentUrlPage = this.getCurrentUrlPage();
-                            let productsPerPage = this.getProductsPerPage();
-                            const currentPage = Math.ceil(productIndex / productsPerPage);
-                            if (currentPage !== currentUrlPage) {
-                                if (usePageNo) {
-                                    this.setPageNoParam(currentPage);
-                                } else {
-                                    this.setPageNoParam((currentPage - 1) * productsPerPage);
-                                }
-                        
+                        let currentUrlPage = this.getCurrentUrlPage();
+                        let productsPerPage = this.getProductsPerPage();
+                        const currentPage = Math.ceil(productIndex / productsPerPage);
+                        if (currentPage !== currentUrlPage) {
+                            if (usePageNo) {
+                                this.setPageNoParam(currentPage);
+                            } else {
+                                this.setPageNoParam((currentPage - 1) * productsPerPage);
                             }
+
                         }
-                        })
+                    }
+                })
             }, {
-                threshold: [ 0.5, 0.75, 1 ]
+                threshold: [0.5, 0.75, 1]
             });
 
             this.preLoaderObserver = new IntersectionObserver(entries => {
@@ -56,7 +56,7 @@ const setUpInfiniteScroll = function () {
                 entries.forEach(entry => {
                     if (entry.isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
                         const isPrevPagePresent = usePageNo ? currentUrlPage > 1 : this.getFirstPrank() !== 1;
-                        if(isPrevPagePresent){
+                        if (isPrevPagePresent) {
                             this.preLoaderObserver.disconnect()
                             let productsPerPage = this.getProductsPerPage();
                             this.viewState.isInfiniteStarted = true;
@@ -65,7 +65,7 @@ const setUpInfiniteScroll = function () {
                                 prevPrank = parseInt((currentUrlPage - 2) * productsPerPage, 10);
                             } else {
                                 let startPrank = this.getFirstPrank() - productsPerPage - 1;
-                                if (startPrank <0) { startPrank = 0}
+                                if (startPrank < 0) { startPrank = 0 }
                                 prevPrank = parseInt(startPrank, 10);
                             }
                             this.setPageStart(prevPrank);
@@ -79,10 +79,10 @@ const setUpInfiniteScroll = function () {
             });
 
             this.postLoaderObserver = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted ) {
+                if (entries[0].isIntersecting && !this.state.isLoading && !this.viewState.isInfiniteStarted) {
                     const { numberOfProducts } = this.getPaginationInfo() || {};
                     const lastPrank = this.getLastPrank();
-                    if (lastPrank < numberOfProducts){
+                    if (lastPrank < numberOfProducts) {
                         this.postLoaderObserver.disconnect();//change - add this
                         this.viewState.isInfiniteStarted = true;
                         this.setPageStart(lastPrank);

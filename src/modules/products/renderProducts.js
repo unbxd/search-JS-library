@@ -127,11 +127,11 @@ export default function renderProducts() {
 
 				}
 				this.preLoaderObserver.disconnect();
-				const preLoader = document.querySelector('.UNX-pre-loader');
+				const preLoader = document.querySelector(`.UNX-pre-loader.${this.options.pagination.preloaderClass}`);
 				this.preLoaderObserver.observe(preLoader);
 				if (this.options.pagination.type === 'INFINITE_SCROLL') {
 					this.postLoaderObserver.disconnect();
-					const postLoader = document.querySelector('.UNX-post-loader');
+					const postLoader = document.querySelector(`.UNX-post-loader.${this.options.pagination.postloaderClass}`);
 					this.postLoaderObserver.observe(postLoader);
 				}
 			}
@@ -145,7 +145,7 @@ export default function renderProducts() {
 					const newElements = Array.from(searchResultsWrapper.children);
 					newElements.forEach(newElement => {
 						this.individualProductObserver.observe(newElement);
-					});
+					})
 				}
 			} else if (type === "INFINITE_SCROLL" || type === "CLICK_N_SCROLL") {
 				this.preLoaderObserver.disconnect();
