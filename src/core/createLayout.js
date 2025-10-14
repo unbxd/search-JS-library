@@ -125,7 +125,7 @@ const createLayout = function () {
 
 		if (paginationType === "INFINITE_SCROLL" || paginationType === "CLICK_N_SCROLL") {
 			const preLoader = document.createElement('div');
-			preLoader.classList.add('UNX-pre-loader');
+			preLoader.classList.add('UNX-pre-loader', ...[pagination.preloaderClass].filter(Boolean));
 			preLoader.style.height = this.getHeightDiffToTriggerNextPage() + 'px';
 			products.el.appendChild(preLoader);
 		}
@@ -134,7 +134,7 @@ const createLayout = function () {
 
 		if (paginationType === "INFINITE_SCROLL") {
 			const postLoader = document.createElement('div');
-			postLoader.classList.add('UNX-post-loader');
+			postLoader.classList.add('UNX-post-loader', ...[pagination.postloaderClass].filter(Boolean));
 			postLoader.style.height = this.getHeightDiffToTriggerNextPage() + 'px';
 			products.el.appendChild(postLoader);
 		}
