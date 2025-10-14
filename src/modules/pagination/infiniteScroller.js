@@ -26,8 +26,8 @@ const setUpInfiniteScroll = function () {
             } else if (paginationType === "CLICK_N_SCROLL") {
                 productsContainer = this.options.products.el
             }
-            const postLoader = document.querySelector(`.UNX-post-loader.${this.options.pagination.postloaderClass}`);
-            const preLoader = document.querySelector(`.UNX-pre-loader.${this.options.pagination.preloaderClass}`);
+            const postLoader = document.querySelector(this.options.pagination.postloaderClass ? `.UNX-post-loader.${this.options.pagination.postloaderClass}` : '.UNX-post-loader');
+            const preLoader = document.querySelector(this.options.pagination.preloaderClass ? `.UNX-pre-loader.${this.options.pagination.preloaderClass}` : '.UNX-pre-loader');
 
             this.individualProductObserver = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
