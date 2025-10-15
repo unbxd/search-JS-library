@@ -9,16 +9,25 @@ nav_order: 9
 
 ---
 
-## Table of contents
-{: .no_toc .text-delta }
-
-1. TOC
-{:toc}
-
 {: .note-title }
 > Important
 >
 > This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
+
+---
+# v2.1.12
+
+- **Release Date**: 15 Oct, 2025
+- **Core SDK Version**: v0.5.11
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.12/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.12/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.12/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.12/vanillaSearch.min.css)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+1. **Enhanced Selected Facets Template**: Added support for passing comprehensive facet information (display name, facet name, and other metadata) to the `selectedFacetsTemplate` function for improved customization capabilities.
+2. **Pagination Loader Configuration**: Introduced new configuration options (`preloaderClass` and `postloaderClass`) for the pagination block, enabling developers to apply custom CSS classes to pre-loader and post-loader elements for better DOM targeting and styling control.
+
 
 ---
 # v2.1.10

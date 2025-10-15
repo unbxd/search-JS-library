@@ -298,6 +298,49 @@ Any valid class name can passed here.
 
 ---
 
+## preloaderClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Specifies a custom CSS class name for the pre-loader element. This class is appended to the default `UNX-pre-loader` class, enabling developers to apply additional styling or target the element for DOM manipulation.
+
+### Default Value
+{: .no_toc }
+```js
+preloaderClass: ""
+```
+
+### Scenarios
+{: .no_toc }
+
+Any valid class name can passed here.
+
+---
+
+
+## postloaderClass
+{: .d-inline-block }
+
+String
+{: .label }
+
+Specifies a custom CSS class name for the post-loader element. This class is appended to the default `UNX-post-loader` class, enabling developers to apply additional styling or target the element for DOM manipulation.
+
+### Default Value
+{: .no_toc }
+```js
+postloaderClass: ""
+```
+
+### Scenarios
+{: .no_toc }
+
+Any valid class name can passed here.
+
+---
+
 ## onPaginate
 {: .d-inline-block }
 
