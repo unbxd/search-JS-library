@@ -271,6 +271,18 @@ facetClass: “UNX-facets-block”
 {: .no_toc }
 Any valid class name can be added here as facetClass.
 
+
+{: .note }
+**Important:** Avoid overriding the `UNX-change-facet` class. If you must customize it, ensure you include the following CSS rule to maintain proper facet selection functionality:
+
+```css
+.UNX-change-facet * {
+    pointer-events: none;
+}
+```
+
+**Why this is needed:** This CSS rule ensures that clicks on child elements (like spans, divs, or text) within facet buttons are properly handled by the parent button element, preventing facet selection issues.
+
 --- 
 
 ## facetAction
