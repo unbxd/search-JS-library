@@ -14,6 +14,21 @@ nav_order: 9
 >
 > This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
 
+
+# v2.1.13
+
+- **Release Date**: 7 Nov, 2025
+- **Core SDK Version**: v0.5.12
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.13/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.13/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.13/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.13/vanillaSearch.min.css)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+1. **Fixed incorrect URL split and append**: Fixed an issue where URLs were being incorrectly split and appended, resulting in malformed URLs.
+
+
+
 ---
 # v2.1.12
 
