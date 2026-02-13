@@ -136,6 +136,9 @@ seoFriendlyUrl: false
 {: .note }
 > When `seoFriendlyUrl` is `true`, some default configurations gets applied within seo urls config. For eg : The `algo` for all configs in seo urls becomes `KEY_VALUE_REPLACER` (if not passed otherwise ) when `seoFriendlyUrl` is true . Refer to the default values for the behaviour after turning `seoFriendlyUrl` to true. 
 
+{: .note }
+> When `seoFriendlyUrl` is `true`, default configurations are applied in the URL. 
+
 ---
 
 ## orderOfQueryParams
@@ -149,6 +152,9 @@ This configuration manages the arrangement of query parameters within the URL.
 {: .note }
 > `seoFriendlyUrl` must be **true** for this to work.
 > `orderOfQueryParams` array can take the query params names that are needed to be set in some order . 
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 **Default Value**
 
@@ -324,6 +330,9 @@ www.example.com/washingMachine?browse=categoryPath%253A%2522LAUNDRY%253EWASHING%
 {: .d-inline-block}
 
 This will be the query param for the search api to provide the query information. 
+
+{: .note }
+> `seoFriendlyUrl` must be **true** for this to work.
 
 {: .note }
 > `seoFriendlyUrl` must be **true** for this to work.
