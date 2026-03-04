@@ -193,7 +193,7 @@ If you want to send the search query in a different query param key set this con
 String
 {: .label }
 
-Domain name of the search API endpoint.
+Domain name of the search API endpoint. 
 
 ## Default Value
 {: .no_toc }
@@ -207,8 +207,20 @@ searchEndPoint:“https://search.unbxd.io”
 
 1. In case of a staging sitekey, it will be:
 ```js
-searchEndPoint:"https://wingman-argocd.unbxd.io/"	
+searchEndPoint:"http://search-qa.unbxd.io/"	
 ```
+
+2. If you want to route requests through your own proxy server (e.g., for security, compliance, or additional request validation), you can set your proxy URL as the `searchEndPoint`:
+
+```js
+searchEndPoint: "https://your-proxy.com"
+```
+
+When using a proxy, map your proxy domain (e.g. `your-proxy.com`) to `https://search.unbxd.io` in your backend or proxy server configuration so that requests to your proxy are forwarded to the Unbxd search API.
+
+You can also configure your proxy to forward specific cookies from the frontend to the actual Unbxd search endpoint. This allows you to authenticate or validate requests (e.g., check session or user info) before forwarding them. Your proxy should read incoming cookies from the request, validate them as required, and then conditionally forward the request to the original Unbxd endpoint.
+
+> **Note:** Implementation of cookie handling and validation depends on your proxy server setup (for example, using Express.js, Nginx, etc.).
 
 <!-- This feature is not used, and not adopted. There is no clarity.
 

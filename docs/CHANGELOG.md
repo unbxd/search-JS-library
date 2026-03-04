@@ -14,7 +14,20 @@ nav_order: 9
 >
 > This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
 
+# v2.1.14
 
+- **Release Date**: 16 Feb, 2026
+- **Core SDK Version**: v0.5.13
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.14/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.14/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.14/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.14/vanillaSearch.min.css)
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+1. **Improved URL parameter cleanup for SEO-friendly URLs**: Resolved an issue where, with `seoFriendlyUrl` enabled, the URL would incorrectly retain the last parameter (such as sort, pagination, or page size) after clearing all search inputs, even if only one of these parameters was present.
+2. **Correct handling of sort parameter with keyReplacer on reload**: Fixed a bug where, upon reloading the page, the custom replaced value for the sort parameter (using `keyReplacer`) in the URL was not being reverted to its original value in API requests.
+
+---
 # v2.1.13
 
 - **Release Date**: 7 Nov, 2025
@@ -220,6 +233,73 @@ Please click [here](configurations/MiscellaneousConfig) for the more details on 
 
 
 ---
+# v2.1.1 - Dynamic Extra Params
+
+- **Release Date**: 25th Oct, 2023
+- **Core SDK Version**: v0.5.1
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.1/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.1/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- In this release, we've enhanced the `extraParams` object used in our config. Previously, this object allowed you to send static key-value pairs to the Unbxd search API. However, we've now introduced the ability to use functions as values. This means that you can dynamically generate and send values to the API with each request. For example, you can now send different segmentation details, currencies, or languages in the request, ensuring that your API interactions are more adaptable and responsive to the specific context and requirements of your application. 
+
+Please click [here](configurations/MiscellaneousConfig) for the more details on the extra params.
+
+
+---
+# v2.1.0 - SEO Friendly URLs
+
+- **Release Date**: 25th Aug, 2023
+- **Core SDK Version**: v0.5.0
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.0/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.0/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- We are thrilled to announce a long awaited significant enhancement to our Vanilla JS Search SDK that is set to revolutionize the way we navigate the online retail landscapes: the SEO friendly URLs in Vanilla JS SDK.
+    -     Seamlessly customize query & browse parameters, page sizes, facets, sorting, and page views
+    -     Welcome flexibility in choosing page numbers over product indices
+    -     Say goodbye to old-fashioned, confusing URLs
+    -     Replace facet keys and values as per your conventions
+    -     Use custom characters for separating multi-value fields
+    -     Backward compatibility to ensure a smooth transition
+
+Please click [here](configurations/urlConfig) for the detailed documentation on SEO friendly URls
+
+
+
+
+---
+# v2.0.40
+
+- **Release Date**: 11th Aug, 2023
+- **Core SDK Version**: v0.4.35
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.0.40/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.0.40/vanillaSearch.min.js)
+
+## 🚀 Features
+{: .no_toc}
+- **Introducing SEO friendly URLs for Category pages**: A seo friendly category URLs can now be achieved with Unbxd Search SDK by configuring the below code. When `seoFriendlyUrl` is set to `true`, the extra category related data (p=<categoryPath>) will not be appended in the URL. The configuration for same is here. By default, `seoFriendlyUrl` will be set to `false`.
+```js
+///other configurations at root level
+url: {
+    seoFriendlyUrl: true
+}
+```
+
+## 🐛 Bug Fixes
+{: .no_toc}
+- There was an issue with the facet selection when there is a single or double apostrophe in the facet names. This issue has been fixed.
+
+
+
+
+{: .note-title }
+> Important
+>
+> This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
+
+
+---
+
 # v2.1.1 - Dynamic Extra Params
 
 - **Release Date**: 25th Oct, 2023
