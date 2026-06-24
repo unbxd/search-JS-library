@@ -1,5 +1,5 @@
-import UnbxdSearch from "../../src/index";
-// import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
+// import UnbxdSearch from "../../src/index";
+import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
 import def from "./defaultLogo.png"
 import "./unbxdStyles.css"
 
