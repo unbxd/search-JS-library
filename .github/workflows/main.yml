@@ -12,8 +12,7 @@ env:
     CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
     GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     NPM_TOKEN_JS_LIBRARY: '${{ secrets.NPM_TOKEN_JS_LIBRARY }}'
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_GITHUB_OIDC_ROLE_ARN: ${{ secrets.AWS_GITHUB_OIDC_ROLE_ARN }}
     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
     NPM_TOKEN: '${{ secrets.NPM_TOKEN }}'
 
@@ -41,19 +40,19 @@ jobs:
             - name: Setup node
               uses: actions/setup-node@v4
               with:
-                  node-version: 18
+                  node-version: 20
 
             - name: Check Cache
               uses: actions/cache@v4
               with:
                   path: '**/node_modules'
-                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
             - name: Install Dependencies
-              run: yarn install --frozen-lockfile
+              run: npm ci
 
             - name: Run Test
-              run: yarn test
+              run: npm test
 
     build-documentation-site:
       name: Build Documentation
@@ -101,28 +100,29 @@ jobs:
               uses: actions/checkout@v2
 
             - name: Setup node
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v4
               with:
-                  node-version: 18
+                  node-version: 20
 
             - name: Check Cache
               uses: actions/cache@v4
               with:
                   path: '**/node_modules'
-                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
-            - name: Configure AWS Credentials
-              uses: aws-actions/configure-aws-credentials@v1
+            - name: Configure AWS Credentials via OIDC
+              uses: aws-actions/configure-aws-credentials@v4
               with:
-                aws-region: us-east-1
-                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                role-to-assume: ${{ secrets.AWS_GITHUB_OIDC_ROLE_ARN }}
+                aws-region: ${{ secrets.AWS_DEFAULT_REGION}}
+                audience: sts.amazonaws.com
+                role-session-name: github-${{ github.run_id }}
 
             - name: Install Dependencies
-              run: yarn install --frozen-lockfile
+              run: npm ci
 
             - name: Run Build
-              run: yarn build
+              run: npm run build
 
             - name: Extract version
               id: extract_version
