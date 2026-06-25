@@ -388,14 +388,14 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-	// siteKey: "ss-unbxd-aus-demo-fashion831421736321881",
-	// apiKey: "1ccbb7fcb0faf770d1c228be80ba16d9",
+	siteKey: "ss-unbxd-aus-demo-fashion831421736321881",
+	apiKey: "1ccbb7fcb0faf770d1c228be80ba16d9",
 	// siteKey: "ss-unbxd-auk-Dev-AR-Boutiqaat67021752748060",
 	// apiKey: "c85fd907396dc40e2edb35da6e26d844",
 	// siteKey: "ss-unbxd-auk-Prod-AR-Boutiqaat67021773664206",
 	// apiKey: "e848ee00ce7f3478fbf0537698909ccf",
-	siteKey: "ss-unbxd-gcp-prod-zerbees12591673538469",
-	apiKey: "2a769a12b1176d88fcd581082e182126",
+	// siteKey: "ss-unbxd-gcp-prod-zerbees12591673538469",
+	// apiKey: "2a769a12b1176d88fcd581082e182126",
 	// siteKey: "demo-unbxd700181503576558",
 	// apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
 	// onError: function(err) {
