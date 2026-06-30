@@ -9,8 +9,6 @@ on:
 
       
 env:
-    CODECOV_TOKEN: '${{ secrets.CODECOV_TOKEN }}'
-    GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
     NPM_TOKEN_JS_LIBRARY: '${{ secrets.NPM_TOKEN_JS_LIBRARY }}'
     AWS_GITHUB_OIDC_ROLE_ARN: ${{ secrets.AWS_GITHUB_OIDC_ROLE_ARN }}
     AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
