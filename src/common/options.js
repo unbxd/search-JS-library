@@ -246,6 +246,7 @@ const options = {
 
 		facetMultilevel: true,
 		facetMultilevelName: 'Category',
+		facetMultilevelMultiSelect: false,
 		multiLevelFacetSelectorClass: 'UNX-multilevel-facet',
 		multiLevelFacetTemplate: multiLevelFacetUI,
 		facetDepth: 4,

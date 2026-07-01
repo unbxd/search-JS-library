@@ -1,6 +1,7 @@
 /* @import "./sprite.svg";      */
-       
-*,body {
+
+*,
+body {
   font-family: "Poppins", "Nunito Sans", "Barlow", "Helvetica Neue", "Helvetica", "Roboto",
     "sans-serif";
   margin: 0;
@@ -22,7 +23,6 @@
   color: #a7b5bd;
   font-size: 14px;
   letter-spacing: 0;
-  line-height: 30px;
 }
 
 #UNX-head-wrapper-debug {
@@ -62,8 +62,8 @@
 
 .UNX-header-logo {
   /* background-image: url(./defaultLogo.png); */
-    width: 165px;
-      height: 43px;
+  width: 165px;
+  height: 43px;
   display: inline-block;
   margin-left: 15px;
 }
@@ -221,6 +221,8 @@
   border-top: solid 1px #e7e7e7;
   margin-top: 15px;
   padding-top: 10px;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .UNX-facet-open:after {
@@ -266,6 +268,10 @@
 .UNX-multilevel-facet {
   margin-bottom: 0px;
   cursor: pointer;
+  height: 30px;
+  border: 0;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .UNX-pagination-block {
@@ -572,7 +578,7 @@
 .UNX-pagination-block .UNX-page-prev,
 .UNX-pagination-block .UNX-page-next {
   width: 24px;
-  background: rgb(228,228,228);
+  background: rgb(228, 228, 228);
   color: #b1b1b1;
 }
 
@@ -800,10 +806,6 @@
   padding-left: 0px;
 }
 
-.UNX-category-values {
-  padding-left: 6px;
-}
-
 .UNX-icons {
   /* background-image: url("/components/icons/icons.svg"); */
   background-size: auto;
@@ -827,14 +829,16 @@
   height: 50px;
   width: 50px;
   background-image: url("./sprite.svg");
-  background-position: -661px -1511px;;
+  background-position: -661px -1511px;
+  ;
 }
 
 .UNX-icon-return {
   height: 50px;
   width: 50px;
   background-image: url("./sprite.svg");
-  background-position: -610px -1511px;;
+  background-position: -610px -1511px;
+  ;
 }
 
 .UNX-grid-btn {
@@ -885,14 +889,15 @@
 }
 
 .UNX-search-btn {
-  background-image: url("./sprite.svg") ;
-  background-position:  -218px -217px;;
+  background-image: url("./sprite.svg");
+  background-position: -218px -217px;
+  ;
   background-size: auto;
   height: 40px;
   width: 40px;
   color: rgb(185, 185, 185);
   border-color: transparent;
-  background-color:transparent ;
+  background-color: transparent;
   top: 10px
 }
 
@@ -1158,16 +1163,23 @@ input[id^="likeBtn"]:checked~.UNX-favourite {
 
 .UNX-multilevel-facet::before {
   content: " ";
-  height: 18px;
-  width: 18px;
+  min-height: 11px;
+  min-width: 11px;
+  max-height: 11px;
+  max-width: 11px;
   display: inline-block;
-  /* background-image: url("/components/icons/icons.svg"); */
-  background-size: auto;
-  background-position: -70px -367px;
+  background: url('./sprite.svg') no-repeat -18px -966px;
+	width: 11px;
+	height: 11px;
+  scale: 0.8;
 }
 
 .UNX-multilevel-facet.UNX-selected-crumb::before {
-  background-position: -20px -367px;
+  background: url('./sprite.svg') no-repeat -573px -875px;
+	width: 7px;
+	height: 2px;
+  margin: 8px -2px 0 2px;
+  scale: 1;
 }
 
 .UNX-selected-crumb {

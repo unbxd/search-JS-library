@@ -141,12 +141,12 @@ const findChangedFacet = function (e) {
 	}
 
 	if (action === actions.setCategoryFilter) {
-		if (productType === "SEARCH") {
-			this.setCategoryFilter(dataSet);
-			this.options.onEvent(this, events.setCategoryFilter, dataSet);
-		} else {
-			this.setCategoryId(dataSet, this);
-		}
+		// if (productType === "SEARCH") {
+		this.setCategoryFilter(dataSet);
+		this.options.onEvent(this, events.setCategoryFilter, dataSet);
+		// } else {
+		// 	this.setCategoryId(dataSet, this);
+		// }
 		this.setPageStart(0);
 		this.getResults();
 		this.getCallbackActions(dataSet, 'facetClick');
