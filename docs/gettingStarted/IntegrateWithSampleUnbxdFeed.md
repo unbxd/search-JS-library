@@ -285,7 +285,7 @@ facet: {
     }
 },
 breadcrumb: {
-    el: document.getElementById("breadcrumpContainer")
+    el: document.getElementById("breadcrumbContainer")
 },
 pagesize: {
     el: document.getElementById("changeNoOfProducts")

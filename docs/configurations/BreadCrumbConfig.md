@@ -18,7 +18,7 @@ nav_order: 10
 # Definition
 In e-commerce, 'breadcrumbs' refer to a navigation element that allows users to see the hierarchical structure of the website and understand their location within the site. They are typically displayed as a series of links that indicate the path that a user has taken to reach the current page.
 
-For example, if a user is on a product page for a specific item, the breadcrumb might show: Home > Clothing > T-shirts > Men's T-shirts > [Product Name]
+For example, if a user is on a product page for a specific item, the breadcrumb might show: Home > Clothing > T-shirts > Office Supplies>Binders & Accessories>Binders's T-shirts > [Product Name]
 
 This way, the user can easily understand where they are within the website and navigate to other sections of the site.
 
@@ -32,6 +32,8 @@ Breadcrumbs can also be used to highlight the relevance of the product or catego
 To render the breadcrumb component, set the “breadcrumb” config object.
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/breadcrumbs.png)
+
+> **Note:** Breadcrumbs are derived from the `browseQueryParam` value (the category page context). On CATEGORY/BROWSE pages the path inside the quoted value — e.g. `categoryPath:"LAUNDRY>WASHING MACHINES"` — is split on `>` and rendered as crumbs. Any `category-filter` applied on top of the browse context appears in the selected facets component as chips, not as breadcrumbs.
 
 # Configurations
 To render the breadcrumbs on the search results page, you can use the `breadcrumbs` config object to configure the various options.
@@ -208,7 +210,7 @@ Any valid html attribute can be passed as `key : value` pairs inside an object.
 ```js
 breadcrumb:{
   enabled:true,
-  el: document.getElementById("breadcrumpContainer"),
+  el: document.getElementById("breadcrumbContainer"),
   selectorClass:"UNX-bread-crumb",
   template:function(breadcrumbs, breadcrumb){
     let ui = ``;

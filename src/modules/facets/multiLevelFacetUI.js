@@ -1,5 +1,15 @@
 
-const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, facetConfig) {
+const multiLevelFacetUI = function (facet, selectedCategories, facetSearchTxt, facetConfig) {
+    const facetMultilevelMultiSelect = this.options?.facet?.facetMultilevelMultiSelect || false;
+
+    if (facetMultilevelMultiSelect) {
+        return renderMultiSelectMode.call(this, facet, selectedCategories, facetSearchTxt, facetConfig);
+    } else {
+        return renderSingleSelectMode.call(this, facet, selectedCategories, facetSearchTxt, facetConfig);
+    }
+};
+
+function renderSingleSelectMode(facet, selectedCategories, facetSearchTxt, facetConfig) {
     let ui = "";
     let {
         multiLevelFacetSelectorClass,
@@ -8,8 +18,17 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
     const {
         UNX_facetLevel
     } = this.testIds;
-    if(selectedCategories) {
-        selectedCategories.forEach(item => {
+    const {
+        level,
+        values,
+        filterField
+    } = facet;
+    console.log("this.state", this.state);
+    const lastCategoryValue = selectedCategories[selectedCategories.length - 1]?.value;
+    const isLastCategoryInValues = values.some(item => item.value === lastCategoryValue);
+    const finalCategories = isLastCategoryInValues ? selectedCategories.filter(item => item.value !== lastCategoryValue) : selectedCategories;
+    if (finalCategories.length > 0) {
+        finalCategories.forEach(item => {
             const {
                 level,
                 filterField,
@@ -18,16 +37,11 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
             let lTid = `data-test-id="${UNX_facetLevel}${level}"`;
             const levelCss = `${multiLevelFacetSelectorClass}  UNX-category-level-${level}`
             ui += [`<button ${lTid} data-parent="${filterField}" data-level="${level}" data-name="${value}"`,
-            `class=" ${levelCss} UNX-selected-crumb ${facetClass}" data-action = "clearCategoryFilter">`,
-                `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${decodeURIComponent(value)}</label>`,
-            `</button>`].join('')
+            `class=" ${levelCss} UNX-selected-crumb ${facetClass}" data-action = "clearCategoryFilter" style="padding-left:${level * 5}px;">`,
+            `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${decodeURIComponent(value)}</label>`,
+                `</button>`].join('')
         })
     }
-    const {
-        level,
-        values,
-        filterField
-    } = facet;
     let {
         multiLevelField
     } = facet;
@@ -42,17 +56,18 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
             count,
             dataId
         } = item;
-        if(facetSearchTxt && facetSearchTxt.length > 0) {
-            if(name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0 ){
-                facetClass +=' UNX-search-hidden'
+        let itemFacetClass = facetClass;
+        if (facetSearchTxt && facetSearchTxt.length > 0) {
+            if (name.toUpperCase().indexOf(facetSearchTxt.toUpperCase()) < 0) {
+                itemFacetClass += ' UNX-search-hidden'
             }
         }
         return [`<button ${lTid} data-parent="${multiLevelField}" data-level="${level}"`,
-            `class="${multiLevelFacetSelectorClass} ${levelCss} ${facetClass}" data-name="${dataId}" data-action = "setCategoryFilter">`,
-            `<label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`].join('')
+        `class="${multiLevelFacetSelectorClass} ${levelCss} ${itemFacetClass} ${lastCategoryValue === name ? "UNX-selected-crumb" : ""}" data-name="${dataId}" data-action = "setCategoryFilter">`,
+        `<span class="UNX-category-icon"></span><label class="UNX-facet-text">${name}</label><label class="UNX-facet-count">(${count})</label></button>`].join('')
     })
-    ui += `<div class="UNX-category-values">${valueUI.join('')}</div>`
-    if(ui !== "") {
+    ui += `<div class="UNX-category-values ${ui.length > 0 ? "UNX-category-children" : ""}">${valueUI.join('')}</div>`
+    if (ui !== "") {
         return [`<div class="UNX-multi-facet-wrap">`,
             `${ui}</div>`].join('')
 
@@ -60,4 +75,134 @@ const multiLevelFacetUI = function(facet,selectedCategories,facetSearchTxt, face
         return "";
     }
 }
+
+function renderMultiSelectMode(facet, selectedCategories, facetSearchTxt, facetConfig) {
+    const {
+        multiLevelFacetSelectorClass,
+        facetClass
+    } = facetConfig;
+    const { UNX_facetLevel } = this.testIds;
+
+    const {
+        facetName,
+        level = 1,
+        values = [],
+        filterField
+    } = facet;
+
+    let { multiLevelField } = facet;
+
+    if (!multiLevelField) {
+        multiLevelField = filterField;
+    }
+
+    const selectedFacetEntries = (this.getSelectedFacets() || {})[facetName] || [];
+    const selectedPaths = selectedFacetEntries.map(e => e.dataId || e.name).filter(Boolean);
+    const searchText = facetSearchTxt?.trim().toLowerCase();
+
+    const renderNode = (
+        node,
+        parentPath = [],
+        currentLevel = level
+    ) => {
+        const {
+            value,
+            count,
+            children = []
+        } = node;
+
+        const currentPath = [...parentPath, value];
+        const fullPath = currentPath.join(">");
+
+        const isSelected = selectedPaths.includes(fullPath);
+
+        const isAncestorOfSelected = selectedPaths.some(
+            selectedPath =>
+                selectedPath !== fullPath &&
+                selectedPath.startsWith(`${fullPath}>`)
+        );
+
+        const shouldHighlight =
+            isSelected || isAncestorOfSelected;
+
+        const renderedChildren = children
+            .map(child =>
+                renderNode(
+                    child,
+                    currentPath,
+                    currentLevel + 1
+                )
+            )
+            .join("");
+
+        const matchesSearch =
+            !searchText ||
+            value.toLowerCase().includes(searchText);
+
+        const hasVisibleChildren =
+            renderedChildren.trim().length > 0;
+
+        if (!matchesSearch && !hasVisibleChildren) {
+            return "";
+        }
+
+        const buttonClasses = [
+            multiLevelFacetSelectorClass,
+            facetClass,
+            `UNX-category-level-${currentLevel}`,
+            shouldHighlight ? "UNX-selected-crumb" : ""
+        ]
+            .filter(Boolean)
+            .join(" ");
+
+        const dataAction = shouldHighlight
+            ? "clearCategoryFilter"
+            : "setCategoryFilter";
+
+        const lTid = `data-test-id="${UNX_facetLevel}${currentLevel}"`;
+
+        return `
+            <div class="UNX-category-node UNX-category-node-level-${currentLevel}">
+                <button
+                    ${lTid}
+                    data-parent="${multiLevelField}"
+                    data-level="${currentLevel}"
+                    data-name="${fullPath}"
+                    class="${buttonClasses}"
+                    data-action="${dataAction}"
+                >
+                    <span class="UNX-category-icon"></span>
+                    <label class="UNX-facet-text">${value}</label>
+                    <label class="UNX-facet-count">(${count})</label>
+                </button>
+
+                ${hasVisibleChildren
+                ? `
+                    <div class="UNX-category-children UNX-category-level-${currentLevel + 1}">
+                        ${renderedChildren}
+                    </div>
+                `
+                : ""
+            }
+            </div>
+        `;
+    };
+
+    const ui = values
+        .map(item => renderNode(item))
+        .join("");
+
+    if (!ui) {
+        return "";
+    }
+
+    return `
+        <div class="UNX-multi-facet-wrap">
+            <div class="UNX-category-values">
+                ${ui}
+            </div>
+        </div>
+    `;
+}
+
 export default multiLevelFacetUI;

@@ -17,7 +17,6 @@ const findChangedFacet = function (e) {
 	const ln = (selectedfacets) ? Object.keys(selectedfacets).length : 0;
 	const ql = Object.keys(qState.selectedFacets).length;
 	const {
-		productType,
 		facet
 	} = this.options;
 	const {
@@ -141,23 +140,19 @@ const findChangedFacet = function (e) {
 	}
 
 	if (action === actions.setCategoryFilter) {
-		if (productType === "SEARCH") {
-			this.setCategoryFilter(dataSet);
-			this.options.onEvent(this, events.setCategoryFilter, dataSet);
-		} else {
-			this.setCategoryId(dataSet, this);
-		}
+		// if (productType === "SEARCH") {
+		this.setCategoryFilter(dataSet);
+		this.options.onEvent(this, events.setCategoryFilter, dataSet);
+		// } else {
+		// 	this.setCategoryId(dataSet, this);
+		// }
 		this.setPageStart(0);
 		this.getResults();
 		this.getCallbackActions(dataSet, 'facetClick');
 	}
 	if (action === actions.clearCategoryFilter) {
-		if (productType === "SEARCH") {
-			this.deleteCategoryFilter(dataSet);
-			this.options.onEvent(this, events.deleteCategoryFilter, dataSet);
-		} else {
-			this.setCategoryId(dataSet, this);
-		}
+		this.deleteCategoryFilter(dataSet);
+		this.options.onEvent(this, events.deleteCategoryFilter, dataSet);
 		this.setPageStart(0);
 		this.getResults();
 		this.getCallbackActions(dataSet, 'facetClick');

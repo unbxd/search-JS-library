@@ -23,7 +23,7 @@ const isSelectedRange = function(facetName,range){
 const clearAllFacets = function() {
     this.state.selectedFacets = {};
     this.state.rangeFacet = [];
-    this.state.categoryFilter = {};
+    // categoryFilter holds the browse context (category page path); do not clear it here.
 }
 const isExpandedFacet = function(facetName){
     const {

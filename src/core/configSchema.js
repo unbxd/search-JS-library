@@ -496,6 +496,9 @@ export const facetsSchema = {
             },
             datatype: "string"
         },
+        facetMultilevelMultiSelect: {
+            datatype: "boolean"
+        },
         multiLevelFacetSelectorClass: {
             datatype: "string"
         },

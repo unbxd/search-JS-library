@@ -543,18 +543,7 @@ button.UNX-page-next {
   border-color: transparent;
   display: flex;
   margin-bottom: 6px;
-}
-.UNX-category-level-2 {
-  padding-left: 12px;
-}
-.UNX-category-level-3 {
-  padding-left: 24px;
-}
-.UNX-category-level-4 {
-  padding-left: 36px;
-}
-.UNX-category-values > .UNX-category-level-2 {
-  padding-left: 24px;
+  overflow: visible;
 }
 .UNX-multilevel-facet .UNX-facet-text:before {
   background: #f1f1f1;
@@ -730,8 +719,8 @@ button.UNX-page-next {
 .UNX-multilevel-facet {
   align-items: center;
 }
-.UNX-category-level-1 {
-  padding-left: 0px;
+.UNX-category-children {
+  margin-left: 15px;
 }
 .UNX-multilevel-block .UNX-facet-text {
   color: #666666;
@@ -742,7 +731,8 @@ button.UNX-page-next {
   padding-left: 20px;
   overflow: hidden;
   white-space: nowrap;
-  float: left;
+  flex: 1;
+  min-width: 0;
   text-align: left;
   height: 17px;
   text-overflow: ellipsis;
@@ -758,7 +748,8 @@ button.UNX-page-next {
   text-rendering: auto;
   line-height: 1;
   position: relative;
-  margin-right: 5px;
+  flex-shrink: 0;
+  min-width: 10px;
 }
 .UNX-multilevel-block .UNX-facet-text::before {
   display: none;

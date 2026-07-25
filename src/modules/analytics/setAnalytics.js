@@ -58,15 +58,13 @@ const trackImpression = function(){
     }
 }
 const trackFacetClick = function(){
-    const textFacets = this.getSelectedFacets();
+    const allSelectedFacets = this.getSelectedFacets();
     const rangeFacets = this.state.rangeFacet;
-    const categoryField = this.state.categoryFilter;
-    const textFacetsArr = Object.keys(textFacets);
+    const textFacetsArr = Object.keys(allSelectedFacets);
     const rangeFacetsArr = Object.keys(rangeFacets);
-    const categoryArr = Object.keys(categoryField);
     let facetArr ={};
     textFacetsArr.forEach((facet) =>{
-        const valObj =textFacets[facet];
+        const valObj = allSelectedFacets[facet];
         let arr = [];
         valObj.forEach((val) => {
             arr.push(val.name)
@@ -74,18 +72,12 @@ const trackFacetClick = function(){
         facetArr[facet] = arr;
     });
     rangeFacetsArr.forEach((facet) =>{
-        // const val =rangeFacetsArr[facet];
         const val = rangeFacets[facet][0];
         if(val) {
             const modifiedVal = val.replace(/\[|\]/g,'').split(',');
             facetArr[facet] = modifiedVal;
         }
     });
-    categoryArr.forEach(category => {
-        const val =categoryField[category];
-        const original = val.join('>');
-        facetArr[category] = original;
-    })
     const query = this.getSearchQuery();
     window.Unbxd.track('facets', {'query':query,'facets':facetArr});
 }

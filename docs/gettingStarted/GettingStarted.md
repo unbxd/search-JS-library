@@ -382,7 +382,7 @@ window.unbxdSearch = new UnbxdSearch({
         }
     },
     breadcrumb: {
-        el: document.getElementById("breadcrumpContainer")
+        el: document.getElementById("breadcrumbContainer")
     },
     pagesize: {
         enabled: true,

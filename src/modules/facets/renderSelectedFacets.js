@@ -13,24 +13,20 @@ export default function () {
 		let itemTemplate = (facet.selectedFacetItemTemplate) ? facet.selectedFacetItemTemplate.bind(this) : selectedFacets.itemTemplate.bind(this);
 		for (let i = 0; i < k.length; i++) {
 			const j = k[i];
-			const isCategoryFacet = this.isCategoryFacet(j);
 			const vals = selectedFacetsInfo[j] || [];
 			const facetInfo = this.getAFacetByName(j);
-			if (!isCategoryFacet) {
-				vals.forEach(item => {
-					const {
-						name,
-						count,
-						dataId
-					} = item;
-					selectedUi += itemTemplate(facetInfo[0], {
-						name: name,
-						dataId: (dataId) ? dataId : name,
-						count: count ? count : 0
-					}, facet, selectedFacets);
-				})
-			}
-
+			vals.forEach(item => {
+				const {
+					name,
+					count,
+					dataId
+				} = item;
+				selectedUi += itemTemplate(facetInfo[0], {
+					name: name,
+					dataId: (dataId) ? dataId : name,
+					count: count ? count : 0
+				}, facet, selectedFacets);
+			});
 		}
 		let r = Object.keys(selectedRanges);
 		for (let j = 0; j < r.length; j++) {
