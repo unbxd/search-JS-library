@@ -25,7 +25,9 @@ nav_order: 9
 ## 🚀 Features
 {: .no_toc}
 
-1. **Disable facet fetching via `facet.enabled`**: Added support for `facet.enabled: false` in the facet configuration. When disabled, the SDK sends `facet=false` in API requests and skips facet data processing in the response, allowing merchants to reduce payload size when facets are not needed on a page.
+1. **Disable facet fetching via `facet.enabled`**: Added support for `facet.enabled: false` in the facet configuration. When disabled, the SDK sends `facet=false` on every API request and omits facet filter params from the request URL, allowing merchants to reduce payload size when facets are not needed on a page.
+2. **Optimized facet fetching on pagination, page size, and sort**: When facets are enabled, the SDK now sends `facet=false` when only page, page size, or sort changes. Query, category path, and filter changes still fetch facets. Previously loaded facet data is retained in state when `facet=false` is sent, so the facet UI stays stable during pagination and sort.
+3. **Multilevel facet multiselect**: Support for `facet.facetMultilevelMultiSelect` to append `&facet.multilevel.multiselect=true` in API requests when enabled.
 
 ## 🐛 Bug Fixes
 {: .no_toc}
@@ -37,6 +39,7 @@ nav_order: 9
 
 1. Added `searchEndPoint` proxy use-case documentation for routing API calls through a custom proxy.
 2. Expanded URL configuration documentation, including workbench examples and parameter-specific guides for pagination, sort, page size, and facets.
+3. Documented `facet.enabled`, `facet.facetMultilevelMultiSelect`, and API facet fetch optimization in [Facets configuration](configurations/FacetsConfig.md).
 
 ---
 # v2.1.14

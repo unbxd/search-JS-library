@@ -145,6 +145,12 @@ Yes, the Unbxd Search SDK allows you to customize the appearance of the paginati
 
 # Facet Related Queries
 ## How to enable and make use of the faceted search functionality provided by the SDK?
+Faceted search is enabled by default. Configure the `facet` object in your SDK options — at minimum, set `facet.facetsEl` to the DOM element where facets should render. Facets are fetched from the search API on the first load and whenever the search query, category path, or applied filters change.
+
+To disable facets entirely on a page, set `facet.enabled: false`. See the [Facets configuration](configurations/FacetsConfig.html#enabled) for details.
+
+## When does the SDK re-fetch facets from the API?
+When `facet.enabled` is `true` (default), facets are fetched on the first request and whenever the search query, category path, or applied filters change. When the user only changes page, page size, or sort, the SDK sends `facet=false` to reduce payload size and retains the facet data already in state. See [API facet fetch optimization](configurations/FacetsConfig.html#api-facet-fetch-optimization).
 
 ## What are facets and how do they work with the Unbxd Search SDK?
 Facets are filters that allow users to narrow down their search results by specific attributes such as price, brand, color, etc. The Unbxd Search SDK allows for the implementation of facets on your e-commerce website, allowing users to easily filter the search results based on the attributes provided in the facets.

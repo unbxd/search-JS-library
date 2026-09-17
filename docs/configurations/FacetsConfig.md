@@ -28,6 +28,20 @@ Facets are the products filters provided on your webpage which allows customers
 
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/Facets-main.png)
 
+### API facet fetch optimization
+
+When facets are enabled (the default), the core SDK optimizes search API requests to reduce payload size:
+
+| Request change | API facet param | Facet UI state |
+| --- | --- | --- |
+| First load | Full facet params (`facet.version=V2`, multiselect flags, etc.) | Updated from API |
+| Search query, category path, or applied filters change | Full facet params | Updated from API |
+| Page, page size, or sort only | `facet=false` | Retained from previous response |
+
+Product results and applied filters are still sent on every request. Only the facet block in the API response is skipped when `facet=false` is used. The SDK keeps the last facet payload in state so the facet panel does not disappear or reset during pagination or sort changes.
+
+When `facet.enabled` is `false`, every request sends `facet=false` and facet, range, and category filter params are omitted from the API URL. Any facet data already present in state is retained when available.
+
 # Types of Facets
 
 In e-commerce, facets are used to allow users to filter and narrow down a large dataset of products by specific criteria. There are several types of facets that can be used to achieve this, including:
@@ -49,6 +63,30 @@ facet: {
 }
 ```
 The following options are available under the object:  
+
+## enabled
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+Turn facet fetching off entirely when facets are not needed on a page (for example, a product-listing-only view). When `false`, the SDK sends `facet=false` on every API request and omits facet, range, and category filter params from the request URL. Facet data already loaded in state is retained when available.
+
+When `true` (default), facets are fetched on the first request and whenever the search query, category path, or applied filters change. See [API facet fetch optimization](#api-facet-fetch-optimization) for how pagination, page size, and sort-only changes are handled.
+
+### Default Value
+{: .no_toc }
+
+```js
+enabled: true
+```
+
+### Scenarios
+{: .no_toc }
+1. `true` — Facets are fetched when query, category, or filters change; pagination/sort-only requests use `facet=false` and retain existing facet state.
+2. `false` — Every API request uses `facet=false`; filter params are not appended to the API URL.
+
+--- 
 
 ## facetsEl
 {: .d-inline-block }
@@ -585,6 +623,28 @@ facetMultilevel: true
 {: .no_toc }
 1.  `true`: When turned on , the multilevel parameter will be sent to API.
 2.  `false`: When turned off , the multilevel parameter will not be sent in the API.
+
+--- 
+
+## facetMultilevelMultiSelect
+{: .d-inline-block }
+
+Boolean
+{: .label }
+
+When enabled, appends `&facet.multilevel.multiselect=true` to search API requests. Use this when multilevel category facets should allow selecting multiple values at the same level.
+
+### Default Value
+{: .no_toc }
+
+```js
+facetMultilevelMultiSelect: false
+```
+
+### Scenarios
+{: .no_toc }
+1. `true` — Sends `facet.multilevel.multiselect=true` in the API URL when facets are fetched.
+2. `false` — Omits the multilevel multiselect param (default).
 
 --- 
 
