@@ -1,5 +1,5 @@
-// import UnbxdSearch from "../../src/index";
-import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
+import UnbxdSearch from "../../src/index";
+// import UnbxdSearch from "@unbxd-ui/vanilla-search-library";
 import def from "./defaultLogo.png"
 import "./unbxdStyles.css"
 
@@ -407,8 +407,8 @@ if (location.pathname === "/men") {
 }
 
 window.unbxdSearch = new UnbxdSearch({
-	siteKey: "demo-unbxd700181503576558",
-	apiKey: "fb853e3332f2645fac9d71dc63e09ec1",
+	siteKey: "ss-unbxd-aus-demo-fashion831421736321881",
+	apiKey: "1ccbb7fcb0faf770d1c228be80ba16d9",
 	// onError: function(err) {
 	//     console.error('onError', err)
 	// },
@@ -462,6 +462,7 @@ window.unbxdSearch = new UnbxdSearch({
 		el: document.getElementById("selectedFacetWrapper")
 	},
 	facet: {
+		enabled: true,
 		isCollapsible: true,
 		defaultOpen: "NONE",
 		viewMoreLimit: 2,
