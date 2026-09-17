@@ -26,6 +26,9 @@ Some e-commerce websites also provide pagination options so that users can navig
 # Behavior
 Page Size widget allows you to configure the number of products shown on each page. The value should be greater than ZERO. It is suggested that the value to be multiple of number of columns (ex. if gridCount is 3 then 15 or 18 or 21).
 
+{: .note }
+When facets are enabled, changing page size does not re-fetch facet data from the API. The SDK sends `facet=false` and keeps the existing facet state. See [Facets — API facet fetch optimization](FacetsConfig.html#api-facet-fetch-optimization).
+
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/page-size-new.png)  
 
 

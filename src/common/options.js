@@ -223,6 +223,7 @@ const options = {
 
 
 	facet: {
+		enabled: true,
 		facetsEl: null,
 		facetTemplate: facetUIElem,
 		facetItemTemplate: facetItemUiElem,

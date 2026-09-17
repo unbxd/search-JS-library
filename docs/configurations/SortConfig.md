@@ -37,6 +37,9 @@ It is also common to find that e-commerce websites will have a default sort orde
 
 Sorting allows you to rearrange the search results based on certain fields in a particular order.
 
+{: .note }
+When facets are enabled, changing sort does not re-fetch facet data from the API. The SDK sends `facet=false` and keeps the existing facet state. See [Facets — API facet fetch optimization](FacetsConfig.html#api-facet-fetch-optimization).
+
 [![](https://unbxd.com/docs/wp-content/uploads/2020/05/sort-options-main.png)](https://unbxd.com/docs/wp-content/uploads/2020/05/sort-options-main.png)
 
 # Configurations

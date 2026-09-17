@@ -38,6 +38,9 @@ This feature will helps the users to navigate the products for any search/browse
 
 Pagination helps to control the number of products displayed on the page and the type of pagination (infinite scroll, click to scroll, or fixed pagination) to display.
 
+{: .note }
+When facets are enabled, changing the page does not re-fetch facet data from the API. The SDK sends `facet=false` and keeps the existing facet state. See [Facets — API facet fetch optimization](FacetsConfig.html#api-facet-fetch-optimization).
+
 
 # Pros and Cons 
 The choice of pagination method depends on the specific needs of the website and its target audience. However, here are the advantages and disadvantages of different pagination methods.
