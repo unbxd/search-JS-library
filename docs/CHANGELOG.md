@@ -14,6 +14,31 @@ nav_order: 9
 >
 > This document is ONLY for customers integrated with the new version of SDK (V2 integrations done after March 2022). We encourage our customers to integrate and stay upgraded with the latest versions of V2 SDK as we would soon deprecate the older version (V1 SDK).
 
+# v2.1.15-beta
+
+- **Release Date**: 17 Sep, 2026
+- **Core SDK Version**: v0.5.14-beta.1
+- **Previous Beta**: v2.1.14-beta
+- **CDN Link**: [https://libraries.unbxdapi.com/search-sdk/v2.1.15-beta/vanillaSearch.min.js](https://libraries.unbxdapi.com/search-sdk/v2.1.15-beta/vanillaSearch.min.js)
+- **CSS Link** [https://libraries.unbxdapi.com/search-sdk/v2.1.15-beta/vanillaSearch.min.css](https://libraries.unbxdapi.com/search-sdk/v2.1.15-beta/vanillaSearch.min.css)
+
+## 🚀 Features
+{: .no_toc}
+
+1. **Disable facet fetching via `facet.enabled`**: Added support for `facet.enabled: false` in the facet configuration. When disabled, the SDK sends `facet=false` in API requests and skips facet data processing in the response, allowing merchants to reduce payload size when facets are not needed on a page.
+
+## 🐛 Bug Fixes
+{: .no_toc}
+
+1. **Category path filters excluded from facet URL string**: Fixed an issue where `categoryPath` and category facet filters were incorrectly included in the facet URL string, which could cause duplicate or malformed filter parameters.
+
+## 📚 Documentation
+{: .no_toc}
+
+1. Added `searchEndPoint` proxy use-case documentation for routing API calls through a custom proxy.
+2. Expanded URL configuration documentation, including workbench examples and parameter-specific guides for pagination, sort, page size, and facets.
+
+---
 # v2.1.14
 
 - **Release Date**: 16 Feb, 2026
